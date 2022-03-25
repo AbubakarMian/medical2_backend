@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+
+        tr.myboxes {
+            height: 121px;
+        }
+
+        h1.monthly
+        {
+            font-size: 44px;
+            font-family: cursive;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 43px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* #customers tr:hover {background-color: #ddd;} */
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color:#337ab7;
+            color: white;
+        }
+        h4.myAnnuaal {
+            margin-top: 20px;
+            margin-left: 14px;
+        }
+        .bblue {
+            background: #337ab7;
+            text-align: center;
+            color: white;
+        }
+        .bblue h4 {
+            font-size: 24px;
+        }
+
+        h4.myConsecutive {
+            margin-top: 20px;
+            margin-left: 14px;
+        }
+        h3.Annuaal {
+            margin-top: 0px;
+            /* text-decoration: underline; */
+            font-size: 25px;
+            color: #7d7d7d;
+            font-weight: 700;
+        }
+        .bbwith {
+            width: 800px !important;
+        }
+        .bgdata {
+            padding: 30px 28px !important;
+        }
+        h3.Consecutive {
+            /* text-decoration: underline; */
+            font-size: 25px;
+            color: #7d7d7d;
+            font-weight: 700;
+        }
+        ul.point {
+            margin-left: -25px;
+        }
+
+        span.total {
+
+            float: right;
+
+        }
+        thead.monday {
+            font-family: cursive;
+        }
+        .panel-default {
+            border-color: #ddd;
+            margin-top: -30px;
+        }
+
+div.sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  margin-bottom: -80px;
+    margin-top: -40px;
+    color: black;
+}
+input.mylogo {
+    padding-left: 37px;
+    margin-bottom: 13px;
+    margin-left: 3px;
+    padding-left: 10px;
+    margin-right: 4px;
+}
+.morning {
+    margin-bottom: 0px;
+    border-radius: 12px;
+    text-align: -webkit-center;
+    padding-top: 9px;
+    padding-bottom: 0px;
+}
+/* .ucc {
+    margin-left: 73%;
+    margin-top: -25px;
+    font-weight: 700;
+    font-family: cursive;
+} */
+input.mymorning {
+    border-radius: 3px;
+    height: 25px;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+}
+.bigmorning {
+    margin-top: -10px;
+    margin-bottom: 5px;
+    font-size: 11px;
+}
+/* .mydate {
+    font-size: large;
+    font-family: cursive;
+    font-weight: bold;
+} */
+
+
+
+.mydate {
+    font-size: 16px;
+    font-family: cursive;
+    font-weight: bold;
+    background: #dad8d8;
+    padding: 1px 8px;
+    border-radius: 103px;
+}
+.ucc {
+    float: right;
+    width: 100%;
+    text-align: right;
+    padding-top: 2px;
+    margin-right: 10px;
+    text-decoration-line: underline;
+}
+.mydateArea {
+    display: flex;
+    width: 100%;
+    padding: 4px 4px;
+}
+h3.navigatorCalendar {
+    float: right;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    margin-left: 7px;
+    top: 8px;
+  }
+.switch-input {
+    display: none;
+  }
+  .switch-label {
+    display: block;
+    width: 39px;
+    height: 14px;
+    text-indent: -179%;
+    clip: rect(0 0 0 0);
+    /* color: transparent; */
+    user-select: none;
+}
+  .switch-label::before,
+  .switch-label::after {
+    content: "";
+    display: block;
+    position: absolute;
+    cursor: pointer;
+  }
+  .switch-label::before {
+    width: 92%;
+    height: 80%;
+    background-color: #dedede;
+    border-radius: 9999em;
+    -webkit-transition: background-color 0.25s ease;
+    transition: background-color 0.25s ease;
+}
+
+
+.switch-label::after {
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 47%;
+    background-color: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+    -webkit-transition: left 0.25s ease;
+    transition: left 0.25s ease;
+}
+  .switch-input:checked + .switch-label::before {
+    background-color: #89c12d;
+  }
+  .switch-input:checked + .switch-label::after {
+    left: 24px;
+  }
+
+
+
+

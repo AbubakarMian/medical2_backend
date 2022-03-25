@@ -1,0 +1,183 @@
+/* LOGIN PAGE BORDER */
+.login-page-border {
+    padding: 50px 100px 50px 100px;
+    background-color: rgba(128, 128, 128, 0.082);
+}
+.about-h1 {
+    text-align: left;
+    color: #101112;
+}
+.home-bar-text {
+    font-size: 25px;
+    color: #101112;
+}
+a.btn.btn-lg.btn-primary.login-button {
+    color: white;
+}
+a.btn.btn-lg.btn-primary.show-button {
+    float: right;
+}
+.modal.detail_signup.show.in {
+    background-color: darkgrey;
+}
+.blue {
+    color: #104572;
+}
+@media only screen and (max-width: 1303px) {
+    .home-bar-text {
+        font-size: 22px;
+    }
+}
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .home-bar-text {
+        font-size: 20px;
+    }
+    .home-bar-text img {
+        width: 15%;
+    }
+}
+@media only screen and (min-width: 992px) and (max-width: 1102px) {
+    .home-bar-text {
+        font-size: 17px;
+    }
+}
+@media only screen and (max-width: 991px) {
+    .home-bar-text {
+        font-size: 14px;
+    }
+    .home-bar-text img {
+        width: 20%;
+    }
+}
+@media only screen and (max-width: 894px) {
+    .home-bar-text {
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width: 807px) {
+    .home-bar-text {
+        font-size: 10px;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .login-page-border {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    .about-h1 {
+        text-align: center ;
+    }
+    .home-bar-text {
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 367px) {
+    .home-bar-text {
+        font-size: small;
+    }
+    .home-bar-text img {
+        width: 10%;
+    }
+}
+
+/* LOGIN SECTION */
+.login-section {
+    /* padding-top: 100px; */
+    padding-left: 150px;
+    padding-right: 150px;
+}
+@media only screen and (max-width: 767px) {
+    .login-section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .display-inline {
+        display: inline-block !important;
+    }
+
+}
+.login-container {
+    background-color: rgba(128, 128, 128, 0.089);
+    padding: 30px 20px 30px 20px !important;
+}
+.display-inline {
+    display: inline-flex;
+}
+@media only screen and (min-width: 1200px) {
+    .pass {
+        width: 1120px !important;
+    }
+}
+a.btn.btn-lg.btn-primary.show-button {
+    color: aliceblue;
+}
+/* .login-btn-div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+} */
+.login-btn-div {
+    padding-top: 20px;
+   padding-bottom: 113px;
+}
+
+.login-button {
+    background-color: #104572 ;
+    color: white;
+    border: #104572;
+
+}
+.show-button {
+    background-color: #104572 ;
+    color: white;
+    border: #104572;
+    height: 60px;
+}
+@media only screen and (max-width: 1199px) {
+    .show-button {
+        height: unset;
+    }
+    .show-button-col {
+        text-align: center;
+        padding-bottom: 20px;
+    }
+}
+.separater {
+    margin-top: 40px;
+    width: 75%;
+}
+input {
+    height: 60px !important;
+}
+@media only screen and (max-width: 767px) {
+    input {
+        height: unset !important;
+    }
+}
+
+
+/* REGISTER SECTION */
+.register-section {
+    padding-top: 20px;
+    padding-bottom: 100px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+@media only screen and (max-width: 767px) {
+    .register-section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .text-center-in-responsive {
+        text-align: center;
+    }
+}
+.register-text-col {
+    padding-bottom: 20px;
+}
+.register-btn-div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
