@@ -30,14 +30,14 @@ use Illuminate\Support\Facades\Route;
     Route::get('admin/dashboard', 'Admin\AdminController@dashboard')->name('dashboard');
     Route::get('admin/logout', 'Admin\AdminController@logout')->name('logout');
 
-   // parent crud
+   // courses crud
 
-    Route::get('admin/parents', 'Admin\ParentController@index')->name('parents.index');
-    Route::get('admin/parents/create', 'Admin\ParentController@create')->name('parents.create'); //add
-    Route::post('admin/parents/save', 'Admin\ParentController@save')->name('parents.save');
-    Route::get('admin/parents/edit/{id}', 'Admin\ParentController@edit')->name('parents.edit');
-    Route::post('admin/parents/update/{id}', 'Admin\ParentController@update')->name('parents.update');
-    Route::post('admin/parents/delete/{id}', 'Admin\ParentController@destroy_undestroy')->name('parents.delete');
+    Route::get('admin/courses', 'Admin\CoursesController@index')->name('courses.index');
+    Route::get('admin/courses/create', 'Admin\CoursesController@create')->name('courses.create'); //add
+    Route::post('admin/courses/save', 'Admin\CoursesController@save')->name('courses.save');
+    Route::get('admin/courses/edit/{id}', 'Admin\CoursesController@edit')->name('courses.edit');
+    Route::post('admin/courses/update/{id}', 'Admin\CoursesController@update')->name('courses.update');
+    Route::post('admin/courses/delete/{id}', 'Admin\CoursesController@destroy_undestroy')->name('courses.delete');
 
     // parents map open
 

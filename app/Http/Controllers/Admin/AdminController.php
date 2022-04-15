@@ -81,6 +81,12 @@ class AdminController extends Controller
             'title' => 'Medical ',
 
         ];
+        $modules[] = [
+
+            'url' => 'admin/courses',
+            'title' => 'Courses',
+
+        ];
 
 
         // $modules[] = [
