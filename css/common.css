@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body,
+html {
+  font-size: 15px;
+  line-height: 1.4666666667;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* top two header css start ----------------*/
+.topdata {
+  display: flex;
+}
+.infobox {
+  display: flex;
+}
+.infoarea {
+  display: flex;
+  float: right;
+  margin-top: 0px;
+}
+.infobox {
+  display: flex;
+  padding: 0px 25px;
+}
+.firstheader {
+  padding: 15px;
+}
+iframe.mymap {
+  width: -webkit-fill-available !important;
+}
+.col-sm-8.topdata {
+  background: #323a45;
+}
+.col-sm-4.topdataa {
+  background: #0877bd;
+}
+.topdata p {
+  color: white;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 0px 50px;
+  margin-top: 10px;
+  border-right: 1px solid;
+}
+.topdataa p {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0px 50px;
+  margin-top: 8px;
+  float: right;
+}
+.logoArea img {
+  height: 70px;
+  padding: 0px 30px;
+  margin-top: 0px;
+}
+.infoboximg img {
+  height: 35px;
+  margin: 15px 11px;
+}
+.infoboxdata h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 0px;
+  margin-top: 18px;
+}
+.infoboxdata p {
+  color: gray;
+  font-size: 14px;
+}
+/* top two header css finish ----------------*/
+
+/* footer css start ---------------- */
+.footerarea {
+  background: #323a45;
+  padding-top: 50px;
+}
+.footerdataa img {
+  height: 55px;
+  margin-bottom: 15px;
+}
+.footerdataa p {
+  color: #ffffffcf;
+  font-size: 12px;
+  line-height: 17px;
+  font-weight: 200;
+}
+.footerdataa h4 {
+  color: white;
+  font-weight: 500;
+  font-size: 17px;
+  border-bottom: 3px solid black;
+  width: fit-content;
+  padding: 10px 0px;
+}
+.footerdataa ul li {
+  color: #ffffffcf;
+  font-size: 13px;
+  line-height: 25px;
+  font-weight: 200;
+}
+.foinpurt {
+  border-radius: 0px;
+  background: #1c2026;
+  border-color: #1c2026;
+  padding: 20px 10px;
+  margin-top: 20px;
+  color: white;
+}
+.lastfooter p {
+  text-align: center;
+  color: white;
+  border-top: 1px solid;
+  padding: 10px;
+  margin-top: 50px;
+  padding-top: 17px;
+}
+p.twshar {
+  font-size: 17px;
+  margin-bottom: 15px;
+  margin-top: 14px;
+  font-weight: 500;
+}
+.footerdataaarow {
+  padding: 0px 165px;
+  margin-top: 25px;
+}
+.footerdataaa h4 {
+  color: #757575;
+  font-weight: 500;
+  font-size: 15px;
+  width: fit-content;
+}
+.footerdataaa p {
+  color: #757575;
+  font-weight: 500;
+  font-size: 12px;
+  width: fit-content;
+}
+/* footer css finish ---------------- */
+
+@media only screen and (max-width: 480px) {
+  .logoArea img {
+    height: auto;
+    padding: 0px 0px;
+    margin-top: 13px;
+  }
+  .logclick {
+    margin-left: 17px;
+  }
+  .footerdataaarow {
+    padding: 0px;
+    margin-top: 25px;
+    margin-bottom: -35px;
+  }
+  .lastfooter p {
+    font-size: 13px;
+  }
+}

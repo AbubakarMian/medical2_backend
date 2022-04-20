@@ -1,0 +1,574 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body,
+html {
+  font-size: 15px;
+  line-height: 1.4666666667;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Montserrat", sans-serif;
+}
+.topdata {
+  display: flex;
+}
+.infobox {
+  display: flex;
+}
+.infoarea {
+  display: flex;
+  float: right;
+  margin-top: 0px;
+}
+.infobox {
+  display: flex;
+  padding: 0px 25px;
+}
+.firstheader {
+  padding: 15px;
+}
+iframe.mymap {
+  width: -webkit-fill-available !important;
+}
+.col-sm-8.topdata {
+  background: #323a45;
+}
+.col-sm-4.topdataa {
+  background: #0877bd;
+}
+.topdata p {
+  color: white;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 0px 50px;
+  margin-top: 10px;
+  border-right: 1px solid;
+}
+.topdataa p {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0px 50px;
+  margin-top: 8px;
+  float: right;
+}
+.logoArea img {
+  height: 70px;
+  padding: 0px 30px;
+  margin-top: 0px;
+}
+.infoboximg img {
+  height: 35px;
+  margin: 15px 11px;
+}
+.infoboxdata h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 0px;
+  margin-top: 18px;
+}
+.infoboxdata p {
+  color: gray;
+  font-size: 14px;
+}
+.row.headrow {
+  border-top: 1px solid #80808054;
+  padding: 6px 5px;
+}
+.menuu li a span {
+  color: #323a45;
+  font-weight: 500;
+}
+.menuu li {
+  margin: 0px 10px;
+}
+.logclick {
+  border-radius: 0px;
+  margin-top: 6px;
+  width: 78px;
+  background-color: #0877bd;
+}
+.logclickk {
+  background: white;
+}
+.topslideball {
+  width: 175px !important;
+  background: #323a45 !important;
+  border-radius: 0px !important;
+  height: 9px !important;
+}
+.topslideball:hover {
+  background: white !important;
+}
+.aboutarea {
+  padding: 50px;
+}
+.aboutareaimg img {
+  margin: 0 auto;
+}
+.aboutareadata h2 {
+  margin-top: 45px;
+  font-size: 40px;
+  font-weight: 800;
+  color: #145aad;
+}
+.aboutareadata p {
+  line-height: 31px;
+  font-size: 15px;
+  color: black;
+  font-weight: 500;
+  text-align: justify;
+}
+.aboutclick {
+  border-radius: 0px;
+  margin-top: 30px;
+  width: 20%;
+  font-size: 15px;
+  background: #0877bd;
+  border-color: #0877bd;
+  border: none;
+  color: white;
+}
+.programarea {
+  padding: 50px;
+}
+.programareahead h2 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: #145aad;
+  margin-bottom: 25px;
+}
+.infoboxarea {
+  background: #0877bd;
+  color: white;
+  min-height: 380px;
+  text-align: center;
+  margin: 15px;
+}
+.gray {
+  background: #323a45;
+  color: white;
+  min-height: 380px;
+  text-align: center;
+  margin: 15px;
+}
+.infoboxarea h4 {
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  padding: 0px 15px;
+}
+.gray h4 {
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+.infoboxarea p {
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+  padding: 0px 20px;
+  line-height: 21px;
+  margin-bottom: 40px;
+}
+.gray p {
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+  padding: 0px 20px;
+  line-height: 21px;
+  margin-bottom: 40px;
+}
+.prorow {
+  margin-bottom: 25px;
+}
+.moreclick {
+  margin-bottom: -105px;
+  border-radius: 0px;
+  width: 35%;
+  background: #0877bd;
+  border-color: white;
+  color: white;
+  padding: 4px;
+}
+.certificatehead h2 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: #145aad;
+  margin-bottom: 25px;
+}
+.blgr {
+  margin-bottom: -105px;
+  border-radius: 0px;
+  width: 35%;
+  background: #323a45;
+  border-color: white;
+  color: white;
+  padding: 4px;
+}
+.moreclick:hover {
+  background: #0877bd;
+  border-color: white;
+}
+.blgr:hover {
+  background: #323a45;
+  border-color: white;
+}
+.certificatearea {
+  padding: 50px;
+}
+.certificatehead h2 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: #145aad;
+  margin-bottom: 25px;
+}
+.certifiarea {
+  text-align: center;
+  padding: 5px 15px;
+  line-height: 22px;
+  min-height: 215px;
+}
+.certifiarea:hover {
+  background: #0877bd;
+  border-right: 2px solid #323a45;
+  color: white;
+  box-shadow: 0 0 20px rgb(0 0 0 / 57%);
+}
+.certifiarea h4 {
+  font-weight: 600;
+  color: #323a45;
+}
+.certifiarea p {
+  font-size: 13px;
+  line-height: 21px;
+  margin-top: 15px;
+}
+.readclick {
+  border-radius: 0px;
+  width: 36%;
+  margin-top: 17px;
+  background: #323a45;
+  border-color: #323a45;
+}
+.certifiarea:hover h4 {
+  color: white;
+}
+.readclick {
+  border-radius: 0px;
+  width: 36%;
+  margin-top: 17px;
+  background: #323a45;
+  border-color: #323a45;
+  margin-bottom: 20px;
+  color: white;
+  border: none;
+}
+.readclick:hover {
+  background: white;
+  color: black;
+}
+.galleryarea {
+  padding: 50px;
+}
+.galleryhead h2 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: #145aad;
+  margin-bottom: 25px;
+}
+.galleryimg img {
+  margin: 0 auto;
+}
+.galleryimg {
+  text-align: center;
+}
+.galleryclick {
+  border-radius: 0px;
+  width: 15%;
+  margin-top: 30px;
+  background: #0877bd;
+  border-color: #323a45;
+  margin-bottom: 20px;
+  color: white;
+  border: none;
+  font-size: 17px;
+}
+.galleryclick:hover {
+  background: #323a45;
+  color: white;
+}
+.collagearea {
+  padding: 50px;
+}
+.collagehead h2 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: #145aad;
+  margin-bottom: 25px;
+}
+.collageimg {
+  text-align: center;
+}
+.collageimg img {
+  margin: 0 auto;
+}
+.collageimg h3 {
+  font-size: 25px;
+  margin-top: 20px;
+  font-weight: 600;
+  color: #0877bd;
+  margin-bottom: 30px;
+}
+.newsarea {
+  padding: 50px;
+}
+.newshead h2 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: #145aad;
+  margin-bottom: 25px;
+}
+.newsareabox {
+  min-height: 465px;
+  -webkit-box-shadow: 0 0 18px 0 rgb(0 0 0 / 15%);
+  -moz-box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 18px 0 rgb(0 0 0 / 15%);
+  background: #fff;
+  border-radius: 5px;
+}
+.newsareabox h6 {
+  padding: 0px 20px;
+  margin-top: 25px;
+  margin-bottom: 0px;
+}
+.newsareabox h4 {
+  padding: 0px 20px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #145aad;
+}
+.newsareabox p {
+  padding: 0px 20px;
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 25px;
+  color: gray;
+}
+.newsclick {
+  margin: 0px 20px;
+  border-radius: 0px;
+  font-size: 14px;
+  width: 100px;
+  border: none;
+  color: white;
+  background: #0877bd;
+  border-color: #0877bd;
+}
+.newsclick:hover {
+  background: #323a45;
+  border-color: #323a45;
+  color: white;
+}
+.newshead h2 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: #145aad;
+  margin-bottom: 25px;
+}
+.croslide {
+  background: transparent !important;
+  background-image: none !important;
+  color: black;
+}
+.clintslide {
+  padding: 50px 0px;
+}
+.col-sm-6.scheduleimg {
+  padding: 0px;
+}
+.col-sm-6.scheduledata {
+  background: #d8d8d8;
+  min-height: 556px;
+  padding: 25px 20px;
+}
+.scheduledata h2 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+  color: #145aad;
+  margin-bottom: 25px;
+}
+.appoinput {
+  border-radius: 0px;
+  height: 40px;
+  border-color: #808080d4;
+  margin-bottom: 10px;
+}
+.shedclick {
+  border-radius: 0px;
+  width: 115px;
+  height: 35px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 15px;
+  background: #0877bd;
+  border-color: #0877bd;
+  border: none;
+  color: white;
+}
+.shedclick:hover {
+  background: #323a45;
+  border-color: #323a45;
+  color: white;
+}
+.footerarea {
+  background: #323a45;
+  padding-top: 50px;
+}
+.footerdataa img {
+  height: 55px;
+  margin-bottom: 15px;
+}
+.footerdataa p {
+  color: #ffffffcf;
+  font-size: 12px;
+  line-height: 17px;
+  font-weight: 200;
+}
+.footerdataa h4 {
+  color: white;
+  font-weight: 500;
+  font-size: 17px;
+  border-bottom: 3px solid black;
+  width: fit-content;
+  padding: 10px 0px;
+}
+.footerdataa ul li {
+  color: #ffffffcf;
+  font-size: 13px;
+  line-height: 25px;
+  font-weight: 200;
+}
+.foinpurt {
+  border-radius: 0px;
+  background: #1c2026;
+  border-color: #1c2026;
+  padding: 20px 10px;
+  margin-top: 20px;
+  color: white;
+}
+.lastfooter p {
+  text-align: center;
+  color: white;
+  border-top: 1px solid;
+  padding: 10px;
+  margin-top: 50px;
+  padding-top: 17px;
+}
+p.twshar {
+  font-size: 17px;
+  margin-bottom: 15px;
+  margin-top: 14px;
+  font-weight: 500;
+}
+.footerdataaarow {
+  padding: 0px 165px;
+  margin-top: 25px;
+}
+.footerdataaa h4 {
+  color: #757575;
+  font-weight: 500;
+  font-size: 15px;
+  width: fit-content;
+}
+.footerdataaa p {
+  color: #757575;
+  font-weight: 500;
+  font-size: 12px;
+  width: fit-content;
+}
+
+@media only screen and (max-width: 480px) {
+  .logoArea img {
+    height: auto;
+    padding: 0px 0px;
+    margin-top: 13px;
+  }
+  .logclick {
+    margin-left: 17px;
+  }
+  .aboutarea {
+    padding: 30px;
+  }
+  .aboutclick {
+    width: 45%;
+  }
+  .programarea {
+    padding: 0px;
+  }
+  .programarea h2 {
+    margin-bottom: 0px;
+  }
+  .moreclick {
+    margin-bottom: 0px;
+  }
+  .certificatearea {
+    padding: 0px;
+  }
+  .certificatehead h2 {
+    margin-bottom: 20px;
+    margin-top: 25px;
+  }
+  .galleryarea {
+    padding: 30px;
+  }
+  .galleryhead h2 {
+    margin-bottom: 15px;
+  }
+  .galleryclick {
+    width: 45%;
+  }
+  .collagearea {
+    padding: 0px;
+  }
+  .newsarea {
+    padding: 0px;
+  }
+  .clintslide {
+    padding: 30px 0px;
+  }
+  .newshead h2 {
+    margin-bottom: 20px;
+  }
+  .footerdataaarow {
+    padding: 0px;
+    margin-top: 25px;
+    margin-bottom: -35px;
+  }
+  .lastfooter p {
+    font-size: 13px;
+  }
+  .topslideball {
+    width: 10px !important;
+    background: #323a45 !important;
+  }
+}
