@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body,
+html {
+  font-size: 15px;
+  line-height: 1.4666666667;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Montserrat", sans-serif;
+}
+.signimg {
+  background-image: url(../images/signpic.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  margin-top: -20px;
+}
+.signimg h1 {
+  text-align: center;
+  padding: 100px;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 80px;
+}
+.loginclick {
+  border-radius: 0px !important;
+  background: #0877bd !important;
+  border-color: #0877bd !important;
+  color: white !important;
+  border: none !important;
+  width: 110px !important;
+  font-size: 17px !important;
+  padding: 8px 0px !important;
+  margin-top: 30px !important;
+}
+.signarea {
+  padding: 50px;
+}
+.sigfordata h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #323a45;
+}
+.sininpu {
+  color: black;
+  height: 45px;
+  border-radius: 0px;
+  margin-bottom: 15px;
+  background: #e2e2e2;
+  font-size: 15px;
+  border-color: #323a4582;
+}
+.sigfordata p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1c2026;
+  margin-bottom: 40px;
+}
+.sigfordata label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #323a45;
+  margin-bottom: 1px;
+}
+.formlastimg img {
+  margin: 0 auto;
+  height: 50px;
+  margin-top: 10px;
+}
+.signbar {
+  border-top: 1px solid #323a4554;
+  margin-top: 45px;
+}
+.sigfordata {
+  margin: 0 auto !important;
+  border: 1px solid #323a454f;
+  padding: 50px;
+}
+
+@media only screen and (max-width: 480px) {
+  .signimg h1 {
+    text-align: center;
+    padding: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 50px;
+  }
+  .signarea {
+    padding: 5px;
+  }
+  .sigfordata {
+    margin: 0 auto !important;
+    border: 1px solid #323a454f;
+    padding: 10px;
+  }
+  .signarea {
+    padding: 5px;
+    margin-top: 50px;
+  }
+}

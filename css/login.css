@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body,
+html {
+  font-size: 15px;
+  line-height: 1.4666666667;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Montserrat", sans-serif;
+}
+.logimg {
+  background-image: url(../images/loginhead.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  margin-top: -20px;
+}
+.logimg h1 {
+  text-align: center;
+  padding: 100px;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 80px;
+}
+.loginarea {
+  padding: 50px;
+}
+.logindata label {
+  font-size: 17px;
+  color: #323a45;
+  font-weight: 600;
+}
+.medlogin {
+  background: #e2e2e2;
+  border-radius: 0px;
+  padding: 20px;
+  color: black;
+  font-size: 15px;
+  border-color: #323a4582;
+}
+.logindata p {
+  font-size: 13px;
+  padding: 0px;
+  margin-bottom: 4px;
+}
+.loginclick {
+  border-radius: 0px !important;
+  background: #0877bd !important;
+  border-color: #0877bd !important;
+  color: white !important;
+  border: none !important;
+  width: 110px !important;
+  font-size: 17px !important;
+  padding: 8px 0px !important;
+  margin-top: 30px !important;
+}
+.logindata {
+  margin: 0 auto !important;
+  width: 65% !important;
+  border: 1px solid #323a454f;
+  padding: 50px;
+}
+
+@media only screen and (max-width: 480px) {
+  .logimg h1 {
+    text-align: center;
+    padding: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 50px;
+}
+.logindata {
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+}
