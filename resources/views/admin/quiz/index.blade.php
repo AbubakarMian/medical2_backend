@@ -1,6 +1,13 @@
 @extends('layouts.default_module')
 @section('module_name')
-    Quizes
+    Exam
+@stop
+@section('add_btn')
+    {{-- {{dd($listofquiz)}} --}}
+    {!! Form::open(['method' => 'get', 'url' => ['admin/quiz/create'], 'files' => true]) !!}
+    {{-- <input type="hidden" name="course_id" value="{!!$listofquiz->course_id!!}"> --}}
+    <span>{!! Form::submit('Add ', ['class' => 'btn btn-success pull-right']) !!}</span>
+    {!! Form::close() !!}
 @stop
 
 
@@ -26,9 +33,10 @@
                 Details
               </th>
               <th>
-                List Questions
+                Question
               </th>
-
+              <th>Edit  </th>
+              <th>Delete  </th>
 
 
 
@@ -56,10 +64,10 @@
                 </td>
                 <td>
                <a href="{{ url('admin/question_list/' . $q->id) }}" type="button" class="btn btn-primary"
-                target="_blank" >Questions </a>
+                target="_blank" >question</a>
                 </td>
 
-                {{-- <td>
+                <td>
                     {!! link_to_action('Admin\QuizController@edit',
                     'Edit', array($q->id), array('class' => 'badge bg-info')) !!}
 
@@ -70,7 +78,7 @@
                         <span class="badge bg-info btn-primary ">
                             {!! $q->deleted_at?'Activate':'Delete' !!}</span></a>
                     {!! Form::close() !!}
-                </td> --}}
+                </td>
 
 
 
@@ -92,7 +100,7 @@
         <div class="form-group text-center">
             <div>
                 {!! Form::open(['method' => 'get', 'route' => ['dashboard']]) !!}
-                {!! Form::submit('Back', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
+                {!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
