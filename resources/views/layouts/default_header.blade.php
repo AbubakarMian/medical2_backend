@@ -63,8 +63,8 @@ $admin_common = session()->get('admin_common');
 
             <!-- logo -->
             <a href="{{asset('index.php/home')}}" class="navbar-brand">
-                <img src="{{ asset('images/downloads.jpg') }}" alt="" >
-                <span class="heading-font">Van Drivers</span>
+                <img src="{{ asset('images/logo.png') }}" alt="" >
+                <span class="heading-font">MEDICAL2</span>
             </a>
             <!-- /logo -->
         </div>
@@ -85,7 +85,7 @@ $admin_common = session()->get('admin_common');
 
             <li class="off-right hidden-xs">
                 <a href="javascript:;" data-toggle="dropdown" class="no-hover">
-                    <img src="{{ asset('images/download.png') }} " class="header-avatar img-circle" alt="user" title="user">
+                    <img src="{{ asset('images/logo.png') }} " class="header-avatar img-circle" alt="user" title="user">
                     <!-- <i class="ti-angle-down ti-caret hidden-xs"></i> -->
                 </a>
             </li>
@@ -141,28 +141,7 @@ $admin_common = session()->get('admin_common');
                     <!-- /Modules -->
 
 
-                    <!-- Reports -->
-                    @if(sizeof($admin_common->reports))
-                    <li>
-                        <a href="javascript:;">
-                            <i class="toggle-accordion"></i>
-                            <!-- <i class="ti-support"></i> -->
-                            <i class="fa fa-line-chart"></i>
-                            <span>Reports</span>
-                        </a>
-                        <ul class="sub-menu">
-
-                            @foreach($admin_common->reports as $key => $report)  <li>
-                            <li>
-                                <a href="{{asset('index.php/'.$report['url'])}}">
-                                    <span>{!! $report['title'] !!}</span>
-                                </a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    @endif
-                    <!-- /Reports -->
+                    
 
 
                 </ul>
