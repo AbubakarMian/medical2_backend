@@ -83,6 +83,26 @@ use Illuminate\Support\Facades\Route;
 
 
 
+  // question list open
+  Route::get('admin/question_list/{id}', 'Admin\QuizController@question_list')->name('quiz.question_list');
+  Route::post('admin/quiz_question_list/update', 'Admin\QuizController@quiz_question_list_update')->name('quiz.quiz_question_list_update');
+
+  // question CRUD
+
+  Route::get('admin/question', 'Admin\QuestionController@index')->name('admin.question');
+
+  // create and save question
+
+  Route::get('admin/question/create', 'Admin\QuestionController@create')->name('question.create');
+  Route::post('admin/question/save', 'Admin\QuestionController@save')->name('question.save');
+
+ // edit and update question
+
+  Route::get('admin/question/edit/{id}', 'Admin\QuestionController@edit')->name('question.edit');
+  Route::post('admin/question/update/{id}', 'Admin\QuestionController@update')->name('question.update');
+
+// delete question
+  Route::post('admin/question/delete/{id}', 'Admin\QuestionController@destroy_undestroy')->name('question.delete');
 
 
 
