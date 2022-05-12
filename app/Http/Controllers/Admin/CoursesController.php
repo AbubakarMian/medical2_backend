@@ -79,8 +79,8 @@ class CoursesController extends Controller
 
         $courses->full_name = $request->full_name;
         $courses->short_name = $request->short_name;
-        $courses->category = $request->category;
-        $courses->description = $request->description;
+       
+        $courses->fees = $request->fees;
         $courses->start_date = $date_timestamp;
 
 
