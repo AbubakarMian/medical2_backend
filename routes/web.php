@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
 
 
-    Route::get('user/user', 'User\UserController@index')->name('location.index');
+    Route::get('admin/users', 'Admin\UserController@index')->name('location.index');
     // this is user routes
 
     // Route::group(['middleware'=>'admin_auth'],function(){
