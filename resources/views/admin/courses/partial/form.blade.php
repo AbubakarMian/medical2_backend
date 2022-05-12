@@ -22,22 +22,22 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('category','Category') !!}
+    {!! Form::label('fees','Fees') !!}
     <div>
-        {!! Form::text('category',  null, ['class' => 'form-control',
+        {!! Form::text('fees',  null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Category','required',
+        'placeholder'=>'Enter Fees','required',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('start_date','Start Date') !!}
+    {!! Form::label('One_payment ','One Time Payment') !!}
     <div>
-        {!! Form::date('start_date',  null, ['class' => 'form-control',
+        {!! Form::checkbox('one_time_payment',  null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Start Date','required',
+        'placeholder'=>'Enter Payment','required',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
