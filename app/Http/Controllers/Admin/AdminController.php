@@ -89,12 +89,12 @@ class AdminController extends Controller
         ];
 
 
-        // $modules[] = [
+        $modules[] = [
 
-        //     'url' => 'admin/color',
-        //     'title' => 'Color ',
+            'url' => 'admin/question',
+            'title' => 'Question ',
 
-        // ];
+        ];
 
         // $modules[] = [
 
