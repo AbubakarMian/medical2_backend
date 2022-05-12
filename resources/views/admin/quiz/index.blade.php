@@ -1,15 +1,8 @@
 @extends('layouts.default_module')
 @section('module_name')
-    List of  Questions 
+    Quizes
 @stop
 
-@section('add_btn')
-    {{-- {{dd($listofquiz)}} --}}
-    {!! Form::open(['method' => 'get', 'url' => ['admin/question/create'], 'files' => true]) !!}
-    {{-- <input type="hidden" name="course_id" value="{!!$listofquiz->course_id!!}"> --}}
-    <span>{!! Form::submit('Add Question', ['class' => 'btn btn-success pull-right']) !!}</span>
-    {!! Form::close() !!}
-@stop
 
 @section('table')
   {{-- <div class="ableclick">
@@ -27,15 +20,20 @@
         <tr>
 
             <th>
-              Question
+              Name
             </th>
+            <th>
+                Details
+              </th>
+              <th>
+                List Questions
+              </th>
 
 
 
 
 
-            <th>Edit  </th>
-            <th>Delete  </th>
+
 
 
 
@@ -44,26 +42,35 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($question as $key => $q)
+        @foreach ($quiz as $key => $q)
             <tr class="myarrow myarrow_{{ $q->id }}">
 
                 <td>
-                    {{ ucwords($q->question) }}
+                    {{ ucwords($q->name) }}
 
                 </td>
 
                 <td>
-                    {!! link_to_action('Admin\QuestionController@edit',
+                    {{ ucwords($q->detail) }}
+
+                </td>
+                <td>
+               <a href="{{ url('admin/question_list/' . $q->id) }}" type="button" class="btn btn-primary"
+                target="_blank" >Questions </a>
+                </td>
+
+                {{-- <td>
+                    {!! link_to_action('Admin\QuizController@edit',
                     'Edit', array($q->id), array('class' => 'badge bg-info')) !!}
 
                 </td>
 
-                <td>{!! Form::open(['method' => 'POST', 'route' => ['question.delete', $q->id]]) !!}
+                <td>{!! Form::open(['method' => 'POST', 'route' => ['quiz.delete', $q->id]]) !!}
                     <a href="" data-toggle="modal" name="activate_delete" data-target=".delete" modal_heading="Alert" modal_msg="Do you want to delete?">
                         <span class="badge bg-info btn-primary ">
                             {!! $q->deleted_at?'Activate':'Delete' !!}</span></a>
                     {!! Form::close() !!}
-                </td>
+                </td> --}}
 
 
 
@@ -80,7 +87,7 @@
 
 
 @section('pagination')
-    <span class="pagination pagination-md pull-right">{!! $question->render() !!}</span>
+    <span class="pagination pagination-md pull-right">{!! $quiz->render() !!}</span>
     <div class="col-md-3 pull-left">
         <div class="form-group text-center">
             <div>

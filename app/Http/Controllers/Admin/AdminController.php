@@ -59,10 +59,10 @@ class AdminController extends Controller
         $admin_dashboard = $this->admin_dashboard();
 
         $modules = $admin_dashboard['modules'];
-        $reports = $admin_dashboard['reports'];
+        // $reports = $admin_dashboard['reports'];
         $admin_common->id = '1';
         $admin_common->modules = $modules;
-        $admin_common->reports = $reports;
+        // $admin_common->reports = $reports;
         $admin_common->name = 'Admin';
 
         $chart = $admin_dashboard['chart'];
@@ -95,6 +95,12 @@ class AdminController extends Controller
             'title' => 'Question ',
 
         ];
+        $modules[]= [
+
+            'url'=>'admin/quiz',
+            'title'=>'Quiz'
+
+        ];
 
         // $modules[] = [
 
@@ -114,16 +120,16 @@ class AdminController extends Controller
 
 
 
-        $reports[] = [
-            'url' => 'admin/reports/orders',
-            'title' => 'Orders',
-        ];
+        // $reports[] = [
+        //     'url' => 'admin/reports/orders',
+        //     'title' => 'Orders',
+        // ];
 
 
 
         $myvar = [];
         $myvar['modules'] = $modules;
-        $myvar['reports'] = $reports ;
+        // $myvar['reports'] = $reports ;
         $myvar['chart'] = [];
 
         return $myvar;

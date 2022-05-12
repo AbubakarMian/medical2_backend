@@ -105,6 +105,27 @@ use Illuminate\Support\Facades\Route;
   Route::post('admin/question/delete/{id}', 'Admin\QuestionController@destroy_undestroy')->name('question.delete');
 
 
+  // quiz CRUD
+  Route::get('admin/quiz', 'Admin\QuizController@index')->name('admin.quiz');
+
+  // create and save quiz
+
+  Route::get('admin/quiz/create', 'Admin\QuizController@create')->name('quiz.create');
+  Route::post('admin/quiz/save', 'Admin\QuizController@save')->name('quiz.save');
+
+  // edit and update quiz
+
+  Route::get('admin/quiz/edit/{id}', 'Admin\QuizController@edit')->name('quiz.edit');
+  Route::post('admin/quiz/update/{id}', 'Admin\QuizController@update')->name('quiz.update');
+
+  // delete quiz
+  Route::post('admin/quiz/delete/{id}', 'Admin\QuizController@destroy_undestroy')->name('quiz.delete');
+
+  // question list open
+  Route::get('admin/question_list/{id}', 'Admin\QuizController@question_list')->name('quiz.question_list');
+  Route::post('admin/quiz_question_list/update', 'Admin\QuizController@quiz_question_list_update')->name('quiz.quiz_question_list_update');
+
+
 
 
 
