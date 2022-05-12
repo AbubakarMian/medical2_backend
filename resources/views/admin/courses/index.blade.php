@@ -32,11 +32,11 @@ width="400px" style="table-layout:fixed;"
 
         <th>Full Name</th>
         <th>Short Name</th>
-	<th>Category</th>
-		{{-- <th>Sta
-		{{-- <th>Start Date</th> --}}
-		<th> Image </th>
+
+
+
         <th> Fees </th>
+        <th> Image </th>
 
 	    <th>Edit  </th>
 		<th>Delete  </th>
@@ -56,6 +56,7 @@ width="400px" style="table-layout:fixed;"
 
 		<td >{!! ucwords($c->full_name ) !!} </td>
 		<td >{!!ucwords($c->short_name) !!}</td>
+        <td >{!! ucwords($c->fees   ) !!}</td>
 
 		{{-- <td >{!! ucwords($c->start_date   ) !!}</td> --}}
 
@@ -67,10 +68,16 @@ width="400px" style="table-layout:fixed;"
 
 
 	   <td><img width="100px" src="{!! 	$c->avatar  !!}" class="show-product-img imgshow"></td>
-		<td >{!! ucwords($c->fees   ) !!}</td>
-ass' => 'badge bg-info')) !!}
+
+
 
         </td>
+        <td>
+            {!! link_to_action('Admin\CoursesController@edit',
+            'Edit', array($c->id), array('class' => 'badge bg-info')) !!}
+
+        </td>
+
 
 		<td>{!! Form::open(['method' => 'POST', 'route' => ['courses.delete', $c->id]]) !!}
 			<a href="" data-toggle="modal" name="activate_delete" data-target=".delete" modal_heading="Alert" modal_msg="Do you want to delete?">
