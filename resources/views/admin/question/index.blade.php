@@ -1,6 +1,6 @@
 @extends('layouts.default_module')
 @section('module_name')
-    List of  Question in Medical 2 
+    List of  Questions 
 @stop
 
 @section('add_btn')
@@ -85,7 +85,7 @@
         <div class="form-group text-center">
             <div>
                 {!! Form::open(['method' => 'get', 'route' => ['dashboard']]) !!}
-                {!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
+                {!! Form::submit('Back', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
