@@ -3,40 +3,21 @@
 <div class="form-group">
     {!! Form::label('name','Full Name') !!}
     <div>
-        {!! Form::text('full_name', null, ['class' => 'form-control',
+        {!! Form::text('name', null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Full Name','required',
+        'placeholder'=>' Name','required',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
+
 <div class="form-group">
-    {!! Form::label('name','Short Name') !!}
+    {!! Form::label('detail','Detail') !!}
     <div>
-        {!! Form::text('short_name', null, ['class' => 'form-control',
+        {!! Form::text('detail',  null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Short Name','required',
-        'maxlength'=>"100"]) !!}
-    </div>
-</div>
-<div class="form-group">
-    {!! Form::label('category','Category') !!}
-    <div>
-        {!! Form::text('category',  null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Category','required',
-        'maxlength'=>"100"]) !!}
-    </div>
-</div>
-<div class="form-group">
-    {!! Form::label('start_date','Start Date') !!}
-    <div>
-        {!! Form::date('start_date',  null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Start Date','required',
+        'placeholder'=>'Detail','required',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
@@ -44,42 +25,6 @@
 
 
 
-<?php
-$image = asset('images/logo.png');
-
-if (isset($courses)) {
-if ($courses->avatar) {
-$image = $courses->avatar;
-}
-}
-?>
-
-<div class="form-group">
-
-    <div class="form-group pull-right">
-        <img width="100px" src="{!! $image !!}" class="show-product-img imgshow">
-    </div>
-
-    <div class="form-group">
-
-        {!! Form::label('image', 'Image') !!}
-        {!! Form::file('image', ['class' => 'choose-image', 'id' => 'image']) !!}
-        <p class="help-block" id="error">Limit 2MB</p>
-    </div>
-
-</div>
-@include('admin.courses.partial.image_modal')
-
-{!! Form::label('description', 'Description') !!}
-    <div >
-
-    <div>
-        {!! Form::textarea('description', null, ['class' => 'ckeditor form-control' , 'id'=>'summary-ckeditor', 'data-parsley-required' => 'true', 'data-parsley-trigger' => 'change', 'placeholder' => 'Enter title', 'required', 'maxlength' => '100']) !!}
-    </div>
-
-
-
-</div>
 
 
 

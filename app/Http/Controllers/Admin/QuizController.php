@@ -28,90 +28,85 @@ class QuizController extends Controller
         return view('admin.quiz.index', compact('quiz'));
     }
 
-//     public function create()
-//     {
-//         $control = 'create';
+    public function create()
+    {
+        $control = 'create';
 
-//         // dd($course);
-//         return view('admin.quiz.create', compact('control'));
-//     }
-
-
-//     public function save(Request $request)
-//     {
-// // dd($request->all());
-//         $quiz = new Quiz();
-
-//         $this->add_or_update($request, $quiz);
-
-//         return redirect('admin/quiz');
-
-//     }
-    // public function edit($id)
-    // {
-
-    //     $control = 'edit';
-    //     $quiz = Quiz::find($id);
+        // dd($course);
+        return view('admin.quiz.create', compact('control'));
+    }
 
 
-    //     return view('admin.quiz.create', compact(
-    //         'control',
-    //         'quiz',
+    public function save(Request $request)
+    {
+// dd($request->all());
+        $quiz = new Quiz();
+
+        $this->add_or_update($request, $quiz);
+
+        return redirect('admin/quiz');
+
+    }
+    public function edit($id)
+    {
+
+        $control = 'edit';
+        $quiz = Quiz::find($id);
 
 
-    //     ));
-    // }
-
-    // public function update(Request $request, $id)
-    // {
-    //     $quiz = Quiz::find($id);
-    //     // $quiz = Quiz::find($id);
-
-    //     $this->add_or_update($request, $quiz);
-    //     return Redirect('admin/quiz');
-    // }
+        return view('admin.quiz.create', compact(
+            'control',
+            'quiz',
 
 
-    // public function add_or_update(Request $request, $quiz)
-    // {
-    //     // dd($request->all());
+        ));
+    }
 
-    //     // $current_format_date =  $request->start_date->format('m/d/Y');    //24/02/22
+    public function update(Request $request, $id)
+    {
+        $quiz = Quiz::find($id);
+        // $quiz = Quiz::find($id);
+
+        $this->add_or_update($request, $quiz);
+        return Redirect('admin/quiz');
+    }
+
+
+    public function add_or_update(Request $request, $quiz)
+    {
 
 
 
-    //     $quiz->full_name = $request->full_name;
-    //     $quiz->short_name = $request->short_name;
-    //     $quiz->category = $request->category;
-    //     $quiz->description = $request->description;
+        $quiz->name = $request->name;
+        $quiz->detail = $request->detail;
 
 
 
 
-    //     $quiz->save();
+        $quiz->save();
 
 
-    //     return redirect()->back();
-    // }
+        return redirect()->back();
+    }
 
-    // public function destroy_undestroy($id)
-    // {
+    public function destroy_undestroy($id)
+    {
 
-    //     $quiz = Quiz::find($id);
-    //     if ($quiz) {
-    //         Quiz::destroy($id);
-    //         $new_value = 'Activate';
-    //     } else {
-    //         Quiz::withTrashed()->find($id)->restore();
-    //         $new_value = 'Delete';
-    //     }
-    //     $response = Response::json([
-    //         "status" => true,
-    //         'action' => Config::get('constants.ajax_action.delete'),
-    //         'new_value' => $new_value
-    //     ]);
-    //     return $response;
-    // }
+        $quiz = Quiz::find($id);
+        if ($quiz) {
+            Quiz::destroy($id);
+            $new_value = 'Activate';
+        } else {
+            Quiz::withTrashed()->find($id)->restore();
+            $new_value = 'Delete';
+        }
+        $response = Response::json([
+            "status" => true,
+            'action' => Config::get('constants.ajax_action.delete'),
+            'new_value' => $new_value
+        ]);
+        return $response;
+    }
 
 
     public function question_list($id)

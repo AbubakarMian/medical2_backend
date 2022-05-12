@@ -98,7 +98,7 @@ class AdminController extends Controller
         $modules[]= [
 
             'url'=>'admin/quiz',
-            'title'=>'Quiz'
+            'title'=>'Exams'
 
         ];
 
