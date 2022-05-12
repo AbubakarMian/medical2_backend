@@ -32,7 +32,8 @@ width="400px" style="table-layout:fixed;"
 
         <th>Full Name</th>
         <th>Short Name</th>
-	
+	<th>Category</th>
+		{{-- <th>Sta
 		{{-- <th>Start Date</th> --}}
 		<th> Image </th>
         <th> Fees </th>
@@ -54,8 +55,8 @@ width="400px" style="table-layout:fixed;"
 
 
 		<td >{!! ucwords($c->full_name ) !!} </td>
-		<td >{!! ucwords($c->short_name) !!}</td>
-	
+		<td >{!!ucwords($c->short_name) !!}</td>
+
 		{{-- <td >{!! ucwords($c->start_date   ) !!}</td> --}}
 
         <?php if (!$c->avatar) {
@@ -67,11 +68,7 @@ width="400px" style="table-layout:fixed;"
 
 	   <td><img width="100px" src="{!! 	$c->avatar  !!}" class="show-product-img imgshow"></td>
 		<td >{!! ucwords($c->fees   ) !!}</td>
-
-
-        <td>
-			{!! link_to_action('Admin\CoursesController@edit',
-			'Edit', array($c->id), array('class' => 'badge bg-info')) !!}
+ass' => 'badge bg-info')) !!}
 
         </td>
 
