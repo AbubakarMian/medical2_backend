@@ -13,32 +13,37 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\libraries\ExportToExcel;
-
+use App\Model\Question_Course;
 use PDF;
 
 
 class QuestionController extends Controller
 {
-
-    // Question
-
     public function index()
     {
-        $question = Question::orderBy('id', 'DESC')->paginate(10);
-        return view('admin.question.index', compact('question'));
+        return view('admin.question.index');
+    }
+
+    public function getQuestion($id = 0)
+    {
+        $question = Question::orderby('id', 'desc')->select('*')->get();
+        $questionData['data'] = $question;
+        echo json_encode($questionData);
     }
 
     public function create()
     {
         $control = 'create';
         $question = new Question();
+        $courses_list = Courses::orderby('id', 'desc')->get();
+        $question_course = [];
 
-        return view('admin.question.create', compact('control', 'question'));
+        return view('admin.question.create', compact('control', 'question','courses_list','question_course'));
     }
 
     public function save(Request $request)
     {
-        // dd($request->all());
+        
         $questions = new Question();
         $this->add_or_update($request, $questions);
 
@@ -47,57 +52,57 @@ class QuestionController extends Controller
 
     public function edit($id)
     {
-        // dd('hyyy');
         $control = 'edit';
-
         $question = Question::with('choice')->find($id);
+        $question_course = Question_Course::where('question_id',$id)->pluck('courses_id')->toArray();
+        $courses_list = Courses::orderby('id', 'desc')->get();
+
         return view('admin.question.create', compact(
             'control',
             'question',
-
-
+            'question_course',
+            'courses_list',
         ));
     }
 
     public function update(Request $request, $id)
     {
-
         $questions = Question::with('choice')->find($id);
-
         foreach ($questions->choice as $key => $ch) {
             $choices =  Choice::destroy($ch->id);
         }
-        $this->add_or_update($request, $questions);
+        $this->add_or_update($request, $questions);  
         return redirect('admin/question');
     }
 
 
     public function add_or_update(Request $request, $questions)
     {
-
-
+        // dd($request->all());
+        $courses = explode(',',$request->selected_courses);
         $questions->question = $request->question;
         $questions->save();
-
-
         foreach ($request->choices as $key => $ch) {
             $correnct_choice_num = $request->correct_choice  - 1;
             $choice = new Choice();
             $choice->choice = $ch;
             $choice->question_id = $questions->id;
             $choice->is_correct = ($correnct_choice_num == $key) ? 1 : 0;
-            // dd($key);
-            // dd( (int)$ch[$request->correct_choice - 1]);
-            // dd($choice->is_correct);
             $choice->save();
         }
 
+        Question_Course::where('question_id',$questions->id)->delete();
+        foreach($courses as $c){
+            $question_course = new Question_Course();
+            $question_course->question_id = $questions->id;
+            $question_course->courses_id = $c;
+            $question_course->save(); 
+        }
     }
 
 
     public function destroy_undestroy($id)
     {
-
         $question = Question::find($id);
         if ($question) {
             Question::destroy($id);
@@ -113,59 +118,4 @@ class QuestionController extends Controller
         ]);
         return $response;
     }
-    // public function destroy_undestroy($id)
-    // {
-    //     $quiz = Quiz::find($id);
-    //     if ($quiz) {
-    //         Quiz::destroy($id);
-    //         $new_value = 'Activate';
-    //     } else {
-    //         Quiz::withTrashed()->find($id)->restore();
-    //         $new_value = 'Delete';
-    //     }
-    //     $response = Response::json([
-    //         "status" => true,
-    //         'action' => Config::get('constants.ajax_action.delete'),
-    //         'new_value' => $new_value
-    //     ]);
-    //     return $response;
-    // }
-
-
-
-
-
-    // public function index_excel(Request $request ,$id)
-    // {
-    //     $quiz = Quiz::where('course_id', $id)->orderBy('id', 'DESC')->get();
-    //     // dd( $quiz);
-    //     $view =  view('admin.listofquiz.export', compact('quiz'));
-    //     //  dd( $view);
-
-    //     $export_data = new ExportToExcel($view);
-
-    //     $excel = Excel::download($export_data, 'course.xlsx');
-
-    //     return $excel;
-    // }
-    // public function index_csv(Request $request ,$id)
-    // {
-    //     $quiz = Quiz::where('course_id', $id)->orderBy('id', 'DESC')->get();
-    //     $view =  view('admin.listofquiz.export', compact('quiz'));
-
-    //     $export_data = new ExportToExcel($view);
-
-    //     $excel = Excel::download($export_data, 'course.csv');
-
-    //     return $excel;
-    // }
-
-    // public function generatePDF()
-    // {
-    //     $type = 'pdf';
-    //     $quiz = Quiz::orderBy('id', 'DESC')->get();
-    //     $pdf = PDF::loadView('admin.listofquiz.export', compact('quiz', 'type'));
-
-    //     return $pdf->download('HRS-course-list.pdf');
-    // }
 }

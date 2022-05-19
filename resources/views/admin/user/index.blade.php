@@ -21,6 +21,7 @@ width="400px" style="table-layout:fixed;"
 @section('table')
 
 
+<table id="userTableAppend" style="opacity: 0">
 <thead>
 	<tr>
 
@@ -36,49 +37,77 @@ width="400px" style="table-layout:fixed;"
 	</tr>
 </thead>
 <tbody>
-
-
-
-    @foreach($user as $c)
-
-
-
-
-		<td >{!! ucwords($c->name) !!} </td>
-		<td >{!! ucwords($c->email) !!} </td>
-		<td >{!! ucwords($c->phone_no) !!} </td>
-		<td >{!! ucwords($c->adderss) !!} </td>
-
-
-        <?php if (!$c->avatar) {
-			$c->avatar = asset('images/logo.jpg');
-			}
-
-	    ?>
-
-
-	   <td><img width="100px" src="{!! 	$c->avatar  !!}" class="show-product-img imgshow"></td>
-		<td >{!! ucwords($c->description   ) !!}</td>
-
-
-
-
-
-	</tr>
-	@endforeach
-
-
 </tbody>
-@section('pagination')
-<span class="pagination pagination-md pull-right">{!! $user->render() !!}</span>
-<div class="col-md-3 pull-left">
-	<div class="form-group text-center">
-		<div>
-			{!! Form::open(['method' => 'get', 'route' => ['dashboard']]) !!}
-			{!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
-			{!! Form::close() !!}
-		</div>
-	</div>
-</div>
-@endsection
+</table>
+
 @stop
+@section('app_jquery')
+
+<script>
+
+$(document).ready(function(){
+
+    fetchRecords();
+
+    function fetchRecords(){
+
+       $.ajax({
+
+         url: '{!!asset("admin/users/get_users/{id}")!!}',
+         type: 'get',
+         dataType: 'json',
+         success: function(response){
+            $("#userTableAppend").css("opacity",1);
+           var len = response['data'].length;
+
+           console.log(response);
+
+              for(var i=0; i<len; i++){
+                  var id =  response['data'][i].id;
+                  var name =  response['data'][i].name;
+                  var email =  response['data'][i].email;
+                  var phone_no =  response['data'][i].phone_no;
+                  var address =  response['data'][i].address;
+                  var image  = response['data'][i].image;
+                //   var deleted_at   = response['data'][i].deleted_at;
+
+                if(!image){
+                    image = "{!!asset('images/logo.png')!!}"
+                }
+
+		        var image_col = `<img width="100px" src="`+image+`" class="show-product-img imgshow">`
+
+                
+
+               
+
+                var tr_str = "<tr>" +
+                    "<td>" +name+ "</td>" +
+                    "<td>" +email+ "</td>" +
+                    "<td>" +phone_no+ "</td>" +
+                    "<td>" +address+ "</td>" +
+                    "<td>" + image_col + "</td>" +
+                   
+                "</tr>";
+
+               
+                $("#userTableAppend tbody").append(tr_str);
+                }
+                $('#userTableAppend').DataTable({
+                    dom: '<"top_datatable"B>lftipr',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                });
+        }
+       });
+    }
+
+});
+
+function set_msg_modal(msg){
+        $('.set_msg_modal').html(msg);
+    }
+
+</script>
+@endsection
