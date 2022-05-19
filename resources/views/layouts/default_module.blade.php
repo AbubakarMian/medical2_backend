@@ -4,7 +4,9 @@
     <link rel="stylesheet" href="{{ asset('theme/vendor/chosen_v1.4.0/chosen.min.css') }}">
     <link rel="stylesheet" href="{{ asset('theme/vendor/datatables/media/css/jquery.dataTables.css') }}">
     <link rel="stylesheet" href="{{ asset('theme/vendor/bootstrap-daterangepicker/daterangepicker-bs3.css') }}">
+
 @stop
+
 
 @section('content')
 
@@ -63,6 +65,31 @@
         </div>
     </div>
 
+    
+
+      <!-- Modal 
+   <div class="modal fade" id="custom_Mymodal" role="dialog">
+    <div class="modal-dialog">
+    
+       Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+
+ end modal -->
+
     <!-- build:js({.tmp,app}) scripts/app.min.js -->
     <script src="{{ asset('theme/vendor/jquery/dist/jquery.js') }}"></script>
     <!-- endbuild -->
@@ -82,11 +109,26 @@
     <!-- /page level scripts -->
 
     <!-- page script -->
-    <script src="{{ asset('theme/scripts/pickers.js') }}"></script>
+    {{-- <script src="{{ asset('theme/scripts/pickers.js') }}"></script> --}}
 
     <!-- page script -->
-    <script src="{{ asset('theme/scripts/bootstrap-datatables.js') }}"></script>
-    <script src="{{ asset('theme/scripts/table-edit.js') }}"></script>
+    {{-- <script src="{{ asset('theme/scripts/bootstrap-datatables.js') }}"></script>
+    <script src="{{ asset('theme/scripts/table-edit.js') }}"></script> --}}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  
+   
     <!-- /page script -->
     @yield('html_after_jquery')
 @stop
+
+
+
+
+
+
+
+
+
+

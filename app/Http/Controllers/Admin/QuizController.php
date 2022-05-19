@@ -21,52 +21,36 @@ class QuizController extends Controller
 {
     public function index(Request $request)
     {
-        // $name = $request->name ?? '';
-
         $quiz = Quiz::orderBy('created_at', 'DESC')->paginate(10);
-        // dd($quiz);
         return view('admin.quiz.index', compact('quiz'));
     }
 
     public function create()
     {
         $control = 'create';
-
-        // dd($course);
         return view('admin.quiz.create', compact('control'));
     }
 
 
     public function save(Request $request)
     {
-// dd($request->all());
         $quiz = new Quiz();
-
         $this->add_or_update($request, $quiz);
-
         return redirect('admin/quiz');
-
     }
     public function edit($id)
     {
-
         $control = 'edit';
         $quiz = Quiz::find($id);
-
-
         return view('admin.quiz.create', compact(
             'control',
             'quiz',
-
-
         ));
     }
 
     public function update(Request $request, $id)
     {
         $quiz = Quiz::find($id);
-        // $quiz = Quiz::find($id);
-
         $this->add_or_update($request, $quiz);
         return Redirect('admin/quiz');
     }
@@ -74,24 +58,14 @@ class QuizController extends Controller
 
     public function add_or_update(Request $request, $quiz)
     {
-
-
-
         $quiz->name = $request->name;
         $quiz->detail = $request->detail;
-
-
-
-
         $quiz->save();
-
-
         return redirect()->back();
     }
 
     public function destroy_undestroy($id)
     {
-
         $quiz = Quiz::find($id);
         if ($quiz) {
             Quiz::destroy($id);
@@ -116,7 +90,6 @@ class QuizController extends Controller
         $quiz_question = Quiz_Question::where('quiz_id',$id)->pluck('question_id')->toArray();
         $quiz = Quiz::where('id',$id)->first();
         return view('admin.question_list_open.index', compact('question','quiz_question','quiz'));
-
     }
 
     public function quiz_question_list_update(Request $request){
@@ -137,12 +110,7 @@ class QuizController extends Controller
             $quiz_question->save();
             $res->message = 'Added Successfully';
         }
-
         $res->status = true;
-
         return json_encode($res);
     }
-
-
-
 }

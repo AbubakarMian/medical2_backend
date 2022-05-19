@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 
     Route::get('admin/users', 'Admin\UserController@index')->name('location.index');
+    Route::get('admin/users/get_users/{id}','Admin\UserController@getUsers')->name('users.get_users');
+
     // this is user routes
 
     // Route::group(['middleware'=>'admin_auth'],function(){
@@ -124,6 +126,7 @@ use Illuminate\Support\Facades\Route;
   // question list open
   Route::get('admin/question_list/{id}', 'Admin\QuizController@question_list')->name('quiz.question_list');
   Route::post('admin/quiz_question_list/update', 'Admin\QuizController@quiz_question_list_update')->name('quiz.quiz_question_list_update');
+  Route::get('admin/getquestion/{id}', 'Admin\QuestionController@getQuestion')->name('question_list');
 
 
 
