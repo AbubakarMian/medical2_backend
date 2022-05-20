@@ -26,26 +26,12 @@
     <thead>
         <tr>
 
-            <th>
-              Name
-            </th>
-            <th>
-                Details
-              </th>
-              <th>
-                Question
-              </th>
-              <th>Edit  </th>
-              <th>Delete  </th>
-
-
-
-
-
-
-
-
-
+            <th>Name</th>
+            <th>Details</th>
+            <th>Courses</th>
+              <th>Question</th>
+              <th>Edit</th>
+              <th>Delete</th>
 
         </tr>
     </thead>
@@ -53,15 +39,10 @@
         @foreach ($quiz as $key => $q)
             <tr class="myarrow myarrow_{{ $q->id }}">
 
-                <td>
-                    {{ ucwords($q->name) }}
+                <td> {{ ucwords($q->name) }} </td>
 
-                </td>
-
-                <td>
-                    {{ ucwords($q->detail) }}
-
-                </td>
+                <td> {{ ucwords($q->detail) }}</td>
+                <td> {{ ucwords($q->course->full_name) }}</td>
                 <td>
                <a href="{{ url('admin/question_list/' . $q->id) }}" type="button" class="btn btn-primary"
                 target="_blank" >question</a>

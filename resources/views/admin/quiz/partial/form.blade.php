@@ -24,12 +24,17 @@
 
 
 
+<div class="form-group">
+        <label for="courses">Select Courses</label>
+        <select class="form-control" id="courses" name="courses" required>
+            @foreach ($courses_list as $key => $ch)
+            <option class="option-file" value="{{ $key + 1 }}">{{ $ch->full_name }}</option>
+            @endforeach
 
-
-
-
-
-
+        </select>
+    </div>
+   
+    
 <span id="err" class="error-product"></span>
 
 

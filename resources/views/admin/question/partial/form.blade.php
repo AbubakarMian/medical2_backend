@@ -57,6 +57,7 @@
             @foreach ($question->choice as $key => $ch)
             <option class="option-file" value="{{ $key + 1 }}">Choice # {{ $key + 1 }}</option>
             @endforeach
+            
             @endif
         </select>
     </div>
