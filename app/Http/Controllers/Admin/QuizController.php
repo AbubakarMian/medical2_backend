@@ -11,6 +11,8 @@ use PDF;
 use App\Libraries\ExportToExcel;
 use App\Model\Quiz;
 use App\Model\Question;
+use App\Model\Courses;
+use App\Model\Question_Course;
 use App\Model\Quiz_Question;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -22,13 +24,15 @@ class QuizController extends Controller
     public function index(Request $request)
     {
         $quiz = Quiz::orderBy('created_at', 'DESC')->paginate(10);
+
         return view('admin.quiz.index', compact('quiz'));
     }
 
     public function create()
     {
         $control = 'create';
-        return view('admin.quiz.create', compact('control'));
+        $courses_list = Courses::get();
+        return view('admin.quiz.create', compact('control','courses_list'));
     }
 
 
@@ -42,9 +46,11 @@ class QuizController extends Controller
     {
         $control = 'edit';
         $quiz = Quiz::find($id);
-        return view('admin.quiz.create', compact(
+        $courses_list = Courses::get();
+         return view('admin.quiz.create', compact(
             'control',
             'quiz',
+            'courses_list',
         ));
     }
 
@@ -86,10 +92,12 @@ class QuizController extends Controller
     public function question_list($id)
     {
         $quiz_question_id = $id;
-        $question = Question::get();
+        $quiz = Quiz::find($id);
+        // $question = Question::get();
+        $question_courses = Question_Course::with('question','course')->where('courses_id',$quiz->course_id)->get();
         $quiz_question = Quiz_Question::where('quiz_id',$id)->pluck('question_id')->toArray();
         $quiz = Quiz::where('id',$id)->first();
-        return view('admin.question_list_open.index', compact('question','quiz_question','quiz'));
+        return view('admin.question_list_open.index', compact('question_courses','quiz_question','quiz'));
     }
 
     public function quiz_question_list_update(Request $request){
