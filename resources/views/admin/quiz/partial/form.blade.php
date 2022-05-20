@@ -26,15 +26,21 @@
 
 <div class="form-group">
         <label for="courses">Select Courses</label>
-        <select class="form-control" id="courses" name="courses" required>
+
+        {!!Form::select('course_id',$courses_list,null,['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'Select Course','required',
+        'maxlength'=>"100"])!!}
+        {{-- <select class="form-control" id="courses" name="courses" required>
             @foreach ($courses_list as $key => $ch)
-            <option class="option-file" value="{{ $key + 1 }}">{{ $ch->full_name }}</option>
+            <option class="option-file" value="{{ $key + 1 }}">{{ $ch->name }}</option>
             @endforeach
 
-        </select>
+        </select> --}}
     </div>
-   
-    
+
+
 <span id="err" class="error-product"></span>
 
 
