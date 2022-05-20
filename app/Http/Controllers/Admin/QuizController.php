@@ -31,7 +31,7 @@ class QuizController extends Controller
     public function create()
     {
         $control = 'create';
-        $courses_list = Courses::get();
+        $courses_list = Courses::pluck('full_name','id');
         return view('admin.quiz.create', compact('control','courses_list'));
     }
 
@@ -46,7 +46,7 @@ class QuizController extends Controller
     {
         $control = 'edit';
         $quiz = Quiz::find($id);
-        $courses_list = Courses::get();
+        $courses_list = Courses::pluck('full_name','id');
          return view('admin.quiz.create', compact(
             'control',
             'quiz',
@@ -64,8 +64,10 @@ class QuizController extends Controller
 
     public function add_or_update(Request $request, $quiz)
     {
+        // dd($request->all());
         $quiz->name = $request->name;
         $quiz->detail = $request->detail;
+        $quiz->course_id = $request->course_id;
         $quiz->save();
         return redirect()->back();
     }
@@ -93,7 +95,6 @@ class QuizController extends Controller
     {
         $quiz_question_id = $id;
         $quiz = Quiz::find($id);
-        // $question = Question::get();
         $question_courses = Question_Course::with('question','course')->where('courses_id',$quiz->course_id)->get();
         $quiz_question = Quiz_Question::where('quiz_id',$id)->pluck('question_id')->toArray();
         $quiz = Quiz::where('id',$id)->first();
