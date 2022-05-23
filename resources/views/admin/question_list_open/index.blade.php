@@ -4,77 +4,124 @@ Question List
 @stop
 @section('table')
 
-<thead>
-    <tr>
-
-        <th>
-            Question
-        </th>
-        <th>
-            Checkbox
-        </th>
-    </tr>
-</thead>
-<tbody>
-    <?php
-    // dd($quiz_question_id);
-    // if(isset($quiz_question)){
-    // if($quiz_question->)
-
-
-    // }
-
-    ?>
-    @foreach ($question_courses as $key => $qc)
-    <?php
-    $q = $qc->question;
-    ?>
-    <tr class="myarrow myarrow_{{ $q->id }}">
-
-        <td>
-            {{ ucwords($q->question) }}
-
-        </td>
-        <td>
-
-
-            <div class="form-group">
-
-                <div>
-                    <?php
-                    $is_checked = false;
-
-                    if (in_array($q->id, $quiz_question)) {
-                        $is_checked = true;
-                    }
-                    ?>
-                    {!! Form::checkbox('question', null,$is_checked,
-                    ['onClick'=>'check_uncheck_question('.$q->id.','.$quiz->id.')']) !!}
-                </div>
-
-            </div>
-        </td>
-    </tr>
-    @endforeach
-
-</tbody>
-
-@section('pagination')
-{{-- <span class="pagination pagination-md pull-right">{!! $question->render() !!}</span> --}}
-<div class="col-md-3 pull-left">
-    <div class="form-group text-center">
-        <div>
-            {!! Form::open(['method' => 'get', 'route' => ['admin.quiz']]) !!}
-            {!! Form::submit('Back', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
-            {!! Form::close() !!}
-        </div>
-    </div>
-</div>
-
-@endsection
-
-@section('app_jquery')
+<h4 style="font-weight: 1000;">Fiter by Course:
+{!! Form::select('course_id',$courses,null,['id'=>'course_id','onChange'=>'filter_question_by_course(this)' , 'style'=>'box-sizing: border-box'])  !!}
+</h4>
+<h3 style="margin-left: 1300px; font-weight: 1000;">{!! $quiz->course->full_name!!}</h3>
+<table id="questionTableAppend" style="opacity: 0">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Checkbox</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+@stop
+@section('app_jquery')                                 
 <script>
+
+function filter_question_by_course(e){
+    var selected_course_id = e.value;
+    console.log('e',e.value)
+    // console.log('valu   ',$("#course_id option:selected").val());
+    var quiz_questions_list = <?php echo json_encode($quiz_question) ?>;
+
+    $.ajax({
+                url: '{!!asset("admin/getquestion")!!}/'+selected_course_id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response) {
+                    $("#questionTableAppend").css("opacity", 1);
+
+                    // console.log('testttt',response['question_courses'])
+                    var len = response['data'].length;
+                    console.log(response);
+                    for (var i = 0; i < len; i++) {
+                        var question = response['data'][i].question;
+                        var id = question.id;
+                        var question_text = question.question;
+                        var is_checked = '';
+                        if(quiz_questions_list.includes(id)){
+                            is_checked = 'checked';
+                        }
+                        var checkbox_html = `
+                            <div class="form-group">
+                                <div>
+                                <input type="checkbox" name="question" `+is_checked+`
+                                    onclick="check_uncheck_question('`+id+`','{!!$quiz->id!!}')">
+                                </div>
+                            </div>
+                        `;
+                        var tr_str = tr_str+"<tr id='row_"+id+"'>" +
+                            "<td>" + question_text + "</td>" +
+                            "<td>" + checkbox_html + "</td>" +
+                            "</tr>";
+
+                       
+                    }
+                    $("#questionTableAppend tbody").html(tr_str);
+                    // $('#questionTableAppend').DataTable({
+                    //     dom: '<"top_datatable"B>lftipr',                          
+                    // });
+                }
+            });
+    
+    
+}
+
+    $(document).ready(function() {
+
+        fetchRecords();
+
+        function fetchRecords() {
+            var quiz_questions_list = <?php echo json_encode($quiz_question) ?>;
+            console.log('quiz_question',quiz_questions_list);
+            console.log('apiii')
+            $.ajax({
+                url: '{!!asset("admin/getquestion/0")!!}',
+                type: 'get',
+                dataType: 'json',
+                success: function(response) {
+                    $("#questionTableAppend").css("opacity", 1);
+
+                    // console.log('testttt',response['question_courses'])
+                    var len = response['data'].length;
+                    console.log(response);
+                    for (var i = 0; i < len; i++) {
+                        var question = response['data'][i].question;
+                        var id = question.id;
+                        var question_text = question.question;
+                        var is_checked = '';
+                        if(quiz_questions_list.includes(id)){
+                            is_checked = 'checked';
+                        }
+                        var checkbox_html = `
+                            <div class="form-group">
+                                <div>
+                                <input type="checkbox" name="question" `+is_checked+`
+                                    onclick="check_uncheck_question('`+id+`','{!!$quiz->id!!}')">
+                                </div>
+                            </div>
+                        `;
+                        var tr_str = tr_str+"<tr id='row_"+id+"'>" +
+                            "<td>" + question_text + "</td>" +
+                            "<td>" + checkbox_html + "</td>" +
+                            "</tr>";
+
+                        
+                    }
+                    $("#questionTableAppend tbody").append(tr_str);
+                    $('#questionTableAppend').DataTable({
+                        dom: '<"top_datatable"B>lftipr',                          
+                    });
+                }
+            });
+        }
+    });
+
+
     function check_uncheck_question(question_id, quiz_id) {
         var my_url = '{!! asset("admin/quiz_question_list/update")!!}';
         console.log('my_url', my_url);
@@ -96,5 +143,3 @@ Question List
     }
 </script>
 @endsection
-
-@stop

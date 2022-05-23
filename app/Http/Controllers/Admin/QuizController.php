@@ -95,10 +95,12 @@ class QuizController extends Controller
     {
         $quiz_question_id = $id;
         $quiz = Quiz::find($id);
-        $question_courses = Question_Course::with('question','course')->where('courses_id',$quiz->course_id)->get();
+        $courses = Courses::pluck('full_name','id');
+        $courses->prepend('All Courses','0' );
+ 
         $quiz_question = Quiz_Question::where('quiz_id',$id)->pluck('question_id')->toArray();
         $quiz = Quiz::where('id',$id)->first();
-        return view('admin.question_list_open.index', compact('question_courses','quiz_question','quiz'));
+        return view('admin.question_list_open.index', compact('quiz_question','quiz','courses'));
     }
 
     public function quiz_question_list_update(Request $request){

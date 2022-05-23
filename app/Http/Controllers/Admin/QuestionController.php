@@ -24,11 +24,22 @@ class QuestionController extends Controller
         return view('admin.question.index');
     }
 
-    public function getQuestion($id = 0)
+    // public function getQuestion($id = 0)
+    // {
+    //     $question = Question::orderby('id', 'desc')->select('*')->get();
+    //     $questionData['data'] = $question;
+    //     echo json_encode($questionData);
+    // }
+
+    public function getQuestion($course_id = 0)
     {
-        $question = Question::orderby('id', 'desc')->select('*')->get();
+        $question = Question_Course::with('question');
+        if($course_id){
+            $question = $question->where('courses_id',$course_id);
+        }
+        $question = $question->orderby('id', 'desc')->get();
         $questionData['data'] = $question;
-        echo json_encode($questionData);
+        echo json_encode($questionData );
     }
 
     public function create()
