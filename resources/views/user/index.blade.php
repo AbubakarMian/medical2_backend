@@ -158,9 +158,9 @@
                   <li id="03">
                     <a href="#"><span>Program</span> </a>
                   </li>
-                  <li id="04">
+                  {{-- <li id="04">
                     <a href="#"><span>Register</span> </a>
-                  </li>
+                  </li> --}}
                   <li id="05">
                     <a href="#"><span>Certificates</span> </a>
                   </li>
@@ -178,14 +178,14 @@
                               Login
                             </button>
                           </li> -->
-                  <li id="10">
+                  {{-- <li id="10">
                     <select
                       class="form-control logclickk"
                       id="exampleFormControlSelect1"
                     >
                       <option>EN</option>
                     </select>
-                  </li>
+                  </li> --}}
                   <li id="45">
                     <div class="infobox visible-xs">
                       <div class="infoboximg"></div>
