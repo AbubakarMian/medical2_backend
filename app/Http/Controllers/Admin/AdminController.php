@@ -101,6 +101,12 @@ class AdminController extends Controller
             'title'=>'Exams'
 
         ];
+        $modules[]= [
+
+            'url'=>'admin/settings',
+            'title'=>'Settings'
+
+        ];
 
         // $modules[] = [
 
