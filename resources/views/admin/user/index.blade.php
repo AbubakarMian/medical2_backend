@@ -67,7 +67,7 @@ $(document).ready(function(){
                   var name =  response['data'][i].name;
                   var email =  response['data'][i].email;
                   var phone_no =  response['data'][i].phone_no;
-                  var address =  response['data'][i].address;
+                  var address =  response['data'][i].adderss;
                   var image  = response['data'][i].image;
                 //   var deleted_at   = response['data'][i].deleted_at;
 
@@ -83,10 +83,10 @@ $(document).ready(function(){
                     "<td>" +phone_no+ "</td>" +
                     "<td>" +address+ "</td>" +
                     "<td>" + image_col + "</td>" +
-                   
+
                 "</tr>";
 
-               
+
                 $("#userTableAppend tbody").append(tr_str);
                 }
                 $('#userTableAppend').DataTable({

@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 // this is admin routes
 
+     // Route::get('user/home', 'Admin\UserController@index');
+     // Route::get('user', 'Admin\UserController@index');
+     Route::get('/', 'User\UserController@index');
+     Route::get('registration', 'User\UserController@registration');
+
 
     Route::get('admin/login', 'Admin\AdminController@index');
     Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
