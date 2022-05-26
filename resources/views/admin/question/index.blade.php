@@ -34,7 +34,7 @@ List of Questions
 
         function fetchRecords() {
             $.ajax({
-                url: '{!!asset("admin/getquestion/{id}")!!}',
+                url: '{!!asset("admin/getquestion/0")!!}',
                 type: 'get',
                 dataType: 'json',
                 success: function(response) {
@@ -42,8 +42,11 @@ List of Questions
                     var len = response['data'].length;
                     console.log(response);
                     for (var i = 0; i < len; i++) {
+                        console.log('aaaaaaa',response['data'][i]);
                         var id = response['data'][i].id;
-                        var question = response['data'][i].question;
+                        // var question = response['data'][i].question;
+                        var question_text = response['data'][i].question;
+                        console.log('qqqqqqqq',response['data'][i].question);
                         var edit = `<a class="btn btn-info" href="{!!asset('admin/question/edit/` + id + `')!!}">Edit</a>`;
                        createModal({
                             id: 'question_' + response['data'][i].id,
@@ -60,7 +63,7 @@ List of Questions
                         var delete_btn = `<a class="btn btn-info" data-toggle="modal" data-target="#` + 'question_' + response['data'][i].id + `">Delete</a>`;
 
                         var tr_str = "<tr id='row_"+response['data'][i].id+"'>" +
-                            "<td>" + question + "</td>" +
+                            "<td>" + question_text + "</td>" +
                             "<td>" + edit + "</td>" +
                             "<td>" + delete_btn + "</td>" +
                             "</tr>";

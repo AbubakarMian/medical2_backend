@@ -97,7 +97,7 @@ class QuizController extends Controller
         $quiz = Quiz::find($id);
         $courses = Courses::pluck('full_name','id');
         $courses->prepend('All Courses','0' );
- 
+
         $quiz_question = Quiz_Question::where('quiz_id',$id)->pluck('question_id')->toArray();
         $quiz = Quiz::where('id',$id)->first();
         return view('admin.question_list_open.index', compact('quiz_question','quiz','courses'));
