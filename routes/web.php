@@ -135,6 +135,12 @@ use Illuminate\Support\Facades\Route;
   Route::get('admin/course/questions/{id}', 'Admin\QuestionController@course_question_list')->name('question_list');
 
 
+//   SETTINGS
+  Route::get('admin/settings', 'Admin\SettingsController@index')->name('settings.index');
+  Route::get('admin/settings/edit/{id}', 'Admin\SettingsController@edit')->name('settings.edit');
+  Route::post('admin/settings/update/{id}', 'Admin\SettingsController@update')->name('settings.save');
+
+
 
 
 

@@ -12,8 +12,8 @@ else{
 @endsection
 @section('leftsideform')
     @if($control == 'edit')
-        {!! Form::model($settings,['id'=>'my_form', 'method' => 'POST', 'route' =>
-                  ['settings.save',],'files'=>true]) !!}
+        {!! Form::model($pages_images,['id'=>'my_form', 'method' => 'POST', 'route' =>
+                  ['settings.save',$pages_images->id],'files'=>true]) !!}
     @else
 
     @endif

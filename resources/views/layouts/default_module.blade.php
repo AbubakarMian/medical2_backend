@@ -65,12 +65,12 @@
         </div>
     </div>
 
-    
 
-      <!-- Modal 
+
+      <!-- Modal
    <div class="modal fade" id="custom_Mymodal" role="dialog">
     <div class="modal-dialog">
-    
+
        Modal content
       <div class="modal-content">
         <div class="modal-header">
@@ -84,9 +84,9 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      
+
     </div>
-  </div> 
+  </div>
 
  end modal -->
 
@@ -117,8 +117,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-  
-   
+
+
     <!-- /page script -->
     @yield('html_after_jquery')
 @stop
