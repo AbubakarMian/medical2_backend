@@ -4,7 +4,7 @@ Question List
 @stop
 @section('table')
 
-<h4 style="font-weight: 1000;">Fiter by Course:
+<h4 style="font-weight: 800;">Fiter by Course:
 {!! Form::select('course_id',$courses,null,['id'=>'course_id','onChange'=>'filter_question_by_course(this)' , 'style'=>'box-sizing: border-box'])  !!}
 </h4>
 <h3 style="margin-left: 1300px; font-weight: 1000;">{!! $quiz->course->full_name!!}</h3>
@@ -29,7 +29,7 @@ function filter_question_by_course(e){
     var quiz_questions_list = <?php echo json_encode($quiz_question) ?>;
 
     $.ajax({
-                url: '{!!asset("admin/getquestion")!!}/'+selected_course_id,
+                url: '{!!asset("admin/course/questions")!!}/'+selected_course_id,
                 type: 'get',
                 dataType: 'json',
                 success: function(response) {
@@ -80,7 +80,7 @@ function filter_question_by_course(e){
             console.log('quiz_question',quiz_questions_list);
             console.log('apiii')
             $.ajax({
-                url: '{!!asset("admin/getquestion/0")!!}',
+                url: '{!!asset("admin/course/questions/0")!!}',
                 type: 'get',
                 dataType: 'json',
                 success: function(response) {

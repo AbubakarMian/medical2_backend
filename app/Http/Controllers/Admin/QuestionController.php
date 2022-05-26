@@ -21,24 +21,30 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        return view('admin.question.index');
+
+        // $question = Question::orderBy('created_at', 'DESC')->paginate(10);
+        // $question = Question::get();
+        // // dd(  $question );
+        return view('admin.question.index');  
     }
 
-    // public function getQuestion($id = 0)
-    // {
-    //     $question = Question::orderby('id', 'desc')->select('*')->get();
-    //     $questionData['data'] = $question;
-    //     echo json_encode($questionData);
-    // }
+    public function getQuestion($id = 0)
+    {
+        $question = Question::orderby('id', 'desc')->select('*')->get();
+        $questionData['data'] = $question;
+        echo json_encode($questionData);
+    }
 
-    public function getQuestion($course_id = 0)
+    public function course_question_list($course_id = 0) // {id}
     {
         $question = Question_Course::with('question');
         if($course_id){
             $question = $question->where('courses_id',$course_id);
         }
         $question = $question->orderby('id', 'desc')->get();
+        
         $questionData['data'] = $question;
+        
         echo json_encode($questionData );
     }
 
@@ -117,6 +123,7 @@ class QuestionController extends Controller
         $question = Question::find($id);
         if ($question) {
             Question::destroy($id);
+            Question_Course::where('question_id',$id)->delete();
             $new_value = 'Activate';
         } else {
             Question::withTrashed()->find($id)->restore();

@@ -31,6 +31,7 @@ width="400px" style="table-layout:fixed;"
         <th>Phone Number</th>
         <th>Address</th>
         <th>Image</th>
+        
 
 
 
@@ -52,7 +53,6 @@ $(document).ready(function(){
     function fetchRecords(){
 
        $.ajax({
-
          url: '{!!asset("admin/users/get_users/{id}")!!}',
          type: 'get',
          dataType: 'json',
@@ -76,10 +76,6 @@ $(document).ready(function(){
                 }
 
 		        var image_col = `<img width="100px" src="`+image+`" class="show-product-img imgshow">`
-
-
-
-
 
                 var tr_str = "<tr>" +
                     "<td>" +name+ "</td>" +
