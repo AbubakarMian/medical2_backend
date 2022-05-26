@@ -127,6 +127,7 @@ use Illuminate\Support\Facades\Route;
   Route::get('admin/question_list/{id}', 'Admin\QuizController@question_list')->name('quiz.question_list');
   Route::post('admin/quiz_question_list/update', 'Admin\QuizController@quiz_question_list_update')->name('quiz.quiz_question_list_update');
   Route::get('admin/getquestion/{id}', 'Admin\QuestionController@getQuestion')->name('question_list');
+  Route::get('admin/course/questions/{id}', 'Admin\QuestionController@course_question_list')->name('question_list');
 
 
 
