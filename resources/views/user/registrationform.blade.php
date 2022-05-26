@@ -281,17 +281,17 @@
                 <div class="row">
                     <div class="col-sm-4 regeformimg">
                         <div class="regeformimgg">
-                            <img src="{!!asset('theme/user_theme/images/footerlogo.png')!!}" class="img-responsive" />
+                            {{-- <img src="{!!asset('theme/user_theme/images/footerlogo.png')!!}" class="img-responsive" /> --}}
                             <h3>Terms & Condition:</h3>
                             <p>
                               Medical 2 Career College and the State of Mississippi requires that students
                               validate no history of the following charges according to Mississippi Code of
                               1972, Section 43-11-13.
                             </p>
-                            <p> I am applying for admittance as a student at Medical 2 Career College in a
+                            {{-- <p> I am applying for admittance as a student at Medical 2 Career College in a
                               healthcare program. Falsification of information on any application is reason
-                              for dismissal and loss of all payments made.</p>
-                            <!-- <p>
+                              for dismissal and loss of all payments made.</p> --}}
+                            <p>
                               By signing below, I attest I have not been convicted of or pleaded guilty or
                               nolo contendere to a felony of possession or sale of drugs, murder,
                               manslaughter, armed robbery, rape, sexual battery, any gratification of lust,
@@ -308,7 +308,7 @@
                               I am applying for admittance as a student at Medical 2 Career College in a
                               healthcare program. Falsification of information on any application is reason
                               for dismissal and loss of all payments made.
-                            </p> -->
+                            </p>
                         </div>
                     </div>
                     <div class="col-sm-8">

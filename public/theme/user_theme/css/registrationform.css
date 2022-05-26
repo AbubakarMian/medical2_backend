@@ -82,16 +82,16 @@ h4 {
   border-color: red;
 }
 .regeformimg {
-  background: #323a45;
+  background: #292974;
   padding: 50px;
   margin: 0px;
   border: 1px solid #e8e8f0;
   min-height: 685px;
 }
 .regeformimg h3 {
-  font-size: 16px;
-  font-weight: 500;
-  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ff0000;
   margin-bottom: 20px;
 }
 .regeformimgg p {
@@ -104,6 +104,23 @@ h4 {
 /* .regeformarea {
   padding: 50px;
 } */
+.regeformimg {
+    background-image: url(../images/footerlogo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    padding: 25px;
+}
+/* .regeformimg {
+    background-image: url(../images/bgabout.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    padding: 50px;
+} */
+.regeformimgg {
+  text-align: center;
+}
 
 @media only screen and (max-width: 480px) {
   .infoboxdata {
