@@ -88,6 +88,7 @@ Welcome {!! $admin_common->name !!}
 <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>
 <script src="https://unpkg.com/dropzone"></script>
 <script src="https://unpkg.com/cropperjs"></script>
+<link rel="stylesheet" href="croppie/croppie.css">
 @stop
 
 
