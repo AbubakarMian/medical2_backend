@@ -126,4 +126,8 @@ h4 {
   .infoboxdata {
     margin-top: -150px;
   }
+  .row.headrow {
+    border-bottom: 3px solid #323a4536;
+    margin-bottom: 0px;
+}
 }
