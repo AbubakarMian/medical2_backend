@@ -18,7 +18,7 @@
     <section>
         <div class="container-fluid">
           <div class="row headrow">
-            <div class="col-sm-2 col-xs-6">
+            <div class="col-sm-2 col-xs-12">
               <div class="logoArea">
                 <a href="#"><img src="{!!asset('theme/user_theme/images/logo.png')!!}" class="img-responsive" /></a>
               </div>
