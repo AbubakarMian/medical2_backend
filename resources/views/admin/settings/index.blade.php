@@ -2,12 +2,6 @@
 @section('module_name')
 Product
 @stop
-@section('add_btn')
-
-{!! Form::open(['method' => 'get', 'route' => ['product.create'], 'files'=>true]) !!}
-<span>{!! Form::submit('Add', ['class' => 'btn btn-success pull-right']) !!}</span>
-{!! Form::close() !!}
-@stop
 
 @section('table-properties')
 width="400px" style="table-layout:fixed;"
@@ -33,14 +27,12 @@ width="400px" style="table-layout:fixed;"
 	<tr>
 
 
-		<th>Name</th>
-		<th>Image  </th>
-		<th>Details  </th>
-		<th>Amount  </th>
-		<th>Points  </th>
+		<th>Page Name</th>
+		<th>Section  </th>
+
+
 		<th>Edit  </th>
-		<th>Delete  </th>
-		<th>Promotion </th>
+
 
 
 	</tr>
@@ -49,54 +41,26 @@ width="400px" style="table-layout:fixed;"
 
 
 
-    @foreach($product as $p)
-		<td >{!! ucwords($p->name) !!}</td>
-
-		<?php if (!$p->avatar) {
-			$p->avatar = asset('images/map.png');
+    @foreach($pages_images as $p)
+		<td >{!! ucwords($p->page_name) !!}</td>
+		<td >{!! ucwords($p->section) !!}</td>
+	    <?php if (!$p->image) {
+			$new_img = asset('images/logo.png');
+            $p->image = json_decode($new_img);
 			}
 
 	    ?>
-        <td><img width="100px" src="{!! $p->avatar  !!}" class="show-product-img imgshow"></td>
 
-		<td >{!! ucwords($p->detail) !!}</td>
 
-		<td >{!! $p->price*$point_price !!}</td>
-		<td >{!! $p->price !!}</td>
+	   {{-- <td><img width="100px" src="{!! json_decode($p->image)  !!}" class="show-product-img imgshow"></td> --}}
+
+
 
         <td>
-			{!! link_to_action('Admin\ProductController@edit',
+			{!! link_to_action('Admin\SettingsController@edit',
 			'Edit', array($p->id), array('class' => 'badge bg-info')) !!}
 
         </td>
-
-		<td>{!! Form::open(['method' => 'POST', 'route' => ['product.delete', $p->id]]) !!}
-			<a href="" data-toggle="modal" name="activate_delete" data-target=".delete" modal_heading="Alert" modal_msg="Do you want to delete product?">
-				<span class="badge bg-info btn-primary ">
-					{!! $p->deleted_at?'Activate':'Delete' !!}</span></a>
-			{!! Form::close() !!}
-		</td>
-
-        <td>
-			<div class="myproduct  arrow_{!!$p->id!!}">
-                @if($p->promotion)
-                {{-- {!! link_to_action('Admin\PromotionController@edit',
-			        'Edit', array($p->promotion->id), array('class' => 'badge bg-info')) !!} --}}
-				<a href="{{ url('admin/promotion/edit/'.$p->promotion->id) }}" type="button"
-					class="btn btn-primary onproduction" id="production">Edit</a>
-
-
-
-
-                    <a href="#"
-                     {{-- data-toggle="modal" name="activate_delete" data-target=".delete" modal_heading="Alert" --}}
-                    onclick="deleteVideo('{!!$p->promotion->id!!}','{!!$p->id!!}')" class="" >
-                        <span class="btn btn-primary onproduction" id="production">Delete</span></a>
-
-                @else
-                <a href="{{ url('admin/promotion/edit/0?product_id='.$p->id) }}" type="button"
-					class="btn btn-primary onproduction">Add</a>
-                @endif
 
 			</div>
 		</td>
@@ -108,7 +72,7 @@ width="400px" style="table-layout:fixed;"
 
 </tbody>
 @section('pagination')
-<span class="pagination pagination-md pull-right">{!! $product->render() !!}</span>
+<span class="pagination pagination-md pull-right">{!! $pages_images->render() !!}</span>
 <div class="col-md-3 pull-left">
 	<div class="form-group text-center">
 		<div>

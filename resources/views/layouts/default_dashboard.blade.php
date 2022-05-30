@@ -2,7 +2,7 @@
 <?php
 $admin_common = session()->get('admin_common');
 $modules = $admin_common->modules;
-$reports = $admin_common->reports;
+
 ?>
 @section('content')
     <!-- Dashboard Components -->
@@ -45,37 +45,7 @@ $reports = $admin_common->reports;
 
     <!-- Modules end -->
 
-    <!-- reports start -->
-    @if(sizeof($admin_common->reports))
-    <div class="row">
-
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <section class="dash-tile">
-                <h1 class="mt0">Reports</h1>
-            </section>
-        </div>
-        @foreach($reports as $key => $report)
-        {{-- {{dd($report[$key]['url'])}} --}}
-        <a href="{!! asset($report['url']) !!}">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <section class="dash-tile bg-warning">
-                        <div class="tile-stats">{!!$report['title']!!}
-                        </div>
-                        <br><br>
-                    </section>
-                </div>
-            </a>
-
-            @if(!($key+1 / 4))
-
-                </div>
-                <div class="row">
-            @endif
-
-        @endforeach
-    </div>
-    @endif
-    <!-- reports end  -->
+   
 
     <!-- Chart -->
     {{-- <section class="panel hidden-xs">

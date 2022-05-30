@@ -26,7 +26,9 @@ use Illuminate\Support\Facades\Route;
     Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
 
 
-    Route::get('user/user', 'User\UserController@index')->name('location.index');
+    Route::get('admin/users', 'Admin\UserController@index')->name('location.index');
+    Route::get('admin/users/get_users/{id}','Admin\UserController@getUsers')->name('users.get_users');
+
     // this is user routes
 
     // Route::group(['middleware'=>'admin_auth'],function(){
@@ -88,6 +90,55 @@ use Illuminate\Support\Facades\Route;
 
 
 
+  // question list open
+  Route::get('admin/question_list/{id}', 'Admin\QuizController@question_list')->name('quiz.question_list');
+  Route::post('admin/quiz_question_list/update', 'Admin\QuizController@quiz_question_list_update')->name('quiz.quiz_question_list_update');
+
+  // question CRUD
+
+  Route::get('admin/question', 'Admin\QuestionController@index')->name('admin.question');
+
+  // create and save question
+
+  Route::get('admin/question/create', 'Admin\QuestionController@create')->name('question.create');
+  Route::post('admin/question/save', 'Admin\QuestionController@save')->name('question.save');
+
+ // edit and update question
+
+  Route::get('admin/question/edit/{id}', 'Admin\QuestionController@edit')->name('question.edit');
+  Route::post('admin/question/update/{id}', 'Admin\QuestionController@update')->name('question.update');
+
+// delete question
+  Route::post('admin/question/delete/{id}', 'Admin\QuestionController@destroy_undestroy')->name('question.delete');
+
+
+  // quiz CRUD
+  Route::get('admin/quiz', 'Admin\QuizController@index')->name('admin.quiz');
+
+  // create and save quiz
+
+  Route::get('admin/quiz/create', 'Admin\QuizController@create')->name('quiz.create');
+  Route::post('admin/quiz/save', 'Admin\QuizController@save')->name('quiz.save');
+
+  // edit and update quiz
+
+  Route::get('admin/quiz/edit/{id}', 'Admin\QuizController@edit')->name('quiz.edit');
+  Route::post('admin/quiz/update/{id}', 'Admin\QuizController@update')->name('quiz.update');
+
+  // delete quiz
+  Route::post('admin/quiz/delete/{id}', 'Admin\QuizController@destroy_undestroy')->name('quiz.delete');
+
+  // question list open
+  Route::get('admin/question_list/{id}', 'Admin\QuizController@question_list')->name('quiz.question_list');
+  Route::post('admin/quiz_question_list/update', 'Admin\QuizController@quiz_question_list_update')->name('quiz.quiz_question_list_update');
+  Route::get('admin/getquestion/{id}', 'Admin\QuestionController@getQuestion')->name('question_list');
+  Route::get('admin/course/questions/{id}', 'Admin\QuestionController@course_question_list')->name('question_list');
+
+
+//   SETTINGS
+  Route::get('admin/settings', 'Admin\SettingsController@index')->name('settings.index');
+  Route::get('admin/settings/edit/{id}', 'Admin\SettingsController@edit')->name('settings.edit');
+  Route::post('admin/settings/update/{id}', 'Admin\SettingsController@update')->name('settings.save');
 
 
 

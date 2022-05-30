@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Medical asdasdasdasd2</title>
+  <title>Medical 2</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -19,7 +19,7 @@
       <div class="row headrow">
         <div class="col-sm-2 col-xs-6">
           <div class="logoArea">
-            
+
             <a href="#"><img src="{!!asset('theme/user_theme/images/logo.png')!!}" class="img-responsive" /></a>
           </div>
         </div>
@@ -43,7 +43,7 @@
                 <p>Email Address</p>
               </div>
             </div>
-  
+
             <div class="infobox">
               <div class="infoboximg"></div>
               <div class="infoboxdata">
@@ -53,7 +53,7 @@
                     Registration
                   </button></a
                 >
-  
+
                 <button
                   type="button"
                   class="btn btn-primary logclick"
@@ -62,7 +62,7 @@
                 >
                   Login
                 </button>
-  
+
                 <div
                   class="modal fade"
                   id="exampleModal"
@@ -195,7 +195,7 @@
                             Registration
                           </button></a
                         >
-          
+
                         <button
                           type="button"
                           class="btn btn-primary logclick"
@@ -204,7 +204,7 @@
                         >
                           Login
                         </button>
-          
+
                         <div
                           class="modal fade"
                           id="exampleModal"
@@ -280,7 +280,7 @@
       </div>
     </div>
   </section>
-  
+
   <section>
     <div class="sliderbannerarea">
       <div class="sliderplace">
@@ -302,7 +302,7 @@
               class="topslideball"
             ></li>
           </ol>
-  
+
           <div class="carousel-inner">
             <div class="item active">
               <div class="bannerarea">
@@ -311,10 +311,10 @@
                     <div class="col-sm-6">
                       <div class="bannerareadata">
                         <h1>Phlebotomy Certification Workshop</h1>
-                        <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
-                          diam nonummy nibh euismod tincidunt ut laoreet dolore 
-                          magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
-                          quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut 
+                        <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                          diam nonummy nibh euismod tincidunt ut laoreet dolore
+                          magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+                          quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
                           aliquip ex ea commodo consequat.</h3>
                           <button type="button" class="btn btn-primary banclick">Learn More</button>
                       </div>
@@ -323,7 +323,7 @@
                 </div>
               </div>
             </div>
-  
+
             <div class="item">
               <div class="bannerarea">
                 <div class="container-fluid">
@@ -331,10 +331,10 @@
                     <div class="col-sm-6">
                       <div class="bannerareadata">
                         <h1>Phlebotomy Certification Workshop</h1>
-                        <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
-                          diam nonummy nibh euismod tincidunt ut laoreet dolore 
-                          magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
-                          quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut 
+                        <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                          diam nonummy nibh euismod tincidunt ut laoreet dolore
+                          magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+                          quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
                           aliquip ex ea commodo consequat.</h3>
                           <button type="button" class="btn btn-primary banclick">Learn More</button>
                       </div>
@@ -343,7 +343,7 @@
                 </div>
               </div>
             </div>
-  
+
             <div class="item">
               <div class="bannerarea">
                 <div class="container-fluid">
@@ -351,10 +351,10 @@
                     <div class="col-sm-6">
                       <div class="bannerareadata">
                         <h1>Phlebotomy Certification Workshop</h1>
-                        <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
-                          diam nonummy nibh euismod tincidunt ut laoreet dolore 
-                          magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
-                          quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut 
+                        <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                          diam nonummy nibh euismod tincidunt ut laoreet dolore
+                          magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+                          quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
                           aliquip ex ea commodo consequat.</h3>
                           <button type="button" class="btn btn-primary banclick">Learn More</button>
                       </div>
@@ -364,7 +364,7 @@
               </div>
             </div>
           </div>
-  
+
           <a class="left carousel-control slideshade" href="#myCarousel" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left slidearow"></span>
             <span class="sr-only">Previous</span>
@@ -377,7 +377,7 @@
       </div>
     </div>
   </section>
-  
+
   <section>
     <div class="colorboxarea">
       <div class="container">
@@ -409,7 +409,7 @@
         </div>
       </div>
     </div>
-  </section>  
+  </section>
 
   <section>
     <div class="collagearea">
@@ -509,7 +509,7 @@
         </div>
       </div>
     </div>
-  </section>  
+  </section>
 
   <section>
     <div class="footerarea">
@@ -568,7 +568,7 @@
       </div>
     </div>
   </section>
-  
+
   <section>
     <div class="lastfooterarea">
       <div class="container-fluid">
@@ -585,6 +585,6 @@
       </div>
     </div>
   </section>
-  
+
 </body>
 </html>

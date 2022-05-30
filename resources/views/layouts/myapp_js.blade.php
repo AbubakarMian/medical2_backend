@@ -96,6 +96,15 @@ $('a[name="activate_delete_link"]').on('click', function(e){
     });
 });
 
+
+// modal_param = {
+//     id:'',
+//     header:'',
+//     body:'',
+//     footer:'',
+// };
+
+
 $('a[name="delete"]').on('click', function(e){
 
 var $form=$(this).closest('form');
@@ -281,6 +290,45 @@ function filterFunction(e,dropdowm_id) {
     }
     // $("#"+dropdowm_id).multiselect('refresh');
   });
+}
+
+function createModal(modal_param){
+    var modal =  `
+    <div class="modal fade" id="`+modal_param.id+`" role="dialog">
+    <div class="modal-dialog">    
+      <div class="modal-content">
+        <div class="modal-header">
+            `+modal_param.header+`
+        </div>
+        <div class="modal-body">
+            `+modal_param.body+`
+        </div>
+        <div class="modal-footer">
+            `+modal_param.footer+`
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    `;
+    $('#add_custom_modals').append(modal);
+//     <div class="modal fade" id="`+modal_param.id+`" role="dialog">
+//     <div class="modal-dialog">    
+//       <div class="modal-content">
+//         <div class="modal-header">
+//           <button type="button" class="close" data-dismiss="modal">&times;</button>
+//           <h4 class="modal-title">Modal Header</h4>
+//         </div>
+//         <div class="modal-body">
+//           <p>Some text in the modal.</p>
+//         </div>
+//         <div class="modal-footer">
+//           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+//         </div>
+//       </div>
+      
+//     </div>
+//   </div>
 }
 
 </script>
