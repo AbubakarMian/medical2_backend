@@ -18,7 +18,7 @@
     <section>
         <div class="container-fluid">
           <div class="row headrow">
-            <div class="col-sm-2 col-xs-12">
+            <div class="col-sm-2 col-xs-6">
               <div class="logoArea">
                 <a href="#"><img src="{!!asset('theme/user_theme/images/logo.png')!!}" class="img-responsive" /></a>
               </div>
@@ -287,7 +287,10 @@
                               Medical 2 Career College and the State of Mississippi requires that students
                               validate no history of the following charges according to Mississippi Code of
                               1972, Section 43-11-13.
-                            </p>                            
+                            </p>
+                            {{-- <p> I am applying for admittance as a student at Medical 2 Career College in a
+                              healthcare program. Falsification of information on any application is reason
+                              for dismissal and loss of all payments made.</p> --}}
                             <p>
                               By signing below, I attest I have not been convicted of or pleaded guilty or
                               nolo contendere to a felony of possession or sale of drugs, murder,
