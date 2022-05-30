@@ -91,7 +91,7 @@ h4 {
 .regeformimg h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #ff0000;
+  color: white;
   margin-bottom: 20px;
 }
 .regeformimgg p {
@@ -104,22 +104,22 @@ h4 {
 /* .regeformarea {
   padding: 50px;
 } */
-.regeformimg {
+/* .regeformimg {
     background-image: url(../images/footerlogo.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
     padding: 25px;
-}
-/* .regeformimg {
-    background-image: url(../images/bgabout.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
-    padding: 50px;
 } */
-.regeformimgg {
+/* .regeformimgg {
   text-align: center;
+} */
+.regeformimg {
+  background-image: url(../images/casestudy30.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  padding: 25px;
 }
 
 @media only screen and (max-width: 480px) {
