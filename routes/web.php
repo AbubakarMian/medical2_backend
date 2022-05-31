@@ -139,6 +139,7 @@ use Illuminate\Support\Facades\Route;
   Route::get('admin/settings', 'Admin\SettingsController@index')->name('settings.index');
   Route::get('admin/settings/edit/{id}', 'Admin\SettingsController@edit')->name('settings.edit');
   Route::post('admin/settings/update/{id}', 'Admin\SettingsController@update')->name('settings.save');
+  Route::post('admin/settings/upload_cropped_image', 'Admin\SettingsController@upload_cropped_image')->name('settings.upload_cropped_image');
 
 
 

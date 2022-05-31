@@ -34,28 +34,27 @@ class SettingsController extends Controller
         ));
 
     }
-    public function update(Request $request,$id)
+    public function upload_cropped_image(Request $request)
     {
-
-        $pages_images = Pages_Images::find($id);
-
         $folderPath = public_path('images/');
-
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
-
         $imageName = uniqid() . '.png';
-
         $imageFullPath = $folderPath.$imageName;
-
         $su = file_put_contents($imageFullPath, $image_base64);
-        $pages_images->image = $su;
+        $image_path = asset('/images/' .$imageName);
+        return response()->json(['success'=>'Crop Image Uploaded Successfully','image'=>$image_path]);
+    }
 
-         $pages_images->save();
+    public function update(Request $request,$id)
+    {
+        $pages_images = Pages_Images::find($id);
+        $pages_images->image = $request->image;
+        $pages_images->save();
 
-        return response()->json(['success'=>'Crop Image Uploaded Successfully']);
+        return response()->json(['success'=>'Crop Image Uploaded Successfully','image'=>$pages_images]);
     }
 
 
