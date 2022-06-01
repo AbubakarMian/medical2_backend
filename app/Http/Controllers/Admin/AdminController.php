@@ -107,6 +107,16 @@ class AdminController extends Controller
             'title'=>'Settings'
 
         ];
+        $modules[]= [
+
+            'url'=>'admin/category',
+            'title'=>'Category'
+        ];
+        $modules[]= [
+
+            'url'=>'admin/books',
+            'title'=>'Books'
+        ];
 
         // $modules[] = [
 

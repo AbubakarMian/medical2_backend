@@ -2,45 +2,27 @@
 {{-- <input name="invisible" type="hidden" value="{{ $category->id }}"> --}}
 
 <div class="form-group">
-    {!! Form::label('name','Full Name') !!}
+    {!! Form::label('name',' Name') !!}
     <div>
-        {!! Form::text('full_name', null, ['class' => 'form-control',
+        {!! Form::text('name', null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Full Name','required',
+        'placeholder'=>' Name','required',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
+
 <div class="form-group">
-    {!! Form::label('name','Short Name') !!}
+    {!! Form::label('description','Description') !!}
     <div>
-        {!! Form::text('short_name', null, ['class' => 'form-control',
+        {!! Form::text('description',  null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Short Name','required',
+        'placeholder'=>'Enter Description','required',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
-<div class="form-group">
-    {!! Form::label('fees','Fees') !!}
-    <div>
-        {!! Form::text('fees',  null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Fees','required',
-        'maxlength'=>"100"]) !!}
-    </div>
-</div>
-<div class="form-group">
-    {!! Form::label('One_payment ','One Time Payment') !!}
-    <div>
-        {!! Form::checkbox('one_time_payment',  null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Payment','required',
-        'maxlength'=>"100"]) !!}
-    </div>
-</div>
+
 <div class="form-group">
     <label for="category_id">Select Category</label>
 
@@ -57,36 +39,32 @@
     </select> --}}
 </div>
 
-
-
-
-<?php
-$image = asset('images/logo.png');
-
-if (isset($courses)) {
-if ($courses->avatar) {
-$image = $courses->avatar;
-}
-}
-?>
-
 <div class="form-group">
+    <label for="courses_id">Select Courses</label>
 
-    <div class="form-group pull-right">
-        <img width="100px" src="{!! $image !!}" class="show-product-img imgshow">
-    </div>
+    {!!Form::select('courses_id',$courses,null,['class' => 'form-control',
+    'data-parsley-required'=>'true',
+    'data-parsley-trigger'=>'change',
+    'placeholder'=>'Select Course','required',
+    'maxlength'=>"100"])!!}
+    {{-- <select class="form-control" id="courses" name="courses" required>
+        @foreach ($courses_list as $key => $ch)
+        <option class="option-file" value="{{ $key + 1 }}">{{ $ch->name }}</option>
+        @endforeach
 
-    <div class="form-group">
-
-        {!! Form::label('image', 'Image') !!}
-        {!! Form::file('image', ['class' => 'choose-image', 'id' => 'image']) !!}
-        <p class="help-block" id="error">Limit 2MB</p>
-    </div>
-
+    </select> --}}
 </div>
-@include('admin.courses.partial.image_modal')
 
-{!! Form::label('description', 'Description') !!}
+
+
+
+
+
+
+
+
+
+{{-- {!! Form::label('description', 'Description') !!}
     <div >
 
     <div>
@@ -95,7 +73,7 @@ $image = $courses->avatar;
 
 
 
-</div>
+</div> --}}
 
 
 
