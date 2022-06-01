@@ -56,37 +56,30 @@ use Illuminate\Support\Facades\Route;
     Route::post('admin/parent/map/lat_long', 'Admin\ParentController@parent_latlong_save')->name('parent.map');
 
 
-    // Drivers crud
-
-    Route::get('admin/drivers', 'Admin\DriversController@index')->name('drivers.index');
-    Route::get('admin/drivers/create', 'Admin\DriversController@create')->name('drivers.create'); //add
-    Route::post('admin/drivers/save', 'Admin\DriversController@save')->name('drivers.save');
-    Route::get('admin/drivers/edit/{id}', 'Admin\DriversController@edit')->name('drivers.edit');
-    Route::post('admin/drivers/update/{id}', 'Admin\DriversController@update')->name('drivers.update');
-    Route::post('admin/drivers/delete/{id}', 'Admin\DriversController@destroy_undestroy')->name('drivers.delete');
-    Route::get('admin/drivers/map', 'Admin\DriversController@map')->name('drivers.map');
 
 
+//  =================================  Category ==========================
+Route::get('admin/category', 'Admin\CategoryController@index')->name('category.index');
 
+Route::get('admin/category/create', 'Admin\CategoryController@create')->name('category.create'); //add
+Route::post('admin/category/save', 'Admin\CategoryController@save')->name('category.save');
 
+Route::get('admin/category/edit/{id}', 'Admin\CategoryController@edit')->name('category.edit');
+Route::post('admin/category/update/{id}', 'Admin\CategoryController@update')->name('category.update');
 
+Route::post('admin/category/delete/{id}', 'Admin\CategoryController@destroy_undestroy')->name('category.delete');
 
+//  =================================  Books ==========================
+Route::get('admin/books', 'Admin\BooksController@index')->name('books.index');
 
-//  =================================  settings ==========================
+Route::get('admin/books/create', 'Admin\BooksController@create')->name('books.create'); //add
+Route::post('admin/books/save', 'Admin\BooksController@save')->name('books.save');
 
-     Route::get('admin/settings','Admin\SettingsController@edit')->name('settings.index');
+Route::get('admin/books/edit/{id}', 'Admin\BooksController@edit')->name('books.edit');
+Route::post('admin/books/update/{id}', 'Admin\BooksController@update')->name('books.update');
 
-     Route::post('admin/settings/map/lat_long','Admin\SettingsController@update_save')->name('settings.update');
+Route::post('admin/books/delete/{id}', 'Admin\BooksController@destroy_undestroy')->name('books.delete');
 
-//  =================================  notification ==========================
-
-
-     Route::get('admin/notification','Admin\NotificationController@index')->name('notification.index');
-     Route::get('admin/notification/create', 'Admin\NotificationController@create')->name('notification.create'); //add
-     Route::post('admin/notification/save', 'Admin\NotificationController@save')->name('notification.save');
-     Route::get('admin/notification/edit/{id}', 'Admin\NotificationController@edit')->name('notification.edit');
-     Route::post('admin/notification/update/{id}', 'Admin\NotificationController@update')->name('notification.update');
-     Route::post('admin/notification/delete/{id}', 'Admin\NotificationController@destroy_undestroy')->name('notification.delete');
 
 
 
