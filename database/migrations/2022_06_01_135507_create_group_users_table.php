@@ -14,8 +14,11 @@ class CreateGroupUsersTable extends Migration
     public function up()
     {
         Schema::create('group_users', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->bigInteger('group_id')->nullable()->default(0);
+            $table->bigInteger('user_id')->nullable()->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
