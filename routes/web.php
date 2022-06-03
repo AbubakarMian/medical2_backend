@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Route;
      Route::get('/', 'User\UserController@index');
      Route::get('registration', 'User\UserController@registration');
 
+     Route::post('user/save', 'User\UserController@save');
+
+
+
 
     Route::get('admin/login', 'Admin\AdminController@index');
     Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
