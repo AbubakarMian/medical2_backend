@@ -576,7 +576,7 @@
           <div class="col-sm-12">
             <div class="lastfooterdata">
               <p>
-                Copyright 2022 by Medical2.com Website Design and Develop by
+                Copyright 2022 by Medical2.com Website Designed and Developed by
                 hatinc
               </p>
             </div>
