@@ -254,7 +254,7 @@
 
           
               <form role="form" method="post" action="{{action('User\UserController@save')}}">
-              {{ csrf_field() }}
+              {!! csrf_field() !!}
                 <div class="row">
                   <div class="col-sm-6">
                     <select class="form-control" id="one">
