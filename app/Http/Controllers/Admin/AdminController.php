@@ -114,6 +114,11 @@ class AdminController extends Controller
         ];
         $modules[]= [
 
+            'url'=>'admin/group',
+            'title'=>'Group'
+        ];
+        $modules[]= [
+
             'url'=>'admin/books',
             'title'=>'Books'
         ];

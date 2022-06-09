@@ -148,6 +148,17 @@ Route::post('admin/books/delete/{id}', 'Admin\BooksController@destroy_undestroy'
 // });
 
 
+//   Group crud
+
+
+Route::get('admin/get_group', 'Admin\GroupController@getGroup')->name('group');
+Route::get('admin/group', 'Admin\GroupController@index')->name('group.index');
+Route::get('admin/group/create', 'Admin\GroupController@create')->name('group.create'); //add
+Route::post('admin/group/save', 'Admin\GroupController@save')->name('group.save');
+Route::get('admin/group/edit/{id}', 'Admin\GroupController@edit')->name('group.edit');
+Route::post('admin/group/update/{id}', 'Admin\GroupController@update')->name('group.update');
+Route::post('admin/group/delete/{id}', 'Admin\GroupController@destroy_undestroy')->name('group.delete');
+
 
 
 
