@@ -161,6 +161,13 @@ Route::post('admin/group/delete/{id}', 'Admin\GroupController@destroy_undestroy'
 
 
 
+// ================================student list==================================
+Route::get('admin/group/students/{id}', 'Admin\GroupController@student_list')->name('admin.group_students');
+Route::post('admin/student_group_checked/update', 'Admin\GroupController@student_group_checked')->name('admin.student_group_checked');
+
+
+
+
 
 
 
