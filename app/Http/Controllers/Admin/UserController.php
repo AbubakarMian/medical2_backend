@@ -25,16 +25,16 @@ class UserController extends Controller
         // dd($user);
         return view('admin.user.index');
     }
-    
+
 
     public function getUsers($id = 0){
 
-        
+
         $user = User::orderby('id','asc')->select('*')->get();
         $userData['data'] = $user;
 
         echo json_encode($userData);
-       
+
     }
 
 
