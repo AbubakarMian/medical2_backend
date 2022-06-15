@@ -22,6 +22,7 @@ class UserController extends Controller
 
     public function save(Request $request)
     {
+        
         $users = new User();
         return $this->add_or_update($request, $users);
      
@@ -38,6 +39,7 @@ class UserController extends Controller
         
 
         }
+        // dd('asdasd');
         // dd($request->all());
         $users->name = $request->first_name;
         $users->last_name = $request->last_name;
@@ -53,11 +55,9 @@ class UserController extends Controller
         $users->work_experience = $request->work_experience;
         $users->expectations = $request->expectations;
         $users->certification = $request->certification;
-
-        
-
+        $users->role_id = 2;
         $users->save();
-    
+        return view('user.index');
     }
 
 

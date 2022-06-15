@@ -23,21 +23,7 @@
     </div>
 </div>
 
-<div class="form-group">
-    <label for="category_id">Select Category</label>
 
-    {!!Form::select('category_id',$category,null,['class' => 'form-control',
-    'data-parsley-required'=>'true',
-    'data-parsley-trigger'=>'change',
-    'placeholder'=>'Select Category','required',
-    'maxlength'=>"100"])!!}
-    {{-- <select class="form-control" id="courses" name="courses" required>
-        @foreach ($courses_list as $key => $ch)
-        <option class="option-file" value="{{ $key + 1 }}">{{ $ch->name }}</option>
-        @endforeach
-
-    </select> --}}
-</div>
 
 <div class="form-group">
     <label for="courses_id">Select Courses</label>
