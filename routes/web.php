@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 
     //
      Route::get('registration', 'User\UserController@registration');
+     Route::get('courses_list', 'User\CoursesController@courses_list');
 
     //
 
