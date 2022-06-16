@@ -13,4 +13,10 @@ class CoursesController extends Controller
         $category = Category::pluck('name','id');
         return view('user.program',compact('category'));
     }
+
+
+    public function courses_list()
+    {
+        return view('user.courses');
+    }
 }

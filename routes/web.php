@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
      Route::get('/', 'User\UserController@index');
      Route::get('program', 'User\CoursesController@index');
      Route::get('registration', 'User\UserController@registration');
+     Route::get('courses_list', 'User\CoursesController@courses_list');
 
      Route::post('user/save', 'User\UserController@save');
 
