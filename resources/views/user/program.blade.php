@@ -36,7 +36,7 @@
                 <div class="col-sm-3">
                     <div class="rating">
                         <div class="boxing">
-                            <img src="{!!asset('theme/user_theme/images/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
+                            <img src="{!!asset('theme/user_theme/imagess/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
                             <div class="middle">
                                 <div class="text" >
                                     <a href="{{asset('courses/details')}}">View
@@ -78,13 +78,9 @@
                 <div class="col-sm-3">
                     <div class="rating">
                         <div class="boxing">
-                            <img src="{!!asset('theme/user_theme/images/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
+                            <img src="{!!asset('theme/user_theme/imagess/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
                             <div class="middle">
-                                <div class="text" >
-                                    <a href="{{asset('courses/details')}}">View
-
-                                    </a>
-                                </div>
+                                <div class="text">View</div>
                             </div>
                         </div>
                         <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
@@ -122,13 +118,9 @@
 
                 <div class="col-sm-3">
                     <div class="boxing">
-                        <img src="{!!asset('theme/user_theme/images/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
+                        <img src="{!!asset('theme/user_theme/imagess/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
                         <div class="middle">
-                            <div class="text" >
-                                <a href="{{asset('courses/details')}}">View
-
-                                </a>
-                            </div>
+                            <div class="text">View</div>
 
                         </div>
                     </div>
@@ -164,13 +156,9 @@
 
                 <div class="col-sm-3">
                     <div class="boxing">
-                        <img src="{!!asset('theme/user_theme/images/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
+                        <img src="{!!asset('theme/user_theme/imagess/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
                         <div class="middle">
-                            <div class="text" >
-                                <a href="{{asset('courses/details')}}">View
-
-                                </a>
-                            </div>
+                            <div class="text">View</div>
                         </div>
                     </div>
                     <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
@@ -209,13 +197,9 @@
                     <div class="col-sm-3">
                         <div class="rating">
                             <div class="boxing">
-                                <img src="{!!asset('theme/user_theme/images/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                <img src="{!!asset('theme/user_theme/imagess/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
                                 <div class="middle">
-                                    <div class="text" >
-                                        <a href="{{asset('courses/details')}}">View
-
-                                        </a>
-                                    </div>
+                                    <div class="text">View</div>
                                 </div>
                             </div>
                             <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
@@ -253,13 +237,9 @@
                     <div class="col-sm-3">
                         <div class="rating">
                             <div class="boxing">
-                                <img src="{!!asset('theme/user_theme/images/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                <img src="{!!asset('theme/user_theme/imagess/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
                                 <div class="middle">
-                                    <div class="text" >
-                                        <a href="{{asset('courses/details')}}">View
-
-                                        </a>
-                                    </div>
+                                    <div class="text">View</div>
                                 </div>
                             </div>
                             <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
@@ -297,13 +277,9 @@
 
                     <div class="col-sm-3">
                         <div class="boxing">
-                            <img src="{!!asset('theme/user_theme/images/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
+                            <img src="{!!asset('theme/user_theme/imagess/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
                             <div class="middle">
-                                <div class="text" >
-                                    <a href="{{asset('courses/details')}}">View
-
-                                    </a>
-                                </div>
+                                <div class="text">View</div>
 
                             </div>
                         </div>
@@ -339,13 +315,9 @@
 
                     <div class="col-sm-3">
                         <div class="boxing">
-                            <img src="{!!asset('theme/user_theme/images/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
+                            <img src="{!!asset('theme/user_theme/imagess/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
                             <div class="middle">
-                                <div class="text" >
-                                    <a href="{{asset('courses/details')}}">View
-
-                                    </a>
-                                </div>
+                                <div class="text">View</div>
                             </div>
                         </div>
                         <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
@@ -384,13 +356,9 @@
                         <div class="col-sm-3">
                             <div class="rating">
                                 <div class="boxing">
-                                    <img src="{!!asset('theme/user_theme/images/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                    <img src="{!!asset('theme/user_theme/imagess/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
                                     <div class="middle">
-                                        <div class="text" >
-                                            <a href="{{asset('courses/details')}}">View
-
-                                            </a>
-                                        </div>
+                                        <div class="text">View</div>
                                     </div>
                                 </div>
                                 <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
@@ -428,7 +396,7 @@
                         <div class="col-sm-3">
                             <div class="rating">
                                 <div class="boxing">
-                                    <img src="{!!asset('theme/user_theme/images/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                    <img src="{!!asset('theme/user_theme/imagess/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
                                     <div class="middle">
                                         <div class="text">View</div>
                                     </div>
@@ -468,7 +436,7 @@
 
                         <div class="col-sm-3">
                             <div class="boxing">
-                                <img src="{!!asset('theme/user_theme/images/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                <img src="{!!asset('theme/user_theme/imagess/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
                                 <div class="middle">
                                     <div class="text">View</div>
 
@@ -506,7 +474,7 @@
 
                         <div class="col-sm-3">
                             <div class="boxing">
-                                <img src="{!!asset('theme/user_theme/images/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                <img src="{!!asset('theme/user_theme/imagess/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
                                 <div class="middle">
                                     <div class="text">View</div>
                                 </div>
@@ -547,7 +515,7 @@
                             <div class="col-sm-3">
                                 <div class="rating">
                                     <div class="boxing">
-                                        <img src="{!!asset('theme/user_theme/images/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                        <img src="{!!asset('theme/user_theme/imagess/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
                                         <div class="middle">
                                             <div class="text">View</div>
                                         </div>
@@ -587,7 +555,7 @@
                             <div class="col-sm-3">
                                 <div class="rating">
                                     <div class="boxing">
-                                        <img src="{!!asset('theme/user_theme/images/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                        <img src="{!!asset('theme/user_theme/imagess/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
                                         <div class="middle">
                                             <div class="text">View</div>
                                         </div>
@@ -627,7 +595,7 @@
 
                             <div class="col-sm-3">
                                 <div class="boxing">
-                                    <img src="{!!asset('theme/user_theme/images/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                    <img src="{!!asset('theme/user_theme/imagess/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
                                     <div class="middle">
                                         <div class="text">View</div>
 
@@ -665,7 +633,7 @@
 
                             <div class="col-sm-3">
                                 <div class="boxing">
-                                    <img src="{!!asset('theme/user_theme/images/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                    <img src="{!!asset('theme/user_theme/imagess/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
                                     <div class="middle">
                                         <div class="text">View</div>
                                     </div>
@@ -707,7 +675,7 @@
                                 <div class="col-sm-3">
                                     <div class="rating">
                                         <div class="boxing">
-                                            <img src="{!!asset('theme/user_theme/images/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                            <img src="{!!asset('theme/user_theme/imagess/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
                                             <div class="middle">
                                                 <div class="text">View</div>
                                             </div>
@@ -747,7 +715,7 @@
                                 <div class="col-sm-3">
                                     <div class="rating">
                                         <div class="boxing">
-                                            <img src="{!!asset('theme/user_theme/images/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                            <img src="{!!asset('theme/user_theme/imagess/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
                                             <div class="middle">
                                                 <div class="text">View</div>
                                             </div>
@@ -787,7 +755,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="boxing">
-                                        <img src="{!!asset('theme/user_theme/images/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                        <img src="{!!asset('theme/user_theme/imagess/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
                                         <div class="middle">
                                             <div class="text">View</div>
 
@@ -825,7 +793,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="boxing">
-                                        <img src="{!!asset('theme/user_theme/images/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                        <img src="{!!asset('theme/user_theme/imagess/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
                                         <div class="middle">
                                             <div class="text">View</div>
                                         </div>
@@ -867,7 +835,7 @@
                                     <div class="col-sm-3">
                                         <div class="rating">
                                             <div class="boxing">
-                                                <img src="{!!asset('theme/user_theme/images/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                                <img src="{!!asset('theme/user_theme/imagess/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
                                                 <div class="middle">
                                                     <div class="text">View</div>
                                                 </div>
@@ -907,7 +875,7 @@
                                     <div class="col-sm-3">
                                         <div class="rating">
                                             <div class="boxing">
-                                                <img src="{!!asset('theme/user_theme/images/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                                <img src="{!!asset('theme/user_theme/imagess/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
                                                 <div class="middle">
                                                     <div class="text">View</div>
                                                 </div>
@@ -947,7 +915,7 @@
 
                                     <div class="col-sm-3">
                                         <div class="boxing">
-                                            <img src="{!!asset('theme/user_theme/images/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                            <img src="{!!asset('theme/user_theme/imagess/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
                                             <div class="middle">
                                                 <div class="text">View</div>
 
@@ -985,7 +953,7 @@
 
                                     <div class="col-sm-3">
                                         <div class="boxing">
-                                            <img src="{!!asset('theme/user_theme/images/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
+                                            <img src="{!!asset('theme/user_theme/imagess/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
                                             <div class="middle">
                                                 <div class="text">View</div>
                                             </div>
