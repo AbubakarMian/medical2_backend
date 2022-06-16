@@ -19,9 +19,18 @@ use Illuminate\Support\Facades\Route;
      // Route::get('user/home', 'Admin\UserController@index');
      // Route::get('user', 'Admin\UserController@index');
      Route::get('/', 'User\UserController@index');
-     Route::get('program', 'User\CoursesController@index');
+
+    //
+     Route::get('program', 'User\CoursesController@program');
+     Route::get('courses', 'User\CoursesController@courses');
+     // courses/details
+    Route::get('courses/details', 'User\CoursesController@courses_details');
+
+    //
      Route::get('registration', 'User\UserController@registration');
      Route::get('courses_list', 'User\CoursesController@courses_list');
+
+    //
 
      Route::post('user/save', 'User\UserController@save');
 

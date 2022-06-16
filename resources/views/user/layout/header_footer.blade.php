@@ -108,7 +108,7 @@
                     <nav>
                         <div class="jump">
                             <div class="navbar-collapse nav-collapse collapse">
-                                <ul class="nav navbar-nav menuu">
+                                <ul class="nav navbar-nav menuu" style="flex-direction: inherit;">
                                     <li id="01">
                                         <a href="#"><span>Home</span> </a>
                                     </li>
@@ -116,7 +116,10 @@
                                         <a href="#"><span>About Us</span> </a>
                                     </li>
                                     <li id="03">
-                                        <a href="#"><span>Program</span> </a>
+                                        <a href="{!!asset('program')!!}"><span>Category</span> </a>
+                                    </li>
+                                    <li id="03">
+                                        <a href="{!!asset('courses')!!}"><span>Courses</span> </a>
                                     </li>
                                     {{-- <li id="04">
                     <a href="#"><span>Register</span> </a>
@@ -250,7 +253,7 @@
                                 <li>Home</li>
                                 <li>About Us!</li>
                                 <li><a href="{!!asset('program')!!}">Program</a></li>
-                                
+
                                 <li>Register</li>
                                 <li>Certificates</li>
                                 <li>College Cources</li>

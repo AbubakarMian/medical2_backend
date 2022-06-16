@@ -22,10 +22,10 @@ class UserController extends Controller
 
     public function save(Request $request)
     {
-        
+
         $users = new User();
         return $this->add_or_update($request, $users);
-     
+
     }
 
     public function add_or_update(Request $request, $users)
@@ -33,10 +33,10 @@ class UserController extends Controller
         $validator =  Validator::make(['email' => $request->email], [
             'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($users->id)]
         ]);
-     
+
         if ($validator->fails()) {
             return back()->with('error', $validator->errors());
-        
+
 
         }
         // dd('asdasd');
