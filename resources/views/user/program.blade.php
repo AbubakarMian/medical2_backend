@@ -80,7 +80,11 @@
                         <div class="boxing">
                             <img src="{!!asset('theme/user_theme/images/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
                             <div class="middle">
-                                <div class="text">View</div>
+                                <div class="text" >
+                                    <a href="{{asset('courses/details')}}">View
+
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
@@ -120,7 +124,11 @@
                     <div class="boxing">
                         <img src="{!!asset('theme/user_theme/images/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
                         <div class="middle">
-                            <div class="text">View</div>
+                            <div class="text" >
+                                <a href="{{asset('courses/details')}}">View
+
+                                </a>
+                            </div>
 
                         </div>
                     </div>
@@ -158,7 +166,11 @@
                     <div class="boxing">
                         <img src="{!!asset('theme/user_theme/images/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
                         <div class="middle">
-                            <div class="text">View</div>
+                            <div class="text" >
+                                <a href="{{asset('courses/details')}}">View
+
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
@@ -199,7 +211,11 @@
                             <div class="boxing">
                                 <img src="{!!asset('theme/user_theme/images/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
                                 <div class="middle">
-                                    <div class="text">View</div>
+                                    <div class="text" >
+                                        <a href="{{asset('courses/details')}}">View
+
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
@@ -239,7 +255,11 @@
                             <div class="boxing">
                                 <img src="{!!asset('theme/user_theme/images/program1.png')!!}" alt="Avatar" class="image" style="width:100%">
                                 <div class="middle">
-                                    <div class="text">View</div>
+                                    <div class="text" >
+                                        <a href="{{asset('courses/details')}}">View
+
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
@@ -279,7 +299,11 @@
                         <div class="boxing">
                             <img src="{!!asset('theme/user_theme/images/program2.png')!!}" alt="Avatar" class="image" style="width:100%">
                             <div class="middle">
-                                <div class="text">View</div>
+                                <div class="text" >
+                                    <a href="{{asset('courses/details')}}">View
+
+                                    </a>
+                                </div>
 
                             </div>
                         </div>
@@ -317,7 +341,11 @@
                         <div class="boxing">
                             <img src="{!!asset('theme/user_theme/images/program3.png')!!}" alt="Avatar" class="image" style="width:100%">
                             <div class="middle">
-                                <div class="text">View</div>
+                                <div class="text" >
+                                    <a href="{{asset('courses/details')}}">View
+
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
@@ -358,7 +386,11 @@
                                 <div class="boxing">
                                     <img src="{!!asset('theme/user_theme/images/program4.png')!!}" alt="Avatar" class="image" style="width:100%">
                                     <div class="middle">
-                                        <div class="text">View</div>
+                                        <div class="text" >
+                                            <a href="{{asset('courses/details')}}">View
+
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                                 <h4 class="title"><a href="http://localhost:8080/medical2_backend/public/program"> Basic Clinical Procedures</a></h4>
