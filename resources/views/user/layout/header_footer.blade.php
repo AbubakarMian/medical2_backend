@@ -110,7 +110,7 @@
                             <div class="navbar-collapse nav-collapse collapse">
                                 <ul class="nav navbar-nav menuu" style="flex-direction: inherit;">
                                     <li id="01">
-                                        <a href="#"><span>Home</span> </a>
+                                        <a href="{!!asset('/')!!}"><span>Home</span> </a>
                                     </li>
                                     <li id="02">
                                         <a href="{!!asset('about_us')!!}"><span>About Us</span> </a>
