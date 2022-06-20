@@ -1,13 +1,13 @@
 @extends('layouts.default_module')
 @section('module_name')
-Category
+About us
 @stop
-@section('add_btn')
+{{-- @section('add_btn')
 
-{!! Form::open(['method' => 'get', 'route' => ['category.create'], 'files'=>true]) !!}
+{!! Form::open(['method' => 'get', 'route' => ['aboutus.create'], 'files'=>true]) !!}
 <span>{!! Form::submit('Add', ['class' => 'btn btn-success pull-right']) !!}</span>
 {!! Form::close() !!}
-@stop
+@stop --}}
 
 @section('table-properties')
 width="400px" style="table-layout:fixed;"
@@ -32,11 +32,10 @@ width="400px" style="table-layout:fixed;"
 
         <th> Name</th>
         <th> Description</th>
-        <th> Image</th>
 
 
 	    <th>Edit  </th>
-		<th>Delete  </th>
+		{{-- <th>Delete  </th> --}}
 
 
 
@@ -46,22 +45,13 @@ width="400px" style="table-layout:fixed;"
 
 
 
-    @foreach($category as $c)
+    @foreach($about_us as $c)
 
 
 
 
 		<td >{!! ucwords($c->name ) !!} </td>
 		<td >{!!ucwords($c->description) !!}</td>
-        <?php if (!$c->avatar) {
-			$c->avatar = asset('images/logo.png');
-			}
-
-	    ?>
-
-
-	   <td><img width="100px" src="{!! 	$c->avatar  !!}" class="show-product-img imgshow"></td>
-
 
 
 
@@ -69,18 +59,18 @@ width="400px" style="table-layout:fixed;"
 
         </td>
         <td>
-            {!! link_to_action('Admin\CategoryController@edit',
+            {!! link_to_action('Admin\About_UsController@edit',
             'Edit', array($c->id), array('class' => 'badge bg-info')) !!}
 
         </td>
 
 
-		<td>{!! Form::open(['method' => 'POST', 'route' => ['category.delete', $c->id]]) !!}
+		{{-- <td>{!! Form::open(['method' => 'POST', 'route' => ['aboutus.delete', $c->id]]) !!}
 			<a href="" data-toggle="modal" name="activate_delete" data-target=".delete" modal_heading="Alert" modal_msg="Do you want to delete?">
 				<span class="badge bg-info btn-primary ">
 					{!! $c->deleted_at?'Activate':'Delete' !!}</span></a>
 			{!! Form::close() !!}
-		</td>
+		</td> --}}
 
 
 	</tr>
@@ -89,7 +79,7 @@ width="400px" style="table-layout:fixed;"
 
 </tbody>
 @section('pagination')
-<span class="pagination pagination-md pull-right">{!! $category->render() !!}</span>
+<span class="pagination pagination-md pull-right">{!! $about_us->render() !!}</span>
 <div class="col-md-3 pull-left">
 	<div class="form-group text-center">
 		<div>

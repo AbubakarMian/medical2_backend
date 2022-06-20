@@ -68,10 +68,8 @@ class CoursesController extends Controller
         $courses->description = $request->description;
         $courses->start_date = $date_timestamp;
 
-        if ($request->hasFile('image')) {
-            $avatar = $request->image;
-            $root = $request->root();
-            $courses->avatar = $this->move_img_get_path($avatar, $root, 'image');
+        if ($request->cropped_image) {
+            $courses->avatar = $request->cropped_image;
         }
         $courses->save();
         return redirect()->back();
@@ -93,5 +91,18 @@ class CoursesController extends Controller
             'new_value' => $new_value
         ]);
         return $response;
+    }
+     public function crop_image(Request $request)
+    {
+        $folderPath = public_path('images/');
+        $image_parts = explode(";base64,", $request->image);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+        $imageName = uniqid() . '.png';
+        $imageFullPath = $folderPath.$imageName;
+        $su = file_put_contents($imageFullPath, $image_base64);
+        $image_path = asset('/images/' .$imageName);
+        return response()->json(['success'=>'Crop Image Uploaded Successfully','image'=>$image_path]);
     }
 }
