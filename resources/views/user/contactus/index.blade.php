@@ -19,13 +19,13 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logosite">
-                        <img src="{{ asset('images/logo.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
+                        <img src="{{ asset('imagesh/logo.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
                         <h3>CORPORATE HEAD OFFICE</h3>
                     </div>
                     <div class="secondlogopoints">
                         <div class="infobox">
                             <div class="infoboximg">
-                                <img src="{{ asset('images/location.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
+                                <img src="{{ asset('imagesh/location.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
                             </div>
                             <div class="infoboxdata">
                                 <p style="margin-top: 16px;">416 N.H. Street Suites 5 San,<br>Bernardino CA 92410 USA.</p>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="infobox">
                             <div class="infoboximg">
-                                <img src="{{ asset('images/call.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
+                                <img src="{{ asset('imagesh/call.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
                             </div>
                             <div class="infoboxdata">
                                 <p style="margin-top: 16px;">+1(909) 381 9095</p>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="infobox">
                             <div class="infoboximg">
-                                <img src="{{ asset('images/call.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
+                                <img src="{{ asset('imagesh/call.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
                             </div>
                             <div class="infoboxdata">
                                 <p style="margin-top: 16px;">+234(70) 20319921</p>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="infobox">
                             <div class="infoboximg">
-                                <img src="{{ asset('images/email.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
+                                <img src="{{ asset('imagesh/email.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
                             </div>
                             <div class="infoboxdata">
                                 <p style="margin-top: 16px;">contactus@hrsedu.com</p>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="infobox">
                             <div class="infoboximg">
-                                <img src="{{ asset('images/email.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
+                                <img src="{{ asset('imagesh/email.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
                             </div>
                             <div class="infoboxdata">
                                 <p style="margin-top: 16px;">payment@hrsedu.com</p>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="infobox">
                             <div class="infoboximg">
-                                <img src="{{ asset('images/email.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
+                                <img src="{{ asset('imagesh/email.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
                             </div>
                             <div class="infoboxdata">
                                 <p style="margin-top: 16px;">sda@medical2.com</p>
