@@ -113,10 +113,10 @@
                                         <a href="#"><span>Home</span> </a>
                                     </li>
                                     <li id="02">
-                                        <a href="#"><span>About Us</span> </a>
+                                        <a href="{!!asset('about_us')!!}"><span>About Us</span> </a>
                                     </li>
                                     <li id="03">
-                                        <a href="{!!asset('program')!!}"><span>Category</span> </a>
+                                        <a href="{!!asset('category')!!}"><span>Category</span> </a>
                                     </li>
                                     <li id="03">
                                         <a href="{!!asset('courses')!!}"><span>Courses</span> </a>
@@ -124,18 +124,19 @@
                                     {{-- <li id="04">
                     <a href="#"><span>Register</span> </a>
                   </li> --}}
-                                    <li id="05">
+                                    {{-- <li id="05">
                                         <a href="#"><span>Certificates</span> </a>
+                                    </li> --}}
+                                    <li id="04">
+                                        <a href="{!!asset('contactus')!!}"><span>Contact Us</span> </a>
                                     </li>
-                                    <li id="06">
+                                    {{-- <li id="06">
                                         <a href="#"><span>Clients</span> </a>
-                                    </li>
-                                    <li id="07">
+                                    </li> --}}
+                                    {{-- <li id="07">
                                         <a href="#"><span>College Courses</span> </a>
-                                    </li>
-                                    <li id="08">
-                                        <a href="#"><span>Contact Us</span> </a>
-                                    </li>
+                                    </li> --}}
+
                                     <!-- <li id="09">
                             <button type="button" class="btn btn-primary logclick">
                               Login

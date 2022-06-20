@@ -20,14 +20,20 @@ use Illuminate\Support\Facades\Route;
      // Route::get('user', 'Admin\UserController@index');
      Route::get('/', 'User\UserController@index');
 
-    //
-     Route::get('program', 'User\CoursesController@program');
-     Route::get('courses', 'User\CoursesController@courses');
-     // courses/details
+    //category page
+     Route::get('category', 'User\CategoryController@index');
+     Route::get('category_courses', 'User\CategoryController@category_courses');
+     Route::get('about_us', 'User\About_UsController@index');
+     Route::get('contactus', 'User\About_UsController@contactus');
+     Route::post('user/contactform', 'User\About_UsController@contactform');
+    //courses page
+     Route::get('courses', 'User\CoursesController@index');
+     // courses/details page
     Route::get('courses/details', 'User\CoursesController@courses_details');
 
-    //
+    //registration
      Route::get('registration', 'User\UserController@registration');
+    //  courses_list
      Route::get('courses_list', 'User\CoursesController@courses_list');
 
     //
@@ -60,6 +66,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('admin/courses/edit/{id}', 'Admin\CoursesController@edit')->name('courses.edit');
     Route::post('admin/courses/update/{id}', 'Admin\CoursesController@update')->name('courses.update');
     Route::post('admin/courses/delete/{id}', 'Admin\CoursesController@destroy_undestroy')->name('courses.delete');
+    Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
 
     // parents map open
 
@@ -83,6 +90,24 @@ Route::get('admin/category/edit/{id}', 'Admin\CategoryController@edit')->name('c
 Route::post('admin/category/update/{id}', 'Admin\CategoryController@update')->name('category.update');
 
 Route::post('admin/category/delete/{id}', 'Admin\CategoryController@destroy_undestroy')->name('category.delete');
+
+// crop image
+Route::post('admin/category_crop_image', 'Admin\CategoryController@crop_image')->name('admin.crop_image');
+
+
+// admin/aboutus
+Route::get('admin/aboutus', 'Admin\About_UsController@index')->name('admin.aboutus');
+Route::get('admin/aboutus/create', 'Admin\About_UsController@create')->name('aboutus.create'); //add
+Route::post('admin/aboutus/save', 'Admin\About_UsController@save')->name('aboutus.save');
+
+Route::get('admin/aboutus/edit/{id}', 'Admin\About_UsController@edit')->name('aboutus.edit');
+Route::post('admin/aboutus/update/{id}', 'Admin\About_UsController@update')->name('aboutus.update');
+
+Route::post('admin/aboutus/delete/{id}', 'Admin\About_UsController@destroy_undestroy')->name('aboutus.delete');
+
+
+
+
 
 //  =================================  Books ==========================
 Route::get('admin/books', 'Admin\BooksController@index')->name('books.index');

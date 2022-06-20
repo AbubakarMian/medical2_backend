@@ -10,8 +10,8 @@ class Category extends Model
    use SoftDeletes;
    protected $table='category';
 
-//    public function question()
-//    {
-//        return $this->hasOne('App\Model\Question', 'question_id', 'id');
-//    }
+   public function courses()
+   {
+       return $this->hasOne('App\Model\Courses', 'category_id', 'id');
+   }
 }
