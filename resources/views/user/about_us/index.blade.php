@@ -9,7 +9,7 @@
         <div class="container">
 
 
-            {{htmlentities($about_us->description ?? '')  }}
+            {{html_entity_decode($about_us->description ?? '')  }}
 
                                 </div>
                             </div>
