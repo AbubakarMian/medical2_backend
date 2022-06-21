@@ -4,6 +4,61 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
+<style>
+    .contactarea {
+    text-align: center;
+    background: #474e580a;
+    padding: 50px;
+}
+.contactareadata h2 {
+    color: black;
+    font-size: 40px;
+    font-weight: 600;
+}
+.contactareadata h3 {
+    color: black;
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 0px;
+}
+.contactareadata p {
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 15px;
+    margin-bottom: 50px;
+}
+.myform input {
+    border-radius: 0px;
+    padding: 20px;
+    background: transparent;
+    border-color: #323a4540;
+    margin-bottom: 20px;
+}
+.myform textarea {
+    border-radius: 0px;
+    padding: 20px;
+    background: transparent;
+    border-color: #323a4540;
+    margin-bottom: 20px;
+}
+.entersend {
+    border-radius: 0px;
+    width: 160px;
+    background-color: #292974;
+    border-color: #292974;
+    color: white;
+    height: 40px;
+}
+.logosite h3 {
+    font-size: 18px;
+    text-align: left;
+    color: #292974;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+</style>
+
 <section>
     <div class="contactarea">
         <div class="container">
@@ -19,7 +74,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logosite">
-                        <img src="{{ asset('imagesh/logo.png') }}" class="img-responsive" style="background-color: cornflowerblue;">
+                        {{-- <img src="{{ asset('imagesh/logo.jpg') }}" class="img-responsive" style="background-color: cornflowerblue;"> --}}
                         <h3>CORPORATE HEAD OFFICE</h3>
                     </div>
                     <div class="secondlogopoints">
