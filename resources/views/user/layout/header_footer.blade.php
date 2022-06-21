@@ -23,7 +23,7 @@
                 <div class="col-sm-2 col-xs-6">
                     <div class="logoArea">
 
-                        <a href="#"><img src="{!!asset('theme/user_theme/images/logo.png')!!}" class="img-responsive" /></a>
+                        <a href="#"><img src="{!!asset('theme/user_theme/images/logo.jpg')!!}" class="img-responsive" /></a>
                     </div>
                 </div>
                 <div class="col-sm-10 col-xs-6">
