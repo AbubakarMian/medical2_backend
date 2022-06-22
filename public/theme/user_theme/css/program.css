@@ -20,9 +20,9 @@ html {
     border-radius: 0.15rem;
 }
 
-.container {
+ /* .container {
     width: 1587px;
-}
+} */
 
 .mb2reviews-stars.sm {
     color: #fb8b24;
@@ -32,7 +32,7 @@ html {
     max-width: 100%;
     min-width: 12px;
     margin: 25px;
-}
+} 
 
 .image {
     opacity: 1;
