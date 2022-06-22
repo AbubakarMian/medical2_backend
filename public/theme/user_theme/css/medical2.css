@@ -35,7 +35,8 @@ h4 {
 }
 .infoboxdata p {
   color: gray;
-  font-size: 14px;
+  font-size: 13px;
+  text-align: justify;
 }
 .logclick {
   border-radius: 0px;
