@@ -30,8 +30,9 @@ h4 {
 .infoboxdata h4 {
   font-size: 15px;
   font-weight: 700;
-  margin-bottom: 0px;
   margin-top: 18px;
+  text-align: justify;
+  margin-bottom: -15px;
 }
 .infoboxdata p {
   color: gray;

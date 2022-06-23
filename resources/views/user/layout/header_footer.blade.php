@@ -34,7 +34,6 @@
                             </div>
                             <div class="infoboxdata">
                                 <h4>1-407-233-1192</h4>
-                                <p>Fax Number</p>
                             </div>
                         </div>
                         <div class="infobox">
@@ -43,7 +42,6 @@
                             </div>
                             <div class="infoboxdata">
                                 <h4>help@medical2.com</h4>
-                                <p>Email Address</p>
                             </div>
                         </div>
 

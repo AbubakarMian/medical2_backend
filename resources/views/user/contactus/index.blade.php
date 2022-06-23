@@ -14,14 +14,18 @@
         .contactareadata h2 {
             color: black;
             font-size: 40px;
-            font-weight: 600;
+            font-weight: 700;
         }
 
 
         .infoboximg i {
             padding: 18px 13px;
-            font-size: 30px;
+            font-size: 15px;
             color: #292974;
+            border: 1px solid;
+            border-radius: 300px;
+            padding: 12px 13px;
+            margin: 13px;
         }
 
         .contactareadata h3 {
@@ -64,12 +68,13 @@
             height: 40px;
         }
 
-        .logosite h3 {
-            font-size: 18px;
-            text-align: left;
-            color: #292974;
+        h2.logosite {
+            font-size: 35px;
+            /* text-align: left; */
+            color: #000000;
             font-weight: 700;
-            margin-bottom: 10px;
+            /* margin-bottom: 10px; */
+            margin-top: -30px;
         }
 
         .infoboximg {
@@ -95,6 +100,7 @@
                     <div class="col-sm-12">
                         <div class="contactareadata">
                             <h2>CONTACT US</h2>
+                            {{-- <h2 class="logosite">CORPORATE HEAD OFFICE</h2> --}}
                             {{-- <h3>WE’RE HAPPY TO HELP!</h3>
                             <p>GET IN TOUCH! WE LOOK FORWARD TO HEARING FROM YOU.</p> --}}
                         </div>
@@ -104,7 +110,7 @@
                     <div class="col-sm-4">
                         <div class="logosite">
                             {{-- <img src="{{ asset('imagesh/logo.jpg') }}" class="img-responsive" style="background-color: cornflowerblue;"> --}}
-                            <h3>CORPORATE HEAD OFFICE</h3>
+                            {{-- <h2>CORPORATE HEAD OFFICE</h2> --}}
                         </div>
                         <div class="secondlogopoints">
                             <div class="infobox">
@@ -114,6 +120,7 @@
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
+                                    <h4>Mailing ADDRESS</h4>
                                     <p style="margin-top: 16px;"> 416 N.H. Street Suites 5 San,<br>Bernardino CA 92410 USA.
                                     </p>
                                 </div>
@@ -125,6 +132,7 @@
                                     <i class="fa fa-phone" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
+                                    <h4>PHONE NUMBER</h4>
                                     <p style="margin-top: 16px;">+1(909) 381 9095</p>
                                 </div>
                             </div>
@@ -135,6 +143,7 @@
                                     <i class="fa fa-fax" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
+                                    <h4>FAX NUMBER</h4>
                                     <p style="margin-top: 16px;">+234(70) 20319921</p>
                                 </div>
                             </div>
@@ -145,6 +154,7 @@
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
+                                    <h4>EMAIL ADDRESS</h4>
                                     <p style="margin-top: 16px;">contactus@hrsedu.com</p>
                                 </div>
                             </div>
@@ -155,6 +165,7 @@
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
+                                    <h4>EMAIL ADDRESS</h4>
                                     <p style="margin-top: 16px;">payment@hrsedu.com</p>
                                 </div>
                             </div>
@@ -165,6 +176,7 @@
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
+                                    <h4>EMAIL ADDRESS</h4>
                                     <p style="margin-top: 16px;">sda@medical2.com</p>
                                 </div>
                             </div>
