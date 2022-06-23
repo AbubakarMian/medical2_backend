@@ -8,7 +8,27 @@
         <div class="body-content">
             <div class="container">
                 <div class="theme-courses-topbar" id="">
-                    <form id="allProductsSearchForm" class="theme-course-search" action="" method="GET"
+                <form  method="post" action="{{asset('user/courses_search')}}"
+                        style="width:100%">
+              {!! csrf_field() !!}
+                        <div class="" style="width:100%;">
+
+                            <div class="form-group">
+                                <label for="category_id">Select Courses</label>
+                                {!! Form::text('courses_name',$name ?? '',
+                                      
+                                      ['class' => 'form-control ',
+                                      
+                                        'data-parsley-trigger' => 'change', 
+                                        'placeholder' => 'Select Courses', 
+                                        'maxlength' => '100']) !!}
+
+                            </div>
+                            <button type="submit" class="btn btn-primary resub">Submit</button>
+                             
+                        </div>
+                    </form>
+                    <!-- <form id="allProductsSearchForm" class="theme-course-search" action="" method="GET"
                         style="width:100%;">
                         <div class="" style="width:100%;">
 
@@ -19,7 +39,7 @@
                             </div><button type="submit">
                                 <i class="fa fa-search"></i></button>
                         </div>
-                    </form>
+                    </form> -->
                     <div class="row" id="searchLoader"
                         style="margin-top:10px; margin-left:35%;text-align:center; display: none;">
                         <img src="/img/ajax.gif" alt="loader">
