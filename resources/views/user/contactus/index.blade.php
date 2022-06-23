@@ -1,8 +1,7 @@
 @extends('user.layout.header_footer')
 @section('content')
-
-<link href="{{ asset('css/contact_us.css') }}" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/contact_us.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
     <style>
@@ -16,6 +15,13 @@
             color: black;
             font-size: 40px;
             font-weight: 600;
+        }
+
+
+        .infoboximg i {
+            padding: 18px 13px;
+            font-size: 30px;
+            color: #292974;
         }
 
         .contactareadata h3 {
@@ -73,6 +79,13 @@
         .myformclick {
             float: right;
         }
+
+        .contactareadata h2 {
+            color: black;
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
     </style>
 
     <section>
@@ -82,8 +95,8 @@
                     <div class="col-sm-12">
                         <div class="contactareadata">
                             <h2>CONTACT US</h2>
-                            <h3>WE’RE HAPPY TO HELP!</h3>
-                            <p>GET IN TOUCH! WE LOOK FORWARD TO HEARING FROM YOU.</p>
+                            {{-- <h3>WE’RE HAPPY TO HELP!</h3>
+                            <p>GET IN TOUCH! WE LOOK FORWARD TO HEARING FROM YOU.</p> --}}
                         </div>
                     </div>
                 </div>
@@ -96,18 +109,20 @@
                         <div class="secondlogopoints">
                             <div class="infobox">
                                 <div class="infoboximg">
-                                    <img src="{{ asset('imagesh/location.png') }}" class="img-responsive"
-                                        style="background-color: cornflowerblue;">
+                                    {{-- <img src="{{ asset('imagesh/location.png') }}" class="img-responsive"
+                                        style="background-color: cornflowerblue;"> --}}
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
-                                    <p style="margin-top: 16px;">416 N.H. Street Suites 5 San,<br>Bernardino CA 92410 USA.
+                                    <p style="margin-top: 16px;"> 416 N.H. Street Suites 5 San,<br>Bernardino CA 92410 USA.
                                     </p>
                                 </div>
                             </div>
                             <div class="infobox">
                                 <div class="infoboximg">
-                                    <img src="{{ asset('imagesh/call.png') }}" class="img-responsive"
-                                        style="background-color: cornflowerblue;">
+                                    {{-- <img src="{{ asset('imagesh/call.png') }}" class="img-responsive"
+                                        style="background-color: cornflowerblue;"> --}}
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
                                     <p style="margin-top: 16px;">+1(909) 381 9095</p>
@@ -115,8 +130,9 @@
                             </div>
                             <div class="infobox">
                                 <div class="infoboximg">
-                                    <img src="{{ asset('imagesh/call.png') }}" class="img-responsive"
-                                        style="background-color: cornflowerblue;">
+                                    {{-- <img src="{{ asset('imagesh/call.png') }}" class="img-responsive"
+                                        style="background-color: cornflowerblue;"> --}}
+                                    <i class="fa fa-fax" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
                                     <p style="margin-top: 16px;">+234(70) 20319921</p>
@@ -124,8 +140,9 @@
                             </div>
                             <div class="infobox">
                                 <div class="infoboximg">
-                                    <img src="{{ asset('imagesh/email.png') }}" class="img-responsive"
-                                        style="background-color: cornflowerblue;">
+                                    {{-- <img src="{{ asset('imagesh/email.png') }}" class="img-responsive"
+                                        style="background-color: cornflowerblue;"> --}}
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
                                     <p style="margin-top: 16px;">contactus@hrsedu.com</p>
@@ -133,8 +150,9 @@
                             </div>
                             <div class="infobox">
                                 <div class="infoboximg">
-                                    <img src="{{ asset('imagesh/email.png') }}" class="img-responsive"
-                                        style="background-color: cornflowerblue;">
+                                    {{-- <img src="{{ asset('imagesh/email.png') }}" class="img-responsive"
+                                        style="background-color: cornflowerblue;"> --}}
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
                                     <p style="margin-top: 16px;">payment@hrsedu.com</p>
@@ -142,8 +160,9 @@
                             </div>
                             <div class="infobox">
                                 <div class="infoboximg">
-                                    <img src="{{ asset('imagesh/email.png') }}" class="img-responsive"
-                                        style="background-color: cornflowerblue;">
+                                    {{-- <img src="{{ asset('imagesh/email.png') }}" class="img-responsive"
+                                        style="background-color: cornflowerblue;"> --}}
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
                                     <p style="margin-top: 16px;">sda@medical2.com</p>
