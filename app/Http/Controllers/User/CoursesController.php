@@ -9,9 +9,12 @@ use Illuminate\Http\Request;
 
 class CoursesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $courses_list  =  Courses::get();
+        $name = $request->courses_name ?? '';
+
+        $courses_list = Courses::where('full_name', 'like', '%' . $name . '%')->get();
+        // $courses_list  =  Courses::get();
         $courses_list_count =  $courses_list->count();
         if($courses_list_count  == 1){
         $courses_split = $courses_list->split($courses_list_count / 1);
@@ -31,7 +34,7 @@ class CoursesController extends Controller
 
         // dd($courses_split);
         $category_arr = Category::pluck('name','id');
-        return view('user.courses.index',compact('courses_split','category_arr'));
+        return view('user.courses.index',compact('courses_split','category_arr','name'));
     }
 
 

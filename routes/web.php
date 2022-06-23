@@ -22,15 +22,17 @@ use Illuminate\Support\Facades\Route;
 
     //category page
      Route::get('category', 'User\CategoryController@index');
+     Route::post('user/category_search', 'User\CategoryController@index');
      Route::get('category_courses', 'User\CategoryController@category_courses');
-     Route::get('about_us', 'User\About_UsController@index');
-     Route::get('contactus', 'User\About_UsController@contactus');
-     Route::post('user/contactform', 'User\About_UsController@contactform');
     //courses page
      Route::get('courses', 'User\CoursesController@index');
+     Route::post('user/courses_search', 'User\CoursesController@index');
      // courses/details page
     Route::get('courses/details', 'User\CoursesController@courses_details');
-
+   // other pages 
+   Route::get('about_us', 'User\About_UsController@index');
+   Route::get('contactus', 'User\About_UsController@contactus');
+   Route::post('user/contactform', 'User\About_UsController@contactform');
     //registration
      Route::get('registration', 'User\UserController@registration');
     //  courses_list
@@ -45,6 +47,9 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('admin/login', 'Admin\AdminController@index');
     Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
+
+    // contact module
+    Route::get('admin/contact', 'Admin\ContactUsController@index')->name('contact.index');
 
 
     Route::get('admin/users', 'Admin\UserController@index')->name('location.index');

@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-// dd('saas');
-        $category_list  =  Category::get();
+        $name = $request->category_name ?? '';
+
+        $category_list = Category::where('name', 'like', '%' . $name . '%')->get();
+        // $category_list  =  Category::get();
         // dd(   $category_list);
         $category_count =  $category_list->count();
         // dd(  $category_count);
@@ -31,25 +33,27 @@ class CategoryController extends Controller
         }
 
         $category_arr = Category::pluck('name','id');
-        return view('user.category.index',compact('category_split','category_arr'));
+        return view('user.category.index',compact('category_split','name',));
     }
 
     public function category_courses(Request $request)
     {
-
+// dd('saas');
         $category_id = $request->category_id;
         $courses_list  =  Courses::where('category_id',$category_id)->get();
 
         if($courses_list->count()>0){
+            //   dd($courses_list->count());
         if($courses_list->count() == 1){
+            // dd('dss');
         $courses_list_count =  $courses_list->count();
         $courses_split = $courses_list->split($courses_list_count / 1);
        }
-       elseif($courses_list->count() < 2){
+       elseif($courses_list->count() == 2){
         $courses_list_count =  $courses_list->count();
         $courses_split = $courses_list->split($courses_list_count / 2);
        }
-       elseif($courses_list->count() < 3){
+       elseif($courses_list->count() == 3){
         $courses_list_count =  $courses_list->count();
         $courses_split = $courses_list->split($courses_list_count / 3);
        }
