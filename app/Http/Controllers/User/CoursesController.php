@@ -80,9 +80,36 @@ class CoursesController extends Controller
         "source" => $request->stripeToken,
         "description" => "Points ".$request->amount."purchased  Medical2."
     ]);
+    dd($stripe);
+
     
-    Log::info('stripe toekn');
-    Log::info($request->stripeToken);
+if( $stripe->status == "succeeded"){
+
+    $payment = new Payment();
+    $payment->user_id = $user->id;
+    $payment->payment_id = $stripe->id;
+    $payment->price = $request->amount;
+    $payment->payment_response = json_encode($stripe);
+    $payment->payment_status = $stripe->status;
+    $payment->card_type = $stripe->payment_method_details->card->brand;
+    $payment->save();
+    return redirect()->back()->with('success', 'Payment successful!');
+
+}
+else{
+    $payment = new Payment();
+    $payment->user_id = $user->id;
+    $payment->payment_id = $stripe->id;
+    $payment->price = $request->amount;
+    $payment->payment_response = json_encode($stripe);
+    $payment->payment_status = $stripe->status;
+    $payment->card_type = $stripe->payment_method_details->card->brand;
+    $payment->save();
+    return back()->with('error', 'Invalid Payment');
+
+
+
+}
 }
 
 
