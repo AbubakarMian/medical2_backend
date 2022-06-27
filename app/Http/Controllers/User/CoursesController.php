@@ -6,9 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Model\Category;
 use App\Model\Courses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Stripe;
+use Illuminate\Support\Facades\Auth;
 
 class CoursesController extends Controller
 {
+
+
     public function index(Request $request)
     {
         $name = $request->courses_name ?? '';
@@ -46,4 +51,41 @@ class CoursesController extends Controller
         $courses  =  Courses::find($courses_id);
         return view('user.courses_details.index',compact('courses'));
     }
+
+
+       // course/registration
+    public function course_registration(Request $request)
+    {
+        // dd($request->all());
+        $courses_id = $request->courses_id;
+        $courses  =  Courses::find($courses_id);
+        $stripe_key = Config::get('services.stripe.STRIPE_KEY');
+        return view('user.course_registration.index',compact('courses','stripe_key'));
+    }
+
+
+
+    public function makepayment(Request $request)
+    
+    {
+
+        $user = Auth::user();
+    
+       Stripe\Stripe::setApiKey(Config::get('services.stripe.STRIPE_SECRET'));
+       $stripe =  Stripe\Charge::create([
+        // "amount" => ceil($course_register->course->price) * 100, // value pass in cent
+        "amount" => ceil($request->amount), 
+        "currency" => "usd",
+        "source" => $request->stripeToken,
+        "description" => "Points ".$request->amount."purchased  Medical2."
+    ]);
+    
+    Log::info('stripe toekn');
+    Log::info($request->stripeToken);
+}
+
+
+
+
+
 }

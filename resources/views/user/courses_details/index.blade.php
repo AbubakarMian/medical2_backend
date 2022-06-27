@@ -35,8 +35,15 @@
 
 
                                     </div>
-
-
+                                    <p style="font-size: x-large;
+                                   font-weight: 700;">
+                                        Click The Butotn Below For Course Register
+                                    </p>
+                                    <a href="{{ asset('course/registration/?course_id='.$courses->id) }}" >
+                                        <button type="button" class="btn btn-primary logclick" style="width: fit-content;">
+                                            {{ ucwords($courses->full_name) }} Course Registration
+                                        </button>
+                                    </a>
 
                                 </div>
 
