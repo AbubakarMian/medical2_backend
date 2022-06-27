@@ -30,6 +30,13 @@ use Illuminate\Support\Facades\Route;
      Route::post('user/courses_search', 'User\CoursesController@index');
      // courses/details page
     Route::get('courses/details', 'User\CoursesController@courses_details');
+
+    // course/registration
+    Route::get('course/registration', 'User\CoursesController@course_registration');
+
+    // course_register/stripe
+
+    Route::post('course_register/stripe', 'User\CoursesController@makepayment');
    // other pages
    Route::get('about_us', 'User\About_UsController@index');
    Route::get('contactus', 'User\About_UsController@contactus');

@@ -8,7 +8,7 @@
         <div class="body-content">
             <div class="container">
                 <div class="theme-courses-topbar" id="">
-                  
+
                         <form  method="post" action="{{asset('user/category_search')}}"
                         style="width:100%">
               {!! csrf_field() !!}
@@ -17,16 +17,16 @@
                             <div class="form-group">
                                 <label for="category_id">Select Category</label>
                                 {!! Form::text('category_name',$name ?? '',
-                                      
+
                                       ['class' => 'form-control ',
-                                      
-                                        'data-parsley-trigger' => 'change', 
-                                        'placeholder' => 'Select Category', 
+
+                                        'data-parsley-trigger' => 'change',
+                                        'placeholder' => 'Select Category',
                                         'maxlength' => '100']) !!}
 
                             </div>
                             <button type="submit" class="btn btn-primary resub">Submit</button>
-                             
+
                         </div>
                     </form>
                     <div class="row" id="searchLoader"
@@ -103,7 +103,7 @@
 
 
 
-    
+
     @section('app_jquery')
         <script>
             $(function() {
