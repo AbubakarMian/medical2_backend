@@ -2,6 +2,7 @@
 @section('content')
     <link href="{!! asset('theme/user_theme/css/program.css') !!}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" />
 
 
 
@@ -9,8 +10,7 @@
 
 
 
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('theme/code_busters/theme.txt') }}" />
+
 
 
 
