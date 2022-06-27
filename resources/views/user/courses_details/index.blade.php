@@ -4,28 +4,13 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
-    {{--  --}}
-    <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/mb2nl/assets/pe-icon-7-stroke/css/pe-icon-7-stroke.min.css" />
-    <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/mb2nl/assets/bootstrap/css/glyphicons.min.css" />
-    <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/mb2nl/assets/LineIcons/LineIcons.min.css" />
-    <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/mb2nl/assets/OwlCarousel/assets/owl.carousel.min.css" />
-
-    <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    {{--  --}}
 
 
 
-    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
     <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/styles.php/mb2nl/1632919575_1/all" />
+        href="{{ asset('theme/code_busters/theme.txt') }}" />
 
 
 

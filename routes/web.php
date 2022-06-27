@@ -3,6 +3,7 @@
 use App\Models\Promo_code;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +30,7 @@ use Illuminate\Support\Facades\Route;
      Route::post('user/courses_search', 'User\CoursesController@index');
      // courses/details page
     Route::get('courses/details', 'User\CoursesController@courses_details');
-   // other pages 
+   // other pages
    Route::get('about_us', 'User\About_UsController@index');
    Route::get('contactus', 'User\About_UsController@contactus');
    Route::post('user/contactform', 'User\About_UsController@contactform');
