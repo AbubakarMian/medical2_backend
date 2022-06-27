@@ -180,7 +180,8 @@
                                                     </div>
                                                </div>
                                            </div>
-                                           <input class='form-control mycard' id="amount" name="amount" required size='4' type='hidden'>
+                                           <h6>Amount </h6>
+                                           <input type="text" name="amount" required size='4' >
                                            <div class="row">
                                                <div class="col-sm-8">
                                                    <div class="form-group"> <label><span class="hidden-xs">

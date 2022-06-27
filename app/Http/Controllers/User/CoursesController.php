@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Stripe;
 use Illuminate\Support\Facades\Auth;
+use Log;
 
 class CoursesController extends Controller
 {
