@@ -55,14 +55,15 @@
                                 <div class="col-xs-12">
                                     <div class="form-group"> <label>CARD NUMBER</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control card-number" name="mycard" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
+                                            <input type="text" class="form-control card-number"  required name="mycard" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
+                                            <input type="hidden" name="course_register_id"  value="{{$course_register->id}}"
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group"> <label> Amount</label>
-                                        <div class="input-group"> <input type="text" name="amount" class="form-control"  placeholder="Enter Amount" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
+                                        <div class="input-group"> <input type="text" name="amount" required class="form-control"  placeholder="Enter Amount" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
                                     </div>
                                 </div>
                             </div>
@@ -70,16 +71,16 @@
                                 <div class="col-xs-7 col-md-7">
                                     <div class="form-group">
                                          <label><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
-                                          <input type="text" class="form-control card-expiry-month" placeholder="MM" />
-                                         </div>  <input type="text" class="form-control card-expiry-year" placeholder="YY" />
+                                          <input type="text" class="form-control card-expiry-month" placeholder="MM"  required />
+                                         </div>  <input type="text" class="form-control card-expiry-year" placeholder="YY" required />
                                 </div>
                                 <div class="col-xs-5 col-md-5 pull-right">
-                                    <div class="form-group"> <label>CV CODE</label> <input type="text" class="form-control card-cvc" placeholder="CVC" /> </div>
+                                    <div class="form-group"> <label>CV CODE</label> <input type="text"  required class="form-control card-cvc" placeholder="CVC" /> </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="form-group"> <label>CARD OWNER</label> <input type="text" class="form-control mycard"  name="username" placeholder="Card Owner Name" /> </div>
+                                    <div class="form-group"> <label>CARD OWNER</label> <input type="text"  required class="form-control mycard"  name="username" placeholder="Card Owner Name" /> </div>
                                 </div>
                             </div>
                             <div class="panel-footer">

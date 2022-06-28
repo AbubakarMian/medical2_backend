@@ -134,6 +134,12 @@ class AdminController extends Controller
           
 
         ];
+        $modules[] = [
+
+            'url' => 'admin/course_register',
+            'title' => 'Course Register ',
+
+        ];
 
         // $modules[] = [
 

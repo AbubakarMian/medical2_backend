@@ -27,21 +27,21 @@
                                 <h2 class="details-heading hsize-2" id="yui_3_17_2_1_1655389310494_36">About the
                                     {{ ucwords($courses->full_name) }} {{ ucwords($courses->short_name) }}</h2>
                                 <div class="details-content toggle-content">
-                                    <div class="content">
+                                    {{--  <div class="content">
 
 
 
                                         {!! strlen($courses->description) < 500 ? $courses->description : substr($courses->description, 0, 500) . '...' !!}
 
 
-                                    </div>
+                                    </div>  --}}
                                     <p style="font-size: x-large;
                                    font-weight: 700;">
-                                        Click The Butotn Below For Course Register
+                                        Click The Button Below For Course Register
                                     </p>
                                     <a href="{{ asset('course/registration/?course_id='.$courses->id) }}" >
                                         <button type="button" class="btn btn-primary logclick" style="width: fit-content;">
-                                            {{ ucwords($courses->full_name) }} Course Registration
+                                           Register
                                         </button>
                                     </a>
 
