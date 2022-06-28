@@ -95,19 +95,18 @@ class CoursesController extends Controller
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         return view('user.payment_screen.index', compact('course_register', 'stripe_key'));
     }
-
+   
+    // final payment and course register update
     public function makepayment(Request $request)
     {
-// dd('asd');
+   // dd('asd');
         $user = Auth::user();
 
         Stripe\Stripe::setApiKey(Config::get('services.stripe.STRIPE_SECRET'));
         $stripe = Stripe\Charge::create([
-            // "amount" => ceil($course_register->course->price) * 100, // value pass in cent
             "amount" => ceil($request->amount),
             "currency" => "usd",
             "source" => $request->stripeToken,
-            // "description" =>  $request->amount . "purchased  Medical2.",
         ]);
         // dd($stripe);
 
@@ -116,12 +115,21 @@ class CoursesController extends Controller
             $payment = new Payment();
             $payment->user_id = 2;
             $payment->payment_id = $stripe->id;
+            $payment->course_register_id	 = $request->course_register_id;
             $payment->amount = $request->amount;
             $payment->payment_response = json_encode($stripe);
             $payment->payment_status = $stripe->status;
             $payment->card_type = $stripe->payment_method_details->card->brand;
             $payment->save();
             return redirect()->back()->with('success', 'Payment successful!');
+
+           $course_register = Course_Register::find($request->course_register_id);
+           $course_register->is_paid = 1;
+           $course_register->one_time_payment = 1;
+           $course_register->fees = $request->amount;
+           $course_register->save();
+
+
 
         } else {
             $payment = new Payment();
