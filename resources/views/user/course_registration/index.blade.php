@@ -50,7 +50,36 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
+                     {{--  <button  onclick="openpaymentdiv()"   class="btn btn-primary logclick"
+                style="width: fit-content;color: #fff;
+                background-color: #e63946;
+                border-color: #e63946;">
+             Register
+
+                </button>  --}}
+
+
                         <div class="collageareadata">
+                         <a href="{{ asset('save_course_register/?course_id='.$courses->id) }}" >
+                         <button type="button" class="btn btn-primary " style="width: fit-content;   background-color: #e63946;">
+                    Register
+                     </button>
+                            </a>
+
+                        {{--  <section class="login-section">
+                            <div class="container-fluid login-container">
+                                @if ($message = Session::get('success'))
+                                <div class="alert alert-success alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{ $message }}</strong>
+                                </div>
+
+                            @elseif( $message = Session::get('error'))
+                                <div class="alert alert-danger text-center">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    <p>{{ $message }}</p>
+                                </div>
+                            @endif  --}}
                             <h2>Instructions for Online Course Registration</h2>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
@@ -114,15 +143,6 @@
 
 
            <div class="col-2 padding-top-bottom-btn-col">
-
-
-                <button  onclick="openpaymentdiv()"   class="btn btn-primary logclick"
-                style="width: fit-content;color: #fff;
-                background-color: #e63946;
-                border-color: #e63946;">
-              Payment  Course Registration
-
-                </button>
 
 
                </div>

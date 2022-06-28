@@ -33,10 +33,14 @@ use Illuminate\Support\Facades\Route;
 
     // course/registration
     Route::get('course/registration', 'User\CoursesController@course_registration');
+    // save_course_register
+    Route::get('save_course_register', 'User\CoursesController@user_save_course_register');
+    // user/payment
+    Route::get('user/payment', 'User\CoursesController@payment_screen');
 
-    // course_register/stripe
+    // payment/stripe
 
-    Route::post('course_register/stripe', 'User\CoursesController@makepayment');
+    Route::post('payment/stripe', 'User\CoursesController@makepayment');
    // other pages
    Route::get('about_us', 'User\About_UsController@index');
    Route::get('contactus', 'User\About_UsController@contactus');
