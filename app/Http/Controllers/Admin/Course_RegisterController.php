@@ -25,7 +25,7 @@ class Course_RegisterController extends Controller
     }
     public function get_course_register()
     {
-        $course_register = Course_Register::with('course','user')->orderby('id', 'desc')->select('*')->get();
+        $course_register = Course_Register::with('course.group','user')->orderby('id', 'desc')->select('*')->get();
         $course_register_data['data'] = $course_register;
         echo json_encode($course_register_data);
     }
