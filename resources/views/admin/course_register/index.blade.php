@@ -57,18 +57,70 @@ Course Register
                         var id = response['data'][i].id;
                         var user_name = response['data'][i].user.name ;
                         var course_name = response['data'][i].course.full_name ;
-                        var group = `<a class="btn btn-info" href="{!!asset('admin/courses/group/` + id + `')!!}">Groups</a>`;
-                        createModal({
-                             id: 'group_' + response['data'][i].id,
-                             header: '<h4>Groups</h4>',
-                             body: getGroupListTable(),
-                             footer: `
+                        var group =
+                        `<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Groups</button>
 
-                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                             `,
-                         });
+                        <!-- Modal -->
+                        <div id="myModal" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+
+                              <div class="modal-body">
+                                <div >
+                                <table class="table">
+                                    <tr>
+                                        <th>
+                                            Group
+                                        </th>
+                                        <th>
+                                            Starting Date
+                                        </th>
+                                        <th>
+                                           Select
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                          22-06-22
+                                        </td>
+                                        <td>
+                                            29-06-22
+                                        </td>
+                                        <td>
+                                    <input type="checkbox" >
+                                        </td>
+
+                                    </tr>
 
 
+
+                                   </table>
+                                </div>
+
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>`;
+
+
+
+                        var is_paids =  response['data'][i].is_paid;
+						if(is_paids){
+                            is_paid = 'Yes'
+
+						}
+						else{
+							is_paid = 'No'
+
+						}
                         console.log('qqqqqqqqqoooooooooo',response['data'][i]);
 
 
@@ -77,7 +129,7 @@ Course Register
                         var tr_str = "<tr id='row_"+response['data'][i].id+"'>" +
                             "<td>" + user_name + "</td>" +
                             "<td>" + course_name + "</td>" +
-                            "<td>" + edit + "</td>" +
+                            "<td>" + group + "</td>" +
                             "<td>" + is_paid + "</td>" +
 
 
@@ -95,9 +147,9 @@ Course Register
     });
     $(function() {
         createModal({
-            id: 'group_' + response['data'][i].id,
-            header: '<h4>Groups</h4>',
-            body: getGroupListTable(),
+            id: 'list_courses',
+            header: '<h4>Courses</h4>',
+            body: getCoursesListTable(),
             footer: `
 
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -106,38 +158,6 @@ Course Register
 
 
     })
-
-    function getGroupListTable() {
-        var table = `
-            <table>
-                <thead>
-                <thead>
-                <tbody>
-        `;
-
-        @foreach($courses_list as $cl)
-            table = table + '<tr>';
-
-            table = table + '</td>';
-
-            <?php
-                $checked = '';
-                if(in_array($cl->id,$question_course)){
-                    $checked = 'checked';
-                }
-            ?>
-
-            table = table + '<td><div class="checkbox"><label><input class="selected_courses_checkbox" type="checkbox" {!!$checked!!} value="{!!$cl->id!!}"></label></div>';
-            table = table + '<td>{!! $cl->full_name !!}';
-            table = table + '</td>';
-            table = table + '</tr>';
-
-        @endforeach()
-
-        table = table + `</tbody></table>`;
-
-        return table;
-    }
 
 
     function delete_request(id) {

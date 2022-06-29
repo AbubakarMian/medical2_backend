@@ -14,4 +14,8 @@ class Courses extends Model
    {
        return $this->hasOne('App\Model\Question', 'question_id', 'id');
    }
+   public function group()
+   {
+       return $this->hasOne('App\Model\Group', 'courses_id', 'id');
+   }
 }
