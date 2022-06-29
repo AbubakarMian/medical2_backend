@@ -1,8 +1,7 @@
+
 <script>
-    $(function(){
-console.log('myapp.blade.js');
-$('select.searchlist').select2();
-// $('select[multiple]').select2();
+$(function(){
+
 @yield('document_ready_jq');
 
 $('#open_time').timeEntry();
@@ -15,23 +14,10 @@ $('a[name="activate_delete"]').on('click', function(e){
     var $form=$(this).closest('form');
     var current =this;
     e.preventDefault();
-    var modal_heading = $(this).attr('modal_heading');
-    var modal_msg = $(this).attr('modal_msg');
-        console.log(modal_heading,modal_msg);
-        if(modal_heading != '' || modal_heading!= undefined){
-            $('#modal-heading').html(modal_heading);
-        }
-        if(modal_msg != '' || modal_msg!= undefined){
-            $('#modal_msg').html(modal_msg);
-        }
     $('#confirm').modal({ backdrop: 'static', keyboard: false })
         .one('click', '#delete', function() {
-        console.log('asd');
-
         var my_url = $form.attr( 'action' );
         var my_method = $form.attr( 'method' );
-
-
 
         $.ajax({
             url: my_url,
@@ -96,15 +82,6 @@ $('a[name="activate_delete_link"]').on('click', function(e){
     });
 });
 
-
-// modal_param = {
-//     id:'',
-//     header:'',
-//     body:'',
-//     footer:'',
-// };
-
-
 $('a[name="delete"]').on('click', function(e){
 
 var $form=$(this).closest('form');
@@ -124,8 +101,8 @@ $('span[name="map"]').on('click', function(e){
 $('.imgshow').on('click', function(e){
 
 var my_src = $(this).attr('src');
-$(".generalimgmodalsrc").attr("src", my_src);
-$('.generalimgmodal').modal('show');
+$("#modalimg").attr("src", my_src);
+$('#ourmodal').modal('show');
 });
 
 $('#Upload').on('click', function(e){
@@ -166,11 +143,6 @@ if((isArabic.test(v)===true)){
 }
 
 });
-
-$('.modal').on('hidden.bs.modal', function () {
-        $('.modal-backdrop').remove();
-    })
-
 
 function imagelimit(img){
     var f=img.files[0];
@@ -254,7 +226,7 @@ $('#hiddden_name').val(id);
 }
 
 function set_lat_long(lat , long , location){
-
+console.log("asdasdasd");
             $('#lat').val('24.8607');
             $('#long').val('67.0011');
     // $('#lat').val(lat);
@@ -271,64 +243,6 @@ function set_lat_long(lat , long , location){
 
 function showPosition(position) {
     $('#direction_map').attr('href','https://www.google.com/maps/dir/Current+Location/'+$('#lat').val()+','+$('#long').val());
-}
-
-
-function filterFunction(e,dropdowm_id) {
-  var dropdown = $('#'+dropdowm_id+" option");
-  var search_text = e.value;
-//   console.log('seach text ',search_text);
-  dropdown.each(function(){
-    var drop_text = $(this).text();
-    if(drop_text.startsWith(search_text)){
-      $(this).css('display','block')
-      $('#'+dropdowm_id).val($(this).val());
-    }
-    else{
-      $(this).css('display','none')
-      $(this).css('disabled')
-    }
-    // $("#"+dropdowm_id).multiselect('refresh');
-  });
-}
-
-function createModal(modal_param){
-    var modal =  `
-    <div class="modal fade" id="`+modal_param.id+`" role="dialog">
-    <div class="modal-dialog">    
-      <div class="modal-content">
-        <div class="modal-header">
-            `+modal_param.header+`
-        </div>
-        <div class="modal-body">
-            `+modal_param.body+`
-        </div>
-        <div class="modal-footer">
-            `+modal_param.footer+`
-        </div>
-      </div>
-      
-    </div>
-  </div>
-    `;
-    $('#add_custom_modals').append(modal);
-//     <div class="modal fade" id="`+modal_param.id+`" role="dialog">
-//     <div class="modal-dialog">    
-//       <div class="modal-content">
-//         <div class="modal-header">
-//           <button type="button" class="close" data-dismiss="modal">&times;</button>
-//           <h4 class="modal-title">Modal Header</h4>
-//         </div>
-//         <div class="modal-body">
-//           <p>Some text in the modal.</p>
-//         </div>
-//         <div class="modal-footer">
-//           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-//         </div>
-//       </div>
-      
-//     </div>
-//   </div>
 }
 
 </script>

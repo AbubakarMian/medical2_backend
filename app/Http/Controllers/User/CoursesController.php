@@ -70,9 +70,9 @@ class CoursesController extends Controller
 
 
         if($course_register ){
-            $course_register->delete();
 
-        }
+         }
+         elseif(!$course_register){
             $course_register = new Course_Register();
             $course_register-> user_id    =2;
             $course_register->course_id =   $course->id;
@@ -82,9 +82,11 @@ class CoursesController extends Controller
             $course_register->one_time_payment = 0;
             $course_register->fees = 0;
             $course_register->save();
-         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
-        return redirect('user/payment/?course_register='.$course_register->id)->with('success', 'Course Register Successfully!');
+    $stripe_key = Config::get('services.stripe.STRIPE_KEY');
+         }
+       
     }
+    return redirect('user/payment/?course_register='.$course_register->id)->with('success', 'Course Register Successfully!');
 
     // payment_screen open after course register
     public function payment_screen(Request $request)
