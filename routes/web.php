@@ -204,7 +204,21 @@ Route::get('admin/group/students/{id}', 'Admin\GroupController@student_list')->n
 Route::post('admin/student_group_checked/update', 'Admin\GroupController@student_group_checked')->name('admin.student_group_checked');
 
 // ================================course_register=================================
+// Route::get('admin/course_register', 'Admin\Course_RegisterController@index')->name('admin.course_register');
+
+// data tables myy
 Route::get('admin/course_register', 'Admin\Course_RegisterController@index')->name('admin.course_register');
+Route::get('admin/get_course_register', 'Admin\Course_RegisterController@get_course_register')->name('admin.get_course_register');
+
+// 
+
+//  =================================  Reports PAYMENT ==========================
+
+
+    Route::get('admin/reports/payments','Reports\PaymentController@index')->name('order_payment.index');
+    Route::post('admin/reports/payments', 'Reports\PaymentController@index')->name('payment.index');
+    Route::get('admin/orders/payments', 'Reports\PaymentController@index_excel')->name('payment.excel');
+    Route::post('admin/reports/payment/status_update/{id}','Reports\PaymentController@status_update')->name('payment.status_update');
 
 
 

@@ -2,7 +2,7 @@
 <?php
 $admin_common = session()->get('admin_common');
 $modules = $admin_common->modules;
-
+$reports = $admin_common->reports;
 ?>
 @section('content')
     <!-- Dashboard Components -->
@@ -34,7 +34,7 @@ $modules = $admin_common->modules;
                         </div>
                         <div class="mb20"></div>
                         <div class="tile-footer">
-                            {{-- {!! $module['count'] !!} --}}
+                        
                         </div>
                     </section>
                 </div>
@@ -45,19 +45,47 @@ $modules = $admin_common->modules;
 
     <!-- Modules end -->
 
-   
+    <!-- reports start -->
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <section class="dash-tile">
+                <h1 class="mt0">Reports</h1>
+            </section>
+        </div>
+        @foreach($reports as $key => $report)
+        {{-- {{dd($report[$key]['url'])}} --}}
+        <a href="{!! asset($report['url']) !!}">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <section class="dash-tile bg-warning">
+                        <div class="tile-stats">{!!$report['title']!!}
+                        </div>
+                        <br><br>
+                    </section>
+                </div>
+            </a>
+
+            @if(!($key+1 / 4))
+
+    </div>
+    <div class="row">
+        @endif
+
+        @endforeach
+    </div>
+    <!-- reports end  -->
 
     <!-- Chart -->
-    {{-- <section class="panel hidden-xs">
+    <section class="panel hidden-xs">
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-12 mb25">
                 </div>
                 <div class="col-sm-4">
                     <h1 class="mt0">
-                        Chart
+                        {{-- Chart --}}
                     </h1>
-                    <h3>Top Ten Vendors By Rating</h3> --}}
+                    {{-- <h3>Top Ten Vendors By Rating</h3> --}}
                     <!-- Chart here -->
 {{--                    <div id="dashboard_chart">--}}
 {{--                        <script>--}}
@@ -85,10 +113,10 @@ $modules = $admin_common->modules;
 {{--                    </div>--}}
                     <!-- Chart here -->
 
-                {{-- </div>
+                </div>
             </div>
         </div>
-    </section> --}}
+    </section>
     <!-- chart end -->
 
     <!-- Dashboard Components  end  -->
@@ -103,7 +131,6 @@ $modules = $admin_common->modules;
     <script src="{{ asset('theme/vendor/jquery_appear/jquery.appear.js') }}"></script>
     <script src="{{ asset('theme/vendor/jquery.placeholder.js') }}"></script>
     <script src="{{ asset('theme/vendor/fastclick/lib/fastclick.js') }}"></script>
-
     <!-- endbuild -->
 
     <!-- page level scripts -->
@@ -111,7 +138,6 @@ $modules = $admin_common->modules;
     <script src="{{ asset('theme/vendor/bower-jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
     <script src="{{ asset('theme/data/maps/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('theme/vendor/jquery.sparkline.js') }}"></script>
-
 
     <script src="{{ asset('theme/vendor/jquery-countTo/jquery.countTo.js') }}"></script>
    <!-- /page level scripts -->

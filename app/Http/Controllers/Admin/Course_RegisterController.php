@@ -18,12 +18,18 @@ use Maatwebsite\Excel\Concerns\ToArray;
 
 class Course_RegisterController extends Controller
 {
-    public function index(Request $request)
+
+    public function index()
     {
-        $course_register = Course_Register::with('course')->orderBy('created_at', 'DESC')->paginate(10);
-        return view('admin.course_register.index', compact('course_register'));
+     return view('admin.course_register.index');
+    }
+    public function get_course_register()
+    {
+        $course_register = Course_Register::with('course','user')->orderby('id', 'desc')->select('*')->get();
+        $course_register_data['data'] = $course_register;
+        echo json_encode($course_register_data);
     }
 
-   
- 
+
+
 }

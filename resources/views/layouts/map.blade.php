@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Map</title>
-    <script src="{{ asset('theme/vendor/jquery/dist/jquery.js') }}"></script>
+    <title>Waypoints in Directions</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
       #right-panel {
@@ -34,7 +33,8 @@
       #map {
         height: 100%;
         float: left;
-        width: 100%;
+        width: 70%;
+        height: 100%;
       }
 
       #right-panel {
@@ -55,28 +55,21 @@
         height: 174px;
       }
     </style>
-
     <script>
 
     var markers = [];
     var markers_latlng = [];
     var map;
-
     var directionsService;
     var directionsRenderer;
 
 
       function initMap() {
-
          directionsService = new google.maps.DirectionsService();
          directionsRenderer = new google.maps.DirectionsRenderer();
-
-
-        // var myLatlng = { lat: 24.860966, lng: 66.990501 };
-        var myLatlng = { lat: 24.961748975600738, lng: 67.06023874305612 };
-
+        var myLatlng = { lat: 24.860966, lng: 66.990501 };
          map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 19,
+          zoom: 13,
           center: myLatlng,
         });
         directionsRenderer.setMap(map);
@@ -90,11 +83,9 @@
             position: myLatlng,
         });
         // infoWindow.open(map);
-        // placeMarker(myLatlng,map);
-
         map.addListener("click", (mapsMouseEvent) => {
             placeMarker(mapsMouseEvent.latLng,map);
-            // calculateAndDisplayRoute();
+            calculateAndDisplayRoute();
         // Close the current InfoWindow.
         // infoWindow.close();
         // Create a new InfoWindow.
@@ -104,14 +95,9 @@
 
         var latitide = mapsMouseEvent.latLng.lat();
         var longitude = mapsMouseEvent.latLng.lng();
-
         myLatlng = mapsMouseEvent.latLng;
         console.log('lat',mapsMouseEvent.latLng.lat());
         console.log('long',mapsMouseEvent.latLng.lng());
-        set_lat_long_parent(latitide,longitude);
-
-        // $('#lat').val(latitide);
-        // $('#long').val(longitude);
         console.log('myLatlng',myLatlng);
         // var marker = new google.maps.Marker({
         // // The below line is equivalent to writing:
@@ -131,10 +117,8 @@
     var marker = new google.maps.Marker({
         position: location,
         map: map,
-        id:'marker '
-        // id:'marker'+location.lat()+location.lng()
+        id:'marker'+location.lat()+location.lng()
     });
-    deleteMarkers();
     markers.push(marker);
     markers_latlng.push({lat:location.lat(),lng:location.lng()});
     // map.panTo(location);
@@ -191,8 +175,8 @@
             if (status === "OK" && response) {
               directionsRenderer.setDirections(response);
               const route = response.routes[0];
-            //   const summaryPanel = document.getElementById("directions-panel");
-            //   summaryPanel.innerHTML = "";
+              const summaryPanel = document.getElementById("directions-panel");
+              summaryPanel.innerHTML = "";
                 console.log('direction ok');
             } else {
               window.alert("Directions request failed due to " + status);
@@ -205,21 +189,19 @@
   </head>
   <body>
     <div id="map"></div>
+    <div id="right-panel">
+      <div>
+      <button onclick="deleteMarkers()">RemoveMarker</button>
 
-
-    <button onclick="clearMarkers()">RemoveMarker</button>
-    {{-- <div id="right-panel">
-      <div id="directions-panel" style="display: none"></div>
-    </div> --}}
+      </div>
+      <div id="directions-panel"></div>
+    </div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-
-
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMwD9jQSMyeJhuZfpMtlD6idB499MbMNI&callback=initMap&libraries=&v=weekly"
       async
     ></script>
-    @yield('map_functions')
 
   </body>
 </html>
