@@ -209,8 +209,9 @@ Route::post('admin/student_group_checked/update', 'Admin\GroupController@student
 // data tables myy
 Route::get('admin/course_register', 'Admin\Course_RegisterController@index')->name('admin.course_register');
 Route::get('admin/get_course_register', 'Admin\Course_RegisterController@get_course_register')->name('admin.get_course_register');
+Route::get('admin/courses/group/{id}', 'Admin\Course_RegisterController@get_courses_group')->name('admin.get_courses_group');
 
-// 
+//
 
 //  =================================  Reports PAYMENT ==========================
 
