@@ -61,6 +61,7 @@ Course Register
                 <th>Group  Name</th>
                 <th>Starting  Date</th>
                 <th>Ending  Date</th>
+                <th> Radio Button</th>
 
 
 
@@ -141,19 +142,7 @@ Course Register
         }
 
     });
-    $(function() {
-        createModal({
-            id: 'list_courses',
-            header: '<h4>Courses</h4>',
-            body: getCoursesListTable(),
-            footer: `
 
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            `,
-        });
-
-
-    })
  {{--  courses_group_request  --}}
     function courses_group_request(id) {
         $.ajax({
@@ -177,15 +166,23 @@ Course Register
                     var id = response['groups'][i].id;
                     var name = response['groups'][i].name ;
                     var start_date = response['groups'][i].start_date ;
-
                     var end_date = response['groups'][i].end_date ;
+
+                    {{--  radio   btn --}}
+                    {{--  var update_course_group = `<a class="btn btn-info" onclick="update_course_group(` + response['register_course'].id + `)" >Group</a>`;  --}}
+
+
+                    var update_course_group = `  <input type="radio" name="radioName" onclick="update_course_group(` +response['groups'][i].id +`,`+ response['register_course'].id + `)" /> `;
 
 
 
                     var tr_str = "<tr id='row_"+response['groups'][i].id+"'>" +
                         "<td>" + name + "</td>" +
-                        "<td>" + new Date(start_date*1000) + "</td>" +
-                        "<td>" + end_date + "</td>" +
+                        "<td>" + new Date(start_date*1000).toLocaleDateString("en-US") + "</td>" +
+
+                        "<td>" + new Date(end_date*1000).toLocaleDateString("en-US") + "</td>" +
+                        "<td>" +  update_course_group+ "</td>" +
+
 
 
 
@@ -202,25 +199,39 @@ Course Register
 
     {{--    --}}
 
+    {{--  group update  --}}
 
-    function delete_request(id) {
+
+    function update_course_group(group_id,register_course_id) {
+
         $.ajax({
 
-            url: "{!!asset('admin/group/delete')!!}/" + id,
+            url: "{!!asset('admin/update_course_group')!!}" ,
             type: 'POST',
             dataType: 'json',
             data: {
-                _token: '{!!@csrf_token()!!}'
+                _token: '{!!@csrf_token()!!}',
+                'group_id': group_id,
+                'register_course_id': register_course_id,
             },
             success: function(response) {
-                console.log(response);
-                if(response.status){
-                    var myTable = $('#group').DataTable();
-                    myTable.row('#row_'+id).remove().draw();
-                }
+
+
+                {{-- RESPONSE   --}}
+
+                 console.log('abbbbbbbbbbbbbb',response);
+                 {{--    --}}
+
+
+
             }
         });
     }
+
+
+
+    {{--    --}}
+
 </script>
 
 

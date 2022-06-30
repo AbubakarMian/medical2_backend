@@ -50,15 +50,16 @@ class Course_RegisterController extends Controller
     }
 
     public function update_course_group(Request $request){
+
         $register_course_id = $request->register_course_id;
         $group_id = $request->group_id;
         $register_course = Course_Register::find($register_course_id);
-        $register_course->group_id = $group_id;
-        $register_course->user_id = $register_course->user_id;
+        $register_course->group_id =  $request->register_course_id;
+        // $register_course->user_id = $register_course->user_id;
         $register_course->save();
 
-        $res['data'] = [
-            'status'=>true
+        $res = [
+            'status'=>true,
         ];
         echo json_encode($res);
     }

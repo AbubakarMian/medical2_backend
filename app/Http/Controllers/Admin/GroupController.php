@@ -97,17 +97,25 @@ class GroupController extends Controller
         $group_id = $id;
         $student = User::where('role_id', '2')->get();
         $group = Group::find($id);
+        //   dd ($group);
         $group_users =  Course_Register::where('group_id', $group_id)->pluck('user_id')->toArray();
+        // dd ($group_users);
         // $group_users =  Group_users::where('group_id', $group_id)->pluck('user_id')->toArray();
         return view('admin.student_group_list.index', compact('student', 'group', 'group_users'));
     }
 
   public function student_group_checked(Request $request)
     {
+        // dd($request->all());
+
+
         $res = new \stdClass();
         $student_id = $request->student_id;
         $group_id = $request->group_id;
-        $group_users =  Course_Register::where('group_id', $group_id)->pluck('user_id')->toArray();
+
+        $group = Group::find($group_id);
+
+       $group_users =  Course_Register::where('group_id', $group_id)->pluck('user_id')->toArray();
         // $group_users =  Group_Users::where('group_id', $group_id)->where('user_id', $student_id)->first();
         if ($group_users) {
             $group_users->delete();
@@ -117,6 +125,7 @@ class GroupController extends Controller
         $group_users = new Course_Register();
         $group_users->user_id = $student_id;
         $group_users->group_id = $group_id;
+        $group_users->course_id = $group->courses_id;
         $group_users->save();
         $res->message = 'Added Successfully';
         }
