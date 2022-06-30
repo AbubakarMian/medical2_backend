@@ -28,7 +28,7 @@ List of Questions
 @section('app_jquery')
 
 <script>
-    $(document).ready(function() {
+    $(function() {
 
         fetchRecords();
 
@@ -52,8 +52,8 @@ List of Questions
                             id: 'question_' + response['data'][i].id,
                             header: '<h4>Delete</h4>',
                             body: 'Do you want to continue ?',
-                            footer: `                                
-                                <button class="btn btn-danger" onclick="delete_request(` + response['data'][i].id + `)" 
+                            footer: `
+                                <button class="btn btn-danger" onclick="delete_request(` + response['data'][i].id + `)"
                                 data-dismiss="modal">
                                     Delete
                                 </button>
@@ -71,7 +71,7 @@ List of Questions
                         $("#questionTableAppend tbody").append(tr_str);
                     }
                     $('#questionTableAppend').DataTable({
-                        dom: '<"top_datatable"B>lftipr',                          
+                        dom: '<"top_datatable"B>lftipr',
                     });
                 }
             });

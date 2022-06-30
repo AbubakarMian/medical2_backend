@@ -36,6 +36,9 @@
                     }
 
                     ?>
+                    {{--  <input hidden name="course_id" value="{!! $group->courses_id !!}" >  --}}
+
+
                     <div class="form-group">
                         <div>
                             {!! Form::checkbox('question', null,$checkbox, ['onClick' => 'check_uncheck_student(' . $t->id . ',' . $group->id . ')']) !!}

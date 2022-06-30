@@ -31,7 +31,7 @@ List of Groups
 @section('app_jquery')
 
 <script>
-    $(document).ready(function() {
+        $(function() {
 
         fetchRecords();
 

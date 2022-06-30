@@ -17,6 +17,8 @@ Course Register
 </style>
 @section('table')
 
+
+
 <table id="groupTableAppend" style="opacity: 0">
 	{{--    --}}
 
@@ -35,6 +37,52 @@ Course Register
 <tbody>
 </tbody>
 </table>
+
+{{--  modal  --}}
+{{--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>  --}}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Group Courses</h4>
+      </div>
+      <div class="modal-body">
+        <table id="coursesTableAppend" style="opacity: 0">
+            {{--    --}}
+
+            <thead>
+            <tr>
+
+                <th>Group  Name</th>
+                <th>Starting  Date</th>
+                <th>Ending  Date</th>
+                <th> Radio Button</th>
+
+
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{{--  modal close  --}}
 @stop
 @section('app_jquery')
 
@@ -44,6 +92,7 @@ Course Register
         fetchRecords();
 
         function fetchRecords() {
+            $('#myModal').modal('hide');
             $.ajax({
                 url: '{!!asset("admin/get_course_register")!!}',
                 type: 'get',
@@ -57,59 +106,7 @@ Course Register
                         var id = response['data'][i].id;
                         var user_name = response['data'][i].user.name ;
                         var course_name = response['data'][i].course.full_name ;
-                        var group =
-                        `<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Groups</button>
-
-                        <!-- Modal -->
-                        <div id="myModal" class="modal fade" role="dialog">
-                          <div class="modal-dialog">
-
-                            <!-- Modal content-->
-                            <div class="modal-content">
-
-                              <div class="modal-body">
-                                <div >
-                                <table class="table">
-                                    <tr>
-                                        <th>
-                                            Group
-                                        </th>
-                                        <th>
-                                            Starting Date
-                                        </th>
-                                        <th>
-                                           Select
-                                        </th>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                          22-06-22
-                                        </td>
-                                        <td>
-                                            29-06-22
-                                        </td>
-                                        <td>
-                                    <input type="checkbox" >
-                                        </td>
-
-                                    </tr>
-
-
-
-                                   </table>
-                                </div>
-
-
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>`;
-
+              var group = `<a class="btn btn-info" onclick="courses_group_request(` + response['data'][i].id + `)" >Group</a>`;
 
 
                         var is_paids =  response['data'][i].is_paid;
@@ -145,39 +142,96 @@ Course Register
         }
 
     });
-    $(function() {
-        createModal({
-            id: 'list_courses',
-            header: '<h4>Courses</h4>',
-            body: getCoursesListTable(),
-            footer: `
 
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            `,
-        });
-
-
-    })
-
-
-    function delete_request(id) {
+ {{--  courses_group_request  --}}
+    function courses_group_request(id) {
         $.ajax({
 
-            url: "{!!asset('admin/group/delete')!!}/" + id,
-            type: 'POST',
+            url: "{!!asset('admin/courses/group')!!}/" + id,
+            type: 'Get',
             dataType: 'json',
-            data: {
-                _token: '{!!@csrf_token()!!}'
-            },
             success: function(response) {
-                console.log(response);
-                if(response.status){
-                    var myTable = $('#group').DataTable();
-                    myTable.row('#row_'+id).remove().draw();
+                $('#myModal').modal('show');
+                $("#coursesTableAppend").css("opacity", 1);
+                {{--    --}}
+                var groups = response['groups'].length;
+                 console.log('abbbbbbbbbbbbbb',response);
+                 {{--    --}}
+
+
+                for (var i = 0; i < groups; i++) {
+
+
+                    console.log('aaaaaaacccccccc',response['groups'][i]);
+                    var id = response['groups'][i].id;
+                    var name = response['groups'][i].name ;
+                    var start_date = response['groups'][i].start_date ;
+                    var end_date = response['groups'][i].end_date ;
+
+                    {{--  radio   btn --}}
+                    {{--  var update_course_group = `<a class="btn btn-info" onclick="update_course_group(` + response['register_course'].id + `)" >Group</a>`;  --}}
+
+
+                    var update_course_group = `  <input type="radio" name="radioName" onclick="update_course_group(` +response['groups'][i].id +`,`+ response['register_course'].id + `)" /> `;
+
+
+
+                    var tr_str = "<tr id='row_"+response['groups'][i].id+"'>" +
+                        "<td>" + name + "</td>" +
+                        "<td>" + new Date(start_date*1000).toLocaleDateString("en-US") + "</td>" +
+
+                        "<td>" + new Date(end_date*1000).toLocaleDateString("en-US") + "</td>" +
+                        "<td>" +  update_course_group+ "</td>" +
+
+
+
+
+                        "</tr>";
+
+                    $("#coursesTableAppend tbody").append(tr_str);
                 }
+                $('#coursesTableAppend').DataTable({
+                    dom: '<"top_datatable"B>lftipr',
+                });
             }
         });
     }
+
+    {{--    --}}
+
+    {{--  group update  --}}
+
+
+    function update_course_group(group_id,register_course_id) {
+
+        $.ajax({
+
+            url: "{!!asset('admin/update_course_group')!!}" ,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                _token: '{!!@csrf_token()!!}',
+                'group_id': group_id,
+                'register_course_id': register_course_id,
+            },
+            success: function(response) {
+
+
+                {{-- RESPONSE   --}}
+
+                 console.log('abbbbbbbbbbbbbb',response);
+                 {{--    --}}
+
+
+
+            }
+        });
+    }
+
+
+
+    {{--    --}}
+
 </script>
 
 
