@@ -57,6 +57,20 @@
                                     Login
                                 </button>
 
+                                {{-- <button type="button" class="btn btn-primary logclick" data-toggle="modal" data-target="#exampleModal">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
+                                </button> --}}
+                                
+                                  <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle logclick drup" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
+                                    </button>
+                                    <div class="dropdown-menu dfg" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="profile_courses"><i class="fa fa-book" aria-hidden="true"></i> Courses</a><br>
+                                      <a class="dropdown-item" href="profile_acount"><i class="fa fa-cog" aria-hidden="true"></i> Acount</a>
+                                    </div>
+                                  </div>
+
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">

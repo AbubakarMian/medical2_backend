@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap');
+body,html {
+	font-size: 15px;
+    line-height: 1.4666666667;
+    color: #000;
+    font-family: 'Manjari', sans-serif;
+}
+h1,h2,h3,h4{
+	font-family: 'Manjari', sans-serif;
+}
+
+.profilesareadata h1 {
+    text-align: center;
+    color: #292974;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.profilesarea {
+    padding: 50px;    
+}
+.profilesareadata {   
+    padding: 50px;   
+    -webkit-box-shadow: 4px 4px 5px 0px rgb(0 0 0 / 75%);
+    -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 6px 23px 0px rgb(0 0 0 / 32%);
+}
+.profilesareadata label {
+    font-size: 16px;
+    margin-bottom: 0px;
+    margin-top: 20px;
+    font-weight: 600;
+    color: gray;
+}
+.profilesareadata input {
+    border-radius: 0px;
+    color: black;
+    font-size: 14px;
+    height: 38px;
+    border-color: #8080808f;
+}
+.profilesareadata select {
+    border-radius: 0px;
+    color: black;
+    font-size: 14px;
+    height: 38px;
+    border-color: #8080808f;
+}
+.profilesareadata textarea {
+    border-radius: 0px;
+    color: black;
+    font-size: 14px;
+    border-color: #8080808f;
+}
+.updt {
+    border-radius: 0px;
+    margin-top: 20px;
+    width: 120px;
+    background-color: #292974;
+    border-color: #292974;
+    color: white;
+    margin: 3px;
+    height: 34px;
+    padding: 8px 5px;
+}
+.procclick {
+    text-align: center;
+    margin-top: 30px;
+}
+.picimg {
+    background: white;
+    border: 1px solid #b8b8b8;
+    width: 100%;
+    padding: 7px 0px;
+}
+.drup:hover {
+    color: white;
+}
+
+
+
+
+
+
+
+
+@media only screen and (max-width : 768px) {
+
+
+}

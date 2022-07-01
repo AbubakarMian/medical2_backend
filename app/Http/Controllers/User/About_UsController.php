@@ -25,11 +25,11 @@ class About_UsController extends Controller
         return view('user.contactus.index');
     }
 
-    public function courses_registration()
-    {
-        // dd($about_us);
-        return view('user.courses_registration');
-    }
+    // public function courses_registration()
+    // {
+    //     // dd($about_us);
+    //     return view('user.courses_registration');
+    // }
 
     public function contactform(Request $request)
     {

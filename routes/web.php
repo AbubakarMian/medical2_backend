@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
      // Route::get('user/home', 'Admin\UserController@index');
      // Route::get('user', 'Admin\UserController@index');
      Route::get('/', 'User\UserController@index');
+     Route::get('courses_registration', 'User\UserController@courses_registration');
+     Route::get('profile_acount', 'User\UserController@profile_acount');
+     Route::get('profile_courses', 'User\UserController@profile_courses');
+     
 
     //category page
      Route::get('category', 'User\CategoryController@index');

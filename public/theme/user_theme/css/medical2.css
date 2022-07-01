@@ -43,9 +43,12 @@ h4 {
   border-radius: 0px;
   margin-top: 20px;
   width: 120px;
-  background-color: #2fb3fe;
-  border-color: #2fb3fe;
+  background-color: #292974;
+  border-color: #292974;
   color: white;
+  margin: 3px;
+  height: 34px;
+  padding: 8px 5px;
 }
 .logclic {
   border-radius: 0px;
@@ -148,6 +151,17 @@ h4 {
   background-size: cover;
   background-position: 50% 50%;
   padding: 50px;
+}
+.dfg {
+  padding: 10px;
+  color: black !important;
+  font-size: 13px;
+  margin: -18px 3px;
+  border-radius: 0px;
+}
+.infoboxdata {
+  display: -webkit-box;
+  margin-top: 10px;
 }
 .aboutareadata h2 {
   color: white;
