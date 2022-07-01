@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
      Route::get('about_us', 'User\About_UsController@index');
      Route::get('contactus', 'User\About_UsController@contactus');
      Route::post('user/contactform', 'User\About_UsController@contactform');
+     Route::get('user/courses_registration', 'User\About_UsController@courses_registration');
+     
     //courses page
      Route::get('courses', 'User\CoursesController@index');
      // courses/details page

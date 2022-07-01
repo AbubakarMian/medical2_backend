@@ -160,6 +160,9 @@ h4 {
   font-weight: 200;
   line-height: 27px;
 }
+.acols a {
+  color: white !important;
+}
 .abolern {
   border-radius: 0px;
   margin-top: 20px;
