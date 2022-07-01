@@ -8,16 +8,25 @@
         <div class="body-content">
             <div class="container">
                 <div class="theme-courses-topbar" id="">
-                    <form id="allProductsSearchForm" class="theme-course-search" action="" method="GET"
-                        style="width:100%;">
+
+                        <form  method="post" action="{{asset('user/category_search')}}"
+                        style="width:100%">
+              {!! csrf_field() !!}
                         <div class="" style="width:100%;">
 
                             <div class="form-group">
                                 <label for="category_id">Select Category</label>
-                                {!! Form::select('category_id', $category_arr, null, ['class' => 'form-control searchlist', 'multiple' => 'multiple', 'data-parsley-trigger' => 'change', 'placeholder' => 'Select Category', 'required', 'maxlength' => '100']) !!}
+                                {!! Form::text('category_name',$name ?? '',
 
-                            </div><button type="submit">
-                                <i class="fa fa-search"></i></button>
+                                      ['class' => 'form-control ',
+
+                                        'data-parsley-trigger' => 'change',
+                                        'placeholder' => 'Select Category',
+                                        'maxlength' => '100']) !!}
+
+                            </div>
+                            <button type="submit" class="btn btn-primary resub">Submit</button>
+
                         </div>
                     </form>
                     <div class="row" id="searchLoader"
@@ -94,7 +103,7 @@
 
 
 
-    
+
     @section('app_jquery')
         <script>
             $(function() {

@@ -2,30 +2,15 @@
 @section('content')
     <link href="{!! asset('theme/user_theme/css/program.css') !!}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-
-    {{--  --}}
-    <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/mb2nl/assets/pe-icon-7-stroke/css/pe-icon-7-stroke.min.css" />
-    <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/mb2nl/assets/bootstrap/css/glyphicons.min.css" />
-    <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/mb2nl/assets/LineIcons/LineIcons.min.css" />
-    <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/mb2nl/assets/OwlCarousel/assets/owl.carousel.min.css" />
-
-    <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    {{--  --}}
+    <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" />
 
 
 
-    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css"
-        href="http://mycodebusters.com/theme/moodle/theme/styles.php/mb2nl/1632919575_1/all" />
+
+
+
+
+
 
 
 
@@ -42,16 +27,23 @@
                                 <h2 class="details-heading hsize-2" id="yui_3_17_2_1_1655389310494_36">About the
                                     {{ ucwords($courses->full_name) }} {{ ucwords($courses->short_name) }}</h2>
                                 <div class="details-content toggle-content">
-                                    <div class="content">
+                                    {{--  <div class="content">
 
 
 
                                         {!! strlen($courses->description) < 500 ? $courses->description : substr($courses->description, 0, 500) . '...' !!}
 
 
-                                    </div>
-
-
+                                    </div>  --}}
+                                    <p style="font-size: x-large;
+                                   font-weight: 700;">
+                                        Click The Button Below For Course Register
+                                    </p>
+                                    <a href="{{ asset('course/registration/?course_id='.$courses->id) }}" >
+                                        <button type="button" class="btn btn-primary logclick" style="width: fit-content;">
+                                           Register
+                                        </button>
+                                    </a>
 
                                 </div>
 

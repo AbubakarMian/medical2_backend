@@ -3,6 +3,7 @@
 use App\Models\Promo_code;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,17 +23,28 @@ use Illuminate\Support\Facades\Route;
 
     //category page
      Route::get('category', 'User\CategoryController@index');
+     Route::post('user/category_search', 'User\CategoryController@index');
      Route::get('category_courses', 'User\CategoryController@category_courses');
-     Route::get('about_us', 'User\About_UsController@index');
-     Route::get('contactus', 'User\About_UsController@contactus');
-     Route::post('user/contactform', 'User\About_UsController@contactform');
-     Route::get('user/courses_registration', 'User\About_UsController@courses_registration');
-     
     //courses page
      Route::get('courses', 'User\CoursesController@index');
+     Route::post('user/courses_search', 'User\CoursesController@index');
      // courses/details page
     Route::get('courses/details', 'User\CoursesController@courses_details');
 
+    // course/registration
+    Route::get('course/registration', 'User\CoursesController@course_registration');
+    // save_course_register
+    Route::get('save_course_register', 'User\CoursesController@user_save_course_register');
+    // user/payment
+    Route::get('user/payment', 'User\CoursesController@payment_screen');
+
+    // payment/stripe
+
+    Route::post('payment/stripe', 'User\CoursesController@makepayment');
+   // other pages
+   Route::get('about_us', 'User\About_UsController@index');
+   Route::get('contactus', 'User\About_UsController@contactus');
+   Route::post('user/contactform', 'User\About_UsController@contactform');
     //registration
      Route::get('registration', 'User\UserController@registration');
     //  courses_list
@@ -47,6 +59,9 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('admin/login', 'Admin\AdminController@index');
     Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
+
+    // contact module
+    Route::get('admin/contact', 'Admin\ContactUsController@index')->name('contact.index');
 
 
     Route::get('admin/users', 'Admin\UserController@index')->name('location.index');
@@ -70,14 +85,6 @@ use Illuminate\Support\Facades\Route;
     Route::post('admin/courses/delete/{id}', 'Admin\CoursesController@destroy_undestroy')->name('courses.delete');
     Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
 
-    // parents map open
-
-    Route::get('admin/parent/map', 'Admin\ParentController@parentmap')->name('parent.map');
-
-
-
-    // save lat long of parents
-    Route::post('admin/parent/map/lat_long', 'Admin\ParentController@parent_latlong_save')->name('parent.map');
 
 
 
@@ -179,13 +186,6 @@ Route::post('admin/books/delete/{id}', 'Admin\BooksController@destroy_undestroy'
 
 
 
-
-//     Route::group(['middleware'=>'user_auth','prefix'=>'user'],function(){
-
-
-// });
-
-
 //   Group crud
 
 
@@ -202,6 +202,26 @@ Route::post('admin/group/delete/{id}', 'Admin\GroupController@destroy_undestroy'
 // ================================student list==================================
 Route::get('admin/group/students/{id}', 'Admin\GroupController@student_list')->name('admin.group_students');
 Route::post('admin/student_group_checked/update', 'Admin\GroupController@student_group_checked')->name('admin.student_group_checked');
+
+// ================================course_register=================================
+// Route::get('admin/course_register', 'Admin\Course_RegisterController@index')->name('admin.course_register');
+
+// data tables myy
+Route::get('admin/course_register', 'Admin\Course_RegisterController@index')->name('admin.course_register');
+Route::get('admin/get_course_register', 'Admin\Course_RegisterController@get_course_register')->name('admin.get_course_register');
+Route::get('admin/courses/group/{id}', 'Admin\Course_RegisterController@get_courses_group')->name('admin.get_courses_group');
+Route::post('admin/update_course_group', 'Admin\Course_RegisterController@update_course_group')->name('admin.update_course_group');
+
+//
+
+//  =================================  Reports PAYMENT ==========================
+
+
+    Route::get('admin/reports/payments','Reports\PaymentController@index')->name('order_payment.index');
+    Route::post('admin/reports/payments', 'Reports\PaymentController@index')->name('payment.index');
+    Route::get('admin/orders/payments', 'Reports\PaymentController@index_excel')->name('payment.excel');
+    Route::post('admin/reports/payment/status_update/{id}','Reports\PaymentController@status_update')->name('payment.status_update');
+
 
 
 

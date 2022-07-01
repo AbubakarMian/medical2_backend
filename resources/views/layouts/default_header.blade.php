@@ -5,8 +5,6 @@ $admin_common = session()->get('admin_common');
 <html class="no-js" lang="">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="rtl" xml:lang="ar" lang="ar">
 
-
-
 <head>
     <!-- meta -->
     <meta charset="utf-8">
@@ -25,17 +23,9 @@ $admin_common = session()->get('admin_common');
     <link rel="stylesheet" href="{{ asset('theme/styles/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('theme/styles/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('theme/styles/animate.css') }}">
-    {{-- <link rel="stylesheet" href="{{asset('multiselect/jquery.multiselect.css')}}"> --}}
     <link rel="stylesheet" href="{{ asset('theme/styles/sublime.css') }}">
     <link rel="stylesheet" href="{{ asset('cssjs/myapp.css') }}">
     <link rel="stylesheet" href="{{ asset('cssjs/jquery.timeentry.css') }}">
-
-    {{-- Data Tables CSS--}}
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
-    {{-- Data Tables CSS end--}}
-
-
     @yield('css')
     @yield('extra_css')
     <!-- endbuild -->
@@ -50,8 +40,6 @@ $admin_common = session()->get('admin_common');
     <script src="{{ asset('theme/vendor/modernizr.js') }}"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
 </head>
 
 <!-- body -->
@@ -60,20 +48,18 @@ $admin_common = session()->get('admin_common');
 
     <div class="app">
         <!-- top header -->
-        <header style="background-color: #1582dc" class="header header-fixed navbar">
+        <header class="header header-fixed navbar">
 
-            <div style="background-color: #1582dc" class="brand">
+            <div class="brand">
                 <!-- toggle offscreen menu -->
                 <a href="javascript:;" class="ti-menu off-left visible-xs" data-toggle="offscreen" data-move="ltr"></a>
                 <!-- /toggle offscreen menu -->
 
                 <!-- logo -->
-                <div CLASS="LOGO">
-                <a href="{{asset('index.php/admin/dashboard')}}" class="navbar-brand" >
-                    {{-- <img src="{!!asset('images/LogoS-12.png')!!}" alt="" class="myimg"> --}}
+                <a href="{{asset('index.php/admin/dashboard')}}" class="navbar-brand">
+                    <img src="{{ asset('images/Logo-02.png') }}" alt="">
                     <span class="heading-font"></span>
                 </a>
-                </div>
                 <!-- /logo -->
             </div>
 
@@ -103,7 +89,7 @@ $admin_common = session()->get('admin_common');
 
                 <li class="off-right">
                     <form action="{{asset('admin/logout')}}">
-                        <input type="submit"  style="background-color: #da3e16" class="btn btn-danger btn-rounded margin-top" value="LogOut">
+                        <input type="submit" class="btn btn-danger btn-rounded margin-top" value="LogOut">
                     </form>
                     <!--           <button type="button" class="btn btn-danger btn-rounded margin-top">LogOut</button> -->
                 </li>
@@ -114,7 +100,7 @@ $admin_common = session()->get('admin_common');
 
         <section class="layout">
             <!-- sidebar menu -->
-            <aside style="background-color: #4f5061" class="sidebar offscreen-left">
+            <aside class="sidebar offscreen-left">
                 <!-- main navigation -->
                 <nav style="overflow: hidden;" class="main-navigation" data-height="auto" data-size="6px"
                     data-distance="0" data-rail-visible="true" data-wheel-step="10">
@@ -139,6 +125,7 @@ $admin_common = session()->get('admin_common');
                                 <span>Modules</span>
                             </a>
                             <ul class="sub-menu">
+
                                 @foreach($admin_common->modules as $key => $module)
                                 <li>
                                     <a href="{!! asset('index.php/'.$module['url']) !!}">
@@ -151,7 +138,27 @@ $admin_common = session()->get('admin_common');
                         <!-- /Modules -->
 
 
-                       
+                        <!-- Reports -->
+                        <li>
+                            <a href="javascript:;">
+                                <i class="toggle-accordion"></i>
+                                <!-- <i class="ti-support"></i> -->
+                                <i class="fa fa-line-chart"></i>
+                                <span>Reports</span>
+                            </a>
+                            <ul class="sub-menu">
+
+                                @foreach($admin_common->reports as $key => $report) <li>
+                                <li>
+                                    <a href="{{asset('index.php/'.$report['url'])}}">
+                                        <span>{!! $report['title'] !!}</span>
+                                    </a>
+
+                                </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <!-- /Reports -->
                     </ul>
                 </nav>
             </aside>
@@ -198,40 +205,6 @@ $admin_common = session()->get('admin_common');
             <!-- /main content -->
         </section>
     </div>
-
-    <div class="modal fade generalimgmodal in" id="" tabindex="-1" role="dialog" aria-hidden="false">
-        <div class="modal-dialog modal-mg ">
-            <div class="modal-content" id="confirm">
-                <div class="modal-header">
-                    <h4 class="modal-title">Image</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div id="my_msg_div" class="col-xs-12">
-                            <img class="generalimgmodalsrc" src="">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="add_custom_modals"></div>
-
-    {{-- Data Table Jquery & Ajax --}}
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-    {{-- Data Table Jquery & Ajax end --}}
-
-
     <!-- build:js({.tmp,app}) scripts/app.min.js -->
     <!--   this file will be loaded individually for all files to avoide conficts  -->
     <!--   <script src="{{ asset('theme/vendor/jquery/dist/jquery.js') }}"></script> -->
@@ -245,11 +218,6 @@ $admin_common = session()->get('admin_common');
     <script src="{{ asset('theme/vendor/jquery.placeholder.js') }}"></script>
     <script src="{{ asset('theme/vendor/fastclick/lib/fastclick.js') }}"></script>
     <script src="{{ asset('cssjs/jquery.timeentry.js')}}"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-
-
     <!-- endbuild -->
 
     <!-- page level scripts -->
