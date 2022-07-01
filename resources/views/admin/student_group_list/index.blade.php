@@ -18,32 +18,36 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>
+            {{-- <th>
                 Checkbox
-            </th>
+            </th> --}}
         </tr>
     </thead>
     <tbody>
         @foreach ($student as $t)
+            <?php
+            $checkbox = false;
+            if (in_array($t->id, $group_users)) {
+                // dd('saa');
+                $checkbox = true;
+            }
+            else{
+                continue;
+            }
+
+            ?>
             <tr>
+
                 <td>{!! ucwords($t->name) !!}</td>
                 <td>
-                    <?php
-                    $checkbox = false;
-                    if (in_array($t->id,$group_users)) {
-                        // dd('saa');
-                        $checkbox = true;
-                    }
 
-                    ?>
-                    {{--  <input hidden name="course_id" value="{!! $group->courses_id !!}" >  --}}
+                    {{-- <input hidden name="course_id" value="{!! $group->courses_id !!}" > --}}
 
-
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <div>
                             {!! Form::checkbox('question', null,$checkbox, ['onClick' => 'check_uncheck_student(' . $t->id . ',' . $group->id . ')']) !!}
                         </div>
-                    </div>
+                    </div> --}}
                 </td>
             </tr>
         @endforeach

@@ -11,6 +11,6 @@ class Group extends Model
 
    public function courses()
    {
-       return $this->hasMany('App\Model\Courses', 'id', 'courses_id');
+       return $this->hasOne('App\Model\Courses', 'id', 'courses_id');
    }
 }

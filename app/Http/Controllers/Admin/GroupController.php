@@ -20,7 +20,7 @@ class GroupController extends Controller
     }
     public function getGroup()
     {
-        $group = Group::orderby('id', 'desc')->select('*')->get();
+        $group = Group::with('courses')->orderby('id', 'desc')->select('*')->get();
         $groupdata['data'] = $group;
         echo json_encode($groupdata);
     }
