@@ -16,6 +16,7 @@ List of Groups
         <tr>
 
             <th>Groups</th>
+            <th>Course Name</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Students</th>
@@ -48,6 +49,7 @@ List of Groups
                         console.log('aaaaaaa',response['data'][i]);
                         var id = response['data'][i].id;
                         var group_text = response['data'][i].name;
+                        var course_name = response['data'][i].courses.full_name +' Course' ;
                         // var course_text = response['data'][i].course_id;
                         var group_start_date = response['data'][i].start_date;
                         var group_end_date = response['data'][i].end_date;
@@ -70,6 +72,7 @@ List of Groups
 
                         var tr_str = "<tr id='row_"+response['data'][i].id+"'>" +
                             "<td>" + group_text + "</td>" +
+                            "<td>" + course_name + "</td>" +
                             // "<td>" + course_text + "</td>" +
                             // "<td>" + group_start_date + "</td>" +
                             // "<td>" +  Date.parse(group_start_date) + "</td>" +

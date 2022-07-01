@@ -26,6 +26,7 @@ Course Register
 	<tr>
 		<th>User Name</th>
 		<th>Course Name</th>
+		<th>Group  </th>
 		<th>Group  Name</th>
 		<th>Payment Status</th>
 
@@ -49,7 +50,7 @@ Course Register
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Group Courses</h4>
+        <h4 class="modal-title" id="my_group_name"></h4>
       </div>
       <div class="modal-body">
         <table id="coursesTableAppend" style="opacity: 0">
@@ -106,6 +107,16 @@ Course Register
                         var id = response['data'][i].id;
                         var user_name = response['data'][i].user.name ;
                         var course_name = response['data'][i].course.full_name ;
+                        var group_names = response['data'][i].course.group ;
+
+                        if(group_names){
+                            group_name = group_names.name ;
+
+						}
+						else{
+                            group_name = 'No Group Assigned' ;
+
+						}
               var group = `<a class="btn btn-info" onclick="courses_group_request(` + response['data'][i].id + `)" >Group</a>`;
 
 
@@ -126,6 +137,7 @@ Course Register
                         var tr_str = "<tr id='row_"+response['data'][i].id+"'>" +
                             "<td>" + user_name + "</td>" +
                             "<td>" + course_name + "</td>" +
+                            "<td>" + group_name + "</td>" +
                             "<td>" + group + "</td>" +
                             "<td>" + is_paid + "</td>" +
 
@@ -144,7 +156,11 @@ Course Register
     });
 
  {{--  courses_group_request  --}}
+ $('#coursesTableAppend').DataTable({
+    dom: '<"top_datatable"B>lftipr',
+});
     function courses_group_request(id) {
+
         $.ajax({
 
             url: "{!!asset('admin/courses/group')!!}/" + id,
@@ -157,7 +173,7 @@ Course Register
                 var groups = response['groups'].length;
                  console.log('abbbbbbbbbbbbbb',response);
                  {{--    --}}
-
+                 var tr_str = '';
 
                 for (var i = 0; i < groups; i++) {
 
@@ -168,6 +184,7 @@ Course Register
                     var start_date = response['groups'][i].start_date ;
                     var end_date = response['groups'][i].end_date ;
 
+
                     {{--  radio   btn --}}
                     {{--  var update_course_group = `<a class="btn btn-info" onclick="update_course_group(` + response['register_course'].id + `)" >Group</a>`;  --}}
 
@@ -176,23 +193,19 @@ Course Register
 
 
 
-                    var tr_str = "<tr id='row_"+response['groups'][i].id+"'>" +
+                     tr_str = tr_str+"<tr id='row_"+response['groups'][i].id+"'>" +
                         "<td>" + name + "</td>" +
                         "<td>" + new Date(start_date*1000).toLocaleDateString("en-US") + "</td>" +
-
                         "<td>" + new Date(end_date*1000).toLocaleDateString("en-US") + "</td>" +
                         "<td>" +  update_course_group+ "</td>" +
-
-
-
-
                         "</tr>";
 
-                    $("#coursesTableAppend tbody").append(tr_str);
+
+                    $("#my_group_name").html(response['groups'][i].courses.full_name +' Course') ;
+
                 }
-                $('#coursesTableAppend').DataTable({
-                    dom: '<"top_datatable"B>lftipr',
-                });
+                $("#coursesTableAppend tbody").html(tr_str);
+
 
             }
         });

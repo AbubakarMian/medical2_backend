@@ -62,7 +62,7 @@ class CoursesController extends Controller
     // user_save_course_register
     public function user_save_course_register(Request $request)
     {
-
+// dd('sas');
         $user = Auth::user();
         $courses_id = $request->course_id;
         $course = Courses::find($courses_id);
@@ -74,10 +74,9 @@ class CoursesController extends Controller
          }
          elseif(!$course_register){
             $course_register = new Course_Register();
-            $course_register-> user_id    =2;
+            $course_register->user_id    =2;
             $course_register->course_id =   $course->id;
             $course_register->group_id = 0;
-            $course_register->user_group_id = 0;
             $course_register->is_paid = 0;
             $course_register->one_time_payment = 0;
             $course_register->fees = 0;

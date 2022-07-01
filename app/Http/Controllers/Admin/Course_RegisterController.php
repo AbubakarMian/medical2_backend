@@ -39,7 +39,7 @@ class Course_RegisterController extends Controller
     public function get_courses_group($register_course_id)
     {
         $register_course = Course_Register::find($register_course_id);
-        $groups = Group::where('courses_id',$register_course->course_id)->get();
+        $groups = Group::with('courses')->where('courses_id',$register_course->course_id)->get();
 
         $res = [
             'status'=>true,
