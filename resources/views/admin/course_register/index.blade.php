@@ -148,7 +148,7 @@ Course Register
         $.ajax({
 
             url: "{!!asset('admin/courses/group')!!}/" + id,
-            type: 'Get',
+            type: 'GET',
             dataType: 'json',
             success: function(response) {
                 $('#myModal').modal('show');
@@ -193,6 +193,7 @@ Course Register
                 $('#coursesTableAppend').DataTable({
                     dom: '<"top_datatable"B>lftipr',
                 });
+
             }
         });
     }
