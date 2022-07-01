@@ -70,7 +70,7 @@
                           <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            <small id="emailHelp" class="form-text text-muted">We ll never share your email with anyone
                               else.</small>
                           </div>
                           <div class="form-group">
@@ -129,7 +129,7 @@
                       </li>
                       <li id="08">
                         <a href="#"><span class="visible-xs hidden-xs">Contact Us</span> </a>
-                      </li>                      
+                      </li>
                       <li id="10">
                         <select
                           class="form-control logclickk visible-xs hidden-xs"
@@ -164,7 +164,7 @@
                                   <div class="form-group">
                                     <label for="exampleInputEmail1">Email address</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                    <small id="emailHelp" class="form-text text-muted">We ll never share your email with anyone
                                       else.</small>
                                   </div>
                                   <div class="form-group">
@@ -252,7 +252,7 @@
         </div>
     @endif
 
-          
+
               <form role="form" method="post" action="{{action('User\UserController@save')}}">
               {!! csrf_field() !!}
                 <div class="row">

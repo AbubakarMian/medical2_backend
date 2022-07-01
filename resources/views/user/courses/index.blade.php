@@ -16,16 +16,16 @@
                             <div class="form-group">
                                 <label for="category_id">Select Courses</label>
                                 {!! Form::text('courses_name',$name ?? '',
-                                      
+
                                       ['class' => 'form-control ',
-                                      
-                                        'data-parsley-trigger' => 'change', 
-                                        'placeholder' => 'Select Courses', 
+
+                                        'data-parsley-trigger' => 'change',
+                                        'placeholder' => 'Select Courses',
                                         'maxlength' => '100']) !!}
 
                             </div>
                             <button type="submit" class="btn btn-primary resub">Submit</button>
-                             
+
                         </div>
                     </form>
                     <!-- <form id="allProductsSearchForm" class="theme-course-search" action="" method="GET"
@@ -64,7 +64,8 @@
                                         <div class="middle">
                                             <div class="text">
                                                 {{-- <a href="{{asset('courses/details')}}"> --}}
-                                                <a href="{{ asset('courses/details/?courses_id=' . $p->id) }}">
+                                                {{--  <a href="{{ asset('courses/details/?courses_id=' . $p->id) }}">  --}}
+                                                    <a href="{{ asset('course/registration/?course_id='.$p->id) }}" >
                                                     View
 
 

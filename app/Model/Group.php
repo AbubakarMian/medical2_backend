@@ -8,4 +8,9 @@ class Group extends Model
 {
     use SoftDeletes;
    protected $table='group';
+
+   public function courses()
+   {
+       return $this->hasMany('App\Model\Courses', 'id', 'courses_id');
+   }
 }
