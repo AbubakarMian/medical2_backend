@@ -84,9 +84,9 @@ class CoursesController extends Controller
             $course_register->save();
     $stripe_key = Config::get('services.stripe.STRIPE_KEY');
          }
-       
-    }
     return redirect('user/payment/?course_register='.$course_register->id)->with('success', 'Course Register Successfully!');
+
+    }
 
     // payment_screen open after course register
     public function payment_screen(Request $request)
@@ -97,7 +97,7 @@ class CoursesController extends Controller
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         return view('user.payment_screen.index', compact('course_register', 'stripe_key'));
     }
-   
+
     // final payment and course register update
     public function makepayment(Request $request)
     {

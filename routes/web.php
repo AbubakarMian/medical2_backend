@@ -54,6 +54,9 @@ use Illuminate\Support\Facades\Route;
 
      Route::post('user/save', 'User\UserController@save');
 
+    //  login
+    Route::post('user_login', 'User\UserController@user_login');
+
 
 
 

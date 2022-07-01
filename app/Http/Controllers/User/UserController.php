@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -60,6 +61,32 @@ class UserController extends Controller
         return view('user.index');
     }
 
+
+    public function user_login(Request $request){
+
+    //   dd('asa');
+             $this->validate($request, [
+            'email'   => 'required|email',
+            'password'  => 'required|alphaNum|min:3'
+        ]);
+
+        $user_data = array(
+            'email'  => $request->get('email'),
+            'password' => $request->get('password'),
+            'role_id' => 2
+        );
+
+        if(Auth::attempt($user_data))
+        {
+            return redirect('/');
+        }
+        else
+        {
+            return back()->with('error', 'Wrong Login Details');
+        }
+
+
+    }
 
 
 }
