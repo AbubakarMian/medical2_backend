@@ -23,7 +23,7 @@
                 <div class="col-sm-2 col-xs-6">
                     <div class="logoArea">
 
-                        <a href="#"><img src="{!!asset('theme/user_theme/images/logo.jpg')!!}" class="img-responsive" /></a>
+                        <a href="#"><img src="{!!asset('theme/user_theme/images/logo.png')!!}" class="img-responsive" /></a>
                     </div>
                 </div>
                 <div class="col-sm-10 col-xs-6">
@@ -56,6 +56,20 @@
                                 <button type="button" class="btn btn-primary logclick" data-toggle="modal" data-target="#exampleModal">
                                     Login
                                 </button>
+
+                                {{-- <button type="button" class="btn btn-primary logclick" data-toggle="modal" data-target="#exampleModal">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
+                                </button> --}}
+                                
+                                  <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle logclick drup" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
+                                    </button>
+                                    <div class="dropdown-menu dfg" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="profile_courses"><i class="fa fa-book" aria-hidden="true"></i> Courses</a><br>
+                                      <a class="dropdown-item" href="profile_acount"><i class="fa fa-cog" aria-hidden="true"></i> Acount</a>
+                                    </div>
+                                  </div>
 
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -261,7 +275,7 @@
                             <ul>
                                 <li>Home</li>
                                 <li>About Us!</li>
-                                <li><a href="{!!asset('program')!!}">Program</a></li>
+                                <li class="acols"><a href="{!!asset('program')!!}">Program</a></li>
 
                                 <li>Register</li>
                                 <li>Certificates</li>

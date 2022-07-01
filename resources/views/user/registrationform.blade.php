@@ -21,7 +21,7 @@
       <div class="row headrow">
         <div class="col-sm-2 col-xs-6">
           <div class="logoArea">
-            <a href="#"><img src="{!!asset('theme/user_theme/images/logo.jpg')!!}" class="img-responsive" /></a>
+            <a href="#"><img src="{!!asset('theme/user_theme/images/logo.png')!!}" class="img-responsive" /></a>
           </div>
         </div>
         <div class="col-sm-10 col-xs-6">
@@ -32,7 +32,7 @@
               </div>
               <div class="infoboxdata">
                 <h4>1-407-233-1192</h4>
-                <p>Fax Number</p>
+                {{-- <p>Fax Number</p> --}}
               </div>
             </div>
             <div class="infobox">
@@ -41,7 +41,7 @@
               </div>
               <div class="infoboxdata">
                 <h4>help@medical2.com</h4>
-                <p>Email Address</p>
+                {{-- <p>Email Address</p> --}}
               </div>
             </div>
 
