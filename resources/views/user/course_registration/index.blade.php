@@ -4,338 +4,204 @@
     <link href="{!! asset('theme/user_theme/css/newmake.css') !!}" rel="stylesheet">
     <link href="{!! asset('theme/user_theme/css/proceedpayment.css') !!}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v3.8.1/css/all.css">
-    <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" />
 
-    <section>
-        <div class="sliderbannerarea">
-            <div class="sliderplace">
-                <div>
+    <link href="{!! asset('theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
+    {{-- <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" /> --}}
 
 
+    <div class="bannerarea"></div>
+
+
+    <div class="courbandarea">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="regtable">
+                        <table class="table prtable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sno</th>
+                                    <th scope="col">Group</th>
+                                    <th scope="col">Teacher</th>
+                                    <th scope="col">Venu</th>
+                                    <th scope="col">Timming</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">1</td>
+                                    <td>Science</td>
+                                    <td>Sir Ali</td>
+                                    <td>Online</td>
+                                    <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
+                                    <td><a href="{{ asset('save_course_register/?course_id=' . $courses->id) }}"><button
+                                                type="button" class="btn btn-primary porjoin">Register</button></a></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">2</td>
+                                    <td>Science</td>
+                                    <td>Sir Ali</td>
+                                    <td>Canada</td>
+                                    <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
+                                    <td><a href=""{{ asset('save_course_register/?course_id=' . $courses->id) }}><button
+                                                type="button" class="btn btn-primary porjoin">Register</button></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="courbanddata">
+                        <h2>Instructions for Online Course Registration</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
+                            ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
+                            tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum
+                            iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
+                            feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent
+                            luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,
+                            cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                            ali.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                            tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
+                            nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel
+                            illum dolore eu.</p>
+                        <h2>Choose the relevant department for the Course Registration</h2>
+                        <ul>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                            <li>Ut eu metus eu enim egestas congue non a diam.</li>
+                            <li>Mauris vel neque placerat, sodales nisi ac, fermentum nisi.</li>
+                            <li>Donec aliquet nibh maximus, semper arcu vitae, elementum nibh.</li>
+                            <li>Nunc eu leo a lacus maximus placerat at non tortor</li>
+                            <li>Integer ultrices quam sit amet risus tristique, eu pulvinar quam porta</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+
+    <div class="container reviewsback">
+        <div class="row">            
+            <!-- customer reviews list -->
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="d-flex align-items-center justify-content-between mb-4">
                     <div>
-
-                        <div class="bannerarea">
-                            {{-- <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="bannerareadata">
-                                                <h1>Phlebotomy Certification Workshop</h1>
-                                                <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                                                    diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                                    quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                                                    aliquip ex ea commodo consequat.</h3>
-                                                <button type="button" class="btn btn-primary banclick">Learn More</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                        </div>
-
-
-
-
-
+                        <h4 class="mb-0 raterwe">Ratings &amp; Reviews</h4>
                     </div>
-
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section>
-        <div class="collagearea">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        {{-- <button  onclick="openpaymentdiv()"   class="btn btn-primary logclick"
-                style="width: fit-content;color: #fff;
-                background-color: #e63946;
-                border-color: #e63946;">
-             Register
-
-                </button> --}}
-
-
-                        <div class="collageareadata">
-
-
-                            {{-- <section class="login-section">
-                            <div class="container-fluid login-container">
-                                @if ($message = Session::get('success'))
-                                <div class="alert alert-success alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <strong>{{ $message }}</strong>
-                                </div>
-
-                            @elseif( $message = Session::get('error'))
-                                <div class="alert alert-danger text-center">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                                    <p>{{ $message }}</p>
-                                </div>
-                            @endif --}}
-                            <h2>Instructions for Online Course Registration</h2>
-                            <p style="line-height: 29px;">
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-                                tincidunt ut laoreet dolore magna aliquam
-                                erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-                                lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in
-                                hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla
-                                facilisis
-                                at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit
-                                augue duis dolore te feugait nulla facilisi.
-                                Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod
-                                tincidunt ut laoreet dolore magna ali
-                            </p>
-                            <a href="{{ asset('save_course_register/?course_id=' . $courses->id) }}">
-                                <button type="button" class="btn btn-primary "
-                                    style="width: fit-content;   background-color: #e63946;">
-                                    Register
-                                </button>
-                            </a>
-
-                        </div>
+                    <div>
+                        <select class="custom-select">
+                            <option selected="">Sort on</option>
+                            <option value="Most Recent">Most Recent</option>
+                            <option value="Relevant">Relevant</option>
+                            <option value="Newest">Newest</option>
+                        </select>
                     </div>
-
                 </div>
-            </div>
-        </div>
-    </section>
-
-    {{--  --}}
-
-
-    <section>
-        <div class="collagearea">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="collageareadata">
-                            <h2>Choose the relevant department for the Course Registration</h2>
-
-                            <ul
-                                style="line-height: 30px;
-                            color:#337ab7;
-                            font-size: 18px;">
-                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                                <li>Ut eu metus eu enim egestas congue non a diam.</li>
-                                <li>Mauris vel neque placerat, sodales nisi ac, fermentum nisi.</li>
-                                <li>Donec aliquet nibh maximus, semper arcu vitae, elementum nibh.</li>
-                                <li>Nunc eu leo a lacus maximus placerat at non tortor</li>
-                                <li>Integer ultrices quam sit amet risus tristique, eu pulvinar quam porta</li>
-                            </ul>
-
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section>
-        <div class="collagearea">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="collageareadata">
-
-                            <div class="details-section reviews" style="margin-top: 25px;">
-                                <h2 class="details-heading hsize-2">Reviews</h2>
-                                <div class="mb2reviews-review-list">
-
-
-                                    <!-- First review -->
-                                    <div class="mb2reviews-review-item item-46">
-                                        <div class="mb2reviews-review-item-inner">
-                                            <div class="mb2reviews-review-userpicture">
-                                                <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
-                                                    class="userpicture defaultuserpic" width="100" height="100"
-                                                    alt="Picture of Jayden Jones" title="Picture of Jayden Jones">
-                                            </div>
-                                            <div class="mb2reviews-review-details">
-                                                <div class="mb2reviews-review-header">
-                                                    <div class="mb2reviews-stars">
-                                                        <div class="stars-empty">
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                        </div>
-
-                                                        <div class="stars-full" style="width:98;">
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <span class="mb2reviews-username">Jayden J.</span>
-                                                    <span class="mb2reviews-date">22 Mar 2021</span>
-                                                </div>
-                                                <div class="mb2reviews-review-content">
-                                                    Mihi enim erit isdem istis fortasse iam utendum. Dat enim intervalla et
-                                                    relaxat.
-                                                    Hoc est non dividere, sed frangere. Obsecro, inquit, Torquate, haec
-                                                    dicit Epicurus.
-                                                </div>
-                                                <div class="mb2reviews-review-footer">
-                                                    <div class="mb2reviews-review-thumbs">
-                                                        <span class="mb2reviews-review-thumbtext text1">Was this review
-                                                            helpful?</span>
-                                                        <span class="mb2reviews-review-thumbtext text2">Thank you for your
-                                                            feedback</span>
-
-                                                        <!--Second review -->
-                                                        <span class="mb2reviews-review-thumb" data-review="46"
-                                                            data-thumb="yes">
-                                                            <i class="glyphicon glyphicon-thumbs-up"></i></span>
-                                                        <span class="mb2reviews-review-thumb" data-review="46"
-                                                            data-thumb="no">
-                                                            <i class="glyphicon glyphicon-thumbs-down"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="mb2reviews-review-item item-45">
-                                        <div class="mb2reviews-review-item-inner">
-                                            <div class="mb2reviews-review-userpicture">
-                                                <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
-                                                    class="userpicture defaultuserpic" width="100" height="100"
-                                                    alt="Picture of Luca Fischer" title="Picture of Luca Fischer">
-                                            </div>
-                                            <div class="mb2reviews-review-details">
-                                                <div class="mb2reviews-review-header">
-                                                    <div class="mb2reviews-stars">
-                                                        <div class="stars-empty">
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                        </div>
-
-                                                        <div class="stars-full" style="width:94%;">
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                        </div>
-                                                    </div><span class="mb2reviews-username">Luca F.</span>
-                                                    <span class="mb2reviews-date">22 Mar 2021</span>
-                                                </div>
-                                                <div class="mb2reviews-review-content">
-                                                    Istam voluptatem perpetuam quis potest praestare sapienti. Itaque contra
-                                                    est, ac dicitis.
-                                                    Mihi enim erit isdem istis fortasse iam utendum. Dat enim intervalla et
-                                                    relaxat.</div>
-                                                <div class="mb2reviews-review-footer">
-                                                    <div class="mb2reviews-review-thumbs">
-                                                        <span class="mb2reviews-review-thumbtext text1">Was this review
-                                                            helpful?</span>
-                                                        <span class="mb2reviews-review-thumbtext text2">Thank you for your
-                                                            feedback</span>
-
-
-                                                        <!--Third review -->
-                                                        <span class="mb2reviews-review-thumb" data-review="45"
-                                                            data-thumb="yes">
-                                                            <i class="glyphicon glyphicon-thumbs-up"></i></span>
-
-                                                        <span class="mb2reviews-review-thumb" data-review="45"
-                                                            data-thumb="no">
-                                                            <i class="glyphicon glyphicon-thumbs-down"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb2reviews-review-item item-44">
-                                        <div class="mb2reviews-review-item-inner">
-                                            <div class="mb2reviews-review-userpicture">
-                                                <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
-                                                    class="userpicture defaultuserpic" width="100" height="100"
-                                                    alt="Picture of Jayden Brown" title="Picture of Jayden Brown">
-                                            </div>
-                                            <div class="mb2reviews-review-details">
-                                                <div class="mb2reviews-review-header">
-                                                    <div class="mb2reviews-stars">
-                                                        <div class="stars-empty">
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                            <i class="glyphicon glyphicon-star-empty"></i>
-                                                        </div>
-
-                                                        <div class="stars-full" style="width:81%;">
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                        </div>
-                                                    </div>
-                                                    <span class="mb2reviews-username">Jayden B.</span><span
-                                                        class="mb2reviews-date">22 Mar 2021</span>
-                                                </div>
-                                                <div class="mb2reviews-review-content">
-                                                    Dat enim intervalla et relaxat. Hoc est non dividere, sed frangere.
-                                                    Obsecro, inquit,
-                                                    Torquate, haec dicit Epicurus.</div>
-                                                <div class="mb2reviews-review-footer">
-                                                    <div class="mb2reviews-review-thumbs">
-                                                        <span class="mb2reviews-review-thumbtext text1">Was this review
-                                                            helpful?</span>
-                                                        <span class="mb2reviews-review-thumbtext text2">Thank you for your
-                                                            feedback</span>
-
-
-                                                        <span class="mb2reviews-review-thumb" data-review="44"
-                                                            data-thumb="yes">
-                                                            <i class="glyphicon glyphicon-thumbs-up"></i></span>
-                                                        <span class="mb2reviews-review-thumb" data-review="44"
-                                                            data-thumb="no" style="margin-bottom: 45px;">
-                                                            <i class="glyphicon glyphicon-thumbs-down"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb2reviews-more-wrap"></div>
-
+                <div class="all_reviews_div">
+                    <!-- reviews -->
+                    <div class="mb-4 pb-4 border-bottom">
+                        <div class="d-flex mb-3 align-items-center picturearea">
+                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1" alt="" class="rounded-circle avatar-lg">
+                            <div class="ml-2">
+                                <h5 class="mb-1">
+                                    samirabenmahria <img src="images/verified.svg" alt="">
+                                </h5>
+                                <p class="font-12 mb-0">
+                                    <span>United Arab Emirates</span> <span>July 27, 2021</span>
+                                </p>
                             </div>
-
-
-
-
-
-
-
                         </div>
+                        <div class="mb-1">
+                            <span class="font-14 mr-2">
+                                <span class="fa fa-star yellowstar"></span>
+                                <span class="fa fa-star yellowstar"></span>
+                                <span class="fa fa-star yellowstar"></span>
+                                <span class="fa fa-star yellowstar"></span>
+
+                            </span>                           
+                        </div>
+                        <div class="mb-1">                           
+                            <span class="h5">Order FO3C86E4AE43</span>
+                        </div>
+                        <p class="pictureadata">
+                            I have been using their services for the past 2 months and I can highly recommend them. </p>
 
                     </div>
+                    <!-- reviews -->
+                    <!-- reviews -->
+                    <div class="mb-4 pb-4 border-bottom">
+                        <div class="d-flex mb-3 align-items-center picturearea">
+                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1" alt="" class="rounded-circle avatar-lg">
+                            <div class="ml-2">
+                                <h5 class="mb-1">
+                                    samirabenmahria <img src="images/verified.svg" alt="">
+                                </h5>
+                                <p class="font-12 mb-0">
+                                    <span>United Arab Emirates</span> <span>June 10, 2021</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <span class="font-14 mr-2">
+                                <span class="fa fa-star yellowstar"></span>
+                                <span class="fa fa-star yellowstar"></span>
+                                <span class="fa fa-star yellowstar"></span>
+                                <span class="fa fa-star yellowstar"></span>
+
+                            </span>                           
+                        </div>
+                        <div class="mb-1">                           
+                            <span class="h5">Order FO3C86E4AE43</span>
+                        </div>
+                        <p class="pictureadata">
+                            Very professional and the communication is fast! The team understand the needs of the customer.
+                            I can highly recommend Hatinco! </p>
+
+                    </div>
+                    <!-- reviews -->
+                    <!-- reviews -->
+                    <div class="mb-4 pb-4 border-bottom">
+                        <div class="d-flex mb-3 align-items-center picturearea">
+                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1" alt="" class="rounded-circle avatar-lg">
+                            <div class="ml-2">
+                                <h5 class="mb-1">
+                                    samirabenmahria <img src="images/verified.svg" alt="">
+                                </h5>
+                                <p class="font-12 mb-0">
+                                    <span>United Arab Emirates</span> <span>June 10, 2021</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <span class="font-14 mr-2">
+                                <span class="fa fa-star yellowstar"></span>
+                                <span class="fa fa-star yellowstar"></span>
+                                <span class="fa fa-star yellowstar"></span>
+                                <span class="fa fa-star yellowstar"></span>
+
+                            </span>                           
+                        </div>
+                        <div class="mb-1">                           
+                            <span class="h5">Order FO3C86E4AE43</span>
+                        </div>
+                        <p class="pictureadata">
+                            Very professional and the communication is fast! The team understand the needs of the customer.
+                            I can highly recommend Hatinco! </p>
+
+                    </div>
+                    <!-- reviews -->
+                    <!-- reviews -->
+                    
+                </div>
+                <button id="get_reviews" class="btn btn-primary revikewclick">Read More Reviews</button>
+            </div>
+        </div>
+    </div>
 
 
-
-
-
-    </section>
 
 
 
