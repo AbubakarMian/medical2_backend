@@ -19,13 +19,69 @@ html {
     -ms-border-radius: .15rem;
     border-radius: 0.15rem;
 }
-
+.rating {
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: 1px solid #a2a2a2;
+    margin: 13px 0px;
+    background: white;
+}
+.rating:hover {
+    -webkit-box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);
+}
+h4.title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 30px !important;   
+}
+.teacher {
+    font-size: 13px;
+    line-height: 19px;
+    margin-bottom: 10px;
+    color: black;
+}
+h4.title a {   
+    color: black !important;
+}
  /* .container {
     width: 1587px;
 } */
-
+.container.catdeta {
+    padding-bottom: 50px;
+}
+.text {
+    background-color: rgb(41 41 116) !important;
+    font-size: 16px;
+    padding: 10px 20px !important;
+}
+.text a{
+   color: white !important;
+}
 .mb2reviews-stars.sm {
     color: #fb8b24;
+    display: contents;
+}
+span.ratingnum {
+    margin-right: 10px;
+}
+span.ratingcount {
+    margin-left: -90px;
+}
+.price-container {
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 7px;
+    color: gray;
+}
+.course-rating {
+    display: flex;
+}
+span.currency {
+    font-size: 13px;
+    font-weight: 700;
+    color: black;
 }
 
 .img-hov {
