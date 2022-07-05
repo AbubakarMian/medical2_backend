@@ -57,7 +57,7 @@
             @foreach ($question->choice as $key => $ch)
             <option class="option-file" value="{{ $key + 1 }}">Choice # {{ $key + 1 }}</option>
             @endforeach
-            
+
             @endif
         </select>
     </div>
@@ -112,7 +112,7 @@
             id: 'list_courses',
             header: '<h4>Courses</h4>',
             body: getCoursesListTable(),
-            footer: `                                
+            footer: `
 
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             `,
@@ -131,10 +131,10 @@
 
         @foreach($courses_list as $cl)
             table = table + '<tr>';
-           
+
             table = table + '</td>';
-            
-            <?php 
+
+            <?php
                 $checked = '';
                 if(in_array($cl->id,$question_course)){
                     $checked = 'checked';
@@ -160,7 +160,7 @@
         var values_selected_courses = [];
 
 
-        
+
         $("input:checkbox[class=selected_courses_checkbox]:checked").each(function(){
             values_selected_courses.push($(this).val());
         });
@@ -169,7 +169,7 @@
         var selected_courses_csv = values_selected_courses.join(',');
         console.log('selected_courses',selected_courses_csv);
         $('#selected_courses').val(selected_courses_csv);
-        
+
         // return false;
     }
 
