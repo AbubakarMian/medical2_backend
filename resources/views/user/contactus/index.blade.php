@@ -120,7 +120,7 @@
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
-                                    <h4>Mailing ADDRESS</h4>
+                                    {{-- <h4>Mailing ADDRESS</h4> --}}
                                     <p style="margin-top: 16px;"> 416 N.H. Street Suites 5 San,<br>Bernardino CA 92410 USA.
                                     </p>
                                 </div>
@@ -132,7 +132,7 @@
                                     <i class="fa fa-phone" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
-                                    <h4>PHONE NUMBER</h4>
+                                    {{-- <h4>PHONE NUMBER</h4> --}}
                                     <p style="margin-top: 16px;">+1(909) 381 9095</p>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                                     <i class="fa fa-fax" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
-                                    <h4>FAX NUMBER</h4>
+                                    {{-- <h4>FAX NUMBER</h4> --}}
                                     <p style="margin-top: 16px;">+234(70) 20319921</p>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
-                                    <h4>EMAIL ADDRESS</h4>
+                                    {{-- <h4>EMAIL ADDRESS</h4> --}}
                                     <p style="margin-top: 16px;">contactus@hrsedu.com</p>
                                 </div>
                             </div>
@@ -165,7 +165,7 @@
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
-                                    <h4>EMAIL ADDRESS</h4>
+                                    {{-- <h4>EMAIL ADDRESS</h4> --}}
                                     <p style="margin-top: 16px;">payment@hrsedu.com</p>
                                 </div>
                             </div>
@@ -176,7 +176,7 @@
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
-                                    <h4>EMAIL ADDRESS</h4>
+                                    {{-- <h4>EMAIL ADDRESS</h4> --}}
                                     <p style="margin-top: 16px;">sda@medical2.com</p>
                                 </div>
                             </div>

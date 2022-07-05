@@ -22,7 +22,7 @@
 ) !!}
 
                             </div>
-                            <button type="submit" class="btn btn-primary resub">Submit</button>
+                            <button type="submit" class="btn btn-primary resubg">Submit</button>
 
                         </div>
                     </form>

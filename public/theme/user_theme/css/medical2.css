@@ -43,12 +43,12 @@ h4 {
   border-radius: 0px;
   margin-top: 20px;
   width: 120px;
-  background-color: #292974;
-  border-color: #292974;
+  background-color: #f1582b;
+  border-color: #f1582b;
   color: white;
   margin: 3px;
   height: 34px;
-  padding: 8px 5px;
+  padding: 6px 5px;
 }
 .logclic {
   border-radius: 0px;
@@ -56,6 +56,12 @@ h4 {
   width: 120px;
   background-color: #292974;
   border-color: #292974;
+}
+.infoboximg i {
+  margin-top: 20px;
+  font-size: 30px;
+  margin-right: 10px;
+  color: #f1582b;
 }
 .logoArea img {
   /* height: 70px;
