@@ -338,7 +338,7 @@ h4 {
   padding: 50px;
 }
 .bannerarea {
-  background-image: url(../images/backgound_course_register.png);
+  background-image: url(../images/backgound_course_register.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
@@ -434,7 +434,10 @@ span.forspan {
   border: 1px solid #a2a2a2;
   /* margin: 13px 0px; */
   background: white;
-  margin-top: 50px;
+  /* margin-top: 50px; */
+}
+.courbandarea {
+  padding-top: 50px;
 }
 .loginheader h3 {
   text-align: center;

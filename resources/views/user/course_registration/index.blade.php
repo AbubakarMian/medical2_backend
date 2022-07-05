@@ -16,6 +16,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
+                    <div class="courbanddata">
+                        <h2>Select Your Group</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
                     <div class="regtable">
                         <table class="table prtable">
                             <thead>
