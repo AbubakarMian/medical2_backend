@@ -25,7 +25,7 @@ class QuestionController extends Controller
         // $question = Question::orderBy('created_at', 'DESC')->paginate(10);
         // $question = Question::get();
         // // dd(  $question );
-        return view('admin.question.index');  
+        return view('admin.question.index');
     }
 
     public function getQuestion($id = 0)
@@ -42,9 +42,9 @@ class QuestionController extends Controller
             $question = $question->where('courses_id',$course_id);
         }
         $question = $question->orderby('id', 'desc')->get();
-        
+
         $questionData['data'] = $question;
-        
+
         echo json_encode($questionData );
     }
 
@@ -60,7 +60,7 @@ class QuestionController extends Controller
 
     public function save(Request $request)
     {
-        
+
         $questions = new Question();
         $this->add_or_update($request, $questions);
 
@@ -88,7 +88,7 @@ class QuestionController extends Controller
         foreach ($questions->choice as $key => $ch) {
             $choices =  Choice::destroy($ch->id);
         }
-        $this->add_or_update($request, $questions);  
+        $this->add_or_update($request, $questions);
         return redirect('admin/question');
     }
 
@@ -113,7 +113,7 @@ class QuestionController extends Controller
             $question_course = new Question_Course();
             $question_course->question_id = $questions->id;
             $question_course->courses_id = $c;
-            $question_course->save(); 
+            $question_course->save();
         }
     }
 

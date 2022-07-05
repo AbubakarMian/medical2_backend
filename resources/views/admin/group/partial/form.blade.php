@@ -42,14 +42,51 @@
     </div>
 </div>
 
+{{--    --}}
+
+<div class="form-group">
+
+    <div class="form-group">
+        <label for="correct-choice">Select Correct Choice</label>
+        <select class="form-control" id="correct-choice" name="correct_choice" required>
+            {{--  @if ($question->choice)
+            @foreach ($question->choice as $key => $ch)
+            <option class="option-file" value="{{ $key + 1 }}">Choice # {{ $key + 1 }}</option>
+            @endforeach
+
+            @endif  --}}
+        </select>
+    </div>
+</div>
+<div class="form-group">
+
+    <div class="form-group">
+        <div>
+            <input type="button" value="+ Add day" class="btn btn-info" onclick="addday();">
+            <input type="button" value="Remove day" class="btn btn-danger" onclick="removeday();">
+        </div>
+    </div>
+</div>
+<div>
+
+    <div class="choice-file">
+        <div class="choice-input">
+            {{--  @if ($question->choice)
+            @foreach ($question->choice as $key => $ch)
+            <lable>Choice # {{ $key + 1 }}</lable>
+            <input type="text" class="add form-control" name="choices[]" value="{{ $ch->choice }}" style="margin-top: 10px; margin-bottom: 5px;">
+            @endforeach
+            @endif  --}}
+        </div>
+    </div>
+</div>
 
 
 
 
 
 
-
-
+{{--    --}}
 <span id="err" class="error-product"></span>
 
 
@@ -75,6 +112,41 @@
     function validateForm() {
         return true;
     }
+
+    {{--    --}}
+    function addday() {
+        var nextdivnum = $('.add').length + 1;
+        console.log('sfdffff', nextdivnum)
+        $('.choice-file').append(radioBtnHtml(nextdivnum));
+        $('#correct-choice').append(optionHtml(nextdivnum));
+    }
+
+    function radioBtnHtml(nextdivnum) {
+        return `<div class="choice-input">
+
+                                <lable>Select Day </lable>
+                                <input type="text" required class="add form-control" name="choices[]" style="margin-top: 10px; margin-bottom: 5px;">
+                                </div>
+                            `
+    }
+
+    function removeday() {
+        console.log('length', $('.choice-input').length);
+        if ($('.choice-input').length < 2) {
+            return;
+        }
+        $('.choice-input:last').remove();
+        $('.option-file:last').remove();
+    }
+
+    function optionHtml(no) {
+        return `
+                            <option class ="option-file" value="` + no + `">Choice # ` + no + `</option>
+                            `
+    }
+
+
+    {{--    --}}
 
 </script>
 
