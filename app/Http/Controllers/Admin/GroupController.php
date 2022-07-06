@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Model\Course_Register;
 use App\Model\Courses;
 use App\Model\Group;
+use App\Model\Group_Timings;
 use App\Model\Group_users;
+use App\Model\Day;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -29,12 +31,14 @@ class GroupController extends Controller
     {
         $control = 'create';
         $course_id = Courses::pluck('full_name', 'id');
-        return view('admin.group.create', compact('control',  'course_id'));
+        $full_days = Day::pluck('day', 'id');
+        // dd($full_days);
+        return view('admin.group.create', compact('control',  'course_id','full_days'));
     }
 
     public function save(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $group = new Group();
         $this->add_or_update($request, $group);
         return redirect('admin/group');
@@ -69,6 +73,22 @@ class GroupController extends Controller
         $group->start_date = $start_date_timestamp;
         $group->end_date = $end_date_timestamp;
         $group->save();
+
+
+        foreach($request->day as $d){
+         $group_timings = new Group_Timings();
+         $group_timings->course_id = $request->courses_id; 
+         $group_timings->course_id = $request->courses_id; 
+
+        }
+        foreach($request->start_time as $s){
+
+            
+        }
+        foreach($request->end_time as $e){
+
+            
+        }
         return redirect()->back();
     }
 
