@@ -46,7 +46,7 @@
 
 <div class="form-group">
 
-    <div class="form-group">
+    <div class="form-group" hidden>
         <label for="correct-choice">Select Correct Choice</label>
         <select class="form-control" id="correct-choice" name="correct_choice" required>
             {{--  @if ($question->choice)
@@ -125,7 +125,37 @@
         return `<div class="choice-input">
 
                                 <lable>Select Day </lable>
-                                <input type="text" required class="add form-control" name="choices[]" style="margin-top: 10px; margin-bottom: 5px;">
+     <div class="form-group">
+   
+
+    {!!Form::select('day[]',$full_days,null,['class' => 'form-control',
+    'data-parsley-required'=>'true',
+    'data-parsley-trigger'=>'change',
+    'placeholder'=>'Select Day','required',
+    'maxlength'=>"100"])!!}
+
+</div>
+
+<div class="form-group">
+    {!! Form::label('start_date','Start Date') !!}
+    <div>
+        {!! Form::time('start_time[]',  null, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'Start Date',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('end_date','End Date') !!}
+    <div>
+        {!! Form::time('end_time[]',  null, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'End Date',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
                                 </div>
                             `
     }
@@ -141,7 +171,7 @@
 
     function optionHtml(no) {
         return `
-                            <option class ="option-file" value="` + no + `">Choice # ` + no + `</option>
+                            <option class ="option-file"  value="` + no + `">Choice # ` + no + `</option>
                             `
     }
 
