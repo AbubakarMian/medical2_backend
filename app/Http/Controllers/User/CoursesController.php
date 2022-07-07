@@ -5,7 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Model\Category;
 use App\Model\Courses;
+use App\Model\Group;
 use App\Model\Course_Register;
+use App\Model\Group_Timings;
 use App\Model\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,11 +54,14 @@ class CoursesController extends Controller
     // course/registration
     public function course_registration(Request $request)
     {
-
+   
         $courses_id = $request->course_id;
-        $courses = Courses::find($courses_id);
+        $courses = Courses::with('group')->find($courses_id);
+        // dd( $courses);
+        $courses_groups = Group::with('group_timings')->whereHas('group_timings')->where('courses_id',$courses->id)->get();
+        // dd($courses_groups);
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
-        return view('user.course_registration.index', compact('courses', 'stripe_key'));
+        return view('user.course_registration.index', compact('courses', 'stripe_key','courses_groups'));
     }
 
     // user_save_course_register

@@ -13,4 +13,8 @@ class Group extends Model
    {
        return $this->hasOne('App\Model\Courses', 'id', 'courses_id');
    }
+   public function group_timings()
+   {
+       return $this->hasMany('App\Model\Group_Timings', 'group_id', 'id');
+   }
 }

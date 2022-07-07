@@ -17,7 +17,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="courbanddata">
-                        <h2>Select Your Group</h2>
+                        <h2>Select Your {{ucwords($courses->full_name )}} Course Group</h2>
+
+                     
                     </div>
                 </div>
             </div>
@@ -27,25 +29,68 @@
                         <table class="table prtable">
                             <thead>
                                 <tr>
-                                    <th scope="col">Sno</th>
+                                  
                                     <th scope="col">Group</th>
-                                    <th scope="col">Teacher</th>
-                                    <th scope="col">Venu</th>
-                                    <th scope="col">Timming</th>
-                                    <th scope="col">Action</th>
+                                    {{--  <th scope="col">Day</th>  --}}
+                                    {{--  <th scope="col">Teacher</th>  --}}
+                                    {{--  <th scope="col">Venu</th>  --}}
+                                    <th scope="col">Start Time</th>
+                                    <th scope="col">End Time</th>
+                                  
+                               
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($courses_groups as $cg)
+                               
+                                
                                 <tr>
-                                    <td scope="row">1</td>
-                                    <td>Science</td>
-                                    <td>Sir Ali</td>
-                                    <td>Online</td>
-                                    <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
-                                    <td><a href="{{ asset('save_course_register/?course_id=' . $courses->id) }}"><button
-                                                type="button" class="btn btn-primary porjoin">Register</button></a></td>
+                                    <td class="arline"></td>
+                                    <td class="my_group" style="font-size: 20px;border: 1px solid WHITE;
+                                    border-bottom: 1px solid #dddddd;">{{ ucwords($cg->name) }}   Group</td>                              
+                                    <td></td>
                                 </tr>
+                              
+
+                                @foreach($cg->group_timings as $key => $gt)
+                               
+                                <tr>  
+                                    <td>{{ ucwords($gt->day) }}</td>
+                                    {{--  <td>Sir Ali</td>  --}}
+                                    <td> {{ date('h:i:s',$gt->start_time ) }}</td>
+                               
+                                    <td> {{ date('h:i:s',$gt->end_time ) }}</td>
+                                </tr>
+                                @endforeach
+                           
                                 <tr>
+                                    <td></td>
+                                <td>
+                                    
+                            <a href="{{ asset('save_course_register/?course_id=' . $courses->id) }}" style="line-height: 35px;">
+                                
+                                <button
+                                    type="button" class="btn btn-primary" style="
+                                    border-radius: 8px;
+                                    font-size: 14px;
+                                    height: 32px;
+                                    margin-bottom: 10px;
+                                    font-weight: 600;
+                                    background: #292974;
+                                    border-color: #292974;
+                                    color: white;">Register</button>
+                                
+                                </a>
+                                
+                                </td>   
+                                <td></td>
+                            </tr>
+                         
+                               
+
+                                @endforeach
+                                
+                                {{--  <tr>
                                     <td scope="row">2</td>
                                     <td>Science</td>
                                     <td>Sir Ali</td>
@@ -53,7 +98,7 @@
                                     <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
                                     <td><a href=""{{ asset('save_course_register/?course_id=' . $courses->id) }}><button
                                                 type="button" class="btn btn-primary porjoin">Register</button></a></td>
-                                </tr>
+                                </tr>  --}}
                             </tbody>
                         </table>
                     </div>
@@ -88,10 +133,10 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
 
     <div class="container reviewsback">
-        <div class="row">            
+        <div class="row">
             <!-- customer reviews list -->
             <div class="col-lg-12 col-md-12 col-12">
                 <div class="d-flex align-items-center justify-content-between mb-4">
@@ -128,9 +173,9 @@
                                 <span class="fa fa-star yellowstar"></span>
                                 <span class="fa fa-star yellowstar"></span>
 
-                            </span>                           
+                            </span>
                         </div>
-                        <div class="mb-1">                           
+                        <div class="mb-1">
                             <span class="h5">Order FO3C86E4AE43</span>
                         </div>
                         <p class="pictureadata">
@@ -158,9 +203,9 @@
                                 <span class="fa fa-star yellowstar"></span>
                                 <span class="fa fa-star yellowstar"></span>
 
-                            </span>                           
+                            </span>
                         </div>
-                        <div class="mb-1">                           
+                        <div class="mb-1">
                             <span class="h5">Order FO3C86E4AE43</span>
                         </div>
                         <p class="pictureadata">
@@ -189,9 +234,9 @@
                                 <span class="fa fa-star yellowstar"></span>
                                 <span class="fa fa-star yellowstar"></span>
 
-                            </span>                           
+                            </span>
                         </div>
-                        <div class="mb-1">                           
+                        <div class="mb-1">
                             <span class="h5">Order FO3C86E4AE43</span>
                         </div>
                         <p class="pictureadata">
@@ -201,7 +246,7 @@
                     </div>
                     <!-- reviews -->
                     <!-- reviews -->
-                    
+
                 </div>
                 <button id="get_reviews" class="btn btn-primary revikewclick">Read More Reviews</button>
             </div>

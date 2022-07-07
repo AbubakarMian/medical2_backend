@@ -14,4 +14,7 @@ class Group_Timings extends Model
    {
        return $this->hasOne('App\Model\Courses', 'id', 'courses_id');
    }
+   public function group(){
+    return $this->hasOne('App\Model\Group','id','group_id');
+}
 }

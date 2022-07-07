@@ -124,17 +124,17 @@
     function radioBtnHtml(nextdivnum) {
         return `<div class="choice-input">
 
-                                <lable>Select Day </lable>
-     <div class="form-group">
-   
+            <label for="cars">Choose a Class Day</label>
 
-    {!!Form::select('day[]',$full_days,null,['class' => 'form-control',
-    'data-parsley-required'=>'true',
-    'data-parsley-trigger'=>'change',
-    'placeholder'=>'Select Day','required',
-    'maxlength'=>"100"])!!}
-
-</div>
+            <select name="day[]" id="cars" class="form-control">
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+              <option value="sunday">Sunday</option>
+            </select>
 
 <div class="form-group">
     {!! Form::label('start_date','Start Date') !!}
@@ -142,7 +142,7 @@
         {!! Form::time('start_time[]',  null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Start Date',
+        'placeholder'=>'Start Time',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
@@ -152,7 +152,7 @@
         {!! Form::time('end_time[]',  null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'End Date',
+        'placeholder'=>'End Time',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
