@@ -17,9 +17,9 @@ class CreateGroupTimingsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('course_id')->nullable()->default(0);
             $table->bigInteger('group_id')->nullable()->default(0);
-            $table->string('day')->nullable()->default(null);
-             $table->bigInteger('start_date')->nullable()->default(0);
-            $table->bigInteger('end_date')->nullable()->default(0);
+            $table->string('day',250)->nullable()->default(null);
+            $table->bigInteger('start_time')->nullable()->default(0);
+            $table->bigInteger('end_time')->nullable()->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
