@@ -24,11 +24,11 @@ Course Register
 
 	<thead>
 	<tr>
-		<th>User Name</th>
-		<th>Course Name</th>
+		<th>User </th>
+		<th>Course </th>
 		<th>Group  </th>
-		<th>Group  Name</th>
-		<th>Payment Status</th>
+		<th>Select Group  </th>
+		<th>Payment </th>
 
 
 
@@ -54,7 +54,7 @@ Course Register
       </div>
       <div class="modal-body">
         <table id="coursesTableAppend" style="opacity: 0">
-            {{--    --}}
+           
 
             <thead>
             <tr>
@@ -91,6 +91,10 @@ Course Register
     $(document).ready(function() {
 
         fetchRecords();
+        $('#coursesTableAppend').DataTable({
+            dom: '<"top_datatable"B>Lftipr',
+            
+        });
 
         function fetchRecords() {
             $('#myModal').modal('hide');
@@ -122,11 +126,11 @@ Course Register
 
                         var is_paids =  response['data'][i].is_paid;
 						if(is_paids){
-                            is_paid = 'Yes'
+                            is_paid = 'Paid'
 
 						}
 						else{
-							is_paid = 'No'
+							is_paid = 'Pending'
 
 						}
                         console.log('qqqqqqqqqoooooooooo',response['data'][i]);
@@ -156,9 +160,9 @@ Course Register
     });
 
  {{--  courses_group_request  --}}
- $('#coursesTableAppend').DataTable({
-    dom: '<"top_datatable"B>lftipr',
-});
+
+
+
     function courses_group_request(id) {
 
         $.ajax({
@@ -169,10 +173,10 @@ Course Register
             success: function(response) {
                 $('#myModal').modal('show');
                 $("#coursesTableAppend").css("opacity", 1);
-                {{--    --}}
+              
                 var groups = response['groups'].length;
-                 console.log('abbbbbbbbbbbbbb',response);
-                 {{--    --}}
+                 console.log('abbbbbbbbbbbbbbiiii',response);
+            
                  var tr_str = '';
 
                 for (var i = 0; i < groups; i++) {
@@ -189,7 +193,7 @@ Course Register
                     {{--  var update_course_group = `<a class="btn btn-info" onclick="update_course_group(` + response['register_course'].id + `)" >Group</a>`;  --}}
 
 
-                    var update_course_group = `  <input type="radio" name="radioName" onclick="update_course_group(` +response['groups'][i].id +`,`+ response['register_course'].id + `)" /> `;
+                   var  update_course_group = `  <input type="radio" name="radioName" checked="" class="my_group_radio_+response['groups'][i].id!!}" onclick="update_course_group_fun(` +response['groups'][i].id +`,`+ response['register_course'].id + `)" /> `;
 
 
 
@@ -216,7 +220,9 @@ Course Register
     {{--  group update  --}}
 
 
-    function update_course_group(group_id,register_course_id) {
+    function update_course_group_fun(group_id,register_course_id) {
+        console.log('group_idgroup_idgroup_id',group_id);
+        console.log('register_course_idregister_course_id',register_course_id);
 
         $.ajax({
 
@@ -231,10 +237,18 @@ Course Register
             success: function(response) {
 
 
-                {{-- RESPONSE   --}}
+             
 
                  console.log('abbbbbbbbbbbbbb',response);
-                 {{--    --}}
+                 console.log('group',response.register_course.group_id);
+                 var selected_group_id = response.register_course.group_id;
+
+               update_course_groupes = $('.my_group_radio_'+response.register_course.group_id).prop('checked', true);
+
+                 
+
+                
+               
 
 
 
