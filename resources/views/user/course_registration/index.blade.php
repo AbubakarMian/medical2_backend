@@ -30,8 +30,8 @@
                             <thead>
                                 <tr>
                                   
-                                    <th scope="col">Group</th>
-                                    {{--  <th scope="col">Day</th>  --}}
+                                    <th scope="col">Day</th>
+                                    {{--  <th scope="col">Group</th>  --}}
                                     {{--  <th scope="col">Teacher</th>  --}}
                                     {{--  <th scope="col">Venu</th>  --}}
                                     <th scope="col">Start Time</th>

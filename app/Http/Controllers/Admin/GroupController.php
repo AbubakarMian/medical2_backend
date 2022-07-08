@@ -64,12 +64,14 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         $group = Group::find($id);
+        $group_timings =  Group_Timings::where('group_id',  $group->id)->delete();
+
         $this->add_or_update($request, $group);
         return Redirect('admin/group');
     }
     public function add_or_update(Request $request, $group)
     {
-
+// dd($request->all());
         $start_date_timestamp = strtotime($request->start_date); // start date
         $end_date_timestamp = strtotime($request->end_date); //end date
         // dd($start_date_timestamp);
