@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Route;
      // courses/details page
     Route::get('courses/details', 'User\CoursesController@courses_details');
 
-    // course/registration
+    // course_register
     Route::get('course/registration', 'User\CoursesController@course_registration');
     // save_course_register
     Route::get('save_course_register', 'User\CoursesController@user_save_course_register');

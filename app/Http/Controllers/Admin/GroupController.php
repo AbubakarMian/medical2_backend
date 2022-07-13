@@ -57,7 +57,7 @@ class GroupController extends Controller
             'course_id',
             'group_timings',
             'full_days',
-         
+
         ));
     }
 
