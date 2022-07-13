@@ -103,6 +103,12 @@ class AdminController extends Controller
         ];
         $modules[]= [
 
+            'url'=>'admin/teacher',
+            'title'=>'Teacher'
+
+        ];
+        $modules[]= [
+
             'url'=>'admin/settings',
             'title'=>'Settings'
 

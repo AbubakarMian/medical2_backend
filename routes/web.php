@@ -138,6 +138,18 @@ Route::post('admin/books/delete/{id}', 'Admin\BooksController@destroy_undestroy'
 
 
 
+//  =================================  teacher ==========================
+
+Route::get('admin/teacher', 'Admin\TeacherController@index')->name('teacher.index');
+
+Route::get('admin/teacher/create', 'Admin\TeacherController@create')->name('teacher.create'); //add
+Route::post('admin/teacher/save', 'Admin\TeacherController@save')->name('teacher.save');
+
+Route::get('admin/teacher/edit/{id}', 'Admin\TeacherController@edit')->name('teacher.edit');
+Route::post('admin/teacher/update/{id}', 'Admin\TeacherController@update')->name('teacher.update');
+
+Route::post('admin/teacher/delete/{id}', 'Admin\TeacherController@destroy_undestroy')->name('teacher.delete');
+
 
   // question list open
   Route::get('admin/question_list/{id}', 'Admin\QuizController@question_list')->name('quiz.question_list');

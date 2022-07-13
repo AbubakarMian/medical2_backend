@@ -17,9 +17,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="courbanddata">
-                        <h2>Select Your {{ucwords($courses->full_name )}} Course Group</h2>
+                        <h2>Select Your {{ ucwords($courses->full_name) }} Course Group</h2>
 
-                     
+
                     </div>
                 </div>
             </div>
@@ -29,68 +29,103 @@
                         <table class="table prtable">
                             <thead>
                                 <tr>
-                                  
+                                    <th scope="col">Group</th>
+                                    <th scope="col">Teacher</th>
                                     <th scope="col">Day</th>
-                                    {{--  <th scope="col">Group</th>  --}}
-                                    {{--  <th scope="col">Teacher</th>  --}}
-                                    {{--  <th scope="col">Venu</th>  --}}
+
+                                    {{-- <th scope="col">Teacher</th> --}}
+                                    {{-- <th scope="col">Venu</th> --}}
                                     <th scope="col">Start Time</th>
                                     <th scope="col">End Time</th>
-                                  
-                               
+
+
+
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($courses_groups as $cg)
-                               
-                                
-                                <tr>
-                                    <td class="arline"></td>
-                                    <td class="my_group" style="font-size: 20px;border: 1px solid WHITE;
-                                    border-bottom: 1px solid #dddddd;">{{ ucwords($cg->name) }}   Group</td>                              
-                                    <td></td>
-                                </tr>
-                              
+                                @foreach ($courses_groups as $cg)
+                                    <tr>
+                                        <td class="my_group" style="font-size: 20px;font-family: fantasy;"
 
-                                @foreach($cg->group_timings as $key => $gt)
-                               
-                                <tr>  
-                                    <td>{{ ucwords($gt->day) }}</td>
-                                    {{--  <td>Sir Ali</td>  --}}
-                                    <td> {{ date('h:i:s',$gt->start_time ) }}</td>
-                               
-                                    <td> {{ date('h:i:s',$gt->end_time ) }}</td>
-                                </tr>
-                                @endforeach
-                           
-                                <tr>
+                                 >
+                                            {{ ucwords($cg->name) }} </td>
+
+                                            {{--  teacher  --}}
+                                            <td style="font-size: 20px;font-family: fantasy;">
+                                    {{ ucwords($cg->teacher->name) }}
+                                        </td>
+                                        <td
+                                            style="font-size: 20px;border: 1px solid WHITE;
+                                    border-bottom: 1px solid #dddddd;">
+                                        </td>
+                                        <td
+                                            style="font-size: 20px;border: 1px solid WHITE;
+                                    border-bottom: 1px solid #dddddd;">
+                                        </td>
+                                        <td
+                                            style="font-size: 20px;border: 1px solid WHITE;
+                                    border-bottom: 1px solid #dddddd;">
+                                        </td>
+
+
+                                    </tr>
+
+
+                                    @foreach ($cg->group_timings as $key => $gt)
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ ucwords($gt->day) }}</td>
+                                            {{-- <td>Sir Ali</td> --}}
+                                            <td> {{ date('h:i:s', $gt->start_time) }}</td>
+
+                                            <td> {{ date('h:i:s', $gt->end_time) }}</td>
+                                            {{--  <td>
+
+
+                                            </td>  --}}
+                                        </tr>
+                                    @endforeach
+
+
+
+                                        <td>
+                                            <a href="{{ asset('save_course_register/?course_id=' . $courses->id) }}"
+                                                style="line-height: 35px;">
+
+                                                <button type="button" class="btn btn-primary"
+                                                    style="
+                                            border-radius: 8px;
+                                            font-size: 14px;
+                                            height: 32px;
+                                            margin-bottom: 10px;
+                                            font-weight: 600;
+                                            background: #292974;
+                                            border-color: #292974;
+                                            color: white;">Register</button>
+
+                                            </a>
+                                        </td>
+
+
+                                    <td>
+                                    </td>
                                     <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                    {{-- <tr>
+                                    <td>
+                                    </td>
                                 <td>
-                                    
-                            <a href="{{ asset('save_course_register/?course_id=' . $courses->id) }}" style="line-height: 35px;">
-                                
-                                <button
-                                    type="button" class="btn btn-primary" style="
-                                    border-radius: 8px;
-                                    font-size: 14px;
-                                    height: 32px;
-                                    margin-bottom: 10px;
-                                    font-weight: 600;
-                                    background: #292974;
-                                    border-color: #292974;
-                                    color: white;">Register</button>
-                                
-                                </a>
-                                
-                                </td>   
-                                <td></td>
-                            </tr>
-                         
-                               
 
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr> --}}
                                 @endforeach
-                                
-                                {{--  <tr>
+
+                                {{-- <tr>
                                     <td scope="row">2</td>
                                     <td>Science</td>
                                     <td>Sir Ali</td>
@@ -98,7 +133,7 @@
                                     <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
                                     <td><a href=""{{ asset('save_course_register/?course_id=' . $courses->id) }}><button
                                                 type="button" class="btn btn-primary porjoin">Register</button></a></td>
-                                </tr>  --}}
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>
@@ -156,7 +191,8 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1" alt="" class="rounded-circle avatar-lg">
+                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                                alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
                                     samirabenmahria <img src="images/verified.svg" alt="">
@@ -186,7 +222,8 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1" alt="" class="rounded-circle avatar-lg">
+                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                                alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
                                     samirabenmahria <img src="images/verified.svg" alt="">
@@ -217,7 +254,8 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1" alt="" class="rounded-circle avatar-lg">
+                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                                alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
                                     samirabenmahria <img src="images/verified.svg" alt="">
