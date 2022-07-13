@@ -33,7 +33,7 @@
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
         'required',
-     
+
         'maxlength'=>"100"]) !!}
     </div>
 </div>
@@ -69,7 +69,10 @@
     <div class="form-group">
         <div>
             <input type="button" value="+ Add day" class="btn btn-info" onclick="addday();">
+
             <input type="button" value="Remove day" class="btn btn-danger" onclick="removeday();">
+
+
         </div>
     </div>
 </div>
@@ -79,13 +82,13 @@
         <div class="choice-input">
             @if (isset($group_timings))
             @foreach ($group_timings  as $key => $ch)
-         
+
             <div class="row">
 
                 {{-- first column   --}}
                 <div class="col-sm-4">
                     <label for="cars">Choose a Class Day</label>
-       
+
             <select name="day[]" id="cars" class="form-control">
               <option value="monday" {{$ch->day == 'monday' ? 'selected'     :''}}>Monday</option>
               <option value="tuesday" {{$ch->day == 'tuesday' ? 'selected'     :''}} >Tuesday</option>
@@ -101,7 +104,7 @@
 
         {{--   second column  --}}
         <div class="col-sm-4">
-        
+
 
 <div class="form-group">
     {!! Form::label('start_time','Start Time') !!}
@@ -239,18 +242,20 @@
 
 
  </div>
-          
+
 </div>`
     }
 
     function removeday() {
         console.log('length', $('.choice-input').length);
-        if ($('.choice-input').length < 3) {
+
+
+        if ($('.choice-input').length < 1) {
             return;
         }
-      
+
         $('.choice-input:last').remove();
-       
+
     }
 
     function optionHtml(no) {

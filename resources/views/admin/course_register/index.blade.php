@@ -54,7 +54,7 @@ Course Register
       </div>
       <div class="modal-body">
         <table id="coursesTableAppend" style="opacity: 0">
-           
+
 
             <thead>
             <tr>
@@ -93,7 +93,7 @@ Course Register
         fetchRecords();
         $('#coursesTableAppend').DataTable({
             dom: '<"top_datatable"B>Lftipr',
-            
+
         });
 
         function fetchRecords() {
@@ -173,10 +173,10 @@ Course Register
             success: function(response) {
                 $('#myModal').modal('show');
                 $("#coursesTableAppend").css("opacity", 1);
-              
+
                 var groups = response['groups'].length;
                  console.log('abbbbbbbbbbbbbbiiii',response);
-            
+
                  var tr_str = '';
 
                 for (var i = 0; i < groups; i++) {
@@ -190,10 +190,9 @@ Course Register
 
 
                     {{--  radio   btn --}}
-                    {{--  var update_course_group = `<a class="btn btn-info" onclick="update_course_group(` + response['register_course'].id + `)" >Group</a>`;  --}}
 
-
-                   var  update_course_group = `  <input type="radio" name="radioName" checked="" class="my_group_radio_+response['groups'][i].id!!}" onclick="update_course_group_fun(` +response['groups'][i].id +`,`+ response['register_course'].id + `)" /> `;
+                    var is_checked =  response['groups'][i].id ==  response['register_course'].group_id  ? 'checked':'';
+                   var  update_course_group = `<input type="radio"  name="radioName"  `+is_checked+`  class="my_group_radio_` + response['register_course'].group_id + ` " onclick="update_course_group_fun(` +response['groups'][i].id +`,`+ response['register_course'].id + `)" /> `;
 
 
 
@@ -221,8 +220,12 @@ Course Register
 
 
     function update_course_group_fun(group_id,register_course_id) {
+
+
         console.log('group_idgroup_idgroup_id',group_id);
         console.log('register_course_idregister_course_id',register_course_id);
+
+
 
         $.ajax({
 
@@ -235,30 +238,14 @@ Course Register
                 'register_course_id': register_course_id,
             },
             success: function(response) {
-
-
-             
-
-                 console.log('abbbbbbbbbbbbbb',response);
-                 console.log('group',response.register_course.group_id);
-                 var selected_group_id = response.register_course.group_id;
-
-               update_course_groupes = $('.my_group_radio_'+response.register_course.group_id).prop('checked', true);
-
-                 
-
-                
-               
-
+              console.log('abbbbbbbbbbbbbb',response);
+              console.log('group',response.register_course.group_id);
+              var selected_group_id = response.register_course.group_id;
 
 
             }
         });
     }
-
-
-
-    {{--    --}}
 
 </script>
 
