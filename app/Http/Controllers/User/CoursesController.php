@@ -54,11 +54,11 @@ class CoursesController extends Controller
     // course/registration
     public function course_registration(Request $request)
     {
-   
+
         $courses_id = $request->course_id;
         $courses = Courses::with('group')->find($courses_id);
         // dd( $courses);
-        $courses_groups = Group::with('group_timings')->whereHas('group_timings')->where('courses_id',$courses->id)->get();
+        $courses_groups = Group::with('group_timings','teacher')->whereHas('group_timings')->where('courses_id',$courses->id)->get();
         // dd($courses_groups);
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         return view('user.course_registration.index', compact('courses', 'stripe_key','courses_groups'));

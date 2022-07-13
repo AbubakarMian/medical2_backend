@@ -17,4 +17,8 @@ class Group extends Model
    {
        return $this->hasMany('App\Model\Group_Timings', 'group_id', 'id');
    }
+   public function teacher()
+   {
+       return $this->hasOne('App\Model\Teacher', 'id', 'teacher_id');
+   }
 }

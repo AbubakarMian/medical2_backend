@@ -8,6 +8,7 @@ use App\Model\Course_Register;
 use App\Model\Day;
 use App\Model\Group;
 use App\Model\Group_Timings;
+use App\Model\Teacher;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -21,7 +22,7 @@ class GroupController extends Controller
     }
     public function getGroup()
     {
-        $group = Group::with('courses')->orderby('id', 'desc')->select('*')->get();
+        $group = Group::with('courses','teacher')->orderby('id', 'desc')->select('*')->get();
         $groupdata['data'] = $group;
         echo json_encode($groupdata);
     }
@@ -31,8 +32,9 @@ class GroupController extends Controller
         $control = 'create';
         $course_id = Courses::pluck('full_name', 'id');
         $full_days = Day::pluck('day', 'id');
+        $teacher = Teacher::pluck('name', 'id');
         // dd($full_days);
-        return view('admin.group.create', compact('control', 'course_id', 'full_days'));
+        return view('admin.group.create', compact('control', 'course_id', 'full_days','teacher'));
     }
 
     public function save(Request $request)
@@ -49,6 +51,7 @@ class GroupController extends Controller
         $course_id = Courses::pluck('full_name', 'id');
         $group_timings =  Group_Timings::where('group_id',  $group->id)->get();
         $full_days = Day::pluck('day', 'id');
+        $teacher = Teacher::pluck('name', 'id');
         // dd(   $group_timings);
         $full_days = Day::pluck('day', 'id');
         return view('admin.group.create', compact(
@@ -57,6 +60,7 @@ class GroupController extends Controller
             'course_id',
             'group_timings',
             'full_days',
+            'teacher',
 
         ));
     }
@@ -80,6 +84,7 @@ class GroupController extends Controller
         $group->courses_id = $request->courses_id;
         $group->start_date = $start_date_timestamp;
         $group->end_date = $end_date_timestamp;
+        $group->teacher_id = $request->teacher_id;
         $group->save();
 
         foreach ($request->day as $key => $d) {

@@ -21,6 +21,17 @@
         'maxlength'=>"100"]) !!}
     </div>
 </div>
+
+<div class="form-group">
+    {!! Form::label('Teacher','teacher') !!}
+    <div>
+        {!! Form::select('teacher_id',  $teacher , null, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'Enter Teacher Name','required',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
 <?php
 
 
@@ -50,20 +61,7 @@
 
 {{--    --}}
 
-<div class="form-group">
 
-    <div class="form-group" hidden>
-        <label for="correct-choice">Select Correct Choice</label>
-        <select class="form-control" id="correct-choice" name="correct_choice" required>
-            {{--  @if ($question->choice)
-            @foreach ($question->choice as $key => $ch)
-            <option class="option-file" value="{{ $key + 1 }}">Choice # {{ $key + 1 }}</option>
-            @endforeach
-
-            @endif  --}}
-        </select>
-    </div>
-</div>
 <div class="form-group">
 
     <div class="form-group">
