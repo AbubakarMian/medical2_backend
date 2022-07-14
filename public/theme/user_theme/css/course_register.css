@@ -533,6 +533,56 @@ span.forspan {
   font-size: 20px;
   font-weight: 500;
 }
+.regtable {
+  /* padding: 25px; */
+  border-radius: 20px;
+  border: 2px solid #80808042;
+  /* margin: 13px 0px; */
+  background: white;
+  margin-top: 15px;
+  /* padding: 10px 46px;
+border-radius: 102px; 
+border-radius: 1px;
+border: 0px solid #a2a2a2;
+margin: 13px 0px; 
+background: white; 
+margin-top: 50px; 
+border-color: floralwhite; */
+}
+.regtables {
+  text-align:
+  center;
+  font-size: 22px;
+  /* font-family: math; */
+  font-weight: 600;
+  /* margin-top: -25px; */
+  /* margin-bottom: 22px; */
+  background: #8cc542;
+  color: white;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
+  padding-top: 7px;
+}
+.regtabless {
+  text-align:center;
+  font-size: 21px;
+    font-family: cursive;
+    font-weight: 700;
+    margin-top: 15px;
+}
+.regi {
+  border-radius: 0px;
+  font-size: 14px;
+  /* height: 32px; */
+  /* margin-bottom: 10px; */
+  font-weight: 600;
+  background: #3bb54a;
+  border-color: #3bb54a;
+  color: white;
+  margin-bottom: 22px;
+}
+
+
 .mb-4.pb-4.border-bottom {
   border-bottom: 0.5px solid;
   border-bottom-color: #00000040;

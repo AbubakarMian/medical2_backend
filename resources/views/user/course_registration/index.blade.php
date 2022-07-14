@@ -54,26 +54,15 @@
 <!--  -->
 @foreach ($courses_groups as $cg)
 
-                    <div class="regtable" style="
-            padding: 10px 46px;
-    border-radius: 102px;
-    border: 0px solid #a2a2a2;
-    /* margin: 13px 0px; */
-    /* background: white; */
-    margin-top: 50px;
-    border-color: floralwhite;
+<div class="regtable">
+                        
+                        <div class="regtables">
+                                <p>Gents Group / Ansari Teacher
+</p>
+                                
 
-    /* padding: 10px 46px;
-    border-radius: 102px; 
-    border-radius: 1px;
-    border: 0px solid #a2a2a2;
-     margin: 13px 0px; 
-     background: white; 
-     margin-top: 50px; 
-    border-color: floralwhite; */
-    ">
-                        <table>
-                            <tr>
+                            </div><table>
+                            <tbody><tr>
                               
                                 <th>Day</th>
                                 <th>Start Time</th>
@@ -81,28 +70,20 @@
                             </tr>
 
 
-                            <div style="text-align:center;font-size: 21px;
-    font-family: math;
-    font-weight: 700;">
-                                <p>
-                                {{ ucwords($cg->name) }} Group
-
-                                </p>
-                                <p style="text-align:center;">
-                                {{ ucwords($cg->teacher->name) }} Teacher
-
-                                </p>
-
-                            </div>
-                            @foreach ($cg->group_timings as $key => $gt)
-
+                            
+                            
                             <tr>
-                                <td>{{ ucwords($gt->day) }}</td>
-                                <td>{{ date('h:i:s', $gt->start_time) }}</td>
-                                <td>{{ date('h:i:s', $gt->end_time) }}</td>
+                                <td>Monday</td>
+                                <td>03:05:00</td>
+                                <td>04:05:00</td>
                             </tr>
-                            @endforeach
-                            <!-- <tr>
+                            
+                            <tr>
+                                <td>Wednesday</td>
+                                <td>04:05:00</td>
+                                <td>05:05:00</td>
+                            </tr>
+                                                        <!-- <tr>
                                 <td>Centro comercial Moctezuma</td>
                                 <td>Francisco Chang</td>
                                 <td>Mexico</td>
@@ -114,24 +95,11 @@
                             </tr> -->
 
 
-                        </table>
-                        <div
-                            style="text-align:center;font-size: 21px;
-    font-family: cursive;
-    font-weight: 700;margin-top: 15px;">
-                            <a href="{{ asset('save_course_register/?course_id=' . $courses->id) }}"
-                                style="line-height: 35px;">
+                        </tbody></table>
+                        <div class="regtabless">
+                            <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;">
 
-                                <button type="button" class="btn btn-primary"
-                                    style="
-                                            border-radius: 8px;
-                                            font-size: 14px;
-                                            height: 32px;
-                                            margin-bottom: 10px;
-                                            font-weight: 600;
-                                            background: #292974;
-                                            border-color: #292974;
-                                            color: white;">Register</button>
+                                <button type="button" class="btn btn-primary regi">Register</button>
 
                             </a>
                         </div>
@@ -147,8 +115,8 @@
 
 
 
-                    @endforeach
-                    <!--  -->
+                            @endforeach
+                            <!--  -->
                     
 
                   
