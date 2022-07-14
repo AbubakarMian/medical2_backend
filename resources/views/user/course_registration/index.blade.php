@@ -57,7 +57,8 @@
 <div class="regtable">
                         
                         <div class="regtables">
-                                <p>Gents Group / Ansari Teacher
+                                <p>
+                                {{ ucwords($cg->teacher->name) }} Teacher /  {{ ucwords($cg->name) }} Group
 </p>
                                 
 
@@ -72,27 +73,16 @@
 
                             
                             
+                            @foreach ($cg->group_timings as $key => $gt)
+
                             <tr>
-                                <td>Monday</td>
-                                <td>03:05:00</td>
-                                <td>04:05:00</td>
+                                <td>{{ ucwords($gt->day) }}</td>
+                                <td>{{ date('h:i:s', $gt->start_time) }}</td>
+                                <td>{{ date('h:i:s', $gt->end_time) }}</td>
                             </tr>
+                            @endforeach
                             
-                            <tr>
-                                <td>Wednesday</td>
-                                <td>04:05:00</td>
-                                <td>05:05:00</td>
-                            </tr>
-                                                        <!-- <tr>
-                                <td>Centro comercial Moctezuma</td>
-                                <td>Francisco Chang</td>
-                                <td>Mexico</td>
-                            </tr>
-                            <tr>
-                                <td>Ernst Handel</td>
-                                <td>Roland Mendel</td>
-                                <td>Austria</td>
-                            </tr> -->
+                    
 
 
                         </tbody></table>
