@@ -7,6 +7,29 @@
 
     <link href="{!! asset('theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
     {{-- <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" /> --}}
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        td, th {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+    </style>
 
 
     <div class="bannerarea"></div>
@@ -25,76 +48,82 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="regtable">
-                        <table class="table prtable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Group</th>
-                                    <th scope="col">Teacher</th>
-                                    <th scope="col">Day</th>
-
-                                    {{-- <th scope="col">Teacher</th> --}}
-                                    {{-- <th scope="col">Venu</th> --}}
-                                    <th scope="col">Start Time</th>
-                                    <th scope="col">End Time</th>
 
 
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($courses_groups as $cg)
-                                    <tr>
-                                        <td class="my_group" style="font-size: 20px;font-family: fantasy;"
+<!--  -->
+@foreach ($courses_groups as $cg)
 
-                                 >
-                                            {{ ucwords($cg->name) }} </td>
+                    <div class="regtable" style="
+            padding: 10px 46px;
+    border-radius: 102px;
+    border: 0px solid #a2a2a2;
+    /* margin: 13px 0px; */
+    /* background: white; */
+    margin-top: 50px;
+    border-color: floralwhite;
 
-                                            {{--  teacher  --}}
-                                            <td style="font-size: 20px;font-family: fantasy;">
-                                    {{ ucwords($cg->teacher->name) }}
-                                        </td>
-                                        <td
-                                            style="font-size: 20px;border: 1px solid WHITE;
-                                    border-bottom: 1px solid #dddddd;">
-                                        </td>
-                                        <td
-                                            style="font-size: 20px;border: 1px solid WHITE;
-                                    border-bottom: 1px solid #dddddd;">
-                                        </td>
-                                        <td
-                                            style="font-size: 20px;border: 1px solid WHITE;
-                                    border-bottom: 1px solid #dddddd;">
-                                        </td>
-
-
-                                    </tr>
-
-
-                                    @foreach ($cg->group_timings as $key => $gt)
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td>{{ ucwords($gt->day) }}</td>
-                                            {{-- <td>Sir Ali</td> --}}
-                                            <td> {{ date('h:i:s', $gt->start_time) }}</td>
-
-                                            <td> {{ date('h:i:s', $gt->end_time) }}</td>
-                                            {{--  <td>
+    /* padding: 10px 46px;
+    border-radius: 102px; 
+    border-radius: 1px;
+    border: 0px solid #a2a2a2;
+     margin: 13px 0px; 
+     background: white; 
+     margin-top: 50px; 
+    border-color: floralwhite; */
+    ">
+                        <table>
+                            <tr>
+                              
+                                <th>Day</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                            </tr>
 
 
-                                            </td>  --}}
-                                        </tr>
-                                    @endforeach
+                            <div style="text-align:center;font-size: 21px;
+    font-family: math;
+    font-weight: 700;">
+                                <p>
+                                {{ ucwords($cg->name) }} Group
+
+                                </p>
+                                <p style="text-align:center;">
+                                {{ ucwords($cg->teacher->name) }} Teacher
+
+                                </p>
+
+                            </div>
+                            @foreach ($cg->group_timings as $key => $gt)
+
+                            <tr>
+                                <td>{{ ucwords($gt->day) }}</td>
+                                <td>{{ date('h:i:s', $gt->start_time) }}</td>
+                                <td>{{ date('h:i:s', $gt->end_time) }}</td>
+                            </tr>
+                            @endforeach
+                            <!-- <tr>
+                                <td>Centro comercial Moctezuma</td>
+                                <td>Francisco Chang</td>
+                                <td>Mexico</td>
+                            </tr>
+                            <tr>
+                                <td>Ernst Handel</td>
+                                <td>Roland Mendel</td>
+                                <td>Austria</td>
+                            </tr> -->
 
 
+                        </table>
+                        <div
+                            style="text-align:center;font-size: 21px;
+    font-family: cursive;
+    font-weight: 700;margin-top: 15px;">
+                            <a href="{{ asset('save_course_register/?course_id=' . $courses->id) }}"
+                                style="line-height: 35px;">
 
-                                        <td>
-                                            <a href="{{ asset('save_course_register/?course_id=' . $courses->id) }}"
-                                                style="line-height: 35px;">
-
-                                                <button type="button" class="btn btn-primary"
-                                                    style="
+                                <button type="button" class="btn btn-primary"
+                                    style="
                                             border-radius: 8px;
                                             font-size: 14px;
                                             height: 32px;
@@ -104,39 +133,26 @@
                                             border-color: #292974;
                                             color: white;">Register</button>
 
-                                            </a>
-                                        </td>
+                            </a>
+                        </div>
 
-
-                                    <td>
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-                                    {{-- <tr>
-                                    <td>
-                                    </td>
-                                <td>
-
-                                </td>
-                                <td></td>
-                                <td></td>
-                            </tr> --}}
-                                @endforeach
-
-                                {{-- <tr>
-                                    <td scope="row">2</td>
-                                    <td>Science</td>
-                                    <td>Sir Ali</td>
-                                    <td>Canada</td>
-                                    <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
-                                    <td><a href=""{{ asset('save_course_register/?course_id=' . $courses->id) }}><button
-                                                type="button" class="btn btn-primary porjoin">Register</button></a></td>
-                                </tr> --}}
-                            </tbody>
-                        </table>
                     </div>
+
+
+
+
+
+
+
+
+
+
+                    @endforeach
+                    <!--  -->
+                    
+
+                  
+                    
                 </div>
             </div>
             <div class="row">
