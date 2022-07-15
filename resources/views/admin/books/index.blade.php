@@ -1,6 +1,6 @@
 @extends('layouts.default_module')
 @section('module_name')
-Category
+Books
 @stop
 @section('add_btn')
 

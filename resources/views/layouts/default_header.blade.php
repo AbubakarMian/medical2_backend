@@ -218,6 +218,8 @@ $admin_common = session()->get('admin_common');
     <script src="{{ asset('theme/vendor/jquery.placeholder.js') }}"></script>
     <script src="{{ asset('theme/vendor/fastclick/lib/fastclick.js') }}"></script>
     <script src="{{ asset('cssjs/jquery.timeentry.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+
     <!-- endbuild -->
 
     <!-- page level scripts -->

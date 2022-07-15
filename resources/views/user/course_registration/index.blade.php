@@ -40,8 +40,28 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="courbanddata">
-                        <h2>Select Your {{ ucwords($courses->full_name) }} Course Group</h2>
+                        <!--  -->
+                        <?php
+                        $course_g = $courses_groups->count();
 
+                        ?>
+                        @if($course_g == 0)
+                 
+                        <h2 class="alert alert-danger text-center" style="color: black;
+                    padding: 8px;
+                    font-size: 21px;
+                    font-family: cursive;"
+                                        
+                        
+                        
+                        
+                        >Course Registration Timings Will Be Available Soon</h2>
+                        @else
+                        <h2 >Select Your {{ ucwords($courses->full_name) }} Course Group</h2>
+                        
+
+
+                        <!--  -->
 
                     </div>
                 </div>
@@ -87,9 +107,7 @@
 
                         </tbody></table>
                         <div class="regtabless">
-                        <a href="{{ asset('save_course_register/?course_id=' . $courses->id) }}"
-                                style="line-height: 35px;"
-                                >
+                            <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;">
 
                                 <button type="button" class="btn btn-primary regi">Register</button>
 
@@ -99,7 +117,16 @@
                     </div>
 
 
-  @endforeach
+
+
+
+
+
+
+
+
+                            @endforeach
+                            @endif
                             <!--  -->
                     
 
