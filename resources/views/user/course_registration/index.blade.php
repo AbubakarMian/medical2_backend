@@ -107,7 +107,8 @@
 
                         </tbody></table>
                         <div class="regtabless">
-                            <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;">
+                            <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
+                            <a href="{!! asset('save_course_register/?course_id='.$cg->course_id) !!}1" style="line-height: 35px;">
 
                                 <button type="button" class="btn btn-primary regi">Register</button>
 
