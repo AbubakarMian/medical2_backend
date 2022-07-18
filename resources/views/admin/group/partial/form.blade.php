@@ -75,6 +75,28 @@
     </div>
 </div>
 <div>
+<div class="form-group">
+    {!! Form::label('is_online ','Group Online Class') !!}
+    <div>
+    <input type="checkbox" id="myCheck" onclick="myFunction()">
+    </div>
+    </br>
+    <!--  -->
+    <div id="venue_map" style="display:none" >
+    <label >Enter Venue:</label> 
+    <input type="text" required  name="venue" class = 'form-control'>
+        </br>
+
+    <label>Open Map For Venue Location:</label> 
+    </br>   
+    <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">
+  </div>
+  <!--  -->
+
+
+
+</div>
+
 
     <div class="choice-file">
         <div class="choice-input">
@@ -167,6 +189,39 @@
     </div>
 </div>
 
+<!-- modal -->
+
+<div class="container">
+
+  <!-- Trigger the modal with a button -->
+  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <!-- <div class="modal-body" id="map">
+          <p>Some text in the modal.</p>
+        </div> -->
+        <div id="map"></div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+  
+@include('layouts.map')
 
 
 @section('app_jquery')
@@ -174,6 +229,42 @@
     function validateForm() {
         return true;
     }
+
+    // 
+    $(document).ready(function(){
+       
+$('#myModal').modal('hide');
+
+   });
+
+function myFunction(){
+
+    var checkBox = document.getElementById("myCheck");
+    var venue_maps = document.getElementById("venue_map");
+    if (checkBox.checked == true){
+     venue_maps.style.display = "none";
+    }
+   else {
+    venue_maps.style.display = "block";
+    }
+    console.log('sasa');
+}
+
+    // 
+
+    // map
+    function open_map(){
+        console.log('mapssssssss');
+        $('#myModal').modal('show');
+
+
+    }
+
+
+
+
+
+    // 
 
     {{--    --}}
     function addday() {

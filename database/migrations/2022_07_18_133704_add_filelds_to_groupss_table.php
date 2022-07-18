@@ -13,9 +13,11 @@ class AddFileldsToGroupssTable extends Migration
      */
     public function up()
     {
-        Schema::table('groupss', function (Blueprint $table) {
+        Schema::table('group', function (Blueprint $table) {
             $table->tinyInteger('is_online')->nullable()->default(0);
             $table->string('venue',255)->nullable()->default(0);
+            $table->float('lat',15,10)->nullable()->default(0);
+            $table->float('long',15,10)->nullable()->default(0);
         });
     }
 
