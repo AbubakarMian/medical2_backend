@@ -92,11 +92,11 @@ class AdminController extends Controller
             'title' => 'Courses',
 
         ];
-        // $modules[]= [
+        $modules[]= [
 
-        //     'url'=>'admin/books',
-        //     'title'=>'Books'
-        // ];
+            'url'=>'admin/books',
+            'title'=>'Books'
+        ];
         $modules[]= [
 
             'url'=>'admin/teacher',
