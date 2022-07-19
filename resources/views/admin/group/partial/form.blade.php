@@ -1,5 +1,53 @@
 
 
+
+<!--  -->
+
+
+
+<!-- modal -->
+
+
+
+  <!-- Trigger the modal with a button -->
+  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <!-- <div class="modal-body" id="map">
+          <p>Some text in the modal.</p>
+        </div> -->
+        <div id="map">
+        @include('admin.group.map')
+
+        
+        </div>
+       
+      </div>
+      
+    </div>
+  </div>
+
+  
+  
+
+
+
+
+
+
+
+
+
+<!--  -->
 <div class="form-group">
     {!! Form::label('name','name') !!}
     <div>
@@ -59,8 +107,8 @@
     </div>
 </div>
 
-{{--    --}}
 
+     </br>
 
 <div class="form-group">
 
@@ -73,25 +121,15 @@
 
         </div>
     </div>
+
+
+    
 </div>
 <div>
-<div class="form-group">
-    {!! Form::label('is_online ','Group Online Class') !!}
-    <div>
-    <input type="checkbox" id="myCheck" onclick="myFunction()">
-    </div>
-    </br>
-    <!--  -->
-    <div id="venue_map" style="display:none" >
-    <label >Enter Venue:</label> 
-    <input type="text" required  name="venue" class = 'form-control'>
-        </br>
 
-    <label>Open Map For Venue Location:</label> 
-    </br>   
-    <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">
-  </div>
-  <!--  -->
+
+
+
 
 
 
@@ -163,6 +201,58 @@
             @endif
         </div>
     </div>
+    <!--  group mappppppppppppppppppp-->   
+
+
+
+<!--  -->
+
+<div class="form-group">
+    {!! Form::label('is_online ','Group Online Class') !!}
+   
+    <div>
+
+    <input type="checkbox" id="myCheck" onclick="myFunction()" name="is_online">
+
+<!--  -->
+
+
+<!-- <div class="form-group">
+    {!! Form::label('is_online ','Group Online Class') !!}
+   
+    <div>
+        {!! Form::checkbox('is_online',null  , ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'onclick="myFunction()"'=>'true',
+        'data-parsley-trigger'=>'change',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div> -->
+
+
+
+<!--  -->
+    </div>
+    </br>
+    <!--  -->
+    <!-- <div id="venue_map" style="display:none" > -->
+    <div id="venue_map" >
+    <!-- <label >Enter Venue:</label> 
+    <input type="text" required  name="venue" class = 'form-control'> -->
+        </br>
+
+    <label>Open Map For Group Venue</label> 
+    </br>  
+    </br> 
+    <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">
+
+    <input   hidden name="group_lat"  id="group_lats" value=""> 
+<input  hidden  name="group_long"  id="group_longs" value="">  
+  </div>
+  <!--  -->
+
+
+  <!-- <  group mappppppppppppppppppp-->    
 </div>
 
 
@@ -189,39 +279,7 @@
     </div>
 </div>
 
-<!-- modal -->
 
-<div class="container">
-
-  <!-- Trigger the modal with a button -->
-  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <!-- <div class="modal-body" id="map">
-          <p>Some text in the modal.</p>
-        </div> -->
-        <div id="map"></div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div> -->
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-
-  
-@include('layouts.map')
 
 
 @section('app_jquery')
@@ -234,6 +292,7 @@
     $(document).ready(function(){
        
 $('#myModal').modal('hide');
+
 
    });
 

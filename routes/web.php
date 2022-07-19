@@ -217,6 +217,10 @@ Route::post('admin/group/update/{id}', 'Admin\GroupController@update')->name('gr
 Route::post('admin/group/delete/{id}', 'Admin\GroupController@destroy_undestroy')->name('group.delete');
 
 
+ // save lat long of parents
+ Route::post('admin/group/map/lat_long', 'Admin\GroupController@group_latlong_save')->name('parent.map');
+
+
 
 // ================================student list==================================
 Route::get('admin/group/students/{id}', 'Admin\GroupController@student_list')->name('admin.group_students');
@@ -232,6 +236,26 @@ Route::get('admin/courses/group/{id}', 'Admin\Course_RegisterController@get_cour
 Route::post('admin/update_course_group', 'Admin\Course_RegisterController@update_course_group')->name('admin.update_course_group');
 
 //
+
+
+// ================================workshop=================================
+Route::get('admin/workshop', 'Admin\WorkshopController@index')->name('workshop.index');
+
+Route::get('admin/workshop/create', 'Admin\WorkshopController@create')->name('workshop.create'); //add
+Route::post('admin/workshop/save', 'Admin\WorkshopController@save')->name('workshop.save');
+
+Route::get('admin/workshop/edit/{id}', 'Admin\WorkshopController@edit')->name('workshop.edit');
+Route::post('admin/workshop/update/{id}', 'Admin\WorkshopController@update')->name('workshop.update');
+
+Route::post('admin/workshop/delete/{id}', 'Admin\WorkshopController@destroy_undestroy')->name('workshop.delete');
+
+
+
+
+
+
+
+// 
 
 //  =================================  Reports PAYMENT ==========================
 
