@@ -122,10 +122,17 @@ class AdminController extends Controller
             'title'=>'Exams'
 
         ];
+
         $modules[]= [
 
-            'url'=>'admin/aboutus',
-            'title'=>'About Us'
+            'url'=>'admin/settings',
+            'title'=>'Settings'
+
+        ];
+        $modules[]= [
+
+            'url'=>'admin/workshop',
+            'title'=>'Workshop'
         ];
         $modules[] = [
             'url' => 'admin/contact',

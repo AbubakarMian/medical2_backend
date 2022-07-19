@@ -75,7 +75,7 @@ class GroupController extends Controller
     }
     public function add_or_update(Request $request, $group)
     {
-// dd($request->all());
+dd($request->all());
         $start_date_timestamp = strtotime($request->start_date); // start date
         $end_date_timestamp = strtotime($request->end_date); //end date
         // dd($start_date_timestamp);
@@ -85,6 +85,16 @@ class GroupController extends Controller
         $group->start_date = $start_date_timestamp;
         $group->end_date = $end_date_timestamp;
         $group->teacher_id = $request->teacher_id;
+        if($request->is_online == "on"){
+            $group->is_online = 1;
+            $group->lat = 0;
+            $group->long = 0;
+         }
+        else{
+        $group->lat = $request->group_lat;
+        $group->long = $request->group_long;
+        $group->is_online = 0;
+        }
         $group->save();
 
         foreach ($request->day as $key => $d) {
@@ -158,4 +168,34 @@ class GroupController extends Controller
         $res->status = true;
         return json_encode($res);
     }
+
+
+
+
+    // group_latlong_save  map
+
+    function group_latlong_save(Request $request){
+
+       
+        $sample_class =  new \stdClass();
+        $sample_class->lat = $request->map_latitide;
+        $sample_class->long = $request->map_longitude;
+      
+    
+
+        $response = Response::json([
+            "status" => true,
+            'new_value' => 'save',
+            'sample_class' => $sample_class,
+        ]);
+        return $response;
+
+
+    }
+
+    // "24.961841872696603"
+
+
+
+
 }
