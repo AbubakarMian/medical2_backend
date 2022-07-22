@@ -12,12 +12,23 @@
     }
     .demo-multiple-select {
     width: 603%;
-}
+   
+    }
+   
+/* .demo-multiple-select {
+  
+    background-color: lightgrey;
+} */
 .mbsc-form-group-title {
     font-size: 25px;
     color: cadetblue;
     /* font-weight: 700; */
     font-family: cursive;
+    margin-bottom: 24px;
+}
+.mbsc-ios.mbsc-datepicker .mbsc-calendar, .mbsc-ios.mbsc-datepicker .mbsc-calendar-cell, .mbsc-ios.mbsc-datepicker .mbsc-calendar-slide {
+    /* background: orange; */
+    background: aliceblue;
 }
 
 
@@ -98,12 +109,12 @@
      <!--  -->
 
      <div  class="demo-multiple-select">
-  <div style="height:50%">
+  <div style="height:70%;">
       <div class="mbsc-grid">
         <div class="mbsc-row">
             <div class="mbsc-col-sm-12 mbsc-col-md-4">
                 <div class="mbsc-form-group">
-                    <div class="mbsc-form-group-title">WorkShop Calendar</div>
+                    <div class="mbsc-form-group-title"> Calendar</div>
                     <div id="demo-multi-day"></div>
                 </div>
             </div>
