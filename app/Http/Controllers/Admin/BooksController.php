@@ -68,22 +68,35 @@ class BooksController extends Controller
         // dd($request->all());
         $books->name = $request->name;
         $books->description = $request->description;
+        if($request->hasFile('upload_book')){
+
+            $file =$request->upload_book;
+            $filename = $file->getClientOriginalName();
+            
+            $path = public_path().'/uploads/';
+            $u  =  $file->move($path, $filename);
+
+            $db_path_save_book = asset('/uploads/'.$filename);
+            $books->upload_book =  $db_path_save_book;
+        }
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->avatar;
+            $root = $request->root();
+            $books->avatar = $this->move_img_get_path($avatar, $root, 'image');
+        }
         $books->save();
+
+        // $books_courses
+
 
         foreach($request->courses_id as $c){
             $books_courses = new Books_courses();
             $books_courses->book_id = $books->id;
             $books_courses->course_id = $c;
             $books_courses->save();
-
         }
+        //  $books_courses
 
-
-        if ($request->hasFile('image')) {
-            $avatar = $request->image;
-            $root = $request->root();
-            $books->avatar = $this->move_img_get_path($avatar, $root, 'image');
-        }
      
         return redirect()->back();
     }

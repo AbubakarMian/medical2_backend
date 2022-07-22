@@ -75,7 +75,7 @@ class GroupController extends Controller
     }
     public function add_or_update(Request $request, $group)
     {
-dd($request->all());
+// dd($request->all());
         $start_date_timestamp = strtotime($request->start_date); // start date
         $end_date_timestamp = strtotime($request->end_date); //end date
         // dd($start_date_timestamp);
@@ -85,6 +85,7 @@ dd($request->all());
         $group->start_date = $start_date_timestamp;
         $group->end_date = $end_date_timestamp;
         $group->teacher_id = $request->teacher_id;
+        $group->type = 'course';
         if($request->is_online == "on"){
             $group->is_online = 1;
             $group->lat = 0;
