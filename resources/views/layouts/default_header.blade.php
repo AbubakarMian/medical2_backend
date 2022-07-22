@@ -26,6 +26,10 @@ $admin_common = session()->get('admin_common');
     <link rel="stylesheet" href="{{ asset('theme/styles/sublime.css') }}">
     <link rel="stylesheet" href="{{ asset('cssjs/myapp.css') }}">
     <link rel="stylesheet" href="{{ asset('cssjs/jquery.timeentry.css') }}">
+    <!-- mobiscroll -->
+    <link rel="stylesheet" href="{{asset('css/mobi/mobiscroll.jquery.min.css')}}">
+    <!--  -->
+
     @yield('css')
     @yield('extra_css')
     <!-- endbuild -->
@@ -62,7 +66,7 @@ $admin_common = session()->get('admin_common');
 
                 <!-- logo -->
                 <a href="{{asset('index.php/admin/dashboard')}}" class="navbar-brand">
-                    <img src="{{ asset('images/Logo-02.png') }}" alt="">
+                    <img src="{{ asset('images/logo.png') }}" alt="">
                     <span class="heading-font"></span>
                 </a>
                 <!-- /logo -->
@@ -225,12 +229,22 @@ $admin_common = session()->get('admin_common');
     <script src="{{ asset('cssjs/jquery.timeentry.js')}}"></script>
 
 
-    <!--multiselect js  -->
+ <!--multiselect js  -->
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
-<!-- end multiselect -->
+ <!-- end multiselect -->
+
+<!-- mobiscroll  -->
+
+<script src="{{asset('mobi_js/mobiscroll.jquery.min.js')}}"></script>
+
+
+
+<!-- end mobiscroll -->
+
+
 
     <!-- endbuild -->
 

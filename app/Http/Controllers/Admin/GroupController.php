@@ -53,7 +53,7 @@ class GroupController extends Controller
         $full_days = Day::pluck('day', 'id');
         $teacher = Teacher::pluck('name', 'id');
         // dd(   $group_timings);
-        $full_days = Day::pluck('day', 'id');
+        //  $full_days = Day::pluck('day', 'id');
         return view('admin.group.create', compact(
             'control',
             'group',
