@@ -31,13 +31,12 @@ width="400px" style="table-layout:fixed;"
 
 
         <th> Name</th>
-        <th> Email</th>
-        <th> Gender</th>
-
-
-	    <th>Edit  </th>
+        <th>Teacher  </th>
+        <th> Course</th>
+		<th>Edit  </th>
 		<th>Delete  </th>
 
+	 
 
 
 	</tr>
@@ -46,36 +45,41 @@ width="400px" style="table-layout:fixed;"
 
 
 
-    
+@foreach($workshop as $c)
 
 
 
 
-		<td >ASAS </td>
-		<td >SAAS</td>
-		<td >SAAS</td>
+		<td >{{$c->name}} </td>
+		<td >{{$c->teacher->name}}</td>
+		<td >{{$c->courses->full_name}}</td>
 
 
 
-        </td>
         <td>
-          EDIT
+            {!! link_to_action('Admin\WorkshopController@edit',
+            'Edit', array($c->id), array('class' => 'badge bg-info')) !!}
 
         </td>
 
 
-		<td>
-			DLETE
+		<td>{!! Form::open(['method' => 'POST', 'route' => ['workshop.delete', $c->id]]) !!}
+			<a href="" data-toggle="modal" name="activate_delete" data-target=".delete" modal_heading="Alert" modal_msg="Do you want to delete?">
+				<span class="badge bg-info btn-primary ">
+					{!! $c->deleted_at?'Activate':'Delete' !!}</span></a>
+			{!! Form::close() !!}
 		</td>
+       
 
 
 	</tr>
+	@endforeach
 	
 
 
 </tbody>
 @section('pagination')
-<span class="pagination pagination-md pull-right"></span>
+<span class="pagination pagination-md pull-right">{!! $workshop->render() !!}</span>
 <div class="col-md-3 pull-left">
 	<div class="form-group text-center">
 		<div>

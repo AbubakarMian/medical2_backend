@@ -14,6 +14,7 @@ use App\Model\Courses;
 use App\Model\Teacher;
 use App\Model\Group;
 use Carbon\Carbon;
+use Date; 
 use Maatwebsite\Excel\Concerns\ToArray;
 // Group;
 
@@ -21,7 +22,8 @@ class WorkshopController extends Controller
 {
     public function index(Request $request)
     {
-        $workshop = Group::orderBy('created_at', 'DESC')->paginate(10);
+        $workshop = Group::with('courses','teacher')->where('type','workshop')->orderBy('created_at', 'DESC')->paginate(10);
+        // dd( $workshop);
         return view('admin.workshop.index', compact('workshop'));
     }
 
@@ -67,11 +69,28 @@ class WorkshopController extends Controller
     public function add_or_update(Request $request, $workshop)
     {
         // dd($request->all());
-        $date_timestamp =  strtotime($request->start_date);
+        // console.log(new Date(dateStr).toISOString())
+    //     $expires = new \DateTime('NOW');
+
+    //    $selected_multiss =  Carbon($request->selected_multi[0]).toISOString();
+
+    // dd($selected_multiss);
+
+
+        $start_date_timestamp = strtotime($request->start_date); // start date
+        $end_date_timestamp = strtotime($request->end_date); //end date
         $workshop->name = $request->name;
-        $workshop->gender = $request->gender;
-        $workshop->email = $request->email;
-        $workshop->address = $request->address;
+        $workshop->courses_id = $request->courses_id;
+        $workshop->start_date = $start_date_timestamp;
+        $workshop->end_date = $end_date_timestamp;
+        $workshop->teacher_id = $request->teacher_id;
+        $workshop->type = 'workshop';
+        
+        // foreach(){
+
+
+
+        // }
 
 
         $workshop->save();

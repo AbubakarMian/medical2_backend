@@ -28,7 +28,7 @@
 }
 .mbsc-ios.mbsc-datepicker .mbsc-calendar, .mbsc-ios.mbsc-datepicker .mbsc-calendar-cell, .mbsc-ios.mbsc-datepicker .mbsc-calendar-slide {
     /* background: orange; */
-    background: aliceblue;
+    background: lightgrey;
 }
 
 
@@ -105,7 +105,7 @@
 
 
      </br>
-
+     
      <!--  -->
 
      <div  class="demo-multiple-select">
@@ -118,12 +118,25 @@
                     <div id="demo-multi-day"></div>
                 </div>
             </div>
-            <!-- <button onclick="getAllDates()">Get date</button> -->
+         
            
         </div>
     </div>
+    <!-- <button type="button"   onclick="getAllDates()" class="btn btn-success" style="width: 202%;"> Save  dates</button> -->
   </div>
 </div>
+
+<!-- <center><button onclick="getAllDates()" style="font-size: 20px;
+    color: white;
+    background-color: black;text-align:center;">
+    Save  dates</button> 
+    <center> -->
+
+   
+
+ 
+
+
     
 
      <!--  -->
@@ -298,6 +311,7 @@ function myFunction(){
             // console.log('get dates',ainst.getVal());
             console.log('get dates',ainst);
 
+            // var multi_dates = ainst.getVal();
             var multi_dates = ainst.getVal();
             console.log('get _valueText',multi_dates);
             var selected = [];

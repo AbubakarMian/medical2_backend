@@ -37,26 +37,43 @@
                             
 
 </div>
+<div class="form-group">
 
 
+    <div class="form-group">
+        {!! Form::label('Book PDF','Book PDF') !!}
+        {!! Form::file('upload_book', ['class' => 'choose-book', 'id'=>'upload_book'] ) !!}
 
-
-
-
-
-
-
-
-{{-- {!! Form::label('description', 'Description') !!}
-    <div >
-
-    <div>
-        {!! Form::textarea('description', null, ['class' => 'ckeditor form-control' , 'id'=>'summary-ckeditor', 'data-parsley-required' => 'true', 'data-parsley-trigger' => 'change', 'placeholder' => 'Enter title', 'required', 'maxlength' => '100']) !!}
+    </div>
     </div>
 
+    <!-- avatar -->
+    <?php
+
+$avatar =  asset('images/logo.png');
+    if(isset($books)){
+
+if($books->avatar){
+    $avatar = $books->avatar;
+}
+}
+?>
+
+<div class="form-group">
+
+<div class="form-group pull-right">
+    <img src="{!! $avatar !!}"  class="show-product-img" data-toggle="modal" data-target=".imagemodal">
+</div>
+
+<div class="form-group">
+    {!! Form::label('image','Image') !!}
+    {!! Form::file('avatar', ['class' => 'choose-image', 'id'=>'image','required'] ) !!}
+    <p class="help-block" id="error">Limit 2MB</p>
+</div>
+</div>
+    <!-- avatar -->
 
 
-</div> --}}
 
 
 
