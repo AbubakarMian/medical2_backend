@@ -149,10 +149,10 @@
                                         <a href="{!!asset('category')!!}"><span>Category</span> </a>
                                     </li>
                                     <li id="03">
-                                        <a href="{!!asset('courses/?courses='.$courses)!!}"><span>Courses</span> </a>
+                                        <a href="{!!asset('courses').'?type=courses'!!}"><span>Courses</span> </a>
                                     </li>
                                     <li id="03">
-                                        <a href="{!!asset('workshop/?workshop='.$workshop)!!}"><span>Workshop</span> </a>
+                                        <a href="{!!asset('courses').'?type=workshop'!!}"><span>Workshop</span> </a>
                                     </li>
                                     {{-- <li id="04">
                     <a href="#"><span>Register</span> </a>
