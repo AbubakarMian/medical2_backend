@@ -38,9 +38,25 @@ class WorkshopController extends Controller
     public function save(Request $request)
     {
         $workshop = new Group();
-        $this->add_or_update($request, $workshop);
 
-        return redirect('admin/workshop');
+        $start_timestamp = $this->time_to_timestamp($request->start_time);
+        $end_timestamp = $this->time_to_timestamp($request->end_time);
+
+        foreach($request->selected_multi as $sm){
+            // dd($sm);
+            
+            $workshop = new Group();
+            $workshop->name = $request->name;
+            $workshop->courses_id = $request->courses_id;
+            // 
+            $workshop->start_date = $sm+$start_timestamp;
+            $workshop->end_date = $sm+$end_timestamp;
+            // 
+            $workshop->teacher_id = $request->teacher_id;
+            $workshop->type = 'workshop';
+            $workshop->save();
+ }
+          return redirect('admin/workshop');
     }
     public function edit($id)
     {
@@ -68,33 +84,9 @@ class WorkshopController extends Controller
 
     public function add_or_update(Request $request, $workshop)
     {
-        // dd($request->all());
-        // console.log(new Date(dateStr).toISOString())
-    //     $expires = new \DateTime('NOW');
+    //    dd($request->all());
 
-    //    $selected_multiss =  Carbon($request->selected_multi[0]).toISOString();
-
-    // dd($selected_multiss);
-
-
-        $start_date_timestamp = strtotime($request->start_date); // start date
-        $end_date_timestamp = strtotime($request->end_date); //end date
-        $workshop->name = $request->name;
-        $workshop->courses_id = $request->courses_id;
-        $workshop->start_date = $start_date_timestamp;
-        $workshop->end_date = $end_date_timestamp;
-        $workshop->teacher_id = $request->teacher_id;
-        $workshop->type = 'workshop';
-        
-        // foreach(){
-
-
-
-        // }
-
-
-        $workshop->save();
-        return redirect()->back();
+       
     }
 
     public function destroy_undestroy($id)

@@ -17,12 +17,23 @@ use Stripe;
 class CoursesController extends Controller
 {
 
-    // multiple courses list open
+    // multiple courses list open AND WORKSHOP ALSO OPEN IN THIS CONTROLLER
     public function index(Request $request)
     {
+        // dd($request->all());
+        $type = $request->type ?? 'course';
         $name = $request->courses_name ?? '';
 
-        $courses_list = Courses::where('full_name', 'like', '%' . $name . '%')->get();
+        $courses_lists = Courses::where('full_name', 'like', '%' . $name . '%')->get();
+        // dd(  $courses_lists);
+
+        $course_list = $courses_lists->
+            whereHas('group',function($g){ 
+            $g->where('type',$type);
+            });
+            // dd( $course_list);
+
+      
         // $courses_list  =  Courses::get();
         $courses_list_count = $courses_list->count();
         if ($courses_list_count == 1) {
@@ -36,9 +47,8 @@ class CoursesController extends Controller
             $courses_split = $courses_list->split($courses_list_count / 4);
         }
 
-        // dd($courses_split);
         $category_arr = Category::pluck('name', 'id');
-        return view('user.courses.index', compact('courses_split', 'category_arr', 'name'));
+        return view('user.courses.index', compact('courses_split', 'category_arr', 'name','type'));
     }
 
     // course details screen open

@@ -23,6 +23,21 @@ trait Common
         return $users;
     }
 
+    public function time_to_timestamp($time){
+
+        $time_arr =  explode(':',$time);
+        // dd( $time_arr);
+        $time_hr = $time_arr[0];
+        $time_min = $time_arr[1];
+
+        $total_mins = $time_hr + 60 + $time_min;
+        // dd(  $total_mins);
+        $total_sec = $total_mins * 60;
+        $total_mili_sec = $total_sec * 1000;
+        return $total_mili_sec;
+        
+    }
+
     public function move_img_get_path($image,$root,$type,$image_name='')
     {
         $uniqid = time();

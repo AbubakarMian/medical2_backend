@@ -28,7 +28,7 @@
 }
 .mbsc-ios.mbsc-datepicker .mbsc-calendar, .mbsc-ios.mbsc-datepicker .mbsc-calendar-cell, .mbsc-ios.mbsc-datepicker .mbsc-calendar-slide {
     /* background: orange; */
-    background: lightgrey;
+    background: #;
 }
 
 
@@ -155,7 +155,7 @@
 <div class="col-md-5 pull-left">
     <div class="form-group text-center">
         <div>
-            {!! Form::submit('Save', ['class' => 'btn btn-primary btn-block btn-lg btn-parsley', 'onblur' => 'return validateForm();']) !!}
+            {!! Form::submit('Save', ['class' => 'btn btn-primary btn-block btn-lg btn-parsley', 'onclick' => 'return validateForm();']) !!}
         </div>
     </div>
 </div>
@@ -165,7 +165,8 @@
 
 @section('app_jquery')
 <script>
-    function validateForm() {
+  function validateForm() {
+        getAllDates();
         return true;
     }
 
@@ -305,7 +306,7 @@ function myFunction(){
 
     var init = null;
     function getAllDates(){
-        // console.log('get init',init);
+        console.log('get init',init);
        var ainst = $('#demo-multi-day').mobiscroll('getInst');
         // var a = ainit.getInst();
             // console.log('get dates',ainst.getVal());
@@ -316,8 +317,14 @@ function myFunction(){
             console.log('get _valueText',multi_dates);
             var selected = [];
           $.each( multi_dates, function(key, value) {
+            console.log('valuevaluevaluevalue',value.getTime());
+            console.log('getTimezoneOffset',value.getTimezoneOffset());
           console.log('value', value);
-          $('.result').append(`<input hidden  name="selected_multi[]" value="`+value+ `" class="selected_multi">`);
+
+          var gmt_time = value.getTime() + (value.getTimezoneOffset()*60*1000);
+          console.log('gmt_time', gmt_time);
+
+          $('.result').append(`<input hidden  name="selected_multi[]" value="`+gmt_time+`" >`);
         });
       
         }
@@ -326,7 +333,8 @@ function myFunction(){
         // Mobiscroll Calendar initialization
         init = $('#demo-multi-day').mobiscroll();
         init.datepicker({
-            controls: ['calendar'],          // More info about controls: https://docs.mobiscroll.com/5-17-2/calendar#opt-controls
+            // controls: ['calendar'],          // More info about controls: https://docs.mobiscroll.com/5-17-2/calendar#opt-controls
+            returnFormat: ['jsdate'],          // moment More info about returnFormat: https://docs.mobiscroll.com/5-17-2/calendar#opt-controls
             display: 'inline',               // Specify display mode like: display: 'bottom' or omit setting to use default
             selectMultiple: true
         });

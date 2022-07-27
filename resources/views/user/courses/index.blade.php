@@ -11,6 +11,7 @@
                     <form method="post" action="{{ asset('user/courses_search') }}" style="width:100%">
                         {!! csrf_field() !!}
                         <div class="" style="width:100%;">
+                        {!!Form::hidden('type',$type)!!}
 
                             <div class="form-group">
                                 <label for="category_id">Select Courses</label>
