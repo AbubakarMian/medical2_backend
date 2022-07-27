@@ -130,6 +130,12 @@
                         </div>
                     </div>
                     <nav>
+                        <?php
+ $courses = 'courses';
+ $workshop = 'workshop';
+
+
+?>
                         <div class="jump">
                             <div class="navbar-collapse nav-collapse collapse">
                                 <ul class="nav navbar-nav menuu" style="flex-direction: inherit;">
@@ -143,7 +149,10 @@
                                         <a href="{!!asset('category')!!}"><span>Category</span> </a>
                                     </li>
                                     <li id="03">
-                                        <a href="{!!asset('courses')!!}"><span>Courses</span> </a>
+                                        <a href="{!!asset('courses/?courses='.$courses)!!}"><span>Courses</span> </a>
+                                    </li>
+                                    <li id="03">
+                                        <a href="{!!asset('workshop/?workshop='.$workshop)!!}"><span>Workshop</span> </a>
                                     </li>
                                     {{-- <li id="04">
                     <a href="#"><span>Register</span> </a>

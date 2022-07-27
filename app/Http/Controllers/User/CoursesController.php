@@ -17,12 +17,26 @@ use Stripe;
 class CoursesController extends Controller
 {
 
-    // multiple courses list open
+    // multiple courses list open AND WORKSHOP ALSO OPEN IN THIS CONTROLLER
     public function index(Request $request)
     {
+    // dd($request->all());
+        
         $name = $request->courses_name ?? '';
-
+        if($request->courses){
         $courses_list = Courses::where('full_name', 'like', '%' . $name . '%')->get();
+        // dd('course');
+    }
+        else{
+            $courses_list = Courses::where('full_name', 'like', '%' . $name . '%')->
+            whereHas('group',function($g){ 
+            $g->where('type','workshop');
+            })
+            ->get();
+            // dd($courses_list);
+        }
+
+      
         // $courses_list  =  Courses::get();
         $courses_list_count = $courses_list->count();
         if ($courses_list_count == 1) {

@@ -32,6 +32,12 @@ use Illuminate\Support\Facades\Route;
     //courses page
      Route::get('courses', 'User\CoursesController@index');
      Route::post('user/courses_search', 'User\CoursesController@index');
+
+    //  workshop
+
+     //workshop page
+     Route::get('workshop', 'User\CoursesController@index');
+  
      // courses/details page
     Route::get('courses/details', 'User\CoursesController@courses_details');
 
