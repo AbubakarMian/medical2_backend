@@ -21,19 +21,31 @@ class CoursesController extends Controller
     public function index(Request $request)
     {
         // dd($request->all());
-        $type = $request->type ?? 'course';
+        $types = $request->type;
         $name = $request->courses_name ?? '';
 
-        $courses_lists = Courses::where('full_name', 'like', '%' . $name . '%')->get();
+        $courses = Courses::where('full_name', 'like', '%' . $name . '%');
         // dd(  $courses_lists);
+        if($types == 'courses'){
+       
+            $courses_list =  $courses->
+            whereHas('group',function($g)
+                { 
+                $g->where('type' ,'course');
+                })->get();
+                // dd( $courses_list );
+              }
+        else{
+            $courses_list = $courses->
+            whereHas('group',function($g)
+               { 
+                $g->where('type' ,'workshop');
+                })->get();
+                // dd( $courses_list );
+                
+        }
 
-        $course_list = $courses_lists->
-            whereHas('group',function($g){ 
-            $g->where('type',$type);
-            });
-            // dd( $course_list);
 
-      
         // $courses_list  =  Courses::get();
         $courses_list_count = $courses_list->count();
         if ($courses_list_count == 1) {
@@ -48,7 +60,7 @@ class CoursesController extends Controller
         }
 
         $category_arr = Category::pluck('name', 'id');
-        return view('user.courses.index', compact('courses_split', 'category_arr', 'name','type'));
+        return view('user.courses.index', compact('courses_split', 'category_arr', 'name','types'));
     }
 
     // course details screen open
@@ -64,13 +76,19 @@ class CoursesController extends Controller
     // course/registration
     public function course_registration(Request $request)
     {
-
+        //  dd($request->all());
         $courses_id = $request->course_id;
+        $type = $request->type;
         $courses = Courses::with('group')->find($courses_id);
+        $stripe_key = Config::get('services.stripe.STRIPE_KEY');    
         // dd( $courses);
-        $courses_groups = Group::with('group_timings','teacher')->whereHas('group_timings')->where('courses_id',$courses->id)->get();
-        // dd($courses_groups);
-        $stripe_key = Config::get('services.stripe.STRIPE_KEY');
+        if($type == 'courses'){
+          $courses_groups = Group::with('group_timings','teacher')->where('type','course')->whereHas('group_timings')
+          ->where('courses_id',$courses->id)->get();
+         }
+        elseif($type == 'workshop'){
+            $courses_groups = Group::with('teacher')->where('type','workshop')->where('courses_id',$courses->id)->get();
+            }
         return view('user.course_registration.index', compact('courses', 'stripe_key','courses_groups'));
     }
 

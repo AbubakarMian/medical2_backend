@@ -11,13 +11,11 @@
                     <form method="post" action="{{ asset('user/courses_search') }}" style="width:100%">
                         {!! csrf_field() !!}
                         <div class="" style="width:100%;">
-                        {!!Form::hidden('type',$type)!!}
+                        {!!Form::hidden('type',$types)!!}
 
                             <div class="form-group">
                                 <label for="category_id">Select Courses</label>
-                                {!! Form::text(
-    'courses_name',
-    $name ?? '',
+                                {!! Form::text('courses_name', $name ?? '',
 
     ['class' => 'form-control ', 'data-parsley-trigger' => 'change', 'placeholder' => 'Select Courses', 'maxlength' => '100'],
 ) !!}
@@ -62,15 +60,16 @@
                         padding-top: 19px;" --}}>
                                             <img src="{!! $p->avatar !!}" alt="Avatar" class="image">
                                             <div class="middle">
-                                                <div class="text">
-                                                    {{-- <a href="{{asset('courses/details')}}"> --}}
-                                                    {{-- <a href="{{ asset('courses/details/?courses_id=' . $p->id) }}"> --}}
-                                                    <a href="{{ asset('course/registration/?course_id=' . $p->id) }}">
-                                                        View
+                            <div class="text">
+                            {{-- <a href="{{asset('courses/details')}}"> --}}
+                            {{-- <a href="{{ asset('courses/details/?courses_id=' . $p->id) }}"> --}}
+                            <a href="{{ asset('course/registration/?course_id='.$p->id.'&type='.$types) }}">
+                                
+                                View
 
 
-                                                    </a>
-                                                </div>
+                            </a>
+                      </div>
                                             </div>
                                         </div>
                                         <h4 class="title">

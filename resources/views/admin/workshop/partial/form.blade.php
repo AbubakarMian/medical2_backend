@@ -321,7 +321,7 @@ function myFunction(){
             console.log('getTimezoneOffset',value.getTimezoneOffset());
           console.log('value', value);
 
-          var gmt_time = value.getTime() + (value.getTimezoneOffset()*60*1000);
+          var gmt_time = (value.getTime() + (value.getTimezoneOffset()*60*1000))/1000;
           console.log('gmt_time', gmt_time);
 
           $('.result').append(`<input hidden  name="selected_multi[]" value="`+gmt_time+`" >`);
