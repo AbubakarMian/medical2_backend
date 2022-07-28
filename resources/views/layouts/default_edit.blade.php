@@ -80,6 +80,8 @@
 <div class="form-group">
 
 </div>
+
+<!-- cropper open -->
 -<!-- build:js({.tmp,app}) scripts/app.min.js -->
 <script src="{{ asset('theme/vendor/jquery/dist/jquery.js') }}"></script>
 <!-- endbuild -->
@@ -89,6 +91,8 @@
 <!-- <script src="https://unpkg.com/dropzone"></script>
 <script src="https://unpkg.com/cropperjs"></script> -->
   <!-- build:js({.tmp,app}) scripts/app.min.js -->
+
+<!-- cropper close -->
   <script src="{{ asset('theme/vendor/jquery/dist/jquery.js') }}"></script>
   <!-- endbuild -->
 	<script src="{{ asset('theme/vendor/parsleyjs/dist/parsley.min.js') }}"></script>
