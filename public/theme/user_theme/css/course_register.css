@@ -561,7 +561,7 @@ border-color: floralwhite; */
   color: white;
   border-top-left-radius: 19px;
   border-top-right-radius: 19px;
-  padding-top: 7px;
+  padding-top: 0px;
 }
 .location{
 
@@ -576,15 +576,25 @@ border-color: floralwhite; */
     text-decoration: underline;
     text-decoration-color: cornsilk;
 }
+.dates{
+  font-size: 17px;
+  color: darkblue;
+  text-decoration: underline;
+  text-decoration-color: darkslategray;
+  background-color: deepskyblue;
+  margin-left: 16px;
+  border-radius: 29px;
+  padding-top: 6px;
+}
 .date{
   font-size: 17px;
   color: darkblue;
   text-decoration: underline;
   text-decoration-color: darkslategray;
-  height: 79px;
-  width: 136px;
-  background-color: #8a6d3b;
-  border-radius: 50%;
+  background-color: deepskyblue;
+  margin-left: 67px;
+  border-radius: 29px;
+  padding-top: 6px;
 }
 .regtabless {
   text-align:center;

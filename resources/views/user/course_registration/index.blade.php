@@ -92,16 +92,14 @@
                         <div class="regtablesh">
                             <div class="row">
 
-                            <div class="col-sm-3 date">
-                            karachi 
-                            <input type="text" hidden>
+                        <div class="col-sm-2 dates">
+                        Venue    In   </br>
+                            karachi
                          </div>
-
                          <div class="col-sm-7 teacher">
                          {{ ucwords($cg->teacher->name) }} Teacher /  {{ ucwords($cg->name) }} Group
                          </div>
-
-                         <div class="col-sm-1 date">
+                         <div class="col-sm-2 date">
                          From {{   date('d,M,Y', $cg->start_dat)  }}       To      
                          {{         date(    'd,M,Y',$cg->end_date     )    }}
                                 </div>
