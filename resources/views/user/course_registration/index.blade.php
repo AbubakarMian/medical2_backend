@@ -58,13 +58,13 @@
                         >Course Registration Timings Will Be Available Soon</h2>
                         @else
                      <?php   
-                    //  dd($courses->group->type )
+                    //  dd($type )
 
                      ?>
-                     @if($courses->group->type == 'course')
+                     @if($type == 'courses')
 
                         <h2 >Select Your {{ ucwords($courses->full_name) }} Course Group</h2>
-                        @else
+                        @elseif($type == 'workshop')
                         <h2 >Select Your {{ ucwords($courses->full_name) }} Course Workshop</h2>
                         @endif
                         
@@ -83,17 +83,28 @@
 <!--  -->
 @foreach ($courses_groups as $cg)
                 <?php
-                // dd($cg->type == 'course')
+                // dd($cg)
                 ?>
 
 
 <div class="regtable">
                         
-                        <div class="regtables">
-                                <p>
-                                {{ ucwords($cg->teacher->name) }} Teacher /  {{ ucwords($cg->name) }} Group
-</p>
+                        <div class="regtablesh">
+                            <div class="row">
 
+                        <div class="col-sm-2 dates">
+                        Venue    In   </br>
+                            karachi
+                         </div>
+                         <div class="col-sm-7 teacher">
+                         {{ ucwords($cg->teacher->name) }} Teacher /  {{ ucwords($cg->name) }} Group
+                         </div>
+                         <div class="col-sm-2 date">
+                         From {{   date('d,M,Y', $cg->start_dat)  }}       To      
+                         {{         date(    'd,M,Y',$cg->end_date     )    }}
+                                </div>
+                        </div>
+                          
                                 
 
                             </div>
