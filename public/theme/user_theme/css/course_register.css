@@ -549,10 +549,10 @@ background: white;
 margin-top: 50px; 
 border-color: floralwhite; */
 }
-.regtables {
+.regtablesh {
   text-align:
   center;
-  font-size: 22px;
+  font-size: 16px;
   /* font-family: math; */
   font-weight: 600;
   /* margin-top: -25px; */
@@ -563,9 +563,32 @@ border-color: floralwhite; */
   border-top-right-radius: 19px;
   padding-top: 7px;
 }
+.location{
+
+  color: initial;
+    font-size: 25px;
+    border-radius: 1px;
+    text-decoration: underline;
+}
+.teacher{
+  font-size: 21px;
+    color: floralwhite;
+    text-decoration: underline;
+    text-decoration-color: cornsilk;
+}
+.date{
+  font-size: 17px;
+  color: darkblue;
+  text-decoration: underline;
+  text-decoration-color: darkslategray;
+  height: 79px;
+  width: 136px;
+  background-color: #8a6d3b;
+  border-radius: 50%;
+}
 .regtabless {
   text-align:center;
-  font-size: 21px;
+ 
     font-family: cursive;
     font-weight: 700;
     margin-top: 15px;

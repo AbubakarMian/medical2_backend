@@ -1,7 +1,23 @@
 <?php
 
-use App\Models\Promo_code;
+
 use Illuminate\Support\Facades\Route;
+use App\Model\Routes as erp;
+
+$db_routes = erp::first();
+$url_method =  $db_routes->url_method;
+// dd( $db_routes);
+
+
+Route::$url_method($db_routes->url , $db_routes->controller_function);
+// return;
+
+
+
+
+
+
+// return;
 
 
 /*
@@ -42,7 +58,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('courses/details', 'User\CoursesController@courses_details');
 
     // course_register
-    Route::get('course/registration', 'User\CoursesController@course_registration');
+    // Route::get('course/registration', 'User\CoursesController@course_registration');
     // save_course_register
     Route::get('save_course_register', 'User\CoursesController@user_save_course_register');
     // user/payment
