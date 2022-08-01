@@ -26,15 +26,7 @@ class UserController extends Controller
         return view('user.courses_registration');
     }
 
-    public function profile_acount(){
 
-        return view('user.profile_acount');
-    }
-
-    public function profile_courses(){
-
-        return view('user.profile_courses');
-    }
 
     public function save(Request $request)
     {

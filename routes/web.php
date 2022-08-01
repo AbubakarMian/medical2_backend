@@ -37,10 +37,16 @@ Route::$url_method($db_routes->url , $db_routes->controller_function);
      // Route::get('user', 'Admin\UserController@index');
      Route::get('/', 'User\UserController@index');
      Route::get('courses_registration', 'User\UserController@courses_registration');
-     Route::get('profile_acount', 'User\UserController@profile_acount');
-     Route::get('profile_courses', 'User\UserController@profile_courses');
+   
+    //  profile_courses
 
+     Route::get('profile_courses', 'User\Profile_Courses_Controller@my_courses');
+     //  profile_account
+     Route::get('profile_acount', 'User\Profile_Courses_Controller@my_profile');
+    //  my_profile_save
+     Route::post('my_profile_save', 'User\Profile_Courses_Controller@my_profile_save');
 
+ 
     //category page
      Route::get('category', 'User\CategoryController@index');
      Route::post('user/category_search', 'User\CategoryController@index');
@@ -58,7 +64,7 @@ Route::$url_method($db_routes->url , $db_routes->controller_function);
     Route::get('courses/details', 'User\CoursesController@courses_details');
 
     // course_register
-    // Route::get('course/registration', 'User\CoursesController@course_registration');
+    Route::get('course/registration', 'User\CoursesController@course_registration');
     // save_course_register
     Route::get('save_course_register', 'User\CoursesController@user_save_course_register');
     // user/payment
