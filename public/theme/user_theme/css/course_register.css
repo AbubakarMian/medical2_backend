@@ -572,7 +572,9 @@ border-color: floralwhite; */
 }
 .teacher{
   font-size: 21px;
-    color: floralwhite;
+  margin-top: 10px;
+    color: midnightblue;
+    
     text-decoration: underline;
     text-decoration-color: cornsilk;
 }
@@ -581,7 +583,7 @@ border-color: floralwhite; */
   color: darkblue;
   text-decoration: underline;
   text-decoration-color: darkslategray;
-  background-color: deepskyblue;
+  background-color: gold;
   margin-left: 16px;
   border-radius: 29px;
   padding-top: 6px;
@@ -591,7 +593,7 @@ border-color: floralwhite; */
   color: darkblue;
   text-decoration: underline;
   text-decoration-color: darkslategray;
-  background-color: deepskyblue;
+  background-color: gold;
   margin-left: 67px;
   border-radius: 29px;
   padding-top: 6px;
@@ -614,7 +616,6 @@ border-color: floralwhite; */
   color: white;
   margin-bottom: 22px;
 }
-
 
 .mb-4.pb-4.border-bottom {
   border-bottom: 0.5px solid;

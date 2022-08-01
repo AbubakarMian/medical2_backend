@@ -43,4 +43,7 @@ class User extends Authenticatable
         // 'mobileno' => 'required|phone_number|unique:users',
         'password' => 'required'
     ];
+    public function course_register(){
+        return $this->hasMany('App\Model\Course_Register','user_id','id');
+    }
 }

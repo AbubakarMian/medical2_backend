@@ -19,40 +19,44 @@
                             <thead>
                               <tr>
                                 <th scope="col">Sno</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Course</th>
                                 <th scope="col">Group</th>
                                 <th scope="col">Teacher</th>
-                                <th scope="col">Venu</th>
-                                <th scope="col">Timming</th>
-                                <th scope="col">Action</th>
+                                <!-- <th scope="col">Venu</th> -->
+                                <!-- <th scope="col">Timming</th> -->
+                                <!-- <th scope="col">Action</th> -->
                               </tr>
                             </thead>
                             <tbody>
+                              @foreach($course_register as $key  => $c)
+                            <?php
+                            
+                            // dd($c->course->group)
+                            ?>
                               <tr>
-                                <td scope="row">1</td>
-                                <td>Science</td>
-                                <td>Sir Ali</td>
-                                <td>Online</td>
-                                <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
-                                {{-- <div class="timebox">
-                                    <p>Monday <span class="digtime">12:00pm</span> </p>
-                                    <p>Tuesday <span class="digtime">10:00am</span> </p>
-                                </div> --}}
+                                <td scope="row">{{$key+1}}</td>
+                                <td>{{$c->user->name}}</td>
+                                <td>{{$c->course->full_name}}</td>
+                                <td>{{$c->course->group->name}}</td>
+                                <td>{{$c->course->group->teacher->name}}</td>
+                              
+                                <!-- <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
+                               
                                 <td><button type="button" class="btn btn-primary porjoin">Join</button>
-                                    <button type="button" class="btn btn-primary pordetai">Detail</button></td>
+                                    <button type="button" class="btn btn-primary pordetai">Detail</button></td> -->
                               </tr>
-                              <tr>
+                              <!-- <tr>
                                 <td scope="row">2</td>
                                 <td>Science</td>
                                 <td>Sir Ali</td>
                                 <td>Canada</td>
                                 <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
-                                {{-- <div class="timebox">
-                                    <p>Monday <span class="digtime">12:00pm</span> </p>
-                                    <p>Tuesday <span class="digtime">10:00am</span> </p>
-                                </div> --}}
+                               
                                 <td><button type="button" class="btn btn-primary porjoinn">Join</button>
                                     <button type="button" class="btn btn-primary pordetai">Detail</button></td>
-                              </tr>                              
+                              </tr>  -->
+                              @endforeach                            
                             </tbody>
                           </table>
 
