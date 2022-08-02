@@ -14,8 +14,12 @@ class Profile_Courses_Controller extends Controller
 {
     /// my courses list
     public function my_courses(){
-        $user = Auth::user()->where('role_id','2')->where('email','ali@mail.com')->with('course_register.course')->first();
+        $user = Auth::User();
+        // dd($user);
 
+        $users =  $user->where('role_id','2')->where('email','ali@mail.com')->with('course_register.course')->first();
+        // dd(  $users);
+   
         $course_register = Course_Register::where('user_id', $user->id)->with('course.group','user')->orderby('id', 'desc')->select('*')->get();
         return view('user.profile_courses',compact('course_register'));
     }

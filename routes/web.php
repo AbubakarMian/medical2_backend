@@ -272,8 +272,8 @@ Route::get('admin/workshop', 'Admin\WorkshopController@index')->name('workshop.i
 Route::get('admin/workshop/create', 'Admin\WorkshopController@create')->name('workshop.create'); //add
 Route::post('admin/workshop/save', 'Admin\WorkshopController@save')->name('workshop.save');
 
-Route::get('admin/workshop/edit/{id}', 'Admin\WorkshopController@edit')->name('workshop.edit');
-Route::post('admin/workshop/update/{id}', 'Admin\WorkshopController@update')->name('workshop.update');
+// Route::get('admin/workshop/edit/{id}', 'Admin\WorkshopController@edit')->name('workshop.edit');
+Route::post('admin/workshop_value_updte', 'Admin\WorkshopController@update')->name('workshop.update');
 
 Route::post('admin/workshop/delete/{id}', 'Admin\WorkshopController@destroy_undestroy')->name('workshop.delete');
 

@@ -6,28 +6,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- cropeer css open-->
-    <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
-     <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>
-
-     <!-- cropeer css close-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="{!!asset('theme/user_theme/css/medical2.css')!!}" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+        <!-- cropeer css open-->
+        <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+     <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>
+
+     <!-- cropeer css close--> 
 
 
-    <!-- cropper js  open -->
--<!-- build:js({.tmp,app}) scripts/app.min.js -->
 
-<!-- endbuild -->
-<script src="{{ asset('theme/vendor/parsleyjs/dist/parsley.min.js') }}"></script>
-<script src="https://unpkg.com/dropzone"></script>
-<script src="https://unpkg.com/cropperjs"></script>
-  <!-- build:js({.tmp,app}) scripts/app.min.js -->
 
-<!-- cropper js close -->
+
 
 
 </head>
@@ -369,7 +359,23 @@
     </section>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-@yield('app_jquery')
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+        <!-- cropper js  open -->
+-<!-- build:js({.tmp,app}) scripts/app.min.js -->
+
+<!-- endbuild -->
+<script src="{{ asset('theme/vendor/parsleyjs/dist/parsley.min.js') }}"></script>
+<script src="https://unpkg.com/dropzone"></script>
+<script src="https://unpkg.com/cropperjs"></script>
+  <!-- build:js({.tmp,app}) scripts/app.min.js -->
+
+<!-- cropper js close -->
+
 
 </html>

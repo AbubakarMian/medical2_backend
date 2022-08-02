@@ -33,6 +33,7 @@ width="400px" style="table-layout:fixed;"
         <th> Name</th>
         <th>Teacher  </th>
         <th> Course</th>
+     
 		<th>Edit  </th>
 		<th>Delete  </th>
 
@@ -50,16 +51,24 @@ width="400px" style="table-layout:fixed;"
 
 
 
-		<td >{{$c->name}} </td>
-		<td >{{$c->teacher->name}}</td>
-		<td >{{$c->courses->full_name}}</td>
+		<td> 
+		<input type="text" class="f_name_{{$c->id}}" disabled value="{{$c->name}}">
+			</td>
+
+		
+		<td> 
+		<input type="text" class="teacher_name_{{$c->id}}" disabled value="{{$c->teacher->name}}">
+			</td>
+		
+		
+		<td> 
+		<input type="text" class="course_name_{{$c->id}}" disabled value="{{$c->courses->full_name}}">
+			</td>
 
 
 
         <td>
-            {!! link_to_action('Admin\WorkshopController@edit',
-            'Edit', array($c->id), array('class' => 'badge bg-info')) !!}
-
+		<button type="button" class="btn btn-warning btn_chnage_{{$c->id}}" onclick="edit_workshop({!!$c->id!!})">Edit Workshop</button>
         </td>
 
 
@@ -91,3 +100,58 @@ width="400px" style="table-layout:fixed;"
 </div>
 @endsection
 @stop
+
+@section('app_jquery')
+<script>
+  
+function edit_workshop(workshop_id){
+        console.log('workshop_idworkshop_id',workshop_id);
+
+	var btn_chnage_value = $('.btn_chnage_'+workshop_id).html("Save Workshop");
+
+	var input_enabled_f_name = $('.f_name_'+workshop_id).prop('disabled', false);
+	var input_enabled_teacher_name = $('.teacher_name_'+workshop_id).prop('disabled', false);
+	var input_enabled_course_name = $('.course_name_'+workshop_id).prop('disabled', false);
+
+
+  console.log('input_enabledinput_enabled',input_enabled_f_name);
+	
+  var input_enabled_f_name_value_get = $(input_enabled_f_name).val();
+  var input_enabled_teacher_name_value_get = $(input_enabled_f_name).val();
+  var input_enabled_course_name_value_get = $(input_enabled_f_name).val();
+  console.log('input_enabled_f_name_value_getinput_enabled_f_name_value_get',input_enabled_f_name_value_get);
+  $.ajax({
+                url: '{!!asset("admin/workshop_value_updte")!!}',
+				type: 'POST',
+                dataType: 'json',
+                data: {
+                _token: '{!!@csrf_token()!!}',
+				'workshop_id' : workshop_id,
+				'input_enabled_f_name_value_get' : input_enabled_f_name_value_get,
+				'input_enabled_teacher_name_value_get' : input_enabled_teacher_name_value_get,
+				'input_enabled_course_name_value_get' : input_enabled_course_name_value_get,
+               },
+                success: function(response) {
+					console.log('responseresponse',response);
+					var btn_chnage_after = btn_chnage_value.html("Edit Workshop");
+
+      
+                }
+            });
+
+	
+
+    
+
+     }
+
+</script>
+
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+
+@endsection
+
+
+
+
+
