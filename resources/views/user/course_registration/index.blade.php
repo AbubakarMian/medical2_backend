@@ -35,6 +35,8 @@
     <div class="bannerarea"></div>
 
 
+
+
     <div class="courbandarea">
         <div class="container">
             <div class="row">
@@ -80,10 +82,12 @@
 
 
 
-<!--  -->
+                <?php
+        
+                ?>
 @foreach ($courses_groups as $cg)
                 <?php
-                // dd($cg)
+     
                 ?>
 
 
@@ -93,15 +97,52 @@
                             <div class="row">
 
                         <div class="col-sm-2 dates">
-                        Venue    In   </br>
-                            karachi
+                          
+                        Venue      
+                    
+                    </br>
+                    <?php
+                    // dd($cg->venue)
+                    ?>
+                    @if($cg->venue)
+                    <?php
+                    // dd('saasas')
+                    ?>
+                           {{ucwords($cg->venue)}}
+                    @elseif($cg->lat  != 0)
+                           <button type="button" class="btn btn-warning" onclick="open_map()">Map Location</button>
+                         
+                           
+                
+      <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Venue Location</h4>
+        </div>
+    <div class="modal-body" id="map" style="height:600px">
+       @include('user.course_registration.map',['lat'=>$cg->lat,'long'=>$cg->long])
+        </div>
+       
+       
+      </div>
+      
+    </div>
+  </div>
+                    @else
+                          No Location
+                    @endif
                          </div>
-                         <div class="col-sm-7 teacher">
+                         <div class="col-sm-7 teacher" style="color:white">
                          {{ ucwords($cg->teacher->name) }} Teacher /  {{ ucwords($cg->name) }} Group
                          </div>
                          <div class="col-sm-2 date">
                          From {{   date('d,M,Y', $cg->start_dat)  }}       To      
-                         {{         date(    'd,M,Y',$cg->end_date     )    }}
+                         {{        date(    'd,M,Y',$cg->end_date     )    }}
                                 </div>
                         </div>
                           
@@ -348,97 +389,20 @@
     </div>
 
 
+  </div>
 
 
 
-
-
-
-
-    </div>
-@endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@section('app_jquery')
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
     <script>
-        $(function() {
-            var $form = $(".require-validation");
-
-            $('form.require-validation').bind('submit', function(e) {
-                var $form = $(".require-validation"),
-                    inputSelector = ['input[type=email]', 'input[type=password]',
-                        'input[type=text]', 'input[type=file]',
-                        'textarea'
-                    ].join(', '),
-                    $inputs = $form.find('.required').find(inputSelector),
-                    $errorMessage = $form.find('div.error'),
-                    valid = true;
-                $errorMessage.addClass('hide');
-
-                $('.has-error').removeClass('has-error');
-                $inputs.each(function(i, el) {
-                    var $input = $(el);
-                    if ($input.val() === '') {
-                        $input.parent().addClass('has-error');
-                        $errorMessage.removeClass('hide');
-                        e.preventDefault();
-                    }
-                });
-
-                if (!$form.data('cc-on-file')) {
-                    e.preventDefault();
-                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                    Stripe.createToken({
-                        number: $('.card-number').val(),
-                        cvc: $('.card-cvc').val(),
-                        exp_month: $('.card-expiry-month').val(),
-                        exp_year: $('.card-expiry-year').val()
-                    }, stripeResponseHandler);
-                }
-
-            });
-
-            function stripeResponseHandler(status, response) {
-                if (response.error) {
-                    $('.error')
-                        .removeClass('hide')
-                        .find('.alert')
-                        .text(response.error.message);
-                } else {
-                    /* token contains id, last4, and card type */
-                    var token = response['id'];
-
-                    $form.find('input[type=text]').empty();
-                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                    $form.get(0).submit();
-                }
-            }
-        })
-
-
-
-
-        function openpaymentdiv() {
-            var x = document.getElementById("myDIV");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
-    </script>
+    $(document).ready(function(){
+       $('#myModal').modal('hide');
+       });
+    // map
+    function open_map(){
+        console.log('mapssssssss');
+        $('#myModal').modal('show');
+     }
+       
+  </script>
 @endsection

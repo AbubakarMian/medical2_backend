@@ -74,11 +74,21 @@ class WorkshopController extends Controller
         ));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $workshop = Group::find($id);
-        $this->add_or_update($request, $workshop);
-        return Redirect('admin/workshop');
+        $workshop = Group::find($request->workshop_id);
+        $workshop->name = $request->input_enabled_f_name_value_get;
+        // $workshop->courses_id = $request->courses_id;
+        // $workshop->teacher_id = $request->teacher_id;
+        $workshop->save();
+        $response = Response::json([
+            "status" => true,
+            'workshop' => $workshop
+        ]);
+        return $response;
+
+
+     
     }
 
 
