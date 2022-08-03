@@ -23,8 +23,9 @@ class WorkshopController extends Controller
     public function index(Request $request)
     {
         $workshop = Group::with('courses','teacher')->where('type','workshop')->orderBy('created_at', 'DESC')->paginate(10);
-        // dd( $workshop);
-        return view('admin.workshop.index', compact('workshop'));
+        $teacher = Teacher::pluck('id','name');
+        // dd( $teacher);
+        return view('admin.workshop.index', compact('workshop','teacher'));
     }
 
     public function create()
