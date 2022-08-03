@@ -56,9 +56,21 @@ width="400px" style="table-layout:fixed;"
 			</td>
 
 		
-		<td> 
+			<td>
+			<div class="my_op_{{$c->id}}">
+			<!-- <select class="form-control my_op_{{$c->id}}">
+		
+			<option value="Red">Red</option>
+			<option value="Green">Green</option>
+			<option value="White">White</option>
+			<option value="Black">Black</option>
+
+			</select> -->
+           </div>
+		 
 		<input type="text" class="teacher_name_{{$c->id}}" disabled value="{{$c->teacher->name}}">
 			</td>
+		
 		
 		
 		<td> 
@@ -68,7 +80,8 @@ width="400px" style="table-layout:fixed;"
 
 
         <td>
-		<button type="button" class="btn btn-warning btn_chnage_{{$c->id}}" onclick="edit_workshop({!!$c->id!!})">Edit Workshop</button>
+		<button type="button" class="btn btn-warning btn_chnage_{{$c->id}}" onclick="edit_workshop({!!$c->id!!})">Edit </button>
+		<button type="button" style="display:none" class="btn btn-warning save_chnage_{{$c->id}}" onclick="save_workshop({!!$c->id!!})">Save </button>
         </td>
 
 
@@ -107,19 +120,39 @@ width="400px" style="table-layout:fixed;"
 function edit_workshop(workshop_id){
         console.log('workshop_idworkshop_id',workshop_id);
 
-	var btn_chnage_value = $('.btn_chnage_'+workshop_id).html("Save Workshop");
+	var edit_btn_chnage_value = $('.btn_chnage_'+workshop_id).css("display", "none");
+	var save_btn_chnage_value = $('.save_chnage_'+workshop_id).css("display", "block");
 
 	var input_enabled_f_name = $('.f_name_'+workshop_id).prop('disabled', false);
-	var input_enabled_teacher_name = $('.teacher_name_'+workshop_id).prop('disabled', false);
-	var input_enabled_course_name = $('.course_name_'+workshop_id).prop('disabled', false);
+	// var input_enabled_teacher_name = $('.teacher_name_'+workshop_id).prop('disabled', false);
+	// var input_enabled_course_name = $('.course_name_'+workshop_id).prop('disabled', false);
 
+	var input_enabled_teacher_name = $('.teacher_name_'+workshop_id).css("display", "none");
+	var input_enabled_course_name = $('.course_name_'+workshop_id).css("display", "none");
 
-  console.log('input_enabledinput_enabled',input_enabled_f_name);
+	var teacher = ;
+
 	
-  var input_enabled_f_name_value_get = $(input_enabled_f_name).val();
-  var input_enabled_teacher_name_value_get = $(input_enabled_f_name).val();
-  var input_enabled_course_name_value_get = $(input_enabled_f_name).val();
+	var mySelect = $('.my_op_'+workshop_id).append(
+
+	$.each(teacher, function(val, text) {
+
+	`<select class="form-control my_teacher" id="exampleFormControlSelect1">
+      <option >`+ text+`</option>
+    </select>`
+		})
+
+)
+
+}
+
+
+function save_workshop(workshop_id){
+ var input_enabled_f_name_value_get = $('.f_name_'+workshop_id).val();
+  var input_enabled_teacher_name_value_get = $('.teacher_name_'+workshop_id).val();
+  var input_enabled_course_name_value_get = $('.course_name_'+workshop_id).val();
   console.log('input_enabled_f_name_value_getinput_enabled_f_name_value_get',input_enabled_f_name_value_get);
+
   $.ajax({
                 url: '{!!asset("admin/workshop_value_updte")!!}',
 				type: 'POST',
@@ -133,7 +166,12 @@ function edit_workshop(workshop_id){
                },
                 success: function(response) {
 					console.log('responseresponse',response);
-					var btn_chnage_after = btn_chnage_value.html("Edit Workshop");
+					var edit_btn_chnage_values = $('.btn_chnage_'+workshop_id).css("display", "block");
+					var save_btn_chnage_values = $('.save_chnage_'+workshop_id).css("display", "none");
+							
+				// 	setTimeout(() => {
+				// 		var btn_chnage_after = btn_chnage_value.html("Edit Workshop");
+				// }, 3000); //1 SECONDS 
 
       
                 }
