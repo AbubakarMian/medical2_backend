@@ -142,8 +142,8 @@
                          {{ ucwords($cg->teacher->name) }} Teacher /  {{ ucwords($cg->name) }} Group
                          </div>
                          <div class="col-sm-2 date">
-                         From {{   date('d,M,Y', $cg->start_dat)  }}       To      
-                         {{        date(    'd,M,Y',$cg->end_date     )    }}
+                         From {{   date('d,M,Y', $cg->start_date)  }}       To      
+                         {{        date( 'd,M,Y',$cg->end_date     )    }}
                                 </div>
                         </div>
                           
