@@ -376,6 +376,7 @@
   <!-- build:js({.tmp,app}) scripts/app.min.js -->
 
 <!-- cropper js close -->
-
+<!-- @section('app_jquery') -->
+@yield('app_jquery')
 
 </html>
