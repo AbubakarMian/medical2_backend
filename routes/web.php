@@ -2,14 +2,14 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Model\Routes as erp;
+// use App\Model\Routes as erp;
 
-$db_routes = erp::first();
-$url_method =  $db_routes->url_method;
-// dd( $db_routes);
+// $db_routes = erp::first();
+// $url_method =  $db_routes->url_method;
+// // dd( $db_routes);
 
 
-Route::$url_method($db_routes->url , $db_routes->controller_function);
+// Route::$url_method($db_routes->url , $db_routes->controller_function);
 // return;
 
 

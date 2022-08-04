@@ -13,7 +13,7 @@ class CreateRoutesTable extends Migration
      */
     public function up()
     {
-        Schema::create('routes', function (Blueprint $table) {
+        Schema::create('route', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('url_method');// get/post
             $table->string('url');
