@@ -102,13 +102,14 @@
                     
                     </br>
                     <?php
-                    // dd($cg->venue)
+                    // dd($cg)
                     ?>
-                    @if($cg->venue)
+                    @if($cg->is_online != 0)
                     <?php
                     // dd('saasas')
                     ?>
-                           {{ucwords($cg->venue)}}
+                     <button type="button" class="btn btn-warning" >Online Class</button>
+                         
                     @elseif($cg->lat  != 0)
                            <button type="button" class="btn btn-warning" onclick="open_map()">Map Location</button>
                          

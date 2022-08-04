@@ -534,9 +534,9 @@ span.forspan {
   font-weight: 500;
 }
 .regtable {
-  /* padding: 25px; */
-  border-radius: 20px;
-  border: 2px solid #80808042;
+  padding: 24px;
+  border-radius: 3px;
+  border: 3px solid #80808042;
   /* margin: 13px 0px; */
   background: white;
   margin-top: 15px;
@@ -578,25 +578,27 @@ border-color: floralwhite; */
     text-decoration: underline;
     text-decoration-color: cornsilk;
 }
-.dates{
+.dates {
   font-size: 17px;
   color: darkblue;
   text-decoration: underline;
   text-decoration-color: darkslategray;
   background-color: gold;
-  margin-left: 16px;
-  border-radius: 29px;
+  margin-left: 14px;
+  border-radius: -10px;
   padding-top: 6px;
 }
-.date{
-  font-size: 17px;
-  color: darkblue;
-  text-decoration: underline;
-  text-decoration-color: darkslategray;
-  background-color: gold;
-  margin-left: 67px;
-  border-radius: 29px;
-  padding-top: 6px;
+
+.date {
+  font-size: 16px;
+    color: darkblue;
+    text-decoration: underline;
+    text-decoration-color: darkslategray;
+    background-color: gold;
+    margin-left: 68px;
+    border-radius: -8px;
+    padding-top: 17px;
+    padding-bottom: -7px;
 }
 .regtabless {
   text-align:center;
