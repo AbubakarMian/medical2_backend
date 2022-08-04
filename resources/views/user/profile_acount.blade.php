@@ -204,8 +204,9 @@
 </section>
 
 
+@endsection
 
-
+@section('app_jquery')
 <script>
 
 $(document).ready(function() {
@@ -315,6 +316,7 @@ var image = document.getElementById('sample_image');
     }); 
 </script>
 @endsection
+
 
 
 
