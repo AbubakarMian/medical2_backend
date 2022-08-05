@@ -38,7 +38,7 @@ class WorkshopController extends Controller
 
     public function save(Request $request)
     {
-        $workshop = new Group();
+         $workshop = new Group();
 
         $start_timestamp = $this->time_to_timestamp($request->start_time);
         $end_timestamp = $this->time_to_timestamp($request->end_time);
@@ -55,6 +55,18 @@ class WorkshopController extends Controller
             // 
             $workshop->teacher_id = $request->teacher_id;
             $workshop->type = 'workshop';
+            if($request->is_online == "on"){
+                //  dd('ABCC');
+                $workshop->is_online = 1;
+                $workshop->lat = 0;
+                $workshop->long = 0;
+             }
+            else{
+                // dd('ABCC');
+            $workshop->lat = $request->group_lat;
+            $workshop->long = $request->group_long;
+            $workshop->is_online = 0;
+            }
             $workshop->save();
  }
           return redirect('admin/workshop');
@@ -74,7 +86,7 @@ class WorkshopController extends Controller
             'teacher',
         ));
     }
-
+//   edit and update   in index page 
     public function update(Request $request)
     {
         $workshop = Group::find($request->workshop_id);
@@ -87,10 +99,7 @@ class WorkshopController extends Controller
             'workshop' => $workshop
         ]);
         return $response;
-
-
-     
-    }
+ }
 
 
     public function add_or_update(Request $request, $workshop)

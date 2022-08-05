@@ -75,10 +75,8 @@ class GroupController extends Controller
     }
     public function add_or_update(Request $request, $group)
     {
-// dd($request->all());
-        $start_date_timestamp = strtotime($request->start_date); // start date
-        $end_date_timestamp = strtotime($request->end_date); //end date
-        // dd($start_date_timestamp);
+        $start_date_timestamp = strtotime($request->start_date); 
+        $end_date_timestamp = strtotime($request->end_date);
 
         $group->name = $request->name;
         $group->courses_id = $request->courses_id;
@@ -99,7 +97,6 @@ class GroupController extends Controller
         $group->save();
 
         foreach ($request->day as $key => $d) {
-            // dd($d[]);
             $group_timings = new Group_Timings();
             $group_timings->course_id = $request->courses_id;
             $group_timings->group_id = $group->id;

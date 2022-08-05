@@ -139,7 +139,13 @@
                     @endif
                          </div>
                          <div class="col-sm-7 teacher" style="color:white">
-                         {{ ucwords($cg->teacher->name) }} Teacher /  {{ ucwords($cg->name) }} Group
+                         {{ ucwords($cg->teacher->name) }} Teacher /  {{ ucwords($cg->name) }}
+                         @if($cg->type == 'course')
+                          Group
+                          
+                          @elseif( $cg->type == 'workshop')
+                          Workshop
+                          @endif
                          </div>
                          <div class="col-sm-2 date">
                          From {{   date('d,M,Y', $cg->start_date)  }}       To      
@@ -180,8 +186,10 @@
                                 <tr>
                               
                                 
-                                <th>Start Date</th>
-                                <th>End Date</th>
+                                <th>Start Time</th>
+                                <th></th>
+                                <th></th>
+                                <th>End Time</th>
                             </tr>
                          
 
@@ -189,13 +197,20 @@
                             
                                 <td>{{ 
                                   
-                                    date('d M Y', $cg->start_date)
+                                    date('h:i:s', $cg->start_date)
                                 
                                 }}
                             </td>
+
+                            <td>
+                          </td>
+                          <td>
+                          </td>
+
+
                                 <td>
                                   {{
-                                    date('d M Y', $cg->end_date)
+                                    date('h:i:s', $cg->end_date)
                                 }}
                                 
                                 </td>

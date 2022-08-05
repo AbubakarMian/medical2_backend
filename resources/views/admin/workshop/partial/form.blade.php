@@ -33,6 +33,54 @@
 
 
     </style>
+    <!--  -->
+
+
+
+<!-- modal -->
+
+
+
+  <!-- Trigger the modal with a button -->
+  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content" style="width: 100%;
+    height: 83%;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Group Map</h4>
+        </div>
+        <!-- <div class="modal-body" id="map">
+          <p>Some text in the modal.</p>
+        </div> -->
+        <div id="map">
+        @include('admin.workshop.map')
+
+        
+        </div>
+       
+      </div>
+      
+    </div>
+  </div>
+
+  
+  
+
+
+
+
+
+
+
+
+
+<!--  -->
 
 
 <!--  -->
@@ -94,6 +142,63 @@
       'maxlength'=>"100"]) !!}
     </div>
 </div>
+
+<!--  -->
+
+<div class="form-group">
+    {!! Form::label('is_online ','Workshop Online Class') !!}
+   
+    <div>
+
+    <input type="checkbox" id="myCheck" onclick="myFunction()" name="is_online">
+
+<!--  -->
+
+
+<!-- <div class="form-group">
+    {!! Form::label('is_online ','Group Online Class') !!}
+   
+    <div>
+        {!! Form::checkbox('is_online',null  , ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'onclick="myFunction()"'=>'true',
+        'data-parsley-trigger'=>'change',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div> -->
+
+
+
+<!--  -->
+    </div>
+    </br>
+    <!--  -->
+    <!-- <div id="venue_map" style="display:none" > -->
+    <div id="venue_map" >
+    <!-- <label >Enter Venue:</label> 
+    <input type="text" required  name="venue" class = 'form-control'> -->
+        </br>
+
+    <label>Open Map For Workshop Venue</label> 
+    </br>  
+    </br> 
+    <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">
+
+    <input   hidden name="group_lat"  id="group_lats" value=""> 
+<input  hidden  name="group_long"  id="group_longs" value="">  
+  </div>
+  <!--  -->
+
+
+  <!-- <  group mappppppppppppppppppp-->    
+</div>
+
+
+
+
+
+
+{{--    --}}
 
 
    
@@ -196,6 +301,7 @@ function myFunction(){
     // map
     function open_map(){
         console.log('mapssssssss');
+         var checkBox = document.getElementById("myCheck");
         $('#myModal').modal('show');
 
 

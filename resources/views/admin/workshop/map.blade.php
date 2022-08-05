@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Group Map</title>
+    <title>Workshop Map</title>
     <script src="{{ asset('theme/vendor/jquery/dist/jquery.js') }}"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
@@ -64,7 +64,6 @@
 
     var directionsService;
     var directionsRenderer;
-    var geocoder = new google.maps.Geocoder();
 
 
       function initMap() {
@@ -90,14 +89,11 @@
             content: "Click the map to get Lat/Lng!",
             position: myLatlng,
         });
-
-    // infoWindow.open(map);
+        // infoWindow.open(map);
         // placeMarker(myLatlng,map);
 
         map.addListener("click", (mapsMouseEvent) => {
             placeMarker(mapsMouseEvent.latLng,map);
-
-            console.log('mapsMouseEvent',mapsMouseEvent);
             // calculateAndDisplayRoute();
         // Close the current InfoWindow.
         // infoWindow.close();
@@ -110,15 +106,12 @@
         var longitude = mapsMouseEvent.latLng.lng();
 
         myLatlng = mapsMouseEvent.latLng;
-
-      var address_objes =  get_area_detail(mapsMouseEvent);
-
-        console.log('address_objttttttttttttt',address_objes);
         console.log('lat',mapsMouseEvent.latLng.lat());
         console.log('long',mapsMouseEvent.latLng.lng());
         set_lat_long_parent(latitide,longitude);
 
-  
+        // $('#lat').val(latitide);
+        // $('#long').val(longitude);
         console.log('myLatlng',myLatlng);
         // var marker = new google.maps.Marker({
         // // The below line is equivalent to writing:
@@ -134,54 +127,6 @@
         });
 
       }
-// addresss
-      async  function get_area_detail(mapsMouseEvent){
-        var geocoder =   new google.maps.Geocoder();
-        await geocoder.geocode({
-                // 'latLng': lat_long//{ lat: 24.961748975600738, lng: 67.06023874305612 }
-                'latLng':mapsMouseEvent.latLng
-            }, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-              if (results[0]) {
-                    console.log('result',results[0]);
-                    console.log('result',results[0]);
-                    console.log('formatted_address',results[0].formatted_address);
-                }
-////////
-
-           var level_1; 
-            var level_2;
-            for (var x = 0, length_1 = results.length; x < length_1; x++){
-              for (var y = 0, length_2 = results[x].address_components.length; y < length_2; y++){
-                  var type = results[x].address_components[y].types[0];
-                    if ( type === "administrative_area_level_1") {
-                      level_1 = results[x].address_components[y].long_name;
-                    //   if (level_2) break;
-                    } else if (type === "locality"){
-                      level_2 = results[x].address_components[y].long_name;
-                    //   if (level_1) break;
-                    }
-                }
-            }
-            console.log('cityyy',level_2);
-            console.log('countryy',length_1);
-            console.log('addresssss',results[0].formatted_address);
-            var address_obj = {
-                city:level_2,
-                country:length_1,
-                address:results[0].formatted_address,
-            };
-            console.log('address_objsssss',address_obj);
-            return address_obj;
-
-            // return level_2;
-
-/////////////
-                }
-            });
-      }
-
-
 
       //  open  //  close set_lat_long_parent function
             function set_lat_long_parent(latitide,longitude){
