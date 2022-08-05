@@ -23,6 +23,10 @@
 </head>
 
 <body>
+    <?php
+    use App\User;
+
+    ?>
 
     <section>
         <div class="container-fluid">
@@ -57,7 +61,16 @@
                         <div class="infobox">
                             <div class="infoboximg"></div>
                             <div class="infoboxdata">
-                                {{-- <a href="registrationform.html" --}}
+                                <!-- {{-- <a href="registrationform.html" --}} -->
+                                    <?php
+                                       $all_user = Auth::User();
+                                            // dd($all_user);
+                                        if($all_user){
+                                       $all_user = $all_user->where('role_id',2);
+                                        }
+                                       
+                                    //    dd($all_user);
+                                    ?>
                                 <a href="{!!asset('registration')!!}"><button type="button" class="btn btn-primary logclick">
                                         Registration
                                     </button></a>
