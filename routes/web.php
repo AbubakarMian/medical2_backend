@@ -88,12 +88,16 @@ use Illuminate\Support\Facades\Route;
 
     //  login
     Route::post('user_login', 'User\UserController@user_login');
+    Route::get('user_logout', 'User\UserController@logout');
+
+
 
 
 
 
     Route::get('admin/login', 'Admin\AdminController@index');
     Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
+    Route::group(['middleware' => 'admin_auth'], function () {
 
     // contact module
     Route::get('admin/contact', 'Admin\ContactUsController@index')->name('contact.index');
@@ -297,7 +301,7 @@ Route::post('admin/workshop/delete/{id}', 'Admin\WorkshopController@destroy_unde
 
 
 
-
+  });
 
 
 

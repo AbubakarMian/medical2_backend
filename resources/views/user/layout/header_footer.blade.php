@@ -25,6 +25,7 @@
 <body>
     <?php
     use App\User;
+use Illuminate\Support\Facades\Auth;
 
     ?>
 
@@ -64,27 +65,33 @@
                                 <!-- {{-- <a href="registrationform.html" --}} -->
                                     <?php
                                        $all_user = Auth::User();
-                                           
-                                    //     if($all_user){
-                                    //    $all_user = $all_user->where('role_id',2);
-                                    //     }
+                                            // dd($all_user);
+                                    if($all_user)
+                                       $all_user = $all_user->where('role_id',2);
+                                     
                                        
                                     //    dd($all_user);
                                     ?>
+                                    @if($all_user)
+                                    <div></div>
+                                        @else
                                 <a href="{!!asset('registration')!!}"><button type="button" class="btn btn-primary logclick">
                                         Registration
                                     </button></a>
+                                    @endif
+                                    @if($all_user)
+                                     <a href="{{asset('user_logout')}}" type="button"class="btn btn-primary logclick">
+                                        LOGOUT</a>
+                                        @else
+
 
                                 <button type="button" class="btn btn-primary logclick" data-toggle="modal" data-target="#exampleModal">
                                     Login
                                 </button>
+                                @endif
 
-                                {{-- <button type="button" class="btn btn-primary logclick" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
-                                </button> --}}
-
-                       
-                                
+                             
+                                @if($all_user)
                                   <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle logclick drup" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
@@ -94,19 +101,24 @@
                                       <a class="dropdown-item" href="profile_acount"><i class="fa fa-cog" aria-hidden="true"></i> Acount</a>
                                     </div>
                                   </div>
-                                
+                                  @else
                                   <div class="dropdown">
-                                    
-                                  </div>
                                  
+                                  </div>
+                                  @endif
+                                
 
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
+
+
+                                        
                                             <div class="modal-header loginheader" style="margin-top: 22px">
                                                 <h3>LOGIN</h3>
 
                                             </div>
+                                         
                                             <div class="modal-body loginformarea">
                                                 {{--  <form>  --}}
                                                     <form role="form" method="post" action="{{action('User\UserController@user_login')}}">

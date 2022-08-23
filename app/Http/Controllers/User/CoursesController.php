@@ -96,10 +96,24 @@ class CoursesController extends Controller
     public function user_save_course_register(Request $request)
     {
 // dd('sas');
+
         $user = Auth::user();
+
+        if($user)
+        $user = Auth::user()->where('course_id',2);
         $courses_id = $request->course_id;
         $course = Courses::find($courses_id);
         $course_register =  Course_Register::where('user_id', '2')->where('course_id', $course->id)->first();
+        // dd($user);
+        if(!$user){
+
+            return redirect('/')->with('error', 'Please Login To Continue');
+
+        }
+
+        
+
+        
 
 
         if($course_register ){
