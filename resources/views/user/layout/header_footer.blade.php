@@ -64,10 +64,10 @@
                                 <!-- {{-- <a href="registrationform.html" --}} -->
                                     <?php
                                        $all_user = Auth::User();
-                                            // dd($all_user);
-                                        if($all_user){
-                                       $all_user = $all_user->where('role_id',2);
-                                        }
+                                           
+                                    //     if($all_user){
+                                    //    $all_user = $all_user->where('role_id',2);
+                                    //     }
                                        
                                     //    dd($all_user);
                                     ?>
@@ -82,6 +82,8 @@
                                 {{-- <button type="button" class="btn btn-primary logclick" data-toggle="modal" data-target="#exampleModal">
                                     <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
                                 </button> --}}
+
+                       
                                 
                                   <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle logclick drup" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -92,6 +94,11 @@
                                       <a class="dropdown-item" href="profile_acount"><i class="fa fa-cog" aria-hidden="true"></i> Acount</a>
                                     </div>
                                   </div>
+                                
+                                  <div class="dropdown">
+                                    
+                                  </div>
+                                 
 
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
