@@ -71,11 +71,11 @@ class UserController extends Controller
 
     public function user_login(Request $request){
 
-    //   dd('asa');
              $this->validate($request, [
             'email'   => 'required|email',
             'password'  => 'required|alphaNum|min:3'
         ]);
+        // dd($request->all());
 
         $user_data = array(
             'email'  => $request->get('email'),
@@ -89,10 +89,16 @@ class UserController extends Controller
         }
         else
         {
-            return back()->with('error', 'Wrong Login Details');
+            return redirect()->back()->with('error', 'Wrong Login Details');
         }
 
 
+    }
+
+    function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 
 
