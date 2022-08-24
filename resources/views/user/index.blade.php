@@ -90,6 +90,12 @@
         <div class="colorboxarea">
             <div class="container">
                 <div class="row">
+                @if ($message = Session::get('error'))
+                            <div class="alert alert-danger alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @endif
                     <div class="col-sm-3">
                         <div class="colorbox bgreen">
                             <img src="{!!asset('theme/user_theme/images/workshop.png')!!}" class="img-responsive" />

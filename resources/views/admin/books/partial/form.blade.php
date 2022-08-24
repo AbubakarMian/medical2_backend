@@ -1,6 +1,7 @@
 
 {{-- <input name="invisible" type="hidden" value="{{ $category->id }}"> --}}
 
+
 <div class="form-group">
     {!! Form::label('name',' Name') !!}
     <div>
@@ -28,38 +29,51 @@
 <div class="form-group">
     <label for="courses_id">Select Courses</label>
 
-    {!!Form::select('courses_id',$courses,null,['class' => 'form-control',
-    'data-parsley-required'=>'true',
-    'data-parsley-trigger'=>'change',
-    'placeholder'=>'Select Course','required',
-    'maxlength'=>"100"])!!}
-    {{-- <select class="form-control" id="courses" name="courses" required>
-        @foreach ($courses_list as $key => $ch)
-        <option class="option-file" value="{{ $key + 1 }}">{{ $ch->name }}</option>
-        @endforeach
+    {!!Form::select('courses_id[]',$courses,null,[    'class' => 'form-control searchlist',
+                            'multiple' => 'multiple',
+                            'data-parsley-trigger'=>'change',
+                            'required',
+                            'maxlength'=>"100"])!!}
+                            
 
-    </select> --}}
 </div>
+<div class="form-group">
 
 
+    <div class="form-group">
+        {!! Form::label('Book PDF','Book PDF') !!}
+        {!! Form::file('upload_book', ['class' => 'choose-book', 'id'=>'upload_book'] ) !!}
 
-
-
-
-
-
-
-
-{{-- {!! Form::label('description', 'Description') !!}
-    <div >
-
-    <div>
-        {!! Form::textarea('description', null, ['class' => 'ckeditor form-control' , 'id'=>'summary-ckeditor', 'data-parsley-required' => 'true', 'data-parsley-trigger' => 'change', 'placeholder' => 'Enter title', 'required', 'maxlength' => '100']) !!}
+    </div>
     </div>
 
+    <!-- avatar -->
+    <?php
+
+$avatar =  asset('images/logo.png');
+    if(isset($books)){
+
+if($books->avatar){
+    $avatar = $books->avatar;
+}
+}
+?>
+
+<div class="form-group">
+
+<div class="form-group pull-right">
+    <img src="{!! $avatar !!}"  class="show-product-img" data-toggle="modal" data-target=".imagemodal">
+</div>
+
+<div class="form-group">
+    {!! Form::label('image','Image') !!}
+    {!! Form::file('avatar', ['class' => 'choose-image', 'id'=>'image','required'] ) !!}
+    <p class="help-block" id="error">Limit 2MB</p>
+</div>
+</div>
+    <!-- avatar -->
 
 
-</div> --}}
 
 
 
@@ -90,10 +104,16 @@
     function validateForm() {
         return true;
     }
+  
 
 </script>
 
 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+
+    
+    
+   
+
 
 @endsection
 

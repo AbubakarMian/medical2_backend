@@ -5,7 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Model\Category;
 use App\Model\Courses;
+use App\Model\Group;
 use App\Model\Course_Register;
+use App\Model\Group_Timings;
 use App\Model\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,12 +17,35 @@ use Stripe;
 class CoursesController extends Controller
 {
 
-    // multiple courses list open
+    // multiple courses list open AND WORKSHOP ALSO OPEN IN THIS CONTROLLER
     public function index(Request $request)
     {
+        // dd($request->all());
+        $types = $request->type;
         $name = $request->courses_name ?? '';
 
-        $courses_list = Courses::where('full_name', 'like', '%' . $name . '%')->get();
+        $courses = Courses::where('full_name', 'like', '%' . $name . '%');
+        // dd(  $courses_lists);
+        if($types == 'courses'){
+       
+            $courses_list =  $courses->
+            whereHas('group',function($g)
+                { 
+                $g->where('type' ,'course');
+                })->get();
+                // dd( $courses_list );
+              }
+        else{
+            $courses_list = $courses->
+            whereHas('group',function($g)
+               { 
+                $g->where('type' ,'workshop');
+                })->get();
+                // dd( $courses_list );
+                
+        }
+
+
         // $courses_list  =  Courses::get();
         $courses_list_count = $courses_list->count();
         if ($courses_list_count == 1) {
@@ -34,9 +59,8 @@ class CoursesController extends Controller
             $courses_split = $courses_list->split($courses_list_count / 4);
         }
 
-        // dd($courses_split);
         $category_arr = Category::pluck('name', 'id');
-        return view('user.courses.index', compact('courses_split', 'category_arr', 'name'));
+        return view('user.courses.index', compact('courses_split', 'category_arr', 'name','types'));
     }
 
     // course details screen open
@@ -52,21 +76,44 @@ class CoursesController extends Controller
     // course/registration
     public function course_registration(Request $request)
     {
-
+        //  dd($request->all());
         $courses_id = $request->course_id;
-        $courses = Courses::find($courses_id);
-        $stripe_key = Config::get('services.stripe.STRIPE_KEY');
-        return view('user.course_registration.index', compact('courses', 'stripe_key'));
+        $type = $request->type;
+        $courses = Courses::with('group')->find($courses_id);
+        $stripe_key = Config::get('services.stripe.STRIPE_KEY');    
+        // dd( $courses);
+        if($type == 'courses'){
+          $courses_groups = Group::with('group_timings','teacher')->where('type','course')->whereHas('group_timings')
+          ->where('courses_id',$courses->id)->get();
+         }
+        elseif($type == 'workshop'){
+            $courses_groups = Group::with('teacher')->where('type','workshop')->where('courses_id',$courses->id)->get();
+            }
+        return view('user.course_registration.index', compact('courses', 'stripe_key','courses_groups','type'));
     }
 
     // user_save_course_register
     public function user_save_course_register(Request $request)
     {
 // dd('sas');
+
         $user = Auth::user();
+
+        if($user)
+        $user = Auth::user()->where('course_id',2);
         $courses_id = $request->course_id;
         $course = Courses::find($courses_id);
         $course_register =  Course_Register::where('user_id', '2')->where('course_id', $course->id)->first();
+        // dd($user);
+        if(!$user){
+
+            return redirect('/')->with('error', 'Please Login To Continue');
+
+        }
+
+        
+
+        
 
 
         if($course_register ){

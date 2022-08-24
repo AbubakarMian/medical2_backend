@@ -81,11 +81,32 @@ class AdminController extends Controller
             'title' => 'Users ',
 
         ];
+        $modules[]= [
+
+            'url'=>'admin/category',
+            'title'=>'Category'
+        ];
         $modules[] = [
 
             'url' => 'admin/courses',
             'title' => 'Courses',
 
+        ];
+        $modules[]= [
+
+            'url'=>'admin/books',
+            'title'=>'Books'
+        ];
+        $modules[]= [
+
+            'url'=>'admin/teacher',
+            'title'=>'Teacher'
+
+        ];
+        $modules[]= [
+
+            'url'=>'admin/group',
+            'title'=>'Group'
         ];
 
 
@@ -101,6 +122,7 @@ class AdminController extends Controller
             'title'=>'Exams'
 
         ];
+
         $modules[]= [
 
             'url'=>'admin/settings',
@@ -109,32 +131,29 @@ class AdminController extends Controller
         ];
         $modules[]= [
 
-            'url'=>'admin/category',
-            'title'=>'Category'
+            'url'=>'admin/workshop',
+            'title'=>'Workshop'
         ];
-        $modules[]= [
-
-            'url'=>'admin/group',
-            'title'=>'Group'
-        ];
-        $modules[]= [
-
-            'url'=>'admin/books',
-            'title'=>'Books'
-        ];
-        $modules[]= [
-
-            'url'=>'admin/aboutus',
-            'title'=>'About Us'
-        ];
-
         $modules[] = [
             'url' => 'admin/contact',
             'title' => 'Contact Us',
 
 
         ];
-        $modules[] = [
+       
+        $modules[]= [
+
+            'url'=>'admin/settings',
+            'title'=>'Settings'
+
+        ];
+     
+        
+      
+      
+
+       
+        $reports[] = [
 
             'url' => 'admin/course_register',
             'title' => 'Course Register ',

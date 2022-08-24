@@ -1,7 +1,23 @@
 <?php
 
-use App\Models\Promo_code;
+
 use Illuminate\Support\Facades\Route;
+// use App\Model\Routes as erp;
+
+// $db_routes = erp::first();
+// $url_method =  $db_routes->url_method;
+// // dd( $db_routes);
+
+
+// Route::$url_method($db_routes->url , $db_routes->controller_function);
+// return;
+
+
+
+
+
+
+// return;
 
 
 /*
@@ -21,10 +37,16 @@ use Illuminate\Support\Facades\Route;
      // Route::get('user', 'Admin\UserController@index');
      Route::get('/', 'User\UserController@index');
      Route::get('courses_registration', 'User\UserController@courses_registration');
-     Route::get('profile_acount', 'User\UserController@profile_acount');
-     Route::get('profile_courses', 'User\UserController@profile_courses');
+   
+    //  profile_courses
 
+     Route::get('profile_courses', 'User\Profile_Courses_Controller@my_courses');
+     //  profile_account
+     Route::get('profile_acount', 'User\Profile_Courses_Controller@my_profile');
+    //  my_profile_save
+     Route::post('my_profile_save', 'User\Profile_Courses_Controller@my_profile_save');
 
+ 
     //category page
      Route::get('category', 'User\CategoryController@index');
      Route::post('user/category_search', 'User\CategoryController@index');
@@ -32,10 +54,16 @@ use Illuminate\Support\Facades\Route;
     //courses page
      Route::get('courses', 'User\CoursesController@index');
      Route::post('user/courses_search', 'User\CoursesController@index');
+
+    //  workshop
+
+     //workshop page
+     Route::get('workshop', 'User\CoursesController@index');
+  
      // courses/details page
     Route::get('courses/details', 'User\CoursesController@courses_details');
 
-    // course/registration
+    // course_register
     Route::get('course/registration', 'User\CoursesController@course_registration');
     // save_course_register
     Route::get('save_course_register', 'User\CoursesController@user_save_course_register');
@@ -60,12 +88,16 @@ use Illuminate\Support\Facades\Route;
 
     //  login
     Route::post('user_login', 'User\UserController@user_login');
+    Route::get('user_logout', 'User\UserController@logout');
+
+
 
 
 
 
     Route::get('admin/login', 'Admin\AdminController@index');
     Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
+    Route::group(['middleware' => 'admin_auth'], function () {
 
     // contact module
     Route::get('admin/contact', 'Admin\ContactUsController@index')->name('contact.index');
@@ -138,6 +170,18 @@ Route::post('admin/books/delete/{id}', 'Admin\BooksController@destroy_undestroy'
 
 
 
+//  =================================  teacher ==========================
+
+Route::get('admin/teacher', 'Admin\TeacherController@index')->name('teacher.index');
+
+Route::get('admin/teacher/create', 'Admin\TeacherController@create')->name('teacher.create'); //add
+Route::post('admin/teacher/save', 'Admin\TeacherController@save')->name('teacher.save');
+
+Route::get('admin/teacher/edit/{id}', 'Admin\TeacherController@edit')->name('teacher.edit');
+Route::post('admin/teacher/update/{id}', 'Admin\TeacherController@update')->name('teacher.update');
+
+Route::post('admin/teacher/delete/{id}', 'Admin\TeacherController@destroy_undestroy')->name('teacher.delete');
+
 
   // question list open
   Route::get('admin/question_list/{id}', 'Admin\QuizController@question_list')->name('quiz.question_list');
@@ -205,6 +249,10 @@ Route::post('admin/group/update/{id}', 'Admin\GroupController@update')->name('gr
 Route::post('admin/group/delete/{id}', 'Admin\GroupController@destroy_undestroy')->name('group.delete');
 
 
+ // save lat long of parents
+ Route::post('admin/group/map/lat_long', 'Admin\GroupController@group_latlong_save')->name('parent.map');
+
+
 
 // ================================student list==================================
 Route::get('admin/group/students/{id}', 'Admin\GroupController@student_list')->name('admin.group_students');
@@ -221,6 +269,26 @@ Route::post('admin/update_course_group', 'Admin\Course_RegisterController@update
 
 //
 
+
+// ================================workshop=================================
+Route::get('admin/workshop', 'Admin\WorkshopController@index')->name('workshop.index');
+
+Route::get('admin/workshop/create', 'Admin\WorkshopController@create')->name('workshop.create'); //add
+Route::post('admin/workshop/save', 'Admin\WorkshopController@save')->name('workshop.save');
+
+// Route::get('admin/workshop/edit/{id}', 'Admin\WorkshopController@edit')->name('workshop.edit');
+Route::post('admin/workshop_value_updte', 'Admin\WorkshopController@update')->name('workshop.update');
+
+Route::post('admin/workshop/delete/{id}', 'Admin\WorkshopController@destroy_undestroy')->name('workshop.delete');
+
+
+
+
+
+
+
+// 
+
 //  =================================  Reports PAYMENT ==========================
 
 
@@ -233,7 +301,7 @@ Route::post('admin/update_course_group', 'Admin\Course_RegisterController@update
 
 
 
-
+  });
 
 
 

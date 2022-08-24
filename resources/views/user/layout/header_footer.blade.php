@@ -6,16 +6,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="{!!asset('theme/user_theme/css/medical2.css')!!}" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+        <!-- cropeer css open-->
+        <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+     <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>
+
+     <!-- cropeer css close--> 
+
+
+
+
+
 
 
 </head>
 
 <body>
+    <?php
+    use App\User;
+use Illuminate\Support\Facades\Auth;
+
+    ?>
 
     <section>
         <div class="container-fluid">
@@ -50,19 +62,36 @@
                         <div class="infobox">
                             <div class="infoboximg"></div>
                             <div class="infoboxdata">
-                                {{-- <a href="registrationform.html" --}}
+                                <!-- {{-- <a href="registrationform.html" --}} -->
+                                    <?php
+                                       $all_user = Auth::User();
+                                            // dd($all_user);
+                                    if($all_user)
+                                       $all_user = $all_user->where('role_id',2);
+                                     
+                                       
+                                    //    dd($all_user);
+                                    ?>
+                                    @if($all_user)
+                                    <div></div>
+                                        @else
                                 <a href="{!!asset('registration')!!}"><button type="button" class="btn btn-primary logclick">
                                         Registration
                                     </button></a>
+                                    @endif
+                                    @if($all_user)
+                                     <a href="{{asset('user_logout')}}" type="button"class="btn btn-primary logclick">
+                                        LOGOUT</a>
+                                        @else
+
 
                                 <button type="button" class="btn btn-primary logclick" data-toggle="modal" data-target="#exampleModal">
                                     Login
                                 </button>
+                                @endif
 
-                                {{-- <button type="button" class="btn btn-primary logclick" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
-                                </button> --}}
-                                
+                             
+                                @if($all_user)
                                   <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle logclick drup" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
@@ -72,14 +101,24 @@
                                       <a class="dropdown-item" href="profile_acount"><i class="fa fa-cog" aria-hidden="true"></i> Acount</a>
                                     </div>
                                   </div>
+                                  @else
+                                  <div class="dropdown">
+                                 
+                                  </div>
+                                  @endif
+                                
 
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
+
+
+                                        
                                             <div class="modal-header loginheader" style="margin-top: 22px">
                                                 <h3>LOGIN</h3>
 
                                             </div>
+                                         
                                             <div class="modal-body loginformarea">
                                                 {{--  <form>  --}}
                                                     <form role="form" method="post" action="{{action('User\UserController@user_login')}}">
@@ -130,6 +169,12 @@
                         </div>
                     </div>
                     <nav>
+                        <?php
+ $courses = 'courses';
+ $workshop = 'workshop';
+
+
+?>
                         <div class="jump">
                             <div class="navbar-collapse nav-collapse collapse">
                                 <ul class="nav navbar-nav menuu" style="flex-direction: inherit;">
@@ -143,7 +188,10 @@
                                         <a href="{!!asset('category')!!}"><span>Category</span> </a>
                                     </li>
                                     <li id="03">
-                                        <a href="{!!asset('courses')!!}"><span>Courses</span> </a>
+                                        <a href="{!!asset('courses').'?type=courses'!!}"><span>Courses</span> </a>
+                                    </li>
+                                    <li id="03">
+                                        <a href="{!!asset('courses').'?type=workshop'!!}"><span>Workshop</span> </a>
                                     </li>
                                     {{-- <li id="04">
                     <a href="#"><span>Register</span> </a>
@@ -343,7 +391,24 @@
     </section>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+        <!-- cropper js  open -->
+-<!-- build:js({.tmp,app}) scripts/app.min.js -->
+
+<!-- endbuild -->
+<script src="{{ asset('theme/vendor/parsleyjs/dist/parsley.min.js') }}"></script>
+<script src="https://unpkg.com/dropzone"></script>
+<script src="https://unpkg.com/cropperjs"></script>
+  <!-- build:js({.tmp,app}) scripts/app.min.js -->
+
+<!-- cropper js close -->
+<!-- @section('app_jquery') -->
 @yield('app_jquery')
 
 </html>

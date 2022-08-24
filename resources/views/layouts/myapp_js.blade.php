@@ -2,6 +2,9 @@
 <script>
 $(function(){
 
+    console.log('myapp.blade.js');
+$('select.searchlist').select2();
+
 @yield('document_ready_jq');
 
 $('#open_time').timeEntry();

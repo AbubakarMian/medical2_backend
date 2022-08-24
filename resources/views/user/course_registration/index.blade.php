@@ -7,9 +7,34 @@
 
     <link href="{!! asset('theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
     {{-- <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" /> --}}
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        td, th {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+    </style>
 
 
     <div class="bannerarea"></div>
+
+
 
 
     <div class="courbandarea">
@@ -17,46 +42,214 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="courbanddata">
-                        <h2>Select Your Group</h2>
+                        <!--  -->
+                        <?php
+                        $course_g = $courses_groups->count();
+
+                        ?>
+                        @if($course_g == 0)
+                 
+                        <h2 class="alert alert-danger text-center" style="color: black;
+                    padding: 8px;
+                    font-size: 21px;
+                    font-family: cursive;"
+                                        
+                        
+                        
+                        
+                        >Course Registration Timings Will Be Available Soon</h2>
+                        @else
+                     <?php   
+                    //  dd($type )
+
+                     ?>
+                     @if($type == 'courses')
+
+                        <h2 >Select Your {{ ucwords($courses->full_name) }} Course Group</h2>
+                        @elseif($type == 'workshop')
+                        <h2 >Select Your {{ ucwords($courses->full_name) }} Course Workshop</h2>
+                        @endif
+                        
+
+
+                        <!--  -->
+
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="regtable">
-                        <table class="table prtable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Sno</th>
-                                    <th scope="col">Group</th>
-                                    <th scope="col">Teacher</th>
-                                    <th scope="col">Venu</th>
-                                    <th scope="col">Timming</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
+
+
+
+                <?php
+        
+                ?>
+@foreach ($courses_groups as $cg)
+                <?php
+     
+                ?>
+
+
+<div class="regtable">
+                        
+                        <div class="regtablesh">
+                            <div class="row">
+
+                        <div class="col-sm-2 dates">
+                          
+                        Venue      
+                    
+                    </br>
+                    <?php
+                    // dd($cg)
+                    ?>
+                    @if($cg->is_online != 0)
+                    <?php
+                    // dd('saasas')
+                    ?>
+                     <button type="button" class="btn btn-warning" >Online Class</button>
+                         
+                    @elseif($cg->lat  != 0)
+                           <button type="button" class="btn btn-warning" onclick="open_map()">Map Location</button>
+                         
+                           
+                
+      <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Venue Location</h4>
+        </div>
+    <div class="modal-body" id="map" style="height:600px">
+       @include('user.course_registration.map',['lat'=>$cg->lat,'long'=>$cg->long])
+        </div>
+       
+       
+      </div>
+      
+    </div>
+  </div>
+                    @else
+                          No Location
+                    @endif
+                         </div>
+                         <div class="col-sm-7 teacher" style="color:white">
+                         {{ ucwords($cg->teacher->name) }} Teacher /  {{ ucwords($cg->name) }}
+                         @if($cg->type == 'course')
+                          Group
+                          
+                          @elseif( $cg->type == 'workshop')
+                          Workshop
+                          @endif
+                         </div>
+                         <div class="col-sm-2 date">
+                         From {{   date('d,M,Y', $cg->start_date)  }}       To      
+                         {{        date( 'd,M,Y',$cg->end_date     )    }}
+                                </div>
+                        </div>
+                          
+                                
+
+                            </div>
+                            @if($cg->type == 'course')
+
+                            <!-- for course -->
+                            
+                            <table>
                             <tbody>
                                 <tr>
-                                    <td scope="row">1</td>
-                                    <td>Science</td>
-                                    <td>Sir Ali</td>
-                                    <td>Online</td>
-                                    <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
-                                    <td><a href="{{ asset('save_course_register/?course_id=' . $courses->id) }}"><button
-                                                type="button" class="btn btn-primary porjoin">Register</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">2</td>
-                                    <td>Science</td>
-                                    <td>Sir Ali</td>
-                                    <td>Canada</td>
-                                    <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
-                                    <td><a href=""{{ asset('save_course_register/?course_id=' . $courses->id) }}><button
-                                                type="button" class="btn btn-primary porjoin">Register</button></a></td>
-                                </tr>
+                              
+                                <th>Day</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                            </tr>
+                            @foreach ($cg->group_timings as $key => $gt)
+
+                            <tr>
+                                <td>{{ ucwords($gt->day) }}</td>
+                                <td>{{ date('h:i:s', $gt->start_time) }}</td>
+                                <td>{{ date('h:i:s', $gt->end_time) }}</td>
+                            </tr>
+                            @endforeach
                             </tbody>
-                        </table>
+                           </table>
+                           <!--for workshop not course  -->
+
+                           @elseif( $cg->type == 'workshop')
+                           <table>
+                            <tbody>
+                                <tr>
+                              
+                                
+                                <th>Start Time</th>
+                                <th></th>
+                                <th></th>
+                                <th>End Time</th>
+                            </tr>
+                         
+
+                            <tr>
+                            
+                                <td>{{ 
+                                  
+                                    date('h:i:s', $cg->start_date)
+                                
+                                }}
+                            </td>
+
+                            <td>
+                          </td>
+                          <td>
+                          </td>
+
+
+                                <td>
+                                  {{
+                                    date('h:i:s', $cg->end_date)
+                                }}
+                                
+                                </td>
+                            </tr>
+                      
+                            </tbody>
+                           </table>
+                           @endif
+
+
+
+
+                        <div class="regtabless">
+                            <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
+                            <a href="{!! asset('save_course_register/?course_id='.$cg->courses_id) !!}" style="line-height: 35px;">
+
+                                <button type="button" class="btn btn-primary regi">Register</button>
+
+                            </a>
+                        </div>
+
                     </div>
+
+
+
+
+
+
+
+
+
+
+                            @endforeach
+                            @endif
+                            <!--  -->
+                    
+
+                  
+                    
                 </div>
             </div>
             <div class="row">
@@ -88,10 +281,10 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
 
     <div class="container reviewsback">
-        <div class="row">            
+        <div class="row">
             <!-- customer reviews list -->
             <div class="col-lg-12 col-md-12 col-12">
                 <div class="d-flex align-items-center justify-content-between mb-4">
@@ -111,7 +304,8 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1" alt="" class="rounded-circle avatar-lg">
+                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                                alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
                                     samirabenmahria <img src="images/verified.svg" alt="">
@@ -128,9 +322,9 @@
                                 <span class="fa fa-star yellowstar"></span>
                                 <span class="fa fa-star yellowstar"></span>
 
-                            </span>                           
+                            </span>
                         </div>
-                        <div class="mb-1">                           
+                        <div class="mb-1">
                             <span class="h5">Order FO3C86E4AE43</span>
                         </div>
                         <p class="pictureadata">
@@ -141,7 +335,8 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1" alt="" class="rounded-circle avatar-lg">
+                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                                alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
                                     samirabenmahria <img src="images/verified.svg" alt="">
@@ -158,9 +353,9 @@
                                 <span class="fa fa-star yellowstar"></span>
                                 <span class="fa fa-star yellowstar"></span>
 
-                            </span>                           
+                            </span>
                         </div>
-                        <div class="mb-1">                           
+                        <div class="mb-1">
                             <span class="h5">Order FO3C86E4AE43</span>
                         </div>
                         <p class="pictureadata">
@@ -172,7 +367,8 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1" alt="" class="rounded-circle avatar-lg">
+                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                                alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
                                     samirabenmahria <img src="images/verified.svg" alt="">
@@ -189,9 +385,9 @@
                                 <span class="fa fa-star yellowstar"></span>
                                 <span class="fa fa-star yellowstar"></span>
 
-                            </span>                           
+                            </span>
                         </div>
-                        <div class="mb-1">                           
+                        <div class="mb-1">
                             <span class="h5">Order FO3C86E4AE43</span>
                         </div>
                         <p class="pictureadata">
@@ -201,7 +397,7 @@
                     </div>
                     <!-- reviews -->
                     <!-- reviews -->
-                    
+
                 </div>
                 <button id="get_reviews" class="btn btn-primary revikewclick">Read More Reviews</button>
             </div>
@@ -209,97 +405,20 @@
     </div>
 
 
+  </div>
 
 
 
-
-
-
-
-    </div>
-@endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@section('app_jquery')
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
     <script>
-        $(function() {
-            var $form = $(".require-validation");
-
-            $('form.require-validation').bind('submit', function(e) {
-                var $form = $(".require-validation"),
-                    inputSelector = ['input[type=email]', 'input[type=password]',
-                        'input[type=text]', 'input[type=file]',
-                        'textarea'
-                    ].join(', '),
-                    $inputs = $form.find('.required').find(inputSelector),
-                    $errorMessage = $form.find('div.error'),
-                    valid = true;
-                $errorMessage.addClass('hide');
-
-                $('.has-error').removeClass('has-error');
-                $inputs.each(function(i, el) {
-                    var $input = $(el);
-                    if ($input.val() === '') {
-                        $input.parent().addClass('has-error');
-                        $errorMessage.removeClass('hide');
-                        e.preventDefault();
-                    }
-                });
-
-                if (!$form.data('cc-on-file')) {
-                    e.preventDefault();
-                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                    Stripe.createToken({
-                        number: $('.card-number').val(),
-                        cvc: $('.card-cvc').val(),
-                        exp_month: $('.card-expiry-month').val(),
-                        exp_year: $('.card-expiry-year').val()
-                    }, stripeResponseHandler);
-                }
-
-            });
-
-            function stripeResponseHandler(status, response) {
-                if (response.error) {
-                    $('.error')
-                        .removeClass('hide')
-                        .find('.alert')
-                        .text(response.error.message);
-                } else {
-                    /* token contains id, last4, and card type */
-                    var token = response['id'];
-
-                    $form.find('input[type=text]').empty();
-                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                    $form.get(0).submit();
-                }
-            }
-        })
-
-
-
-
-        function openpaymentdiv() {
-            var x = document.getElementById("myDIV");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
-    </script>
+    $(document).ready(function(){
+       $('#myModal').modal('hide');
+       });
+    // map
+    function open_map(){
+        console.log('mapssssssss');
+        $('#myModal').modal('show');
+     }
+       
+  </script>
 @endsection

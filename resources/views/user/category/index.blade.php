@@ -45,7 +45,7 @@
                         max-height: 140px;
                         min-height: max-content;
                         padding-top: 19px;" --}}>
-                                            <a href="{{ asset('category_courses/?category_id=' . $p->id) }}">
+                                            <a href="{{ asset('category_courses/?category_id='.$p->id.'&type=courses') }}">
 
 
                                                 <img src="{!! $p->avatar !!}" alt="Avatar" class="image">

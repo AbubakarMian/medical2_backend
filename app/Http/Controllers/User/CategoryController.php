@@ -34,8 +34,11 @@ class CategoryController extends Controller
     }
 
     public function category_courses(Request $request)
+  
     {
+        // dd($request->all());
 // dd('saas');
+        $types = $request->type;
         $category_id = $request->category_id;
         $courses_list = Courses::where('category_id', $category_id)->get();
 
@@ -61,7 +64,7 @@ class CategoryController extends Controller
             $courses_split = $courses_list->split($courses_list_count / 4);
         }
         $category_arr = Category::pluck('name', 'id');
-        return view('user.courses.index', compact('courses_split', 'category_arr'));
+        return view('user.courses.index', compact('courses_split', 'category_arr','types'));
     }
 
 }

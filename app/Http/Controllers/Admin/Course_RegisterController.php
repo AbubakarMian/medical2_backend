@@ -54,14 +54,14 @@ class Course_RegisterController extends Controller
         $register_course_id = $request->register_course_id;
         $group_id = $request->group_id;
         $register_course = Course_Register::find($register_course_id);
-        $register_course->group_id =  $request->register_course_id;
+        $register_course->group_id =    $group_id;
         // $register_course->user_id = $register_course->user_id;
         $register_course->save();
 
-        $res = [
-            'status'=>true,
-        ];
+        $res['status'] = true;
+        $res['register_course'] = $register_course;
         echo json_encode($res);
+     
     }
 
 

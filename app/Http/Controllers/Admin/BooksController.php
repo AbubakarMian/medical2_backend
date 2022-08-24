@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 use App\Libraries\ExportToExcel;
 use App\Model\Books;
+use App\Model\Books_courses;
 use App\Model\Category;
 use App\Model\Courses;
 use Carbon\Carbon;
@@ -56,6 +57,7 @@ class BooksController extends Controller
     public function update(Request $request, $id)
     {
         $books = Books::find($id);
+        // Books_courses::delete()
         $this->add_or_update($request, $books);
         return Redirect('admin/books');
     }
@@ -64,19 +66,38 @@ class BooksController extends Controller
     public function add_or_update(Request $request, $books)
     {
         // dd($request->all());
-        $date_timestamp =  strtotime($request->start_date);
         $books->name = $request->name;
         $books->description = $request->description;
-        $books->courses_id = $request->courses_id;
-        $books->category_id = $request->category_id;
+        if($request->hasFile('upload_book')){
 
+            $file =$request->upload_book;
+            $filename = $file->getClientOriginalName();
+            
+            $path = public_path().'/uploads/';
+            $u  =  $file->move($path, $filename);
 
-        // if ($request->hasFile('image')) {
-        //     $avatar = $request->image;
-        //     $root = $request->root();
-        //     $books->avatar = $this->move_img_get_path($avatar, $root, 'image');
-        // }
+            $db_path_save_book = asset('/uploads/'.$filename);
+            $books->upload_book =  $db_path_save_book;
+        }
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->avatar;
+            $root = $request->root();
+            $books->avatar = $this->move_img_get_path($avatar, $root, 'image');
+        }
         $books->save();
+
+        // $books_courses
+
+
+        foreach($request->courses_id as $c){
+            $books_courses = new Books_courses();
+            $books_courses->book_id = $books->id;
+            $books_courses->course_id = $c;
+            $books_courses->save();
+        }
+        //  $books_courses
+
+     
         return redirect()->back();
     }
 

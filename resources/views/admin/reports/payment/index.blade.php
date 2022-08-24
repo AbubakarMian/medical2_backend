@@ -3,7 +3,7 @@
 Payment
 @stop
 @section('report_description')
-Product Sales
+
 @stop
 
 {{--  @section('excel')
@@ -80,7 +80,7 @@ Product Sales
 						In Progress
 					</span>
 				</a>
-				@include('Admin.reports.payment.partial.confirmation_modal',
+				@include('admin.reports.payment.partial.confirmation_modal',
 				[
 				'order_id'=>$payment->id,
 				'cell_id'=>'td_'.$payment->id,
@@ -95,7 +95,7 @@ Product Sales
 						Reject
 					</span>
 				</a>
-				@include('Admin.reports.payment.partial.confirmation_modal',
+				@include('admin.reports.payment.partial.confirmation_modal',
 				[
 				'order_id'=>$payment->id,
 				'cell_id'=>'td_'.$payment->id,
@@ -109,7 +109,7 @@ Product Sales
 				<a href="" data-toggle="modal" name="" data-target=".completed_request_{!! $payment->id !!}">
 					<span class=" badge bg-info btn-success">
 						Complete</span></a>
-				@include('Admin.reports.payment.partial.confirmation_modal',
+				@include('admin.reports.payment.partial.confirmation_modal',
 				[
 				'order_id'=>$payment->id,
 				'cell_id'=>'td_'.$payment->id,

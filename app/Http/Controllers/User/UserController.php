@@ -26,15 +26,7 @@ class UserController extends Controller
         return view('user.courses_registration');
     }
 
-    public function profile_acount(){
 
-        return view('user.profile_acount');
-    }
-
-    public function profile_courses(){
-
-        return view('user.profile_courses');
-    }
 
     public function save(Request $request)
     {
@@ -79,11 +71,11 @@ class UserController extends Controller
 
     public function user_login(Request $request){
 
-    //   dd('asa');
              $this->validate($request, [
             'email'   => 'required|email',
             'password'  => 'required|alphaNum|min:3'
         ]);
+        // dd($request->all());
 
         $user_data = array(
             'email'  => $request->get('email'),
@@ -97,10 +89,16 @@ class UserController extends Controller
         }
         else
         {
-            return back()->with('error', 'Wrong Login Details');
+            return redirect()->back()->with('error', 'Wrong Login Details');
         }
 
 
+    }
+
+    function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 
 
