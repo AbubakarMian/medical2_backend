@@ -43,6 +43,7 @@
     </div>
 </div>
 
+
 <div class="form-group">
     {!! Form::label('course','course') !!}
     <div>
@@ -64,6 +65,44 @@
         'maxlength'=>"100"]) !!}
     </div>
 </div>
+
+<!--  -->
+<div class="form-group">
+    {!! Form::label('address','Address') !!}
+    <div>
+        {!! Form::text('address', null, ['class' => 'form-control address',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'id'=>'address', 
+        'placeholder'=>' address','required',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('city','City') !!}
+    <div>
+        {!! Form::text('city', null, ['class' => 'form-control city',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'id'=>'city', 
+        'placeholder'=>' city','required',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
+<!-- <div class="form-group">
+    {!! Form::label('country','Country') !!}
+    <div>
+        {!! Form::text('country', null, ['class' => 'form-control country',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change', 
+        'id'=>'country', 
+        'placeholder'=>' country','required',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div> -->
+
+
+<!--  -->
 <?php
 
 

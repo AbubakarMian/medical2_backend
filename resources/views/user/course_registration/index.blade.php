@@ -87,6 +87,7 @@
                 ?>
 @foreach ($courses_groups as $cg)
                 <?php
+                // dd($cg)
      
                 ?>
 
@@ -98,7 +99,10 @@
 
                         <div class="col-sm-2 dates">
                           
-                        Venue      
+                        Venue   
+                        @if($cg->is_online ==  0 )
+                        :  {{$cg->city}}
+                        @endif
                     
                     </br>
                     <?php
@@ -111,6 +115,7 @@
                      <button type="button" class="btn btn-warning" >Online Class</button>
                          
                     @elseif($cg->lat  != 0)
+                   
                            <button type="button" class="btn btn-warning" onclick="open_map()">Map Location</button>
                          
                            

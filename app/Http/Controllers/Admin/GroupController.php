@@ -75,6 +75,7 @@ class GroupController extends Controller
     }
     public function add_or_update(Request $request, $group)
     {
+        // dd($request->all());
         $start_date_timestamp = strtotime($request->start_date); 
         $end_date_timestamp = strtotime($request->end_date);
 
@@ -92,6 +93,9 @@ class GroupController extends Controller
         else{
         $group->lat = $request->group_lat;
         $group->long = $request->group_long;
+        $group->address = $request->address;
+        $group->city = $request->city;
+        $group->venue = $request->city;
         $group->is_online = 0;
         }
         $group->save();

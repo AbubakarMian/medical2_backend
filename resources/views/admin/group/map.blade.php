@@ -112,8 +112,29 @@
         myLatlng = mapsMouseEvent.latLng;
 
       var address_objes =  get_area_detail(mapsMouseEvent);
+      console.log('address_objttttttttttttt',address_objes);
+      
 
-        console.log('address_objttttttttttttt',address_objes);
+
+
+        // 
+        // var address = document.getElementById("address").html = address_objes.address;
+        // var address = address_objes.;
+        // console.log('addressaddress',address);
+
+        // 
+        // var city = document.getElementById("city").value = map_lattt;
+        // // 
+        // var country = document.getElementById("country").value = map_lattt;
+        // 
+
+
+
+
+
+
+
+
         console.log('lat',mapsMouseEvent.latLng.lat());
         console.log('long',mapsMouseEvent.latLng.lng());
         set_lat_long_parent(latitide,longitude);
@@ -136,6 +157,8 @@
       }
 // addresss
       async  function get_area_detail(mapsMouseEvent){
+        let  addresses_object = "";
+
         var geocoder =   new google.maps.Geocoder();
         await geocoder.geocode({
                 // 'latLng': lat_long//{ lat: 24.961748975600738, lng: 67.06023874305612 }
@@ -166,19 +189,30 @@
             console.log('cityyy',level_2);
             console.log('countryy',length_1);
             console.log('addresssss',results[0].formatted_address);
-            var address_obj = {
+
+            
+             addresses_object = {
                 city:level_2,
                 country:length_1,
                 address:results[0].formatted_address,
             };
-            console.log('address_objsssss',address_obj);
-            return address_obj;
+            console.log('address_objsssss_1',addresses_object);
+            // return addresses_object;
 
-            // return level_2;
+           
 
 /////////////
                 }
             });
+        
+        console.log('address_objsssss_two',addresses_object);
+        //
+        var address = document.getElementById("address").value = addresses_object.address;
+        var city = document.getElementById("city").value =  addresses_object.city;
+        // 
+        // var country = document.getElementById("country").value =  addresses_object.country;
+
+            return  addresses_object;
       }
 
 
