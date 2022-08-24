@@ -86,8 +86,12 @@
 <script src="{{ asset('theme/vendor/jquery/dist/jquery.js') }}"></script>
 <!-- endbuild -->
 <script src="{{ asset('theme/vendor/parsleyjs/dist/parsley.min.js') }}"></script>
-<!-- <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
-<link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/> -->
+
+<!-- open=====uncmment kiya tha bd mai cropeer na chlne ki waja se -->
+<link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+<link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>
+
+<!--end   -->
 <script src="https://unpkg.com/dropzone"></script>
 <script src="https://unpkg.com/cropperjs"></script>
   <!-- build:js({.tmp,app}) scripts/app.min.js -->
