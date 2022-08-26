@@ -123,12 +123,12 @@ class AdminController extends Controller
 
         ];
 
-        $modules[]= [
+        // $modules[]= [
 
-            'url'=>'admin/settings',
-            'title'=>'Settings'
+        //     'url'=>'admin/settings',
+        //     'title'=>'Settings'
 
-        ];
+        // ];
         $modules[]= [
 
             'url'=>'admin/workshop',
