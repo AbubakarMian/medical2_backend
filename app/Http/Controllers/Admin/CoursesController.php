@@ -27,6 +27,7 @@ class CoursesController extends Controller
     {
         $control = 'create';
         $category = Category::pluck('name','id');
+        
         return view('admin.courses.create', compact('control','category'));
     }
 
