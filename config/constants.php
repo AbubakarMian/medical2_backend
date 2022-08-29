@@ -28,6 +28,11 @@ return [
         'user'=>'user',
         'sholar'=>'scholar'
     ],
+    'fees_type' =>[
+        'complete'=>'complete',
+        'installment'=>'installment',
+       
+    ],
 
     'settings'=>[
         'shipping_terms_en_id'=>1,
