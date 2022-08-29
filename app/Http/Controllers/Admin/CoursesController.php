@@ -27,8 +27,10 @@ class CoursesController extends Controller
     {
         $control = 'create';
         $category = Category::pluck('name','id');
+        $fees_type = Config::get('constants.fees_type');
+        // dd($fees_type);
         
-        return view('admin.courses.create', compact('control','category'));
+        return view('admin.courses.create', compact('control','category','fees_type'));
     }
 
     public function save(Request $request)
