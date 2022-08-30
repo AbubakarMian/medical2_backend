@@ -285,6 +285,17 @@ Route::post('admin/workshop/delete/{id}', 'Admin\WorkshopController@destroy_unde
 
 
 
+// ================================ Reports admin student_plan=================================
+Route::get('admin/student_plan', 'Reports\Student_planController@index')->name('student_plan.index');
+
+Route::get('admin/student_plan/create', 'Reports\Student_planController@create')->name('student_plan.create'); //add
+Route::post('admin/student_plan/save', 'Reports\Student_planController@save')->name('student_plan.save');
+
+Route::get('admin/student_plan/edit', 'Reports\Student_planController@edit')->name('student_plan.edit');
+Route::post('admin/student_plan', 'Reports\Student_planController@update')->name('student_plan.update');
+
+Route::post('admin/student_plan/delete/{id}', 'Reports\Student_planController@destroy_undestroy')->name('student_plan.delete');
+
 
 
 // 
