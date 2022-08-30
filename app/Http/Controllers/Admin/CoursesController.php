@@ -62,7 +62,7 @@ class CoursesController extends Controller
 
     public function add_or_update(Request $request, $courses)
     {
-        // dd($request->all());
+        dd($request->all());
         $date_timestamp =  strtotime($request->start_date);
         $courses->full_name = $request->full_name;
         $courses->short_name = $request->short_name;

@@ -163,6 +163,10 @@ class AdminController extends Controller
             'url' => 'admin/reports/payments',
             'title' => 'Payments',
         ];
+        $reports[]= [
+            'url'=>'admin/student_plan',
+            'title'=>'Student Plan',
+        ]
 
         // $modules[] = [
 

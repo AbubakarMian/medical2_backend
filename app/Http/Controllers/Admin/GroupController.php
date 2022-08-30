@@ -31,10 +31,11 @@ class GroupController extends Controller
     {
         $control = 'create';
         $course_id = Courses::pluck('full_name', 'id');
+        $fees_type = Config::get('constants.fees_type');
         $full_days = Day::pluck('day', 'id');
         $teacher = Teacher::pluck('name', 'id');
         // dd($full_days);
-        return view('admin.group.create', compact('control', 'course_id', 'full_days','teacher'));
+        return view('admin.group.create', compact('control', 'course_id', 'full_days','teacher','fees_type'));
     }
 
     public function save(Request $request)
