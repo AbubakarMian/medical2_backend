@@ -29,8 +29,8 @@ return [
         'sholar'=>'scholar'
     ],
     'fees_type' =>[
-        'complete'=>'complete',
-        'installment'=>'installment',
+        'complete'=>'Complete',
+        'installment'=>'Installment',
        
     ],
 
