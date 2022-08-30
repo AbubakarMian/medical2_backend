@@ -61,7 +61,7 @@
         'maxlength'=>"100"]) !!}
     </div>
 </div>
-<!-- <div class="form-group">
+<div class="form-group">
     {!! Form::label('name','Short Name') !!}
     <div>
         {!! Form::text('short_name', null, ['class' => 'form-control',
@@ -90,8 +90,8 @@
         'placeholder'=>'Enter Payment','required',
         'maxlength'=>"100"]) !!}
     </div>
-</div> -->
-<!-- <div class="form-group">
+</div>
+<div class="form-group">
     <label for="category_id">Select Category</label>
 
     {!!Form::select('category_id',$category,null,['class' => 'form-control',
@@ -100,7 +100,7 @@
     'placeholder'=>'Select Category','required',
     'maxlength'=>"100"])!!}
 
-</div> -->
+</div>
 
 <!--newwwwwwww  WORKSSSS-->
 
@@ -146,7 +146,7 @@
         {!! Form::date('due_date', null, ['class' => 'form-control complete_due_date',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Due Date','required',
+        'placeholder'=>'Enter Due Date',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
@@ -165,23 +165,38 @@
 
 <!--  INSATLLMENT_fees_area-->
 <div class="installment_fees_area">
+
+
 <h3>
     Enter Installment
         </h3>
     
     <div class="row">
+
     <div class="col-sm-10">
     </div>
+
     <div class="col-sm-2">
   
     <button type="button" onclick="add_installment_divs()" class="btn btn-danger installment_divs">Add Installment</button>
+
     </div>
-    <div>
+
+
+        </div>
 
 
     <!--  multiple times open-->
-    <div class="multiple_times_open_div">
+    <div class="multiple_times_open_div" >
+
+   
+     
+         
         </div>
+        </div>
+
+    
+       
 
 
 
@@ -192,6 +207,7 @@
 
 
             <!-- END_installment_fees_area -->
+
 
 
 
@@ -367,13 +383,14 @@ function add_installment_divs(){
 
     // 
 
-` <div class="row">
+`
+<div class="row">
     <!-- columnnn-->
 <div class="col-sm-6">
 <div class="form-group">
     {!! Form::label('amount','Amount') !!}
     <div>
-        {!! Form::text('amount', null, ['class' => 'form-control',
+        {!! Form::text('amount[]', null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
         'placeholder'=>'Enter Amount',
@@ -389,10 +406,10 @@ function add_installment_divs(){
             <div class="form-group">
     {!! Form::label('due_date','Due Date') !!}
     <div>
-        {!! Form::date('due_date', null, ['class' => 'form-control',
+        {!! Form::date('due_date[]', null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Due Date','required',
+        'placeholder'=>'Enter Due Date',
         'maxlength'=>"100"]) !!}
     </div>
 </div>

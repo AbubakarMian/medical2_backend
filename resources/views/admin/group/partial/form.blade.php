@@ -65,6 +65,137 @@
         'maxlength'=>"100"]) !!}
     </div>
 </div>
+<!--  -->
+<div class="row">
+
+    <div class="col-sm-10">
+    </div>
+
+    <div class="col-sm-2">
+  
+    <button type="button" onclick="edit_plan()" class="btn btn-danger edit_plans_area">Edit Plan</button>
+
+</div>
+
+</div>
+<!--  -->
+
+
+
+<!--newwwwwwww  WORKSSSS-->
+
+<div class="form-group open_fees_type_div_area">
+            {!! Form::label('fees_type','Fees Type',) !!}
+            {!! Form::select('fees_type',$fees_type,null,["placeholder"=>"Select
+            Type","onchange"=>"open_fees_type_div()", "class"=>"form-control fees_type","required"]) !!}
+            </select>
+        </div>
+
+
+
+<!--  complete_fees_area-->
+
+
+        <div class="complete_fees_area">
+        <h3>
+    Enter Complete Fess  Amount And Due Date
+            </h3>
+            
+<div class="row">
+
+    <!-- columnnn-->
+<div class="col-sm-6">
+<div class="form-group">
+    {!! Form::label('amount','Amount') !!}
+    <div>
+        {!! Form::text('amount', null, ['class' => 'form-control complete_amount',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'Enter Amount',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
+</div>
+
+           
+            <!-- end columnnn -->
+
+<!-- columnnn -->
+            <div class="col-sm-6">
+            <div class="form-group">
+    {!! Form::label('due_date','Due Date') !!}
+    <div>
+        {!! Form::date('due_date', null, ['class' => 'form-control complete_due_date',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'Enter Due Date',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
+            </div>
+
+         <!-- end  columnnn-->
+
+            </div>
+
+            </div>
+
+            <!-- END_complete_fees_area -->
+
+
+
+
+<!--  INSATLLMENT_fees_area-->
+<div class="installment_fees_area">
+
+
+<h3>
+    Enter Installment
+        </h3>
+    
+    <div class="row">
+
+    <div class="col-sm-10">
+    </div>
+
+    <div class="col-sm-2">
+  
+    <button type="button" onclick="add_installment_divs()" class="btn btn-danger installment_divs">Add Installment</button>
+
+    </div>
+
+
+        </div>
+
+
+    <!--  multiple times open-->
+    <div class="multiple_times_open_div" >
+
+   
+     
+         
+        </div>
+        </div>
+
+    
+       
+
+
+
+    <!--  -->
+   
+        
+
+
+
+            <!-- END_installment_fees_area -->
+
+
+
+
+
+<!-- END NEW_WORKSSS -->
+
 
 <!--  -->
 <div class="form-group">
@@ -89,6 +220,14 @@
         'maxlength'=>"100"]) !!}
     </div>
 </div>
+
+
+
+
+
+
+
+
 <!-- <div class="form-group">
     {!! Form::label('country','Country') !!}
     <div>
@@ -307,12 +446,122 @@
 
 @section('app_jquery')
 <script>
+
+    // newwww
+
+function  edit_plan(){
+
+console.log('edit_plan_edit_plan');
+var open_fees_type_div_area = $('.open_fees_type_div_area').show();
+var edit_plans_area = $('.edit_plans_area').hide();
+
+}
+function  open_fees_type_div(){
+
+
+console.log('open_fesss_type_divvvvvvvv');
+
+var select_fees_type = $('.fees_type').val();
+console.log('select_fees_type__select_fees_type',select_fees_type);
+
+if(select_fees_type == 'complete'){
+
+var $complete_fees_area = $('.complete_fees_area').show()
+var $installment_fees_area = $('.installment_fees_area').hide()
+
+};
+if(select_fees_type == 'installment'){
+
+var $installment_fees_area = $('.installment_fees_area').show();
+var $complete_fees_area = $('.complete_fees_area').hide()
+
+};
+
+
+
+}
+function add_installment_divs(){
+
+    console.log('add_installment_divs_add_installment_divs');
+    var installment_div = $('.installment_divs').length+1;
+    var multiple_times_open_div = $('.multiple_times_open_div').append(
+    
+
+
+    // 
+
+`
+<div class="row">
+    <!-- columnnn-->
+<div class="col-sm-6">
+<div class="form-group">
+    {!! Form::label('amount','Amount') !!}
+    <div>
+        {!! Form::text('amount[]', null, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'Enter Amount',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
+
+            </div>
+            <!-- end columnnn -->
+
+<!-- columnnn -->
+            <div class="col-sm-6">
+            <div class="form-group">
+    {!! Form::label('due_date','Due Date') !!}
+    <div>
+        {!! Form::date('due_date[]', null, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'Enter Due Date',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
+            </div>
+
+         <!-- end  columnnn-->
+
+            </div>
+
+            </div>`
+    );
+
+
+    // 
+
+    
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// end new
+
     function validateForm() {
         return true;
     }
 
     // 
     $(document).ready(function(){
+        var $open_fees_type_div_area = $('.open_fees_type_div_area').hide();
+        var $complete_fees_area = $('.complete_fees_area').hide();
+    var $installment_fees_area = $('.installment_fees_area').hide();
        
 $('#myModal').modal('hide');
 
