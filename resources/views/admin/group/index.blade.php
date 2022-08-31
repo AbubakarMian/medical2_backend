@@ -50,7 +50,8 @@ List of Groups
                         console.log('aaaaaaa',response['data'][i]);
                         var id = response['data'][i].id;
                         var group_text = response['data'][i].name;
-                        var course_name = response['data'][i].courses.full_name +' Course' ;
+                        // var group_text = response['data'][i].name ? name:'No Name';
+                        var course_name = response['data'][i].courses.full_name +'Course' ;
                         var teacher_name = response['data'][i].teacher.name +' Teacher' ;
                         // var course_text = response['data'][i].course_id;
                         var group_start_date = response['data'][i].start_date;

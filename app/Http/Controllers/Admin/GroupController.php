@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Courses;
 use App\Model\Course_Register;
+use App\Model\Courses_Fees;
 use App\Model\Day;
 use App\Model\Group;
 use App\Model\Group_Timings;
@@ -31,12 +32,30 @@ class GroupController extends Controller
     {
         $control = 'create';
         $course_id = Courses::pluck('full_name', 'id');
+        $all_courses = Courses::with('group')->get();
+        // dd($course_id);
+               
         $fees_type = Config::get('constants.fees_type');
         $full_days = Day::pluck('day', 'id');
         $teacher = Teacher::pluck('name', 'id');
         // dd($full_days);
         return view('admin.group.create', compact('control', 'course_id', 'full_days','teacher','fees_type'));
     }
+
+    // select_courses_data
+
+    public function select_courses_data($course_id)
+    {
+      
+        $course_id = Courses_Fees::where('course_id',$course_id)->with('courses')->get();
+        // dd($course_id);
+        $select_course_data['data']=   $course_id;
+        $select_course_data['status']=  true;
+        echo json_encode($select_course_data);
+       
+        
+    }
+
 
     public function save(Request $request)
     {
@@ -49,7 +68,9 @@ class GroupController extends Controller
     {
         $control = 'edit';
         $group = Group::find($id);
+        $fees_type = Config::get('constants.fees_type');
         $course_id = Courses::pluck('full_name', 'id');
+ 
         $group_timings =  Group_Timings::where('group_id',  $group->id)->get();
         $full_days = Day::pluck('day', 'id');
         $teacher = Teacher::pluck('name', 'id');
@@ -62,6 +83,7 @@ class GroupController extends Controller
             'group_timings',
             'full_days',
             'teacher',
+            'fees_type'
 
         ));
     }

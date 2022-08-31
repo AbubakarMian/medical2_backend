@@ -11,6 +11,7 @@ use PDF;
 use App\Libraries\ExportToExcel;
 use App\Model\Courses;
 use App\Model\Category;
+use App\Model\Courses_Fees;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToArray;
 // Courses;
@@ -45,10 +46,12 @@ class CoursesController extends Controller
         $control = 'edit';
         $courses = Courses::find($id);
         $category = Category::pluck('name','id');
+        $fees_type = Config::get('constants.fees_type');
         return view('admin.courses.create', compact(
             'control',
             'courses',
-            'category'
+            'category',
+            'fees_type'
         ));
     }
 
@@ -62,19 +65,48 @@ class CoursesController extends Controller
 
     public function add_or_update(Request $request, $courses)
     {
-        dd($request->all());
+        // dd($request->all());
         $date_timestamp =  strtotime($request->start_date);
         $courses->full_name = $request->full_name;
         $courses->short_name = $request->short_name;
         $courses->category_id = $request->category_id;
-        $courses->fees = $request->fees;
+        $courses->examination_fees = $request->fees;
         $courses->description = $request->description;
         $courses->start_date = $date_timestamp;
-
-        if ($request->cropped_image) {
+        if($request->one_time_payment == 'on'){
+            $courses->one_time_examination_payment =1;
+         }
+         else{
+            $courses->one_time_examination_payment =0;
+         }
+         if($request->fees_type == 'installment'){
+            $courses->fees_type = $request->fees_type;
+         }
+         else{
+            $courses->fees_type = $request->fees_type;
+         }
+         if ($request->cropped_image) {
             $courses->avatar = $request->cropped_image;
         }
         $courses->save();
+
+        // new Courses_Fees table 
+
+         foreach($request->amount as $amnt_key =>$am){
+    //    dd(strtotime($request->due_date[$amnt_key]));
+          $course_fees = new Courses_Fees();
+
+          $course_fees->course_id = $courses->id;
+          $course_fees->fees_type = $courses->fees_type;
+
+          $course_fees->amount = $am;
+
+          $course_fees->due_date = strtotime($request->due_date[$amnt_key]);
+          $course_fees->save();
+
+         }
+
+        
         return redirect()->back();
     }
 

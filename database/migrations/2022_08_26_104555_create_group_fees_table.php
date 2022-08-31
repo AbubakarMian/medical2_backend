@@ -19,7 +19,7 @@ class CreateGroupFeesTable extends Migration
             $table->bigInteger('course_id')->nullable()->default(0);
             $table->string('fees_type')->nullable()->default(null);
             $table->string('amount')->nullable()->default(null);
-            $table->timestamp('due_date',6)->nullable()->default(null);
+            $table->bigInteger('due_date',20)->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
         });

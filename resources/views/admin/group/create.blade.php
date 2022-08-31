@@ -8,7 +8,7 @@ else{
 ?>
 @extends('layouts.default_edit')
 @section('heading')
-    {!! $heading !!}
+    {!! $heading  !!} Group
 @endsection
 @section('leftsideform')
     @if($control == 'edit')
