@@ -56,7 +56,7 @@ width="400px" style="table-layout:fixed;"
 
 		<td >{!! ucwords($c->full_name ) !!} </td>
 		<td >{!!ucwords($c->short_name) !!}</td>
-        <td >{!! ucwords($c->fees   ) !!}</td>
+        <td >{!! ucwords($c->examination_fees   ) !!}</td>
 
 		{{-- <td >{!! ucwords($c->start_date   ) !!}</td> --}}
 

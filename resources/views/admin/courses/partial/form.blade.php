@@ -74,7 +74,7 @@
 <div class="form-group">
     {!! Form::label('fees','Fees') !!}
     <div>
-        {!! Form::text('fees',  null, ['class' => 'form-control',
+        {!! Form::text('examination_fees',  null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
         'placeholder'=>'Enter Fees','required',
@@ -116,10 +116,10 @@
 <!--  complete_fees_area-->
 
 
-        <div class="complete_fees_area">
-        <h3>
+        <div class="complete_fees_area" style="background-color: #d3d3d32e;">
+        <!-- <h3>
     Enter Complete Fess  Amount And Due Date
-            </h3>
+            </h3> -->
             
 <div class="row">
     <!-- columnnn-->
@@ -164,14 +164,14 @@
 
 
 <!--  INSATLLMENT_fees_area-->
-<div class="installment_fees_area">
+<div class="installment_fees_area" >
 
-
+<!-- 
 <h3>
     Enter Installment
-        </h3>
+        </h3> -->
     
-    <div class="row">
+    <div class="row" >
 
     <div class="col-sm-10">
     </div>
@@ -187,7 +187,7 @@
 
 
     <!--  multiple times open-->
-    <div class="multiple_times_open_div" >
+    <div class="multiple_times_open_div" style="background-color: #d3d3d32e;" >
 
    
      
@@ -347,88 +347,93 @@
 <script>
 
 
-// newwww
+    // newwww
 
-function  open_fees_type_div(){
+    function open_fees_type_div() {
 
 
 console.log('open_fesss_type_divvvvvvvv');
 
 var select_fees_type = $('.fees_type').val();
-console.log('select_fees_type__select_fees_type',select_fees_type);
+console.log('select_fees_type__select_fees_type', select_fees_type);
 
-if(select_fees_type == 'complete'){
+if (select_fees_type == 'complete') {
 
-var $complete_fees_area = $('.complete_fees_area').show()
-var $installment_fees_area = $('.installment_fees_area').hide()
+    var $complete_fees_area = $('.complete_fees_area').show()
+    var $installment_fees_area = $('.installment_fees_area').hide()
 
 };
-if(select_fees_type == 'installment'){
+if (select_fees_type == 'installment') {
 
-var $installment_fees_area = $('.installment_fees_area').show();
-var $complete_fees_area = $('.complete_fees_area').hide()
+    var $installment_fees_area = $('.installment_fees_area').show();
+    var $complete_fees_area = $('.complete_fees_area').hide()
 
 };
 
 
 
 }
-function add_installment_divs(){
 
-    console.log('add_installment_divs_add_installment_divs');
-    var installment_div = $('.installment_divs').length+1;
-    var multiple_times_open_div = $('.multiple_times_open_div').append(
-    
+function remove_installment(e){
+
+$(e).parent().remove();
+}
+
+function installment_html(v) {
+return( `
+<div class="row installmet_div_row">
 
 
-    // 
-
-`
-<div class="row">
-    <!-- columnnn-->
-<div class="col-sm-6">
+<!-- columnnn-->
+<div class="col-sm-4">
 <div class="form-group">
-    {!! Form::label('amount','Amount') !!}
-    <div>
-        {!! Form::text('amount[]', null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Amount',
-        'maxlength'=>"100"]) !!}
-    </div>
+{!! Form::label('amount','Amount') !!}
+<div>
+{!! Form::text('amount[]', null, ['class' => 'form-control',
+'data-parsley-required'=>'true',
+'data-parsley-trigger'=>'change',
+'placeholder'=>'Enter Amount',
+'maxlength'=>"100"]) !!}
+</div>
 </div>
 
-            </div>
-            <!-- end columnnn -->
+    </div>
+    <!-- end columnnn -->
 
 <!-- columnnn -->
-            <div class="col-sm-6">
-            <div class="form-group">
-    {!! Form::label('due_date','Due Date') !!}
-    <div>
-        {!! Form::date('due_date[]', null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Due Date',
-        'maxlength'=>"100"]) !!}
-    </div>
+    <div class="col-sm-4">
+    <div class="form-group">
+{!! Form::label('due_date','Due Date') !!}
+<div>
+{!! Form::date('due_date[]', null, ['class' => 'form-control',
+'data-parsley-required'=>'true',
+'data-parsley-trigger'=>'change',
+'placeholder'=>'Enter Due Date',
+]) !!}
 </div>
-            </div>
+</div>
+    </div>
 
-         <!-- end  columnnn-->
-
-            </div>
-
-            </div>`
-    );
-
-
-    // 
-
-    
+ <!-- end  columnnn-->
 
 
 
+
+ <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 23px">Remove</div>
+
+
+
+   
+
+    </div>`);
+}
+
+function add_installment_divs() {
+
+console.log('add_installment_divs_add_installment_divs');
+// var installment_div = $('.installment_divs').length+1;
+var installmet_div_row = $('.installmet_div_row').length;
+var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(installmet_div_row));
 
 
 }
@@ -445,7 +450,6 @@ function add_installment_divs(){
 
 
 // end new
-
 
 
 

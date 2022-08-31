@@ -249,6 +249,9 @@ Route::post('admin/group/update/{id}', 'Admin\GroupController@update')->name('gr
 Route::post('admin/group/delete/{id}', 'Admin\GroupController@destroy_undestroy')->name('group.delete');
 
 
+Route::post('admin/group/select_courses_id/{id}', 'Admin\GroupController@select_courses_data')->name('select_courses_id.delete');
+
+
  // save lat long of parents
  Route::post('admin/group/map/lat_long', 'Admin\GroupController@group_latlong_save')->name('parent.map');
 

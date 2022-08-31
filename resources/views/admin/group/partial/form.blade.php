@@ -47,13 +47,34 @@
 <div class="form-group">
     {!! Form::label('course','course') !!}
     <div>
-        {!! Form::select('courses_id',  $course_id , null, ['class' => 'form-control',
+        {!! Form::select('courses_id',  $course_id , null, ['class' => 'form-control select_data_for_course',
         'data-parsley-required'=>'true',
+        'onchange'=>'select_course(this)',  
         'data-parsley-trigger'=>'change',
         'placeholder'=>'Course','required',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
+
+<div class="old_paln_show_heading">
+</div>
+<div class="old_paln_show">
+</div>
+
+<!--  -->
+<div class="row">
+
+    <div class="col-sm-10">
+    </div>
+
+    <div class="col-sm-2">
+  
+    <button type="button" onclick="edit_plan()" class="btn btn-danger edit_plans_area">Add A New Plan</button>
+
+</div>
+
+</div>
+<!--  -->
 
 <div class="form-group">
     {!! Form::label('Teacher','teacher') !!}
@@ -65,20 +86,7 @@
         'maxlength'=>"100"]) !!}
     </div>
 </div>
-<!--  -->
-<div class="row">
 
-    <div class="col-sm-10">
-    </div>
-
-    <div class="col-sm-2">
-  
-    <button type="button" onclick="edit_plan()" class="btn btn-danger edit_plans_area">Edit Plan</button>
-
-</div>
-
-</div>
-<!--  -->
 
 
 
@@ -170,18 +178,11 @@
 
     <!--  multiple times open-->
     <div class="multiple_times_open_div" >
-
-   
-     
-         
+      
         </div>
         </div>
 
     
-       
-
-
-
     <!--  -->
    
         
@@ -449,93 +450,190 @@
 
     // newwww
 
+function  select_course(course_id){
+
+    console.log('course_id_course_id_course_id',course_id.value);
+    
+    
+
+        $.ajax({
+
+            url: "{!!asset('admin/group/select_courses_id')!!}/" + course_id.value,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                _token: '{!!@csrf_token()!!}'
+            },
+            success: function(response) {
+                console.log('aaaaaaaaaaaaaaa',response);
+                var len = response['data'].length;
+                if(response.status){ 
+                    // var course_name = response[data].courses.full_name ;
+                    // var show_heading =  
+                    //  ` <h4>
+                    //   `+course_name+`
+                    // </h4>`
+                    // $(".old_paln_show_heading").append(show_heading);
+                
+                    for (var i = 0; i < len; i++) {
+
+                        console.log('aaaaaaa',response['data'][i]);
+                        console.log('amountamount',response['data'][i].amount);
+
+                       
+                        var amount = response['data'][i].amount ;
+                        var due_date = response['data'][i].due_date  ;
+                      
+                        var fees_type = response['data'][i].fees_type ;
+                        
+                      
+         
+                       
+
+                        var tr_str = 
+                        `
+                     
+                        <div class="row">
+                  
+                        <!-- columnnn-->
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                        {!! Form::label('amount','Amount') !!}
+                        <div>
+                        <input value="`+amount+`" class="form-control" disabled>
+                        </div>
+                        </div>
+
+                            </div>
+                            <!-- end columnnn -->
+
+                            <!-- columnnn-->
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                        {!! Form::label('due_date','Due Date') !!}
+                        <div>
+                        <input value="`+due_date+`" class="form-control" disabled>
+                        </div>
+                        </div>
+
+                            </div>
+                            <!-- end columnnn -->
+
+                            </div>
+
+                            </div> `;
+
+                      
+                     
+                        $(".old_paln_show").append(tr_str);
+                    }
+                    
+               
+
+
+ var edit_plans_area = $('.edit_plans_area').show();
+
+console.log('bbbbbbbbbbbbbbbbbbbbb',response.status);
+
+
+
+                }
+            }
+        });
+        //  
+ 
+
+}
 function  edit_plan(){
 
 console.log('edit_plan_edit_plan');
 var open_fees_type_div_area = $('.open_fees_type_div_area').show();
+var old_paln_show = $('.old_paln_show').hide();
 var edit_plans_area = $('.edit_plans_area').hide();
 
 }
-function  open_fees_type_div(){
+function open_fees_type_div() {
 
 
 console.log('open_fesss_type_divvvvvvvv');
 
 var select_fees_type = $('.fees_type').val();
-console.log('select_fees_type__select_fees_type',select_fees_type);
+console.log('select_fees_type__select_fees_type', select_fees_type);
 
-if(select_fees_type == 'complete'){
+if (select_fees_type == 'complete') {
 
-var $complete_fees_area = $('.complete_fees_area').show()
-var $installment_fees_area = $('.installment_fees_area').hide()
+    var $complete_fees_area = $('.complete_fees_area').show()
+    var $installment_fees_area = $('.installment_fees_area').hide()
 
 };
-if(select_fees_type == 'installment'){
+if (select_fees_type == 'installment') {
 
-var $installment_fees_area = $('.installment_fees_area').show();
-var $complete_fees_area = $('.complete_fees_area').hide()
+    var $installment_fees_area = $('.installment_fees_area').show();
+    var $complete_fees_area = $('.complete_fees_area').hide()
 
 };
 
 
 
 }
-function add_installment_divs(){
 
-    console.log('add_installment_divs_add_installment_divs');
-    var installment_div = $('.installment_divs').length+1;
-    var multiple_times_open_div = $('.multiple_times_open_div').append(
-    
+function remove_installment(e){
+
+$(e).parent().remove();
+}
+
+function installment_html(v) {
+return( `
 
 
-    // 
-
-`
-<div class="row">
-    <!-- columnnn-->
+<div class="row installmet_div_row">
+<div onclick="remove_installment(this)">Remove</div>
+<!-- columnnn-->
 <div class="col-sm-6">
 <div class="form-group">
-    {!! Form::label('amount','Amount') !!}
-    <div>
-        {!! Form::text('amount[]', null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Amount',
-        'maxlength'=>"100"]) !!}
-    </div>
+{!! Form::label('amount','Amount') !!}
+<div>
+{!! Form::text('amount[]', null, ['class' => 'form-control',
+'data-parsley-required'=>'true',
+'data-parsley-trigger'=>'change',
+'placeholder'=>'Enter Amount',
+'maxlength'=>"100"]) !!}
+</div>
 </div>
 
-            </div>
-            <!-- end columnnn -->
+    </div>
+    <!-- end columnnn -->
 
 <!-- columnnn -->
-            <div class="col-sm-6">
-            <div class="form-group">
-    {!! Form::label('due_date','Due Date') !!}
-    <div>
-        {!! Form::date('due_date[]', null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Due Date',
-        'maxlength'=>"100"]) !!}
-    </div>
+    <div class="col-sm-6">
+    <div class="form-group">
+{!! Form::label('due_date','Due Date') !!}
+<div>
+{!! Form::date('due_date[]', null, ['class' => 'form-control',
+'data-parsley-required'=>'true',
+'data-parsley-trigger'=>'change',
+'placeholder'=>'Enter Due Date',
+]) !!}
 </div>
-            </div>
+</div>
+    </div>
 
-         <!-- end  columnnn-->
+ <!-- end  columnnn-->
 
-            </div>
+    </div>
 
-            </div>`
-    );
-
-
-    // 
-
+    </div>`
     
+    
+    );
+}
 
+function add_installment_divs() {
 
-
+console.log('add_installment_divs_add_installment_divs');
+// var installment_div = $('.installment_divs').length+1;
+var installmet_div_row = $('.installmet_div_row').length;
+var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(installmet_div_row));
 
 
 }
@@ -552,7 +650,6 @@ function add_installment_divs(){
 
 
 // end new
-
     function validateForm() {
         return true;
     }
@@ -562,6 +659,7 @@ function add_installment_divs(){
         var $open_fees_type_div_area = $('.open_fees_type_div_area').hide();
         var $complete_fees_area = $('.complete_fees_area').hide();
     var $installment_fees_area = $('.installment_fees_area').hide();
+    var edit_plans_area = $('.edit_plans_area').hide();
        
 $('#myModal').modal('hide');
 
