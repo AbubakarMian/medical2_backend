@@ -494,7 +494,7 @@ function  select_course(course_id){
                        
                         var amount = response['data'][i].amount ;
                        
-              var due_date=   new Date(response['data'][i].due_date*1000).toDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) ;
+        var due_date= new Date(response['data'][i].due_date*1000).toDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) ;
                       
                         var fees_type = response['data'][i].fees_type ;
                         var course_name = response['data'][i].courses.full_name ;

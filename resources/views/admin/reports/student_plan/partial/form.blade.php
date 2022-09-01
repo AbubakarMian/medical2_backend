@@ -74,8 +74,10 @@
 <div class="form-group">
     {!! Form::label('old_due_date','Due Date') !!}
     <div>
-    <input value="{{$student_plan->due_date}}" name="l_name" disabled class="form-control">
+    <input value="{!! date('Y-m-d', $student_plan->due_date) !!}" name="l_name" disabled class="form-control">
+  
                 </div>
+              
     </select>
 </div>
 </div>

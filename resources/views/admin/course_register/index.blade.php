@@ -214,9 +214,7 @@ Course Register
         });
     }
 
-    {{--    --}}
 
-    {{--  group update  --}}
 
 
     function update_course_group_fun(group_id,register_course_id) {
