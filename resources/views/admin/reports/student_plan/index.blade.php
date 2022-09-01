@@ -2,12 +2,7 @@
 @section('module_name')
 Student Plan
 @stop
-@section('add_btn')
 
-{!! Form::open(['method' => 'get', 'route' => ['student_plan.create'], 'files'=>true]) !!}
-<span>{!! Form::submit('Add', ['class' => 'btn btn-success pull-right']) !!}</span>
-{!! Form::close() !!}
-@stop
 
 @section('table-properties')
 width="400px" style="table-layout:fixed;"
@@ -52,9 +47,9 @@ width="400px" style="table-layout:fixed;"
 
 
 
-		<td >{!! ucwords($s_p->name ) !!} </td>
-		<td >{!!ucwords($s_p->email) !!}</td>
-        <td > <a class="btn btn-primary" href="{{ asset('admin/student_plan/edit?user_id=' . $s_p->id) }}">
+		<td >{!! ucwords($s_p->user->name ) !!} </td>
+		<td >{!!ucwords($s_p->user->email) !!}</td>
+        <td > <a class="btn btn-primary" href="{{ asset('admin/student_plan/edit?student_id=' . $s_p->id) }}">
                                    Edit {!!$s_p->name!!} Plan
                                 </a>
 							

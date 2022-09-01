@@ -51,7 +51,7 @@
         'data-parsley-required'=>'true',
         'onchange'=>'select_course(this)',  
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Course','required',
+        'placeholder'=>'Select Course','required',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
@@ -69,7 +69,7 @@
 
     <div class="col-sm-2">
   
-    <button type="button" onclick="edit_plan()" class="btn btn-danger edit_plans_area">Add A New Plan</button>
+    <button type="button" onclick="edit_plan()" class="btn btn-danger edit_plans_area">New Plan</button>
 
 </div>
 
@@ -93,6 +93,11 @@
 <!--newwwwwwww  WORKSSSS-->
 
 <div class="form-group open_fees_type_div_area">
+<div id="palne" style="font-size: 19px;
+    color: cornflowerblue;
+    font-weight: bold">
+    Please Select A new Plan 
+</div>
             {!! Form::label('fees_type','Fees Type',) !!}
             {!! Form::select('fees_type',$fees_type,null,["placeholder"=>"Select
             Type","onchange"=>"open_fees_type_div()", "class"=>"form-control fees_type","required"]) !!}
@@ -104,7 +109,7 @@
 <!--  complete_fees_area-->
 
 
-        <div class="complete_fees_area">
+        <div class="complete_fees_area" style="background-color: #d3d3d32e;">
         <h3>
     Enter Complete Fess  Amount And Due Date
             </h3>
@@ -177,7 +182,7 @@
 
 
     <!--  multiple times open-->
-    <div class="multiple_times_open_div" >
+    <div class="multiple_times_open_div"  style="background-color: #d3d3d32e;">
       
         </div>
         </div>
@@ -452,11 +457,18 @@
 
 function  select_course(course_id){
 
-    console.log('course_id_course_id_course_id',course_id.value);
-    
-    
+//     var count = 0;
+//     $(course_id).click(function () {
+//     count += 1;
 
-        $.ajax({
+//     if (count == 2) {
+//         // $(".old_paln_show").hide();
+      
+     
+//     }
+//   });
+
+      $.ajax({
 
             url: "{!!asset('admin/group/select_courses_id')!!}/" + course_id.value,
             type: 'POST',
@@ -467,24 +479,25 @@ function  select_course(course_id){
             success: function(response) {
                 console.log('aaaaaaaaaaaaaaa',response);
                 var len = response['data'].length;
+                console.log('aaaaaaacccccctttttttttt',response['data'].length);
                 if(response.status){ 
-                    // var course_name = response[data].courses.full_name ;
-                    // var show_heading =  
-                    //  ` <h4>
-                    //   `+course_name+`
-                    // </h4>`
-                    // $(".old_paln_show_heading").append(show_heading);
+                    console.log('aaaaaaacccccc',response['data'][0].courses.full_name);
+                    var course_name = response['data'][0].courses.full_name;
+    
                 
                     for (var i = 0; i < len; i++) {
+                        console.log('qqqqqqqqqqqqq',response['data'][i]);
 
-                        console.log('aaaaaaa',response['data'][i]);
+                     
                         console.log('amountamount',response['data'][i].amount);
 
                        
                         var amount = response['data'][i].amount ;
-                        var due_date = response['data'][i].due_date  ;
+                       
+              var due_date=   new Date(response['data'][i].due_date*1000).toDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) ;
                       
                         var fees_type = response['data'][i].fees_type ;
+                        var course_name = response['data'][i].courses.full_name ;
                         
                       
          
@@ -524,8 +537,25 @@ function  select_course(course_id){
                             </div> `;
 
                       
-                     
+                            var show_heading =  
+                     ` <h4>
+                      `+course_name+`
+                    </h4>`+
+                    ` <h4>
+                      `+fees_type+`
+                    </h4>`
+                  
+                    
+                    if(response['data'][i] == 1){
+                        $(".old_paln_show_heading").append(show_heading)
+
+                    }
+
+                            
+
                         $(".old_paln_show").append(tr_str);
+                        
+               
                     }
                     
                
@@ -587,7 +617,7 @@ return( `
 
 
 <div class="row installmet_div_row">
-<div onclick="remove_installment(this)">Remove</div>
+
 <!-- columnnn-->
 <div class="col-sm-6">
 <div class="form-group">
@@ -619,8 +649,11 @@ return( `
     </div>
 
  <!-- end  columnnn-->
+ 
 
-    </div>
+ <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 10px;
+    margin-left: 16px;
+    margin-bottom: 18px;">Remove</div>
 
     </div>`
     
@@ -637,11 +670,6 @@ var multiple_times_open_div = $('.multiple_times_open_div').append(installment_h
 
 
 }
-
-
-
-
-
 
 
 
@@ -695,7 +723,7 @@ function myFunction(){
 
     // 
 
-    {{--    --}}
+
     function addday() {
         var nextdivnum = $('.add').length + 1;
         console.log('sfdffff', nextdivnum)
@@ -783,7 +811,7 @@ function myFunction(){
     }
 
 
-    {{--    --}}
+   
 
 </script>
 
