@@ -24,7 +24,7 @@ class GroupController extends Controller
     }
     public function getGroup()
     {
-        $group = Group::with('courses','teacher')->orderby('id', 'desc')->select('*')->get();
+        $group = Group::with('courses', 'teacher')->orderby('id', 'desc')->select('*')->get();
         $groupdata['data'] = $group;
         echo json_encode($groupdata);
     }
@@ -34,33 +34,25 @@ class GroupController extends Controller
         $control = 'create';
         $course_id = Courses::pluck('full_name', 'id');
         $all_courses = Courses::with('group')->get();
-        // dd($course_id);
-               
         $fees_type = Config::get('constants.fees_type');
         $full_days = Day::pluck('day', 'id');
         $teacher = Teacher::pluck('name', 'id');
-        // dd($full_days);
-        return view('admin.group.create', compact('control', 'course_id', 'full_days','teacher','fees_type'));
+        return view('admin.group.create', compact('control', 'course_id', 'full_days', 'teacher', 'fees_type'));
     }
 
     // select_courses_data
 
     public function select_courses_data($course_id)
     {
-      
-        $course_id = Courses_Fees::where('course_id',$course_id)->with('courses')->get();
-        // dd($course_id);
-        $select_course_data['data']=   $course_id;
-        $select_course_data['status']=  true;
+        $course_id = Courses_Fees::where('course_id', $course_id)->with('courses')->get();
+        $select_course_data['data'] =   $course_id;
+        $select_course_data['status'] =  true;
         echo json_encode($select_course_data);
-       
-        
     }
 
 
     public function save(Request $request)
     {
-        // dd($request->all());
         $group = new Group();
         $this->add_or_update($request, $group);
         return redirect('admin/group');
@@ -71,12 +63,10 @@ class GroupController extends Controller
         $group = Group::find($id);
         $fees_type = Config::get('constants.fees_type');
         $course_id = Courses::pluck('full_name', 'id');
- 
+
         $group_timings =  Group_Timings::where('group_id',  $group->id)->get();
         $full_days = Day::pluck('day', 'id');
         $teacher = Teacher::pluck('name', 'id');
-        // dd(   $group_timings);
-        //  $full_days = Day::pluck('day', 'id');
         return view('admin.group.create', compact(
             'control',
             'group',
@@ -93,14 +83,13 @@ class GroupController extends Controller
     {
         $group = Group::find($id);
         $group_timings =  Group_Timings::where('group_id',  $group->id)->delete();
-
         $this->add_or_update($request, $group);
         return Redirect('admin/group');
     }
     public function add_or_update(Request $request, $group)
     {
-        // dd($request->all());
-        $start_date_timestamp = strtotime($request->start_date); 
+    
+        $start_date_timestamp = strtotime($request->start_date);
         $end_date_timestamp = strtotime($request->end_date);
 
         $group->name = $request->name;
@@ -109,24 +98,22 @@ class GroupController extends Controller
         $group->end_date = $end_date_timestamp;
         $group->teacher_id = $request->teacher_id;
         $group->type = 'course';
-        if($request->fees_type == 'installment'){
+        if ($request->fees_type == 'installment') {
             $group->fees_type = $request->fees_type;
-         }
-         else{
+        } else {
             $group->fees_type = $request->fees_type;
-         }
-        if($request->is_online == "on"){
+        }
+        if ($request->is_online == "on") {
             $group->is_online = 1;
             $group->lat = 0;
             $group->long = 0;
-         }
-        else{
-        $group->lat = $request->group_lat;
-        $group->long = $request->group_long;
-        $group->address = $request->address;
-        $group->city = $request->city;
-        $group->venue = $request->city;
-        $group->is_online = 0;
+        } else {
+            $group->lat = $request->group_lat;
+            $group->long = $request->group_long;
+            $group->address = $request->address;
+            $group->city = $request->city;
+            $group->venue = $request->city;
+            $group->is_online = 0;
         }
         $group->save();
 
@@ -140,110 +127,104 @@ class GroupController extends Controller
 
             $group_timings->save();
         }
+        if ($request->fees_type == 'installment') {
 
-        // new Courses_Fees table 
+            foreach ($request->amount as $amnt_key => $am) {
+                $group_fees = new Group_fees();
+                $group_fees->group_id     = $group->id;
+                $group_fees->course_id =  $group->courses_id;
+                $group_fees->fees_type = $group->fees_type;
+                $group_fees->amount = $am;
+                 $group_fees->due_date = strtotime($request->due_date[$amnt_key]);
+                $group_fees->save();
+            }
+        } 
+        
+                elseif ($request->fees_type == 'complete') {
+                    $group_fees = new Group_fees();
 
-        foreach($request->amount as $amnt_key =>$am){
-            //    dd(strtotime($request->due_date[$amnt_key]));
-                  $group_fees = new Group_fees();
+                    $group_fees->group_id     = $group->id;
+                    $group_fees->course_id =  $group->courses_id;
+                    $group_fees->fees_type = $group->fees_type;
+                    $group_fees->amount = $request->amount;
+                    $group_fees->due_date = strtotime($request->due_date);
+                    $group_fees->save();
+                }
+                 return redirect()->back();
+    }
 
-                  $group_fees->group_id	 = $group->id;
-                  $group_fees->course_id =  $group->courses_id;
+                public function destroy_undestroy($id)
+                {
+
+                    $group = Group::find($id);
+                    if ($group) {
+                        Group::destroy($id);
+                        $new_value = 'Activate';
+                    } else {
+                        Group::withTrashed()->find($id)->restore();
+                        $new_value = 'Delete';
+                    }
+                    $response = Response::json([
+                        "status" => true,
+                        'action' => Config::get('constants.ajax_action.delete'),
+                        'new_value' => $new_value,
+                    ]);
+                    return $response;
+                }
+
+                public function student_list($id)
+                {
+                    $group_id = $id;
+                    $student = User::where('role_id', '2')->get();
+                    $group = Group::find($id);
+                    $group_users = Course_Register::where('group_id', $group_id)->pluck('user_id')->toArray();
+                    return view('admin.student_group_list.index', compact('student', 'group', 'group_users'));
+                }
+
+                    public function student_group_checked(Request $request)
+                    {
+
+                        $res = new \stdClass();
+                        $student_id = $request->student_id;
+                        $group_id = $request->group_id;
+
+                        $group = Group::find($group_id);
+                        $group_users = Course_Register::where('group_id', $group_id)->pluck('user_id')->toArray();
+                        if ($group_users) {
+                            $group_users->delete();
+                            $res->message = 'Removed Successfully';
+                        } else {
+                            $group_users = new Course_Register();
+                            $group_users->user_id = $student_id;
+                            $group_users->group_id = $group_id;
+                            $group_users->course_id = $group->courses_id;
+                            $group_users->save();
+                            $res->message = 'Added Successfully';
+                        }
+                        $res->status = true;
+                        return json_encode($res);
+                    }
+
+
+                    function group_latlong_save(Request $request)
+                    {
+
+
+                        $sample_class =  new \stdClass();
+                        $sample_class->lat = $request->map_latitide;
+                        $sample_class->long = $request->map_longitude;
+
+
+
+                        $response = Response::json([
+                            "status" => true,
+                            'new_value' => 'save',
+                            'sample_class' => $sample_class,
+                        ]);
+                        return $response;
+                    }
+
                  
-                  $group_fees->fees_type = $group->fees_type;
-        
-                  $group_fees->amount = $am;
-        
-                  $group_fees->due_date = strtotime($request->due_date[$amnt_key]);
-                  $group_fees->save();
-        
-                 }
-        return redirect()->back();
-    }
-
-    public function destroy_undestroy($id)
-    {
-
-        $group = Group::find($id);
-        if ($group) {
-            Group::destroy($id);
-            $new_value = 'Activate';
-        } else {
-            Group::withTrashed()->find($id)->restore();
-            $new_value = 'Delete';
-        }
-        $response = Response::json([
-            "status" => true,
-            'action' => Config::get('constants.ajax_action.delete'),
-            'new_value' => $new_value,
-        ]);
-        return $response;
-    }
-
-    public function student_list($id)
-    {
-        $group_id = $id;
-        $student = User::where('role_id', '2')->get();
-        $group = Group::find($id);
-        //   dd ($group);
-        $group_users = Course_Register::where('group_id', $group_id)->pluck('user_id')->toArray();
-        // dd ($group_users);
-        // $group_users =  Group_users::where('group_id', $group_id)->pluck('user_id')->toArray();
-        return view('admin.student_group_list.index', compact('student', 'group', 'group_users'));
-    }
-
-    public function student_group_checked(Request $request)
-    {
-        // dd($request->all());
-
-        $res = new \stdClass();
-        $student_id = $request->student_id;
-        $group_id = $request->group_id;
-
-        $group = Group::find($group_id);
-
-        $group_users = Course_Register::where('group_id', $group_id)->pluck('user_id')->toArray();
-        // $group_users =  Group_Users::where('group_id', $group_id)->where('user_id', $student_id)->first();
-        if ($group_users) {
-            $group_users->delete();
-            $res->message = 'Removed Successfully';
-        } else {
-            $group_users = new Course_Register();
-            $group_users->user_id = $student_id;
-            $group_users->group_id = $group_id;
-            $group_users->course_id = $group->courses_id;
-            $group_users->save();
-            $res->message = 'Added Successfully';
-        }
-        $res->status = true;
-        return json_encode($res);
-    }
-
-
-
-
-    // group_latlong_save  map
-
-    function group_latlong_save(Request $request){
-
-       
-        $sample_class =  new \stdClass();
-        $sample_class->lat = $request->map_latitide;
-        $sample_class->long = $request->map_longitude;
-      
-    
-
-        $response = Response::json([
-            "status" => true,
-            'new_value' => 'save',
-            'sample_class' => $sample_class,
-        ]);
-        return $response;
-
-
-    }
-
-    // "24.961841872696603"
 
 
 

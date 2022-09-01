@@ -27,13 +27,8 @@ class Course_RegisterController extends Controller
     public function get_course_register()
     {
         $course_register = Course_Register::with('course.group','user')->orderby('id', 'desc')->select('*')->get();
-        // $course_register_data = [];
         $course_register_data['data'] = $course_register;
         echo json_encode($course_register_data);
-        // echo json_encode([
-        //     'status'=>true,
-        //     'data'=>$course_register_data
-        // ]);
     }
 
     public function get_courses_group($register_course_id)
@@ -55,7 +50,6 @@ class Course_RegisterController extends Controller
         $group_id = $request->group_id;
         $register_course = Course_Register::find($register_course_id);
         $register_course->group_id =    $group_id;
-        // $register_course->user_id = $register_course->user_id;
         $register_course->save();
 
         $res['status'] = true;

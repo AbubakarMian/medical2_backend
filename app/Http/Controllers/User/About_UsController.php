@@ -15,26 +15,16 @@ class About_UsController extends Controller
     {
 
         $about_us  =  About_us::where('name','aboutus')->first();
-        // dd($about_us);
         return view('user.about_us.index',compact('about_us'));
     }
     
     public function contactus()
     {
-        // dd($about_us);
         return view('user.contactus.index');
     }
 
-    // public function courses_registration()
-    // {
-    //     // dd($about_us);
-    //     return view('user.courses_registration');
-    // }
-
-    public function contactform(Request $request)
-    {
-
-
+      public function contactform(Request $request)
+    {  
         $contact_us = new Contact_us();
         $contact_us->name = $request->name;
         $contact_us->email = $request->email;
