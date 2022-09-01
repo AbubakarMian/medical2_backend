@@ -12,23 +12,17 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function index(){
-
         return view('user.index');
     }
 
     public function registration(){
-
-        return view('user.registrationform');
+         return view('user.registrationform');
     }
 
     public function courses_registration(){
-
         return view('user.courses_registration');
     }
-
-
-
-    public function save(Request $request)
+          public function save(Request $request)
     {
 
         $users = new User();
@@ -75,8 +69,6 @@ class UserController extends Controller
             'email'   => 'required|email',
             'password'  => 'required|alphaNum|min:3'
         ]);
-        // dd($request->all());
-
         $user_data = array(
             'email'  => $request->get('email'),
             'password' => $request->get('password'),

@@ -29,8 +29,6 @@ class CoursesController extends Controller
         $control = 'create';
         $category = Category::pluck('name','id');
         $fees_type = Config::get('constants.fees_type');
-        // dd($fees_type);
-        
         return view('admin.courses.create', compact('control','category','fees_type'));
     }
 
@@ -91,21 +89,27 @@ class CoursesController extends Controller
         $courses->save();
 
         // new Courses_Fees table 
+        if($request->fees_type == 'installment'){
 
          foreach($request->amount as $amnt_key =>$am){
-    //    dd(strtotime($request->due_date[$amnt_key]));
           $course_fees = new Courses_Fees();
-
           $course_fees->course_id = $courses->id;
           $course_fees->fees_type = $courses->fees_type;
-
           $course_fees->amount = $am;
-
           $course_fees->due_date = strtotime($request->due_date[$amnt_key]);
           $course_fees->save();
 
          }
-
+        }
+        elseif($request->fees_type == 'complete'){
+            $course_fees = new Courses_Fees();
+            $course_fees->course_id = $courses->id;
+            $course_fees->fees_type = $courses->fees_type;
+            $course_fees->amount = $request->amount;
+            $course_fees->due_date =  strtotime($request->due_date);
+            $course_fees->save();
+       
+        }
         
         return redirect()->back();
     }

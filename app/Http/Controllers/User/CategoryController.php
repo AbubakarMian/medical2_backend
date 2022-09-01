@@ -14,13 +14,9 @@ class CategoryController extends Controller
         $name = $request->category_name ?? '';
 
         $category_list = Category::where('name', 'like', '%' . $name . '%')->get();
-        // $category_list  =  Category::get();
-        // dd(   $category_list);
         $category_count = $category_list->count();
-        // dd(  $category_count);
         if ($category_count == 1) {
             $category_split = $category_list->split($category_count / 1);
-
         } elseif ($category_count == 2) {
             $category_split = $category_list->split($category_count / 2);
         } elseif ($category_count == 3) {
@@ -28,24 +24,18 @@ class CategoryController extends Controller
         } else {
             $category_split = $category_list->split($category_count / 4);
         }
-
         $category_arr = Category::pluck('name', 'id');
         return view('user.category.index', compact('category_split', 'name', ));
     }
 
     public function category_courses(Request $request)
-  
     {
-        // dd($request->all());
-// dd('saas');
         $types = $request->type;
         $category_id = $request->category_id;
         $courses_list = Courses::where('category_id', $category_id)->get();
 
         if ($courses_list->count() > 0) {
-            //   dd($courses_list->count());
             if ($courses_list->count() == 1) {
-                // dd('dss');
                 $courses_list_count = $courses_list->count();
                 $courses_split = $courses_list->split($courses_list_count / 1);
             } elseif ($courses_list->count() == 2) {
