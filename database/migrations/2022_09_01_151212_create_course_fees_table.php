@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCOURSESFeesTable extends Migration
+class CreateCourseFeesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,7 @@ class CreateCOURSESFeesTable extends Migration
             $table->bigInteger('course_id')->nullable()->default(0);
             $table->string('fees_type')->nullable()->default(null);
             $table->string('amount')->nullable()->default(null);
-            $table->bigInteger('due_date',20)->nullable()->default(null);
+            $table->string('due_date',)->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
         });
