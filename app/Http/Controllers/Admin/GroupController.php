@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Courses;
 use App\Model\Course_Register;
 use App\Model\Courses_Fees;
+use App\Model\Group_fees;
 use App\Model\Day;
 use App\Model\Group;
 use App\Model\Group_Timings;
@@ -108,6 +109,12 @@ class GroupController extends Controller
         $group->end_date = $end_date_timestamp;
         $group->teacher_id = $request->teacher_id;
         $group->type = 'course';
+        if($request->fees_type == 'installment'){
+            $group->fees_type = $request->fees_type;
+         }
+         else{
+            $group->fees_type = $request->fees_type;
+         }
         if($request->is_online == "on"){
             $group->is_online = 1;
             $group->lat = 0;
@@ -133,6 +140,24 @@ class GroupController extends Controller
 
             $group_timings->save();
         }
+
+        // new Courses_Fees table 
+
+        foreach($request->amount as $amnt_key =>$am){
+            //    dd(strtotime($request->due_date[$amnt_key]));
+                  $group_fees = new Group_fees();
+
+                  $group_fees->group_id	 = $group->id;
+                  $group_fees->course_id =  $group->courses_id;
+                 
+                  $group_fees->fees_type = $group->fees_type;
+        
+                  $group_fees->amount = $am;
+        
+                  $group_fees->due_date = strtotime($request->due_date[$amnt_key]);
+                  $group_fees->save();
+        
+                 }
         return redirect()->back();
     }
 

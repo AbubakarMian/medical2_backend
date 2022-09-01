@@ -295,7 +295,7 @@ Route::get('admin/student_plan/create', 'Reports\Student_planController@create')
 Route::post('admin/student_plan/save', 'Reports\Student_planController@save')->name('student_plan.save');
 
 Route::get('admin/student_plan/edit', 'Reports\Student_planController@edit')->name('student_plan.edit');
-Route::post('admin/student_plan', 'Reports\Student_planController@update')->name('student_plan.update');
+Route::post('student_plan/update/{id}', 'Reports\Student_planController@update')->name('student_plan.update');
 
 Route::post('admin/student_plan/delete/{id}', 'Reports\Student_planController@destroy_undestroy')->name('student_plan.delete');
 

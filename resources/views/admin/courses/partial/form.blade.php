@@ -380,12 +380,13 @@ $(e).parent().remove();
 }
 
 function installment_html(v) {
-return( `
+    return( `
+
+
 <div class="row installmet_div_row">
 
-
 <!-- columnnn-->
-<div class="col-sm-4">
+<div class="col-sm-6">
 <div class="form-group">
 {!! Form::label('amount','Amount') !!}
 <div>
@@ -401,7 +402,7 @@ return( `
     <!-- end columnnn -->
 
 <!-- columnnn -->
-    <div class="col-sm-4">
+    <div class="col-sm-6">
     <div class="form-group">
 {!! Form::label('due_date','Due Date') !!}
 <div>
@@ -416,16 +417,13 @@ return( `
 
  <!-- end  columnnn-->
 
+ <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 10px;
+    margin-left: 16px;
+    margin-bottom: 18px;">Remove</div>
 
-
-
- <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 23px">Remove</div>
-
-
-
-   
-
-    </div>`);
+    </div>`
+    
+    );
 }
 
 function add_installment_divs() {

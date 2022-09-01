@@ -8,6 +8,7 @@ use App\Model\Courses;
 use App\Model\Group;
 use App\Model\Course_Register;
 use App\Model\Group_Timings;
+use App\Model\Student_fees;
 use App\Model\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,7 +77,7 @@ class CoursesController extends Controller
     // course/registration
     public function course_registration(Request $request)
     {
-        //  dd($request->all());
+         dd($request->all());
         $courses_id = $request->course_id;
         $type = $request->type;
         $courses = Courses::with('group')->find($courses_id);
@@ -96,38 +97,54 @@ class CoursesController extends Controller
     public function user_save_course_register(Request $request)
     {
 // dd('sas');
+// dd($request->all());
 
-        $user = Auth::user();
+   
+        $user = Auth::User();
+        // dd($user);
+        if($user){
+        $user =  $user->where('role_id','2')->first();
+        }
 
-        if($user)
-        $user = Auth::user()->where('course_id',2);
+      
         $courses_id = $request->course_id;
         $course = Courses::find($courses_id);
-        $course_register =  Course_Register::where('user_id', '2')->where('course_id', $course->id)->first();
-        // dd($user);
+        $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->first();
+        // dd($course_register);
         if(!$user){
 
             return redirect('/')->with('error', 'Please Login To Continue');
 
         }
-
-        
-
-        
-
+      
 
         if($course_register ){
 
          }
          elseif(!$course_register){
+            $group = Group::with('group_fees')->find($request->group_id);
+            // dd(  $group);
             $course_register = new Course_Register();
-            $course_register->user_id    =2;
+            $course_register->user_id  =  $user->id  ;
             $course_register->course_id =   $course->id;
-            $course_register->group_id = 0;
+            $course_register->group_id = $request->group_id;
             $course_register->is_paid = 0;
-            $course_register->one_time_payment = 0;
-            $course_register->fees = 0;
+            $course_register->one_time_examination_payment = 0;
+            $course_register->examination_fees = 0;
             $course_register->save();
+
+            $student_fees=  new Student_fees();
+            $student_fees->user_id  =  $user->id  ;
+            $student_fees->course_register_id  =  $course_register->id  ;
+            $student_fees->group_id  =  $group->id  ;
+            $student_fees->course_id  =  $course->id;
+
+            $student_fees->fees_type  =  $group->group_fees->fees_type;
+            $student_fees->amount  = $group->group_fees->amount;
+            $student_fees->due_date  =  $group->group_fees->due_date;
+
+            $student_fees->save();
+
     $stripe_key = Config::get('services.stripe.STRIPE_KEY');
          }
     return redirect('user/payment/?course_register='.$course_register->id)->with('success', 'Course Register Successfully!');

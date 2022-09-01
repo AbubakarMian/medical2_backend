@@ -73,10 +73,14 @@
 
 
         // var myLatlng = { lat: 24.860966, lng: 66.990501 };
+        // if(){
+
+        // }
         var myLatlng = { lat: 24.961748975600738, lng: 67.06023874305612 };
 
+
          map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 50,
+          zoom: 13,
           center: myLatlng,
         });
         directionsRenderer.setMap(map);
@@ -128,6 +132,22 @@
 
       }
 
+      function create_marker(latitide,longitude){
+              var lat = latitide;
+              var long  = longitude
+
+              console.log('lat',lat);
+              console.log('l',long);
+
+
+              var marker = new google.maps.Marker({
+              position: {lat:parseFloat(latitide),lng:parseFloat(longitude)},
+              map: map,
+              id:'marker'
+              });
+              marker.setMap(map);
+      }
+
       //  open  //  close set_lat_long_parent function
             function set_lat_long_parent(latitide,longitude){
 
@@ -151,21 +171,8 @@
 
 
               }
-              $(function(){
-        setTimeout(() => {
-            set_route_on_map();
-        }, 2000);
-
-    })
-    function set_route_on_map(){
-        markers_latlng.push({lat:parseFloat('{!!$lat!!}'),lng:parseFloat('{!!$long!!}')});
-        console.log('aaaaaaaaaaaaa',markers_latlng);
-        //  calculateAndDisplayRoute();
 
 
-
-
-    }
     function calculateAndDisplayRoute() {
         var waypts = [];
         var start , end;

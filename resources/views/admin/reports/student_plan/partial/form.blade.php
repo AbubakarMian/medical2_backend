@@ -50,15 +50,69 @@
     }
 </style>
 
+<!--  old_paln_show-->
+<div class="old_paln_show">
+
+
+<div class="form-group">
+    {!! Form::label('old_fees_type','Fees Type') !!}
+    <div>
+    <input value="{{$student_plan->fees_type}}" name="lname" disabled class="form-control">
+                </div>
+    </select>
+</div>
+
+
+<div class="form-group">
+    {!! Form::label('old_amount','Amount') !!}
+    <div>
+    <input value="{{$student_plan->amount}}" name="lname" disabled class="form-control old_amount">
+                </div>
+    </select>
+</div>
+
+<div class="form-group">
+    {!! Form::label('old_due_date','Due Date') !!}
+    <div>
+    <input value="{!! date('Y-m-d', $student_plan->due_date) !!}" name="l_name" disabled class="form-control">
+  
+                </div>
+              
+    </select>
+</div>
+</div>
+
+<!--  -->
+
+
+
+<!--  -->
+<div class="row">
+
+    <div class="col-sm-10">
+    </div>
+
+    <div class="col-sm-2">
+  
+    <button type="button" onclick="edit_plan()" class="btn btn-danger edit_plans_area"> New Plan</button>
+
+</div>
+
+</div>
+<!--  -->
+
 
 
 <!--newwwwwwww  WORKSSSS-->
 
+<div class="fees_type_areaaa">
 <div class="form-group">
     {!! Form::label('fees_type','Fees Type',) !!}
     {!! Form::select('fees_type',$fees_type,null,["placeholder"=>"Select
-    Type","onchange"=>"open_fees_type_div()", "class"=>"form-control fees_type","required"]) !!}
+    Type","onchange"=>"open_fees_type_div()", 
+    "class"=>"form-control fees_type","required"]) !!}
     </select>
+</div>
 </div>
 
 
@@ -77,7 +131,7 @@
             <div class="form-group">
                 {!! Form::label('amount','Amount') !!}
                 <div>
-                    {!! Form::text('amount', null, ['class' => 'form-control complete_amount',
+                    {!! Form::text('amounts', null, ['class' => 'form-control complete_amount',
                     'data-parsley-required'=>'true',
                     'data-parsley-trigger'=>'change',
                     'placeholder'=>'Enter Amount',
@@ -129,7 +183,7 @@
         <div class="col-sm-2">
 
             <button type="button" onclick="add_installment_divs()" class="btn btn-danger installment_divs">Add Installment</button>
-            <button type="button" class="btn btn-danger remove_divs">Remove Installment</button>
+          
 
         </div>
 
@@ -166,7 +220,6 @@
 
 <!-- END NEW_WORKSSS -->
 
-<input type="hidden" name="cropped_image" id="cropped_image">
 
 
 
@@ -227,16 +280,16 @@
         $(e).parent().remove();
     }
 
-    function installment_html(installmet_div_row_number) {
+    function installment_html(v) {
         return( `
 <div class="row installmet_div_row">
-<div onclick="remove_installment(this)">Remove</div>
+
     <!-- columnnn-->
 <div class="col-sm-6">
 <div class="form-group">
     {!! Form::label('amount','Amount') !!}
     <div>
-        {!! Form::text('amount[]', null, ['class' => 'form-control',
+        {!! Form::text('amounts[]', null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
         'placeholder'=>'Enter Amount',
@@ -263,9 +316,14 @@
 
          <!-- end  columnnn-->
 
-            </div>
+         <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 10px;
+    margin-left: 16px;
+    margin-bottom: 18px;">Remove</div>
 
-            </div>`);
+    </div>`
+            
+            
+            );
     }
 
     function add_installment_divs() {
@@ -280,7 +338,17 @@
 
 
 
+    function  edit_plan(){
 
+console.log('edit_plan_edit_plan');
+
+var old_paln_show = $('.old_paln_show').hide();
+
+var fees_type_areaaa = $('.fees_type_areaaa').show();
+
+var edit_plans_area = $('.edit_plans_area').hide();
+
+}
 
 
 
@@ -296,7 +364,9 @@
 
         var $complete_fees_area = $('.complete_fees_area').hide();
         var $installment_fees_area = $('.installment_fees_area').hide();
+        var $fees_type_areaaa = $('.fees_type_areaaa').hide();
         var $remove_divs = $('.remove_divs').hide();
+        // var edit_plans_area = $('.edit_plans_area').hide();
 
 
 
