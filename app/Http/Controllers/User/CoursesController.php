@@ -77,7 +77,7 @@ class CoursesController extends Controller
     // course/registration
     public function course_registration(Request $request)
     {
-         dd($request->all());
+        //  dd($request->all());
         $courses_id = $request->course_id;
         $type = $request->type;
         $courses = Courses::with('group')->find($courses_id);
