@@ -75,16 +75,19 @@ class CoursesController extends Controller
     {
         $user = Auth::User();
         if ($user) {
-            $user =  $user->where('role_id', '2')->first();
+         $user =  $user->where('role_id', '2')->first();
+        }
+        elseif (!$user) {
+            return redirect('/')->with('error', 'Please Login To Continue');
         }
         $courses_id = $request->course_id;
         $course = Courses::find($courses_id);
         $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->first();
-        if (!$user) {
-            return redirect('/')->with('error', 'Please Login To Continue');
-        }
+
+       
         if ($course_register) {
-        } elseif (!$course_register) {
+        } 
+        elseif (!$course_register) {
             $group = Group::with('group_fees')->find($request->group_id);
             $course_register = new Course_Register();
             $course_register->user_id  =  $user->id;
