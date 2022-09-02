@@ -25,6 +25,7 @@ class Student_planController extends Controller
                 public function index(Request $request)
                 {
                     $student_plan = Student_fees::with('user')->orderBy('created_at', 'DESC')->paginate(10);
+                    // dd( $student_plan);
                     return view('admin.reports.student_plan.index', compact('student_plan'));
                 }
 
@@ -51,6 +52,8 @@ class Student_planController extends Controller
 
             public function add_or_update(Request $request, $student_plan,$id)
                     {
+// dd($request->all());
+                        if ($request->amounts & $request->due_date != null ) {
                         if ($request->fees_type == 'installment') {
                             foreach ($request->amounts as $amnt_key => $am) {
                                 $student_fees = new Student_fees();
@@ -71,6 +74,7 @@ class Student_planController extends Controller
                             $student_plan->amount = $request->amount;
                             $student_plan->due_date = $request->due_date;
                             $student_plan->save();
+                        }
                         }
                         return redirect()->back();
                     }

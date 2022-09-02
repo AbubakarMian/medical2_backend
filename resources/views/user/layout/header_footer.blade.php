@@ -97,8 +97,11 @@ use Illuminate\Support\Facades\Auth;
                                         <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
                                     </button>
                                     <div class="dropdown-menu dfg" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="profile_courses"><i class="fa fa-book" aria-hidden="true"></i> Courses</a><br>
-                                      <a class="dropdown-item" href="profile_acount"><i class="fa fa-cog" aria-hidden="true"></i> Acount</a>
+                                      <a class="dropdown-item" href="{!!asset('profile_courses')!!}"><i class="fa fa-book" aria-hidden="true"></i> Courses</a><br>
+                
+                                      <a class="dropdown-item" href="{!!asset('profile_acount')!!}"><i class="fa fa-cog" aria-hidden="true"></i> Acount</a><br>
+                                      <a class="dropdown-item" href="{!!asset('course_payemts')!!}"><i class="fa fa-cog" aria-hidden="true"></i> Course Payments</a>
+                                    
                                     </div>
                                   </div>
                                   @else

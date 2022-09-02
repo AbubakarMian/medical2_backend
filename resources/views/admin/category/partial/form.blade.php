@@ -107,7 +107,7 @@
                         <div class="overlay1">
                             <div class="text">Upload</div>
                         </div>
-                        <input type="file" name="image" class="image upload_image" id="upload_image" style="display:none" />
+                        <input type="file" required name="image" class="image upload_image" id="upload_image" style="display:block" />
                     </label>
                     </div>
                     <hr>

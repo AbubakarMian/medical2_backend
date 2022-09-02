@@ -115,31 +115,64 @@ class CoursesController extends Controller
 
     public function payment_screen(Request $request)
     {
+        // dd('zzz');
+        if($request->student_id_not_paid){
+        $student_id= $request->student_id_not_paid;
+        $student_fees = Student_fees::find($student_id);
+        $course_register_id = $student_fees->course_register_id;
+        $course_register = Course_Register::find($course_register_id);
+        $stripe_key = Config::get('services.stripe.STRIPE_KEY');
+        return view('user.payment_screen.index', compact('course_register', 'stripe_key','student_fees'));
+       }
+        // 
+        elseif($request->course_register){
         $course_register_id = $request->course_register;
         $course_register = Course_Register::find($course_register_id);
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         return view('user.payment_screen.index', compact('course_register', 'stripe_key'));
     }
+        // 
+    }
     public function makepayment(Request $request)
     {
-        $user = Auth::user();
+        // dd($request->all());
+        
+        $user = Auth::User();
+        if ($user) {
+         $user =  $user->where('role_id', '2')->first();
+        }
         Stripe\Stripe::setApiKey(Config::get('services.stripe.STRIPE_SECRET'));
         $stripe = Stripe\Charge::create([
             "amount" => ceil($request->amount),
             "currency" => "usd",
             "source" => $request->stripeToken,
         ]);
-        if ($stripe->status == "succeeded") {
+        
 
+        if ($stripe->status == "succeeded") {
             $payment = new Payment();
-            $payment->user_id = 2;
-            $payment->payment_id = $stripe->id;
-            $payment->course_register_id     = $request->course_register_id;
-            $payment->amount = $request->amount;
-            $payment->payment_response = json_encode($stripe);
-            $payment->payment_status = $stripe->status;
-            $payment->card_type = $stripe->payment_method_details->card->brand;
-            $payment->save();
+
+            if ($request->student_fees_id) {
+            $student_id = $request->student_fees_id;
+            $student_fees = Student_fees::find($student_id);
+            
+
+            }
+            elseif(!$request->student_fees_id){
+                
+                $payment->user_id = $user->id;
+                $payment->payment_id = $stripe->id;
+                $payment->course_register_id     = $request->course_register_id;
+                $payment->amount = $request->amount;
+                $payment->payment_response = json_encode($stripe);
+                $payment->payment_status = $stripe->status;
+                $payment->students_fees_id = $request->student_fees_id;
+                $payment->card_type = $stripe->payment_method_details->card->brand;
+                $payment->save();
+
+            }
+
+           
             return redirect()->back()->with('success', 'Payment successful!');
 
             $course_register = Course_Register::find($request->course_register_id);
@@ -147,7 +180,9 @@ class CoursesController extends Controller
             $course_register->one_time_payment = 1;
             $course_register->fees = $request->amount;
             $course_register->save();
-        } else {
+         
+        } 
+        else {
             $payment = new Payment();
             $payment->user_id = $user->id;
             $payment->payment_id = $stripe->id;

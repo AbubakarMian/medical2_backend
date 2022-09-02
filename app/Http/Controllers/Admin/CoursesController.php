@@ -68,7 +68,7 @@ class CoursesController extends Controller
         $courses->full_name = $request->full_name;
         $courses->short_name = $request->short_name;
         $courses->category_id = $request->category_id;
-        $courses->examination_fees = $request->fees;
+        $courses->examination_fees = $request->examination_fees;
         $courses->description = $request->description;
         $courses->start_date = $date_timestamp;
         if($request->one_time_payment == 'on'){
@@ -89,6 +89,7 @@ class CoursesController extends Controller
         $courses->save();
 
         // new Courses_Fees table 
+        if ($request->amount & $request->due_date != null ) {
         if($request->fees_type == 'installment'){
 
          foreach($request->amount as $amnt_key =>$am){
@@ -110,7 +111,7 @@ class CoursesController extends Controller
             $course_fees->save();
        
         }
-        
+        }
         return redirect()->back();
     }
 

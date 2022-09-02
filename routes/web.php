@@ -45,8 +45,13 @@ use Illuminate\Support\Facades\Route;
      Route::get('profile_acount', 'User\Profile_Courses_Controller@my_profile');
     //  my_profile_save
      Route::post('my_profile_save', 'User\Profile_Courses_Controller@my_profile_save');
+// 
 
- 
+//  new ourse_payemts for installment and comnplete
+Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
+Route::get('user/course_history/payment', 'User\Profile_Courses_Controller@course_history_payment');
+
+
     //category page
      Route::get('category', 'User\CategoryController@index');
      Route::post('user/category_search', 'User\CategoryController@index');
