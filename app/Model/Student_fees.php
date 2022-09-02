@@ -18,6 +18,14 @@ class Student_fees extends Model
    public function group(){
     return $this->hasOne('App\Model\Group','id','group_id');
 }
+public function course()
+{
+    return $this->hasOne('App\Model\Courses', 'id', 'course_id');
+}
+// public function course_register()
+// {
+//     return $this->hasOne('App\Model\Courses', 'id', 'course_id');
+// }
 
   
 }

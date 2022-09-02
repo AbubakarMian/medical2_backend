@@ -546,14 +546,10 @@ function  select_course(course_id){
                     </h4>`
                   
                     
-                    if(response['data'][i] == 1){
-                        $(".old_paln_show_heading").append(show_heading)
-
-                    }
-
-                            
-
-                        $(".old_paln_show").append(tr_str);
+                    
+                        // $(".old_paln_show_heading").append(show_heading);
+                        $(".old_paln_show").html(tr_str);
+                
                         
                
                     }

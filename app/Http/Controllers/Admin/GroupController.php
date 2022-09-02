@@ -88,10 +88,9 @@ class GroupController extends Controller
     }
     public function add_or_update(Request $request, $group)
     {
-    
+    // dd($request->all());
         $start_date_timestamp = strtotime($request->start_date);
         $end_date_timestamp = strtotime($request->end_date);
-
         $group->name = $request->name;
         $group->courses_id = $request->courses_id;
         $group->start_date = $start_date_timestamp;
@@ -117,6 +116,8 @@ class GroupController extends Controller
         }
         $group->save();
 
+        if($request->day){
+
         foreach ($request->day as $key => $d) {
             $group_timings = new Group_Timings();
             $group_timings->course_id = $request->courses_id;
@@ -127,9 +128,10 @@ class GroupController extends Controller
 
             $group_timings->save();
         }
+     }
+    if ($request->amount & $request->due_date != null ) {
         if ($request->fees_type == 'installment') {
-
-            foreach ($request->amount as $amnt_key => $am) {
+       foreach ($request->amount as $amnt_key => $am) {
                 $group_fees = new Group_fees();
                 $group_fees->group_id     = $group->id;
                 $group_fees->course_id =  $group->courses_id;
@@ -138,11 +140,9 @@ class GroupController extends Controller
                  $group_fees->due_date = strtotime($request->due_date[$amnt_key]);
                 $group_fees->save();
             }
-        } 
-        
-                elseif ($request->fees_type == 'complete') {
+         } 
+         elseif ($request->fees_type == 'complete') {
                     $group_fees = new Group_fees();
-
                     $group_fees->group_id     = $group->id;
                     $group_fees->course_id =  $group->courses_id;
                     $group_fees->fees_type = $group->fees_type;
@@ -150,12 +150,12 @@ class GroupController extends Controller
                     $group_fees->due_date = strtotime($request->due_date);
                     $group_fees->save();
                 }
-                 return redirect()->back();
+                }
+                return redirect()->back();
     }
 
                 public function destroy_undestroy($id)
                 {
-
                     $group = Group::find($id);
                     if ($group) {
                         Group::destroy($id);
@@ -204,13 +204,9 @@ class GroupController extends Controller
                         $res->status = true;
                         return json_encode($res);
                     }
-
-
                     function group_latlong_save(Request $request)
                     {
-
-
-                        $sample_class =  new \stdClass();
+                      $sample_class =  new \stdClass();
                         $sample_class->lat = $request->map_latitide;
                         $sample_class->long = $request->map_longitude;
 
@@ -224,9 +220,6 @@ class GroupController extends Controller
                         return $response;
                     }
 
-                 
-
-
-
+                
 
 }

@@ -39,26 +39,12 @@ h4 {
   font-size: 13px;
   text-align: justify;
 }
-.logclick {
-  border-radius: 0px;
-  margin-top: 20px;
-  width: 120px;
-  background-color: #292974;
-  border-color: #292974;
-  color: white;
-}
-.logclic {
-  border-radius: 0px;
-  margin-top: 20px;
-  width: 120px;
-  background-color: #292974;
-  border-color: #292974;
-}
+
 /* .regtable {
   padding-top: 50px;
 } */
 .courbanddata h2 {
-  color: #292974;
+  /* color: #292974; */
   font-size: 30px;
   font-weight: 600;
   text-align: center;
@@ -208,7 +194,7 @@ h4 {
   padding: 50px;
 }
 .collagearea h2 {
-  color: #292974;
+  /* color: #292974; */
   font-size: 40px;
   font-weight: 600;
 }
@@ -223,9 +209,9 @@ h4 {
   margin-top: 20px;
   width: 150px;
   background-color: #e9e9f1;
-  border-color: #292974;
+  /* border-color: #292974; */
   height: 42px;
-  color: #292974;
+  /* color: #292974; */
   font-size: 16px;
   font-weight: 500;
 }
@@ -233,8 +219,8 @@ h4 {
   border-radius: 0px;
   margin-top: 20px;
   width: 150px;
-  background-color: #292974;
-  border-color: #292974;
+  /* background-color: #292974;
+  border-color: #292974; */
   height: 42px;
   color: white;
   font-size: 16px;
@@ -253,7 +239,7 @@ h4 {
   font-weight: 700;
   margin-bottom: 0px;
   margin-top: 18px;
-  color: #292974;
+  /* color: #292974; */
 }
 .courseboxdata p {
   color: gray;
@@ -264,7 +250,7 @@ h4 {
 .courseboxdata a {
   font-size: 13px;
   font-weight: 600;
-  color: #292974;
+  /* color: #292974; */
 }
 .colorbox.bgreen {
   background: #68c03e;
@@ -359,8 +345,8 @@ h4 {
   margin-bottom: 50px;
 }
 .banclick {
-  background: #292974;
-  border-color: #292424;
+  /* background: #292974; */
+  /* border-color: #292424; */
   color: white;
   width: 300px;
   padding: 12px;
@@ -445,13 +431,13 @@ span.forspan {
   font-weight: 700;
   margin-top: 5px;
   margin-bottom: 0px;
-  color: #292974;
+  /* color: #292974; */
 }
 .raterwe {
   font-size: 27px;
   margin-bottom: 37px;
   text-align: center;
-  color: #292974;
+  /* color: #292974; */
   font-weight: 600;
   /* margin-top: -30px; */
 }
@@ -470,7 +456,7 @@ span.forspan {
 }
 span.forspan {
   float: right;
-  color: #292974;
+  /* color: #292974; */
   font-weight: 500;
 }
 
@@ -820,18 +806,7 @@ i.fa.fa-heart.dil {
   .collageareadata {
     text-align: center;
   }
-  .abolernn {
-    border-radius: 0px;
-    margin-top: 20px;
-    width: 150px;
-    background-color: #292974;
-    border-color: #292974;
-    height: 42px;
-    color: white;
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 30px;
-  }
+
   .coursebox {
     display: initial;
     padding: 0px 25px;
@@ -843,18 +818,7 @@ i.fa.fa-heart.dil {
   .courseboxdata {
     text-align: center;
   }
-  .abolern {
-    border-radius: 0px;
-    margin-top: 20px;
-    width: 150px;
-    background-color: #e9e9f1;
-    border-color: #292974;
-    height: 42px;
-    color: #292974;
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 49px;
-  }
+
   .footerarea {
     padding: 21px;
     background: #323a45;

@@ -43,8 +43,8 @@ h4 {
   border-radius: 0px;
   margin-top: 20px;
   width: 120px;
-  background-color: #f1582b;
-  border-color: #f1582b;
+  background-color: #f1582b !important;
+  border-color: #f1582b !important;
   color: white;
   margin: 3px;
   height: 34px;
