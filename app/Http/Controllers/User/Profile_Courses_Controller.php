@@ -57,24 +57,10 @@ class Profile_Courses_Controller extends Controller
           }
           $student_fees = Student_fees::with('user','course')->where('user_id',$user->id)->orderby('due_date')->get();
           // dd($student_fees);
-         return view('user.Course_Payment_User.index',compact('student_fees'));
-        
-        // return redirect()->back()->with('success', 'Your Profile Has Been Update Successfully.Thank You !');
-    }
-  //   public function course_history_payment(Request $request){
-  //     // dd($request->all());
-
-  //    $student_id =$request->student_id_not_paid;
-  //     $user = Auth::user();
-  //     if($user){
-  //     $user =  $user->where('role_id','2')->first();
-  //       }
-  //       $student_id_not_paid = Student_fees::with('user','course')->where('user_id',$user->id)->orderby('due_date')->get();
-  
-  //      return view('user.Course_Payment_User.index',compact('student_fees'));
+         return view('user.course_payment_user.index',compact('student_fees'));
       
-  //     // return redirect()->back()->with('success', 'Your Profile Has Been Update Successfully.Thank You !');
-  // }
+    }
+
 
 
 
