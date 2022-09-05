@@ -49,7 +49,7 @@ use Illuminate\Support\Facades\Route;
 
 //  new ourse_payemts for installment and comnplete
 Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
-Route::get('user/course_history/payment', 'User\Profile_Courses_Controller@course_history_payment');
+// Route::get('user/course_history/payment', 'User\Profile_Courses_Controller@course_history_payment');
 
 
     //category page

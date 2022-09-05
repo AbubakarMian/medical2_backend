@@ -150,8 +150,9 @@ class CoursesController extends Controller
         
 
         if ($stripe->status == "succeeded") {
-            $student_id =  $request->students_fees_id;
+            $student_id =  $request->student_fees_id;
             $student_fees = Student_fees::with('course_register')->find($student_id);
+            // dd( $student_fees);
             $payment = new Payment();
             $payment->user_id = $user->id;
             $payment->payment_id = $stripe->id;
