@@ -116,27 +116,27 @@ class CoursesController extends Controller
     public function payment_screen(Request $request)
     {
         // dd('zzz');
+        // User Course Payment History se ayga
         if($request->student_id_not_paid){
         $student_id= $request->student_id_not_paid;
-        $student_fees = Student_fees::find($student_id);
+        $student_fees = Student_fees::with('course_register')->find($student_id);
         $course_register_id = $student_fees->course_register_id;
         $course_register = Course_Register::find($course_register_id);
-        $stripe_key = Config::get('services.stripe.STRIPE_KEY');
-        return view('user.payment_screen.index', compact('course_register', 'stripe_key','student_fees'));
-       }
-        // 
+     }
+        // Select Your Math Course Group se ayga
         elseif($request->course_register){
         $course_register_id = $request->course_register;
-        $course_register = Course_Register::find($course_register_id);
-        $stripe_key = Config::get('services.stripe.STRIPE_KEY');
-        return view('user.payment_screen.index', compact('course_register', 'stripe_key'));
-    }
-        // 
+        $course_register = Course_Register::with('student_fees')->find($course_register_id);
+        $student_fees_id =  $course_register->student_fees->id;
+        $student_fees = Student_fees::find($student_fees_id);
+   }
+       $stripe_key = Config::get('services.stripe.STRIPE_KEY');
+       return view('user.payment_screen.index', compact('course_register', 'stripe_key','student_fees'));
     }
     public function makepayment(Request $request)
     {
         // dd($request->all());
-        
+        //final payment
         $user = Auth::User();
         if ($user) {
          $user =  $user->where('role_id', '2')->first();
@@ -150,36 +150,29 @@ class CoursesController extends Controller
         
 
         if ($stripe->status == "succeeded") {
+            $student_id =  $request->students_fees_id;
+            $student_fees = Student_fees::with('course_register')->find($student_id);
             $payment = new Payment();
+            $payment->user_id = $user->id;
+            $payment->payment_id = $stripe->id;
+            $payment->course_register_id = $request->course_register_id;
+            $payment->payment_response = json_encode($stripe);
+            $payment->payment_status = $stripe->status;
+            $payment->students_fees_id = $student_id;
+            $payment->card_type = $stripe->payment_method_details->card->brand;
+            //============= amount===============
+            $payment->amount =   $student_fees->amount;
+            $payment->save();
+            $student_fees->status = 'paid';
+            $student_fees->save();
 
-            if ($request->student_fees_id) {
-            $student_id = $request->student_fees_id;
-            $student_fees = Student_fees::find($student_id);
-            
-
-            }
-            elseif(!$request->student_fees_id){
-                
-                $payment->user_id = $user->id;
-                $payment->payment_id = $stripe->id;
-                $payment->course_register_id     = $request->course_register_id;
-                $payment->amount = $request->amount;
-                $payment->payment_response = json_encode($stripe);
-                $payment->payment_status = $stripe->status;
-                $payment->students_fees_id = $request->student_fees_id;
-                $payment->card_type = $stripe->payment_method_details->card->brand;
-                $payment->save();
-
-            }
-
-           
             return redirect()->back()->with('success', 'Payment successful!');
 
-            $course_register = Course_Register::find($request->course_register_id);
-            $course_register->is_paid = 1;
-            $course_register->one_time_payment = 1;
-            $course_register->fees = $request->amount;
-            $course_register->save();
+            // $course_register = Course_Register::find($request->course_register_id);
+            // $course_register->is_paid = 1;
+            // $course_register->one_time_payment = 1;
+            // $course_register->fees = $request->amount;
+            // $course_register->save();
          
         } 
         else {

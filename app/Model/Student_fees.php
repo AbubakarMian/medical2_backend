@@ -22,10 +22,10 @@ public function course()
 {
     return $this->hasOne('App\Model\Courses', 'id', 'course_id');
 }
-// public function course_register()
-// {
-//     return $this->hasOne('App\Model\Courses', 'id', 'course_id');
-// }
+public function course_register()
+{
+    return $this->hasOne('App\Model\Course_Register', 'id', 'course_register_id');
+}
 
   
 }

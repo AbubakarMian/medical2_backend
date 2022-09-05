@@ -57,7 +57,7 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control card-number"  required name="mycard" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
                                             <input type="hidden" name="course_register_id"  value="{{$course_register->id}}">
-                                            <input type="hidden" name="student_fees_id"  value="{{$student_fees->id ??' '}}">
+                                            <input type="hidden" name="student_fees_id"  value="{{$student_fees->id}}">
                                     </div>
                                 </div>
                             </div>
