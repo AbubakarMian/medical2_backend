@@ -70,8 +70,17 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
 
     // course_register
     Route::get('course/registration', 'User\CoursesController@course_registration');
-    // save_course_register
+
+    // single save_course_registeration
     Route::get('save_course_register', 'User\CoursesController@user_save_course_register');
+
+     // group_registration
+    Route::get('group_registration', 'User\CoursesController@group_registration');
+
+      // ===================group_registration save============================
+    Route::post('group_registration', 'User\CoursesController@group_registration_save');
+      // 
+      
     // user/payment
     Route::get('user/payment', 'User\CoursesController@payment_screen');
 
