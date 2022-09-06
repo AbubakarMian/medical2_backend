@@ -212,7 +212,15 @@
                         <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
                         <a href="{!! asset('save_course_register/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" style="line-height: 35px;">
 
-                            <button type="button" class="btn btn-primary regi">Register</button>
+                            <button type="button" class="btn btn-primary regi">Single Registeration</button>
+
+                        </a>
+                    </div>
+                    <div class="regtabless">
+                        <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
+                        <a href="{!! asset('group_registration/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" style="line-height: 35px;">
+
+                            <button type="button" class="btn btn-primary regi">Group Registeration</button>
 
                         </a>
                     </div>

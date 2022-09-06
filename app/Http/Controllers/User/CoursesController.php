@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Model\Category;
 use App\Model\Courses;
+use App\User;
 use App\Model\Group;
 use App\Model\Course_Register;
 use App\Model\Group_Timings;
@@ -70,7 +71,7 @@ class CoursesController extends Controller
         return view('user.course_registration.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
     }
 
-
+// single register
     public function user_save_course_register(Request $request)
     {
         $user = Auth::User();
@@ -111,11 +112,73 @@ class CoursesController extends Controller
         }
         return redirect('user/payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
     }
+    // group_registration
+
+
+
+    public function group_registration(Request $request)
+    {
+        $user = Auth::User();
+        if ($user) {
+         $user =  $user->where('role_id', '2')->first();
+        }
+        elseif (!$user) {
+            return redirect('/')->with('error', 'Please Login To Continue');
+        }
+        $course_id = $request->course_id;
+        $group_id   = $request->group_id;
+        return view('user.add_group_members.index', compact('user', 'course_id','group_id'));
+       
+    }
+
+    // 
+
+    public function group_registration_save(Request $request)
+    {
+        // dd($request->all());
+        $user = Auth::User();
+        if ($user) {
+         $user =  $user->where('role_id', '2')->first();
+        }
+        elseif (!$user) {
+            return redirect('/')->with('error', 'Please Login To Continue');
+        }
+
+         $users = new User();
+
+         $users->name = $request->first_name;
+         $users->last_name = $request->last_name;
+         $users->email = $request->email;
+         $users->phone_no = $request->contact;
+         $users->adderss = $request->address;
+         $users->city = $request->city;
+         $users->zip_code = $request->zip_code;
+         $users->state = $request->state;
+         $users->education = $request->education;
+         $users->collage_name = $request->collage_name;
+         $users->computer_experience = $request->computer_experience;
+         $users->work_experience = $request->work_experience;
+         $users->expectations = $request->expectations;
+         $users->certification = $request->certification;
+         $users->role_id = 2;
+         $users->save();
+
+        $course_id = $request->course_id;
+        $group_id   = $request->group_id;
+        return view('user.add_group_members.index', compact('user', 'course_id','group_id'));
+       
+    }
+
+
+
+
+
+    // 
 
 
     public function payment_screen(Request $request)
     {
-        // dd('zzz');
+        
         // User Course Payment History se ayga
         if($request->student_id_not_paid){
         $student_id= $request->student_id_not_paid;
@@ -150,8 +213,9 @@ class CoursesController extends Controller
         
 
         if ($stripe->status == "succeeded") {
-            $student_id =  $request->students_fees_id;
+            $student_id =  $request->student_fees_id;
             $student_fees = Student_fees::with('course_register')->find($student_id);
+            // dd( $student_fees);
             $payment = new Payment();
             $payment->user_id = $user->id;
             $payment->payment_id = $stripe->id;
