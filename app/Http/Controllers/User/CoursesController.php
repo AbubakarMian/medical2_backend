@@ -143,9 +143,11 @@ class CoursesController extends Controller
         elseif (!$user) {
             return redirect('/')->with('error', 'Please Login To Continue');
         }
-
+        $course_id = $request->course_id;
+        $group_id   = $request->group_id;
+      
+        foreach($request->first_name as $u){
          $users = new User();
-
          $users->name = $request->first_name;
          $users->last_name = $request->last_name;
          $users->email = $request->email;
@@ -154,17 +156,11 @@ class CoursesController extends Controller
          $users->city = $request->city;
          $users->zip_code = $request->zip_code;
          $users->state = $request->state;
-         $users->education = $request->education;
-         $users->collage_name = $request->collage_name;
-         $users->computer_experience = $request->computer_experience;
-         $users->work_experience = $request->work_experience;
-         $users->expectations = $request->expectations;
-         $users->certification = $request->certification;
          $users->role_id = 2;
          $users->save();
+        }
 
-        $course_id = $request->course_id;
-        $group_id   = $request->group_id;
+     
         return view('user.add_group_members.index', compact('user', 'course_id','group_id'));
        
     }
