@@ -53,7 +53,7 @@
 
 
                         <button type="button" class="btn btn-primary regi" onclick="add_members()">Add Group Members</button>
-                        <button type="button" class="btn btn-primary regi" onclick="add_members()">Register</button>
+                        <!-- <button type="button" class="btn btn-primary regi" onclick="add_members()">Register</button> -->
 
 
 
@@ -79,10 +79,12 @@
         <div class="col-sm-12">
             <form role="form" method="post" action="{{action('User\CoursesController@group_registration_save')}}">
                 {!! csrf_field() !!}
+                <input hidden name="course_id" value="{{course_id}}">
+                <input hidden name="group_id" value="{{group_id}}">
                 <div class="add_members_register_form" style="margin-top:20px">
                 </div>
 
-                <button type="submit" class="btn btn-primary regi" style="margin-top:20px">Register</button>
+                <button type="submit" class="btn btn-primary regi show_register" style="margin-top:20px; display:none">Register</button>
 
             </form>
 
@@ -222,6 +224,10 @@
 
         console.log('hrlooooooooooooooo');
         var div_add_members_register_form_area = $('.div_add_members_register_form_area').length;
+        if(div_add_members_register_form_area == 0){
+          var  show_register = $('.show_register').css('display','block');
+            
+        }
         $add_members_register_form = $('.add_members_register_form').append(add_members_register_form_area(div_add_members_register_form_area));
 
 
