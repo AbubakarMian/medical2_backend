@@ -75,12 +75,13 @@
 
 
 
-        <!-- <div class="add_members_register_form" style="margin-top:20px"> -->
+      
         <div class="col-sm-12">
             <form role="form" method="post" action="{{action('User\CoursesController@group_registration_save')}}">
                 {!! csrf_field() !!}
-                <input hidden name="course_id" value="{{course_id}}">
-                <input hidden name="group_id" value="{{group_id}}">
+                
+                <input hidden name="course_id" value="{!!$course_id!!}">
+                <input hidden name="group_id" value="{!!$group_id!!}">
                 <div class="add_members_register_form" style="margin-top:20px">
                 </div>
 
