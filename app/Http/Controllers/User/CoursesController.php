@@ -118,6 +118,7 @@ class CoursesController extends Controller
 
     public function group_registration(Request $request)
     {
+        
         $user = Auth::User();
         if ($user) {
          $user =  $user->where('role_id', '2')->first();
@@ -146,22 +147,32 @@ class CoursesController extends Controller
         $course_id = $request->course_id;
         $group_id   = $request->group_id;
       
-        foreach($request->first_name as $u){
+        foreach($request->first_name as $key => $f){
          $users = new User();
-         $users->name = $request->first_name;
-         $users->last_name = $request->last_name;
-         $users->email = $request->email;
-         $users->phone_no = $request->contact;
-         $users->adderss = $request->address;
-         $users->city = $request->city;
-         $users->zip_code = $request->zip_code;
-         $users->state = $request->state;
+         $users->name = $f;
+         $users->last_name = $request->last_name[$key];
+         $users->email = $request->email[$key];
+         $users->phone_no = $request->contact[$key];
+         $users->adderss = $request->address[$key];
+         $users->city = $request->city[$key];
+         $users->zip_code = $request->zip_code[$key];
+         $users->state = $request->state[$key];;
          $users->role_id = 2;
          $users->save();
+        //  
+         $course_register = new Course_Register();
+         $course_register->user_id  =  $users->id;
+         $course_register->course_id =   $course_id;
+         $course_register->group_id = $group_id;
+         $course_register->is_paid = 0;
+         $course_register->one_time_examination_payment = 0;
+         $course_register->examination_fees = 0;
+         $course_register->save();
         }
 
+
      
-        return view('user.add_group_members.index', compact('user', 'course_id','group_id'));
+        // return redirect()->back()->with(), compact('user', 'course_id','group_id'));
        
     }
 

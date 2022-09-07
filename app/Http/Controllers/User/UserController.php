@@ -77,7 +77,7 @@ class UserController extends Controller
 
         if(Auth::attempt($user_data))
         {
-            return redirect('/');
+            return redirect('/')->with('success', 'ThankYou! You are successfully logged in');
         }
         else
         {
