@@ -8,7 +8,9 @@ use App\Model\Courses;
 use App\User;
 use App\Model\Group;
 use App\Model\Course_Register;
+use App\Mail\Update_Password;
 use App\Model\Group_Timings;
+use Illuminate\Support\Facades\Mail;
 use App\Model\Student_fees;
 use App\Model\Payment;
 use Illuminate\Http\Request;
@@ -146,6 +148,7 @@ class CoursesController extends Controller
         }
         $course_id = $request->course_id;
         $group_id   = $request->group_id;
+        $response_array   = [];
       
         foreach($request->first_name as $key => $f){
          $users = new User();
@@ -158,8 +161,17 @@ class CoursesController extends Controller
          $users->zip_code = $request->zip_code[$key];
          $users->state = $request->state[$key];;
          $users->role_id = 2;
+         $users->update_password_id = uniqid();
          $users->save();
-        //  
+         $details = [
+            'to' => $users->email,
+            'user_id' => $users->id,
+            'from' => 'contactus@medical2.com',
+            'title' => 'Medical2',
+            'subject' => 'Reference Link From Medical2 Academy ',
+            "dated"  => date('d F, Y (l)'),
+            'new_password' =>  $users->update_password_id,
+        ];
          $course_register = new Course_Register();
          $course_register->user_id  =  $users->id;
          $course_register->course_id =   $course_id;
@@ -168,13 +180,47 @@ class CoursesController extends Controller
          $course_register->one_time_examination_payment = 0;
          $course_register->examination_fees = 0;
          $course_register->save();
+
+         $response_array['users'] = $users;   
+         $response_array['course_register'] = $course_register;   
+         Mail::to($users->email)->send(new Update_Password($details));
         }
+      
+    //    return redirect('user/update_password/?response='.$response_array);
+       
+    }
+    public function update_password(Request $request){
+        // dd($request->all());
+
+
+        $update_password = $request->update_password;
+        $user_id = $request->user_id;
+        $user  =  User::find($user_id);
+        return view('user.update_pass_form.index', compact('user'));
+
+    }
+    public function update_password_save(Request $request){
+        // dd($request->all());
 
 
      
-        // return redirect()->back()->with(), compact('user', 'course_id','group_id'));
-       
+        $user_id = $request->user_id;
+        $user_update_password = $request->user_update_password;
+        $user  =  User::find($user_id);
+        $user->password  = $user_update_password;
+        $user->save();
+        return view('user.update_pass_form.index', compact('user'));
+        return redirect()->back()->with('success', 'Thanks ! Your Password has Been Update');
+
     }
+
+
+    public function enter_pasword(Request $request){
+
+        dd($request->all());
+  
+  
+      }
 
 
 
