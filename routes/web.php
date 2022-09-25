@@ -79,7 +79,14 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
 
       // ===================group_registration save============================
     Route::post('group_registration', 'User\CoursesController@group_registration_save');
-      // 
+      // user/update_password
+    Route::post('user/update_password', 'User\CoursesController@update_password');
+
+    // user/enter_pasword
+    Route::post('user/enter_pasword', 'User\CoursesController@enter_pasword');
+
+    //user/update_password_save
+    Route::post('user/update_password_save', 'User\CoursesController@update_password_save');
       
     // user/payment
     Route::get('user/payment', 'User\CoursesController@payment_screen');
