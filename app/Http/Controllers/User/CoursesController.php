@@ -90,7 +90,7 @@ class CoursesController extends Controller
        
         // if ($course_register) {
         // } 
-      if (!$course_register) {
+    //   if (!$course_register) {
             $group = Group::with('group_fees')->find($request->group_id);
             $course_register = new Course_Register();
             $course_register->user_id  =  $user->id;
@@ -111,7 +111,7 @@ class CoursesController extends Controller
             $student_fees->due_date  =  $group->group_fees->due_date;
             $student_fees->save();
             $stripe_key = Config::get('services.stripe.STRIPE_KEY');
-        }
+        // }
         return redirect('user/payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
     }
     // group_registration
