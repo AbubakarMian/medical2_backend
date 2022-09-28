@@ -129,7 +129,8 @@ class GroupController extends Controller
             $group_timings->save();
         }
      }
-    if ($request->amount & $request->due_date != null ) {
+    // if ($request->amount & $request->due_date != null ) {
+        // dd('asas');
         if ($request->fees_type == 'installment') {
        foreach ($request->amount as $amnt_key => $am) {
                 $group_fees = new Group_fees();
@@ -150,7 +151,7 @@ class GroupController extends Controller
                     $group_fees->due_date = strtotime($request->due_date);
                     $group_fees->save();
                 }
-                }
+                // }
                 return redirect()->back();
     }
 
