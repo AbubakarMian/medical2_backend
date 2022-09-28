@@ -88,9 +88,9 @@ class CoursesController extends Controller
         $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->first();
 
        
-        if ($course_register) {
-        } 
-        elseif (!$course_register) {
+        // if ($course_register) {
+        // } 
+      if (!$course_register) {
             $group = Group::with('group_fees')->find($request->group_id);
             $course_register = new Course_Register();
             $course_register->user_id  =  $user->id;
