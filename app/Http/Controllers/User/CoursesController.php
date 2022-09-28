@@ -92,6 +92,7 @@ class CoursesController extends Controller
         // } 
     //   if (!$course_register) {
             $group = Group::with('group_fees')->find($request->group_id);
+            dd($group);
             $course_register = new Course_Register();
             $course_register->user_id  =  $user->id;
             $course_register->course_id =   $course->id;
