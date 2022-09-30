@@ -17,7 +17,8 @@ class Profile_Courses_Controller extends Controller
       public function my_courses(){
         $user = Auth::User();
         if($user){
-        $user =  $user->where('role_id','2')->first();
+        // $user =  $user->where('role_id','2')->first();
+        $user =  $user->where('role_id','2');
         }
         
         $course_register = Course_Register::where('user_id', $user->id)->with('course.group','user')->orderby('id', 'desc')->select('*')->get();
@@ -28,7 +29,8 @@ class Profile_Courses_Controller extends Controller
     public function my_profile(){
         $user = Auth::user();
         if($user){
-            $user =  $user->where('role_id','2')->first();
+            // $user =  $user->where('role_id','2')->first();
+            $user =  $user->where('role_id','2');
             }
         return view('user.profile_acount');
     }
@@ -37,7 +39,7 @@ class Profile_Courses_Controller extends Controller
      public function my_profile_save(Request $request){
         $users = Auth::user();
         if($users){
-        $users =  $users->where('role_id','2')->first();
+        $users =  $users->where('role_id','2');
           }
         $users->name = $request->name;
         $users->city = $request->city;
@@ -53,7 +55,8 @@ class Profile_Courses_Controller extends Controller
       // dd($request->all());
         $user = Auth::user();
         if($user){
-        $user =  $user->where('role_id','2')->first();
+        // $user =  $user->where('role_id','2')->first();
+        $user =  $user->where('role_id','2');
           }
           $student_fees = Student_fees::with('user','course')->where('user_id',$user->id)->orderby('due_date')->get();
           // dd($student_fees);
