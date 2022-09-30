@@ -538,7 +538,7 @@ function  select_course(course_id){
 
                       
                  
-                        $(".old_paln_show").html(tr_str);
+                        $(".old_paln_show").append(tr_str);
                 
                         
                
