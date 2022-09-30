@@ -68,7 +68,7 @@ class CoursesController extends Controller
             $courses_groups = Group::with('group_timings', 'teacher')->where('type', 'course')->whereHas('group_timings')
                 ->where('courses_id', $courses->id)->get();
         } elseif ($type == 'workshop') {
-            $courses_groups = Group::with('teacher')->where('type', 'workshop')->where('courses_id', $courses->id)->get();
+            $courses_groups = Group::with('teacher','group_fees')->where('type', 'workshop')->where('courses_id', $courses->id)->get();
         }
         return view('user.course_registration.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
     }
