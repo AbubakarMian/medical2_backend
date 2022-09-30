@@ -57,7 +57,7 @@ class Profile_Courses_Controller extends Controller
           }
           $student_fees = Student_fees::with('user','course')->where('user_id',$user->id)->orderby('due_date')->get();
           // dd($student_fees);
-         return view('user.course_payment_user.index',compact('student_fees'));
+         return view('user.course_payment_users.index',compact('student_fees'));
       
     }
 
