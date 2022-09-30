@@ -36,10 +36,10 @@
                             ?>
                               <tr>
                                 <td scope="row">{{$key+1}}</td>
-                                <td>{{$c->user->name}}</td>
-                                <td>{{$c->course->full_name}}</td>
-                                <td>{{$c->course->group->name}}</td>
-                                <td>{{$c->course->group->teacher->name}}</td>
+                                <td>{{$c->user->name ?? ''}}</td>
+                                <td>{{$c->course->full_name ?? ''}}</td>
+                                <td>{{$c->course->group->name ?? '' }}</td>
+                                <td>{{$c->course->group->teacher->name ?? ''}}</td>
                               
                                 <!-- <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
                                
