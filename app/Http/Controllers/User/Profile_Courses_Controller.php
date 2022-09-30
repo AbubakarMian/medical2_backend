@@ -15,13 +15,19 @@ class Profile_Courses_Controller extends Controller
 {
     
       public function my_courses(){
-        $user = Auth::User();
-        if($user){
-        // $user =  $user->where('role_id','2')->first();
-        $user =  $user->where('role_id','2');
+        
+      $user = Auth::user();
+      if(!$user){
+          $user = new \stdClass();
+          $user->role_id = 0;
+      }
+
+        if($user->role_id == 2){
+        $course_register = Course_Register::where('user_id', $user->id)->with('course.group','user')->orderby('id', 'desc')->select('*')->get();
+       
         }
         
-        $course_register = Course_Register::where('user_id', $user->id)->with('course.group','user')->orderby('id', 'desc')->select('*')->get();
+      
         return view('user.profile_courses',compact('course_register'));
     }
 
@@ -53,12 +59,19 @@ class Profile_Courses_Controller extends Controller
 
     public function course_payemts(Request $request){
       // dd($request->all());
-        $user = Auth::user();
-        if($user){
-        // $user =  $user->where('role_id','2')->first();
-        $user =  $user->where('role_id','2');
-          }
-          $student_fees = Student_fees::with('user','course')->where('user_id',$user->id)->orderby('due_date')->get();
+      $user = Auth::user();
+      if(!$user){
+          $user = new \stdClass();
+          $user->role_id = 0;
+      }
+
+        if($user->role_id == 2){
+       
+        // dd( $user);
+        $student_fees = Student_fees::with('user','course')->where('user_id',$user->id)->orderby('due_date')->get();
+         
+      }
+         
           // dd($student_fees);
          return view('user.course_payment_users.index',compact('student_fees'));
       

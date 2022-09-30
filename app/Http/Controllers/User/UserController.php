@@ -64,6 +64,7 @@ class UserController extends Controller
 
 
     public function user_login(Request $request){
+        // dd('asas');
 
              $this->validate($request, [
             'email'   => 'required|email',
