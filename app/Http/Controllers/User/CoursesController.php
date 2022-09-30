@@ -279,7 +279,8 @@ class CoursesController extends Controller
             $payment->students_fees_id = $student_id;
             $payment->card_type = $stripe->payment_method_details->card->brand;
             //============= amount===============
-            $payment->amount =   $student_fees->amount;
+            // $payment->amount =   $student_fees->amount;
+            $payment->amount =   $request->amount;
             $payment->save();
             $student_fees->status = 'paid';
             $student_fees->save();
