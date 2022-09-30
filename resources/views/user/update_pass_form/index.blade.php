@@ -142,7 +142,7 @@
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </div>
                                 <div class="infoboxdata">
-                                    {{-- <h4>EMAIL ADDRESS</h4> --}}
+                                    {{-- <h4></h4> --}}
                                     <p style="margin-top: 16px;">contactus@hrsedu.com</p>
                                 </div>
                             </div>
