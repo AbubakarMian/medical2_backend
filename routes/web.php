@@ -113,9 +113,6 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
 
 
 
-
-
-
     Route::get('admin/login', 'Admin\AdminController@index');
     Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
     Route::group(['middleware' => 'admin_auth'], function () {

@@ -24,6 +24,6 @@ class Group extends Model
 
    public function group_fees()
    {
-       return $this->hasOne('App\Model\Group_fees', 'group_id', 'id');
+       return $this->hasMany('App\Model\Group_fees', 'group_id', 'id');
    }
 }

@@ -34,19 +34,13 @@ class Profile_Courses_Controller extends Controller
   
     public function my_profile(){
         $user = Auth::user();
-        if($user){
-            // $user =  $user->where('role_id','2')->first();
-            $user =  $user->where('role_id','2');
-            }
+
         return view('user.profile_acount');
     }
 
 
      public function my_profile_save(Request $request){
         $users = Auth::user();
-        if($users){
-        $users =  $users->where('role_id','2');
-          }
         $users->name = $request->name;
         $users->city = $request->city;
         $users->zip_code = $request->zip;
@@ -58,22 +52,10 @@ class Profile_Courses_Controller extends Controller
     }
 
     public function course_payemts(Request $request){
-      // dd($request->all());
-      $user = Auth::user();
-      if(!$user){
-          $user = new \stdClass();
-          $user->role_id = 0;
-      }
-
-        if($user->role_id == 2){
-       
-        // dd( $user);
-        $student_fees = Student_fees::with('user','course')->where('user_id',$user->id)->orderby('due_date')->get();
-         
-      }
-         
-          // dd($student_fees);
-         return view('user.course_payment_users.index',compact('student_fees'));
+          $user = Auth::user();
+          $student_fees = Student_fees::with('user','course')->where('user_id',$user->id)->orderby('due_date')->get();
+          
+         return view('user.course_payment_user.index',compact('student_fees'));
       
     }
 
