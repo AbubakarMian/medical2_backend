@@ -15,28 +15,32 @@ class Profile_Courses_Controller extends Controller
 {
     
       public function my_courses(){
-        $user = Auth::User();
-        // if($user){
-        // $user =  $user->where('role_id','2')->first();
-        // }
         
+      $user = Auth::user();
+      if(!$user){
+          $user = new \stdClass();
+          $user->role_id = 0;
+      }
+
+        if($user->role_id == 2){
         $course_register = Course_Register::where('user_id', $user->id)->with('course.group','user')->orderby('id', 'desc')->select('*')->get();
+       
+        }
+        
+      
         return view('user.profile_courses',compact('course_register'));
     }
 
   
     public function my_profile(){
         $user = Auth::user();
-        // if($user){
-        //     $user =  $user->where('role_id','2')->first();
-        //     }
+
         return view('user.profile_acount');
     }
 
 
      public function my_profile_save(Request $request){
         $users = Auth::user();
-
         $users->name = $request->name;
         $users->city = $request->city;
         $users->zip_code = $request->zip;

@@ -21,6 +21,15 @@
     <!-- Credit Card Payment Form - START -->
     <div class="container">
         <div class="row">
+              <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group"> <label> Amount</label>
+                                        <div class="input-group">
+                                             <input type="text" name="amount" disabled value="{{$student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
+                                    </div>
+                                </div>
+                            </div>
             <div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -58,16 +67,11 @@
                                             <input type="text" class="form-control card-number"  required name="mycard" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
                                             <input type="hidden" name="course_register_id"  value="{{$course_register->id}}">
                                             <input type="hidden" name="student_fees_id"  value="{{$student_fees->id}}">
+                                            <input type="hidden" name="amount"  value="{{$student_fees->amount}}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group"> <label> Amount</label>
-                                        <div class="input-group"> <input type="text" name="amount" required class="form-control"  placeholder="Enter Amount" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
-                                    </div>
-                                </div>
-                            </div>
+                           
                             <div class="row">
                                 <div class="col-xs-7 col-md-7">
                                     <div class="form-group">
@@ -158,6 +162,7 @@
                Stripe.setPublishableKey($form.data('stripe-publishable-key'));
                Stripe.createToken({
                    number: $('.card-number').val(),
+                //    amount: $('.amount').val(),
                    cvc: $('.card-cvc').val(),
                    exp_month: $('.card-expiry-month').val(),
                    exp_year: $('.card-expiry-year').val()

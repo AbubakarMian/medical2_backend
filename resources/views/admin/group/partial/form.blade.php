@@ -56,8 +56,8 @@
     </div>
 </div>
 
-<div class="old_paln_show_heading">
-</div>
+<!-- <div class="old_paln_show_heading">
+</div> -->
 <div class="old_paln_show">
 </div>
 
@@ -537,18 +537,8 @@ function  select_course(course_id){
                             </div> `;
 
                       
-                            var show_heading =  
-                     ` <h4>
-                      `+course_name+`
-                    </h4>`+
-                    ` <h4>
-                      `+fees_type+`
-                    </h4>`
-                  
-                    
-                    
-                        // $(".old_paln_show_heading").append(show_heading);
-                        $(".old_paln_show").html(tr_str);
+                 
+                        $(".old_paln_show").append(tr_str);
                 
                         
                

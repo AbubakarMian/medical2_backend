@@ -47,6 +47,7 @@ List of Groups
                     var len = response['data'].length;
                     console.log('assadasd',response);
                     for (var i = 0; i < len; i++) {
+                        
                         console.log('aaaaaaa',response['data'][i]);
                         var id = response['data'][i].id;
                         var group_text = response['data'][i].name;

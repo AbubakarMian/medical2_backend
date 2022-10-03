@@ -69,7 +69,7 @@ class CoursesController extends Controller
             $courses_groups = Group::with('group_timings', 'teacher')->where('type', 'course')->whereHas('group_timings')
                 ->where('courses_id', $courses->id)->get();
         } elseif ($type == 'workshop') {
-            $courses_groups = Group::with('teacher')->where('type', 'workshop')->where('courses_id', $courses->id)->get();
+            $courses_groups = Group::with('teacher','group_fees')->where('type', 'workshop')->where('courses_id', $courses->id)->get();
         }
         return view('user.course_registration.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
     }
@@ -90,13 +90,14 @@ class CoursesController extends Controller
         if ($course_register) {
             // do nothing and go to payment screen
         } 
-        elseif (!$course_register) {
+        else { //if (!$course_register)
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
             $user_group->user_id = $user->id;
             $user_group->save();
 
             $group = Group::with('group_fees')->find($request->group_id);
+            // dd($group);
             $course_register = new Course_Register();
             $course_register->user_id  =  $user->id;
             $course_register->course_id =   $course->id;
@@ -120,7 +121,7 @@ class CoursesController extends Controller
             }
             
             $stripe_key = Config::get('services.stripe.STRIPE_KEY');
-        }
+        // }
         return redirect('user/payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
     }
     // group_registration
@@ -280,7 +281,8 @@ class CoursesController extends Controller
             $payment->students_fees_id = $student_id;
             $payment->card_type = $stripe->payment_method_details->card->brand;
             //============= amount===============
-            $payment->amount =   $student_fees->amount;
+            // $payment->amount =   $student_fees->amount;
+            $payment->amount =   $request->amount;
             $payment->save();
             $student_fees->status = 'paid';
             $student_fees->save();
