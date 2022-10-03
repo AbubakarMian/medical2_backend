@@ -22,11 +22,32 @@
     <div class="container">
         <div class="row">
               <div class="row">
+              <div class="col-xs-12">
+                                    <div class="form-group"> <label> Amount</label>
+                                        <div class="input-group">
+                                             <input type="text" name="amount" disabled value="{{$student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <span class="input-group-addon"></span> </div>
+                                    </div>
+                                </div>
                                 <div class="col-xs-12">
                                     <div class="form-group"> <label> Amount</label>
                                         <div class="input-group">
                                              <input type="text" name="amount" disabled value="{{$student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
-                                             <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
+                                             <span class="input-group-addon"></span> </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group"> <label> Amount</label>
+                                        <div class="input-group">
+                                             <input type="text" name="amount" disabled value="{{$student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <span class="input-group-addon"></span> </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group"> <label> Amount</label>
+                                        <div class="input-group">
+                                             <input type="text" name="amount" disabled value="{{$student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <span class="input-group-addon"></span> </div>
                                     </div>
                                 </div>
                             </div>

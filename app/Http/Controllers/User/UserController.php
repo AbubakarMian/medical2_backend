@@ -63,7 +63,7 @@ class UserController extends Controller
         $users->role_id = 2;
         $users->save();
         Auth::login($users);
-        return redirect('/')->with('success', 'ThankYou ! You are successfully Register ');
+        return redirect('/')->with('success', 'ThankYou'.$users->name.'! You are successfully Register');
     }
 
 
@@ -82,7 +82,7 @@ class UserController extends Controller
 
         if(Auth::attempt($user_data))
         {
-            return redirect('/')->with('success', 'ThankYou! You are successfully logged in',$user_data);
+            return redirect('/')->with('success', 'ThankYou ! You are successfully logged in');
         }
         else
         {
