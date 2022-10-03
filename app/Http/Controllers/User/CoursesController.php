@@ -10,6 +10,7 @@ use App\Model\Group;
 use App\Model\Course_Register;
 use App\Mail\Update_Password;
 use App\Model\Group_Timings;
+use App\Model\Group_users;
 use Illuminate\Support\Facades\Mail;
 use App\Model\Student_fees;
 use App\Model\Payment;
@@ -76,40 +77,48 @@ class CoursesController extends Controller
 // single register
     public function user_save_course_register(Request $request)
     {
-        $user = Auth::User();
-        if ($user) {
-         $user =  $user->where('role_id', '2')->first();
-        }
-        elseif (!$user) {
+        $user = Auth::User();        
+        if (!$user) {
             return redirect('/')->with('error', 'Please Login To Continue');
         }
         $courses_id = $request->course_id;
+        $group_id = $request->group_id;
         $course = Courses::find($courses_id);
         $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->first();
 
        
         if ($course_register) {
+            // do nothing and go to payment screen
         } 
         elseif (!$course_register) {
+            $user_group = new Group_users();
+            $user_group->group_id = $group_id;
+            $user_group->user_id = $user->id;
+            $user_group->save();
+
             $group = Group::with('group_fees')->find($request->group_id);
             $course_register = new Course_Register();
             $course_register->user_id  =  $user->id;
             $course_register->course_id =   $course->id;
-            $course_register->group_id = $request->group_id;
+            $course_register->group_id = $group_id;
+            $course_register->user_group_id = $user_group->id;
             $course_register->is_paid = 0;
             $course_register->one_time_examination_payment = 0;
             $course_register->examination_fees = 0;
             $course_register->save();
 
-            $student_fees =  new Student_fees();
-            $student_fees->user_id  =  $user->id;
-            $student_fees->course_register_id  =  $course_register->id;
-            $student_fees->group_id  =  $group->id;
-            $student_fees->course_id  =  $course->id;
-            $student_fees->fees_type  =  $group->group_fees->fees_type;
-            $student_fees->amount  = $group->group_fees->amount;
-            $student_fees->due_date  =  $group->group_fees->due_date;
-            $student_fees->save();
+            foreach($group->group_fees as $gf){
+                $student_fees =  new Student_fees();
+                $student_fees->user_id  =  $user->id;
+                $student_fees->course_register_id  =  $course_register->id;
+                $student_fees->group_id  =  $group->id;
+                $student_fees->course_id  =  $course->id;
+                $student_fees->fees_type  =  $gf->fees_type;
+                $student_fees->amount  = $gf->amount;
+                $student_fees->due_date  =  $gf->due_date;
+                $student_fees->save();
+            }
+            
             $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         }
         return redirect('user/payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
@@ -122,10 +131,7 @@ class CoursesController extends Controller
     {
         
         $user = Auth::User();
-        if ($user) {
-         $user =  $user->where('role_id', '2')->first();
-        }
-        elseif (!$user) {
+        if (!$user) {
             return redirect('/')->with('error', 'Please Login To Continue');
         }
         $course_id = $request->course_id;
@@ -134,16 +140,12 @@ class CoursesController extends Controller
        
     }
 
-    // 
-
     public function group_registration_save(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $user = Auth::User();
-        if ($user) {
-         $user =  $user->where('role_id', '2')->first();
-        }
-        elseif (!$user) {
+
+        if (!$user) {
             return redirect('/')->with('error', 'Please Login To Continue');
         }
         $course_id = $request->course_id;
@@ -183,7 +185,7 @@ class CoursesController extends Controller
 
          $response_array['users'] = $users;   
          $response_array['course_register'] = $course_register;   
-         Mail::to($users->email)->send(new Update_Password($details));
+        //  Mail::to($users->email)->send(new Update_Password($details));
         }
       
     //    return redirect('user/update_password/?response='.$response_array);

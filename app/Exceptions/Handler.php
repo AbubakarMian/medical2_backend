@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use Brick\Math\Exception\DivisionByZeroException;
+use DivisionByZeroError;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -50,6 +52,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        // return response()->view('error.error_500');
         return parent::render($request, $exception);
+
+        
     }
 }

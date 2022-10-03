@@ -81,7 +81,7 @@ class UserController extends Controller
         }
         else
         {
-            return redirect()->back()->with('error', 'Wrong Login Details');
+            return redirect()->back()->with('login_error', 'Wrong Login Details');
         }
 
 
