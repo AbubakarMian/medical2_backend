@@ -7,7 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -24,6 +24,7 @@ class UserController extends Controller
     }
           public function save(Request $request)
     {
+        // dd('assa');
 
         $users = new User();
         return $this->add_or_update($request, $users);
@@ -32,6 +33,7 @@ class UserController extends Controller
 
     public function add_or_update(Request $request, $users)
     {
+        // dd($request->all());
         $validator =  Validator::make(['email' => $request->email], [
             'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($users->id)]
         ]);
@@ -57,9 +59,11 @@ class UserController extends Controller
         $users->work_experience = $request->work_experience;
         $users->expectations = $request->expectations;
         $users->certification = $request->certification;
+        $users->password = Hash::make($request->password);
         $users->role_id = 2;
         $users->save();
-        return view('user.index');
+        Auth::login($users);
+        return redirect('/')->with('success', 'ThankYou ! You are successfully Register ');
     }
 
 
@@ -78,7 +82,7 @@ class UserController extends Controller
 
         if(Auth::attempt($user_data))
         {
-            return redirect('/')->with('success', 'ThankYou! You are successfully logged in');
+            return redirect('/')->with('success', 'ThankYou! You are successfully logged in',$user_data);
         }
         else
         {

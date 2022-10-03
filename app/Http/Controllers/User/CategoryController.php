@@ -30,6 +30,7 @@ class CategoryController extends Controller
 
     public function category_courses(Request $request)
     {
+        // dd($request->all());
         $types = $request->type;
         $category_id = $request->category_id;
         $courses_list = Courses::where('category_id', $category_id)->get();
