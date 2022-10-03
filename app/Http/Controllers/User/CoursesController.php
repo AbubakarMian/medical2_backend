@@ -237,7 +237,8 @@ class CoursesController extends Controller
 
     public function payment_screen(Request $request)
     {
-        
+        // dd('dada');
+        // dd($request->all());
         // User Course Payment History se ayga
         if($request->student_id_not_paid){
         $student_id= $request->student_id_not_paid;
@@ -251,6 +252,7 @@ class CoursesController extends Controller
         $course_register = Course_Register::with('student_fees')->find($course_register_id);
         $student_fees_id =  $course_register->student_fees->id;
         $student_fees = Student_fees::find($student_fees_id);
+        // dd($student_fees);
    }
        $stripe_key = Config::get('services.stripe.STRIPE_KEY');
        return view('user.payment_screen.index', compact('course_register', 'stripe_key','student_fees'));

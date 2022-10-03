@@ -81,8 +81,11 @@
                                     </button></a>
                                 @endif
                                 @if($all_user)
+                              
                                 <a href="{{asset('user_logout')}}" type="button" class="btn btn-primary logclick">
                                     LOGOUT</a>
+                                    <a href="" type="button" class="btn btn-primary logclick">
+                                   {{ucwords($all_user->name)}} </a>
                                 @else
 
 
