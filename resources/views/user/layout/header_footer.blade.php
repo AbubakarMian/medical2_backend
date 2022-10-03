@@ -68,7 +68,7 @@
                                 $all_user = Auth::User();
                                 // dd($all_user);
                                 if ($all_user)
-                                    $all_user = $all_user->where('role_id', 2);
+                                    $all_user = $all_user;
 
 
                                 //    dd($all_user);

@@ -350,6 +350,15 @@
                     <input type="text" class="form-control" placeholder="Medical certification or license" name="certification" required>
                   </div>
                 </div>
+                <div class="row">
+                <div class="col-sm-12">
+                 
+                            <label  style="color: gray;" >Password</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                         
+                 
+                  </div>
+                  </div>
 
                 <div class="row">
                   <div class="col-sm-12">

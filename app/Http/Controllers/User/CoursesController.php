@@ -61,6 +61,7 @@ class CoursesController extends Controller
     
     public function course_registration(Request $request)
     {
+        // dd('saasa');
         $courses_id = $request->course_id;
         $type = $request->type;
         $courses = Courses::with('group')->find($courses_id);
@@ -90,7 +91,8 @@ class CoursesController extends Controller
         if ($course_register) {
             // do nothing and go to payment screen
         } 
-        else { //if (!$course_register)
+        else { 
+            //if (!$course_register)
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
             $user_group->user_id = $user->id;
@@ -122,11 +124,12 @@ class CoursesController extends Controller
             
             $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         // }
+        }
         return redirect('user/payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
-    }
+ 
     // group_registration
 
-
+    }
 
     public function group_registration(Request $request)
     {
