@@ -75,61 +75,7 @@ class CoursesController extends Controller
         return view('user.course_registration.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
     }
 
-// single register
-    public function user_save_course_register(Request $request)
-    {
-        $user = Auth::User();        
-        if (!$user) {
-            return redirect('/')->with('error', 'Please Login To Continue');
-        }
-        $courses_id = $request->course_id;
-        $group_id = $request->group_id;
-        $course = Courses::find($courses_id);
-        $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->first();
 
-       
-        if ($course_register) {
-            // do nothing and go to payment screen
-        } 
-        else { 
-            //if (!$course_register)
-            $user_group = new Group_users();
-            $user_group->group_id = $group_id;
-            $user_group->user_id = $user->id;
-            $user_group->save();
-
-            $group = Group::with('group_fees')->find($request->group_id);
-            // dd($group);
-            $course_register = new Course_Register();
-            $course_register->user_id  =  $user->id;
-            $course_register->course_id =   $course->id;
-            $course_register->group_id = $group_id;
-            $course_register->user_group_id = $user_group->id;
-            $course_register->is_paid = 0;
-            $course_register->one_time_examination_payment = 0;
-            $course_register->examination_fees = 0;
-            $course_register->save();
-
-            foreach($group->group_fees as $gf){
-                $student_fees =  new Student_fees();
-                $student_fees->user_id  =  $user->id;
-                $student_fees->course_register_id  =  $course_register->id;
-                $student_fees->group_id  =  $group->id;
-                $student_fees->course_id  =  $course->id;
-                $student_fees->fees_type  =  $gf->fees_type;
-                $student_fees->amount  = $gf->amount;
-                $student_fees->due_date  =  $gf->due_date;
-                $student_fees->save();
-            }
-            
-            $stripe_key = Config::get('services.stripe.STRIPE_KEY');
-        // }
-        }
-        return redirect('user/payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
- 
-    // group_registration
-
-    }
 
     public function group_registration(Request $request)
     {
@@ -146,7 +92,7 @@ class CoursesController extends Controller
 
     public function group_registration_save(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $user = Auth::User();
 
         if (!$user) {
@@ -235,6 +181,60 @@ class CoursesController extends Controller
     // 
 
 
+    // single register
+    public function user_save_course_register(Request $request)
+    {
+        // dd($request->all());
+        $user = Auth::User();        
+        if (!$user) {
+            return redirect('/')->with('error', 'Please Login To Continue');
+        }
+        $courses_id = $request->course_id;
+        $group_id = $request->group_id;
+        $course = Courses::find($courses_id);
+        $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->first();
+
+       
+        if ($course_register) {
+            // do nothing and go to payment screen
+        } 
+        elseif(!$course_register){ 
+            $user_group = new Group_users();
+            $user_group->group_id = $group_id;
+            $user_group->user_id = $user->id;
+            $user_group->save();
+
+            $group = Group::with('group_fees')->find($request->group_id);
+            $course_register = new Course_Register();
+            $course_register->user_id  =  $user->id;
+            $course_register->course_id =   $course->id;
+            $course_register->group_id = $group_id;
+            $course_register->user_group_id = $user_group->id;
+            $course_register->is_paid = 0;
+            $course_register->one_time_examination_payment = 0;
+            $course_register->examination_fees = 0;
+            $course_register->save();
+            foreach($group->group_fees as $gf){
+                $student_fees =  new Student_fees();
+                $student_fees->user_id  =  $user->id;
+                $student_fees->course_register_id  =  $course_register->id;
+                $student_fees->group_id  =  $group->id;
+                $student_fees->course_id  =  $course->id;
+                $student_fees->fees_type  =  $gf->fees_type;
+                $student_fees->amount  = $gf->amount;
+                $student_fees->due_date  =  $gf->due_date;
+                $student_fees->save();
+            }
+            
+            $stripe_key = Config::get('services.stripe.STRIPE_KEY');
+        
+        }
+        return redirect('user/payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
+ 
+   
+
+    }
+
     public function payment_screen(Request $request)
     {
         // dd('dada');
@@ -249,9 +249,14 @@ class CoursesController extends Controller
         // Select Your Math Course Group se ayga
         elseif($request->course_register){
         $course_register_id = $request->course_register;
-        $course_register = Course_Register::with('student_fees')->find($course_register_id);
+        $course_register = Course_Register::with('student_fees','user','course','group')->find($course_register_id);
+        // dd($course_register->user->id);
         $student_fees_id =  $course_register->student_fees->id;
-        $student_fees = Student_fees::with('user','course')->find($student_fees_id);
+        // dd($student_fees_id);
+        // $student_fees = Student_fees::with('user','course')->find($student_fees_id);
+        //multipe couurses register ki payment ayngi
+        $student_fees = Student_fees::with('user','course')->where('user_id',$course_register->user->id)->orderby('due_date')->get();
+        // dd($student_fees);
         // dd($student_fees);
    }
        $stripe_key = Config::get('services.stripe.STRIPE_KEY');
@@ -262,9 +267,7 @@ class CoursesController extends Controller
         // dd($request->all());
         //final payment
         $user = Auth::User();
-        if ($user) {
-         $user =  $user->where('role_id', '2')->first();
-        }
+       
         Stripe\Stripe::setApiKey(Config::get('services.stripe.STRIPE_SECRET'));
         $stripe = Stripe\Charge::create([
             "amount" => ceil($request->amount),

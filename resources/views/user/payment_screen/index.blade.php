@@ -26,7 +26,7 @@
                               <div class="col-xs-6">
                                     <div class="form-group"> <label> User Name</label>
                                         <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$student_fees->user->name}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <input type="text" name="amount" disabled value="{{$course_register->user->name}}" class="form-control"  placeholder="Enter Amount" /> 
                                              <span class="input-group-addon"></span> </div>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                 <div class="col-xs-6">
                                     <div class="form-group"> <label>  Course  Name</label>
                                         <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$student_fees->course->full_name}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <input type="text" name="amount" disabled value="{{$course_register->course->full_name}}" class="form-control"  placeholder="Enter Amount" /> 
                                              <span class="input-group-addon"></span> </div>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                               <div class="col-xs-6">
                                     <div class="form-group"> <label> Group Name</label>
                                         <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$student_fees->course->group->name}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <input type="text" name="amount" disabled value="{{$course_register->course->group->name}}" class="form-control"  placeholder="Enter Amount" /> 
                                              <span class="input-group-addon"></span> </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                 <div class="col-xs-6">
                                     <div class="form-group"> <label> Payment  Type</label>
                                         <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$student_fees->fees_type}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <input type="text" name="amount" disabled value="{{$course_register->student_fees->fees_type}}" class="form-control"  placeholder="Enter Amount" /> 
                                              <span class="input-group-addon"></span> </div>
                                     </div>
                                 </div>
@@ -65,11 +65,12 @@
 
 
                                <!--  -->
+                               @foreach($student_fees as $key  => $c)
                              <div class="row">
                               <div class="col-xs-6">
                                     <div class="form-group"> <label> Amount</label>
                                         <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <input type="text" name="amount" disabled value="{{$c->amount}}" class="form-control"  placeholder="Enter Amount" /> 
                                              <span class="input-group-addon"></span> </div>
                                     </div>
                                 </div>
@@ -77,11 +78,12 @@
                                 <div class="col-xs-6">
                                     <div class="form-group"> <label> Due Date</label>
                                         <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{date('d-m-Y', $student_fees->due_date) }}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <input type="text" name="amount" disabled value="{{date('d-m-Y', $c->due_date) }}" class="form-control"  placeholder="Enter Amount" /> 
                                              <span class="input-group-addon"></span> </div>
                                     </div>
                                 </div>
                                 </div>
+                                @endforeach  
 
                                 <!--  -->
                                 
@@ -125,8 +127,7 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control card-number"  required name="mycard" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
                                             <input type="hidden" name="course_register_id"  value="{{$course_register->id}}">
-                                            <input type="hidden" name="student_fees_id"  value="{{$student_fees->id}}">
-                                            <input type="hidden" name="amount"  value="{{$student_fees->amount}}">
+                                         <!--  -->
                                     </div>
                                 </div>
                             </div>
