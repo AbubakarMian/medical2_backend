@@ -251,7 +251,7 @@ class CoursesController extends Controller
         $course_register_id = $request->course_register;
         $course_register = Course_Register::with('student_fees')->find($course_register_id);
         $student_fees_id =  $course_register->student_fees->id;
-        $student_fees = Student_fees::find($student_fees_id);
+        $student_fees = Student_fees::with('user','course')->find($student_fees_id);
         // dd($student_fees);
    }
        $stripe_key = Config::get('services.stripe.STRIPE_KEY');

@@ -84,8 +84,7 @@
                               
                                 <a href="{{asset('user_logout')}}" type="button" class="btn btn-primary logclick">
                                     LOGOUT</a>
-                                    <a href="" type="button" class="btn btn-primary logclick">
-                                   {{ucwords($all_user->name)}} </a>
+                                    
                                 @else
 
 
@@ -108,6 +107,14 @@
 
                                     </div>
                                 </div>
+                                <!--  -->
+                                <a href="" type="button" class="btn btn-primary  name" 
+                                    style="border-radius: 23px;
+                                  height: 40px;
+                                  background-color: blueviolet;">
+                                   {{ucwords($all_user->name)}} </a>
+
+                                <!--  -->
                                 @else
                                 <div class="dropdown">
 

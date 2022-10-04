@@ -16,42 +16,80 @@
 
 
     <div class="page-header text-center">
-        <h1>Credit Card Payment Gateway</h1>
+        <h1>Courses And Group Details</h1>
     </div>
     <!-- Credit Card Payment Form - START -->
     <div class="container">
-        <div class="row">
-              <div class="row">
-              <div class="col-xs-12">
+        
+                              <!--  -->
+                             <div class="row">
+                              <div class="col-xs-6">
+                                    <div class="form-group"> <label> User Name</label>
+                                        <div class="input-group">
+                                             <input type="text" name="amount" disabled value="{{$student_fees->user->name}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <span class="input-group-addon"></span> </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="col-xs-6">
+                                    <div class="form-group"> <label>  Course  Name</label>
+                                        <div class="input-group">
+                                             <input type="text" name="amount" disabled value="{{$student_fees->course->full_name}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <span class="input-group-addon"></span> </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <!--  -->
+
+                                 <!--  -->
+                             <div class="row">
+                              <div class="col-xs-6">
+                                    <div class="form-group"> <label> Group Name</label>
+                                        <div class="input-group">
+                                             <input type="text" name="amount" disabled value="{{$student_fees->course->group->name}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <span class="input-group-addon"></span> </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="col-xs-6">
+                                    <div class="form-group"> <label> Payment  Type</label>
+                                        <div class="input-group">
+                                             <input type="text" name="amount" disabled value="{{$student_fees->fees_type}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <span class="input-group-addon"></span> </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <!--  -->
+
+
+                               <!--  -->
+                             <div class="row">
+                              <div class="col-xs-6">
                                     <div class="form-group"> <label> Amount</label>
                                         <div class="input-group">
                                              <input type="text" name="amount" disabled value="{{$student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
                                              <span class="input-group-addon"></span> </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12">
-                                    <div class="form-group"> <label> Amount</label>
+                              
+                                <div class="col-xs-6">
+                                    <div class="form-group"> <label> Due Date</label>
                                         <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <input type="text" name="amount" disabled value="{{date('d-m-Y', $student_fees->due_date) }}" class="form-control"  placeholder="Enter Amount" /> 
                                              <span class="input-group-addon"></span> </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12">
-                                    <div class="form-group"> <label> Amount</label>
-                                        <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
-                                             <span class="input-group-addon"></span> </div>
-                                    </div>
                                 </div>
-                                <div class="col-xs-12">
-                                    <div class="form-group"> <label> Amount</label>
-                                        <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
-                                             <span class="input-group-addon"></span> </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                                <!--  -->
+                                
+
             <div>
+            <div class="page-header text-center">
+        <h1>Credit Card Payment Gateway</h1>
+    </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row">
