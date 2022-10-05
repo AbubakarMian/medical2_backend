@@ -64,7 +64,31 @@
                                 <!--  -->
 
 
+                              
+                              
+                               @if(isset($single_student_fees))
+                            <!-- single payment show -->
+                               <div class="row">
+                              <div class="col-xs-6">
+                                    <div class="form-group"> <label> Amount</label>
+                                        <div class="input-group">
+                                             <input type="text" name="amount" disabled value="{{$single_student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <span class="input-group-addon"></span> </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="col-xs-6">
+                                    <div class="form-group"> <label> Due Date</label>
+                                        <div class="input-group">
+                                             <input type="text" name="amount" disabled value="{{date('d-m-Y', $single_student_fees->due_date) }}" class="form-control"  placeholder="Enter Amount" /> 
+                                             <span class="input-group-addon"></span> </div>
+                                    </div>
+                                </div>
+                                </div>
                                <!--  -->
+                               @elseif($student_fees)
+
+                                <!-- multiple payment show -->
                                @foreach($student_fees as $key  => $c)
                              <div class="row">
                               <div class="col-xs-6">
@@ -86,6 +110,7 @@
                                 @endforeach  
 
                                 <!--  -->
+                                @endif
                                 
 
             <div>
