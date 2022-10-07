@@ -74,6 +74,7 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
     // single save_course_registeration
     Route::get('save_course_register', 'User\CoursesController@user_save_course_register');
 
+
      // group_registration
     Route::get('group_registration', 'User\CoursesController@group_registration');
 
@@ -87,9 +88,12 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
 
     //user/update_password_save
     Route::post('user/update_password_save', 'User\CoursesController@update_password_save');
+
+    // user/user_show_payment
+    Route::get('user_show_payment', 'User\CoursesController@user_show_payment');
       
     // user/payment
-    Route::get('user/payment', 'User\CoursesController@payment_screen');
+    Route::post('user_payment', 'User\CoursesController@payment_screen');
 
     // group_memebers/payment
     Route::get('group_members/payment', 'User\CoursesController@group_members_payment_screen');
@@ -97,6 +101,7 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
     // payment/stripe
 
     Route::post('payment/stripe', 'User\CoursesController@makepayment');
+    Route::get('payment/success', 'User\CoursesController@payment_success');
    // other pages
    Route::get('about_us', 'User\About_UsController@index');
    Route::get('contactus', 'User\About_UsController@contactus');

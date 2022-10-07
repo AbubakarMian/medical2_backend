@@ -15,108 +15,44 @@
 </style>
 
 
-    <div class="page-header text-center">
-        <h1>Courses And Group Details</h1>
-    </div>
+
     <!-- Credit Card Payment Form - START -->
     <div class="container">
         
-                              <!--  -->
-                             <div class="row">
-                              <div class="col-xs-6">
-                                    <div class="form-group"> <label> User Name</label>
-                                        <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$course_register->user->name}}" class="form-control"  placeholder="Enter Amount" /> 
-                                             <span class="input-group-addon"></span> </div>
-                                    </div>
-                                </div>
-                              
-                                <div class="col-xs-6">
-                                    <div class="form-group"> <label>  Course  Name</label>
-                                        <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$course_register->course->full_name}}" class="form-control"  placeholder="Enter Amount" /> 
-                                             <span class="input-group-addon"></span> </div>
-                                    </div>
-                                </div>
-                                </div>
-
-                                <!--  -->
-
-                                 <!--  -->
-                             <div class="row">
-                              <div class="col-xs-6">
-                                    <div class="form-group"> <label> Group Name</label>
-                                        <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$course_register->course->group->name}}" class="form-control"  placeholder="Enter Amount" /> 
-                                             <span class="input-group-addon"></span> </div>
-                                    </div>
-                                </div>
-                              
-                                <div class="col-xs-6">
-                                    <div class="form-group"> <label> Payment  Type</label>
-                                        <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$course_register->student_fees->fees_type}}" class="form-control"  placeholder="Enter Amount" /> 
-                                             <span class="input-group-addon"></span> </div>
-                                    </div>
-                                </div>
-                                </div>
-
-                                <!--  -->
-
-
-                              
-                              
-                               @if(isset($single_student_fees))
-                            <!-- single payment show -->
-                               <div class="row">
-                              <div class="col-xs-6">
-                                    <div class="form-group"> <label> Amount</label>
-                                        <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$single_student_fees->amount}}" class="form-control"  placeholder="Enter Amount" /> 
-                                             <span class="input-group-addon"></span> </div>
-                                    </div>
-                                </div>
-                              
-                                <div class="col-xs-6">
-                                    <div class="form-group"> <label> Due Date</label>
-                                        <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{date('d-m-Y', $single_student_fees->due_date) }}" class="form-control"  placeholder="Enter Amount" /> 
-                                             <span class="input-group-addon"></span> </div>
-                                    </div>
-                                </div>
-                                </div>
-                               <!--  -->
-                               @elseif($student_fees)
-
-                                <!-- multiple payment show -->
-                               @foreach($student_fees as $key  => $c)
-                             <div class="row">
-                              <div class="col-xs-6">
-                                    <div class="form-group"> <label> Amount</label>
-                                        <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{$c->amount}}" class="form-control"  placeholder="Enter Amount" /> 
-                                             <span class="input-group-addon"></span> </div>
-                                    </div>
-                                </div>
-                              
-                                <div class="col-xs-6">
-                                    <div class="form-group"> <label> Due Date</label>
-                                        <div class="input-group">
-                                             <input type="text" name="amount" disabled value="{{date('d-m-Y', $c->due_date) }}" class="form-control"  placeholder="Enter Amount" /> 
-                                             <span class="input-group-addon"></span> </div>
-                                    </div>
-                                </div>
-                                </div>
-                                @endforeach  
-
-                                <!--  -->
-                                @endif
+                            
                                 
 
-            <div>
-            <div class="page-header text-center">
+           
+ <div class="page-header text-center">
         <h1>Credit Card Payment Gateway</h1>
+</div>
+
+    <?php
+   $total_amount = 0;
+
+    ?>
+@if(isset($res_student_array))
+    @foreach($res_student_array as $key => $c)
+    <input type="hidden"   value="{{$c->amount}}" class="form-control" placeholder="Enter Amount" />
+    <?php
+    $amount =  $c->amount;
+    $total_amount =   $amount +  $total_amount;
+    ?>
+    @endforeach
+    @endif
+    <div class="row">
+<div class="col-xs-12">
+    <div class="form-group"> 
+        <label> Your Total Amount</label>
+        <div class="input-group">
+            <input type="text"  disabled value="{{ $total_amount}}" class="form-control" />
+            <span class="input-group-addon"></span>
+        </div>
     </div>
+</div>
+</div>
+    <!--  -->
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row">
@@ -151,8 +87,16 @@
                                     <div class="form-group"> <label>CARD NUMBER</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control card-number"  required name="mycard" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
-                                            <input type="hidden" name="course_register_id"  value="{{$course_register->id}}">
+                                           
                                          <!--  -->
+                                         <input type="hidden" name="amount"  value="{{ $total_amount}}" class="form-control" />
+                                     <!--  -->
+                                @if(isset($res_student_array))
+                                @foreach($res_student_array as $key => $c)
+                                <input type="hidden" name="student_id[]"  value="{{$c->id}}" class="form-control" />
+                                @endforeach
+                              @endif
+                              <!--  -->
                                     </div>
                                 </div>
                             </div>
