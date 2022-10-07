@@ -13,6 +13,7 @@
         display: inline-block;
         width: 60px;
         height: 34px;
+        margin-top: 14px;
     }
 
     button.btn.btn-info.myy {
@@ -175,7 +176,7 @@
         @foreach($student_fees as $key => $c)
 
 
-        <div class="row">
+        <div class="row my_amount_date_{{$c->id}}">
 
             <div class="col-xs-6">
                 <div class="form-group"> <label> Amount</label>
@@ -202,7 +203,7 @@
        
             <!--toggle -->
             <label class="switch">
-                <input type="checkbox" name="student_id[]" value="{{$c->id}}">
+                <input type="checkbox" class="highlight_class_{{$c->id}}" onclick="highlight_div('{{$c->id}}')" name="student_id[]" value="{{$c->id}}">
                 <span class="slider round"></span>
             </label>
        
@@ -221,9 +222,10 @@
 
     <!--  -->
     @endif
+    
 
 
-    <div>
+
 
 
 
@@ -304,8 +306,25 @@
                     }
                 }
             })
+            function highlight_div(e){
 
 
+                var student_id = e;
+                console.log('student_id',student_id);
+
+                var highlight_class = $('.highlight_class_'+student_id);
+
+                if ($(highlight_class).is(':checked')) {
+                    console.log('eeeeeeeeeeeeee',student_id)
+                    var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "lightgreen");
+
+            }
+            else if(!$(highlight_class).is(':checked')){
+                var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "lightgrey");
+
+            }
+
+        }
 
 
             function openpaymentdiv() {
