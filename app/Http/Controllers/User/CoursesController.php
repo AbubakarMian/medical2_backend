@@ -275,23 +275,21 @@ class CoursesController extends Controller
 
             $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         }
-        return redirect('user/payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
+        return redirect('user_show_payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
     }
 
-    public function payment_screen(Request $request)
+    public function user_show_payment(Request $request)
     {
-        // dd('sasa');
 
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
 
         // User Course Payment History se ayga
         if ($request->student_id_not_paid) {
-            // dd('sasa');
             $student_id = $request->student_id_not_paid;
             $single_student_fees = Student_fees::with('course_register')->find($student_id);
             $course_register_id = $single_student_fees->course_register_id;
             $course_register = Course_Register::with('student_fees', 'user', 'course', 'group')->find($course_register_id);
-            return view('user.payment_screen.index', compact('course_register', 'stripe_key', 'single_student_fees'));
+            return view('user.user_show_payment.index', compact('course_register', 'stripe_key', 'single_student_fees'));
         }
         // Select Your Math Course Group se ayga
         elseif ($request->course_register) {
@@ -301,9 +299,33 @@ class CoursesController extends Controller
             $student_fees_id =  $course_register->student_fees->id;
             //multipe couurses register ki payment ayngi
             $student_fees = Student_fees::with('user', 'course')->where('user_id', $course_register->user->id)->orderby('due_date')->get();
-            return view('user.payment_screen.index', compact('course_register', 'stripe_key', 'student_fees'));
+            return view('user.user_show_payment.index', compact('course_register', 'stripe_key', 'student_fees'));
         }
     }
+
+    public function payment_screen(Request $request)
+    {
+        // dd($request->all());
+        $stripe_key = Config::get('services.stripe.STRIPE_KEY');
+        $res_student_array = [];
+        if($request->student_id){
+
+        foreach($request->student_id as $st_id){
+            // dd($st_id);
+            $student_fees = Student_fees::with('user', 'course')->find($st_id);
+            $res_student_array[] =  $student_fees;
+  }
+//   dd($res_student_array);
+  }
+
+  elseif(!$request->student_id){
+    return redirect()->back()->with('error', 'Please ! Choose The Payment'); ;
+}
+return view('user.payment_screen.index', compact('stripe_key', 'res_student_array'));
+       
+}
+
+    
     public function makepayment(Request $request)
     {
         // dd($request->all());
@@ -319,8 +341,8 @@ class CoursesController extends Controller
 
 
         if ($stripe->status == "succeeded") {
-            $student_id =  $request->student_fees_id;
-            $student_fees = Student_fees::with('course_register')->find($student_id);
+           foreach($request->student_id as $st_id){
+            $student_fees = Student_fees::with('user', 'course')->find($st_id);
             // dd( $student_fees);
             $payment = new Payment();
             $payment->user_id = $user->id;
@@ -328,24 +350,22 @@ class CoursesController extends Controller
             $payment->course_register_id = $request->course_register_id;
             $payment->payment_response = json_encode($stripe);
             $payment->payment_status = $stripe->status;
-            $payment->students_fees_id = $student_id;
+            $payment->students_fees_id = $student_fees->id;
             $payment->card_type = $stripe->payment_method_details->card->brand;
             //============= amount===============
-            // $payment->amount =   $student_fees->amount;
+         
             $payment->amount =   $request->amount;
             $payment->save();
             $student_fees->status = 'paid';
             $student_fees->save();
 
-            return redirect()->back()->with('success', 'Payment successful!');
+        }
+        return redirect('payment/success');
 
-            // $course_register = Course_Register::find($request->course_register_id);
-            // $course_register->is_paid = 1;
-            // $course_register->one_time_payment = 1;
-            // $course_register->fees = $request->amount;
-            // $course_register->save();
-
-        } else {
+     } 
+    
+     
+     elseif(!$stripe->status == "succeeded") {
             $payment = new Payment();
             $payment->user_id = $user->id;
             $payment->payment_id = $stripe->id;
@@ -356,6 +376,13 @@ class CoursesController extends Controller
             $payment->save();
             return back()->with('error', 'Invalid Payment');
         }
+    }
+    public function payment_success(){
+
+// dd('sasa');
+// return view('user.user_show_success.index')->with('success', 'Payment successfull!');
+return redirect('/')->with('success', 'Payment successfull');
+
     }
 
     // single register close
