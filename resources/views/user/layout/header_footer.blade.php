@@ -22,6 +22,22 @@
 
 </head>
 
+{{-- <style>
+    .fgfh ul li:before {
+        content: "\f138" !important;
+        color: #fff !important;
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        font-family: 'FontAwesome' !important;
+        padding-right: 10px !important;
+        left: 0;
+    }
+    .fgfh ul {
+        list-style: none !important;
+        padding: 0px !important;
+    }
+</style> --}}
+
 <body>
     <?php
 
@@ -108,11 +124,56 @@
                                     </div>
                                 </div>
                                 <!--  -->
-                                <a href="" type="button" class="btn btn-primary  name" 
-                                    style="border-radius: 23px;
-                                  height: 40px;
-                                  background-color: blueviolet;">
-                                   {{ucwords($all_user->name)}} </a>
+
+
+
+
+
+
+                                {{-- <a href="" type="button" class="btn btn-primary logclick" style="border-radius"> --}}
+                                {{-- <div class="tupclio">
+                                   
+                                    {{ucwords($all_user->name)}}
+                                </div> --}}
+
+                                <i class="fa fa-user-circle asic" aria-hidden="true"></i>
+
+                            {{-- <ul>
+                                <li class="nav-item dropdown no-arrow fgfh">
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                        <img class="img-profile rounded-circle"
+                                            src="img/undraw_profile.svg">
+                                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                        aria-labelledby="userDropdown">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Profile
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Settings
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Activity Log
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Logout
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul> --}}
+
+
+
+
+                            
 
                                 <!--  -->
                                 @else
