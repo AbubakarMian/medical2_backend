@@ -94,6 +94,7 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
       
     // user/payment
     Route::post('user_payment', 'User\CoursesController@payment_screen');
+    Route::get('user_single_payment', 'User\CoursesController@payment_screen');
 
     // group_memebers/payment
     Route::get('group_members/payment', 'User\CoursesController@group_members_payment_screen');
