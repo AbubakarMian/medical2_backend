@@ -109,7 +109,7 @@
         <div class="col-xs-6">
             <div class="form-group"> <label> Course Name</label>
                 <div class="input-group">
-                    <input type="text" name="amount" disabled value="{{$course_register->course->full_name}}" class="form-control" placeholder="Enter Amount" />
+                    <input type="text" name="Course" disabled value="{{$course_register->course->full_name}}" class="form-control" placeholder="Enter Amount" />
                     <span class="input-group-addon"></span>
                 </div>
             </div>
@@ -123,7 +123,7 @@
         <div class="col-xs-6">
             <div class="form-group"> <label> Group Name</label>
                 <div class="input-group">
-                    <input type="text" name="amount" disabled value="{{$course_register->course->group->name}}" class="form-control" placeholder="Enter Amount" />
+                    <input type="text" name="Group" disabled value="{{$course_register->course->group->name}}" class="form-control" placeholder="Enter Amount" />
                     <span class="input-group-addon"></span>
                 </div>
             </div>
@@ -132,7 +132,7 @@
         <div class="col-xs-6">
             <div class="form-group"> <label> Payment Type</label>
                 <div class="input-group">
-                    <input type="text" name="amount" disabled value="{{$course_register->student_fees->fees_type}}" class="form-control" placeholder="Enter Amount" />
+                    <input type="text" name="Payment" disabled value="{{$course_register->student_fees->fees_type}}" class="form-control" placeholder="Enter Amount" />
                     <span class="input-group-addon"></span>
                 </div>
             </div>
@@ -165,6 +165,7 @@
             </div>
         </div>
     </div>
+
     <!--  -->
     @elseif($student_fees)
 
@@ -175,8 +176,10 @@
         @csrf
         @foreach($student_fees as $key => $c)
 
-
+        <div class="amount_due_date_div_{{$c->id}}" onclick="amount_due_date_div('{{$c->id}}')">
+    
         <div class="row my_amount_date_{{$c->id}}">
+
 
             <div class="col-xs-6">
                 <div class="form-group"> <label> Amount</label>
@@ -196,6 +199,8 @@
                 </div>
             </div>
 
+
+        </div>
 
         </div>
 
@@ -316,13 +321,23 @@
 
                 if ($(highlight_class).is(':checked')) {
                     console.log('eeeeeeeeeeeeee',student_id)
-                    var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "lightgreen");
+                    var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "skyblue");
 
             }
             else if(!$(highlight_class).is(':checked')){
-                var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "lightgrey");
+                var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "white");
 
             }
+
+        }
+        function amount_due_date_div(e){
+          
+
+            var student_id = e;
+            console.log('student_id',student_id);
+
+            var highlight_class = $('.highlight_class_'+student_id).prop('checked',true);
+            var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "skyblue");
 
         }
 
