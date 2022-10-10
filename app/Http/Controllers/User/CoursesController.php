@@ -103,7 +103,7 @@ class CoursesController extends Controller
         $course_id = $request->course_id;
         $group_id   = $request->group_id;
         $response_array   = [];
-        $all_users   = [];
+        $all_users_id  = [];
         $all_course_register   = [];
         $res = new \stdClass();
 
@@ -121,15 +121,16 @@ class CoursesController extends Controller
             $users->role_id = 2;
             $users->update_password_id = uniqid();
             $users->save();
-            $details = [
-                'to' => $users->email,
-                'user_id' => $users->id,
-                'from' => 'contactus@medical2.com',
-                'title' => 'Medical2',
-                'subject' => 'Reference Link From Medical2 Academy ',
-                "dated"  => date('d F, Y (l)'),
-                'new_password' =>  $users->update_password_id,
-            ];
+            $all_users_id[]=$users;
+            // $details = [
+            //     'to' => $users->email,
+            //     'user_id' => $users->id,
+            //     'from' => 'contactus@medical2.com',
+            //     'title' => 'Medical2',
+            //     'subject' => 'Reference Link From Medical2 Academy ',
+            //     "dated"  => date('d F, Y (l)'),
+            //     'new_password' =>  $users->update_password_id,
+            // ];
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
             $user_group->user_id = $user->id;
@@ -145,6 +146,7 @@ class CoursesController extends Controller
             $course_register->examination_fees = 0;
             $course_register->registration_key = $reg_key;
             $course_register->save();
+            $all_course_register[] =    $course_register;
 
             //  
 
@@ -161,18 +163,20 @@ class CoursesController extends Controller
                 $student_fees->save();
             }
 
-            $all_users[] = $users;
+          
               //  Mail::to($users->email)->send(new Update_Password($details));
 
         }
-        $res->user_id = $all_users;
-        return redirect('group_members/payment/?users=' . $res)->with('success', 'Course Register Successfully for Group Members !');
+        // dd($all_users_id);
+        $success = 'success';
+        // return redirect('group_members/payment/?users='.$all_users_id)->with('success', 'Course Register Successfully for Group Members !');
+        return view('user.show_group_members_payment.index', compact('all_users_id','all_course_register','success'));
     }
     // group_members_payment_screen
 
     public function group_members_payment_screen(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         $course_register_id = $request->course_register;
@@ -280,7 +284,7 @@ class CoursesController extends Controller
 
     public function user_show_payment(Request $request)
     {
-
+// dd('sasa');
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
 
         // User Course Payment History se ayga

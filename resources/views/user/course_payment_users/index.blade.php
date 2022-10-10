@@ -47,7 +47,7 @@
                                
                                 <td>
                              @if($c->status == 'pending')
-                             <a  href="{{asset('user/payment?student_id_not_paid='.$c->id)}}" type="button" class="btn btn-danger">Not Paid</a > 
+                             <a  href="{{asset('user_show_payment?student_id_not_paid='.$c->id)}}" type="button" class="btn btn-danger">Not Paid</a > 
                             
 
                                   @else
