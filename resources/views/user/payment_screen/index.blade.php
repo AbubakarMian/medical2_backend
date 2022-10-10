@@ -39,7 +39,7 @@
     $total_amount =   $amount +  $total_amount;
     ?>
     @endforeach
-    @endif
+
     <div class="row">
 <div class="col-xs-12">
     <div class="form-group"> 
@@ -51,6 +51,20 @@
     </div>
 </div>
 </div>
+
+@elseif($student_fees->id)
+<div class="row">
+<div class="col-xs-12">
+    <div class="form-group"> 
+        <label> Your Total Amount</label>
+        <div class="input-group">
+            <input type="text"  disabled value="{{ $student_fees->amount}}" class="form-control" />
+            <span class="input-group-addon"></span>
+        </div>
+    </div>
+</div>
+</div>
+@endif
     <!--  -->
 
                 <div class="panel panel-default">
@@ -88,13 +102,18 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control card-number"  required name="mycard" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
                                            
-                                         <!--  -->
-                                         <input type="hidden" name="amount"  value="{{ $total_amount}}" class="form-control" />
-                                     <!--  -->
+                                    <!-- total_amount -->
+                              
+                                 <!--  -->
+                                 
                                 @if(isset($res_student_array))
                                 @foreach($res_student_array as $key => $c)
                                 <input type="hidden" name="student_id[]"  value="{{$c->id}}" class="form-control" />
+                                  <input type="hidden" name="amount"  value="{{ $total_amount}}" class="form-control" />
                                 @endforeach
+                                @elseif(isset($student_fees))
+                            <input type="hidden" name="single_student_id"  value="{{$student_fees->id}}" class="form-control" />
+                            <input type="hidden" name="amount"  value="{{ $student_fees->amount}}" class="form-control" />
                               @endif
                               <!--  -->
                                     </div>

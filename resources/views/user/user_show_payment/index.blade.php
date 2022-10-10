@@ -20,6 +20,9 @@
 <!-- Credit Card Payment Form - START -->
 <div class="container">
 
+
+
+
     <!--  -->
     <div class="row">
     @if ($message = Session::get('error'))
@@ -94,6 +97,20 @@
                     <input type="text" name="amount" class="lubin" disabled value="{{date('d-m-Y', $single_student_fees->due_date) }}" class="form-control" placeholder="Enter Amount" />
                     <span class="input-group-addon"></span>
                 </div>
+            </div>
+        </div>
+    </div>
+    
+        
+              
+            </label>
+     
+
+            <div class="col-xs-12 myy" style="text-align:center ;">
+                <a href="{{asset('user_single_payment?single_student_id='.$single_student_fees->id)}}" type="button" class="btn btn-info myy lubclick">
+Pay
+
+            </a>
             </div>
         </div>
     </div>
