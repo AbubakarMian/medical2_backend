@@ -5,83 +5,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">  --}}
 
+<link href="{!!asset('theme/user_theme/css/courses_payment.css')!!}" rel="stylesheet">
 
-<style>
-    /* The switch - the box around the slider */
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-        margin-top: 14px;
-    }
+<!-- <style>
+  
+</style> -->
 
-    button.btn.btn-info.myy {
-        width: 100p;
-        width: 208px;
-        margin-bottom: 22px;
-        border-radius: 23px;
-    }
+<div class="bgareaa">
 
-
-    /* Hide default HTML checkbox */
-    .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
-
-    /* The slider */
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        -webkit-transition: .4s;
-        transition: .4s;
-    }
-
-    .slider:before {
-        position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        -webkit-transition: .4s;
-        transition: .4s;
-    }
-
-    input:checked+.slider {
-        background-color: #2196F3;
-    }
-
-    input:focus+.slider {
-        box-shadow: 0 0 1px #2196F3;
-    }
-
-    input:checked+.slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
-    }
-
-    /* Rounded sliders */
-    .slider.round {
-        border-radius: 34px;
-    }
-
-    .slider.round:before {
-        border-radius: 50%;
-    }
-</style>
-
-
-<div class="page-header text-center">
+<div class="page-header text-center dubhead">
     <h1>Courses And Group Details</h1>
 </div>
 
@@ -98,18 +30,18 @@
                            
                         @endif
         <div class="col-xs-6">
-            <div class="form-group"> <label> User Name</label>
+            <div class="form-group lube"> <label> User Name:</label>
                 <div class="input-group">
-                    <input type="text" name="amount" disabled value="{{$course_register->user->name}}" class="form-control" placeholder="Enter Amount" />
+                    <input type="text" name="amount" class="lubin" disabled value="{{$course_register->user->name}}" class="form-control" placeholder="Enter Amount" />
                     <span class="input-group-addon"></span>
                 </div>
             </div>
         </div>
 
         <div class="col-xs-6">
-            <div class="form-group"> <label> Course Name</label>
+            <div class="form-group lube"> <label> Course Name:</label>
                 <div class="input-group">
-                    <input type="text" name="Course" disabled value="{{$course_register->course->full_name}}" class="form-control" placeholder="Enter Amount" />
+                    <input type="text" name="Course" class="lubin" disabled value="{{$course_register->course->full_name}}" class="form-control" placeholder="Enter Amount" />
                     <span class="input-group-addon"></span>
                 </div>
             </div>
@@ -121,18 +53,18 @@
     <!--  -->
     <div class="row">
         <div class="col-xs-6">
-            <div class="form-group"> <label> Group Name</label>
+            <div class="form-group lube"> <label> Group Name:</label>
                 <div class="input-group">
-                    <input type="text" name="Group" disabled value="{{$course_register->course->group->name}}" class="form-control" placeholder="Enter Amount" />
+                    <input type="text" name="Group" class="lubin" disabled value="{{$course_register->course->group->name}}" class="form-control" placeholder="Enter Amount" />
                     <span class="input-group-addon"></span>
                 </div>
             </div>
         </div>
 
         <div class="col-xs-6">
-            <div class="form-group"> <label> Payment Type</label>
+            <div class="form-group lube"> <label> Payment Type:</label>
                 <div class="input-group">
-                    <input type="text" name="Payment" disabled value="{{$course_register->student_fees->fees_type}}" class="form-control" placeholder="Enter Amount" />
+                    <input type="text" name="Payment" class="lubin" disabled value="{{$course_register->student_fees->fees_type}}" class="form-control" placeholder="Enter Amount" />
                     <span class="input-group-addon"></span>
                 </div>
             </div>
@@ -148,18 +80,18 @@
     <!-- single payment show -->
     <div class="row">
         <div class="col-xs-6">
-            <div class="form-group"> <label> Amount</label>
+            <div class="form-group lube"> <label> Amount:</label>
                 <div class="input-group">
-                    <input type="text" name="amount" disabled value="{{$single_student_fees->amount}}" class="form-control" placeholder="Enter Amount" />
+                    <input type="text" name="amount" class="lubin" disabled value="{{$single_student_fees->amount}}" class="form-control" placeholder="Enter Amount" />
                     <span class="input-group-addon"></span>
                 </div>
             </div>
         </div>
 
         <div class="col-xs-6">
-            <div class="form-group"> <label> Due Date</label>
+            <div class="form-group lube"> <label> Due Date:</label>
                 <div class="input-group">
-                    <input type="text" name="amount" disabled value="{{date('d-m-Y', $single_student_fees->due_date) }}" class="form-control" placeholder="Enter Amount" />
+                    <input type="text" name="amount" class="lubin" disabled value="{{date('d-m-Y', $single_student_fees->due_date) }}" class="form-control" placeholder="Enter Amount" />
                     <span class="input-group-addon"></span>
                 </div>
             </div>
@@ -182,18 +114,18 @@
 
 
             <div class="col-xs-6">
-                <div class="form-group"> <label> Amount</label>
+                <div class="form-group lube"> <label> Amount:</label>
                     <div class="input-group">
-                        <input type="text" name="amount" disabled value="{{$c->amount}}" class="form-control" placeholder="Enter Amount" />
+                        <input type="text" name="amount" class="lubin" disabled value="{{$c->amount}}" class="form-control" placeholder="Enter Amount" />
                         <span class="input-group-addon"></span>
                     </div>
                 </div>
             </div>
 
             <div class="col-xs-6">
-                <div class="form-group"> <label> Due Date</label>
+                <div class="form-group lube"> <label> Due Date:</label>
                     <div class="input-group">
-                        <input type="text" name="amount" disabled value="{{date('d-m-Y', $c->due_date) }}" class="form-control" placeholder="Enter Amount" />
+                        <input type="text" name="amount" class="lubin" disabled value="{{date('d-m-Y', $c->due_date) }}" class="form-control" placeholder="Enter Amount" />
                         <span class="input-group-addon"></span>
                     </div>
                 </div>
@@ -217,13 +149,13 @@
         <div class="row">
 
             <div class="col-xs-12 myy" style="text-align:center ;">
-                <button type="submit" class="btn btn-info myy">Pay</button>
+                <button type="submit" class="btn btn-info myy lubclick">Pay</button>
             </div>
         </div>
 
 
     </form>
-
+    </div>
 
     <!--  -->
     @endif
@@ -338,7 +270,7 @@
 
             var highlight_class = $('.highlight_class_'+student_id).prop('checked',true);
             var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "skyblue");
-
+           
         }
 
 
