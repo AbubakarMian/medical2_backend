@@ -162,7 +162,7 @@ h4 {
   padding: 10px;
   color: black !important;
   font-size: 13px;
-  margin: -18px 3px;
+  margin: -5px 2px;
   border-radius: 0px;
 }
 .infoboxdata {
@@ -445,6 +445,52 @@ span.forspan {
   color: #292974;
   font-weight: 500;
 }
+/* .fgfh ul li:before {
+  content: "\f138";
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'FontAwesome';
+  padding-right: 10px;
+  left: 0;
+}
+.fgfh ul {
+  list-style: none;
+  padding: 0px;
+} */
+/* .tupclio {
+  border-radius: 0px;
+  margin-top: 20px;
+  width: 120px;
+  background-color: #f1582b !important;
+  border-color: #f1582b !important;
+  color: white;
+  margin: 3px;
+  height: 34px;
+  padding: 6px 5px;
+} */
+.asic {
+  font-size: 36px;
+  margin-top: 2px;
+  margin-left: 10px;
+  color: #f1582b;
+}
+.dfg a {
+  font-size: 13px;
+  color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 480px) {
   .logoArea img {
