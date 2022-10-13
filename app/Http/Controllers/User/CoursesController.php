@@ -102,6 +102,8 @@ class CoursesController extends Controller
         }
         $course_id = $request->course_id;
         $group_id   = $request->group_id;
+        $group = Group::with('group_fees')->find($group_id);
+        dd($group->group_fees);
         $response_array   = [];
         $all_users_id  = [];
         $all_course_register   = [];
@@ -164,8 +166,9 @@ class CoursesController extends Controller
             } //  Mail::to($users->email)->send(new Update_Password($details));
 
         }
-        $success = 'success';
-        return view('user.show_group_members_payment.index', compact('all_users_id', 'all_course_register', 'success'));
+        $course = Courses::with('group')->find($course_id);
+        $success = 'success'; 
+        return view('user.show_group_members_payment.index', compact('all_users_id', 'all_course_register', 'success','course'));
     }
     // group_members_payment_screen
 

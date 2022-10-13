@@ -14,6 +14,7 @@
 <div class="bgareaa">
 
 <div class="page-header text-center dubhead">
+<h1>Group Members Details</h1>
     <h1>Courses And Group Details</h1>
 </div>
 
@@ -29,7 +30,33 @@
 </div>
  @endif
 
- @foreach($all_course_register as $c )
+
+
+     <div class="row">
+     <div class="col-xs-6">
+
+     <div class="form-group lube"> <label> Course Name:</label>
+                <div class="input-group">
+                    <input type="text" name="Course" class="lubin" disabled value="{{$course->full_name}}" class="form-control" placeholder="Enter Amount" />
+                    <span class="input-group-addon"></span>
+                </div>
+            </div> 
+            </div> 
+
+         
+        <div class="col-xs-6">
+            <div class="form-group lube"> <label> Group Name:</label>
+                <div class="input-group">
+                    <input type="text" name="Group" class="lubin" disabled value="{{$course->group->name}}" class="form-control" placeholder="Enter Amount" />
+                    <span class="input-group-addon"></span>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+@foreach($all_course_register as $c )
+<div class="row">
+    
         <div class="col-xs-6">
             <div class="form-group lube"> <label> User Name:</label>
                 <div class="input-group">
@@ -40,74 +67,29 @@
         </div>
 
         <div class="col-xs-6">
-            <div class="form-group lube"> <label> Course Name:</label>
+            <div class="form-group lube"> <label> User Name:</label>
                 <div class="input-group">
-                    <input type="text" name="Course" class="lubin" disabled value="{{$c->course->full_name}}" class="form-control" placeholder="Enter Amount" />
-                    <span class="input-group-addon"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--  -->
-
-    <!--  -->
-    <div class="row">
-        <div class="col-xs-6">
-            <div class="form-group lube"> <label> Group Name:</label>
-                <div class="input-group">
-                    <input type="text" name="Group" class="lubin" disabled value="{{$course_register->course->group->name}}" class="form-control" placeholder="Enter Amount" />
+                    <input type="text" name="amount" class="lubin" disabled value="{{$c->user->name}}" class="form-control" placeholder="Enter Amount" />
                     <span class="input-group-addon"></span>
                 </div>
             </div>
         </div>
 
-        <div class="col-xs-6">
-            <div class="form-group lube"> <label> Payment Type:</label>
-                <div class="input-group">
-                    <input type="text" name="Payment" class="lubin" disabled value="{{$course_register->student_fees->fees_type}}" class="form-control" placeholder="Enter Amount" />
-                    <span class="input-group-addon"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--  -->
+</div>
 
 
-
-
-
-    <!-- single payment show -->
-    <div class="row">
-        <div class="col-xs-6">
-            <div class="form-group lube"> <label> Amount:</label>
-                <div class="input-group">
-                    <input type="text" name="amount" class="lubin" disabled value="{{$single_student_fees->amount}}" class="form-control" placeholder="Enter Amount" />
-                    <span class="input-group-addon"></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-6">
-            <div class="form-group lube"> <label> Due Date:</label>
-                <div class="input-group">
-                    <input type="text" name="amount" class="lubin" disabled value="{{date('d-m-Y', $single_student_fees->due_date) }}" class="form-control" placeholder="Enter Amount" />
-                    <span class="input-group-addon"></span>
-                </div>
-            </div>
-        </div>
+        <div class="row">
+       
     </div>
 
 
+
+
+
+@endforeach
     
 
-
-
-
-
-
-
+   
 
 
 
