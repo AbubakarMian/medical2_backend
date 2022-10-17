@@ -1,7 +1,7 @@
 @extends('user.layout.header_footer')
 @section('content')
 
-<section>
+    <section>
         <div class="sliderbannerarea">
             <div class="sliderplace">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -197,4 +197,4 @@
         </div>
     </section>
 
-    @endsection
+@endsection

@@ -474,12 +474,15 @@ span.forspan {
   margin-top: 2px;
   margin-left: 10px;
   color: #f1582b;
+  cursor: pointer;
 }
 .dfg a {
   font-size: 13px;
   color: black;
 }
-
+.lastfooterdata p a {
+  color: #f1582b;
+}
 
 
 

@@ -46,14 +46,12 @@
                                 
                                 <td> {{date('d-m-Y', $c->due_date) }}</td>
                                
-                                <td>
-                             @if($c->status == 'pending')
-                             <a  href="{{asset('user_show_payment?student_id_not_paid='.$c->id)}}" type="button" class="btn btn-danger">Not Paid</a > 
-                            
-
-                                  @else
-                                  <a href="" type="button" class="btn btn-success"> Paid</a> 
-                                  Paid
+                                <td class="ptup">
+                                  @if($c->status == 'pending')
+                                        <a  href="{{asset('user_show_payment?student_id_not_paid='.$c->id)}}" type="button" class="btn btn-danger">Not Paid</a >                                 
+                                        @else
+                                        <a href="" type="button" class="btn btn-success"> Paid</a> 
+                                        Paid
                                   @endif
 
                                 </td>
