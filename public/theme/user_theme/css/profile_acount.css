@@ -11,16 +11,18 @@ h1,h2,h3,h4{
 
 .profilesareadata h1 {
     text-align: center;
-    color: #292974;
-    font-size: 40px;
-    font-weight: 600;
+    color: #ffffff;
+    font-size: 33px;
+    font-weight: 500;
     margin-bottom: 30px;
+    background: #f1582b;
+    padding: 15px;
 }
 .profilesarea {
-    padding: 50px;    
+    padding: 100px;    
 }
 .profilesareadata {   
-    padding: 50px;   
+    padding: 35px;   
     -webkit-box-shadow: 4px 4px 5px 0px rgb(0 0 0 / 75%);
     -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 1px 6px 23px 0px rgb(0 0 0 / 32%);
@@ -61,7 +63,7 @@ h1,h2,h3,h4{
     color: white;
     margin: 3px;
     height: 34px;
-    padding: 8px 5px;
+    padding: 5px 5px;
 }
 .procclick {
     text-align: center;

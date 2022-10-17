@@ -136,6 +136,10 @@ input.lubin {
     background: #474e580a;
     padding: 50px;
 }
+td.ptup a {
+    margin-top: -8px !important;
+    margin-bottom: 5px !important;
+}
 
 
 
