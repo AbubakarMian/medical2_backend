@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(){
+        // $route_name = \Request::route()->getName();
+        // dd($route_name);
         return view('user.index');
     }
 
@@ -68,7 +70,7 @@ class UserController extends Controller
 
 
     public function user_login(Request $request){
-        // dd('asas');
+        //   dd($request->all());
 
              $this->validate($request, [
             'email'   => 'required|email',
