@@ -94,20 +94,21 @@ class CoursesController extends Controller
     public function group_registration_save(Request $request)
     {
         // dd($request->all());
-        $user = Auth::User();
+        $one_user = Auth::User();
         $reg_key = uniqid();
 
-        if (!$user) {
+        if (!$one_user) {
             return redirect('/')->with('error', 'Please Login To Continue');
         }
         $course_id = $request->course_id;
         $group_id   = $request->group_id;
         $group = Group::with('group_fees')->find($group_id);
-        dd($group->group_fees);
+        // dd($group->group_fees);
         $response_array   = [];
         $all_users_id  = [];
         $all_course_register   = [];
         $res = new \stdClass();
+        $studen_array_id = [];
 
         foreach ($request->first_name as $key => $f) {
 
@@ -135,7 +136,7 @@ class CoursesController extends Controller
             // ];
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
-            $user_group->user_id = $user->id;
+            $user_group->user_id = $users->id;
             $user_group->save();
 
             $course_register = new Course_Register();
@@ -153,9 +154,10 @@ class CoursesController extends Controller
             //  
 
             $group = Group::with('group_fees')->find($group_id);
+
             foreach ($group->group_fees as $gf) {
                 $student_fees =  new Student_fees();
-                $student_fees->user_id  =  $user->id;
+                $student_fees->user_id  =  $users->id;
                 $student_fees->course_register_id  =  $course_register->id;
                 $student_fees->group_id  =  $group->id;
                 $student_fees->course_id  =  $course_id;
@@ -163,12 +165,16 @@ class CoursesController extends Controller
                 $student_fees->amount  = $gf->amount;
                 $student_fees->due_date  =  $gf->due_date;
                 $student_fees->save();
+                $studen_array_id[] =   $student_fees;
             } //  Mail::to($users->email)->send(new Update_Password($details));
 
+
+
         }
+
         $course = Courses::with('group')->find($course_id);
         $success = 'success'; 
-        return view('user.show_group_members_payment.index', compact('all_users_id', 'all_course_register', 'success','course'));
+        return view('user.show_group_members_payment.index', compact('studen_array_id','all_users_id', 'all_course_register', 'success','course','group'));
     }
     // group_members_payment_screen
 
@@ -239,6 +245,8 @@ class CoursesController extends Controller
 
         if ($course_register) {
             // do nothing and go to payment screen
+    //         $payment = Payment
+    // return redirect('user_show_payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
         } elseif (!$course_register) {
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
@@ -274,6 +282,7 @@ class CoursesController extends Controller
 
     public function user_show_payment(Request $request)
     {
+        // dd('saa');
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
 
         // User Course Payment History se ayga
@@ -286,6 +295,7 @@ class CoursesController extends Controller
         }
         // Select Your Math Course Group se ayga
         elseif ($request->course_register) {
+            // dd('saa');
             $course_register_id = $request->course_register;
             $course_register = Course_Register::with('student_fees', 'user', 'course', 'group')->find($course_register_id);
             $student_fees_id =  $course_register->student_fees->id;

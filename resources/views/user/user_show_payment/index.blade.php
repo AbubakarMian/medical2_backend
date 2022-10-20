@@ -105,13 +105,14 @@
               
             </label>
      
-
+            <form role="form" method="post" action="{{action('User\CoursesController@payment_screen')}}">
             <div class="col-xs-12 myy" style="text-align:center ;">
                 <a href="{{asset('user_single_payment?single_student_id='.$single_student_fees->id)}}" type="button" class="btn btn-info myy lubclick">
 Pay
 
             </a>
             </div>
+</form>
         </div>
     </div>
 
