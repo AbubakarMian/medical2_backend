@@ -44,13 +44,12 @@ h4 {
 /* .regtable {
   padding-top: 50px;
 } */
-.courbanddata h2 {
-  /* color: #292974; */
+/* .courbanddata h2 {
   font-size: 30px;
   font-weight: 600;
   text-align: center;
   margin-top: 35px;
-}
+} */
 .courbanddata p {
   text-align: center;
   font-size: 15px;
@@ -68,9 +67,6 @@ h4 {
   font-size: 16px;
   line-height: 26px;
   color: black;
-}
-.courbanddata ul {
-  margin-bottom: 50px;
 }
 .logoArea img {
   /* height: 70px;
@@ -423,9 +419,6 @@ span.forspan {
   background: white;
   /* margin-top: 50px; */
 }
-.courbandarea {
-  padding-top: 50px;
-}
 .loginheader h3 {
   text-align: center;
   font-size: 30px;
@@ -537,18 +530,17 @@ margin-top: 50px;
 border-color: floralwhite; */
 }
 .regtablesh {
-  text-align:
-  center;
-  font-size: 16px;
+  text-align: center;
+  /* font-size: 16px; */
   /* font-family: math; */
   font-weight: 600;
   /* margin-top: -25px; */
   /* margin-bottom: 22px; */
   background: #8cc542;
   color: white;
-  border-top-left-radius: 19px;
-  border-top-right-radius: 19px;
-  padding-top: 0px;
+  /* border-top-left-radius: 19px; */
+  /* border-top-right-radius: 19px; */
+  /* padding-top: 0px; */
 }
 .location{
 
@@ -565,31 +557,9 @@ border-color: floralwhite; */
     text-decoration: underline;
     text-decoration-color: cornsilk;
 }
-.dates {
-  font-size: 17px;
-  color: darkblue;
-  text-decoration: underline;
-  text-decoration-color: darkslategray;
-  background-color: gold;
-  margin-left: 14px;
-  border-radius: -10px;
-  padding-top: 6px;
-}
 
-.date {
-  font-size: 16px;
-    color: darkblue;
-    text-decoration: underline;
-    text-decoration-color: darkslategray;
-    background-color: gold;
-    margin-left: 68px;
-    border-radius: -8px;
-    padding-top: 17px;
-    padding-bottom: -7px;
-}
 .regtabless {
   text-align:center;
- 
     font-family: cursive;
     font-weight: 700;
     margin-top: 15px;

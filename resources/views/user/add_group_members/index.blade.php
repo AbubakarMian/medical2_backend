@@ -53,7 +53,7 @@
                             <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
 
 
-                            <button type="button" class="btn btn-primary regi" onclick="add_members()">Add Group
+                            <button type="button" class="btn btn-primary regi vsdg" onclick="add_members()">Add Group
                                 Members</button>
                             <!-- <button type="button" class="btn btn-primary regi" onclick="add_members()">Register</button> -->
 

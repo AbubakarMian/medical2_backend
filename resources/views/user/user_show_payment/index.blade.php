@@ -4,7 +4,7 @@
 {{--
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">  --}}
-
+<link href="{!! asset('theme/user_theme/css/groupform.css') !!}" rel="stylesheet">
 <link href="{!!asset('theme/user_theme/css/courses_payment.css')!!}" rel="stylesheet">
 
 <!-- <style>
@@ -14,11 +14,11 @@
 <div class="bgareaa">
 
 <div class="page-header text-center dubhead">
-    <h1>Courses And Group Details</h1>
+    <h1>COURSE AND GROUP DETAILS</h1>
 </div>
 
 <!-- Credit Card Payment Form - START -->
-<div class="container">
+<div class="container sacvg">
 
 
 
@@ -105,8 +105,10 @@
               
             </label>
      
+
             <form role="form" method="post" action="{{action('User\CoursesController@payment_screen')}}">
-            <div class="col-xs-12 myy" style="text-align:center ;">
+            <div class="col-xs-12 myy zcs"  style="text-align:center;margin-top:25px">
+
                 <a href="{{asset('user_single_payment?single_student_id='.$single_student_fees->id)}}" type="button" class="btn btn-info myy lubclick">
 Pay
 
@@ -166,8 +168,8 @@ Pay
         @endforeach
         <div class="row">
 
-            <div class="col-xs-12 myy" style="text-align:center ;">
-                <button type="submit" class="btn btn-info myy lubclick">Pay</button>
+            <div class="col-xs-12 myy" style="text-align:center;">
+                <button type="submit" class="btn btn-info myy lubclick">PAY</button>
             </div>
         </div>
 
@@ -271,11 +273,11 @@ Pay
 
                 if ($(highlight_class).is(':checked')) {
                     console.log('eeeeeeeeeeeeee',student_id)
-                    var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "skyblue");
+                    var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "#e5e5e5");
 
             }
             else if(!$(highlight_class).is(':checked')){
-                var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "white");
+                var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "");
 
             }
 
@@ -287,7 +289,7 @@ Pay
             console.log('student_id',student_id);
 
             var highlight_class = $('.highlight_class_'+student_id).prop('checked',true);
-            var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "skyblue");
+            var my_amount_date = $('.my_amount_date_'+student_id).css("background-color", "#e5e5e5");
            
         }
 

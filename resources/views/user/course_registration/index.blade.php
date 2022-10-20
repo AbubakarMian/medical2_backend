@@ -1,6 +1,7 @@
 @extends('user.layout.header_footer')
 @section('content')
 <link href="{!! asset('theme/user_theme/css/course_register.css') !!}" rel="stylesheet">
+<link href="{!! asset('theme/user_theme/css/groupform.css') !!}" rel="stylesheet">
 <link href="{!! asset('theme/user_theme/css/newmake.css') !!}" rel="stylesheet">
 <link href="{!! asset('theme/user_theme/css/proceedpayment.css') !!}" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v3.8.1/css/all.css">
@@ -53,8 +54,7 @@
 
                     <h2 class="alert alert-danger text-center" style="color: black;
                     padding: 8px;
-                    font-size: 21px;
-                    font-family: cursive;">Course Registration Timings Will Be Available Soon</h2>
+                    font-size: 21px;">Course Registration Timings Will Be Available Soon</h2>
                     @else
                     <?php
                     //  dd($type )
@@ -95,48 +95,40 @@
                         <div class="row">
 
                             <div class="col-sm-2 dates">
-
-                                Venue
-                                @if($cg->is_online == 0 )
-                                : {{$cg->city}}
+                                <p>Venue
+                                @if ($cg->is_online == 0)
+                                    : {{ $cg->city }}
                                 @endif
-
                                 </br>
                                 <?php
-                                // dd($cg)
                                 ?>
-                                @if($cg->is_online != 0)
-                                <?php
-                                // dd('saasas')
-                                ?>
-                                <button type="button" class="btn btn-warning">Online Class</button>
-
+                                @if ($cg->is_online != 0)
+                                    <?php
+                                    ?>
+                                    Online Class
                                 @elseif($cg->lat != 0)
-
-                                <button type="button" class="btn btn-warning" onclick="open_map('{!!$cg->lat!!}','{!!$cg->long!!}')">Map Location</button>
-
-
-
-                                <!-- Modal -->
-                                
+                                    <button type="button" class="btn btn-warning" onclick="open_map('{!! $cg->lat !!}','{!! $cg->long !!}')">Map Location</button>
                                 @else
-                                No Location
+                                    No Location</p>
                                 @endif
                             </div>
-                            <div class="col-sm-7 teacher" style="color:white">
+                        
+                            <div class="col-sm-7 teacherR">
                                 {{ ucwords($cg->teacher->name) }} Teacher / {{ ucwords($cg->name) }}
-                                @if($cg->type == 'course')
-                                Group
-
-                                @elseif( $cg->type == 'workshop')
-                                Workshop
+                                @if ($cg->type == 'course')
+                                    Group
+                                @elseif($cg->type == 'workshop')
+                                    Workshop
                                 @endif
                             </div>
+                        
                             <div class="col-sm-2 date">
-                                From {{ date('d,M,Y', $cg->start_date)  }} To
-                                {{ date( 'd,M,Y',$cg->end_date     )    }}
+                                From {{ date('d,M,Y', $cg->start_date) }} To
+                                {{ date('d,M,Y', $cg->end_date) }}
                             </div>
+                        
                         </div>
+                        
 
 
 
@@ -210,17 +202,17 @@
 
                     <div class="regtabless">
                         <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
-                        <a href="{!! asset('save_course_register/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" style="line-height: 35px;">
+                        <a href="{!! asset('save_course_register/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" style="">
 
-                            <button type="button" class="btn btn-primary regi">Single Registeration</button>
+                            <button type="button" class="btn btn-primary regii">Single Registeration</button>
 
                         </a>
                     </div>
                     <div class="regtabless">
                         <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
-                        <a href="{!! asset('group_registration/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" style="line-height: 35px;">
+                        <a href="{!! asset('group_registration/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" style="">
 
-                            <button type="button" class="btn btn-primary regi">Group Registeration</button>
+                            <button type="button" class="btn btn-primary regii">Group Registeration</button>
 
                         </a>
                     </div>
