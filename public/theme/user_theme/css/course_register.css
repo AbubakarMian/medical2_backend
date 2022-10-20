@@ -1,17 +1,18 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap'); */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 body,
 html {
   font-size: 15px;
   line-height: 1.4666666667;
   color: #000;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 h1,
 h2,
 h3,
 h4 {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 .infoarea {
   display: flex;
@@ -592,17 +593,6 @@ border-color: floralwhite; */
     font-family: cursive;
     font-weight: 700;
     margin-top: 15px;
-}
-.regi {
-  border-radius: 0px;
-  font-size: 14px;
-  /* height: 32px; */
-  /* margin-bottom: 10px; */
-  font-weight: 600;
-  background: #3bb54a;
-  border-color: #3bb54a;
-  color: white;
-  margin-bottom: 22px;
 }
 
 .mb-4.pb-4.border-bottom {
