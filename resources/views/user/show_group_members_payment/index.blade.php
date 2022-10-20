@@ -13,125 +13,140 @@
 
 <div class="bgareaa">
 
-<div class="page-header text-center dubhead">
-<h1>Group Members Details</h1>
-    <h1>Courses And Group Details</h1>
-</div>
-
-<!-- Credit Card Payment Form - START -->
-<div class="container">
-
-    <!--  -->
-    <div class="row">
-    @if (isset($success))
-<div class="alert alert-success alert-block">
-     <button type="button" class="close" data-dismiss="alert">×</button>
- <strong>Thankyou ! Course Register Successfully for Group Members</strong>
-</div>
- @endif
-
-
-
-     <div class="row">
-     <div class="col-xs-6">
-
-     <div class="form-group lube"> <label> Course Name:</label>
-                <div class="input-group">
-                    <input type="text" name="Course" class="lubin" disabled value="{{$course->full_name}}" class="form-control" placeholder="Enter Amount" />
-                    <span class="input-group-addon"></span>
-                </div>
-            </div> 
-            </div> 
-
-         
-        <div class="col-xs-6">
-            <div class="form-group lube"> <label> Group Name:</label>
-                <div class="input-group">
-                    <input type="text" name="Group" class="lubin" disabled value="{{$course->group->name}}" class="form-control" placeholder="Enter Amount" />
-                    <span class="input-group-addon"></span>
-                </div>
-            </div>
-        </div> 
+    <div class="page-header text-center dubhead">
+        <h1>Group Members Details</h1>
+        <h1>Courses And Group Details</h1>
     </div>
-<?php
-// dd($studen_array_id[0]);
 
-?>
-@foreach($all_course_register as $c_r )
-<div class="row">
-    
-        <div class="col-xs-6">
-            <div class="form-group lube"> <label> User Name:</label>
-                <div class="input-group">
-                    <input type="text" name="amount" class="lubin" disabled value="{{$c_r->user->name}}" class="form-control" placeholder="Enter Amount" />
-                    <span class="input-group-addon"></span>
-                </div>
-            </div>
-        </div>
-        
- </div>
+    <!-- Credit Card Payment Form - START -->
+    <div class="container">
 
-       
-
-     @foreach($group->group_fees as $c )
- 
-     <div class="amount_due_date_div_{{$c_r->user_id}}" onclick="amount_due_date_div('{{$c_r->user_id}}')">
-     <div class="row my_amount_date_{{$c_r->user_id}}{{$c->id}}">
-        <div class="col-xs-6">
-            <div class="form-group lube"> <label> Amount:</label>
-                <div class="input-group">
-                    <input type="text" name="amount" class="lubin" disabled value="{{$c->amount}}" class="form-control" placeholder="Enter Amount" />
-                    <span class="input-group-addon"></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-6">
-            <div class="form-group lube"> <label> Due Date:</label>
-                <div class="input-group">
-                    <input type="text" name="amount" class="lubin" disabled value="{{date('d-m-Y', $c->due_date) }}" class="form-control" placeholder="Enter Amount" />
-                    <span class="input-group-addon"></span>
-                </div>
-            </div>
-        </div>
+        <!--  -->
+        <div class="row">
+        @if ($message = Session::get('error'))
+<div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
     </div>
-    <!--  -->
-    </div>
-    <!--  -->
- 
-    
-         <!--toggle -->
-         <label class="switch">
-                    <input type="checkbox" class="highlight_class_{{$c_r->user_id}}{{$c->id}}" onclick="highlight_div('{{$c->id}}','{{$c_r->user_id}}')" name="student_id[]" value="{{$c_r->user_id}}">
+                           
+                        @endif
+
+
+
+            <div class="row">
+                <div class="col-xs-6">
+
+                    <div class="form-group lube"> <label> Course Name:</label>
+                        <div class="input-group">
+                            <input type="text" name="Course" class="lubin" disabled value="{{$course->full_name}}" class="form-control" placeholder="Enter Amount" />
+                            <span class="input-group-addon"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-6">
+                    <div class="form-group lube"> <label> Group Name:</label>
+                        <div class="input-group">
+                            <input type="text" name="Group" class="lubin" disabled value="{{$course->group->name}}" class="form-control" placeholder="Enter Amount" />
+                            <span class="input-group-addon"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+            // dd($studen_array_id[0]);
+
+            ?>
+
+            <?php
+
+            $user_name = '';
+            ?>
+            <form role="form" method="post" action="{{action('User\CoursesController@group_payment_finalize')}}">
+                @csrf
+                @foreach($studen_array_id as $c )
+                <?php
+                $c_r = $c;
+                //    dd( $c_r->user_id);
+
+                ?>
+
+                <div class="row">
+
+                    <div class="col-xs-6">
+                        @if($c_r->user->name == $user_name )
+                        @else
+                        <div class="form-group lube"> <label> User Name:</label>
+                            <div class="input-group">
+
+                                <input type="text" name="user" class="lubin" disabled value="{{$c_r->user->name}}" class="form-control" placeholder="Enter User" />
+                                <span class="input-group-addon"></span>
+
+                            </div>
+                        </div>
+                        @endif
+                        <?php
+                        $user_name = $c_r->user->name;
+                        ?>
+                    </div>
+
+                </div>
+
+                <!-- <div class="amount_due_date_div_{{$c_r->user_id}}{{$c->id}}" onclick="amount_due_date_divs('{{$c->id}}','{{$c_r->user_id}}')"> -->
+                <div class="amount_due_date_div_{{$c_r->user_id}}{{$c->id}}">
+                    <div class="row my_amount_date_{{$c_r->user_id}}{{$c->id}}">
+                        <div class="col-xs-6">
+                            <div class="form-group lube"> <label> Amount:</label>
+                                <div class="input-group">
+                                    <input type="text" name="amount" class="lubin" disabled value="{{$c->amount}}" class="form-control" placeholder="Enter Amount" />
+                                    <span class="input-group-addon"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="form-group lube"> <label> Due Date:</label>
+                                <div class="input-group">
+                                    <input type="text" name="amount" class="lubin" disabled value="{{date('d-m-Y', $c->due_date) }}" class="form-control" placeholder="Enter Amount" />
+                                    <span class="input-group-addon"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+                <!--  -->
+
+
+                <!--toggle -->
+                <label class="switch">
+                    <input type="checkbox" class="highlight_class_{{$c_r->user_id}}{{$c->id}}" onclick="highlight_div('{{$c->id}}','{{$c_r->user_id}}','{{$c->amount}}')" name="student_id[]" value="{{$c->user_id}}">
                     <span class="slider round"></span>
-        </label>
-        
-            <!--  -->
-    
+                </label>
 
-
-@endforeach
-
-
-@endforeach
-
-        <!-- <div class="row">
-       
-    </div> -->
-    </div>
-    @endsection
+                <!--  -->
 
 
 
+                @endforeach
 
 
 
+                <div class="row">
+                    <input hidden name="total_amount" class="payment_show_hidden">
+
+                    <div class="col-xs-12 myy" style="text-align:center;">
+                        <button type="submit" class="btn btn-info myy lubclick payment_show">PAY
+                        </button>
+                    </div>
+                </div>
+            </form>
 
 
 
-
-
-
+        </div>
+        @endsection
 
 
         @section('app_jquery')
@@ -192,38 +207,50 @@
                     }
                 }
             })
-            function highlight_div(e,u){
+            var all_amount = 0;
+
+            function highlight_div(e, u, a) {
+
+                console.log('all_amount', all_amount);
+
+                var group_fess_id = e;
+                var group_fees_amount = a;
+                var user = u;
+
+                console.log('group_fess_id', group_fess_id);
+                console.log('group_fees_amount', group_fees_amount);
+                console.log('user', user);
+
+
+                var highlight_class = $('.highlight_class_' + user + group_fess_id);
+                if ($(highlight_class).is(':checked')) {
+                    console.log('eeeeeeeeeeeeee', group_fess_id)
+                    var my_amount_date = $('.my_amount_date_' + user + group_fess_id).css("background-color", "skyblue");
+                    all_amount = parseFloat(all_amount) + parseFloat(a);
+                } else if (!$(highlight_class).is(':checked')) {
+                    console.log('all_amount_minusss', all_amount);
+                    var my_amount_date = $('.my_amount_date_' + user + group_fess_id).css("background-color", "white");
+                    all_amount = parseFloat(all_amount) - parseFloat(a);
+                }
+                var amount_div = $('.payment_show').html('Pay ' + all_amount);
+                var payment_show_hidden = $('.payment_show_hidden').val(all_amount);
+
+
+
+            }
+
+            function amount_due_date_div(e, u) {
 
 
                 var group_fess_id = e;
                 var user = u;
-                console.log('group_fess_id',group_fess_id);
-                console.log('user',user);
-              
+                console.log('group_fess_id', group_fess_id);
+                console.log('user', user);
 
-                var highlight_class = $('.highlight_class_'+user+group_fess_id);
-
-                if ($(highlight_class).is(':checked')) {
-                    console.log('eeeeeeeeeeeeee',group_fess_id)
-                    var my_amount_date = $('.my_amount_date_'+user+group_fess_id).css("background-color", "skyblue");
+                var highlight_class = $('.highlight_class_' + user + group_fess_id).prop('checked', true);
+                var my_amount_date = $('.my_amount_date_' + user + group_fess_id).css("background-color", "skyblue");
 
             }
-            else if(!$(highlight_class).is(':checked')){
-                var my_amount_date = $('.my_amount_date_'+user+group_fess_id).css("background-color", "white");
-
-            }
-
-        }
-        function amount_due_date_div(e){
-          
-
-            var group_fess_id = e;
-            console.log('group_fess_id',group_fess_id);
-
-            var highlight_class = $('.highlight_class_'+group_fess_id).prop('checked',true);
-            var my_amount_date = $('.my_amount_date_'+group_fess_id).css("background-color", "skyblue");
-           
-        }
 
 
             function openpaymentdiv() {

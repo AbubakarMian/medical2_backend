@@ -76,7 +76,7 @@ class CoursesController extends Controller
         return view('user.course_registration.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
     }
 
-    // group memebers 
+    // group memebers opennnnnnnnnnnn
 
     public function group_registration(Request $request)
     {
@@ -168,13 +168,32 @@ class CoursesController extends Controller
                 $studen_array_id[] =   $student_fees;
             } //  Mail::to($users->email)->send(new Update_Password($details));
 
-
-
         }
 
         $course = Courses::with('group')->find($course_id);
-        $success = 'success'; 
-        return view('user.show_group_members_payment.index', compact('studen_array_id','all_users_id', 'all_course_register', 'success','course','group'));
+        $success = 'success';
+        return view('user.show_group_members_payment.index', compact('studen_array_id', 'all_users_id', 'all_course_register', 'success', 'course', 'group'));
+    }
+
+
+    // group_payment_finalize
+
+    public function group_payment_finalize(Request $request)
+    {
+        //  dd($request->all());
+        $stripe_key = Config::get('services.stripe.STRIPE_KEY');
+        $res_student_array = [];
+        $amount = $request->total_amount;
+        // dd($amount);
+        if (!$request->student_id) {
+            return redirect()->back()->with('error', 'Please ! Choose The Payment');;
+        } elseif($request->student_id) {
+            foreach ($request->student_id as $st_id) {
+                $student_fees = Student_fees::with('user', 'course')->find($st_id);
+                $res_student_array[] =  $student_fees;
+            }
+            return view('user.group_payment_screen.index', compact('stripe_key', 'res_student_array','amount'));
+        }
     }
     // group_members_payment_screen
 
@@ -192,7 +211,7 @@ class CoursesController extends Controller
     }
 
 
-    // group memebers close
+    // group memebers closeeeeeeeeeeeeeee
 
 
 
@@ -229,7 +248,7 @@ class CoursesController extends Controller
     // 
 
 
-    // single register
+    // single register opennnnnnnnnnnnnnnnnn
     public function user_save_course_register(Request $request)
     {
         // dd($request->all());
@@ -245,8 +264,8 @@ class CoursesController extends Controller
 
         if ($course_register) {
             // do nothing and go to payment screen
-    //         $payment = Payment
-    // return redirect('user_show_payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
+            //         $payment = Payment
+            // return redirect('user_show_payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
         } elseif (!$course_register) {
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
@@ -311,18 +330,18 @@ class CoursesController extends Controller
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         $res_student_array = [];
         if ($request->student_id) {
-             foreach ($request->student_id as $st_id) {
+            foreach ($request->student_id as $st_id) {
                 $student_fees = Student_fees::with('user', 'course')->find($st_id);
                 $res_student_array[] =  $student_fees;
             }
             return view('user.payment_screen.index', compact('stripe_key', 'res_student_array'));
         }
 
-// 
-elseif ($request->single_student_id) {
+        // 
+        elseif ($request->single_student_id) {
             $single_student_id = $request->single_student_id;
             $student_fees = Student_fees::with('user', 'course')->find($single_student_id);
-        return view('user.payment_screen.index', compact('stripe_key', 'student_fees'));
+            return view('user.payment_screen.index', compact('stripe_key', 'student_fees'));
         } elseif (!$request->student_id || !$request->single_student_id) {
             return redirect()->back()->with('error', 'Please ! Choose The Payment');;
         }
