@@ -363,6 +363,9 @@ class CoursesController extends Controller
 
         if ($stripe->status == "succeeded") {
 
+     dd($request->all());
+
+
             if ($request->student_id) {
 
                 foreach ($request->student_id as $st_id) {
@@ -380,6 +383,7 @@ class CoursesController extends Controller
                     $payment->amount =   $request->amount;
                     $payment->save();
                     $student_fees->status = 'paid';
+                    $student_fees->payment_id = $payment->id;
                     $student_fees->save();
                 }
             } elseif ($request->single_student_id) {
