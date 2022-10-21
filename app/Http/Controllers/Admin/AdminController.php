@@ -147,6 +147,13 @@ class AdminController extends Controller
             'title'=>'Settings'
 
         ];
+
+        $modules[]= [
+
+            'url'=>'admin/role',
+            'title'=>'Role'
+
+        ];
      
         
       

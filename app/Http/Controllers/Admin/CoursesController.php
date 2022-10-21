@@ -39,6 +39,7 @@ class CoursesController extends Controller
 
         return redirect('admin/courses');
     }
+    
     public function edit($id)
     {
         $control = 'edit';
