@@ -14,8 +14,7 @@
 <div class="bgareaa">
 
     <div class="page-header text-center dubhead">
-        <h1>Group Members Details</h1>
-        <h1>Courses And Group Details</h1>
+        <h1>Select Payment Details</h1>
     </div>
 
     <!-- Credit Card Payment Form - START -->
