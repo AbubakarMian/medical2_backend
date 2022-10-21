@@ -80,6 +80,8 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
 
       // ===================group_registration save============================
     Route::post('group_registration_save', 'User\CoursesController@group_registration_save');
+    // group_payment_finalize
+    Route::post('group_payment_finalize', 'User\CoursesController@group_payment_finalize');
 
 
       // user/update_password
