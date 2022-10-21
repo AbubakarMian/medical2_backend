@@ -156,6 +156,16 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
     Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
 
 
+    // role
+    Route::get('admin/role', 'Admin\RoleController@index')->name('role.index'); 
+    Route::get('admin/role/create', 'Admin\RoleController@create')->name('role.create'); 
+    Route::post('admin/role/save', 'Admin\RoleController@save')->name('role.save');
+    Route::get('admin/role/edit/{id}', 'Admin\RoleController@edit')->name('role.edit');
+    Route::post('admin/role/update/{id}', 'Admin\RoleController@update')->name('role.update');
+    Route::post('admin/role/delete/{id}', 'Admin\RoleController@destroy_undestroy')->name('role.delete');
+
+    // Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
+
 
 
 

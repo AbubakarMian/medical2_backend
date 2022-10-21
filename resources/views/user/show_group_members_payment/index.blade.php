@@ -14,15 +14,14 @@
 <div class="bgareaa">
 
     <div class="page-header text-center dubhead">
-        <h1>Group Members Details</h1>
-        <h1>Courses And Group Details</h1>
+        <h1>Select Payment Details</h1>
     </div>
 
     <!-- Credit Card Payment Form - START -->
     <div class="container">
 
         <!--  -->
-        <div class="row">
+    
         @if ($message = Session::get('error'))
 <div class="alert alert-danger alert-block">
         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -145,6 +144,7 @@
 
 
 
+    
         </div>
         @endsection
 
@@ -198,7 +198,7 @@
                             .find('.alert')
                             .text(response.error.message);
                     } else {
-                        /* token contains id, last4, and card type */
+                        / token contains id, last4, and card type /
                         var token = response['id'];
 
                         $form.find('input[type=text]').empty();
