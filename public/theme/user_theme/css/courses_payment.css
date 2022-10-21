@@ -1,16 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 body,
 html {
-  font-size: 15px;
-  line-height: 1.4666666667;
-  color: #000;
-  font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    line-height: 1.4666666667;
+    color: #000;
+    font-family: "Montserrat", sans-serif;
 }
+
 h1,
 h2,
 h3,
 h4 {
-  font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .lubclick {
@@ -21,7 +23,6 @@ h4 {
     border-color: #f1582b;
     color: white;
     height: 50px;
-    /* margin-bottom: 35px !important; */
     font-size: 18px;
     margin-top: 20px;
     height: 44px;
@@ -31,8 +32,7 @@ h4 {
 }
 
 
-  /* The switch - the box around the slider */
-  .switch {
+.switch {
     position: relative;
     display: inline-block;
     width: 60px;
@@ -48,14 +48,14 @@ button.btn.btn-info.myy {
 }
 
 
-/* Hide default HTML checkbox */
+
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-/* The slider */
+
 .slider {
     position: absolute;
     cursor: pointer;
@@ -94,7 +94,7 @@ input:checked+.slider:before {
     transform: translateX(26px);
 }
 
-/* Rounded sliders */
+
 .slider.round {
     border-radius: 112px;
     height: 21px;
@@ -119,11 +119,13 @@ input:checked+.slider:before {
     font-family: revert;
     margin-bottom: 15px;
 }
+
 .lubclick:hover {
     background: #3bb54a;
     border-color: #3bb54a;
     color: white;
 }
+
 .dubhead {
     color: black;
     font-size: 40px;
@@ -137,15 +139,18 @@ input:checked+.slider:before {
     background: #474e580a;
     padding: 50px;
 }
+
 .bgareaa {
-    /* text-align: center; */
+   
     background: #474e580a;
     padding: 50px;
 }
+
 td.ptup a {
     margin-top: -8px !important;
     margin-bottom: 5px !important;
 }
+
 .lube label {
 
     font-size: 17px;
@@ -153,6 +158,7 @@ td.ptup a {
     color: gray;
 
 }
+
 input.lubin {
     width: 100%;
     border-radius: 0px;
@@ -166,6 +172,4 @@ input.lubin {
 
 
 
-@media only screen and (max-width: 480px) {
-    
-}
+@media only screen and (max-width: 480px) {}
