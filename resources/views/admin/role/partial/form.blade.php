@@ -1,17 +1,22 @@
 <style>
 .chechkareadata h4 {
     font-size: 20px;
-    font-weight: 500;
+    font-weight: bold;
     color: #4f5061;
 }
 .chechkareadata label {
-    font-size: 16px;
-    font-weight: initial;
+    font-size: 15px;
+    font-weight: 500;
     margin-bottom: 20px;
     color: gray;
 }
 .tuik {
     margin: 0px 7px !important;
+}
+.rolabel {
+    font-size: 14px !important;
+    margin-bottom: 5px !important;
+    font-weight: 600 !important;
 }
 </style>
 
@@ -20,8 +25,10 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="chechkareadata">
+                <label for="exampleInputtext1" class="rolabel">Enter Your Role:</label>
+                <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp" placeholder="Enter Role"><br>
                 <div class="form-check">
-                    <h4>Classes: :</h4>
+                    <h4>Classes: </h4>
                     <label class="form-check-label">View</label>
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
                     <label class="form-check-label">Create</label>                       
@@ -36,7 +43,7 @@
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
                 </div>
                 <div class="form-check">
-                    <h4>Courses: :</h4>
+                    <h4>Courses: </h4>
                     <label class="form-check-label">View</label>
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
                     <label class="form-check-label">Create</label>                       
@@ -51,7 +58,7 @@
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
                 </div>
                 <div class="form-check">
-                    <h4>Subjects: :</h4>
+                    <h4>Subjects: </h4>
                     <label class="form-check-label">View</label>
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
                     <label class="form-check-label">Create</label>                       
@@ -66,7 +73,7 @@
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
                 </div>
                 <div class="form-check">
-                    <h4>Teachers: :</h4>
+                    <h4>Teachers: </h4>
                     <label class="form-check-label">View</label>
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
                     <label class="form-check-label">Create</label>                       
@@ -81,7 +88,7 @@
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
                 </div>
                 <div class="form-check">
-                    <h4>Students: :</h4>
+                    <h4>Students: </h4>
                     <label class="form-check-label">View</label>
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
                     <label class="form-check-label">Create</label>                       
@@ -96,7 +103,7 @@
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
                 </div>
                 <div class="form-check">
-                    <h4>Category: :</h4>
+                    <h4>Category: </h4>
                     <label class="form-check-label">View</label>
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
                     <label class="form-check-label">Create</label>                       
@@ -111,7 +118,7 @@
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
                 </div>
                 <div class="form-check">
-                    <h4>Payments: :</h4>
+                    <h4>Payments: </h4>
                     <label class="form-check-label">View</label>
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
                     <label class="form-check-label">Create</label>                       
