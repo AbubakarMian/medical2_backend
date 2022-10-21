@@ -107,7 +107,8 @@
                                     ?>
                                     Online Class
                                 @elseif($cg->lat != 0)
-                                    <button type="button" class="btn btn-warning" onclick="open_map('{!! $cg->lat !!}','{!! $cg->long !!}')">Map Location</button>
+                                    <i class="fa fa-map-marker" aria-hidden="true" class="mkmap" onclick="open_map('{!! $cg->lat !!}','{!! $cg->long !!}')" style="cursor: pointer"> click me</i>
+                                    {{-- <button type="button" class="btn btn-warning" onclick="open_map('{!! $cg->lat !!}','{!! $cg->long !!}')">Map Location</button> --}}
                                 @else
                                     No Location</p>
                                 @endif
