@@ -26,23 +26,26 @@
         <div class="col-sm-12">
             <div class="chechkareadata">
                 <label for="exampleInputtext1" class="rolabel">Enter Your Role:</label>
-                <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp" placeholder="Enter Role"><br>
+                <input type="text" name="role"  class="form-control" id="exampleInputtext1" aria-describedby="textHelp" placeholder="Enter Role"><br>
+                @foreach($urls as $url)
                 <div class="form-check">
-                    <h4>Classes: </h4>
+                    <h4>{{$url->module_name}}: </h4>
+                   <input hidden  name="url_id[]" value="{{$url->id}}">
                     <label class="form-check-label">View</label>
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
+                    <input class="form-check-input tuik" name="view[]" type="checkbox" id="check1" name="option1" value="1" > 
                     <label class="form-check-label">Create</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
+                    <input class="form-check-input tuik" name="create[]" type="checkbox" id="check1" name="option1" value="1" >                        
                     <label class="form-check-label">Save</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
+                    <input class="form-check-input tuik"  name="save[]" type="checkbox" id="check1" name="option1" value="1" >                        
                     <label class="form-check-label">Edit</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
+                    <input class="form-check-input tuik" name="edit[]" type="checkbox" id="check1" name="option1" value="1" >                        
                     <label class="form-check-label">Update</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
+                    <input class="form-check-input tuik" name="update[]" type="checkbox" id="check1" name="option1" value="1">                        
                     <label class="form-check-label">Delete</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
+                    <input class="form-check-input tuik"  name="delete[]" type="checkbox" id="check1" name="option1" value="1">                        
                 </div>
-                <div class="form-check">
+                @endforeach
+                <!-- <div class="form-check">
                     <h4>Courses: </h4>
                     <label class="form-check-label">View</label>
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
@@ -131,7 +134,7 @@
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
                     <label class="form-check-label">Delete</label>                       
                     <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
