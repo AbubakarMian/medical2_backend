@@ -1,16 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 body,
 html {
-  font-size: 15px;
-  line-height: 1.4666666667;
-  color: #000;
-  font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    line-height: 1.4666666667;
+    color: #000;
+    font-family: "Montserrat", sans-serif;
 }
+
 h1,
 h2,
 h3,
 h4 {
-  font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .lubclick {
@@ -21,7 +23,6 @@ h4 {
     border-color: #f1582b;
     color: white;
     height: 50px;
-    /* margin-bottom: 35px !important; */
     font-size: 18px;
     margin-top: 20px;
     height: 44px;
@@ -30,9 +31,7 @@ h4 {
     margin-bottom: 15px;
 }
 
-
-  /* The switch - the box around the slider */
-  .switch {
+.switch {
     position: relative;
     display: inline-block;
     width: 60px;
@@ -47,15 +46,12 @@ button.btn.btn-info.myy {
     border-radius: 23px;
 }
 
-
-/* Hide default HTML checkbox */
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-/* The slider */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -64,8 +60,8 @@ button.btn.btn-info.myy {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
 .slider:before {
@@ -76,25 +72,24 @@ button.btn.btn-info.myy {
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
-input:checked+.slider {
-    background-color: #2196F3;
+input:checked + .slider {
+    background-color: #2196f3;
 }
 
-input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
 
-/* Rounded sliders */
 .slider.round {
     border-radius: 112px;
     height: 21px;
@@ -119,11 +114,13 @@ input:checked+.slider:before {
     font-family: revert;
     margin-bottom: 15px;
 }
+
 .lubclick:hover {
     background: #3bb54a;
     border-color: #3bb54a;
     color: white;
 }
+
 .dubhead {
     color: black;
     font-size: 40px;
@@ -137,22 +134,23 @@ input:checked+.slider:before {
     background: #474e580a;
     padding: 50px;
 }
+
 .bgareaa {
-    /* text-align: center; */
     background: #474e580a;
     padding: 50px;
 }
+
 td.ptup a {
     margin-top: -8px !important;
     margin-bottom: 5px !important;
 }
-.lube label {
 
+.lube label {
     font-size: 17px;
     font-weight: 500;
     color: gray;
-
 }
+
 input.lubin {
     width: 100%;
     border-radius: 0px;
@@ -161,11 +159,5 @@ input.lubin {
     padding: 10px;
 }
 
-
-
-
-
-
 @media only screen and (max-width: 480px) {
-    
 }
