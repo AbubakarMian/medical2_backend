@@ -18,6 +18,35 @@
     margin-bottom: 5px !important;
     font-weight: 600 !important;
 }
+.tablu {
+    margin-bottom: -500px;
+}
+.tabludata thead {
+    background: #1582dc;
+    border: 1px solid #1582dc;
+}
+.tabludata thead tr th {
+    font-size: 15px;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+}
+.tabludata tbody tr {
+    background: white;
+    border: 1px solid #e3e6f3;
+}
+.tabludata tbody tr th {
+    font-size: 15px;
+    text-align: center;
+    font-weight: 500;
+    background: #8080800f;
+}
+.tabludata tbody tr td {
+    font-size: 15px;
+    text-align: center;
+    font-weight: 500;
+    background: #8080800f;
+}
 </style>
 
 
@@ -27,114 +56,43 @@
             <div class="chechkareadata">
                 <label for="exampleInputtext1" class="rolabel">Enter Your Role ID:</label>
                 <input type="number" name="role_id"  class="form-control" id="exampleInputtext1" aria-describedby="textHelp" placeholder="Enter Role"><br>
-                @foreach($urls as $url)
-                <div class="form-check">
-                    <h4>{{$url->module_name}}: </h4>
-                   <input hidden  name="url_id[]" value="{{$url->id}}">
-                    <label class="form-check-label">View</label>
-                    <input class="form-check-input tuik" name="permissions[view][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" > 
-                    <label class="form-check-label">Create</label>                       
-                    <input class="form-check-input tuik" name="permissions[create][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" >                        
-                    <label class="form-check-label">Save</label>                       
-                    <input class="form-check-input tuik"  name="permissions[save][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" >                        
-                    <label class="form-check-label">Edit</label>                       
-                    <input class="form-check-input tuik" name="permissions[edit][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" >                        
-                    <label class="form-check-label">Update</label>                       
-                    <input class="form-check-input tuik" name="permissions[update][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}">                        
-                    <label class="form-check-label">Delete</label>                       
-                    <input class="form-check-input tuik"  name="permissions[delete][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}">                        
+                <div class="container tablu">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table tabludata">
+                                <thead>
+                                  <tr>
+                                    <th scope="col"># No</th>
+                                    <th scope="col">Roll</th>
+                                    <th scope="col">View</th>
+                                    <th scope="col">Create</th>
+                                    <th scope="col">Save</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Update</th>
+                                    <th scope="col">Delete</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach($urls as $url)
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>{{$url->module_name}}</td>   
+                                    <input hidden  name="url_id[]" value="{{$url->id}}"> 
+                                    <td><input class="form-check-input tuik" name="permissions[view][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" > </td>
+                                    <td><input class="form-check-input tuik" name="permissions[create][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
+                                    <td><input class="form-check-input tuik"  name="permissions[save][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
+                                    <td><input class="form-check-input tuik" name="permissions[edit][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
+                                    <td><input class="form-check-input tuik" name="permissions[update][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}"></td>                                                                     
+                                    <td><input class="form-check-input tuik"  name="permissions[delete][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}"></td>                                                                     
+                                  </tr>
+                                @endforeach   
+
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
                 </div>
-                @endforeach
-                <!-- <div class="form-check">
-                    <h4>Courses: </h4>
-                    <label class="form-check-label">View</label>
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
-                    <label class="form-check-label">Create</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Save</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Edit</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Update</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Delete</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                </div>
-                <div class="form-check">
-                    <h4>Subjects: </h4>
-                    <label class="form-check-label">View</label>
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
-                    <label class="form-check-label">Create</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Save</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Edit</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Update</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Delete</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                </div>
-                <div class="form-check">
-                    <h4>Teachers: </h4>
-                    <label class="form-check-label">View</label>
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
-                    <label class="form-check-label">Create</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Save</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Edit</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Update</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Delete</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                </div>
-                <div class="form-check">
-                    <h4>Students: </h4>
-                    <label class="form-check-label">View</label>
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
-                    <label class="form-check-label">Create</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Save</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Edit</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Update</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Delete</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                </div>
-                <div class="form-check">
-                    <h4>Category: </h4>
-                    <label class="form-check-label">View</label>
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
-                    <label class="form-check-label">Create</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Save</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Edit</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Update</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Delete</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                </div>
-                <div class="form-check">
-                    <h4>Payments: </h4>
-                    <label class="form-check-label">View</label>
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" > 
-                    <label class="form-check-label">Create</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Save</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Edit</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Update</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                    <label class="form-check-label">Delete</label>                       
-                    <input class="form-check-input tuik" type="checkbox" id="check1" name="option1" value="something" >                        
-                </div> -->
             </div>
         </div>
     </div>
@@ -156,5 +114,3 @@
                 </div>
             </div>
         </div>
-
-       
