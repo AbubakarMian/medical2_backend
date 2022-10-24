@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Role;
-use App\Model\Url;
+use App\User;
 use App\Model\Permission;
 use App\Model\User_Permission;
 use App\Model\Category;
@@ -31,29 +31,20 @@ class EmployeeController extends Controller
 
     public function save(Request $request)
     {
-        // dd($request->all());
-        
-    //     foreach($request->url_id as $key => $u){
-    //         $permission = new Permission();  
-    //         $permission->url_id = $u;            //courses ya category ya book  ki permission deni hai...
-    //         $permission->can_view = in_array($u, $request->permissions['view']);  
-    //         $permission->can_create = in_array($u, $request->permissions['create']);  
-    //         $permission->can_save = in_array($u, $request->permissions['save']);  
-    //         $permission->can_edit = in_array($u, $request->permissions['edit']);  
-    //         $permission->can_update = in_array($u, $request->permissions['update']);  
-    //         $permission->can_delete = in_array($u, $request->permissions['delete']);  
-    //         $permission->role_id = $request->role;                      //supervisor role
-    //         $permission->save();  
-    // }
-  
-    
+       
+    $user = new User;
+    $user->name = $request->name;
+    $user->email =  $request->email;
+    $user->save();
+     $user_permission = New User_Permission();
+     $user_permission->user_id = $user->id;
+     $user_permission->save();
 
-
-    return redirect('admin/role');
+    return redirect('admin/permissions/show?user_permission_id='.$user_permission->id);
    }
 
 
-
+   
     // public function edit($id)
     // {
     //     $control = 'edit';

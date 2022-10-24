@@ -173,6 +173,14 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
     Route::post('admin/employee/update/{id}', 'Admin\EmployeeController@update')->name('employee.update');
     Route::post('admin/employee/delete/{id}', 'Admin\EmployeeController@destroy_undestroy')->name('employee.delete');
 
+    // Permissions
+    Route::get('admin/permissions/show', 'Admin\PermissionsController@show_list_permision')->name('permissions.index'); 
+    Route::get('admin/permissions/create', 'Admin\PermissionsController@create')->name('rolpermissionse.create'); 
+    Route::post('admin/permissions/save', 'Admin\PermissionsController@save')->name('permissions.save');
+    Route::get('admin/permissions/edit/{id}', 'Admin\PermissionsController@edit')->name('permissions.edit');
+    Route::post('admin/permissions/update/{id}', 'Admin\PermissionsController@update')->name('permissions.update');
+    Route::post('admin/permissions/delete/{id}', 'Admin\PermissionsController@destroy_undestroy')->name('permissions.delete');
+
     // Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
 
 
