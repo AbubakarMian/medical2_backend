@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Role;
 use App\Model\Url;
 use App\Model\Permission;
+use App\Model\User_Permission;
 use App\Model\Category;
 use App\Model\Courses;
 use Illuminate\Http\Request;
@@ -12,39 +13,38 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Config;
 
-class RoleController extends Controller
+class EmployeeController extends Controller
 {
 
     public function index()
     {
-        $role = Role::orderBy('created_at', 'DESC')->paginate(10);        
-        return view('admin.role.index', compact('role'));
+        $employee = User_Permission::orderBy('created_at', 'DESC')->paginate(10);        
+        return view('admin.employee.index', compact('employee'));
     }
     
     public function create()
     {       
         $control = 'create';
-        $urls = Url::get();
-        // dd($urls);
-        return view('admin.role.create',compact('control','urls'));
+      
+        return view('admin.employee.create',compact('control'));
     }
 
     public function save(Request $request)
     {
         // dd($request->all());
         
-        foreach($request->url_id as $key => $u){
-            $permission = new Permission();  
-            $permission->url_id = $u;            //courses ya category ya book  ki permission deni hai...
-            $permission->can_view = in_array($u, $request->permissions['view']);  
-            $permission->can_create = in_array($u, $request->permissions['create']);  
-            $permission->can_save = in_array($u, $request->permissions['save']);  
-            $permission->can_edit = in_array($u, $request->permissions['edit']);  
-            $permission->can_update = in_array($u, $request->permissions['update']);  
-            $permission->can_delete = in_array($u, $request->permissions['delete']);  
-            $permission->role_id = $request->role_id;                      //supervisor role id
-            $permission->save();  
-    }
+    //     foreach($request->url_id as $key => $u){
+    //         $permission = new Permission();  
+    //         $permission->url_id = $u;            //courses ya category ya book  ki permission deni hai...
+    //         $permission->can_view = in_array($u, $request->permissions['view']);  
+    //         $permission->can_create = in_array($u, $request->permissions['create']);  
+    //         $permission->can_save = in_array($u, $request->permissions['save']);  
+    //         $permission->can_edit = in_array($u, $request->permissions['edit']);  
+    //         $permission->can_update = in_array($u, $request->permissions['update']);  
+    //         $permission->can_delete = in_array($u, $request->permissions['delete']);  
+    //         $permission->role_id = $request->role;                      //supervisor role
+    //         $permission->save();  
+    // }
   
     
 
