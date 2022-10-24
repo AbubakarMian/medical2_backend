@@ -2,12 +2,12 @@
 @section('module_name')
 Employee
 @stop
-{{-- @section('add_btn')
+ @section('add_btn')
 
 {!! Form::open(['method' => 'get', 'route' => ['employee.create'], 'files'=>true]) !!}
 <span>{!! Form::submit('Add', ['class' => 'btn btn-success pull-right']) !!}</span>
 {!! Form::close() !!}
-@stop --}}
+@stop 
 
 @section('table-properties')
 width="400px" style="table-layout:fixed;"
@@ -25,7 +25,7 @@ width="400px" style="table-layout:fixed;"
 </style>
 
 @section('pagination')
-<span class="pagination pagination-md pull-right">{!! $about_us->render() !!}</span>
+<span class="pagination pagination-md pull-right">{!! $employee->render() !!}</span>
 <div class="col-md-3 pull-left">
 	<div class="form-group text-center">
 		<div>
@@ -36,4 +36,4 @@ width="400px" style="table-layout:fixed;"
 	</div>
 </div>
 @endsection
-@stop
+

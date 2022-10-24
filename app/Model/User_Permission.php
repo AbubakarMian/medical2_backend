@@ -9,4 +9,8 @@ class User_Permission extends Model
 {
     use SoftDeletes;
     protected $table='user_permission';
+    
+    public function user(){
+        return $this->hasOne('App\User','id','user_id');
+    }
  }

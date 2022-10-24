@@ -127,7 +127,67 @@ Route::post('admin/employee/delete/{id}', 'Admin\EmployeeController@destroy_unde
 
 
 
-// Category 
+    Route::get('admin/login', 'Admin\AdminController@index');
+    Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
+    Route::group(['middleware' => 'admin_auth'], function () {
+
+    // contact module
+    Route::get('admin/contact', 'Admin\ContactUsController@index')->name('contact.index');
+
+
+    Route::get('admin/users', 'Admin\UserController@index')->name('location.index');
+    Route::get('admin/users/get_users/{id}','Admin\UserController@getUsers')->name('users.get_users');
+
+    // this is user routes
+
+    // Route::group(['middleware'=>'admin_auth'],function(){
+
+   //admin
+    Route::get('admin/dashboard', 'Admin\AdminController@dashboard')->name('dashboard');
+    Route::get('admin/logout', 'Admin\AdminController@logout')->name('logout');
+
+   // courses crud
+
+    Route::get('admin/courses', 'Admin\CoursesController@index')->name('courses.index');
+    Route::get('admin/courses/create', 'Admin\CoursesController@create')->name('courses.create'); //add
+    Route::post('admin/courses/save', 'Admin\CoursesController@save')->name('courses.save');
+    Route::get('admin/courses/edit/{id}', 'Admin\CoursesController@edit')->name('courses.edit');
+    Route::post('admin/courses/update/{id}', 'Admin\CoursesController@update')->name('courses.update');
+    Route::post('admin/courses/delete/{id}', 'Admin\CoursesController@destroy_undestroy')->name('courses.delete');
+    Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
+
+
+    // role
+    Route::get('admin/role', 'Admin\RoleController@index')->name('role.index'); 
+    Route::get('admin/role/create', 'Admin\RoleController@create')->name('role.create'); 
+    Route::post('admin/role/save', 'Admin\RoleController@save')->name('role.save');
+    Route::get('admin/role/edit/{id}', 'Admin\RoleController@edit')->name('role.edit');
+    Route::post('admin/role/update/{id}', 'Admin\RoleController@update')->name('role.update');
+    Route::post('admin/role/delete/{id}', 'Admin\RoleController@destroy_undestroy')->name('role.delete');
+
+    // Empolyee
+       
+    Route::get('admin/employee', 'Admin\EmployeeController@index')->name('employee.index'); 
+    Route::get('admin/employee/create', 'Admin\EmployeeController@create')->name('employee.create'); 
+    Route::post('admin/employee/save', 'Admin\EmployeeController@save')->name('employee.save');
+    Route::get('admin/employee/edit/{id}', 'Admin\EmployeeController@edit')->name('employee.edit');
+    Route::post('admin/employee/update/{id}', 'Admin\EmployeeController@update')->name('employee.update');
+    Route::post('admin/employee/delete/{id}', 'Admin\EmployeeController@destroy_undestroy')->name('employee.delete');
+      
+    // Permissions
+    Route::get('admin/permissions/show', 'Admin\PermissionsController@show_list_permision')->name('permissions.index'); 
+    Route::get('admin/permissions/create', 'Admin\PermissionsController@create')->name('rolpermissionse.create'); 
+    Route::post('admin/permissions/save', 'Admin\PermissionsController@save')->name('permissions.save');
+    Route::get('admin/permissions/edit/{id}', 'Admin\PermissionsController@edit')->name('permissions.edit');
+    Route::post('admin/permissions/update/{id}', 'Admin\PermissionsController@update')->name('permissions.update');
+    Route::post('admin/permissions/delete/{id}', 'Admin\PermissionsController@destroy_undestroy')->name('permissions.delete');
+
+    // Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
+
+
+
+
+//  =================================  Category ==========================
 Route::get('admin/category', 'Admin\CategoryController@index')->name('category.index');
 Route::get('admin/category/create', 'Admin\CategoryController@create')->name('category.create'); //add
 Route::post('admin/category/save', 'Admin\CategoryController@save')->name('category.save');
