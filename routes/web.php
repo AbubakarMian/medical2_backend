@@ -164,6 +164,15 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
     Route::post('admin/role/update/{id}', 'Admin\RoleController@update')->name('role.update');
     Route::post('admin/role/delete/{id}', 'Admin\RoleController@destroy_undestroy')->name('role.delete');
 
+    // Empolyee
+       
+    Route::get('admin/employee', 'Admin\EmployeeController@index')->name('employee.index'); 
+    Route::get('admin/employee/create', 'Admin\EmployeeController@create')->name('employee.create'); 
+    Route::post('admin/employee/save', 'Admin\EmployeeController@save')->name('employee.save');
+    Route::get('admin/employee/edit/{id}', 'Admin\EmployeeController@edit')->name('employee.edit');
+    Route::post('admin/employee/update/{id}', 'Admin\EmployeeController@update')->name('employee.update');
+    Route::post('admin/employee/delete/{id}', 'Admin\EmployeeController@destroy_undestroy')->name('employee.delete');
+
     // Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
 
 
