@@ -9,4 +9,10 @@ class Url extends Model
 {
     use SoftDeletes;
     protected $table='url';
+
+    public function permission()
+    {
+        return $this->hasOne('App\Model\Permission', 'url_id', 'id');
+    }
+   
  }
