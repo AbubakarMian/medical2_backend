@@ -146,27 +146,27 @@
                                             <td>{{ $url->module_name }}</td>
                                             <input hidden name="url_id[]" value="{{ $url->id }}">
                                             <td>
-                                                <label class="switch miud"> <input type="checkbox" > <span
+                                                <label class="switch miud">  <span
                                                         class="slider round swhi" name="permissions[view][]"></span></label>
                                             </td>
                                             <td>
-                                                <label class="switch miud"> <input type="checkbox" > <span
+                                                <label class="switch miud">  <span
                                                         class="slider round swhi" name="permissions[create][]"></span></label>
                                             </td>
                                             <td>
-                                                <label class="switch miud"> <input type="checkbox" > <span
+                                                <label class="switch miud">  <span
                                                         class="slider round swhi"  name="permissions[save][]"></span></label>
                                             </td>
                                             <td>
-                                                <label class="switch miud"> <input type="checkbox" > <span
+                                                <label class="switch miud"><span
                                                         class="slider round swhi" name="permissions[edit][]"></span></label>
                                             </td>
                                             <td>
-                                                <label class="switch miud"> <input type="checkbox" > <span
+                                                <label class="switch miud"> <span
                                                         class="slider round swhi" name="permissions[update][]"></span></label>
                                             </td>
                                             <td>
-                                                <label class="switch miud"> <input type="checkbox" > <span
+                                                <label class="switch miud">  <span
                                                         class="slider round swhi" name="permissions[delete][]"></span></label>
                                             </td>                                       
                                         </tr>
