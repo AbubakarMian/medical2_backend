@@ -163,6 +163,9 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
     Route::get('admin/role/edit/{id}', 'Admin\RoleController@edit')->name('role.edit');
     Route::post('admin/role/update/{id}', 'Admin\RoleController@update')->name('role.update');
     Route::post('admin/role/delete/{id}', 'Admin\RoleController@destroy_undestroy')->name('role.delete');
+  
+
+
 
     // Empolyee
        
@@ -180,6 +183,8 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
     Route::get('admin/permissions/edit/{id}', 'Admin\PermissionsController@edit')->name('permissions.edit');
     Route::post('admin/permissions/update/{id}', 'Admin\PermissionsController@update')->name('permissions.update');
     Route::post('admin/permissions/delete/{id}', 'Admin\PermissionsController@destroy_undestroy')->name('permissions.delete');
+    // admin/role_response
+    Route::post(' admin/role_response', 'Admin\PermissionsController@role_response')->name('role.role_response');
 
     // Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
 

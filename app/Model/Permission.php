@@ -14,4 +14,8 @@ class Permission extends Model
     {
         return $this->hasOne('App\Model\Url', 'id', 'url_id');
     }
+    public function role()
+    {
+        return $this->hasOne('App\Model\Role', 'id', 'role_id');
+    }
  }
