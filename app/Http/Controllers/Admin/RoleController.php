@@ -32,6 +32,9 @@ class RoleController extends Controller
     public function save(Request $request)
     {
         // dd($request->all());
+        $role = new Role();
+        $role->name = $request->role;
+        $role->save;
         
         foreach($request->url_id as $key => $u){
             $permission = new Permission();  
@@ -42,7 +45,7 @@ class RoleController extends Controller
             $permission->can_edit = in_array($u, $request->permissions['edit']);  
             $permission->can_update = in_array($u, $request->permissions['update']);  
             $permission->can_delete = in_array($u, $request->permissions['delete']);  
-            $permission->role_id = $request->role_id;                      //supervisor role id
+            $permission->role_id = $role->id;                      //supervisor role id
             $permission->save();  
     }
   
@@ -57,13 +60,10 @@ class RoleController extends Controller
     // public function edit($id)
     // {
     //     $control = 'edit';
-    //     $courses = Role::find($id);
-    //     $category = Role::pluck('name','id');
-    //     // $fees_type = Role::get('constants.fees_type');
+    //     $role = Role::find($id);
     //     return view('admin.role.create', compact(
     //         'control',
-    //         'courses',
-    //         'category',            
+    //         'role',            
     //     ));
     // }
 

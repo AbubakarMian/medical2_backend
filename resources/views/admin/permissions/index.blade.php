@@ -27,7 +27,16 @@ width="400px" style="table-layout:fixed;"
 </style>
 @section('table')
 
+<div class="form-group">
+    <label for="category_id">Select Category</label>
 
+    {!!Form::select('category_id',null,['class' => 'form-control',
+    'data-parsley-required'=>'true',
+    'data-parsley-trigger'=>'change',
+    'placeholder'=>'Select Category','required',
+    'maxlength'=>"100"])!!}
+
+</div>
 <thead>
 	<tr>
 		<th></th>

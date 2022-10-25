@@ -54,8 +54,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="chechkareadata">
-                <label for="exampleInputtext1" class="rolabel">Enter Your Role ID:</label>
-                <input type="number" name="role_id"  class="form-control" id="exampleInputtext1" aria-describedby="textHelp" placeholder="Enter Role"><br>
+                <label for="exampleInputtext1" class="rolabel">Enter Your Role</label>
+                <input type="number" name="role"  class="form-control" id="exampleInputtext1" aria-describedby="textHelp" placeholder="Enter Role"><br>
                 <div class="container tablu">
                     <div class="row">
                         <div class="col-sm-12">
