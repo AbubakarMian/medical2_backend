@@ -74,9 +74,9 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($urls as $my_key => $url)
+                                @foreach($urls as $url)
                                   <tr>
-                                    <th scope="row">{{$my_key+1}}</th>
+                                    <th scope="row">1</th>
                                     <td>{{$url->module_name}}</td>   
                                     <input hidden  name="url_id[]" value="{{$url->id}}"> 
                                     <td><input class="form-check-input tuik" name="permissions[view][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" > </td>
