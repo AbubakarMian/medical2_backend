@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Model\Role;
 use App\User;
 use App\Model\Permission;
+use App\Model\Url;
 use App\Model\User_Permission;
 use App\Model\Category;
 use App\Model\Courses;
@@ -18,33 +20,46 @@ class EmployeeController extends Controller
 
     public function index()
     {
-        $employee = User_Permission::orderBy('created_at', 'DESC')->paginate(10);        
+        $employee = User_Permission::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.employee.index', compact('employee'));
     }
-    
+
     public function create()
-    {       
+    {
         $control = 'create';
-      
-        return view('admin.employee.create',compact('control'));
+        return view('admin.employee.create', compact('control'));
     }
 
     public function save(Request $request)
     {
+        $user = new User;
+        $user->name = $request->name;
+        $user->email =  $request->email;
+        $user->save();
+
+        $urls = Url::get();
+        $permission = Permission::with('url','role')->get();
        
-    $user = new User;
-    $user->name = $request->name;
-    $user->email =  $request->email;
-    $user->save();
-     $user_permission = New User_Permission();
-     $user_permission->user_id = $user->id;
-     $user_permission->save();
+        foreach ($urls as $u) {
+ 
+            $user_permission = new User_Permission();
+            $user_permission->user_id = $user->id;
+            $user_permission->url_id =  $u->id;
+            $user_permission->role_id =  0;
+            $user_permission->can_view =  0;
+            $user_permission->can_create = 0;
+            $user_permission->can_save = 0;
+            $user_permission->can_edit =  0;
+            $user_permission->can_update = 0;
+            $user_permission->can_delete =  0;
+            // 
+            $user_permission->save();
+        }
+        return redirect('admin/permissions/show?user_permission_id=' . $user_permission->id);
+    }
 
-    return redirect('admin/permissions/show?user_permission_id='.$user_permission->id);
-   }
 
 
-   
     // public function edit($id)
     // {
     //     $control = 'edit';
@@ -68,5 +83,3 @@ class EmployeeController extends Controller
 
 
 }
-
-

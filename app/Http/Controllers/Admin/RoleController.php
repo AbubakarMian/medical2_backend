@@ -49,8 +49,6 @@ class RoleController extends Controller
             $permission->save();  
     }
   
-    
-
 
     return redirect('admin/role');
    }

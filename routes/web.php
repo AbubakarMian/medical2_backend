@@ -37,6 +37,8 @@ use Illuminate\Support\Facades\Route;
      // Route::get('user', 'Admin\UserController@index');
      Route::get('/', 'User\UserController@index')->name('user_index');
      Route::get('courses_registration', 'User\UserController@courses_registration');
+
+    //  Route::group(['middleware' => 'user.auth'], function () {
    
     //  profile_courses
 
@@ -185,6 +187,9 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
     Route::post('admin/permissions/delete/{id}', 'Admin\PermissionsController@destroy_undestroy')->name('permissions.delete');
     // admin/role_response
     Route::post(' admin/role_response', 'Admin\PermissionsController@role_response')->name('role.role_response');
+   
+    // permisiion/save
+    Route::post('permisiion/save', 'Admin\PermissionsController@permisiion_save')->name('role.role_response');
 
     // Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
 
