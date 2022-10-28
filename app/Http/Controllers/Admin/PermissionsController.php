@@ -51,13 +51,16 @@ class PermissionsController extends Controller
 $user_permission = User_Permission::with('user')->find($request->user_permission_id);
 $user_id = $user_permission->user->id;
 
-
 $user_permissions = User_Permission::with('user')->where('user_id',$user_id)->get();
+dd($user_permissions[1]);
+
 foreach($user_permissions  as $key => $user){
+    
+  
+$user_permission = User_Permission::with('user')->find($request->user_permission_id);
+// dd($user_permissions);
 
-
-
-  $user_permission->role_id = $request->role_id;
+  $user->role_id = $request->role_id;
 //   $user_permission->url_id = $key;
 //   
 
@@ -68,7 +71,7 @@ foreach($user_permissions  as $key => $user){
 //   $user_permission->can_edit = $request->role_id;
 //   $user_permission->can_update = $request->role_id;
 //   $user_permission->can_delete = $request->role_id;
-$user_permission->save(); 
+$user->save(); 
 
 
 
