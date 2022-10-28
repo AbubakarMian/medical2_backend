@@ -24,6 +24,7 @@
     <section class="panel panel-default">
         <div class="panel-body">
             <div class="table-responsive no-border">
+            @yield('single_file_use')
                 <table @yield('table-properties') id="index-table" class="table table-bordered table-striped mg-t editable-datatable">
                     <div class="demo-button margin-bottom">
                         @yield('add_btn')
