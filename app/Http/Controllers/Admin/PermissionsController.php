@@ -20,7 +20,8 @@ class PermissionsController extends Controller
 
     public function show_list_permision(Request $request)
     {
-        // dd($request->all());
+       
+        $user_id = $request->user_id;
         $user_permission = User_Permission::with('user')->find($request->user_permission_id);
         // 
         $role = Role::pluck('name','id');  
@@ -29,7 +30,7 @@ class PermissionsController extends Controller
         // $urls_arr = array_column($urls, NULL, 'id');
         $permissions = Permission::with('url','role')->orderBy('created_at', 'ASC')->paginate(10);   
          // dd($urls_arr[$permissions[0]['url_id']],'permissions') ;  
-        return view('admin.permissions.index', compact('permissions','user_permission','role','urls'));
+        return view('admin.permissions.index', compact('permissions','user_permission','role','urls','user_id'));
     }
 
     public function role_response(Request $request){
@@ -47,33 +48,27 @@ class PermissionsController extends Controller
     public function permisiion_save(Request $request){
 
 //  dd($request->all());
+ 
+   $user_id = $request->user_id;
+   $user_permission = User_Permission::with('user')->where('user_id',$user_id)->get();
 
-$user_permission = User_Permission::with('user')->find($request->user_permission_id);
-$user_id = $user_permission->user->id;
-
-$user_permissions = User_Permission::with('user')->where('user_id',$user_id)->get();
-dd($user_permissions[1]);
-
-foreach($user_permissions  as $key => $user){
-    
-  
-$user_permission = User_Permission::with('user')->find($request->user_permission_id);
-// dd($user_permissions);
-
-  $user->role_id = $request->role_id;
-//   $user_permission->url_id = $key;
-//   
-
-//   
-//   $user_permission->can_view = in_array($u_id, $request->view_checked);  
+// dd(  $user_permissions);
+    // foreach($user_permissions as $key => $p){
+    foreach($request->url_id  as $key => $u){
+    // dd($p);
+    // $user_permission = User_Permission::with('user','url')->get();
+    // dd($user_permission);
+    // $user_permission = User_Permission::find($p->id);
+     $user_permission->role_id = $request->role_id;
+     $user_permission->can_view = in_array($u, $request->view_checked);  
 //   $user_permission->can_create = $request->role_id;
 //   $user_permission->can_save = $request->role_id;
 //   $user_permission->can_edit = $request->role_id;
 //   $user_permission->can_update = $request->role_id;
 //   $user_permission->can_delete = $request->role_id;
-$user->save(); 
+    $user_permission->save(); 
 
-
+    }
 
 
  }
@@ -83,6 +78,5 @@ $user->save();
    
 
 
-}
 
 

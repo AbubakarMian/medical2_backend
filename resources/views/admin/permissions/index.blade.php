@@ -1,6 +1,6 @@
 @extends('layouts.default_module')
 @section('module_name')
-{{ucwords($user_permission->user->name)}} Employee Permissions
+ Employee Permissions
 @stop
 
 
@@ -44,7 +44,7 @@ width="400px" style="table-layout:fixed;"
 	'placeholder'=>'Select Category','required',
 	'maxlength'=>"100"])!!}
 </div>
-<input hidden name="user_permission_id" class="user_permission_id" value="{{$user_permission->id}}"/>
+<input hidden name="user_id" class="user_id" value="{{$user_id}}"/>
         {{ csrf_field() }}
 
 
