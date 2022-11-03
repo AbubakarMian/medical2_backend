@@ -130,7 +130,9 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
 
     Route::get('admin/login', 'Admin\AdminController@index');
     Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
-    Route::group(['middleware' => 'admin_auth'], function () {
+    // Route::group(['middleware' => 'admin_auth'], function () {
+      
+      
 
     // contact module
     Route::get('admin/contact', 'Admin\ContactUsController@index')->name('contact.index');
@@ -146,6 +148,8 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
    //admin
     Route::get('admin/dashboard', 'Admin\AdminController@dashboard')->name('dashboard');
     Route::get('admin/logout', 'Admin\AdminController@logout')->name('logout');
+
+    Route::group(['middleware' => 'role_auth'], function () {
 
    // courses crud
 
@@ -384,6 +388,7 @@ Route::post('admin/student_plan/delete/{id}', 'Reports\Student_planController@de
 
 
   });
+  // });
 
 
 

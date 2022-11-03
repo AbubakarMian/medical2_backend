@@ -13,6 +13,7 @@ class UserController extends Controller
 {
     public function index(){
         // $route_name = \Request::route()->getName();
+        // dd( $route_name);
         // dd($route_name);
         return view('user.index');
     }
