@@ -16,4 +16,7 @@ class   User_Permission extends Model
     public function url(){
         return $this->hasOne('App\Model\Url','id','url_id');
     }
+    public function role(){
+        return $this->hasOne('App\Model\Role','id','role_id');
+    }
  }

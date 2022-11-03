@@ -22,15 +22,15 @@ class PermissionsController extends Controller
     {
        
         $user_id = $request->user_id;
-        $user_permission = User_Permission::with('user')->find($request->user_permission_id);
+        $user_permissions = User_Permission::with('user')->where('user_id',$user_id)->get();
         // 
         $role = Role::pluck('name','id');  
         $urls = Url::with('permission')->paginate(10); 
         // dd( $urls);
         // $urls_arr = array_column($urls, NULL, 'id');
-        $permissions = Permission::with('url','role')->orderBy('created_at', 'ASC')->paginate(10);   
+        $permissions = Permission::with('url','role')->orderBy('created_at', 'ASC')->get();   
          // dd($urls_arr[$permissions[0]['url_id']],'permissions') ;  
-        return view('admin.permissions.index', compact('permissions','user_permission','role','urls','user_id'));
+        return view('admin.permissions.index', compact('permissions','user_permissions','role','urls','user_id'));
     }
 
     public function role_response(Request $request){
@@ -50,11 +50,59 @@ class PermissionsController extends Controller
 //  dd($request->all());
  
    $user_id = $request->user_id;
-   $user_permission = User_Permission::with('user')->where('user_id',$user_id)->get();
+   
+   $user_permissions = User_Permission::with('user')->where('user_id',$user_id)->get();
+
+   foreach($user_permissions as $up){
+        if(isset($request->view)){
+            $up->can_view = in_array($up->url_id,$request->view) ? $up->url->view_name : 0;
+        }
+        else{
+            $up->can_view = 0 ;
+        }
+        if(isset($request->create)){
+            $up->can_create = in_array($up->url_id,$request->create) ? $up->url->create_name : 0;
+        }
+        else{
+            $up->can_create = 0 ;
+        }
+        if(isset($request->save)){
+            $up->can_save = in_array($up->url_id,$request->save) ? $up->url->save_name : 0;
+        }
+        else{
+            $up->can_save = 0 ;
+            
+        }
+        if(isset($request->edit)){
+            $up->can_edit = in_array($up->url_id,$request->edit) ? $up->url->edit_name : 0;
+        }
+        else{
+            $up->can_edit = 0 ;
+            
+        }
+        if(isset($request->update)){
+            $up->can_update = in_array($up->url_id,$request->update) ? $up->url->update_name : 0;
+        }
+        else{
+            $up->can_update = 0 ;
+            
+        }
+        if(isset($request->delete)){
+            $up->can_delete = in_array($up->url_id,$request->delete) ? $up->url->delete_name : 0;
+        }
+        else{
+            $up->can_delete = 0 ;            
+        }
+        // dd($up->url_id,$request->view);
+        // dd($up);
+        $up->save();
+   }
+   dd('saved');
 
 // dd(  $user_permissions);
     // foreach($user_permissions as $key => $p){
     foreach($request->url_id  as $key => $u){
+    $user_permission = User_Permission::with('user')->where('user_id',$user_id)->get();
     // dd($p);
     // $user_permission = User_Permission::with('user','url')->get();
     // dd($user_permission);
