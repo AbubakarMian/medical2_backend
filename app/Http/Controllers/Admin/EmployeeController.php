@@ -55,7 +55,7 @@ class EmployeeController extends Controller
             // 
             $user_permission->save();
         }
-        return redirect('admin/permissions/show?user_permission_id=' . $user_permission->id);
+        return redirect('admin/permissions/show?user_id=' . $user->id);
     }
 
 
