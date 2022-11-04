@@ -14,6 +14,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
 
 class EmployeeController extends Controller
 {
@@ -33,9 +36,20 @@ class EmployeeController extends Controller
     public function save(Request $request)
     {
         $user = new User;
-        $user->name = $request->name;
+       
+      
+        $validator =  Validator::make(['email' => $request->email], [
+            'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('error', $validator->errors());
+
+
+        }
         $user->email =  $request->email;
-        $user->save();
+        $user->password =  Hash::make($request->password);
+       $user->save();
 
         $urls = Url::get();
         $permission = Permission::with('url','role')->get();

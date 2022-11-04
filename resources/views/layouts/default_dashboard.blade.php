@@ -21,7 +21,14 @@ $reports = $admin_common->reports;
                     <h1 class="mt0">Modules</h1>
                 </section>
             </div>
+            @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
         </div>
+    @endif
+        </div>
+        
 
         @foreach($modules as $key => $module)
 

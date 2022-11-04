@@ -11,6 +11,13 @@ else{
     {!! $heading !!}
 @endsection
 @section('leftsideform')
+@if ($message = Session::get('error'))
+<div class="alert alert-danger alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                           
+                        @endif
 
     @if($control == 'edit')
         {!! Form::model($about_us,['id'=>'my_form', 'method' => 'POST', 'route' =>

@@ -141,35 +141,17 @@
                                 <tbody>
 
                                     @foreach ($urls as $my_key => $url)
-                                        <tr>
-                                            <th scope="row">{{ $my_key + 1 }}</th>
-                                            <td>{{ $url->module_name }}</td>
-                                            <input hidden name="url_id[]" value="{{ $url->id }}">
-                                            <td>
-                                                <label class="switch miud">  <span
-                                                        class="slider round swhi" name="permissions[view][]"></span></label>
-                                            </td>
-                                            <td>
-                                                <label class="switch miud">  <span
-                                                        class="slider round swhi" name="permissions[create][]"></span></label>
-                                            </td>
-                                            <td>
-                                                <label class="switch miud">  <span
-                                                        class="slider round swhi"  name="permissions[save][]"></span></label>
-                                            </td>
-                                            <td>
-                                                <label class="switch miud"><span
-                                                        class="slider round swhi" name="permissions[edit][]"></span></label>
-                                            </td>
-                                            <td>
-                                                <label class="switch miud"> <span
-                                                        class="slider round swhi" name="permissions[update][]"></span></label>
-                                            </td>
-                                            <td>
-                                                <label class="switch miud">  <span
-                                                        class="slider round swhi" name="permissions[delete][]"></span></label>
-                                            </td>                                       
-                                        </tr>
+                                     <tr>
+                                    <th scope="row">{{$my_key+1}}</th>
+                                    <td>{{$url->module_name}}</td>   
+                                    <input hidden  name="url_id[]" value="{{$url->id}}"> 
+                                    <td><input class="form-check-input tuik" name="permissions[view][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" > </td>
+                                    <td><input class="form-check-input tuik" name="permissions[create][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
+                                    <td><input class="form-check-input tuik"  name="permissions[save][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
+                                    <td><input class="form-check-input tuik" name="permissions[edit][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
+                                    <td><input class="form-check-input tuik" name="permissions[update][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}"></td>                                                                     
+                                    <td><input class="form-check-input tuik"  name="permissions[delete][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}"></td>                                                                     
+                                  </tr>
                                     @endforeach
 
                                 </tbody>
