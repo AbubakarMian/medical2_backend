@@ -52,8 +52,9 @@ class PermissionsController extends Controller
    $user_id = $request->user_id;
    
    $user_permissions = User_Permission::with('user')->where('user_id',$user_id)->get();
-
+// dd( $user_permissions);
    foreach($user_permissions as $up){
+       $up->role_id = $request->role_id;
         if(isset($request->view)){
             $up->can_view = in_array($up->url_id,$request->view) ? $up->url->view_name : 0;
         }
@@ -97,27 +98,7 @@ class PermissionsController extends Controller
         // dd($up);
         $up->save();
    }
-   dd('saved');
-
-// dd(  $user_permissions);
-    // foreach($user_permissions as $key => $p){
-    foreach($request->url_id  as $key => $u){
-    $user_permission = User_Permission::with('user')->where('user_id',$user_id)->get();
-    // dd($p);
-    // $user_permission = User_Permission::with('user','url')->get();
-    // dd($user_permission);
-    // $user_permission = User_Permission::find($p->id);
-     $user_permission->role_id = $request->role_id;
-     $user_permission->can_view = in_array($u, $request->view_checked);  
-//   $user_permission->can_create = $request->role_id;
-//   $user_permission->can_save = $request->role_id;
-//   $user_permission->can_edit = $request->role_id;
-//   $user_permission->can_update = $request->role_id;
-//   $user_permission->can_delete = $request->role_id;
-    $user_permission->save(); 
-
-    }
-
+//    dd('saved');
 
  }
 

@@ -19,6 +19,16 @@
         'maxlength'=>"100"]) !!}
     </div>
 </div> 
+<div class="form-group">
+    {!! Form::label('password',' Password') !!}
+    <div>
+        {!! Form::text('password', null, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>' Password','required',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div> 
 
 
 

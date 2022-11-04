@@ -201,31 +201,32 @@ width="400px" style="table-layout:fixed;"
 						var role_name = permission[i].role.name;
 						var module_name = permission[i].url.module_name;
 						var url_id = permission[i].url.id;
-						var can_view = permission[i].can_view ? 'checked' : '';
-						var can_create = permission[i].can_create ? 'checked' : '';
-						var can_save = permission[i].can_save ? 'checked' : '';
-						var can_edit = permission[i].can_edit ? 'checked' : '';
-						var can_update = permission[i].can_update ? 'checked' : '';
-						var can_delete = permission[i].can_delete ? 'checked' : '';
+						var can_view = permission[i].can_view  == "1" ? 'checked' : '';
+						console.log('sass',can_view)
+						var can_create = permission[i].can_create == "1" ? 'checked' : '';
+						var can_save = permission[i].can_save == "1" ? 'checked' : '';
+						var can_edit = permission[i].can_edit == "1" ? 'checked' : '';
+						var can_update = permission[i].can_update == "1" ? 'checked' : '';
+						var can_delete = permission[i].can_delete == "1" ? 'checked' : '';
 
 						urls_id = `<input  name="url_id[]"  value="` + url_id + `">`
 						// 
-						can_view = `<input  name="view[]" value="` + url_id + `" type="checkbox" `+can_view+` >`
-						can_create = `<input  name="create[]" value="` + url_id + `" type="checkbox" `+can_create+` >`
-						can_save = `<input  name="save[]" value="` + url_id + `" type="checkbox" `+can_save+` >`
-						can_edit = `<input  name="edit[]" value="` + url_id + `" type="checkbox" `+can_edit+` >`
-						can_update = `<input  name="update[]" value="` + url_id + `" type="checkbox" `+can_update+` >`
-						can_delete = `<input  name="delete[]" value="` + url_id + `" type="checkbox" `+can_delete+` >`
+						can_views = `<input  name="view[]" value="` + url_id + `" type="checkbox" `+can_view+` >`
+						can_creates = `<input  name="create[]" value="` + url_id + `" type="checkbox" `+can_create+` >`
+						can_saves = `<input  name="save[]" value="` + url_id + `" type="checkbox" `+can_save+` >`
+						can_edits = `<input  name="edit[]" value="` + url_id + `" type="checkbox" `+can_edit+` >`
+						can_updates = `<input  name="update[]" value="` + url_id + `" type="checkbox" `+can_update+` >`
+						can_deletes = `<input  name="delete[]" value="` + url_id + `" type="checkbox" `+can_delete+` >`
 
 						tr_str = tr_str + "<tr id='row_" + permission[i].id + "'>" +
 							// "<td>" + role_name + "</td>" +
 							"<td>" + module_name + "</td>" +
-							"<td>" + can_view + "</td>" +
-							"<td>" + can_create + "</td>" +
-							"<td>" + can_save + "</td>" +
-							"<td>" + can_edit + "</td>" +
-							"<td>" + can_update + "</td>" +
-							"<td>" + can_delete + "</td>" +
+							"<td>" + can_views + "</td>" +
+							"<td>" + can_creates + "</td>" +
+							"<td>" + can_saves + "</td>" +
+							"<td>" + can_edits + "</td>" +
+							"<td>" + can_updates + "</td>" +
+							"<td>" + can_deletes + "</td>" +
 							"</tr>";
 
 
