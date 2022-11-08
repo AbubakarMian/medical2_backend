@@ -17,4 +17,8 @@ class Payment extends Model
     {
         return $this->hasOne('App\Model\Course_Register', 'id', 'course_register_id');
     }
+    public function student()
+    {
+        return $this->hasOne('App\Model\Student_fees', 'id', 'student_fees_id');
+    }
  }
