@@ -48,7 +48,7 @@ Payment
 <tbody>
     {{-- {{dd($payments)}} --}}
 	@foreach($payments as $payment)
-  {{-- {{dd($payment)}} --}}
+{{dd($payment)}} 
 
 	<tr>
 		<td  style="white-space: nowrap">{!! explode(' ',$payment->created_at)[0] !!}</td>
