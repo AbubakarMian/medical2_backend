@@ -62,7 +62,7 @@
         {!! Form::text('name', null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>' Name','required',
+        'placeholder'=>' Name',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
@@ -75,7 +75,7 @@
         'data-parsley-required'=>'true',
         'onchange'=>'select_course(this)',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Select Course','required',
+        'placeholder'=>'Select Course',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
@@ -124,7 +124,7 @@
     </div>
     {!! Form::label('fees_type','Fees Type',) !!}
     {!! Form::select('fees_type',$fees_type,null,["placeholder"=>"Select
-    Type","onchange"=>"open_fees_type_div()", "class"=>"form-control fees_type","required"]) !!}
+    Type","onchange"=>"open_fees_type_div()", "class"=>"form-control fees_type"]) !!}
     </select>
 </div>
 
@@ -514,6 +514,7 @@
                     console.log('aaaaaaacccccc', response['data'][0].courses.full_name);
                     var course_name = response['data'][0].courses.full_name;
 
+                    var tr_str ='';
 
                     for (var i = 0; i < len; i++) {
                         console.log('qqqqqqqqqqqqq', response['data'][i]);
@@ -537,8 +538,8 @@
 
 
 
-
-                        var tr_str =
+         
+                         tr_str = tr_str +
                             `
                      
                         <div class="row">
@@ -572,12 +573,8 @@
                             </div> `;
 
 
-
-                        $(".old_paln_show").append(tr_str);
-
-
-
                     }
+                     $(".old_paln_show").html(tr_str);
 
 
 
@@ -647,7 +644,6 @@
 {!! Form::label('amount','Amount') !!}
 <div>
 {!! Form::text('amount[]', null, ['class' => 'form-control',
-'data-parsley-required'=>'true',
 'data-parsley-trigger'=>'change',
 'placeholder'=>'Enter Amount',
 'maxlength'=>"100"]) !!}
@@ -663,7 +659,6 @@
 {!! Form::label('due_date','Due Date') !!}
 <div>
 {!! Form::date('due_date[]', null, ['class' => 'form-control',
-'data-parsley-required'=>'true',
 'data-parsley-trigger'=>'change',
 'placeholder'=>'Enter Due Date',
 ]) !!}
@@ -788,7 +783,6 @@
                     {!! Form::label('start_time','Choose a Class Start Time') !!}
                     <div>
                         {!! Form::time('start_time[]',  null, ['class' => 'form-control',
-                        'data-parsley-required'=>'true',
                         'data-parsley-trigger'=>'change',
                         'placeholder'=>'Start Time',
                         'maxlength'=>"100"]) !!}
@@ -804,7 +798,6 @@
                     {!! Form::label('end_time','Choose a Class End Time') !!}
                     <div>
                         {!! Form::time('end_time[]',  null, ['class' => 'form-control',
-                        'data-parsley-required'=>'true',
                         'data-parsley-trigger'=>'change',
                         'placeholder'=>'End Time',
                         'maxlength'=>"100"]) !!}
