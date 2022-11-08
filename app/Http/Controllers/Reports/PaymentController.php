@@ -68,7 +68,7 @@ class PaymentController extends Controller
         $fromdate = date("m/d/Y H:i:s", strtotime(str_replace('-', '/', $datearr[0])));
         $todate = date("m/d/Y H:i:s", strtotime(str_replace('-', '/', $datearr[1])));
 
-        $report = Payment::with('user','course_register.course')
+        $report = Payment::with('user','student')
             ->whereRaw(
                 '(date(created_at))>= ?',
                 [date('Y-m-d H:i:s', strtotime($fromdate))]

@@ -54,7 +54,7 @@ Payment
 		<td  style="white-space: nowrap">{!! explode(' ',$payment->created_at)[0] !!}</td>
 		{{--  <td>{!! $payment->payment_id !!}</td>  --}}
 		<td>{!!ucwords( $payment->user->name) ??''!!}</td>
-		<td>{!!ucwords($payment->course_register->course->full_name) ??'' !!}</td>
+		<td>{!!ucwords($payment->student->course->full_name) ??'' !!}</td>
 		{{-- <td>{!! $payment->user->phone_no??'' !!}</td>
 		<td>{!! $payment->user->email??'' !!}</td> --}}
 		<td>{!! $payment->amount!!} </td>
