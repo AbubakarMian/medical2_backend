@@ -9,45 +9,63 @@
 
 
 <section>
-    <div class="corsdetailarea">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="corsdetailareadata">
-                        <h1>Courses Details</h1>
-                            
-                        <table class="table prtable">
-                            <thead>
-                              <tr>
-                                <th scope="col">Sno</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Course</th>
-                                <th scope="col">Group</th>
-                                <th scope="col">Teacher</th>
-                                <!-- <th scope="col">Venu</th> -->
-                                <!-- <th scope="col">Timming</th> -->
-                                <!-- <th scope="col">Action</th> -->
-                              </tr>
-                            </thead>
-                            <tbody>
-                              @foreach($course_register as $key  => $c)
-                            <?php
-                            
-                            // dd($c->course->group)
-                            ?>
-                              <tr>
-                                <td scope="row">{{$key+1}}</td>
-                                <td>{{$c->user->name ?? ''}}</td>
-                                <td>{{$c->course->full_name ?? ''}}</td>
-                                <td>{{$c->course->group->name ?? '' }}</td>
-                                <td>{{$c->course->group->teacher->name ?? ''}}</td>
-                              
-                                <!-- <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
+  <div class="corsdetailarea">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="corsdetailareadata">
+            <h1>Courses Details</h1>
+
+            <table class="table prtable">
+              <thead>
+                <tr>
+                  <th scope="col">Sno</th>
+                  <th scope="col">User</th>
+                  <th scope="col">Course</th>
+                  <th scope="col">Group</th>
+                  <th scope="col">Teacher</th>
+                  <th scope="col">Join Class </th>
+                  <!-- <th scope="col">Venu</th> -->
+                  <!-- <th scope="col">Timming</th> -->
+                  <!-- <th scope="col">Action</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($course_register as $key => $c)
+                <?php
+
+                // dd($c->course->group)
+                ?>
+                <tr>
+                  <td scope="row">{{$key+1}}</td>
+                  <td>{{$c->user->name ?? ''}}</td>
+                  <td>{{$c->course->full_name ?? ''}}</td>
+                  <td>{{$c->course->group->name ?? '' }}</td>
+                  <td>{{$c->course->group->teacher->name ?? ''}}</td>
+                  <td>
+
+                    @if ($c->course->group->is_online != 0)
+                   <a href="{{ asset('course/frame/?group_id='.$c->course->group->id) }}" target="_blank">
+                    Join Class
+                   </a>
+                    
+                    
+                
+                    @else
+                    Offline
+                    @endif
+
+
+
+
+                  </td>
+
+                  <!-- <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
                                
                                 <td><button type="button" class="btn btn-primary porjoin">Join</button>
                                     <button type="button" class="btn btn-primary pordetai">Detail</button></td> -->
-                              </tr>
-                              <!-- <tr>
+                </tr>
+                <!-- <tr>
                                 <td scope="row">2</td>
                                 <td>Science</td>
                                 <td>Sir Ali</td>
@@ -57,15 +75,15 @@
                                 <td><button type="button" class="btn btn-primary porjoinn">Join</button>
                                     <button type="button" class="btn btn-primary pordetai">Detail</button></td>
                               </tr>  -->
-                              @endforeach                            
-                            </tbody>
-                          </table>
+                @endforeach
+              </tbody>
+            </table>
 
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
 
@@ -75,4 +93,3 @@
 
 
 @endsection
-

@@ -62,6 +62,9 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
      Route::get('courses', 'User\CoursesController@index');
      Route::post('user/courses_search', 'User\CoursesController@index');
 
+
+    //  course/frame
+    Route::get('course/frame', 'User\Profile_Courses_Controller@courses_frame');
     //  workshop
 
      //workshop page
