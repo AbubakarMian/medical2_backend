@@ -31,7 +31,7 @@ Payment
 		<th scope="col" style="white-space: nowrap">Date</th>
 		{{--  <th scope="col" style="white-space: nowrap">Payment Id</th>  --}}
 		<th scope="col" style="white-space: nowrap">User Name</th>
-		<!-- <th scope="col" style="white-space: nowrap">Course Name</th> -->
+		<th scope="col" style="white-space: nowrap">Course Name</th>
 
 		{{-- <th scope="col" style="white-space: nowrap">Phone</th>
 		<th scope="col" style="white-space: nowrap">Email</th> --}}
@@ -48,13 +48,13 @@ Payment
 <tbody>
     {{-- {{dd($payments)}} --}}
 	@foreach($payments as $payment)
-{{dd($payment)}} 
+  {{-- {{dd($payment)}} --}}
 
 	<tr>
 		<td  style="white-space: nowrap">{!! explode(' ',$payment->created_at)[0] !!}</td>
 		{{--  <td>{!! $payment->payment_id !!}</td>  --}}
 		<td>{!!ucwords( $payment->user->name) ??''!!}</td>
-		<!-- <td>{!!ucwords($payment->student->course->full_name) ??'' !!}</td> -->
+		<td>{!!ucwords($payment->student->course->full_name) ??'' !!}</td>
 		{{-- <td>{!! $payment->user->phone_no??'' !!}</td>
 		<td>{!! $payment->user->email??'' !!}</td> --}}
 		<td>{!! $payment->amount!!} </td>
