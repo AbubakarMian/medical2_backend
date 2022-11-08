@@ -63,19 +63,28 @@ class PermissionsController extends Controller
         }
         if(isset($request->create)){
             $up->can_create = in_array($up->url_id,$request->create) ? $up->url->create_name : 0;
+           if($up->can_create){
+            $up->can_view = $up->url->view_name;
+           }
         }
         else{
             $up->can_create = 0 ;
         }
         if(isset($request->save)){
             $up->can_save = in_array($up->url_id,$request->save) ? $up->url->save_name : 0;
+            if($up->can_save){
+                $up->can_view = $up->url->view_name;
+               }
         }
         else{
-            $up->can_save = 0 ;
+            $up->can_save = 0;
             
         }
         if(isset($request->edit)){
             $up->can_edit = in_array($up->url_id,$request->edit) ? $up->url->edit_name : 0;
+            if($up->can_edit){
+                $up->can_view = $up->url->view_name;
+               }
         }
         else{
             $up->can_edit = 0 ;
@@ -83,6 +92,9 @@ class PermissionsController extends Controller
         }
         if(isset($request->update)){
             $up->can_update = in_array($up->url_id,$request->update) ? $up->url->update_name : 0;
+            if($up->can_update){
+                $up->can_view = $up->url->view_name;
+               }
         }
         else{
             $up->can_update = 0 ;
@@ -90,6 +102,9 @@ class PermissionsController extends Controller
         }
         if(isset($request->delete)){
             $up->can_delete = in_array($up->url_id,$request->delete) ? $up->url->delete_name : 0;
+            if($up->can_delete){
+                $up->can_view = $up->url->view_name;
+               }
         }
         else{
             $up->can_delete = 0 ;            
@@ -98,6 +113,7 @@ class PermissionsController extends Controller
         // dd($up);
         $up->save();
    }
+   return redirect('admin/dashboard');
 //    dd('saved');
 
  }
