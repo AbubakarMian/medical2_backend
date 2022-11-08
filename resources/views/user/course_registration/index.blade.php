@@ -197,13 +197,16 @@
                         </tbody>
                     </table>
                     @endif
+                    <!-- @if ($cg->is_online != 0)
 
-
-
+                    <div class="regtabless">
+                    <iframe src="{{$cg->url}}" title="description"></iframe>
+                    </div>
+                    @endif -->
 
                     <div class="regtabless">
                         <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
-                        <a href="{!! asset('save_course_register/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" style="">
+                        <a href="{!! asset('save_course_register/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" >
 
                             <button type="button" class="btn btn-primary regii">Single Registeration</button>
 
@@ -211,7 +214,7 @@
                     </div>
                     <div class="regtabless">
                         <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
-                        <a href="{!! asset('group_registration/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" style="">
+                        <a href="{!! asset('group_registration/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" >
 
                             <button type="button" class="btn btn-primary regii">Group Registeration</button>
 

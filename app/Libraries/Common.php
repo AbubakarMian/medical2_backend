@@ -61,7 +61,7 @@ trait Common
     function get_embeddedyoutube_url($url) {
         return preg_replace(
             "/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i",
-            "//www.youtube.com/embed/$2",
+            "//www.youtube.com/$2",
             $url
         );
     }

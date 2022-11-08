@@ -114,6 +114,22 @@ class GroupController extends Controller
             $group->venue = $request->city;
             $group->is_online = 0;
         }
+        // 
+        if ($request->hasFile('zoom')) {
+
+            $file_video = $request->zoom;
+            $filename_video = $file_video->getClientOriginalName();
+
+            $db_path_save_video = asset('/uploads/video/'.$filename_video);
+            $group->url =  $db_path_save_video;
+        }
+        else if (strcmp($request->zoom_visible, "")  !== 0) {
+            $embeded_url = $this->get_embeddedyoutube_url($request->zoom_visible);
+            $group->url = $embeded_url;
+        }
+
+
+        // 
         $group->save();
 
         if($request->day){
