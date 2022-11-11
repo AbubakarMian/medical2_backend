@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 use App\Model\Course_Register;
 use App\Model\Group;
 use App\Model\Student_fees;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+
 
 
 class Profile_Courses_Controller extends Controller
@@ -17,18 +19,24 @@ class Profile_Courses_Controller extends Controller
 
     public function my_courses()
     {
-
-        $user = Auth::user();
+    //  dd(   $student_fees );
+    $user = Auth::user();
         if (!$user) {
             $user = new \stdClass();
             $user->role_id = 0;
         }
+          $course_register = Course_Register::where('user_id', $user->id)->with('course.group', 'user','student_fees')->orderby('id', 'desc')->select('*')->get();
+            // dd($course_register[0]->student_fees);
+            
+            // 
+            // $date = Carbon::now();
+            // $date_string = strtotime($date);
+            // dd(  $date_string);
+            // $student_fees =  Student_fees::with('user')
+            //     ->where(
+            //         'due_date <',$date_string);
 
-        if ($user->role_id == 2) {
-            $course_register = Course_Register::where('user_id', $user->id)->with('course.group', 'user')->orderby('id', 'desc')->select('*')->get();
-            // $group = Group::where('user_id', $user->id)
-
-        }
+           
 
 
         return view('user.profile_courses', compact('course_register'));

@@ -25,6 +25,8 @@ class CoursesController extends Controller
 
     public function index(Request $request)
     {
+        $user = Auth::User();
+        // dd(   $user);
         $types = $request->type;
         $name = $request->courses_name ?? '';
 
@@ -76,7 +78,7 @@ class CoursesController extends Controller
         }
         // dd($courses_groups);
         return view('user.course_registration.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
-        // return view('user.courses_frame.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
+      
     }
 
    
@@ -311,10 +313,12 @@ class CoursesController extends Controller
     public function user_show_payment(Request $request)
     {
         // dd('saa');
+        // dd($request->all());
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
 
         // User Course Payment History se ayga
-        if ($request->student_id_not_paid) {
+        if (isset($request->student_id_not_paid)) {
+            // dd('asas');
             $student_id = $request->student_id_not_paid;
             $single_student_fees = Student_fees::with('course_register')->find($student_id);
             $course_register_id = $single_student_fees->course_register_id;
@@ -326,6 +330,9 @@ class CoursesController extends Controller
             // dd('saa');
             $course_register_id = $request->course_register;
             $course_register = Course_Register::with('student_fees', 'user', 'course', 'group')->find($course_register_id);
+            // dd($course_register);
+            // taha11211@mail.com
+            // 123
             $student_fees_id =  $course_register->student_fees->id;
             //multipe couurses register ki payment ayngi
             $student_fees = Student_fees::with('user', 'course')->where('user_id', $course_register->user->id)->orderby('due_date')->get();
