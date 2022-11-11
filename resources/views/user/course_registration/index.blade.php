@@ -8,6 +8,12 @@
 
 <link href="{!! asset('theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
 {{-- <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" /> --}}
+<?php
+
+use Carbon\Carbon;
+use App\Model\Student_fees;
+
+?>
 <style>
     table {
         font-family: arial, sans-serif;
@@ -80,7 +86,7 @@
 
 
                 <?php
-
+// dd($courses_groups[1]);
                 ?>
                 @foreach ($courses_groups as $cg)
                 <?php
@@ -96,40 +102,41 @@
 
                             <div class="col-sm-2 dates">
                                 <p>Venue
-                                @if ($cg->is_online == 0)
+                                    @if ($cg->is_online == 0)
                                     : {{ $cg->city }}
-                                @endif
-                                </br>
-                                <?php
-                                ?>
-                                @if ($cg->is_online != 0)
+                                    @endif
+                                    </br>
+                                    <?php
+                                    ?>
+                                    @if ($cg->is_online != 0)
                                     <?php
                                     ?>
                                     Online Class
-                                @elseif($cg->lat != 0)
+                                    @elseif($cg->lat != 0)
                                     <i class="fa fa-map-marker" aria-hidden="true" class="mkmap" onclick="open_map('{!! $cg->lat !!}','{!! $cg->long !!}')" style="cursor: pointer"> click me</i>
                                     {{-- <button type="button" class="btn btn-warning" onclick="open_map('{!! $cg->lat !!}','{!! $cg->long !!}')">Map Location</button> --}}
-                                @else
-                                    No Location</p>
+                                    @else
+                                    No Location
+                                </p>
                                 @endif
                             </div>
-                        
+
                             <div class="col-sm-7 teacherR">
                                 {{ ucwords($cg->teacher->name) }} Teacher / {{ ucwords($cg->name) }}
                                 @if ($cg->type == 'course')
-                                    Group
+                                Group
                                 @elseif($cg->type == 'workshop')
-                                    Workshop
+                                Workshop
                                 @endif
                             </div>
-                        
+
                             <div class="col-sm-2 date">
                                 From {{ date('d,M,Y', $cg->start_date) }} To
                                 {{ date('d,M,Y', $cg->end_date) }}
                             </div>
-                        
+
                         </div>
-                        
+
 
 
 
@@ -146,12 +153,70 @@
                                 <th>Start Time</th>
                                 <th>End Time</th>
                             </tr>
+                            <?php
+                            $show_time = '';
+                            // dd($cg[1])
+                            ?>
                             @foreach ($cg->group_timings as $key => $gt)
+                           
+
+                            <?php
+                             $current_time = Carbon::now()->format('h:i:s');
+                            
+                            // dd( $current_time );
+                            $time_arr =  explode(':',$current_time);  //array ko devid ekrta hai explode
+                            // dd( $time_arr);
+                         
+                            $time_hr = $time_arr[0];
+                            $time_min = $time_arr[1];
+                            // 
+                            $gmt_sec = 300*60;
+                            // 
+                            $total_mins = ($time_hr * 60) + $time_min;
+                            $total_sec = $total_mins * 60;
+                            $current_total_sec_gmt_minus = $total_sec + $gmt_sec;
+                            // dd( $total_sec);
+                            $start_time = $gt->start_time+ $gmt_sec;
+                            $end_time = $gt->end_time+ $gmt_sec;
+                     
+                           
+                            if ($current_total_sec_gmt_minus > $gt->start_time & $current_total_sec_gmt_minus < $gt->end_time) {
+                            // if ($gt->start_time < $current_time) {
+                            // if ($current_time < $gt->end_time ) {
+                                $show_time = 'Time hai';
+                                // dd($show_time);
+                            }
+                            else{
+                                $show_time = 'Time Passes away';
+
+                            }
+                            ?>
 
                             <tr>
                                 <td>{{ ucwords($gt->day) }}</td>
-                                <td>{{ date('h:i:s', $gt->start_time) }}</td>
-                                <td>{{ date('h:i:s', $gt->end_time) }}</td>
+                                @if( $show_time == 'Time Passes away')
+                                <!-- Time -->
+                                <td>
+                                    Time Passes away
+                                </td>
+                                <td>
+                                    Time Passes away
+
+                                </td>
+                                <!-- Time -->
+                                @else
+                                <!-- start_time -->
+                                <td>
+                                    {{ date('h:i:s', $gt->start_time) }}
+                                </td>
+                                <td>
+                                    {{ date('h:i:s', $gt->end_time) }}
+                                </td>
+
+                                <!-- start_time -->
+                                @endif
+
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -206,7 +271,7 @@
 
                     <div class="regtabless">
                         <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
-                        <a href="{!! asset('save_course_register/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" >
+                        <a href="{!! asset('save_course_register/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}">
 
                             <button type="button" class="btn btn-primary regii">Single Registeration</button>
 
@@ -214,7 +279,7 @@
                     </div>
                     <div class="regtabless">
                         <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
-                        <a href="{!! asset('group_registration/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}" >
+                        <a href="{!! asset('group_registration/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}">
 
                             <button type="button" class="btn btn-primary regii">Group Registeration</button>
 
@@ -242,23 +307,23 @@
             </div>
         </div>
         <div class="modal fade" id="myModal" role="dialog">
-                                    <div class="modal-dialog">
+            <div class="modal-dialog">
 
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Venue Location</h4>
-                                            </div>
-                                            <div class="modal-body" id="map" style="height:600px">
-                                                @include('user.course_registration.map')
-                                            </div>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Venue Location</h4>
+                    </div>
+                    <div class="modal-body" id="map" style="height:600px">
+                        @include('user.course_registration.map')
+                    </div>
 
 
-                                        </div>
+                </div>
 
-                                    </div>
-                                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="courbanddata">
@@ -417,12 +482,12 @@
 <script>
     $(document).ready(function() {
         $('#myModal').modal('hide');
-       
-        
+
+
     });
     // map
-    function open_map(lat,long) {
-        create_marker(lat,long);
+    function open_map(lat, long) {
+        create_marker(lat, long);
         $('#myModal').modal('show');
     }
 </script>

@@ -1,7 +1,12 @@
 @extends('user.layout.header_footer')
 @section('content')
 
+<?php
 
+use Carbon\Carbon;
+use App\Model\Student_fees;
+
+?>
 
 <link href="{!!asset('theme/user_theme/css/profile_courses.css')!!}" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -31,10 +36,25 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($course_register as $key => $c)
                 <?php
+                $join_class  = '';
 
-                // dd($c->course->group)
+                ?>
+                @foreach($course_register as $key => $c)
+
+                <?php
+                $date = Carbon::now();
+                $current_date = strtotime($date);
+                //  dd( $date_string);
+                $student_id = $c->student_fees->id;
+                $student_due_date = $c->student_fees->due_date;
+                // if ($student_due_date <= $date_string) {
+                if ($current_date > $student_due_date) {
+                  $join_class =
+                    'Please Paid';
+                } else {
+                  $join_class = 'Join Class';
+                }
                 ?>
                 <tr>
                   <td scope="row">{{$key+1}}</td>
@@ -45,12 +65,17 @@
                   <td>
 
                     @if ($c->course->group->is_online != 0)
-                   <a href="{{ asset('course/frame/?group_id='.$c->course->group->id) }}" target="_blank">
-                    Join Class
-                   </a>
-                    
-                    
-                
+                    <a href="{{ asset('course/frame/?group_id='.$c->course->group->id) }}" target="_blank">
+                      @if($join_class == "Please Paid")
+                      <a href="{{asset('user_show_payment?student_id_not_paid='.$student_id)}}" type="button" class="btn btn-danger">Not Paid</a>
+                      @else
+                      {{$join_class}}
+                      @endif
+
+                    </a>
+
+
+
                     @else
                     Offline
                     @endif

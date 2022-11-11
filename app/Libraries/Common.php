@@ -38,6 +38,25 @@ trait Common
         
     }
 
+    public function time_to_timestamp_group($time){
+
+        $time_arr =  explode(':',$time);
+        // dd( $time_arr);
+        $time_hr = $time_arr[0];
+        $time_min = $time_arr[1];
+         // 
+         $gmt_sec = 300*60;
+         // 
+
+        $total_mins = ($time_hr * 60) + $time_min;
+        // dd(  $total_mins);
+        $total_sec = $total_mins * 60;
+        $total_sec_gmt_minus = $total_sec - $gmt_sec;
+        // $total_mili_sec = $total_sec * 1000;
+        return $total_sec_gmt_minus;
+        
+    }
+
     public function move_img_get_path($image,$root,$type,$image_name='')
     {
         $uniqid = time();
