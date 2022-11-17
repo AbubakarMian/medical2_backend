@@ -74,8 +74,9 @@ List of Groups
                         var delete_btn = `<a class="btn btn-info" data-toggle="modal" data-target="#` + 'group_' + response['data'][i].id + `">Delete</a>`;
 
                         var tr_str = "<tr id='row_"+response['data'][i].id+"'>" +
-                            "<td>" + group_text + "</td>" +
+                           
                             "<td>" + course_name + "</td>" +
+                            "<td>" + group_text + "</td>" +
                             "<td>" + teacher_name + "</td>" +
                             // "<td>" + course_text + "</td>" +
                             // "<td>" + group_start_date + "</td>" +
