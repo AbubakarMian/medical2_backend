@@ -329,8 +329,10 @@ class CoursesController extends Controller
             $course_register_id = $request->course_register;
             $course_register = Course_Register::with('student_fees', 'user', 'course', 'group')->find($course_register_id);
             $student_fees_id =  $course_register->student_fees->id;
+            $group_id =  $course_register->group_id;
             //multipe couurses register ki payment ayngi
-            $student_fees = Student_fees::with('user', 'course')->where('status','!=','paid')->where('user_id', $course_register->user->id)->orderby('due_date')->get();
+            $student_fees = Student_fees::with('user', 'course')->where('status','!=','paid')->where('user_id', $course_register->user->id)
+            ->where('group_id',$group_id)->orderby('due_date')->get();
             return view('user.user_show_payment.index', compact('course_register', 'stripe_key', 'student_fees'));
         }
     }

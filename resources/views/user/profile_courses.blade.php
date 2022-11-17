@@ -19,7 +19,7 @@ use App\Model\Student_fees;
       <div class="row">
         <div class="col-sm-12">
           <div class="corsdetailareadata">
-            <h1>Courses Details</h1>
+            <h1>Courses Register Details</h1>
 
             <table class="table prtable">
               <thead>
