@@ -143,9 +143,10 @@ class GroupController extends Controller
                 $group_timings->course_id = $request->courses_id;
                 $group_timings->group_id = $group->id;
                 $group_timings->day = $d;
-                $group_timings->start_time = $this->time_to_timestamp_group($request->start_time[$key]);
-                $group_timings->end_time = $this->time_to_timestamp_group($request->end_time[$key]);
-                // $group_timings->end_time = strtotime( $request->start_time[$key]);
+                // $group_timings->start_time = $this->time_to_timestamp_group($request->start_time[$key]);
+                // $group_timings->end_time = $this->time_to_timestamp_group($request->end_time[$key]);
+                $group_timings->end_time = strtotime( $request->start_time[$key]);
+                $group_timings->end_time = strtotime( $request->end_time[$key]);
                 // dd( $group_timings->start_time);
                 $group_timings->save();
             }
