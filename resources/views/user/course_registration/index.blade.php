@@ -159,8 +159,9 @@ use App\Model\Student_fees;
                             ?>
                             @foreach ($cg->group_timings as $key => $gt)
                            
-
+        
                             <?php
+                            // dd($gt);
                              $current_time = Carbon::now()->format('h:i:s');
                             
                             // dd( $current_time );
@@ -181,8 +182,7 @@ use App\Model\Student_fees;
                      
                            
                             if ($current_total_sec_gmt_minus > $gt->start_time & $current_total_sec_gmt_minus < $gt->end_time) {
-                            // if ($gt->start_time < $current_time) {
-                            // if ($current_time < $gt->end_time ) {
+                           
                                 $show_time = 'Time hai';
                                 // dd($show_time);
                             }
@@ -194,8 +194,8 @@ use App\Model\Student_fees;
 
                             <tr>
                                 <td>{{ ucwords($gt->day) }}</td>
-                                @if( $show_time == 'Time Passes away')
-                                <!-- Time -->
+                                <!-- @if( $show_time == 'Time Passes away')
+                               
                                 <td>
                                     Time Passes away
                                 </td>
@@ -203,8 +203,8 @@ use App\Model\Student_fees;
                                     Time Passes away
 
                                 </td>
-                                <!-- Time -->
-                                @else
+                               
+                                @else -->
                                 <!-- start_time -->
                                 <td>
                                     {{ date('h:i:s', $gt->start_time) }}
@@ -214,7 +214,7 @@ use App\Model\Student_fees;
                                 </td>
 
                                 <!-- start_time -->
-                                @endif
+                                <!-- @endif -->
 
 
                             </tr>
