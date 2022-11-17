@@ -270,13 +270,14 @@ class CoursesController extends Controller
         $courses_id = $request->course_id;
         $group_id = $request->group_id;
         $course = Courses::find($courses_id);
-        $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->first();
+        $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->where('group_id',$group_id)->first();
 
 
         if ($course_register) {
             // do nothing and go to payment screen
             //         $payment = Payment
             // return redirect('user_show_payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
+            return redirect()->back()->with('success', 'Sorry ! You are  already Registered in this Course ');
         } elseif (!$course_register) {
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
