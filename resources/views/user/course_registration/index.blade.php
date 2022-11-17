@@ -153,59 +153,15 @@ use App\Model\Student_fees;
                                 <th>Start Time</th>
                                 <th>End Time</th>
                             </tr>
-                            <?php
-                            $show_time = '';
-                            // dd($cg[1])
-                            ?>
+                           
                             @foreach ($cg->group_timings as $key => $gt)
                            
         
-                            <?php
-                            // dd($gt);
-                             $current_time = Carbon::now()->format('h:i:s');
-                            
-                            // dd( $current_time );
-                            $time_arr =  explode(':',$current_time);  //array ko devid ekrta hai explode
-                            // dd( $time_arr);
-                         
-                            $time_hr = $time_arr[0];
-                            $time_min = $time_arr[1];
-                            // 
-                            $gmt_sec = 300*60;
-                            // 
-                            $total_mins = ($time_hr * 60) + $time_min;
-                            $total_sec = $total_mins * 60;
-                            $current_total_sec_gmt_minus = $total_sec + $gmt_sec;
-                            // dd( $total_sec);
-                            $start_time = $gt->start_time+ $gmt_sec;
-                            $end_time = $gt->end_time+ $gmt_sec;
-                     
                            
-                            if ($current_total_sec_gmt_minus > $gt->start_time & $current_total_sec_gmt_minus < $gt->end_time) {
-                           
-                                $show_time = 'Time hai';
-                                // dd($show_time);
-                            }
-                            else{
-                                $show_time = 'Time Passes away';
-
-                            }
-                            ?>
 
                             <tr>
                                 <td>{{ ucwords($gt->day) }}</td>
-                                <!-- @if( $show_time == 'Time Passes away')
                                
-                                <td>
-                                    Time Passes away
-                                </td>
-                                <td>
-                                    Time Passes away
-
-                                </td>
-                               
-                                @else -->
-                                <!-- start_time -->
                                 <td>
                                     {{ date('h:i:s', $gt->start_time) }}
                                 </td>
@@ -213,8 +169,7 @@ use App\Model\Student_fees;
                                     {{ date('h:i:s', $gt->end_time) }}
                                 </td>
 
-                                <!-- start_time -->
-                                <!-- @endif -->
+                              
 
 
                             </tr>
