@@ -6,6 +6,12 @@
         margin-top: 14px;
         margin-bottom: 0px;
     }
+    .form-group.open_fees_type_div_area {
+    background-color:  #d3d3d32e;
+    width: 100%;
+    height: 32%;
+    border-radius: 8px;
+}
 
     #zoom_textarea {
         background-color: #d8dcee;
@@ -19,6 +25,14 @@
         width: 35px;
         height: 19px;
     }
+    select#fees_type {
+    /* background-color: aliceblue; */
+    height: 52px;
+    border-radius: 27px;
+    font-size: 21px;
+    color: black;
+    font-family: fangsong;
+}
 </style>
 
 
@@ -66,6 +80,16 @@
         'maxlength'=>"100"]) !!}
     </div>
 </div>
+<div class="form-group">
+    {!! Form::label('Teacher','teacher') !!}
+    <div>
+        {!! Form::select('teacher_id', $teacher , null, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'Enter Teacher Name','required',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
 
 
 <div class="form-group">
@@ -79,6 +103,7 @@
         'maxlength'=>"100"]) !!}
     </div>
 </div>
+
 
 <!-- <div class="old_paln_show_heading">
 </div> -->
@@ -100,16 +125,7 @@
 </div>
 <!--  -->
 
-<div class="form-group">
-    {!! Form::label('Teacher','teacher') !!}
-    <div>
-        {!! Form::select('teacher_id', $teacher , null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Teacher Name','required',
-        'maxlength'=>"100"]) !!}
-    </div>
-</div>
+
 
 
 
@@ -117,15 +133,22 @@
 <!--newwwwwwww  WORKSSSS-->
 
 <div class="form-group open_fees_type_div_area">
-    <div id="palne" style="font-size: 19px;
-    color: cornflowerblue;
-    font-weight: bold">
+    <div id="palne" style="
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    ">
         Please Select A new Plan
     </div>
+<div class="my_feese_type" style="margin-top: 22px;color: black;">
+
     {!! Form::label('fees_type','Fees Type',) !!}
     {!! Form::select('fees_type',$fees_type,null,["placeholder"=>"Select
     Type","onchange"=>"open_fees_type_div()", "class"=>"form-control fees_type"]) !!}
-    </select>
+    <!-- </select> -->
+
+</div>
+
 </div>
 
 
@@ -134,9 +157,11 @@
 
 
 <div class="complete_fees_area" style="background-color: #d3d3d32e;">
+<div class="complete_feessss_araes">
     <h3>
         Enter Complete Fess Amount And Due Date
     </h3>
+    </div>
 
     <div class="row">
 
@@ -400,35 +425,35 @@
 <!--  -->
 
 
-    {!! Form::label('is_online ','Group Online Class') !!}
+{!! Form::label('is_online ','Group Online Class') !!}
 
-    <div>
+<div>
 
-        <input type="checkbox" id="myCheck" onclick="myFunction()" name="is_online">
-    </div>
-
-
-    <div class="form-group" id="zoom">
+    <input type="checkbox" id="myCheck" onclick="myFunction()" name="is_online">
+</div>
 
 
-
-        {!! Form::label('zoom','Choose Url For Online Class') !!}
-        {!! Form::file('zoom', ['class' => 'choose-zoom', 'id'=>'zoomss'] ) !!}
-        <p class="help-block" id="error">Limit 2MB</p>
-
-        <span>OR</span />
-
-        <div id="zoom_textarea">
-            {!! Form::textarea('zoom_visible',null,['class'=>'form-control' ,
-            'rows'=>'3','placeholder'=>'Enter video URL',
-            'maxlength'=>"225"]) !!}
-            {!!Form::hidden('video')!!}
-
-        </div>
+<div class="form-group" id="zoom">
 
 
+
+    {!! Form::label('zoom','Choose Url For Online Class') !!}
+    {!! Form::file('zoom', ['class' => 'choose-zoom', 'id'=>'zoomss'] ) !!}
+    <p class="help-block" id="error">Limit 2MB</p>
+
+    <span>OR</span />
+
+    <div id="zoom_textarea">
+        {!! Form::textarea('zoom_visible',null,['class'=>'form-control' ,
+        'rows'=>'3','placeholder'=>'Enter video URL',
+        'maxlength'=>"225"]) !!}
+        {!!Form::hidden('video')!!}
 
     </div>
+
+
+
+</div>
 
 
 
@@ -514,7 +539,7 @@
                     console.log('aaaaaaacccccc', response['data'][0].courses.full_name);
                     var course_name = response['data'][0].courses.full_name;
 
-                    var tr_str ='';
+                    var tr_str = '';
 
                     for (var i = 0; i < len; i++) {
                         console.log('qqqqqqqqqqqqq', response['data'][i]);
@@ -538,8 +563,8 @@
 
 
 
-         
-                         tr_str = tr_str +
+
+                        tr_str = tr_str +
                             `
                      
                         <div class="row">
@@ -574,7 +599,7 @@
 
 
                     }
-                     $(".old_paln_show").html(tr_str);
+                    $(".old_paln_show").html(tr_str);
 
 
 
@@ -704,7 +729,7 @@
     $(document).ready(function() {
         // var checkBox = document.getElementById("myCheck");
         var venue_maps = $("#venue_map").hide();
-        var zoom =$("#zoom").hide();
+        var zoom = $("#zoom").hide();
         // 
         var $open_fees_type_div_area = $('.open_fees_type_div_area').hide();
         var $complete_fees_area = $('.complete_fees_area').hide();

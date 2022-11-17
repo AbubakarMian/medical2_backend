@@ -21,10 +21,10 @@ class Profile_Courses_Controller extends Controller
     {
     //  dd(   $student_fees );
     $user = Auth::user();
-        if (!$user) {
-            $user = new \stdClass();
-            $user->role_id = 0;
-        }
+        // if (!$user) {
+        //     $user = new \stdClass();
+        //     $user->role_id = 0;
+        // }
           $course_register = Course_Register::where('user_id', $user->id)->with('course.group', 'user','student_fees')->orderby('id', 'desc')->select('*')->get();
             // dd($course_register[0]->student_fees);
             
@@ -80,6 +80,7 @@ class Profile_Courses_Controller extends Controller
     {
         $user = Auth::user();
         $student_fees = Student_fees::with('user', 'course')->where('user_id', $user->id)->orderby('due_date')->get();
+        // dd(    $student_fees);
 
         return view('user.course_payment_users.index', compact('student_fees'));
     }

@@ -13,8 +13,7 @@ else{
 @section('leftsideform')
 
     @if($control == 'edit')
-        {!! Form::model($student_plan,['id'=>'my_form', 'method' => 'POST', 'route' =>
-                  ['student_plan.update', $student_plan->id],'files'=>true]) !!}
+    {!! Form::open(['id'=>'my_form','method' => 'POST', 'route' => ['student_plan.update' ], 'files'=>true]) !!}
     @else
         {!! Form::open(['id'=>'my_form','method' => 'POST', 'route' => ['student_plan.save' ], 'files'=>true]) !!}
     @endif

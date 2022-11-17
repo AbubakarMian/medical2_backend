@@ -88,6 +88,12 @@ class AdminController extends Controller
         ];
         $modules[]= [
 
+            'url'=>'admin/teacher',
+            'title'=>'Teacher'
+
+        ];
+        $modules[]= [
+
             'url'=>'admin/category',
             'title'=>'Category'
         ];
@@ -97,21 +103,17 @@ class AdminController extends Controller
             'title' => 'Courses',
 
         ];
-        $modules[]= [
-
-            'url'=>'admin/books',
-            'title'=>'Books'
-        ];
-        $modules[]= [
-
-            'url'=>'admin/teacher',
-            'title'=>'Teacher'
-
-        ];
+      
+      
         $modules[]= [
 
             'url'=>'admin/group',
             'title'=>'Group'
+        ];
+        $modules[]= [
+
+            'url'=>'admin/books',
+            'title'=>'Books'
         ];
 
 

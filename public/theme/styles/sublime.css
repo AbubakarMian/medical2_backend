@@ -2005,13 +2005,87 @@ aside > .fffix > footer .btn-xs.navbar-btn {
  * Color Variant: Success;
  *
  */
-.bg-success {
+/* .bg-success {
   background-color: #15db81;
   color: #ffffff;
   transition:background-color .2s;
+} */
+
+.bg-success {
+  background-color: cornflowerblue;
+  color: #ffffff;
+  transition: background-color .2s;
+  border-radius: 24px;
+  width: 330px;
+  font-family: initial;
+  color: cornsilk;
+}
+.dash-tile {
+    position: relative;
+    /* background-color: #fff; */
+    /* -webkit-border-radius: 2px; */
+    /* -moz-border-radius: 2px;
+    border-radius: 2px; */
+    padding: 15px;
+    margin-bottom: 20px;
+    /* color: cornflowerblue; */
+    /* text-decoration: underline; */
+    text-align-last: center;
+    text-decoration-color: currentColor;
+    text-transform: uppercase;
+}
+section.abc {
+  /* background-color: #4f5061; */
+  /* background-color: cornflowerblue;
+    border-radius: 61px;
+  border-radius: 28px;
+  text-decoration: underline; */
+  color: cornflowerblue;
+}
+section.dash-tile.bg-warning {
+  border-radius: 24px;
+  background-color: darkblue;
+  color: aliceblue;
+}
+section.layout {
+  font-size: 16px;
+}
+.btn-success.ccc {
+  color: black;
+  background-color:  #15db81;;
+  border-color:  #15db81;;
+  border-radius: 30px;
+  width: 212px;
+  height: 60px;
+  font-size: 29px;
+  font-family: initial;
+}
+section.dash-tile.bg-warning.modules {
+  font-family: emoji;
+}
+section.dash-tile.bg-success.modules {
+  width: 391px;
+  height: 103px;
+}
+
+section.dash-tile.bg-warning.modules {
+  width: 391px;
+  height: 103px;
+}
+section.dash-tile.vvv {
+  /* background-color: #4f5061; */
+  background-color: darkblue;
+  border-radius: 24px;
+  /* border-radius: 28px; */
+  /* text-decoration: underline; */
+  /* color: darkblue; */
+  color: aliceblue;
+}
+aside.sidebar.offscreen-left {
+  background-color: midnightblue;
 }
 .bg-success:hover{
-  background-color: #17A062;
+  background-color: #1765a0;
 }
 .bg-success a {
   color: #ffffff;

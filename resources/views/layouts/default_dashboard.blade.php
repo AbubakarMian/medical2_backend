@@ -17,8 +17,15 @@ $reports = $admin_common->reports;
         <div class="col-md-12 col-sm-12 col-xs-12">
 
             <div>
-                <section class="dash-tile">
-                    <h1 class="mt0">Modules</h1>
+                <!-- <section class="dash-tile abc">
+                    <h1 class="mt0">
+                        Modules
+                    </h1>
+                </section> -->
+                <section class="abc">
+                    <h1 class="mt0">
+                    <button type="button" class="btn btn-success ccc">Modules</button>
+                    </h1>
                 </section>
             </div>
             @if ($message = Session::get('error'))
@@ -34,7 +41,7 @@ $reports = $admin_common->reports;
 
             <a href="{!! asset($module['url']) !!}">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <section class="dash-tile bg-success">
+                    <section class="dash-tile bg-success modules">
                         <div class="tile-title">
                         </div>
                         <div class="tile-stats">{!! $module['title'] !!}
@@ -56,15 +63,20 @@ $reports = $admin_common->reports;
     <div class="row">
 
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <section class="dash-tile">
+            <!-- <section class="dash-tile vvv">
                 <h1 class="mt0">Reports</h1>
-            </section>
+            </section> -->
+            <section class="abc">
+                    <h1 class="mt0">
+                    <button type="button" class="btn btn-success ccc">Reports</button>
+                    </h1>
+                </section>
         </div>
         @foreach($reports as $key => $report)
         {{-- {{dd($report[$key]['url'])}} --}}
         <a href="{!! asset($report['url']) !!}">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <section class="dash-tile bg-warning">
+                    <section class="dash-tile bg-warning modules">
                         <div class="tile-stats">{!!$report['title']!!}
                         </div>
                         <br><br>
