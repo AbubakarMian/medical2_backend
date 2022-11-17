@@ -42,14 +42,14 @@ width="400px" style="table-layout:fixed;"
 
 
 
-    @foreach($student_plan as $s_p)
+    @foreach($course_register as $s_p)
 
 
 
 
 		<td >{!! ucwords($s_p->user->name ) !!} </td>
 		<td >{!!ucwords($s_p->user->email) !!}</td>
-        <td > <a class="btn btn-primary" href="{{ asset('admin/student_plan/edit?student_id=' . $s_p->id) }}">
+        <td > <a class="btn btn-primary" href="{{ asset('admin/student_plan/edit?user_id=' . $s_p->user_id) }}">
                                    Edit {!!$s_p->name!!} Plan
                                 </a>
 							
@@ -72,7 +72,7 @@ width="400px" style="table-layout:fixed;"
 
 </tbody>
 @section('pagination')
-<span class="pagination pagination-md pull-right">{!! $student_plan->render() !!}</span>
+<span class="pagination pagination-md pull-right">{!! $course_register->render() !!}</span>
 <div class="col-md-3 pull-left">
 	<div class="form-group text-center">
 		<div>

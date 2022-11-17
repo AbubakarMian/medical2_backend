@@ -21,7 +21,7 @@
                               <tr>
                                
                                 <th scope="col">User</th>
-                                <th scope="col">Course</th>
+                                <!-- <th scope="col">Course</th> -->
                                 <th scope="col">Group</th>
                                 <th scope="col">Fees Type</th>
                                 <th scope="col">Amount</th>
@@ -39,7 +39,7 @@
                               <tr>
                                 
                                 <td>{{ucwords($c->user->name)}}</td>
-                                <td>{{ucwords($c->course->full_name)}}</td>
+                                <!-- <td>{{ucwords($c->course->full_name)}}</td> -->
                                 <td>{{ucwords($c->course->group->name)}}</td>
                                 <td>{{ucwords($c->fees_type)}}</td>
                                 <td>{{$c->amount}}</td>

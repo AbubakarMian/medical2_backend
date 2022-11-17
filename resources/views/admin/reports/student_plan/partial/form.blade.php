@@ -50,23 +50,42 @@
     }
 </style>
 
-<!--  old_paln_show-->
-<div class="old_paln_show">
+<?php
+$type = '';
+?>
 
+@foreach($student_plan as $p)
 
-    <div class="form-group">
-        {!! Form::label('old_fees_type','Fees Type') !!}
+@if($p->status == 'paid')
+<div class="form-group">
+        {!! Form::label('old_amount','Amount Paid') !!}
         <div>
-            <input value="{{$student_plan->fees_type}}" name="lname" disabled class="form-control">
+            <input value="{{$p->amount}}" name="lname" disabled class="form-control old_amount">
         </div>
         </select>
     </div>
+ @else(!$p->status == 'paid')   
 
+<div class="old_paln_show">
+
+    @if($p->fees_type == $type)
+    @else
+    <div class="form-group">
+        {!! Form::label('old_fees_type','Fees Type') !!}
+        <div>
+            <input value="{{$p->fees_type}}" name="lname" disabled class="form-control">
+        </div>
+        </select>
+    </div>
+    @endif
+    <?php
+    $type = $p->fees_type;
+    ?>
 
     <div class="form-group">
-        {!! Form::label('old_amount','Amount') !!}
+        {!! Form::label('old_amount','Amount Not Paid ') !!}
         <div>
-            <input value="{{$student_plan->amount}}" name="lname" disabled class="form-control old_amount">
+            <input value="{{$p->amount}}" name="lname" disabled class="form-control old_amount">
         </div>
         </select>
     </div>
@@ -74,13 +93,22 @@
     <div class="form-group">
         {!! Form::label('old_due_date','Due Date') !!}
         <div>
-            <input value="{!! date('Y-m-d', $student_plan->due_date) !!}" name="l_name" disabled class="form-control">
+            <input value="{!! date('d-m-Y', $p->due_date) !!}" name="l_name" disabled class="form-control">
 
         </div>
 
         </select>
     </div>
 </div>
+<input hidden name="student_id[]" value="{{$p->id}}">
+<input hidden name="user_id" value="{{$p->user_id}}">
+<input hidden name="group_id" value="{{$p->group_id}}">
+<input hidden name="course_register_id" value="{{$p->course_register_id}}">
+<input hidden name="course_id" value="{{$p->course_id}}">
+@endif
+
+@endforeach
+
 
 <!--  -->
 
@@ -110,7 +138,7 @@
         {!! Form::label('fees_type','Fees Type',) !!}
         {!! Form::select('fees_type',$fees_type,null,["placeholder"=>"Select
         Type","onchange"=>"open_fees_type_div()",
-        "class"=>"form-control fees_type","required"]) !!}
+        "class"=>"form-control fees_type",]) !!}
         </select>
     </div>
 </div>

@@ -14,13 +14,12 @@ List of Groups
 <table id="groupTableAppend" style="opacity: 0">
     <thead>
         <tr>
-
-            <th>Groups</th>
-            <th>Course Name</th>
-            <th>Teacher Name</th>
+           <th>Course </th>
+            <th>Group </th>
+            <th>Teacher </th>
             <th>Start Date</th>
             <th>End Date</th>
-            <th>Students</th>
+            <!-- <th>Students</th> -->
             <th>Edit</th>
             <th>Delete</th>
 
@@ -50,15 +49,15 @@ List of Groups
                         
                         console.log('aaaaaaa',response['data'][i]);
                         var id = response['data'][i].id;
+                        var course_name = response['data'][i].courses.full_name  ;
                         var group_text = response['data'][i].name;
                         // var group_text = response['data'][i].name ? name:'No Name';
-                        var course_name = response['data'][i].courses.full_name +'Course' ;
-                        var teacher_name = response['data'][i].teacher.name +' Teacher' ;
+                        var teacher_name = response['data'][i].teacher.name ;
                         // var course_text = response['data'][i].course_id;
                         var group_start_date = response['data'][i].start_date;
                         var group_end_date = response['data'][i].end_date;
                         console.log('qqqqqqqq',response['data'][i].group);
-                        var Students = `<a class="btn btn-info" href="{!!asset('admin/group/students/` + id + `')!!}">Students</a>`;
+                        // var Students = `<a class="btn btn-info" href="{!!asset('admin/group/students/` + id + `')!!}">Students</a>`;
                         var edit = `<a class="btn btn-info" href="{!!asset('admin/group/edit/` + id + `')!!}">Edit</a>`;
                        createModal({
                             id: 'group_' + response['data'][i].id,
@@ -84,7 +83,7 @@ List of Groups
                             "<td>" + new Date(group_start_date*1000).toDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + "</td>" +
                             "<td>" + new Date(group_end_date*1000).toDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + "</td>" +
                             // "<td>" + group_end_date + "</td>" +
-                            "<td>" + Students + "</td>" +
+                            // "<td>" + Students + "</td>" +
                             "<td>" + edit + "</td>" +
                             "<td>" + delete_btn + "</td>" +
                             "</tr>";
