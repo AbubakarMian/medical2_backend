@@ -25,7 +25,9 @@ class Profile_Courses_Controller extends Controller
         //     $user = new \stdClass();
         //     $user->role_id = 0;
         // }
-          $course_register = Course_Register::where('user_id', $user->id)->with('course.group', 'user','student_fees')->orderby('id', 'desc')->select('*')->get();
+          $course_register = Course_Register::where('user_id', $user->id)
+          ->with('course.group', 'user','student_fees')->orderby('id', 'desc')
+          ->select('*')->get();
             // dd($course_register[0]->student_fees);
             
             // 
