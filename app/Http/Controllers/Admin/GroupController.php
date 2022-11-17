@@ -82,6 +82,7 @@ class GroupController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd('aa');
         $group = Group::find($id);
         $group_timings =  Group_Timings::where('group_id',  $group->id)->delete();
         $this->add_or_update($request, $group);
