@@ -270,9 +270,9 @@ class CoursesController extends Controller
         $courses_id = $request->course_id;
         $group_id = $request->group_id;
         $course = Courses::find($courses_id);
-        $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->where('group_id',$group_id)->first();
+        $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->first();
 
-
+// dd( $course_register);
         if ($course_register) {
             // do nothing and go to payment screen
             //         $payment = Payment

@@ -9,7 +9,7 @@
     .form-group.open_fees_type_div_area {
     background-color:  #d3d3d32e;
     width: 100%;
-    height: 32%;
+    height: 27%;
     border-radius: 8px;
 }
 

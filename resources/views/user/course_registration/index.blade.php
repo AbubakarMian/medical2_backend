@@ -51,6 +51,7 @@ use App\Model\Student_fees;
         <div class="row">
             <div class="col-sm-12">
                 <div class="courbanddata">
+            
                     <!--  -->
                     <?php
                     $course_g = $courses_groups->count();
@@ -83,7 +84,12 @@ use App\Model\Student_fees;
         <div class="row">
             <div class="col-sm-12">
 
-
+            @if ($message = Session::get('success'))
+                                    <div class="alert alert-success alert-block">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @endif
 
                 <?php
 // dd($courses_groups[1]);
