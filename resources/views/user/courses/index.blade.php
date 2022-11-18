@@ -106,7 +106,7 @@
                                             <div class="course-footer">
                                                 <div class="price-container">
                                                     <span class="currency">Price: </span>
-                                                    <span class="price">${!! $p->fees !!}</span>
+                                                    <span class="price">${!! $p->examination_fees !!}</span>
                                                 </div>
                                             </div>
                                         </div>

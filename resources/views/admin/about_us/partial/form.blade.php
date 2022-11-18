@@ -13,7 +13,7 @@
     <div >
 
     <div>
-        {!! Form::textarea('description', null, ['class' => 'ckeditor form-control' , 'id'=>'summary-ckeditor', 'data-parsley-required' => 'true', 'data-parsley-trigger' => 'change', 'placeholder' => 'Enter title', 'required', 'maxlength' => '100']) !!}
+        {!! Form::textarea('description', null, ['class' => ' form-control' , 'id'=>'ckeditor1222', 'data-parsley-required' => 'true', 'data-parsley-trigger' => 'change', 'placeholder' => 'Enter title', 'required', 'maxlength' => '100']) !!}
     </div>
 
 </div>
@@ -54,6 +54,18 @@
     function validateForm() {
         return true;
     }
+    $(function() {
+        // $( '#ckeditor1222' ).ckeditor();
+        // setTimeout(function() {
+        //     console.log('stat');
+            CKEDITOR.replace('ckeditor1222', {
+                fullPage: true,
+                allowedContent: true
+            });
+        // }, 5000)
+
+
+    })
 
 </script>
 

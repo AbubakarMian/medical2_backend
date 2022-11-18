@@ -40,7 +40,7 @@ h4 {
   text-align: justify;
 }
 .logclick {
-  border-radius: 0px;
+  border-radius: 16px;
   margin-top: 20px;
   width: 120px;
   background-color: #f1582b !important;

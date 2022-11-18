@@ -37,109 +37,7 @@
 
 
 
-                                    {{--  --}}
-
-
-
-
-                                    <div>
-                                        <br />
-
-                                        <br />
-                                        <div class="row">
-                                            <div class="col-md-4">&nbsp;</div>
-                                            <input hidden value='378' id="image_width">
-                                            <input hidden value='226' id="image_height">
-                                            <input hidden value='16' id="aspect_ratio_width">
-                                            <input hidden value='9' id="aspect_ratio_height">
-
-
-                                            <div class="col-md-4">
-                                                <div class="image_area">
-
-                                                    <div class="image_area">
-                                                        <label for="upload_image">
-                                                            <?php
-                                                            $avatar = asset('images/logo.png');
-                                                            if (isset($courses)) {
-                                                                if ($courses->avatar) {
-                                                                    $avatar = $courses->avatar;
-                                                                }
-                                                            }
-                                                            ?>
-                                                            <img src="{!! $avatar !!}" id="uploaded_image"
-                                                                class="img-responsive img-circle" name="uploadeds_image" />
-                                                            <div class="overlay1">
-                                                                <div class="text">Upload</div>
-                                                            </div>
-                                                            <input type="file" name="image" class="image upload_image"
-                                                                id="upload_image" style="display:none" />
-                                                        </label>
-                                                    </div>
-                                                    <hr>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="modal fade" id="modal" tabindex="-1" role="dialog"
-                                                aria-labelledby="modalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Crop Image Before Upload</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">×</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="img-container">
-                                                                <div class="row">
-                                                                    <div class="col-md-8">
-                                                                        <img src="" id="sample_image" />
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="preview"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" id="crop"
-                                                                class="btn btn-primary">Crop</button>
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Cancel</button>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="myModalsuccess" class="modal fade" role="dialog">
-                                                <div class="modal-dialog">
-
-                                                    <!-- Modal content-->
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close"
-                                                                data-dismiss="modal">&times;</button>
-                                                            <h4 class="modal-title">Save Sucessfully</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Thankyou</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default"
-                                                                data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    {{--  --}}
+                            
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
@@ -295,8 +193,8 @@
                         var base64data = reader.result;
                         console.log('base64database64database64database64data', base64data);
                         $.ajax({
-                            // url: '{!! asset('admin/settings/update') !!}/' + pages_images_id,
-                            url: '{!! asset('admin/courses_crop_image') !!}',
+                        
+                            url: `{!! asset('admin/courses_crop_image') !!}`,
                             method: 'POST',
                             data: {
                                 image: base64data,

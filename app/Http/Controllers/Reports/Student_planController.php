@@ -31,8 +31,8 @@ class Student_planController extends Controller
         // $student_plan = Group_users::with('user')->orderBy('created_at', 'DESC')->paginate(10);
         // $student_plan = Student_fees::with('user')->orderBy('created_at', 'DESC')->paginate(10);
         // $group = Group::with('courses', 'teacher','user','student_fees')->orderby('id', 'desc')->select('*')->get();
-        $course_register = Course_Register::with('course.group', 'user')->orderby('id', 'desc')->select('*')->paginate(10);
-        //  dd($group->student_fees);
+        $course_register = Course_Register::with('group', 'user')->orderby('id', 'desc')->select('*')->paginate(10);
+        //  dd($course_register);
         return view('admin.reports.student_plan.index', compact('course_register'));
     }
 
