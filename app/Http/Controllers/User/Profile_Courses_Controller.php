@@ -25,10 +25,22 @@ class Profile_Courses_Controller extends Controller
         //     $user = new \stdClass();
         //     $user->role_id = 0;
         // }
-          $course_register = Course_Register::where('user_id', $user->id)
-          ->with('course.group', 'user','student_fees')->orderby('id', 'desc')
-          ->select('*')->get();
-            // dd($course_register[0]->student_fees);
+        //   $course_register = Course_Register::where('user_id', $user->id)
+        //   ->with('group', 'user','student_fees','course')->where('status','!=','paid')->orderby('id', 'desc')
+        //   ->select('*')->get();
+            // dd($course_register);
+            $date = Carbon::now();
+            $current_date = strtotime($date);
+            // if ($student_due_date <= $date_string) {
+           
+            $student_fees = Student_fees::where('user_id', $user->id)->
+            with('group', 'user','course','course_register')->orderby('id', 'desc')->
+            select('*')->get();
+        //     ->where('status','pending')->
+        // //    where('due_date','>',$current_date)->
+        // //    orderby('id', 'desc')->
+        // //    select('*')->get();
+        // //    dd($student_fees);   
             
             // 
             // $date = Carbon::now();

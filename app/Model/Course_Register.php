@@ -21,6 +21,6 @@ class Course_Register extends Model
         return $this->hasOne('App\Model\Group','id','group_id');
     }
     public function student_fees(){
-        return $this->hasOne('App\Model\Student_fees','course_register_id','id');
+        return $this->hasMany('App\Model\Student_fees','course_register_id','id');
     }
  }
