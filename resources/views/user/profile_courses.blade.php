@@ -61,8 +61,8 @@ use App\Model\Student_fees;
                   <td scope="row">{{$key+1}}</td>
                   <td>{{$c->user->name ?? ''}}</td>
                   <td>{{$c->course->full_name ?? ''}}</td>
-                  <td>{{$c->course->group->name ?? '' }}</td>
-                  <td>{{$c->course->group->teacher->name ?? ''}}</td>
+                  <td>{{ucwords($c->group->name ?? '') }}</td>
+                  <td>{{$c->group->teacher->name ?? ''}}</td>
                   <td>
 
                     @if ($c->course->group->is_online != 0)
