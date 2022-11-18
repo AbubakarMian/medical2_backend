@@ -18,8 +18,8 @@ use App\Model\Student_fees;
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <div class="corsdetailareadata">
-            <h1>User Course Payment History </h1>
+          <div class="corsdetailareadata" style="border-radius: 34px;">
+            <h1 style="border-radius: 27px;">User Course Payment History </h1>
 
             <table class="table prtable">
               <thead>
@@ -60,13 +60,14 @@ use App\Model\Student_fees;
                     $student_due_date = $c->due_date;
                     ?>
                     @if ($current_date > $student_due_date) 
-                    <a href="" type="button" class="btn btn-danger">Due Date Have Passed</a>
+                    <a href="{{asset('user_show_payment?student_id_not_paid='.$c->id)}}" type="button" class="btn btn-danger" style="margin-bottom: 14px;" >Due Date Have Passed</a>
                      @else
-                    <a href="{{asset('user_show_payment?student_id_not_paid='.$c->id)}}" type="button" class="btn btn-danger">Not Paid</a>
+                    <a href="{{asset('user_show_payment?student_id_not_paid='.$c->id)}}" type="button" class="btn btn-danger"
+                    style="margin-bottom: 14px;">Not Paid</a>
                     @endif
                     <!--  -->
                     @else
-                    <a href="" type="button" class="btn btn-success"> Paid</a>
+                    <a href="" type="button" class="btn btn-success" style="margin-bottom: 14px;"> Paid</a>
                     Paid
                     @endif
 

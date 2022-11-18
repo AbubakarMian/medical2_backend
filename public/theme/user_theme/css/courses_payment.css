@@ -29,6 +29,8 @@ h4 {
     width: 20%;
     font-family: revert;
     margin-bottom: 15px;
+    border-radius: 35px;
+    
 }
 
 
@@ -118,6 +120,7 @@ input:checked+.slider:before {
     width: 20%;
     font-family: revert;
     margin-bottom: 15px;
+    border-radius: 35px;
 }
 
 .lubclick:hover {

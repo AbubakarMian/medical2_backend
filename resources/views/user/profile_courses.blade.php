@@ -18,8 +18,8 @@ use App\Model\Student_fees;
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <div class="corsdetailareadata">
-            <h1>Courses Register Details</h1>
+          <div class="corsdetailareadata" style="border-radius: 34px;">
+            <h1 style="border-radius: 27px;">Courses Register Details</h1>
 
             <table class="table prtable">
               <thead>
@@ -52,7 +52,7 @@ use App\Model\Student_fees;
                 if ($current_date > $student_due_date) {
                   $join_class =
                     'Please Paid';
-                    'Pay Date Have Passed Away';
+                    
                 } else {
                   $join_class = 'Join Class';
                 }
@@ -66,10 +66,11 @@ use App\Model\Student_fees;
                   <td>
 
                     @if ($c->course->group->is_online != 0)
-                    <a href="{{ asset('course/frame/?group_id='.$c->course->group->id) }}" target="_blank">
+                    <a href="{{ asset('course/frame/?group_id='.$c->course->group->id) }}" target="_blank" style="margin-bottom: 14px;">
                       @if($join_class == "Please Paid")
-                      <a href="{{asset('user_show_payment?student_id_not_paid='.$student_id)}}" type="button" class="btn btn-danger">
-                      Pay Date Have Passed Away
+                      <a href="{{asset('user_show_payment?student_id_not_paid='.$student_id)}}" type="button" class="btn btn-danger"
+                      style="margin-bottom: 14px;">
+                      Please Paid
                       </a>
                       @else
                       {{$join_class}} Link

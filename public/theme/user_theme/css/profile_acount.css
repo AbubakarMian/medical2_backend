@@ -17,6 +17,7 @@ h1,h2,h3,h4{
     margin-bottom: 30px;
     background: #f1582b;
     padding: 15px;
+    border-radius: 41px;
 }
 .profilesarea {
     padding: 100px;    
