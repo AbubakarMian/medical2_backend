@@ -14,6 +14,7 @@ use App\Model\Category;
 use App\Model\Courses;
 use App\Model\Group;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToArray;
 // Books;
 
@@ -26,7 +27,20 @@ class Course_RegisterController extends Controller
     }
     public function get_course_register()
     {
-        $course_register = Course_Register::with('course.group','user')->orderby('id', 'desc')->select('*')->get();
+        // $course_register = Course_Register::with('course.group','user')->orderby('id', 'desc')->select('*')->get();
+        //
+        $user = Auth::user();
+        $now = time();
+          $course_register = Course_Register::with(['group', 'user','course','student_feess'=>function($q)use($now){
+            $q->where('status','pending')
+            ->where('due_date','>',$now);
+          }])
+          ->orderby('id', 'desc')
+          ->select('*')->get();
+ 
+
+        // 
+       
         $course_register_data['data'] = $course_register;
         echo json_encode($course_register_data);
     }

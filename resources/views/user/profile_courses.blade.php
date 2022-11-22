@@ -45,41 +45,29 @@ use App\Model\Student_fees;
                 <?php
                 $date = Carbon::now();
                 $current_date = strtotime($date);
-                //  dd( $date_string);
-                $student_id = $c->student_fees->id;
-                $student_due_date = $c->student_fees->due_date;
-                // if ($student_due_date <= $date_string) {
-                if ($current_date > $student_due_date) {
-                  $join_class =
-                    'Please Paid';
-                    
-                } else {
-                  $join_class = 'Join Class';
-                }
                 ?>
                 <tr>
                   <td scope="row">{{$key+1}}</td>
                   <td>{{$c->user->name ?? ''}}</td>
-                  <td>{{$c->course->full_name ?? ''}}</td>
+                  <td>{{$c->group->courses->full_name ?? ''}}</td>
                   <td>{{ucwords($c->group->name ?? '') }}</td>
                   <td>{{$c->group->teacher->name ?? ''}}</td>
+
                   <td>
+                    @if($c->student_feess->count() > 0)
 
-                    @if ($c->course->group->is_online != 0)
-                    <a href="{{ asset('course/frame/?group_id='.$c->course->group->id) }}" target="_blank" style="margin-bottom: 14px;">
-                      @if($join_class == "Please Paid")
-                      <a href="{{asset('user_show_payment?student_id_not_paid='.$student_id)}}" type="button" class="btn btn-danger"
-                      style="margin-bottom: 14px;">
-                      Please Paid
-                      </a>
-                      @else
-                      {{$join_class}} Link
-                      @endif
-
+                    <!-- <a href="{{asset('user_show_payment?student_id_not_paid='.$c->id)}}" type="button" class="btn btn-danger" style="margin-bottom: 14px;"> -->
+                    <a href="{{asset('user_show_payment?course_register='.$c->id)}}" type="button" class="btn btn-danger" style="margin-bottom: 14px;">
+                      Due Date Have Passed.
                     </a>
 
+                    @else
 
-
+                    @if ($c->group->is_online != 0)
+                    <a href="{{ asset('course/frame/?group_id='.$c->group->id) }}" target="_blank" style="margin-bottom: 14px;">
+                      Join Class Link
+                      
+                    </a>
                     @else
                     {{$c->course->group->venue}} Location
                     @endif
@@ -87,23 +75,10 @@ use App\Model\Student_fees;
 
 
 
+                    @endif
                   </td>
 
-                  <!-- <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
-                               
-                                <td><button type="button" class="btn btn-primary porjoin">Join</button>
-                                    <button type="button" class="btn btn-primary pordetai">Detail</button></td> -->
                 </tr>
-                <!-- <tr>
-                                <td scope="row">2</td>
-                                <td>Science</td>
-                                <td>Sir Ali</td>
-                                <td>Canada</td>
-                                <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
-                               
-                                <td><button type="button" class="btn btn-primary porjoinn">Join</button>
-                                    <button type="button" class="btn btn-primary pordetai">Detail</button></td>
-                              </tr>  -->
                 @endforeach
               </tbody>
             </table>

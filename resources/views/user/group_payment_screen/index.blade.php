@@ -86,6 +86,9 @@
                                  <!--  -->
                                  
                                 @if(isset($res_student_array))
+                                <?php
+// dd('sas');
+                                ?>
                                 @foreach($res_student_array as $key => $c)
                                 <input type="hidden" name="group_student_id[]"  value="{{$c->id}}" class="form-control" />
                                   <input type="hidden" name="amount"  value="{{ $amount}}" class="form-control" />

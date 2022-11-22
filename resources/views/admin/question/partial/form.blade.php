@@ -33,7 +33,7 @@
         background-color: #1e90ff;
     }
 </style>
-
+<div id="add_custom_modals"></div>
 
 <div class="form-group">
     {!! Form::label('question', 'Question') !!}

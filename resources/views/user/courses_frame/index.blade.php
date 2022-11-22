@@ -1,5 +1,3 @@
-
-
 <link href="{!! asset('theme/user_theme/css/course_register.css') !!}" rel="stylesheet">
 <link href="{!! asset('theme/user_theme/css/groupform.css') !!}" rel="stylesheet">
 <link href="{!! asset('theme/user_theme/css/newmake.css') !!}" rel="stylesheet">
@@ -14,10 +12,11 @@
         border-collapse: collapse;
         width: 100%;
     }
+
     iframe {
-    width: 1073px;
-    height: 738px;
-}
+        width: 1073px;
+        height: 738px;
+    }
 
     td,
     th {
@@ -71,14 +70,14 @@
                 ?>
 
 
-                @if ($group->is_online != 0)
+                @if ($group->is_online == 1)
                 <?php
                 ?>
 
 
-                <div class="regtabless">
-                    <iframe src="{{$group->url}}" title="description"></iframe>
-                </div>
+                <iframe width="200" height="150" src="{{ $group->url }}" title="hello
+                " frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="munirvideo" allowfullscreen>
+                </iframe>
                 @endif
 
 

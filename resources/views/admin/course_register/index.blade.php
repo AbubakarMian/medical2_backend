@@ -111,7 +111,7 @@ Course Register
                         var id = response['data'][i].id;
                         var user_name = response['data'][i].user.name ;
                         var course_name = response['data'][i].course.full_name ;
-                        var group_names = response['data'][i].course.group ;
+                        var group_names = response['data'][i].group ;
 
                         if(group_names){
                             group_name = group_names.name ;
@@ -124,13 +124,14 @@ Course Register
               var group = `<a class="btn btn-info" onclick="courses_group_request(` + response['data'][i].id + `)" >Group</a>`;
 
 
-                        var is_paids =  response['data'][i].is_paid;
-						if(is_paids){
-                            is_paid = 'Paid'
+                        var is_paids =  response['data'][i].student_feess;
+                        console.log('is_paids',is_paids);
+						if(is_paids.length >0){
+                            is_paid = 'Due Date Have Passed'
 
 						}
 						else{
-							is_paid = 'Pending'
+							is_paid = 'Paid'
 
 						}
                         console.log('qqqqqqqqqoooooooooo',response['data'][i]);
@@ -159,7 +160,7 @@ Course Register
 
     });
 
- {{--  courses_group_request  --}}
+
 
 
 

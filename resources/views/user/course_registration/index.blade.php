@@ -10,39 +10,45 @@
 {{-- <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" /> --}}
 <?php
 
+use App\Model\Course_Register;
 use Carbon\Carbon;
 use App\Model\Student_fees;
+use Illuminate\Support\Facades\Auth;
 
 ?>
 <style>
     h5.regtabless_heading {
-    font-size: 20px;
-    font-family: auto;
-    width: 99%;
-    color: red;
-    /* background-color: lightgreen; */
-}
+        font-size: 20px;
+        font-family: auto;
+        width: 99%;
+        color: red;
+        /* background-color: lightgreen; */
+    }
+
     table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
         width: 100%;
     }
-    .regii {
-    border-radius: 21px;
-   }
-   .regtable {
-   border-radius: 36px;
 
-}
-.ggg {
-    border: 1px solid;
-    color: white;
-    height: 115%;
-    padding-top: 11px;
-    padding-bottom: 15px;
-    border-radius: 19px;
-    background-color: black;
-}
+    .regii {
+        border-radius: 21px;
+    }
+
+    .regtable {
+        border-radius: 36px;
+
+    }
+
+    .ggg {
+        border: 1px solid;
+        color: white;
+        height: 115%;
+        padding-top: 11px;
+        padding-bottom: 15px;
+        border-radius: 19px;
+        background-color: black;
+    }
 
     td,
     th {
@@ -77,9 +83,11 @@ use App\Model\Student_fees;
                 <div class="courbanddata">
 
                     <!--  -->
+
+                    @if(isset($courses_groups))
+
                     <?php
                     $course_g = $courses_groups->count();
-
                     ?>
                     @if($course_g == 0)
 
@@ -87,27 +95,25 @@ use App\Model\Student_fees;
                     padding: 8px;
                     font-size: 21px;">Course Registration Timings Will Be Available Soon</h2>
                     @else
-                    <?php
-                    //  dd($type )
-
-                    ?>
                     @if($type == 'courses')
 
                     <div class="regtabless">
-                    <h5 class="regtabless_heading">
+                        <h5 class="regtabless_heading">
 
 
-                    <div class="ggg">
-                  
-                    <strong>   Select Your {{ ucwords($courses->full_name) }} Course Group</strong>
-                   </div>
-                 
-                    <h5>
+                            <div class="ggg">
+
+                                <strong> Select Your {{ ucwords($courses->full_name) }} Course Group</strong>
+                            </div>
+
+                            <h5>
                     </div>
 
 
                     @elseif($type == 'workshop')
                     <h2>Select Your {{ ucwords($courses->full_name) }} Course Workshop</h2>
+                    @endif
+                    @endif
                     @endif
 
 
@@ -127,15 +133,11 @@ use App\Model\Student_fees;
                 </div>
                 @endif
 
-                <?php
-                // dd($courses_groups[1]);
-                ?>
-                @foreach ($courses_groups as $cg)
-                <?php
-                // dd($cg)
 
+                @if(isset($course_register))
+                <?php
+                $cg = $course_register->group;
                 ?>
-
 
                 <div class="regtable">
 
@@ -177,102 +179,241 @@ use App\Model\Student_fees;
                             $group_start_date = $cg->start_date;
                             $group_end_date = $cg->end_date;
                             ?>
-                           
+
                             <div class="col-sm-2 date">
                                 From {{ date('d,M,Y', $cg->start_date) }} To
                                 {{ date('d,M,Y', $cg->end_date) }}
-                           </div>
-                       
+                            </div>
 
+
+                        </div>
                     </div>
-                </div>
-                @if($cg->type == 'course')
+                    @if($cg->type == 'course')
 
-                <!-- for course -->
+                    <!-- for course -->
 
-                <table>
-                    <tbody>
-                        <tr>
+                    <table>
+                        <tbody>
+                            <tr>
 
-                            <th>Day</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
-                        </tr>
+                                <th>Day</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                            </tr>
 
-                        @foreach ($cg->group_timings as $key => $gt)
-                         <tr>
-                            <td>{{ ucwords($gt->day) }}</td>
+                            @foreach ($cg->group_timings as $key => $gt)
+                            <tr>
+                                <td>{{ ucwords($gt->day) }}</td>
 
-                            <td>
-                                {{ date('h:i:s', $gt->start_time) }}
-                            </td>
-                            <td>
-                                {{ date('h:i:s', $gt->end_time) }}
-                            </td>
-
+                                <td>
+                                    {{ date('h:i:s', $gt->start_time) }}
+                                </td>
+                                <td>
+                                    {{ date('h:i:s', $gt->end_time) }}
+                                </td>
 
 
 
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <!--for workshop not course  -->
 
-                @elseif( $cg->type == 'workshop')
-                <table>
-                    <tbody>
-                        <tr>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <!--for workshop not course  -->
 
-
-                            <th>Start Time</th>
-                            <th></th>
-                            <th></th>
-                            <th>End Time</th>
-                        </tr>
+                    @elseif( $cg->type == 'workshop')
+                    <table>
+                        <tbody>
+                            <tr>
 
 
-                        <tr>
+                                <th>Start Time</th>
+                                <th></th>
+                                <th></th>
+                                <th>End Time</th>
+                            </tr>
 
-                            <td>{{
+
+                            <tr>
+
+                                <td>{{
 
                                     date('h:i:s', $cg->start_date)
                                 
                                 }}
-                            </td>
+                                </td>
 
-                            <td>
-                            </td>
-                            <td>
-                            </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
 
 
-                            <td>
-                                {{
+                                <td>
+                                    {{
                                     date('h:i:s', $cg->end_date)
                                 }}
 
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                    </tbody>
-                </table>
-                @endif
-                <!-- @if ($cg->is_online != 0)
+                        </tbody>
+                    </table>
+                    @endif
+                    <div class="regtabless">
+
+                        <button type="button" class="btn btn-primary regii">You Have Already Registered</button>
+                    </div>
+
+                </div>
+
+
+                <!--  -->
+                @else
+                <?php
+                if(isset($courses_groups))
+               
+                $courses_group = $courses_groups;
+                ?>
+
+
+                @foreach ($courses_group as $cg)
+
+                <div class="regtable">
+
+                    <div class="regtablesh">
+                        <div class="row">
+
+                            <div class="col-sm-2 dates">
+                                <p>Venue
+                                    @if ($cg->is_online == 0)
+                                    : {{ $cg->city }}
+                                    @endif
+                                    </br>
+                                    <?php
+                                    ?>
+                                    @if ($cg->is_online != 0)
+                                    <?php
+                                    ?>
+                                    Online Class
+                                    @elseif($cg->lat != 0)
+                                    <i class="fa fa-map-marker" aria-hidden="true" class="mkmap" onclick="open_map('{!! $cg->lat !!}','{!! $cg->long !!}')" style="cursor: pointer"> click me</i>
+                                    {{-- <button type="button" class="btn btn-warning" onclick="open_map('{!! $cg->lat !!}','{!! $cg->long !!}')">Map Location</button> --}}
+                                    @else
+                                    No Location
+                                </p>
+                                @endif
+                            </div>
+
+                            <div class="col-sm-7 teacherR">
+                                {{ ucwords($cg->teacher->name) }} Teacher / {{ ucwords($cg->name) }}
+                                @if ($cg->type == 'course')
+                                Group
+                                @elseif($cg->type == 'workshop')
+                                Workshop
+                                @endif
+                            </div>
+                            <?php
+                            $date = Carbon::now();
+                            $current_date = strtotime($date);
+                            $group_start_date = $cg->start_date;
+                            $group_end_date = $cg->end_date;
+                            ?>
+
+                            <div class="col-sm-2 date">
+                                From {{ date('d,M,Y', $cg->start_date) }} To
+                                {{ date('d,M,Y', $cg->end_date) }}
+                            </div>
+
+
+                        </div>
+                    </div>
+                    @if($cg->type == 'course')
+
+                    <!-- for course -->
+
+                    <table>
+                        <tbody>
+                            <tr>
+
+                                <th>Day</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                            </tr>
+
+                            @foreach ($cg->group_timings as $key => $gt)
+                            <tr>
+                                <td>{{ ucwords($gt->day) }}</td>
+
+                                <td>
+                                    {{ date('h:i:s', $gt->start_time) }}
+                                </td>
+                                <td>
+                                    {{ date('h:i:s', $gt->end_time) }}
+                                </td>
+
+
+
+
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <!--for workshop not course  -->
+
+                    @elseif( $cg->type == 'workshop')
+                    <table>
+                        <tbody>
+                            <tr>
+
+
+                                <th>Start Time</th>
+                                <th></th>
+                                <th></th>
+                                <th>End Time</th>
+                            </tr>
+
+
+                            <tr>
+
+                                <td>{{
+
+                                    date('h:i:s', $cg->start_date)
+                                
+                                }}
+                                </td>
+
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+
+
+                                <td>
+                                    {{
+                                    date('h:i:s', $cg->end_date)
+                                }}
+
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    @endif
+                    <!-- @if ($cg->is_online != 0)
 
                     <div class="regtabless">
                     <iframe src="{{$cg->url}}" title="description"></iframe>
                     </div>
                     @endif -->
-                    
                     @if($current_date <= $group_start_date || $current_date <=$group_end_date ) 
                     <div class="regtabless">
-                    <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
-                    <a href="{!! asset('save_course_register/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}">
-                   
-                        <button type="button" class="btn btn-primary regii">Single Registeration</button>
+                        <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
+                        <a href="{!! asset('save_course_register/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}">
 
-                    </a>
+                            <button type="button" class="btn btn-primary regii">Single Registeration</button>
+
+                        </a>
                 </div>
                 <div class="regtabless">
                     <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
@@ -284,27 +425,17 @@ use App\Model\Student_fees;
                 </div>
                 @else
                 <div class="regtabless">
-                 <h5 class="regtabless_heading">
-                 <div class="alert alert-danger alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>   Sorry !{{ucwords($cg->name)}} Group Registration Will Be Closed</strong>
+                    <h5 class="regtabless_heading">
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong> Sorry !{{ucwords($cg->name)}} Group Registration Will Be Closed</strong>
+                        </div>
+
+                        <h5>
                 </div>
-                 
-                    <h5>
-                 </div>
-                 @endif
-            </div>
-
-
-
-
-
-
-
-
-
-
-            @endforeach
+                @endif
+               </div>
+ @endforeach
             @endif
             <!--  -->
 
