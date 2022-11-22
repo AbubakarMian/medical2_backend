@@ -65,19 +65,35 @@ class CoursesController extends Controller
 
     public function course_registration(Request $request)
     {
-        // dd('saasa');
+        $user = Auth::User();
         $courses_id = $request->course_id;
         $type = $request->type;
         $courses = Courses::with('group')->find($courses_id);
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
+        $course_registers =  Course_Register::with('group')->where('user_id', $user->id)->where('course_id',  $courses->id)->first();
+    
+        if($course_registers){
+            $course_register =  Course_Register::with('group')->where('user_id', $user->id)->where('course_id',  $courses->id)->first();
+
+        return view('user.course_registration.index', compact('courses', 'stripe_key', 'type','course_register'));
+        }
+        else{
         if ($type == 'courses') {
             $courses_groups = Group::with('group_timings', 'teacher')->where('type', 'course')->whereHas('group_timings')
                 ->where('courses_id', $courses->id)->get();
         } elseif ($type == 'workshop') {
             $courses_groups = Group::with('teacher', 'group_fees')->where('type', 'workshop')->where('courses_id', $courses->id)->get();
         }
-        // dd($courses_groups);
+        // dd(  $courses_groups);
         return view('user.course_registration.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
+    }
+
+        
+       
+      
+// dd($course_register);
+      
+       
     }
 
 
@@ -190,14 +206,14 @@ class CoursesController extends Controller
 
     public function group_payment_finalize(Request $request)
     {
-        //  dd($request->all());
+    //   dd($request->all());
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         $res_student_array = [];
         $amount = $request->total_amount;
-        // dd($amount);
-        if (!$request->student_id) {
-            return redirect()->back()->with('error', 'Please ! Choose The Payment');;
-        } elseif ($request->student_id) {
+        // if (!$request->student_id) {
+        //     return redirect()->back()->with('error', 'Please ! Choose The Payment');;
+        // } 
+        if ($request->student_id) {
             foreach ($request->student_id as $st_id) {
                 $student_fees = Student_fees::with('user', 'course')->find($st_id);
                 $res_student_array[] =  $student_fees;
@@ -277,7 +293,7 @@ class CoursesController extends Controller
             //         $payment = Payment
             // return redirect('user_show_payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
             // return redirect()->back()->with('success', 'Sorry ! You are  already Registered in this Course ');
-        } elseif (!$course_register) {
+        } elseif (!$course_register) { 
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
             $user_group->user_id = $user->id;
@@ -307,11 +323,13 @@ class CoursesController extends Controller
 
             $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         }
+        // dd( $course_register);
         return redirect('user_show_payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
     }
 
     public function user_show_payment(Request $request)
     {
+        // dd('asa');
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
 
         // User Course Payment History se ayga
@@ -325,14 +343,17 @@ class CoursesController extends Controller
         }
         // Select Your Math Course Group se ayga
         elseif ($request->course_register) {
-            // dd('saa');
+            // dd('saass');
             $course_register_id = $request->course_register;
             $course_register = Course_Register::with('student_fees', 'user', 'course', 'group')->find($course_register_id);
+            // dd($course_register);
             $student_fees_id =  $course_register->student_fees->id;
+            //   dd($student_fees_id);
             $group_id =  $course_register->group_id;
             //multipe couurses register ki payment ayngi
             $student_fees = Student_fees::with('user', 'course')->where('status', '!=', 'paid')->where('user_id', $course_register->user->id)
                 ->where('group_id', $group_id)->orderby('due_date')->get();
+                // dd(  $student_fees );
             return view('user.user_show_payment.index', compact('course_register', 'stripe_key', 'student_fees'));
         }
     }
@@ -401,9 +422,9 @@ class CoursesController extends Controller
                     $payment->amount =   $request->amount;
                     $payment->save();
                     // 
-                    $course_register = Course_Register::find($request->course_register_id);
-                    $course_register->is_paid =   1;
-                    $course_register->save();
+                    // $course_register = Course_Register::find($request->course_register_id);
+                    // $course_register->is_paid =   1;
+                    // $course_register->save();
                     // 
                     $student_fees->status = 'paid';
                     $student_fees->payment_id = $payment->id;
@@ -423,11 +444,12 @@ class CoursesController extends Controller
                 $payment->amount =   $student_fees->amount;
                 $payment->save();
                 // 
-                $course_register = Course_Register::find($request->course_register_id);
-                $course_register->is_paid =   1;
-                $course_register->save();
+                // $course_register = Course_Register::find($request->course_register_id);
+                // $course_register->is_paid =   1;
+                // $course_register->save();
                 // 
                 $student_fees->status = 'paid';
+                $student_fees->payment_id = $payment->id;
                 $student_fees->save();
             } elseif ($request->group_student_id) {
                 //   student_fees for groups
@@ -443,11 +465,11 @@ class CoursesController extends Controller
                 $payment->amount =   $request->amount;
                 $payment->save();
                 // 
-                $course_register = Course_Register::find($request->course_register_id);
-                $course_register->is_paid =   1;
-                $course_register->save();
+                // $course_register = Course_Register::find($request->course_register_id);
+                // $course_register->is_paid =   1;
+                // $course_register->save();
                 // 
-                foreach ($request->student_id as $st_id) {
+                foreach ($request->group_student_id as $st_id) {
                     $student_fees = Student_fees::with('user', 'course')->find($st_id);
                     // dd( $student_fees);
                     $student_fees->status = 'paid';
