@@ -48,6 +48,8 @@ use Illuminate\Support\Facades\Route;
     //  my_profile_save
      Route::post('my_profile_save', 'User\Profile_Courses_Controller@my_profile_save');
 // 
+//  courses/exams
+Route::get('exams', 'User\Exams_Controller@index');
 
 //  new ourse_payemts for installment and comnplete
 Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
@@ -327,7 +329,12 @@ Route::get('admin/group/create', 'Admin\GroupController@create')->name('group.cr
 Route::post('admin/group/save', 'Admin\GroupController@save')->name('group.save');
 Route::get('admin/group/edit/{id}', 'Admin\GroupController@edit')->name('group.edit');
 Route::post('admin/group/update/{id}', 'Admin\GroupController@update')->name('group.update');
-Route::post('admin/group/delete/{id}', 'Admin\GroupController@destroy_undestroy')->name('group.delete');
+Route::post('admin/group/delete/{id}', 'Admin\GroupController@destroy_undestroy')->name('group.delete'); 
+
+// group_exams
+Route::get('admin/group_exams/{id}', 'Admin\Group_ExamsController@index')->name('group_exams.index'); 
+Route::post('admin/group_exams/create', 'Admin\Group_ExamsController@create')->name('group_exams.create'); 
+Route::post('admin/group_exams/save', 'Admin\Group_ExamsController@save')->name('group_exams.save'); 
 
 
 Route::post('admin/group/select_courses_id/{id}', 'Admin\GroupController@select_courses_data')->name('select_courses_id.delete');

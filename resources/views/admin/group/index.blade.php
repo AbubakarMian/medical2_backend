@@ -19,6 +19,7 @@ List of Groups
             <th>Teacher </th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Group Exams</th>
             <!-- <th>Students</th> -->
             <th>Edit</th>
             <th>Delete</th>
@@ -72,6 +73,7 @@ List of Groups
                                 `,
                         });
                         var delete_btn = `<a class="btn btn-info" data-toggle="modal" data-target="#` + 'group_' + response['data'][i].id + `">Delete</a>`;
+                        var group_exams = `<a class="btn btn-info" href="{!!asset('admin/group_exams/` + id + `')!!}">Group Exams</a>`;
 
                         var tr_str = "<tr id='row_"+response['data'][i].id+"'>" +
                            
@@ -85,6 +87,7 @@ List of Groups
                             "<td>" + new Date(group_end_date*1000).toDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + "</td>" +
                             // "<td>" + group_end_date + "</td>" +
                             // "<td>" + Students + "</td>" +
+                            "<td>" + group_exams + "</td>" +
                             "<td>" + edit + "</td>" +
                             "<td>" + delete_btn + "</td>" +
                             "</tr>";
