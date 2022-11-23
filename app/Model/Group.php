@@ -21,9 +21,16 @@ class Group extends Model
    {
        return $this->hasOne('App\Model\Teacher', 'id', 'teacher_id');
    }
+   public function course_register(){
+    return $this->hasOne('App\Model\Course_Register','group_id','id');
+}
    public function user()
    {
        return $this->hasOne('App\User', 'id', 'user_id');
+   }
+   public function exams()
+   {
+       return $this->hasOne('App\Model\Exams', 'group_id', 'id');
    }
 
 

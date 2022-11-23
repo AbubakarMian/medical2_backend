@@ -98,6 +98,10 @@
                                                     aria-hidden="true"></i> Acount</a><br>
                                             <a class="dropdown-item" href="{!! asset('course_payemts') !!}"><i class="fa fa-cog"
                                                     aria-hidden="true"></i> Course Payments</a>
+                                                    <!--  -->
+                                                    <a class="dropdown-item" href="{!! asset('exams') !!}"><i class="fa fa-cog"
+                                                    aria-hidden="true"></i> Exams</a>
+                                                    <!--  -->
 
                                         </div>
                                     </div>
