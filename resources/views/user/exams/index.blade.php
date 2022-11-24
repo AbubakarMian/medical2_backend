@@ -14,40 +14,57 @@
         <div class="col-sm-12">
           <div class="corsdetailareadata" style="border-radius: 34px;">
             <h1 style="border-radius: 27px;">Exams Details</h1>
-
+            <?php
+// dd( $users[1]->group->exams)
+              ?>
+            @foreach($users as $key =>$user)
+            <h5 style="text-align: center;
+    font-size: 15px;
+    font-family: fangsong;
+    text-decoration: underline;">
+    @if($user->group->exams->count()>0)
+            {{ucwords($user->group->name)}} Group
+                  </h5>
+                  
             <table class="table prtable">
               <thead>
                 <tr>
-                  <th scope="col">Sno</th>
+                 
+                
+                
                   <th scope="col">Exam Name</th>
-                  <th scope="col">Course Name</th>
-                  <th scope="col">Group Name</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">Detail</th>
+                  
                  
                 </tr>
               </thead>
               <tbody>
-              
-                @foreach($course_register as $key =>$e)
-                <tr>
-                  <?php
-//  dd($e->group->exams)
-                  ?>
-                  <td scope="row">{{$key+1}}</td>
-                  <td scope="row">{{ucwords($e->group->exams->name)}}</td> 
-                  <td scope="row">{{ucwords($e->group->courses->full_name)}}</td> 
-                  <td scope="row">{{ucwords($e->group->name)}}</td> 
-                 
-                  <td scope="row">Pending</td>
-                  </tr>
-               @endforeach
-                 
-                
-
-              
              
-              </tbody>
-            </table>
+ 
+              @foreach($user->group->exams  as $exam)
+
+ <tr>
+
+
+  
+          
+                   <td scope="row">
+              {{ucwords($exam->name)}}
+                  </td> 
+                  <td scope="row">
+              {{ucwords($exam->detail)}}
+                  </td> 
+
+</tr>
+
+               
+  @endforeach
+
+</tbody>
+   </table>
+                 
+  @endif
+            @endforeach
 
           </div>
         </div>

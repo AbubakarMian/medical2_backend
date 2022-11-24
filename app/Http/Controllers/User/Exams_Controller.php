@@ -21,14 +21,16 @@ class Exams_Controller extends Controller
     public function index()
     
     {
-        $user= Auth::user();
-        $course_register  = Course_Register::with('group')->where('user_id',$user->id)->get();
-        // $course_register_group_id  = $course_register->group->id;
-        // dd($course_register);
-        // $group  = Group::with('exams')->where('id',$course_register_group_id)->get();
-        // dd( $group);
-    //   $exams = 
-        return view('user.exams.index',compact('course_register'));
+$user= Auth::user();
+$users  = Course_Register::with('group')->where('user_id',$user->id)->get();
+// $course_register_group_id  = $course_register->group->id;
+// dd($course_register);
+// $group  = Group::with('exams')->where('id',$course_register_group_id)->get();
+// dd( $users);
+//   $exams = 
+
+// dd($user);
+return view('user.exams.index',compact('users'));
 
     }
 
