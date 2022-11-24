@@ -30,7 +30,7 @@ class Group extends Model
    }
    public function exams()
    {
-       return $this->hasOne('App\Model\Exams', 'group_id', 'id');
+       return $this->hasMany('App\Model\Exams', 'group_id', 'id');
    }
 
 
