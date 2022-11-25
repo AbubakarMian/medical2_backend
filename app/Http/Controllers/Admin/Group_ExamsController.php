@@ -9,6 +9,7 @@ use App\Model\Courses_Fees;
 use App\Model\Group_fees;
 use App\Model\Day;
 use App\Model\Exams;
+use App\Model\Group_Exams;
 use Carbon\Carbon;
 use App\Model\Group;
 use App\Model\Group_Timings;
@@ -39,11 +40,16 @@ class Group_ExamsController extends Controller
     public function save(Request $request)
     {
         //    dd($request->all());
-        $exams = new Exams();
+        $exams = new Group();
         $exams->name =$request->name;
         $exams->detail =$request->detail;
         $exams->group_id =$request->group_id;
         $exams->save();
+
+        $group_exams = new Group_Exams();
+        $group_exams->group_id =  $exams->group_id;
+        $group_exams->exam_id =$exams->id;
+        $group_exams->save();
 
         
 
