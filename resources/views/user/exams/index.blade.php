@@ -15,11 +15,11 @@
           <div class="corsdetailareadata" style="border-radius: 34px;">
             <h1 style="border-radius: 27px;">Exams Details</h1>
             <?php
-            // dd( $users[1]->group->exams)
-            ?>
+// dd( $users[1]->group->exams)
+              ?>
             @foreach($users as $key =>$user)
             <h5 style="text-align: center;
-    font-size: 25px;
+    font-size: 15px;
     font-family: fangsong;
     text-decoration: underline;">
              @if($user->group->exams->count()>0)
@@ -28,8 +28,13 @@
             <table class="table prtable">
               <thead>
                 <tr>
+                 
+                
+                
                   <th scope="col">Exam Name</th>
                   <th scope="col">Detail</th>
+                  
+                 
                 </tr>
               </thead>
               <tbody>
@@ -37,17 +42,20 @@
               @foreach($user->group->exams  as $exam)
                 <tr>
                   <td scope="row">
-                    {{ucwords($exam->name)}}
-                  </td>
-                  <td scope="row">
-                    {{ucwords($exam->detail)}}
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-            @endif
+              {{ucwords($exam->detail)}}
+                  </td> 
+
+</tr>
+
+               
+  @endforeach
+
+</tbody>
+   </table>
+                 
+  @endif
             @endforeach
+
           </div>
         </div>
       </div>

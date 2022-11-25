@@ -32,7 +32,7 @@ class GroupController extends Controller
 
     public function create()
     {
-        // dd('sas');
+        dd('sas');
         $control = 'create';
         $course_id = Courses::pluck('full_name', 'id');
         $all_courses = Courses::with('group')->get();
