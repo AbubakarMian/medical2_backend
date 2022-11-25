@@ -4,10 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class Group extends Model
+class Group_Exams extends Model
 {
     use SoftDeletes;
-   protected $table='group';
+   protected $table='group_exams';
 
    public function courses()
    {
@@ -30,11 +30,7 @@ class Group extends Model
    }
    public function exams()
    {
-       return $this->hasMany('App\Model\Exams', 'group_id', 'id');
-   }
-   public function group_exams()
-   {
-       return $this->hasMany('App\Model\Group_Exams', 'group_id', 'id');
+       return $this->hasMany('App\Model\Exams', 'id', 'exam_id');
    }
 
 
