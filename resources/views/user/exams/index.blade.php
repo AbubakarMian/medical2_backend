@@ -22,7 +22,7 @@
     font-size: 25px;
     font-family: fangsong;
     text-decoration: underline;">
-              @if($user->group->group_exams->exams->count()>0)
+             @if($user->group->exams->count()>0)
               {{ucwords($user->group->name)}} 
             </h5>
             <table class="table prtable">
@@ -33,7 +33,8 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($user->group->group_exams->exams as $exam)
+              
+              @foreach($user->group->exams  as $exam)
                 <tr>
                   <td scope="row">
                     {{ucwords($exam->name)}}
