@@ -22,10 +22,9 @@ class Exams_Controller extends Controller
     
     {
 $user= Auth::user();
-// $users  = Course_Register::with('group')->where('user_id',$user->id)->get();
-$users  = Course_Register::with('group_exams')->where('user_id',$user->id)->get();
+$users  = Course_Register::with('group')->where('user_id',$user->id)->get();
 // $course_register_group_id  = $course_register->group->id;
-dd($users[0]->group_exams->exams[0]->name);
+// dd($course_register);
 // $group  = Group::with('exams')->where('id',$course_register_group_id)->get();
 // dd( $users);
 //   $exams = 
