@@ -32,10 +32,6 @@ class Group extends Model
    {
        return $this->hasMany('App\Model\Exams', 'group_id', 'id');
    }
-   public function group_exams()
-   {
-       return $this->hasMany('App\Model\Group_Exams', 'group_id', 'id');
-   }
 
 
    public function group_fees()

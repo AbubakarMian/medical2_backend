@@ -17,10 +17,6 @@ class Course_Register extends Model
     public function user(){
         return $this->hasOne('App\User','id','user_id');
     }
-    public function group_exams()
-    {
-        return $this->hasOne('App\Model\Group_Exams', 'group_id', 'group_id');
-    }
     public function group(){
         return $this->hasOne('App\Model\Group','id','group_id');
     }
