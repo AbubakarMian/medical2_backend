@@ -51,7 +51,7 @@ width="400px" style="table-layout:fixed;"
 
 		<td >{!! ucwords($s_p->user->name ) !!} </td>
 		<!-- <td >{!!ucwords($s_p->user->email) !!}</td> -->
-		<td >{!!ucwords($s_p->course->full_name) !!}</td>
+		<td >{!!ucwords($s_p->group->courses->full_name) !!}</td>
 		<td >{!!ucwords($s_p->group->name) !!}</td>
         <td > <a class="btn btn-primary" href="{{ asset('admin/student_plan/edit?user_id=' . $s_p->user_id) }}">
                                    Edit {!!$s_p->name!!} Plan
