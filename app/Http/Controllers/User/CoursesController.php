@@ -300,7 +300,8 @@ class CoursesController extends Controller
             // return redirect('user_show_payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
             // return redirect()->back()->with('success', 'Sorry ! You are  already Registered in this Course ');
         } elseif (!$course_register) { 
-            if (!$group_id->group_fees) {
+            $group_fee  = Group::with('group_fees')->find($group_id);
+            if (!$group_fee) {
                 return redirect('/')->with('error', 'Sorry ! This Group Not Available' );
             }
             $user_group = new Group_users();
