@@ -26,4 +26,8 @@ class Course_Register extends Model
     public function student_feess(){
         return $this->hasMany('App\Model\Student_fees','course_register_id','id');
     }
+    public function group_exams()
+    {
+        return $this->hasMany('App\Model\Group_Exams', 'group_id', 'group_id');
+    }
  }
