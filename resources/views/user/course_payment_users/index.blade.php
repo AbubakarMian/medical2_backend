@@ -45,7 +45,9 @@ use App\Model\Student_fees;
 
                   <!-- <td>{{ucwords($c->user->name)}}</td> -->
                   <!-- <td>{{ucwords($c->course->full_name)}}</td> -->
-                  <td>{{ucwords($c->course->group->name)}}</td>
+                  @foreach($c->group as $g_key => $g_u)
+                  <td>{{ucwords($g_u->name)}}</td>
+                  @endforeach
                   <td>{{ucwords($c->fees_type)}}</td>
                   <td>{{$c->amount}}</td>
 
