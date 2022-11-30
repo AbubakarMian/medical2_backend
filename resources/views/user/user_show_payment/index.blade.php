@@ -57,12 +57,10 @@
         <div class="row">
             <div class="col-xs-6">
                 <div class="form-group lube"> <label> Group Name:</label>
-                @foreach($course_register->group as $g_key => $g_u)
                     <div class="input-group">
-                        <input type="text" name="Group" class="lubin" disabled value="{{$g_u->name}}" class="form-control" placeholder="Enter Amount" />
+                        <input type="text" name="Group" class="lubin" disabled value="{{$course_register->group->name}}" class="form-control" placeholder="Enter Amount" />
                         <span class="input-group-addon"></span>
                     </div>
-                    @endforeach
                 </div>
             </div>
 
