@@ -42,7 +42,7 @@ class Student_planController extends Controller
         $control = 'edit';
         $user_id = $request->user_id;
 
-        $student_plan = Student_fees::where('user_id', $user_id)->get();
+        $student_plan = Student_fees::with('course_register')->where('user_id', $user_id)->get();
         $fees_type = Config::get('constants.fees_type');
 
         return view('admin.reports.student_plan.create', compact(
