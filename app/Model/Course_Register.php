@@ -12,7 +12,7 @@ class Course_Register extends Model
 
     public function course()
     {
-        return $this->hasOne('App\Model\Courses', 'id', 'course_id');
+        return $this->hasMany('App\Model\Courses', 'id', 'course_id');
     }
     public function user(){
         return $this->hasOne('App\User','id','user_id');
