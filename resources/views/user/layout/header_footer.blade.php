@@ -97,11 +97,11 @@
                                             <a class="dropdown-item" href="{!! asset('profile_acount') !!}"><i class="fa fa-cog"
                                                     aria-hidden="true"></i> Acount</a><br>
                                             <a class="dropdown-item" href="{!! asset('course_payemts') !!}"><i class="fa fa-cog"
-                                                    aria-hidden="true"></i> Course Payments</a>
+                                                    aria-hidden="true"></i> Course Payments</a><br>
                                                     <!--  -->
-                                                    <!-- <a class="dropdown-item" href="{!! asset('exams') !!}"><i class="fa fa-cog"
-                                                    aria-hidden="true"></i> Exams</a> -->
-                                                    <!--  -->
+                                                 <a class="dropdown-item" href="{!! asset('exams') !!}"><i class="fa fa-cog"
+                                                    aria-hidden="true"></i> Exams</a> 
+                                                   
 
                                         </div>
                                     </div>

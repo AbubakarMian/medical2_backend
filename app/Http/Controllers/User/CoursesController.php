@@ -70,11 +70,8 @@ class CoursesController extends Controller
         $type = $request->type;
         $courses = Courses::with('group')->find($courses_id);
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
-        $course_registers =  Course_Register::with('group')->where('user_id', $user->id)->where('course_id',  $courses->id)->first();
-    
-        if($course_registers){
-            $course_register =  Course_Register::with('group')->where('user_id', $user->id)->where('course_id',  $courses->id)->first();
-
+        if ($user) {
+        $course_register =  Course_Register::with('group')->where('user_id', $user->id)->where('course_id',  $courses->id)->first();
         return view('user.course_registration.index', compact('courses', 'stripe_key', 'type','course_register'));
         }
         else{
