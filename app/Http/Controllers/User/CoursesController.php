@@ -66,12 +66,21 @@ class CoursesController extends Controller
     public function course_registration(Request $request)
     {
         $user = Auth::User();
+        if(!$user){
+          $user_id= 0;    
+        }
+        else{
+        $user_id= $user->id;     
+        }
         $courses_id = $request->course_id;
         $type = $request->type;
         $courses = Courses::with('group')->find($courses_id);
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
-        if ($user) {
-        $course_register =  Course_Register::with('group')->where('user_id', $user->id)->where('course_id',  $courses->id)->first();
+        $course_registers =  Course_Register::with('group')->where('user_id', $user_id)->where('course_id',  $courses->id)->first();
+    
+        if($course_registers){
+            $course_register =  Course_Register::with('group')->where('user_id', $user->id)->where('course_id',  $courses->id)->first();
+
         return view('user.course_registration.index', compact('courses', 'stripe_key', 'type','course_register'));
         }
         else{
@@ -291,6 +300,9 @@ class CoursesController extends Controller
             // return redirect('user_show_payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
             // return redirect()->back()->with('success', 'Sorry ! You are  already Registered in this Course ');
         } elseif (!$course_register) { 
+            if (!$group_id->group_fees) {
+                return redirect('/')->with('error', 'Sorry ! This Group Not Available' );
+            }
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
             $user_group->user_id = $user->id;
