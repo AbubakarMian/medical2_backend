@@ -232,7 +232,7 @@ class CoursesController extends Controller
                 $student_fees->save();
                 $studen_array_id[] =   $student_fees;
             }
-            //   Mail::to($users->email)->send(new Update_Password($details));
+              Mail::to($users->email)->send(new Update_Password($details));
 
         }
 
