@@ -141,6 +141,31 @@
                 </div>
             </div>
         </form>
+        <!--  -->
+        <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Payment Modal</h4>
+      </div>
+      <div class="modal-body">
+        <p>Please Choose the Amount.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+        <!--  -->
 
 
 
@@ -213,7 +238,7 @@
             var payment_show = $('.payment_show_hidden').val();
 
             if (payment_show == 0) {
-                alert('Please Choose The Payment')
+                $('#myModal').modal('show');
                 var payment_show_btn = $('.payment_show').prop("type", "button");
             }
             else{
@@ -248,7 +273,8 @@
             }
             var amount_div = $('.payment_show').html('Pay ' + all_amount);
             if (all_amount == 0) {
-                alert('Please Choose The Payment')
+              
+                // $('#myModal').modal('show');
             }
             var payment_show_hidden = $('.payment_show_hidden').val(all_amount);
 

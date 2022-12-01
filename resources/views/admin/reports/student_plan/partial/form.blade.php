@@ -136,8 +136,8 @@ $type = '';
 <div class="fees_type_areaaa">
     <div class="form-group">
         {!! Form::label('fees_type','Fees Type',) !!}
-        {!! Form::select('fees_type',$fees_type,null,["placeholder"=>"Select
-        Type","onchange"=>"open_fees_type_div()",
+        {!! Form::select('fees_type',$fees_type,null,[
+        "onchange"=>"open_fees_type_div()",
         "class"=>"form-control fees_type",]) !!}
         </select>
     </div>
@@ -375,6 +375,7 @@ $type = '';
         var fees_type_areaaa = $('.fees_type_areaaa').show();
 
         var edit_plans_area = $('.edit_plans_area').hide();
+        var $complete_fees_area = $('.complete_fees_area').show()
 
     }
 
