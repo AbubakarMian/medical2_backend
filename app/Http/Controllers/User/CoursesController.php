@@ -32,12 +32,18 @@ class CoursesController extends Controller
 
         $courses = Courses::where('full_name', 'like', '%' . $name . '%');
         if ($types == 'courses') {
-            $courses_list =  $courses->whereHas('group', function ($g) {
+            $courses_list =  $courses->whereHas('group.group_fees', function ($g) {
                 $g->where('type', 'course');
             })->get();
         } else {
             $courses_list = $courses->whereHas('group', function ($g) {
-                $g->where('type', 'workshop');
+                $g->where('type', 'workshop')->
+                with(['group.group_fees'=>function($u)use($g){
+                  $u->where('group.group_fees','>',0) ;  
+                }
+                     
+                ]);
+                
             })->get();
         }
         $courses_list_count = $courses_list->count();
@@ -141,6 +147,33 @@ class CoursesController extends Controller
         $all_course_register   = [];
         $res = new \stdClass();
         $studen_array_id = [];
+        // special user jo logo ko group register krwata hai
+       
+
+            $group = Group::with('group_fees')->find($request->group_id);
+            $course_register = new Course_Register();
+            $course_register->user_id  =  $one_user->id;
+            $course_register->course_id =   $course_id;
+            $course_register->group_id = $group_id;
+            // $course_register->user_group_id = $user_group->id;
+            $course_register->is_paid = 0;
+            $course_register->one_time_examination_payment = 0;
+            $course_register->examination_fees = 0;
+            $course_register->save();
+            foreach ($group->group_fees as $gf) {
+                $student_fees =  new Student_fees();
+                $student_fees->user_id  =  $one_user->id;
+                $student_fees->course_register_id  =  $course_register->id;
+                $student_fees->group_id  =  $group->id;
+                $student_fees->course_id  =  $course_id;
+                $student_fees->fees_type  =  $gf->fees_type;
+                $student_fees->amount  = $gf->amount;
+                $student_fees->due_date  =  $gf->due_date;
+                $student_fees->save();
+            }
+
+        //    
+        
 
         foreach ($request->first_name as $key => $f) {
 
@@ -157,15 +190,15 @@ class CoursesController extends Controller
             $users->update_password_id = uniqid();
             $users->save();
             $all_users_id[] = $users;
-            // $details = [
-            //     'to' => $users->email,
-            //     'user_id' => $users->id,
-            //     'from' => 'contactus@medical2.com',
-            //     'title' => 'Medical2',
-            //     'subject' => 'Reference Link From Medical2 Academy ',
-            //     "dated"  => date('d F, Y (l)'),
-            //     'new_password' =>  $users->update_password_id,
-            // ];
+            $details = [
+                'to' => $users->email,
+                'user_id' => $users->id,
+                'from' => 'contactus@medical2.com',
+                'title' => 'Medical2',
+                'subject' => 'Reference Link From Medical2 Academy ',
+                "dated"  => date('d F, Y (l)'),
+                'new_password' =>  $users->update_password_id,
+            ];
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
             $user_group->user_id = $users->id;
@@ -198,7 +231,8 @@ class CoursesController extends Controller
                 $student_fees->due_date  =  $gf->due_date;
                 $student_fees->save();
                 $studen_array_id[] =   $student_fees;
-            } //  Mail::to($users->email)->send(new Update_Password($details));
+            }
+            //   Mail::to($users->email)->send(new Update_Password($details));
 
         }
 
@@ -300,10 +334,7 @@ class CoursesController extends Controller
             // return redirect('user_show_payment/?course_register=' . $course_register->id)->with('success', 'Course Register Successfully!');
             // return redirect()->back()->with('success', 'Sorry ! You are  already Registered in this Course ');
         } elseif (!$course_register) { 
-            $group_fee  = Group::with('group_fees')->find($group_id);
-            if (!$group_fee) {
-                return redirect('/')->with('error', 'Sorry ! This Group Not Available' );
-            }
+           
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
             $user_group->user_id = $user->id;

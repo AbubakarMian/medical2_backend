@@ -70,7 +70,7 @@ use App\Model\Student_fees;
                     <!--  -->
                     @else
                     <a href="" type="button" class="btn btn-success" style="margin-bottom: 14px;"> Paid</a>
-                    Paid
+                   
                     @endif
 
                   </td>
