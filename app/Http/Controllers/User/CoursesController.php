@@ -307,7 +307,7 @@ class CoursesController extends Controller
         $user_update_password = $request->user_update_password;
         $user  =  User::find($user_id);
         $user->password =  Hash::make($user_update_password);
-        $user->save();
+        $user->save();  
       
         return redirect()->back()->with('success', 'Thanks ! Your Password has Been Update');
     }
