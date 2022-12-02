@@ -99,6 +99,15 @@
  
                 <div class="row">
                     <div class="col-sm-4">
+                        <!--  -->
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @endif
+
+                        <!--  -->
                   
                         <div class="secondlogopoints">
                             <div class="infobox">
@@ -170,17 +179,18 @@
                             </div>
                         </div>
                     </div>
+                    <form method="post" action="{{ url('user/update_password_save') }}" enctype="multipart/form-data">
                     <div class="col-sm-8">
                      
                         <div class="contactform">
-                            <form method="post" action="{{ url('CoursesController@update_password_save') }}" enctype="multipart/form-data">
+                           
 
                                 {{ csrf_field() }}
                                 <div class="myform">
                                 <input hidden name="user_id" value="{{$user->id}}">
                                     <div class="form-group paddown area">
-                                        <input type="text" class="form-control myformdata" id="GnTName"
-                                            placeholder="Enter Name" name="user_update_password" required>
+                                        <input type="password" class="form-control myformdata" id="GnTName"
+                                            placeholder="Enter Password" name="user_update_password" required>
                                           
                                     </div>
                                 
@@ -191,9 +201,10 @@
                                         <button type="submit" class="btn btn-primary entersend">SEND NOW</button>
                                     </div>
                                 </div>
-                            </form>
+                            
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

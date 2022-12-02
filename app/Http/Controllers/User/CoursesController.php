@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use PhpParser\Builder\Function_;
+use Illuminate\Support\Facades\Hash;
 use Stripe;
 
 class CoursesController extends Controller
@@ -151,25 +152,26 @@ class CoursesController extends Controller
        
 
             $group = Group::with('group_fees')->find($request->group_id);
-            $course_register = new Course_Register();
-            $course_register->user_id  =  $one_user->id;
-            $course_register->course_id =   $course_id;
-            $course_register->group_id = $group_id;
+            $course_register_one = new Course_Register();
+            $course_register_one->user_id  =  $one_user->id;
+            $course_register_one->course_id =   $course_id;
+            $course_register_one->group_id = $group_id;
             // $course_register->user_group_id = $user_group->id;
-            $course_register->is_paid = 0;
-            $course_register->one_time_examination_payment = 0;
-            $course_register->examination_fees = 0;
-            $course_register->save();
+            $course_register_one->is_paid = 0;
+            $course_register_one->one_time_examination_payment = 0;
+            $course_register_one->examination_fees = 0;
+            $course_register_one->save();
             foreach ($group->group_fees as $gf) {
-                $student_fees =  new Student_fees();
-                $student_fees->user_id  =  $one_user->id;
-                $student_fees->course_register_id  =  $course_register->id;
-                $student_fees->group_id  =  $group->id;
-                $student_fees->course_id  =  $course_id;
-                $student_fees->fees_type  =  $gf->fees_type;
-                $student_fees->amount  = $gf->amount;
-                $student_fees->due_date  =  $gf->due_date;
-                $student_fees->save();
+                $student_fee =  new Student_fees();
+                $student_fee->user_id  =  $one_user->id;
+                $student_fee->course_register_id  =  $course_register_one->id;
+                $student_fee->group_id  =  $group->id;
+                $student_fee->course_id  =  $course_id;
+                $student_fee->fees_type  =  $gf->fees_type;
+                $student_fee->amount  = $gf->amount;
+                $student_fee->due_date  =  $gf->due_date;
+                $student_fee->save();
+                $studen_array_id[] =   $student_fee;
             }
 
         //    
@@ -291,25 +293,28 @@ class CoursesController extends Controller
         $user  =  User::find($user_id);
         return view('user.update_pass_form.index', compact('user'));
     }
+
+    public function enter_pasword(Request $request)
+    {
+
+        // dd($request->all());
+    }
+
     public function update_password_save(Request $request)
     {
         // dd($request->all());
         $user_id = $request->user_id;
         $user_update_password = $request->user_update_password;
         $user  =  User::find($user_id);
-        $user->password  = $user_update_password;
+        $user->password =  Hash::make($user_update_password);
         $user->save();
-        return view('user.update_pass_form.index', compact('user'));
+      
         return redirect()->back()->with('success', 'Thanks ! Your Password has Been Update');
     }
+      // return view('user.update_pass_form.index', compact('user'));
 
 
-    public function enter_pasword(Request $request)
-    {
-
-        dd($request->all());
-    }
-
+    
 
     // close pending functionsssss
 
