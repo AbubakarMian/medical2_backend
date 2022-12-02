@@ -75,9 +75,8 @@
                 ?>
 
 
-                <iframe width="200" height="150" src="{{ $group->url }}" title="hello
-                " frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="munirvideo" allowfullscreen>
-                </iframe>
+              
+                 <iframe width="200" height="150" src="{{$group->url}}" frameborder="0" allowfullscreen></iframe>
                 @endif
 
 
