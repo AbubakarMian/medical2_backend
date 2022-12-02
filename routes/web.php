@@ -92,13 +92,14 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
 
 
       // user/update_password
-    Route::post('user/update_password', 'User\CoursesController@update_password');
+    Route::get('user/update_password', 'User\CoursesController@update_password');
 
     // user/enter_pasword
-    Route::post('user/enter_pasword', 'User\CoursesController@enter_pasword');
+    Route::get('user/enter_pasword', 'User\CoursesController@enter_pasword');
 
     //user/update_password_save
     Route::post('user/update_password_save', 'User\CoursesController@update_password_save');
+  
 
     // user/user_show_payment
     Route::get('user_show_payment', 'User\CoursesController@user_show_payment');

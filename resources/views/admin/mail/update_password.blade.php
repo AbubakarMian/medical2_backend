@@ -108,7 +108,8 @@
 
 <b>
     Please Click This Link To Update Password
-    <a href="{!!asset('user/enter_pasword/?update_password='.$password.'&user_id='.$user_id)!!}">
+</br>
+    <a href="{!!asset('user/update_password/?update_password='.$password.'&user_id='.$user_id)!!}">
         Upadte Password
     </a>
 <b>
