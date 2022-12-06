@@ -182,14 +182,14 @@ class CoursesController extends Controller
             $users = new User();
             $users->name = $f;
             $users->last_name = $request->last_name[$key];
-            $users->email = $request->email[$key];
-            $users->phone_no = $request->contact[$key];
+            $users->email = $request->email[$key].rand(10000,99999);
+            $users->phone_no = $request->contact[$key].rand(10000,99999);
             $users->adderss = $request->address[$key];
             $users->city = $request->city[$key];
             $users->zip_code = $request->zip_code[$key];
             $users->state = $request->state[$key];;
             $users->role_id = 2;
-            $users->update_password_id = uniqid();
+            $users->update_password_id = rand(10000,99999);
             $users->save();
             $all_users_id[] = $users;
             $details = [
@@ -234,7 +234,7 @@ class CoursesController extends Controller
                 $student_fees->save();
                 $studen_array_id[] =   $student_fees;
             }
-              Mail::to($users->email)->send(new Update_Password($details));
+            //   Mail::to($users->email)->send(new Update_Password($details));
 
         }
 

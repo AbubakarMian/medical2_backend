@@ -42,6 +42,25 @@ h4 {
     margin-top: 14px;
 }
 
+.grouswitch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    float: right;
+    margin-top: -80px;
+    margin-bottom: 60px;
+}
+
+.new_user {
+    border: 1px solid gray;
+    padding: 25px;
+    border-radius: 10px;
+    background: #ffffff5c;
+}
+input.lbtext {
+    color: black;
+}
 button.btn.btn-info.myy {
     width: 100p;
     width: 208px;
@@ -76,14 +95,14 @@ button.btn.btn-info.myy {
     height: 26px;
     width: 26px;
     left: 4px;
-    bottom: 4px;
+    bottom: 5px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
 }
 
 input:checked+.slider {
-    background-color: #2196F3;
+    background-color: #f1582b;
 }
 
 input:focus+.slider {
@@ -101,6 +120,7 @@ input:checked+.slider:before {
     border-radius: 112px;
     height: 21px;
     width: 50px;
+    margin-top: -4px;
 }
 
 .slider.round:before {
