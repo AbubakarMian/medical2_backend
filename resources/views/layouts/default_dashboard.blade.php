@@ -96,7 +96,7 @@ $reports = $admin_common->reports;
     <!-- reports end  -->
 
     <!-- Chart -->
-    <section class="panel hidden-xs">
+    <section class="panel hidden-xs obody">
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-12 mb25">
