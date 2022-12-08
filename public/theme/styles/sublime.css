@@ -2125,6 +2125,10 @@ aside.sidebar.offscreen-left {
 .bg-info {
   background-color: #15acdc;
   color: #ffffff;
+  height: 22px;
+  border-radius: 1px;
+  padding: 6px !important;
+  width: 25%;
 }
 .bg-info a {
   color: #ffffff;
@@ -3077,8 +3081,8 @@ fieldset[disabled] .btn-default.active {
  */
 .btn-primary {
   color: #ffffff;
-  background-color: #1582dc;
-  border-color: #1582dc;
+  background-color: #dc1515;
+  border-color: #dc1515;
 }
 a.btn-primary {
   color: #ffffff;

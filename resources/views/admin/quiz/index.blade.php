@@ -42,7 +42,7 @@
                 <td> {{ ucwords($q->name) }} </td>
 
                 <td> {{ ucwords($q->detail) }}</td>
-                <td> {{ ucwords($q->course->full_name) }}</td>
+                <td> {{ ucwords($q->course) }}</td>
                 <td>
                <a href="{{ url('admin/question_list/' . $q->id) }}" type="button" class="btn btn-primary"
                 target="_blank" >question</a>

@@ -82,4 +82,11 @@ class About_UsController extends Controller
         ]);
         return $response;
     }
+
+    public function view_frame(Request $request,$id){
+        $about_us = About_us::find($id);
+        $html_data = $about_us->description;
+        return view('admin/about_us/view_frame',compact('html_data'));
+
+    }
 }
