@@ -55,9 +55,9 @@ class UserController extends Controller
         $users->adderss = $request->address;
         $users->city = $request->city;
         $users->zip_code = $request->zip_code;
-        // 
+        //
         // $users->state = $request->state;
-        // 
+        //
         $users->education = $request->education;
         $users->collage_name = $request->collage_name;
         $users->computer_experience = $request->computer_experience;
@@ -97,5 +97,9 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect('/')->with('success', 'ThankYou ! You are successfully logOut');
+    }
+
+    public function login_modal(){
+        return view('user.layout.login_modal');
     }
 }
