@@ -28,18 +28,11 @@
 
                 {{-- <th scope="col" style="white-space: nowrap">Phone</th>
 		<th scope="col" style="white-space: nowrap">Email</th> --}}
-<<<<<<< HEAD
 		<th scope="col" style="white-space: nowrap">Amount</th>
 		{{-- <th scope="col" style="white-space: nowrap">Currency</th> --}}
 		{{-- <th scope="col" style="white-space: nowrap">Receipt</th> --}}
 		<th scope="col" style="white-space: nowrap">Payment Status</th>
 		<th scope="col" style="white-space: nowrap">Payment Refund</th>
-=======
-                <th scope="col" style="white-space: nowrap">Amount</th>
-                {{-- <th scope="col" style="white-space: nowrap">Currency</th> --}}
-                {{-- <th scope="col" style="white-space: nowrap">Receipt</th> --}}
-                <th scope="col" style="white-space: nowrap">Payment Status</th>
->>>>>>> master
 
                 {{-- <th scope="col" style="white-space: nowrap">Detail</th> --}}
 
@@ -47,9 +40,8 @@
             </tr>
         </thead>
         <tbody>
-            {{-- {{dd($payments)}} --}}
+          
             @foreach ($payments as $payment)
-                {{-- {{dd($payment)}} --}}
 
                 <tr>
                     <td style="white-space: nowrap">{!! explode(' ', $payment->created_at)[0] !!}</td>
@@ -138,10 +130,10 @@
 				}
 			?>
 
-			<div id="pending_refund_btn_{!!$payment->id!!}" style="{!!$pending_display!!}">
+			<div id="pending_refund_btn_{!!$payment->id!!}">
 				<a href="" data-toggle="modal" name="" data-target=".refund_request_{!! $payment->id !!}">
-					<span class=" badge bg-info btn-success ">
-						In Progress
+					<span class="badge bg-info btn-success" style="width: 108px">
+						Payment Refund
 					</span>
 				</a>
 				@include('admin.reports.payment.partial.payment_refund',
@@ -209,8 +201,12 @@
 				
                     console.log("response",data);
                 },
-                error: function(errordata){
-                    console.log(errordata)
+				error: function(errordata) {
+                console.log(errordata)
+            }
+        })
+    }
+
     function change_modal_warning(status_url, status, cell_id, payment_id) {
         console.log('url', status_url);
         console.log('status', status);
@@ -247,13 +243,7 @@
         $('#status_excel').val($('#status').val());
     }
 
-    // function set_lat_long(lat , long , location){
-    // 	alert('st');
-    //     $('#lat').val('24.8607');
-    //     $('#long').val('67.0011');
-    //     $('#map-title').html('<b>Address: 	&nbsp;	&nbsp;</b>'+location);
-    // }
-
+  
     function show_note(msg) {
         $('#msg_div').html(msg);
     }
