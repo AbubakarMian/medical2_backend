@@ -39,6 +39,7 @@ Payment
 		{{-- <th scope="col" style="white-space: nowrap">Currency</th> --}}
 		{{-- <th scope="col" style="white-space: nowrap">Receipt</th> --}}
 		<th scope="col" style="white-space: nowrap">Payment Status</th>
+		<th scope="col" style="white-space: nowrap">Payment Refund</th>
 
 		{{-- <th scope="col" style="white-space: nowrap">Detail</th> --}}
 
@@ -124,6 +125,40 @@ Payment
 				{!! ucwords($payment->status) !!}
 			</div>
 		</td>
+		<td style="white-space: nowrap">
+			<?php
+				$pending_display = $completed_display = $final_status_display ='display:none';
+				if($payment->status == 'pending'){
+					$pending_display = 'display:block';
+				}
+				elseif($payment->status == 'inprogress'){
+					$completed_display = 'display:block';
+				}
+				else{
+					$final_status_display = 'display:block';
+				}
+			?>
+
+			<div id="pending_refund_btn_{!!$payment->id!!}" style="{!!$pending_display!!}">
+				<a href="" data-toggle="modal" name="" data-target=".refund_request_{!! $payment->id !!}">
+					<span class=" badge bg-info btn-success ">
+						In Progress
+					</span>
+				</a>
+				@include('admin.reports.payment.partial.payment_refund',
+				[
+				
+				
+				'req_status'=>'refund_request_'.$payment->id,
+				'payment_id'=> $payment->id,
+				'amount'=>$payment->amount,
+				'url'=>asset('admin/reports/payment/payment_refund/'.$payment->id),
+				'msg_status'=>'Payment Refund',
+				'btn_class'=>'btn-primary'
+				])
+				
+				
+		</td>
 
 
 
@@ -155,27 +190,23 @@ Payment
 @stop
 @section('app_jquery')
 <script>
-	function change_modal_warning(status_url,status,cell_id,payment_id) {
-            console.log('url',status_url);
+	function change_modal_warning(url,msg_status,payment_id) {
+           
             console.log('status',status);
+            console.log('url',url);
+			var payment_refund_amount = $('.payment_refund_amount_'+payment_id).val();
+			console.log('payment_refund_amount_',payment_refund_amount);
+			
             $.ajax({
-                url:status_url,
+                url:url,
                 method:'POST',
                 data: {'_token' :'{!! csrf_token() !!}',
-                       'status' : status
+                       'status' : status,
+                       'payment_refund_amount' : payment_refund_amount
                       },
                 success: function(data){
-					if(data.new_value=='Inprogress'){
-						$('#pending_btn_'+payment_id).css('display','none');
-						$('#inprogress_btn_'+payment_id).css('display','block');
-					}
-					else{ // completed , rejected
-						$('#pending_btn_'+payment_id).css('display','none');
-						$('#inprogress_btn_'+payment_id).css('display','none');
-						$('#finalstatus_btn_'+payment_id).html(data.new_value);
-						$('#finalstatus_btn_'+payment_id).css('display','block');
-					}
-                    $('#'+cell_id).html(data.new_value);
+				
+				
                     console.log("response",data);
                 },
                 error: function(errordata){

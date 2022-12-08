@@ -400,6 +400,9 @@ Route::post('admin/student_plan/delete/{id}', 'Reports\Student_planController@de
     Route::post('admin/reports/payments', 'Reports\PaymentController@index')->name('payment.index');
     Route::get('admin/orders/payments', 'Reports\PaymentController@index_excel')->name('payment.excel');
     Route::post('admin/reports/payment/status_update/{id}','Reports\PaymentController@status_update')->name('payment.status_update');
+    // 
+    Route::post('admin/reports/payment/payment_refund/{id}','Reports\PaymentController@payment_refund')->name('payment.payment_refund');
+   
 
 
 
