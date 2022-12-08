@@ -30,9 +30,7 @@ h4 {
     font-family: revert;
     margin-bottom: 15px;
     border-radius: 35px;
-    
 }
-
 
 .switch {
     position: relative;
@@ -40,6 +38,21 @@ h4 {
     width: 60px;
     height: 34px;
     margin-top: 14px;
+}
+
+.new_user {
+    color: #FFF;
+    margin-bottom: 35px;
+}
+.onfeetoggle{
+    background-color: rgb(175 175 175 / 9%) ;
+    border-radius:7px;
+    /* border:1px solid #8080803d; */
+    padding:5px;
+    margin-bottom:10px;
+}
+.onfeetoggl{
+   color: #000000a6;
 }
 
 .grouswitch {
@@ -68,14 +81,11 @@ button.btn.btn-info.myy {
     border-radius: 23px;
 }
 
-
-
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
-
 
 .slider {
     position: absolute;
@@ -85,8 +95,8 @@ button.btn.btn-info.myy {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
 .slider:before {
@@ -97,24 +107,23 @@ button.btn.btn-info.myy {
     left: 4px;
     bottom: 5px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
-input:checked+.slider {
+input:checked + .slider {
     background-color: #f1582b;
 }
 
-input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
-
 
 .slider.round {
     border-radius: 112px;
@@ -164,7 +173,6 @@ input:checked+.slider:before {
 }
 
 .bgareaa {
-   
     background: #474e580a;
     padding: 50px;
 }
@@ -175,11 +183,9 @@ td.ptup a {
 }
 
 .lube label {
-
     font-size: 17px;
     font-weight: 500;
     color: gray;
-
 }
 
 input.lubin {
@@ -190,9 +196,5 @@ input.lubin {
     padding: 10px;
 }
 
-
-
-
-
-
-@media only screen and (max-width: 480px) {}
+@media only screen and (max-width: 480px) {
+}

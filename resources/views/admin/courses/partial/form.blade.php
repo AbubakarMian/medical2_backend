@@ -37,6 +37,10 @@
         cursor: pointer;
     }
 
+    .tickbox input {
+        height: 23px;
+    }
+
     .text {
         color: blue;
         font-size: 15px;
@@ -102,6 +106,7 @@
         ]) !!}
     </div>
 </div>
+
 <div class="form-group">
     <label for="category_id">Select Category</label>
 
