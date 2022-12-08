@@ -3,6 +3,24 @@
 List of Groups
 @stop
 
+<style>
+    .fhgyt th {
+    border: 1px solid #e3e6f3 !important;
+    height: 42px;
+    padding: 4px;
+}
+.fhgyt td {
+    border: 1px solid #e3e6f3 !important;
+    height: 42px;
+    padding: 4px;
+    background: #f9f9f9
+}
+.fhgyt  {
+    width: 100%
+}
+
+</style>
+
 @section('add_btn')
 {!! Form::open(['method' => 'get', 'url' => ['admin/group/create'], 'files' => true]) !!}
 <span>{!! Form::submit('Add Group', ['class' => 'btn btn-success pull-right']) !!}</span>
@@ -11,7 +29,7 @@ List of Groups
 
 @section('table')
 
-<table id="groupTableAppend" style="opacity: 0">
+<table class="fhgyt" id="groupTableAppend" style="opacity: 0">
     <thead>
         <tr>
            <th>Course </th>

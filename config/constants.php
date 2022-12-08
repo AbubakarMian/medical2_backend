@@ -34,19 +34,7 @@ return [
        
     ],
 
-    'settings'=>[
-        'shipping_terms_en_id'=>1,
-        'shipping_terms_en'=>'shipping_terms',
-
-        'shipping_terms_ar_id'=>2,
-        'shipping_terms_ar'=>'shipping_terms_ar',
-
-        'terms_and_conditions_en_id'=>3,
-        'terms_and_conditions_en'=>'terms_and_conditions',
-
-        'terms_and_conditions_ar_id'=>4,
-        'terms_and_conditions_ar'=>'terms_and_conditions_ar',
-    ],
+    
 
     'payment_status'=>[
         'paid'=>'paid',

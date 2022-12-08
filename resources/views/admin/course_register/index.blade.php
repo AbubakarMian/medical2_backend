@@ -14,12 +14,28 @@ Course Register
 		height: 30px;
 		text-overflow: ellipsis;
 	}
+    .tublke {
+        width:100%
+    }
+    .tublke tr {
+    border: 1px solid #e3e6f3;
+    height: 42px !important;
+}
+.tublke td {
+    border: 1px solid #e3e6f3;
+    padding: 6px 10px;
+    background: #f9f9f9;
+}
+.tublke th {
+    border: 1px solid #e3e6f3;
+    padding: 6px 10px;
+}
 </style>
 @section('table')
 
 
 
-<table id="groupTableAppend" style="opacity: 0">
+<table class="tublke" id="groupTableAppend" style="opacity: 0">
 	{{--    --}}
 
 	<thead>

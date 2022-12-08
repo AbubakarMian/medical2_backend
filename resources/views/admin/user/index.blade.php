@@ -17,11 +17,18 @@ width="400px" style="table-layout:fixed;"
 		height: 30px;
 		text-overflow: ellipsis;
 	}
+    .fhgyt th {
+    border: 1px solid #e3e6f3 !important;
+}
+.fhgyt td {
+    border: 1px solid #e3e6f3 !important;
+    background: #f9f9f9
+}
 </style>
 @section('table')
 
 
-<table id="userTableAppend" style="opacity: 0">
+<table class="fhgyt" id="userTableAppend" style="opacity: 0">
 <thead>
 	<tr>
 

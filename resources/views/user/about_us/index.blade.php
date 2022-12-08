@@ -4,12 +4,23 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
+    <style>
+        .aboutfram iframe {
+            width: 100%;
+            margin-bottom: 25px;
+            margin-top: 25px;
+            height: 800px;
+        }
+    </style>
+
     <section>
         <div class="body-content">
             <div class="container">
 
-
-                {!! html_entity_decode($about_us->description ?? '') !!}
+                <div class="aboutfram">
+                    <iframe src="{!! asset('admin/aboutus/view_frame') . '/' . $about_us_id !!}"></iframe>
+                </div>
+                {{-- {!! html_entity_decode($about_us->description ?? '') !!} --}}
 
             </div>
         </div>
