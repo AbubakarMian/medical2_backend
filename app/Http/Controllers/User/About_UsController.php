@@ -13,9 +13,8 @@ class About_UsController extends Controller
 {
     public function index()
     {
-
-        $about_us  =  About_us::where('name','aboutus')->first();
-        return view('user.about_us.index',compact('about_us'));
+        $about_us_id  =  1; // id defined in seeds
+        return view('user.about_us.index',compact('about_us_id'));
     }
     
     public function contactus()

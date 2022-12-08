@@ -22,7 +22,7 @@
 </br>
                     <button  name="status" class="btn {!! $btn_class!!}"
                              data-dismiss="modal"
-                            onclick="change_modal_warning('{!! $url !!}',
+                            onclick="payment_refund('{!! $url !!}',
                                     '{!! $msg_status !!}',
                                     '{!! $payment_id !!}'
                                     )",

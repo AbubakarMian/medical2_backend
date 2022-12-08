@@ -237,6 +237,7 @@ Route::get('admin/aboutus/edit/{id}', 'Admin\About_UsController@edit')->name('ab
 Route::post('admin/aboutus/update/{id}', 'Admin\About_UsController@update')->name('aboutus.update');
 
 Route::post('admin/aboutus/delete/{id}', 'Admin\About_UsController@destroy_undestroy')->name('aboutus.delete');
+Route::get('admin/aboutus/view_frame/{id}', 'Admin\About_UsController@view_frame')->name('aboutus.view_frame');
 
 
 
