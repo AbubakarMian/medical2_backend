@@ -23,7 +23,7 @@
         margin-bottom: 0px;
     }
 
-    input#myCheck {
+    input#is_online_checkbox {
         width: 35px;
         height: 19px;
     }
@@ -50,6 +50,13 @@
 </style>
 
 
+@if ($message = Session::get('error'))
+<div class="alert alert-danger alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>{{ $message }}</strong>
+</div>
+@endif
+
 <!-- modal -->
 
 
@@ -59,11 +66,10 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-mg ">
 
         <!-- Modal content-->
-        <div class="modal-content" style="width: 100%;
-    height: 50%;">
+        <div class="modal-content" style="">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title gmap">Group Map</h4>
@@ -76,9 +82,10 @@
 
 
             </div>
-
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div>
-
     </div>
 </div>
 
@@ -322,15 +329,12 @@
 <!-- <div class="form-group">
     {!! Form::label('country', 'Country') !!}
     <div>
-        {!! Form::text('country', null, [
-            'class' => 'form-control country',
-            'data-parsley-required' => 'true',
-            'data-parsley-trigger' => 'change',
-            'id' => 'country',
-            'placeholder' => ' country',
-            'required',
-            'maxlength' => '100',
-        ]) !!}
+        {!! Form::text('country', null, ['class' => 'form-control country',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'id'=>'country',
+        'placeholder'=>' country','required',
+        'maxlength'=>"100"]) !!}
     </div>
 </div> -->
 
@@ -347,7 +351,7 @@
             'data-parsley-required' => 'true',
             'data-parsley-trigger' => 'change',
             'required',
-        
+
             'maxlength' => '100',
         ]) !!}
     </div>
@@ -355,15 +359,17 @@
 <div class="form-group">
     {!! Form::label('end_date', 'End Date') !!}
     <div>
-        {!! Form::date('end_date', null, [
-            'class' => 'form-control',
-            'data-parsley-required' => 'true',
-            'data-parsley-trigger' => 'change',
-            'required',
-            'maxlength' => '100',
-        ]) !!}
+        {!! Form::date('end_date', null , ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'required',
+
+        'maxlength'=>"100",
+        ])
+         !!}
     </div>
 </div>
+
 
 
 </br>
@@ -473,11 +479,11 @@
 
 <div>
 
-    <input type="checkbox" id="myCheck" onclick="myFunction()" name="is_online">
+    <input type="checkbox" id="is_online_checkbox" onclick="is_online_class()" name="is_online">
 </div>
 
 
-<div class="form-group" id="zoom">
+<div class="form-group" id="zoom" class="zoomin">
 
 
 
@@ -485,7 +491,7 @@
     {!! Form::file('zoom', ['class' => 'choose-zoom', 'id' => 'zoomss']) !!}
     <p class="help-block" id="error">Limit 2MB</p>
 
-    <span class="orspan">OR</span />
+    <span>OR</span>
 
     <div id="zoom_textarea">
         {!! Form::textarea('zoom_visible', null, [
@@ -507,7 +513,7 @@
 </br>
 <!--  -->
 
-<div id="venue_map">
+<div >
     <!-- <label >Enter Venue:</label>
     <input type="text" required  name="venue" class = 'form-control'> -->
     </br>
@@ -614,11 +620,11 @@
 
 
 
-                            tr_str = tr_str +
-                                `
-                     
+                        tr_str = tr_str +
+                            `
+
                         <div class="row">
-                  
+
                         <!-- columnnn-->
                         <div class="col-sm-6">
                         <div class="form-group">
@@ -662,8 +668,9 @@
 
                     }
                 }
-            });
-            //  
+            }
+        });
+        //
 
 
         }
@@ -745,7 +752,7 @@
     </div>
 
  <!-- end  columnnn-->
- 
+
 
  <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 10px;
     margin-left: 16px;
@@ -754,23 +761,69 @@
     </div>`
 
 
-            );
+        );
+    }
+
+    function add_installment_divs() {
+
+        console.log('add_installment_divs_add_installment_divs');
+        // var installment_div = $('.installment_divs').length+1;
+        var installmet_div_row = $('.installmet_div_row').length;
+        var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(installmet_div_row));
+
+
+    }
+
+
+
+
+
+
+
+    // end new
+    function validateForm() {
+        return true;
+    }
+
+    //
+    $(document).ready(function() {
+        // var checkBox = document.getElementById("is_online_checkbox");
+        var venue_maps = $("#venue_map").hide();
+        var zoom = $("#zoom").hide();
+        //
+        var $open_fees_type_div_area = $('.open_fees_type_div_area').hide();
+        var $complete_fees_area = $('.complete_fees_area').hide();
+        var $installment_fees_area = $('.installment_fees_area').hide();
+        var edit_plans_area = $('.edit_plans_area').hide();
+
+        $('#myModal').modal('hide');
+
+
+    });
+
+    function is_online_class() {
+
+        var online_checkbox = $('#is_online_checkbox');
+        var venue_maps = $('#venue_maps');
+        // var venue_maps = document.getElementById("venue_map");
+        var zoom = $('#zoom');
+        if (online_checkbox.is(':checked')) {
+            console.log('in if condition')
+            zoom.css('display','block');
+            venue_maps.css('display','none');
+        } else {
+            console.log('in else condition')
+            venue_maps.css('display','block');
+            zoom.css('display','none');
         }
-
-        function add_installment_divs() {
-
-            console.log('add_installment_divs_add_installment_divs');
-            // var installment_div = $('.installment_divs').length+1;
-            var installmet_div_row = $('.installmet_div_row').length;
-            var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(installmet_div_row));
-
-
-        }
-
-
-
-
-
+        console.log('sasa');
+    }
+    // map
+    function open_map() {
+        console.log('mapssssssss');
+        $('#myModal').modal('show');
+    }
+    //
 
 
         // end new
@@ -778,12 +831,12 @@
             return true;
         }
 
-        // 
+        //
         $(document).ready(function() {
             // var checkBox = document.getElementById("myCheck");
             var venue_maps = $("#venue_map").hide();
             var zoom = $("#zoom").hide();
-            // 
+            //
             var $open_fees_type_div_area = $('.open_fees_type_div_area').hide();
             var $complete_fees_area = $('.complete_fees_area').hide();
             var $installment_fees_area = $('.installment_fees_area').hide();
@@ -809,7 +862,7 @@
             console.log('sasa');
         }
 
-        // 
+        //
 
         // map
         function open_map() {
@@ -823,7 +876,7 @@
 
 
 
-        // 
+        //
 
 
         function addday() {
@@ -915,5 +968,7 @@
         }
     </script>
 
-    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+
+
 @endsection

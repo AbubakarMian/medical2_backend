@@ -56,8 +56,7 @@ class GroupController extends Controller
     public function save(Request $request)
     {
         $group = new Group();
-        $this->add_or_update($request, $group);
-        return redirect('admin/group');
+        return $this->add_or_update($request, $group);
     }
     public function edit($id)
     {
@@ -86,7 +85,7 @@ class GroupController extends Controller
         // dd('aa');
         $group = Group::find($id);
         $group_timings =  Group_Timings::where('group_id',  $group->id)->delete();
-        $this->add_or_update($request, $group);
+        return $this->add_or_update($request, $group);
         return Redirect('admin/group');
     }
     public function add_or_update(Request $request, $group)
@@ -98,6 +97,11 @@ class GroupController extends Controller
         $group->courses_id = $request->courses_id;
         $group->start_date = $start_date_timestamp;
         $group->end_date = $end_date_timestamp;
+
+        if ($start_date_timestamp > $end_date_timestamp) {
+            return back()->with('error', 'Enter Valid Date');
+        }
+
         $group->teacher_id = $request->teacher_id;
         $group->type = 'course';
 
@@ -118,7 +122,7 @@ class GroupController extends Controller
             $group->venue = $request->city;
             $group->is_online = 0;
         }
-        // 
+        //
         if ($request->hasFile('zoom')) {
 
             $file_video = $request->zoom;
@@ -132,7 +136,7 @@ class GroupController extends Controller
         }
 
 
-        // 
+        //
         $group->save();
 
         if ($request->day) {
@@ -147,9 +151,12 @@ class GroupController extends Controller
                 $group_timings->day = $d;
                 // $group_timings->start_time = $this->time_to_timestamp_group($request->start_time[$key]);
                 // $group_timings->end_time = $this->time_to_timestamp_group($request->end_time[$key]);
-                $group_timings->start_time = strtotime( $request->start_time[$key]);
-                $group_timings->end_time = strtotime( $request->end_time[$key]);
+                $group_timings->start_time = strtotime($request->start_time[$key]);
+                $group_timings->end_time = strtotime($request->end_time[$key]);
                 // dd( $group_timings->start_time);
+                if ($group_timings->start_time > $group_timings->end_time) {
+                    return back()->with('error', 'Enter Valid Time');
+                }
                 $group_timings->save();
             }
         }
@@ -158,8 +165,8 @@ class GroupController extends Controller
             $course_fees = Courses_Fees::where('course_id', $request->courses_id)->get();
             //   dd(    $course_fees);
             // if($course_fees->count() > 1){
-                
-                foreach ($course_fees as $c) {
+
+            foreach ($course_fees as $c) {
                 $group_fees = new Group_fees();
                 $group_fees->group_id     = $group->id;
                 $group_fees->course_id =  $group->courses_id;
@@ -201,7 +208,8 @@ class GroupController extends Controller
                 $group_fees->save();
             }
         }
-        return redirect()->back();
+        return redirect('admin/group');
+
     }
 
     public function destroy_undestroy($id)

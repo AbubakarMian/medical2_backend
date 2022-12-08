@@ -80,38 +80,30 @@
         ]) !!}
     </div>
 </div>
-
-<div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            {!! Form::label('fees', 'Fees') !!}
-            <div>
-                {!! Form::text('examination_fees', null, [
-                    'class' => 'form-control',
-                    'data-parsley-required' => 'true',
-                    'data-parsley-trigger' => 'change',
-                    'placeholder' => 'Enter Fees',
-                    'required',
-                    'maxlength' => '100',
-                ]) !!}
-            </div>
-        </div>
+<div class="form-group">
+    {!! Form::label('fees', 'Exam Fees') !!}
+    <div>
+        {!! Form::text('examination_fees', null, [
+            'class' => 'form-control',
+            'data-parsley-required' => 'true',
+            'data-parsley-trigger' => 'change',
+            'placeholder' => 'Enter Fees',
+            'required',
+            'maxlength' => '100',
+        ]) !!}
     </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            {!! Form::label('One_payment ', 'One Time Payment') !!}
-            <div class="tickbox">
-                {!! Form::checkbox('one_time_payment', null, [
-                    'class' => 'form-control',
-                    'data-parsley-required' => 'true',
-                    'data-parsley-trigger' => 'change',
-                    'placeholder' => 'Enter Payment',
-                    'required',
-                    'maxlength' => '100',
-                ]) !!}
-            </div>
-            {{-- <input class="form-check-input tickbox" type="checkbox" id="gridCheck"> --}}
-        </div>
+</div>
+<div class="form-group">
+    {!! Form::label('One_payment ', 'One Time Payment') !!}
+    <div>
+        {!! Form::checkbox('one_time_payment', null, [
+            'class' => 'form-control',
+            'data-parsley-required' => 'true',
+            'data-parsley-trigger' => 'change',
+            'placeholder' => 'Enter Payment',
+            'required',
+            'maxlength' => '100',
+        ]) !!}
     </div>
 </div>
 
@@ -135,7 +127,7 @@
     {!! Form::label('fees_type', 'Fees Type') !!}
     {!! Form::select('fees_type', $fees_type, null, [
         'placeholder' => "Select
-                Type",
+                    Type",
         'onchange' => 'open_fees_type_div()',
         'class' => 'form-control fees_type',
         'required',
@@ -160,7 +152,7 @@
                 {!! Form::label('amount', 'Amount') !!}
                 <div>
                     {!! Form::text('amount', null, [
-                        'class' => 'form-control complete_amount',
+                        'class' => 'form-control complete_amount ',
                         'data-parsley-required' => 'true',
                         'data-parsley-trigger' => 'change',
                         'placeholder' => 'Enter Amount',
@@ -385,7 +377,8 @@
         <div>
             {!! Form::submit('Save', [
                 'class' => 'btn btn-primary btn-block btn-lg btn-parsley',
-                'onblur' => 'return validateForm();',
+                'onclick' => 'return validateForm();',
+                'onclick' => 'return validateForm_amount();',
             ]) !!}
         </div>
     </div>
@@ -398,10 +391,7 @@
         // newwww
 
         function open_fees_type_div() {
-
-
             console.log('open_fesss_type_divvvvvvvv');
-
             var select_fees_type = $('.fees_type').val();
             console.log('select_fees_type__select_fees_type', select_fees_type);
 
@@ -415,64 +405,57 @@
 
                 var $installment_fees_area = $('.installment_fees_area').show();
                 var $complete_fees_area = $('.complete_fees_area').hide()
-
             };
-
-
-
         }
 
         function remove_installment(e) {
-
             $(e).parent().remove();
         }
 
         function installment_html(v) {
             return (`
+            <div class="row installmet_div_row">
 
+            <!-- columnnn-->
+            <div class="col-sm-6">
+            <div class="form-group">
+            {!! Form::label('amount', 'Amount') !!}
+            <div>
+            {!! Form::text('amount[]', null, [
+                'class' => 'form-control amount_validation',
+                'data-parsley-required' => 'true',
+                'data-parsley-trigger' => 'change',
+                'placeholder' => 'Enter Amount',
+                'maxlength' => '100',
+            ]) !!}
+            </div>
+            </div>
 
-<div class="row installmet_div_row">
+                </div>
+                <!-- end columnnn -->
 
-<!-- columnnn-->
-<div class="col-sm-6">
-<div class="form-group">
-{!! Form::label('amount', 'Amount') !!}
-<div>
-{!! Form::text('amount[]', null, [
-    'class' => 'form-control',
-    'data-parsley-required' => 'true',
-    'data-parsley-trigger' => 'change',
-    'placeholder' => 'Enter Amount',
-    'maxlength' => '100',
-]) !!}
-</div>
-</div>
+            <!-- columnnn -->
+                <div class="col-sm-6">
+                <div class="form-group">
+            {!! Form::label('due_date', 'Due Date') !!}
+            <div>
+            {!! Form::date('due_date[]', null, [
+                'class' => 'form-control due_date_validation',
+                'data-parsley-required' => 'true',
+                'data-parsley-trigger' => 'change',
+                'placeholder' => 'Enter Due Date',
+            ]) !!}
+            </div>
+            </div>
+                </div>
 
-    </div>
-    <!-- end columnnn -->
+            <!-- end  columnnn-->
 
-<!-- columnnn -->
-    <div class="col-sm-6">
-    <div class="form-group">
-{!! Form::label('due_date', 'Due Date') !!}
-<div>
-{!! Form::date('due_date[]', null, [
-    'class' => 'form-control',
-    'data-parsley-required' => 'true',
-    'data-parsley-trigger' => 'change',
-    'placeholder' => 'Enter Due Date',
-]) !!}
-</div>
-</div>
-    </div>
+            <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 10px;
+                margin-left: 16px;
+                margin-bottom: 18px;">Remove</div>
 
- <!-- end  columnnn-->
-
- <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 10px;
-    margin-left: 16px;
-    margin-bottom: 18px;">Remove</div>
-
-    </div>`
+                </div>`
 
             );
         }
@@ -480,50 +463,11 @@
         function add_installment_divs() {
 
             console.log('add_installment_divs_add_installment_divs');
-            // var installment_div = $('.installment_divs').length+1;
             var installmet_div_row = $('.installmet_div_row').length;
             var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(installmet_div_row));
-
-
         }
 
-
-
-
-
-
-
-
-
-
-
-
         // end new
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         $(document).ready(function() {
 
@@ -535,13 +479,7 @@
 
             var image_width = $('#image_width').val();
             console.log('image_widthimage_widthimage_width', image_width)
-            //
 
-            // var pages_images_id = $('#pages_images_id').val();
-            // console.log('pages_images_idpages_images_idpages_images_id', pages_images_id)
-            //
-
-            //
             var image_height = $('#image_height').val();
             console.log('image_heightimage_height', image_height)
             //
@@ -634,10 +572,43 @@
             });
 
         });
-    </script>
-    <script>
+
+
         function validateForm() {
-            return true;
+            var due_dates = $('.due_date_validation');
+            var due_dates_valid = true;
+            $.each(due_dates,function(index,input){
+                if($(input).val() == ''){
+                    due_dates_valid = false;
+                    return;
+                }
+            })
+
+            if(!due_dates_valid){
+                alert('invalid due date');
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        function validateForm_amount() {
+            var amount = $('.amount_validation');
+            var amount_valid = true;
+            $.each(amount,function(index,input){
+                if($(input).val() == ''){
+                    amount_valid = false;
+                    return;
+                }
+            })
+
+            if(!amount_valid){
+                alert('invalid amount');
+                return false;
+            }
+            else{
+                return true;
+            }
         }
     </script>
 

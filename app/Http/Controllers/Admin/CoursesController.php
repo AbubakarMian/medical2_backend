@@ -39,7 +39,7 @@ class CoursesController extends Controller
 
         return redirect('admin/courses');
     }
-    
+
     public function edit($id)
     {
         $control = 'edit';
@@ -64,7 +64,7 @@ class CoursesController extends Controller
 
     public function add_or_update(Request $request, $courses)
     {
-        // dd($request->all());
+
         $date_timestamp =  strtotime($request->start_date);
         $courses->full_name = $request->full_name;
         $courses->short_name = $request->short_name;
@@ -72,25 +72,23 @@ class CoursesController extends Controller
         $courses->examination_fees = $request->examination_fees;
         $courses->description = $request->description;
         $courses->start_date = $date_timestamp;
+        $courses->fees_type = $request->fees_type;
+
         if($request->one_time_payment == 'on'){
             $courses->one_time_examination_payment =1;
          }
          else{
             $courses->one_time_examination_payment =0;
          }
-         if($request->fees_type == 'installment'){
-            $courses->fees_type = $request->fees_type;
-         }
-         else{
-            $courses->fees_type = $request->fees_type;
-         }
+
+
          if ($request->cropped_image) {
             $courses->avatar = $request->cropped_image;
         }
         $courses->save();
 
-        // new Courses_Fees table 
-        if ($request->amount & $request->due_date != null ) {
+        // new Courses_Fees table
+        // if ($request->amount & $request->due_date ) {
         if($request->fees_type == 'installment'){
 
          foreach($request->amount as $amnt_key =>$am){
@@ -103,16 +101,17 @@ class CoursesController extends Controller
 
          }
         }
-        elseif($request->fees_type == 'complete'){
+        else{//if($request->fees_type == 'complete'){
             $course_fees = new Courses_Fees();
             $course_fees->course_id = $courses->id;
             $course_fees->fees_type = $courses->fees_type;
             $course_fees->amount = $request->amount;
             $course_fees->due_date =  strtotime($request->due_date);
             $course_fees->save();
-       
+
         }
-        }
+        // }
+        dd($request->all());
         return redirect()->back();
     }
 

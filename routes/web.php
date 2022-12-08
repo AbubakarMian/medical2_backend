@@ -36,10 +36,11 @@ use Illuminate\Support\Facades\Route;
      // Route::get('user/home', 'Admin\UserController@index');
      // Route::get('user', 'Admin\UserController@index');
      Route::get('/', 'User\UserController@index')->name('user_index');
+     Route::get('login_modal', 'User\UserController@login_modal')->name('user_login_modal');
      Route::get('courses_registration', 'User\UserController@courses_registration');
 
     //  Route::group(['middleware' => 'user.auth'], function () {
-   
+
     //  profile_courses
 
      Route::get('profile_courses', 'User\Profile_Courses_Controller@my_courses');
@@ -47,7 +48,7 @@ use Illuminate\Support\Facades\Route;
      Route::get('profile_acount', 'User\Profile_Courses_Controller@my_profile');
     //  my_profile_save
      Route::post('my_profile_save', 'User\Profile_Courses_Controller@my_profile_save');
-// 
+//
 //  courses/exams
 Route::get('exams', 'User\Exams_Controller@index');
 
@@ -71,7 +72,7 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
 
      //workshop page
      Route::get('workshop', 'User\CoursesController@index');
-  
+
      // courses/details page
     Route::get('courses/details', 'User\CoursesController@courses_details');
 
@@ -99,14 +100,14 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
 
     //user/update_password_save
     Route::post('user/update_password_save', 'User\CoursesController@update_password_save');
-  
+
 
     // user/user_show_payment
     Route::get('user_show_payment', 'User\CoursesController@user_show_payment');
-      
+
     // user/payment
     Route::post('user_payment', 'User\CoursesController@payment_screen');
-    // 
+    //
 
 
 // dekheneeeeaaaa
@@ -143,8 +144,8 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
     Route::get('admin/login', 'Admin\AdminController@index');
     Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
     // Route::group(['middleware' => 'admin_auth'], function () {
-      
-      
+
+
 
     // contact module
     Route::get('admin/contact', 'Admin\ContactUsController@index')->name('contact.index');
@@ -175,35 +176,35 @@ Route::get('course_payemts', 'User\Profile_Courses_Controller@course_payemts');
 
 
     // role
-    Route::get('admin/role', 'Admin\RoleController@index')->name('role.index'); 
-    Route::get('admin/role/create', 'Admin\RoleController@create')->name('role.create'); 
+    Route::get('admin/role', 'Admin\RoleController@index')->name('role.index');
+    Route::get('admin/role/create', 'Admin\RoleController@create')->name('role.create');
     Route::post('admin/role/save', 'Admin\RoleController@save')->name('role.save');
     Route::get('admin/role/edit/{id}', 'Admin\RoleController@edit')->name('role.edit');
     Route::post('admin/role/update/{id}', 'Admin\RoleController@update')->name('role.update');
     Route::post('admin/role/delete/{id}', 'Admin\RoleController@destroy_undestroy')->name('role.delete');
-  
+
 
 
 
     // Empolyee
-       
-    Route::get('admin/employee', 'Admin\EmployeeController@index')->name('employee.index'); 
-    Route::get('admin/employee/create', 'Admin\EmployeeController@create')->name('employee.create'); 
+
+    Route::get('admin/employee', 'Admin\EmployeeController@index')->name('employee.index');
+    Route::get('admin/employee/create', 'Admin\EmployeeController@create')->name('employee.create');
     Route::post('admin/employee/save', 'Admin\EmployeeController@save')->name('employee.save');
     Route::get('admin/employee/edit/{id}', 'Admin\EmployeeController@edit')->name('employee.edit');
     Route::post('admin/employee/update/{id}', 'Admin\EmployeeController@update')->name('employee.update');
     Route::post('admin/employee/delete/{id}', 'Admin\EmployeeController@destroy_undestroy')->name('employee.delete');
-      
+
     // Permissions
-    Route::get('admin/permissions/show', 'Admin\PermissionsController@show_list_permision')->name('permissions.index'); 
-    Route::get('admin/permissions/create', 'Admin\PermissionsController@create')->name('rolpermissionse.create'); 
+    Route::get('admin/permissions/show', 'Admin\PermissionsController@show_list_permision')->name('permissions.index');
+    Route::get('admin/permissions/create', 'Admin\PermissionsController@create')->name('rolpermissionse.create');
     Route::post('admin/permissions/save', 'Admin\PermissionsController@save')->name('permissions.save');
     Route::get('admin/permissions/edit/{id}', 'Admin\PermissionsController@edit')->name('permissions.edit');
     Route::post('admin/permissions/update/{id}', 'Admin\PermissionsController@update')->name('permissions.update');
     Route::post('admin/permissions/delete/{id}', 'Admin\PermissionsController@destroy_undestroy')->name('permissions.delete');
     // admin/role_response
     Route::post(' admin/role_response', 'Admin\PermissionsController@role_response')->name('role.role_response');
-   
+
     // permisiion/save
     Route::post('permisiion/save', 'Admin\PermissionsController@permisiion_save')->name('role.role_response');
 
@@ -330,12 +331,12 @@ Route::get('admin/group/create', 'Admin\GroupController@create')->name('group.cr
 Route::post('admin/group/save', 'Admin\GroupController@save')->name('group.save');
 Route::get('admin/group/edit/{id}', 'Admin\GroupController@edit')->name('group.edit');
 Route::post('admin/group/update/{id}', 'Admin\GroupController@update')->name('group.update');
-Route::post('admin/group/delete/{id}', 'Admin\GroupController@destroy_undestroy')->name('group.delete'); 
+Route::post('admin/group/delete/{id}', 'Admin\GroupController@destroy_undestroy')->name('group.delete');
 
 // group_exams
-Route::get('admin/group_exams/{id}', 'Admin\Group_ExamsController@index')->name('group_exams.index'); 
-Route::post('admin/group_exams/create', 'Admin\Group_ExamsController@create')->name('group_exams.create'); 
-Route::post('admin/group_exams/save', 'Admin\Group_ExamsController@save')->name('group_exams.save'); 
+Route::get('admin/group_exams/{id}', 'Admin\Group_ExamsController@index')->name('group_exams.index');
+Route::post('admin/group_exams/create', 'Admin\Group_ExamsController@create')->name('group_exams.create');
+Route::post('admin/group_exams/save', 'Admin\Group_ExamsController@save')->name('group_exams.save');
 
 
 Route::post('admin/group/select_courses_id/{id}', 'Admin\GroupController@select_courses_data')->name('select_courses_id.delete');
@@ -390,7 +391,7 @@ Route::post('admin/student_plan/delete/{id}', 'Reports\Student_planController@de
 
 
 
-// 
+//
 
 //  =================================  Reports PAYMENT ==========================
 

@@ -65,13 +65,10 @@
                             {{-- <a href="{{ asset('courses/details/?courses_id=' . $p->id) }}"> --}}
                             <!-- <a href="{{ asset('course/registration/?course_id='.$p->id.'&type='.$types) }}" target="_blank"> -->
                             <a href="{{ asset('course/registration/?course_id='.$p->id.'&type='.$types) }}" >
-                                
                                 View
-
-
                             </a>
                             <!-- <a href="{{ asset('course/registration/?course_id='.$p->id.'&type='.$types) }}" target="_blank">
-                                
+
                                 View
 
 

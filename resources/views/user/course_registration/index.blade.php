@@ -239,7 +239,7 @@ use Illuminate\Support\Facades\Auth;
                                 <td>{{
 
                                     date('h:i:s', $cg->start_date)
-                                
+
                                 }}
                                 </td>
 
@@ -272,7 +272,7 @@ use Illuminate\Support\Facades\Auth;
                 @else
                 <?php
                 if(isset($courses_groups))
-               
+
                 $courses_group = $courses_groups;
                 ?>
 
@@ -379,7 +379,7 @@ use Illuminate\Support\Facades\Auth;
                                 <td>{{
 
                                     date('h:i:s', $cg->start_date)
-                                
+
                                 }}
                                 </td>
 
@@ -406,12 +406,12 @@ use Illuminate\Support\Facades\Auth;
                     <iframe src="{{$cg->url}}" title="description"></iframe>
                     </div>
                     @endif -->
-                    @if($current_date <= $group_start_date || $current_date <=$group_end_date ) 
+                    @if($current_date <= $group_start_date || $current_date <=$group_end_date )
                     <div class="regtabless">
                         <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
                         <a href="{!! asset('save_course_register/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}">
 
-                            <button type="button" class="btn btn-primary regii">Single Registeration</button>
+                            <button type="button" class="btn btn-primary regii">Single Registration</button>
 
                         </a>
                 </div>
@@ -419,7 +419,7 @@ use Illuminate\Support\Facades\Auth;
                     <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
                     <a href="{!! asset('group_registration/?course_id='.$cg->courses_id.'&group_id='.$cg->id) !!}">
 
-                        <button type="button" class="btn btn-primary regii">Group Registeration</button>
+                        <button type="button" class="btn btn-primary regii">Group Registration</button>
 
                     </a>
                 </div>
@@ -428,7 +428,7 @@ use Illuminate\Support\Facades\Auth;
                     <h5 class="regtabless_heading">
                         <div class="alert alert-danger alert-block">
                             <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong> Sorry !{{ucwords($cg->name)}} Group Registration Will Be Closed</strong>
+                            <strong> Sorry !{{ucwords($cg->name)}} Group Registration Closed</strong>
                         </div>
 
                         <h5>
