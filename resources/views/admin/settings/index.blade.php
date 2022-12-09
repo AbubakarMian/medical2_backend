@@ -1,6 +1,6 @@
 @extends('layouts.default_module')
 @section('module_name')
-    Product
+    Silder
 @stop
 
 @section('table-properties')

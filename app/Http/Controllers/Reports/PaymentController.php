@@ -111,41 +111,43 @@ class PaymentController extends Controller
     public function payment_refund(Request $request, $id)
     {
 
-        $old_payment = Payment::find($id);
+        $payment_object = Payment::find($id);
         $stripe = new \Stripe\StripeClient(
             Config::get('services.stripe.STRIPE_SECRET')
         );
         $charges = $stripe->refunds->create([
-            'charge' => 'ch_3MCmN0AEX4dqjMHK0HUBwVAx'
+            'charge' => $payment_object->payment_id,
+            'amount' => $request->payment_refund_amount,
         ]);
         $payment_refund_amount = $request->payment_refund_amount;
+        // dd(  $payment_refund_amount);
 
-        $url = 'https://api.stripe.com/v1/refunds';
-        $method = 'POST';
-        $headers = array(
-            "Content-Type:application/x-www-form-urlencoded",
-            'Accept: application/json',
-            'Authorization: Bearer sk_test_51HWGI7AEX4dqjMHKn3tpx0BSgLaWareo5dZ7zSBQjLnlsx4XBmGNflMxYc7SJsaNUsZQcrsHKOMPCIZFiy2xv77g00ndxNeFTs',
-        );
-        $body = '{
-            "charge":"ch_3MCmN0AEX4dqjMHK0HUBwVAx",
-            "amount":"'.$payment_refund_amount
-            .'"}';
-        // 
-        $curl = curl_init();
+        // $url = 'https://api.stripe.com/v1/refunds';
+        // $method = 'POST';
+        // $headers = array(
+        //     "Content-Type:application/x-www-form-urlencoded",
+        //     'Accept: application/json',
+        //     'Authorization: Bearer sk_test_51HWGI7AEX4dqjMHKn3tpx0BSgLaWareo5dZ7zSBQjLnlsx4XBmGNflMxYc7SJsaNUsZQcrsHKOMPCIZFiy2xv77g00ndxNeFTs',
+        // );
+        // $body = '{
+        //     "charge":"ch_3MCmN0AEX4dqjMHK0HUBwVAx",
+        //     "amount":"'.$payment_refund_amount
+        //     .'"}';
+        // // 
+        // $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_URL => $url,
-            CURLOPT_CUSTOMREQUEST => $method,
-            CURLOPT_HTTPHEADER => $headers,
-            CURLOPT_POSTFIELDS => $body
-        ));
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_URL => $url,
+        //     CURLOPT_CUSTOMREQUEST => $method,
+        //     CURLOPT_HTTPHEADER => $headers,
+        //     CURLOPT_POSTFIELDS => $body
+        // ));
 
-        $my_response = curl_exec($curl);
-        $err = curl_error($curl);
+        // $my_response = curl_exec($curl);
+        // $err = curl_error($curl);
 
-        curl_close($curl);
+        // curl_close($curl);
 
         //   payment_refund
     //     $payment = new Payment();
@@ -163,9 +165,10 @@ class PaymentController extends Controller
     //     $old_payment->save();
 
         $response = Response::json([
-            "my_response" => $my_response,
             'action' => Config::get('constants.ajax_action.update'),
-            'new_value' => ucwords($request->status)
+            'new_value' => ucwords($request->status),
+            'payment_refund_amount' => $payment_refund_amount,
+            'charge' => $charges,
         ]);
         return $response;
     }
