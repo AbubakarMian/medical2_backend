@@ -237,6 +237,7 @@ Route::get('admin/aboutus/edit/{id}', 'Admin\About_UsController@edit')->name('ab
 Route::post('admin/aboutus/update/{id}', 'Admin\About_UsController@update')->name('aboutus.update');
 
 Route::post('admin/aboutus/delete/{id}', 'Admin\About_UsController@destroy_undestroy')->name('aboutus.delete');
+Route::get('admin/aboutus/view_frame/{id}', 'Admin\About_UsController@view_frame')->name('aboutus.view_frame');
 
 
 
@@ -400,6 +401,9 @@ Route::post('admin/student_plan/delete/{id}', 'Reports\Student_planController@de
     Route::post('admin/reports/payments', 'Reports\PaymentController@index')->name('payment.index');
     Route::get('admin/orders/payments', 'Reports\PaymentController@index_excel')->name('payment.excel');
     Route::post('admin/reports/payment/status_update/{id}','Reports\PaymentController@status_update')->name('payment.status_update');
+    // 
+    Route::post('admin/reports/payment/payment_refund/{id}','Reports\PaymentController@payment_refund')->name('payment.payment_refund');
+   
 
 
 

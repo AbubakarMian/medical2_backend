@@ -41,9 +41,9 @@ class PaymentController extends Controller
             $todate = Carbon::now()->format('m/d/Y');
             $date = $fromdate . ' - ' . $todate;
         }
-            $fromdate = Carbon::now()->subDay()->format('m/d/Y');
-            $todate = Carbon::now()->format('m/d/Y');
-            $date = $fromdate . ' - ' . $todate;
+        $fromdate = Carbon::now()->subDay()->format('m/d/Y');
+        $todate = Carbon::now()->format('m/d/Y');
+        $date = $fromdate . ' - ' . $todate;
 
         $payments = $this->query($search_text, $date, $status)->select('*')->paginate(10);
         // dd($payments);
@@ -68,7 +68,7 @@ class PaymentController extends Controller
         $fromdate = date("m/d/Y H:i:s", strtotime(str_replace('-', '/', $datearr[0])));
         $todate = date("m/d/Y H:i:s", strtotime(str_replace('-', '/', $datearr[1])));
 
-        $report = Payment::with('user','student')
+        $report = Payment::with('user', 'student')
             ->whereRaw(
                 '(date(created_at))>= ?',
                 [date('Y-m-d H:i:s', strtotime($fromdate))]
@@ -77,12 +77,12 @@ class PaymentController extends Controller
                 '(date(created_at))<= ?',
                 [date('Y-m-d H:i:s', strtotime($todate))]
             );
-           
+
         $report = $report->where(function ($s) use ($search_text) {
-            return $s->whereHas('user',function($u)use($search_text){
-                 return $u->where('name','like','%'.$search_text.'%');
-                    });
-                });
+            return $s->whereHas('user', function ($u) use ($search_text) {
+                return $u->where('name', 'like', '%' . $search_text . '%');
+            });
+        });
 
         // dd($report);
 
@@ -107,6 +107,70 @@ class PaymentController extends Controller
         ]);
         return $response;
     }
+    // 
+    public function payment_refund(Request $request, $id)
+    {
+
+        $old_payment = Payment::find($id);
+        $stripe = new \Stripe\StripeClient(
+            Config::get('services.stripe.STRIPE_SECRET')
+        );
+        $charges = $stripe->refunds->create([
+            'charge' => 'ch_3MCmN0AEX4dqjMHK0HUBwVAx'
+        ]);
+        $payment_refund_amount = $request->payment_refund_amount;
+
+        $url = 'https://api.stripe.com/v1/refunds';
+        $method = 'POST';
+        $headers = array(
+            "Content-Type:application/x-www-form-urlencoded",
+            'Accept: application/json',
+            'Authorization: Bearer sk_test_51HWGI7AEX4dqjMHKn3tpx0BSgLaWareo5dZ7zSBQjLnlsx4XBmGNflMxYc7SJsaNUsZQcrsHKOMPCIZFiy2xv77g00ndxNeFTs',
+        );
+        $body = '{
+            "charge":"ch_3MCmN0AEX4dqjMHK0HUBwVAx",
+            "amount":"'.$payment_refund_amount
+            .'"}';
+        // 
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_URL => $url,
+            CURLOPT_CUSTOMREQUEST => $method,
+            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_POSTFIELDS => $body
+        ));
+
+        $my_response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        //   payment_refund
+    //     $payment = new Payment();
+    //     $payment->user_id =  $old_payment->user_id;
+    //     $payment->payment_id = $stripe->id;
+    //     $payment->course_register_id = $old_payment->course_register_id;
+    //     $payment->payment_response = json_encode($stripe);
+    //     $payment->payment_status = $stripe->status;
+    //     $payment->card_type = $stripe->payment_method_details->card->brand;
+    //     $payment->amount =   $request->payment_refund_amount;
+    //     $payment->save();
+    //     //   payment_refund
+    //     $old_payment->action  = 'payment_refund';
+    //     $old_payment->refund_payment_id  = $payment->id;
+    //     $old_payment->save();
+
+        $response = Response::json([
+            "my_response" => $my_response,
+            'action' => Config::get('constants.ajax_action.update'),
+            'new_value' => ucwords($request->status)
+        ]);
+        return $response;
+    }
+
+    // 
 
     public function index_excel(Request $request)
     {
@@ -131,46 +195,46 @@ class PaymentController extends Controller
             $request = $payment->request;
 
 
-                    $excel_arr[] = [
-                        $payment->created_at,
-                        $payment->payment_id,
-                        $payment->user->name ,
-                        $payment->user->email ,
+            $excel_arr[] = [
+                $payment->created_at,
+                $payment->payment_id,
+                $payment->user->name,
+                $payment->user->email,
 
-                        $payment->price,
-                        $payment->payment_status,
-                        // $request->request_item_price ??'',
-
-
+                $payment->price,
+                $payment->payment_status,
+                // $request->request_item_price ??'',
 
 
-                    ];
 
-                // $excel_arr[] = [
-                //     '',
-                //     '',
-                //     '',
-                //     '',
-                //     '',
-                //     '',
-                //     '',
-                //     '',
-                //     '',
-                //     '',
-                //     '',
-                //     '',
-                //     '',
-                //     $item->product->name,
 
-                //     $item->unit_price,
-                //     $item->quantity,
-                //     $item->final_price,
+            ];
 
-                // ];
-            }
+            // $excel_arr[] = [
+            //     '',
+            //     '',
+            //     '',
+            //     '',
+            //     '',
+            //     '',
+            //     '',
+            //     '',
+            //     '',
+            //     '',
+            //     '',
+            //     '',
+            //     '',
+            //     $item->product->name,
+
+            //     $item->unit_price,
+            //     $item->quantity,
+            //     $item->final_price,
+
+            // ];
+        }
 
         $headings = [
-            'Date', 'Payment Id', 'Customer','Email', 'Amount',
+            'Date', 'Payment Id', 'Customer', 'Email', 'Amount',
             'Payment Status',
             // 'Product', 'Unit Price', 'Quantity', 'Price',
         ];

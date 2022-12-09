@@ -478,12 +478,13 @@ class CoursesController extends Controller
             if ($request->student_id) {
 
                 foreach ($request->student_id as $st_id) {
-                    $student_fees = Student_fees::with('user', 'course')->find($st_id);
+                    $student_fees = Student_fees::with('user', 'course','course_register')->find($st_id);
                     // dd( $student_fees);
                     $payment = new Payment();
                     $payment->user_id = $user->id;
                     $payment->payment_id = $stripe->id;
-                    $payment->course_register_id = $request->course_register_id;
+                    // $payment->course_register_id = $request->course_register_id;
+                    $payment->course_register_id = $student_fees->course_register_id;
                     $payment->payment_response = json_encode($stripe);
                     $payment->payment_status = $stripe->status;
                     $payment->students_fees_id = $student_fees->id;
@@ -505,7 +506,8 @@ class CoursesController extends Controller
                 $payment = new Payment();
                 $payment->user_id = $user->id;
                 $payment->payment_id = $stripe->id;
-                $payment->course_register_id = $request->course_register_id;
+                // $payment->course_register_id = $request->course_register_id;
+                $payment->course_register_id = $student_fees->course_register_id;
                 $payment->payment_response = json_encode($stripe);
                 $payment->payment_status = $stripe->status;
                 $payment->students_fees_id = $student_fees->id;
@@ -526,7 +528,7 @@ class CoursesController extends Controller
                 $payment = new Payment();
                 $payment->user_id = $user->id;
                 $payment->payment_id = $stripe->id;
-                $payment->course_register_id = $request->course_register_id;
+                // $payment->course_register_id = $request->course_register_id;
                 $payment->payment_response = json_encode($stripe);
                 $payment->payment_status = $stripe->status;
                 // $payment->students_fees_id = $student_fees->id;
@@ -546,6 +548,8 @@ class CoursesController extends Controller
                     $student_fees->payment_id = $payment->id;
                     $student_fees->save();
                 }
+                $payment->course_register_id = $student_fees->course_register_id;
+                $payment->save();
             }
             return redirect('payment/success');
         } elseif (!$stripe->status == "succeeded") {

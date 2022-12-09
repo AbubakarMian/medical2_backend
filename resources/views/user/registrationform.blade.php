@@ -259,7 +259,7 @@
               {!! csrf_field() !!}
                 <div class="row">
                   <div class="col-sm-6">
-                    <select class="form-control" id="one">
+                    <select class="form-control" id="one" name="program">
                       <option>Selecte Program</option>
                       <option>Certified Nurse Assistant Program of Study</option>
                       <option>Medical Administrative Assistant</option>
@@ -271,7 +271,7 @@
                     </select>
                   </div>
                   <div class="col-sm-6">
-                    <select class="form-control" id="two">
+                    <select class="form-control" id="two" name="online">
                       <option>Please select</option>
                       <option>05-31-2022 08:00:00 - Mississippi, Tupelo AM 10 instructor led online classes Mon -Thur, 9am-1pm (May 31st-June20th), then 2 days in person classroom 8am-4:30pm (June 21st/23rd) and 2 days in person clinicals 8am-4:30pm Saturday/Sunday(June 25th/26th)</option>
                       <option>05-31-2022 16:30:00 - Mississippi, Tupelo PM 10 instructor led online classes M -TH 5:30pm to 9:30pm (May 31st- June 20th), then 2 days in person classroom 8am-4:30pm Friday/Saturday(June 17th/18th) and 2 days in person clinicals 8am-4:30pm Saturday/Sunday (June 25th/26th)</option>

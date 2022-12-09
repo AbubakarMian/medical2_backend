@@ -1,6 +1,7 @@
 <?php
 
 use App\Model\Pages_Images;
+use App\Model\About_us;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +14,15 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
+        About_us::firstOrCreate(
+
+            [
+                'id'    => 1,
+                'page_name'    => 'about_us',
+                'description'   => 'Add content ..',
+            ]
+
+        );
         Pages_Images::firstOrCreate(
 
             [
