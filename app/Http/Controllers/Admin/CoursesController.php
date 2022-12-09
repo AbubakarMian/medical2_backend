@@ -111,7 +111,7 @@ class CoursesController extends Controller
 
         }
         // }
-        dd($request->all());
+        // dd($request->all());
         return redirect()->back();
     }
 
