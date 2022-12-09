@@ -56,12 +56,28 @@
                             <button type="button" class="btn btn-primary regi vsdg" onclick="add_members()">Add Group
                                 Members</button>
                             <!-- <button type="button" class="btn btn-primary regi" onclick="add_members()">Register</button> -->
-
+                           
 
 
 
 
                         </div>
+                        <div class="regtabless">
+                        @if ($message = Session::get('error'))
+    <div class="alert alert-danger alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                           
+                        @endif
+                          
+
+
+                        </div>
+ 
+
+                
+
 
 
 
@@ -69,7 +85,10 @@
                         <!--  -->
 
                     </div>
+   
                 </div>
+
+                
             </div>
             <div class="row">
             </div>
