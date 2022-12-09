@@ -11,8 +11,17 @@
     <!-- cropeer css open-->
     <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
     <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />
-   
+
 </head>
+<style>
+    .new_account{
+
+        float: left;
+    color: #292974;
+    font-weight: 500;
+    margin-top: 3px
+}
+</style>
 
 <body>
     <?php
@@ -64,7 +73,7 @@
 
                                 //    dd($all_user);
 
-                                ?>                               
+                                ?>
 
 
                                 @if ($all_user)
@@ -83,13 +92,13 @@
 
                                     </div>
                                 </div>
-                               
+
                                 <!--  -->
 
 
                                 {{-- <a href="" type="button" class="btn btn-primary logclick" style="border-radius"> --}}
                                 {{-- <div class="tupclio">
-                                   
+
                                     {{ucwords($all_user->name)}}
                             </div> --}}
 
@@ -150,9 +159,12 @@
                                 <a href="{{ asset('user_logout') }}" type="button" class="btn btn-primary logclick">
                                     LOGOUT</a>
                                 @else
+
+
                                 <button type="button" class="btn btn-primary logclick" data-toggle="modal" data-target="#exampleModal">
                                     Login
                                 </button>
+
                                 @endif
 
 
@@ -197,6 +209,10 @@
                                                 <button type="submit" class="btn btn-primary logclic">
                                                     Login
                                                 </button>
+                                                <br>
+                                                <div class="new_acount">
+                                                <a href="registration"><span class="new_account">Don't have an account ?</span></a>
+                                            </div>
                                             </form>
                                             <div class="form-group form-check">
                                                 {{-- <input type="checkbox" class="form-check-input" id="exampleCheck1" />
@@ -317,9 +333,13 @@
                                                                     <a href="#"><span class="forspan">Forget
                                                                             Password</span></a>
                                                                 </div>
+
                                                                 <button type="submit" class="btn btn-primary logclic">
                                                                     Login
                                                                 </button>
+
+
+
                                                             </form>
                                                         </div>
                                                     </div>
