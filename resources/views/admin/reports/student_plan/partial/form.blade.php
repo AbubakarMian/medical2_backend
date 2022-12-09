@@ -122,7 +122,7 @@ $type = '';
 
     <div class="col-sm-2">
 
-        <button type="button" onclick="edit_plan()" class="btn btn-danger edit_plans_area"> New Plan</button>
+        <button type="button" onclick="edit_plan('{{$p->fees_type}}')" class="btn btn-danger edit_plans_area"> New Plan</button>
 
     </div>
 
@@ -138,7 +138,7 @@ $type = '';
         {!! Form::label('fees_type','Fees Type',) !!}
         {!! Form::select('fees_type',$fees_type,null,[
         "onchange"=>"open_fees_type_div()",
-        "class"=>"form-control fees_type",]) !!}
+        "class"=>"form-control fees_type remove_option",]) !!}
         </select>
     </div>
 </div>
@@ -366,16 +366,25 @@ $type = '';
 
 
 
-    function edit_plan() {
+    function edit_plan(fees_type) {
 
         console.log('edit_plan_edit_plan');
 
         var old_paln_show = $('.old_paln_show').hide();
-
-        var fees_type_areaaa = $('.fees_type_areaaa').show();
-
+        // 
+        if(fees_type == 'installment'){
+          var fees_type_areaaa = $('.fees_type_areaaa').show();
+          var complete_remove = $(".remove_option option[value='complete']").remove();
+          var $installment_fees_area_show = $('.installment_fees_area').show();
+     
+         }
+        else{
+            var fees_type_areaaa = $('.fees_type_areaaa').show();
+            var installment_remove = $(".remove_option option[value='installment']").remove();
+            var $complete_fees_area_show = $('.complete_fees_area').show()
+      }
+        // 
         var edit_plans_area = $('.edit_plans_area').hide();
-        var $complete_fees_area = $('.complete_fees_area').show()
 
     }
 
