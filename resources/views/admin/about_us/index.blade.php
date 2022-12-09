@@ -31,7 +31,7 @@ width="400px" style="table-layout:fixed;"
 
 
         <th> Name</th>
-        <th> Description</th>
+        <!-- <th> Description</th> -->
 
 
 	    <th>Edit  </th>
@@ -51,7 +51,7 @@ width="400px" style="table-layout:fixed;"
 
 
 		<td >{!! ucwords($c->name ) !!} </td>
-		<td >{!!ucwords($c->description) !!}</td>
+		
 
 
 

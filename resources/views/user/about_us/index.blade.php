@@ -20,7 +20,7 @@
                 <div class="aboutfram">
                     <iframe src="{!! asset('admin/aboutus/view_frame') . '/' . $about_us_id !!}"></iframe>
                 </div>
-                {{-- {!! html_entity_decode($about_us->description ?? '') !!} --}}
+                 <!-- {!! html_entity_decode($about_us->description ?? '') !!} --}} -->
 
             </div>
         </div>
