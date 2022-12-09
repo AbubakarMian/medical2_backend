@@ -148,65 +148,34 @@ class CoursesController extends Controller
         $course_id = $request->course_id;
         $group_id   = $request->group_id;
         $group = Group::with('group_fees')->find($group_id);
-        // dd($group->group_fees);
         $response_array   = [];
         $all_users_id  = [];
         $all_course_register   = [];
         $res = new \stdClass();
         $studen_array_id = [];
-        // special user jo logo ko group register krwata hai
 
 
-            $group = Group::with('group_fees')->find($request->group_id);
-            $course_register_one = new Course_Register();
-            $course_register_one->user_id  =  $one_user->id;
-            $course_register_one->course_id =   $course_id;
-            $course_register_one->group_id = $group_id;
-            // $course_register->user_group_id = $user_group->id;
-            $course_register_one->is_paid = 0;
-            $course_register_one->one_time_examination_payment = 0;
-            $course_register_one->examination_fees = 0;
-            $course_register_one->save();
-            foreach ($group->group_fees as $gf) {
-                $student_fee =  new Student_fees();
-                $student_fee->user_id  =  $one_user->id;
-                $student_fee->course_register_id  =  $course_register_one->id;
-                $student_fee->group_id  =  $group->id;
-                $student_fee->course_id  =  $course_id;
-                $student_fee->fees_type  =  $gf->fees_type;
-                $student_fee->amount  = $gf->amount;
-                $student_fee->due_date  =  $gf->due_date;
-                $student_fee->save();
-                $studen_array_id[] =   $student_fee;
-            }
-
-        //
-
-
+        // for groupppppp
         foreach ($request->first_name as $key => $f) {
-            $validator =  Validator::make([
-                '$users->email' => $request->email,
-                '$users->phone_no' => $request->number,
-                // 'image' => $request->cropped_image,
 
-            ], [
-                '$users->email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')],
-                '$users->mobileno' => ['required',  \Illuminate\Validation\Rule::unique('users')],
-
+            $user = new User;
+       
+      
+            $validator =  Validator::make(['email' => $request->email[$key]], [
+                'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
             ]);
-
-            // dd($validator);
-
+         
+    
             if ($validator->fails()) {
                 return back()->with('error', $validator->errors());
+                
+    
             }
-
-
             $users = new User();
             $users->name = $f;
             $users->last_name = $request->last_name[$key];
-            $users->email = $request->email[$key].rand(10000,99999);
-            $users->phone_no = $request->contact[$key].rand(10000,99999);
+            $users->email = $request->email[$key];
+            $users->phone_no = $request->contact[$key];
             $users->adderss = $request->address[$key];
             $users->city = $request->city[$key];
             $users->zip_code = $request->zip_code[$key];
@@ -260,6 +229,40 @@ class CoursesController extends Controller
             //   Mail::to($users->email)->send(new Update_Password($details));
 
         }
+
+
+
+        // 
+        // special user jo logo ko group register krwata hai
+
+
+            $group = Group::with('group_fees')->find($request->group_id);
+            $course_register_one = new Course_Register();
+            $course_register_one->user_id  =  $one_user->id;
+            $course_register_one->course_id =   $course_id;
+            $course_register_one->group_id = $group_id;
+            // $course_register->user_group_id = $user_group->id;
+            $course_register_one->is_paid = 0;
+            $course_register_one->one_time_examination_payment = 0;
+            $course_register_one->examination_fees = 0;
+            $course_register_one->save();
+            foreach ($group->group_fees as $gf) {
+                $student_fee =  new Student_fees();
+                $student_fee->user_id  =  $one_user->id;
+                $student_fee->course_register_id  =  $course_register_one->id;
+                $student_fee->group_id  =  $group->id;
+                $student_fee->course_id  =  $course_id;
+                $student_fee->fees_type  =  $gf->fees_type;
+                $student_fee->amount  = $gf->amount;
+                $student_fee->due_date  =  $gf->due_date;
+                $student_fee->save();
+                $studen_array_id[] =   $student_fee;
+            }
+
+        //
+
+
+     
 
         $course = Courses::with('group')->find($course_id);
         $success = 'success';
