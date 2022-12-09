@@ -53,6 +53,12 @@
         text-align: center;
     }
 </style>
+@if ($message = Session::get('error'))
+<div class="alert alert-danger alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>{{ $message }}</strong>
+</div>
+@endif
 
 <div class="form-group">
     {!! Form::label('name', 'Full Name') !!}
@@ -152,7 +158,7 @@
                 {!! Form::label('amount', 'Amount') !!}
                 <div>
                     {!! Form::text('amount', null, [
-                        'class' => 'form-control complete_amount ',
+                        'class' => 'form-control due_date_validation ',
                         'data-parsley-required' => 'true',
                         'data-parsley-trigger' => 'change',
                         'placeholder' => 'Enter Amount',

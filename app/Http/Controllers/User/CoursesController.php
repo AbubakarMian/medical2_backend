@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use PhpParser\Builder\Function_;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Stripe;
 
 class CoursesController extends Controller
@@ -122,7 +123,8 @@ class CoursesController extends Controller
         // dd('sas');
         $user = Auth::User();
         if (!$user) {
-            return redirect('/')->with('error', 'Please Login To Continue');
+            // return redirect('/')->with('error', 'Please Login To Continue');
+            return redirect('/')->with('login_error', 'Please Login To Continue');
         }
         $course_id = $request->course_id;
         $group_id   = $request->group_id;
@@ -132,12 +134,16 @@ class CoursesController extends Controller
 
     public function group_registration_save(Request $request)
     {
+
+
+
         // dd($request->all());
         $one_user = Auth::User();
         $reg_key = uniqid();
 
         if (!$one_user) {
-            return redirect('/')->with('error', 'Please Login To Continue');
+             // return redirect('/')->with('error', 'Please Login To Continue');
+            return redirect('/')->with('login_error', 'Please Login To Continue');
         }
         $course_id = $request->course_id;
         $group_id   = $request->group_id;
@@ -178,6 +184,23 @@ class CoursesController extends Controller
 
 
         foreach ($request->first_name as $key => $f) {
+            $validator =  Validator::make([
+                '$users->email' => $request->email,
+                '$users->phone_no' => $request->number,
+                // 'image' => $request->cropped_image,
+
+            ], [
+                '$users->email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')],
+                '$users->mobileno' => ['required',  \Illuminate\Validation\Rule::unique('users')],
+
+            ]);
+
+            // dd($validator);
+
+            if ($validator->fails()) {
+                return back()->with('error', $validator->errors());
+            }
+
 
             $users = new User();
             $users->name = $f;
@@ -325,7 +348,8 @@ class CoursesController extends Controller
         // dd($request->all());
         $user = Auth::User();
         if (!$user) {
-            return redirect('registration');
+            // return redirect('registration');
+            return redirect('/')->with('login_error', 'Please Login To Continue');
         }
         $courses_id = $request->course_id;
         $group_id = $request->group_id;

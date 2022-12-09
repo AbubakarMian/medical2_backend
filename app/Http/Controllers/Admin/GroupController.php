@@ -101,6 +101,9 @@ class GroupController extends Controller
         if ($start_date_timestamp > $end_date_timestamp) {
             return back()->with('error', 'Enter Valid Date');
         }
+        // if ($start_date_timestamp = $end_date_timestamp) {
+        //     return back()->with('error', 'Enter Valid Date');
+        // }
 
         $group->teacher_id = $request->teacher_id;
         $group->type = 'course';

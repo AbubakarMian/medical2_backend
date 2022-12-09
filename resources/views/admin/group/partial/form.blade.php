@@ -1,11 +1,11 @@
 <style>
     div#zoom {
         background-color: #f1f4f9;
-    color: #59595a;
-    font-size: 15px;
-    margin-top: 14px;
-    margin-bottom: 0px;
-    padding: 15px;
+        color: #59595a;
+        font-size: 15px;
+        margin-top: 14px;
+        margin-bottom: 0px;
+        padding: 15px;
     }
 
     .form-group.open_fees_type_div_area {
@@ -36,25 +36,27 @@
         color: black;
         font-family: fangsong;
     }
+
     .orspan {
         font-size: 13px;
-    font-weight: 700;
-    margin: 1px 2px;
+        font-weight: 700;
+        margin: 1px 2px;
     }
+
     .gmap {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 700;
-    color: gray;
-}
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        color: gray;
+    }
 </style>
 
 
 @if ($message = Session::get('error'))
-<div class="alert alert-danger alert-block">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>{{ $message }}</strong>
-</div>
+    <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+    </div>
 @endif
 
 <!-- modal -->
@@ -173,7 +175,7 @@
         {!! Form::label('fees_type', 'Fees Type') !!}
         {!! Form::select('fees_type', $fees_type, null, [
             'placeholder' => "Select
-            Type",
+                    Type",
             'onchange' => 'open_fees_type_div()',
             'class' => 'form-control fees_type',
         ]) !!}
@@ -329,12 +331,15 @@
 <!-- <div class="form-group">
     {!! Form::label('country', 'Country') !!}
     <div>
-        {!! Form::text('country', null, ['class' => 'form-control country',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'id'=>'country',
-        'placeholder'=>' country','required',
-        'maxlength'=>"100"]) !!}
+        {!! Form::text('country', null, [
+            'class' => 'form-control country',
+            'data-parsley-required' => 'true',
+            'data-parsley-trigger' => 'change',
+            'id' => 'country',
+            'placeholder' => ' country',
+            'required',
+            'maxlength' => '100',
+        ]) !!}
     </div>
 </div> -->
 
@@ -359,14 +364,14 @@
 <div class="form-group">
     {!! Form::label('end_date', 'End Date') !!}
     <div>
-        {!! Form::date('end_date', null , ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'required',
+        {!! Form::date('end_date', null, [
+            'class' => 'form-control',
+            'data-parsley-required' => 'true',
+            'data-parsley-trigger' => 'change',
+            'required',
 
-        'maxlength'=>"100",
-        ])
-         !!}
+            'maxlength' => '100',
+        ]) !!}
     </div>
 </div>
 
@@ -513,7 +518,7 @@
 </br>
 <!--  -->
 
-<div >
+<div>
     <!-- <label >Enter Venue:</label>
     <input type="text" required  name="venue" class = 'form-control'> -->
     </br>
@@ -568,60 +573,60 @@
 
         function select_course(course_id) {
 
-            //     var count = 0;
-            //     $(course_id).click(function () {
-            //     count += 1;
+                var count = 0;
+                $(course_id).click(function () {
+                count += 1;
 
-            //     if (count == 2) {
-            //         // $(".old_paln_show").hide();
+                if (count == 2) {
+                    // $(".old_paln_show").hide();
 
 
-            //     }
-            //   });
+                }
+              });
 
             $.ajax({
 
-                url: "{!! asset('admin/group/select_courses_id') !!}/" + course_id.value,
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    _token: '{!! @csrf_token() !!}'
-                },
-                success: function(response) {
-                    console.log('aaaaaaaaaaaaaaa', response);
-                    var len = response['data'].length;
-                    console.log('aaaaaaacccccctttttttttt', response['data'].length);
-                    if (response.status) {
-                        console.log('aaaaaaacccccc', response['data'][0].courses.full_name);
-                        var course_name = response['data'][0].courses.full_name;
+                    url: "{!! asset('admin/group/select_courses_id') !!}/" + course_id.value,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        _token: '{!! @csrf_token() !!}'
+                    },
+                    success: function(response) {
+                        console.log('aaaaaaaaaaaaaaa', response);
+                        var len = response['data'].length;
+                        console.log('aaaaaaacccccctttttttttt', response['data'].length);
+                        if (response.status) {
+                            console.log('aaaaaaacccccc', response['data'][0].courses.full_name);
+                            var course_name = response['data'][0].courses.full_name;
 
-                        var tr_str = '';
+                            var tr_str = '';
 
-                        for (var i = 0; i < len; i++) {
-                            console.log('qqqqqqqqqqqqq', response['data'][i]);
-
-
-                            console.log('amountamount', response['data'][i].amount);
+                            for (var i = 0; i < len; i++) {
+                                console.log('qqqqqqqqqqqqq', response['data'][i]);
 
 
-                            var amount = response['data'][i].amount;
-
-                            var due_date = new Date(response['data'][i].due_date * 1000).toDateString("en-US", {
-                                weekday: 'long',
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric'
-                            });
-
-                            var fees_type = response['data'][i].fees_type;
-                            var course_name = response['data'][i].courses.full_name;
+                                console.log('amountamount', response['data'][i].amount);
 
 
+                                var amount = response['data'][i].amount;
+
+                                var due_date = new Date(response['data'][i].due_date * 1000).toDateString("en-US", {
+                                    weekday: 'long',
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                });
+
+                                var fees_type = response['data'][i].fees_type;
+                                var course_name = response['data'][i].courses.full_name;
 
 
 
-                        tr_str = tr_str +
-                            `
+
+
+                                tr_str = tr_str +
+                                    `
 
                         <div class="row">
 
@@ -654,24 +659,22 @@
                             </div> `;
 
 
+                            }
+                            $(".old_paln_show").html(tr_str);
+
+
+
+
+                            var edit_plans_area = $('.edit_plans_area').show();
+
+                            console.log('bbbbbbbbbbbbbbbbbbbbb', response.status);
+
+
+
                         }
-                        $(".old_paln_show").html(tr_str);
-
-
-
-
-                        var edit_plans_area = $('.edit_plans_area').show();
-
-                        console.log('bbbbbbbbbbbbbbbbbbbbb', response.status);
-
-
-
                     }
-                }
-            }
-        });
-        //
 
+            });
 
         }
 
@@ -761,69 +764,69 @@
     </div>`
 
 
-        );
-    }
-
-    function add_installment_divs() {
-
-        console.log('add_installment_divs_add_installment_divs');
-        // var installment_div = $('.installment_divs').length+1;
-        var installmet_div_row = $('.installmet_div_row').length;
-        var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(installmet_div_row));
-
-
-    }
-
-
-
-
-
-
-
-    // end new
-    function validateForm() {
-        return true;
-    }
-
-    //
-    $(document).ready(function() {
-        // var checkBox = document.getElementById("is_online_checkbox");
-        var venue_maps = $("#venue_map").hide();
-        var zoom = $("#zoom").hide();
-        //
-        var $open_fees_type_div_area = $('.open_fees_type_div_area').hide();
-        var $complete_fees_area = $('.complete_fees_area').hide();
-        var $installment_fees_area = $('.installment_fees_area').hide();
-        var edit_plans_area = $('.edit_plans_area').hide();
-
-        $('#myModal').modal('hide');
-
-
-    });
-
-    function is_online_class() {
-
-        var online_checkbox = $('#is_online_checkbox');
-        var venue_maps = $('#venue_maps');
-        // var venue_maps = document.getElementById("venue_map");
-        var zoom = $('#zoom');
-        if (online_checkbox.is(':checked')) {
-            console.log('in if condition')
-            zoom.css('display','block');
-            venue_maps.css('display','none');
-        } else {
-            console.log('in else condition')
-            venue_maps.css('display','block');
-            zoom.css('display','none');
+            );
         }
-        console.log('sasa');
-    }
-    // map
-    function open_map() {
-        console.log('mapssssssss');
-        $('#myModal').modal('show');
-    }
-    //
+
+        function add_installment_divs() {
+
+            console.log('add_installment_divs_add_installment_divs');
+            // var installment_div = $('.installment_divs').length+1;
+            var installmet_div_row = $('.installmet_div_row').length;
+            var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(installmet_div_row));
+
+
+        }
+
+
+
+
+
+
+
+        // end new
+        function validateForm() {
+            return true;
+        }
+
+        //
+        $(document).ready(function() {
+            // var checkBox = document.getElementById("is_online_checkbox");
+            var venue_maps = $("#venue_map").hide();
+            var zoom = $("#zoom").hide();
+            //
+            var $open_fees_type_div_area = $('.open_fees_type_div_area').hide();
+            var $complete_fees_area = $('.complete_fees_area').hide();
+            var $installment_fees_area = $('.installment_fees_area').hide();
+            var edit_plans_area = $('.edit_plans_area').hide();
+
+            $('#myModal').modal('hide');
+
+
+        });
+
+        function is_online_class() {
+
+            var online_checkbox = $('#is_online_checkbox');
+            var venue_maps = $('#venue_maps');
+            // var venue_maps = document.getElementById("venue_map");
+            var zoom = $('#zoom');
+            if (online_checkbox.is(':checked')) {
+                console.log('in if condition')
+                zoom.css('display', 'block');
+                venue_maps.css('display', 'none');
+            } else {
+                console.log('in else condition')
+                venue_maps.css('display', 'block');
+                zoom.css('display', 'none');
+            }
+            console.log('sasa');
+        }
+        // map
+        function open_map() {
+            console.log('mapssssssss');
+            $('#myModal').modal('show');
+        }
+        //
 
 
         // end new
@@ -968,7 +971,6 @@
         }
     </script>
 
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 
-
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 @endsection
