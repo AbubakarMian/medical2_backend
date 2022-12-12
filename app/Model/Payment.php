@@ -13,10 +13,10 @@ class Payment extends Model
     public function user(){
         return $this->hasOne('App\User','id','user_id');
     }
-    public function course_register()
-    {
-        return $this->hasOne('App\Model\Course_Register', 'id', 'course_register_id');
-    }
+    // public function course_register()
+    // {
+    //     return $this->hasOne('App\Model\Course_Register', 'id', 'course_register_id');
+    // }
     public function student()
     {
         return $this->hasOne('App\Model\Student_fees', 'id', 'students_fees_id');

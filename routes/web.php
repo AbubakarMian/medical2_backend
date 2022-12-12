@@ -403,6 +403,11 @@ Route::post('admin/student_plan/delete/{id}', 'Reports\Student_planController@de
     Route::post('admin/reports/payment/status_update/{id}','Reports\PaymentController@status_update')->name('payment.status_update');
     // 
     Route::post('admin/reports/payment/payment_refund/{id}','Reports\PaymentController@payment_refund')->name('payment.payment_refund');
+
+    // 
+
+    // admin/permissions
+    Route::get('admin/reports/permissions','Reports\PermissionsController@index')->name('permissions.index');
    
 
 

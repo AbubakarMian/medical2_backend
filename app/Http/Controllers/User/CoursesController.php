@@ -435,6 +435,8 @@ class CoursesController extends Controller
         // dd($request->all());
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         $res_student_array = [];
+
+        // multiple installmemnt choose
         if ($request->student_id) {
             foreach ($request->student_id as $st_id) {
                 $student_fees = Student_fees::with('user', 'course')->find($st_id);
@@ -443,7 +445,7 @@ class CoursesController extends Controller
             return view('user.payment_screen.index', compact('stripe_key', 'res_student_array'));
         }
 
-        //
+        // single installmemnt choose
         elseif ($request->single_student_id) {
             $single_student_id = $request->single_student_id;
             $student_fees = Student_fees::with('user', 'course')->find($single_student_id);
@@ -476,24 +478,22 @@ class CoursesController extends Controller
 
             //  dd($request->all());
 
-
+      // multiple installmemnt choose
             if ($request->student_id) {
-
-                foreach ($request->student_id as $st_id) {
-                    $student_fees = Student_fees::with('user', 'course', 'course_register')->find($st_id);
-                    // dd( $student_fees);
+                    $student_fees = Student_fees::with('user', 'course', 'course_register')->find($request->student_id);
                     $payment = new Payment();
                     $payment->user_id = $user->id;
                     $payment->payment_id = $stripe->id;
-                    // $payment->course_register_id = $request->course_register_id;
-                    $payment->course_register_id = $student_fees->course_register_id;
+                    $payment->course_id = $student_fees->course_register->course_id;
                     $payment->payment_response = json_encode($stripe);
                     $payment->payment_status = $stripe->status;
-                    $payment->students_fees_id = $student_fees->id;
                     $payment->card_type = $stripe->payment_method_details->card->brand;
                     //============= amount===============
                     $payment->amount =   $request->amount;
                     $payment->save();
+
+                foreach ($request->student_id as $st_id) {
+                    $student_fees = Student_fees::with('user', 'course', 'course_register')->find($st_id);
                     //
                     // $course_register = Course_Register::find($request->course_register_id);
                     // $course_register->is_paid =   1;
@@ -503,16 +503,16 @@ class CoursesController extends Controller
                     $student_fees->payment_id = $payment->id;
                     $student_fees->save();
                 }
+
+                // single installmemnt choose
             } elseif ($request->single_student_id) {
-                $student_fees = Student_fees::with('user', 'course')->find($request->single_student_id);
+                $student_fees = Student_fees::with('user', 'course','course_register')->find($request->single_student_id);
                 $payment = new Payment();
                 $payment->user_id = $user->id;
                 $payment->payment_id = $stripe->id;
-                // $payment->course_register_id = $request->course_register_id;
-                $payment->course_register_id = $student_fees->course_register_id;
+                $payment->course_id = $student_fees->course_register->course_id;
                 $payment->payment_response = json_encode($stripe);
                 $payment->payment_status = $stripe->status;
-                $payment->students_fees_id = $student_fees->id;
                 $payment->card_type = $stripe->payment_method_details->card->brand;
                 //============= amount===============
                 $payment->amount =   $student_fees->amount;
@@ -530,10 +530,8 @@ class CoursesController extends Controller
                 $payment = new Payment();
                 $payment->user_id = $user->id;
                 $payment->payment_id = $stripe->id;
-                // $payment->course_register_id = $request->course_register_id;
                 $payment->payment_response = json_encode($stripe);
                 $payment->payment_status = $stripe->status;
-                // $payment->students_fees_id = $student_fees->id;
                 $payment->card_type = $stripe->payment_method_details->card->brand;
                 //============= amount===============
                 $payment->amount =   $request->amount;
@@ -550,7 +548,7 @@ class CoursesController extends Controller
                     $student_fees->payment_id = $payment->id;
                     $student_fees->save();
                 }
-                $payment->course_register_id = $student_fees->course_register_id;
+                $payment->course_id = $student_fees->course_register->course_id;
                 $payment->save();
             }
             return redirect('payment/success');
