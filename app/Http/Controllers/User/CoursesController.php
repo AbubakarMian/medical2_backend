@@ -39,13 +39,12 @@ class CoursesController extends Controller
             })->get();
         } else {
             $courses_list = $courses->whereHas('group', function ($g) {
-                $g->where('type', 'workshop')->
-                with(['group.group_fees'=>function($u)use($g){
-                  $u->where('group.group_fees','>',0) ;
-                }
+                $g->where('type', 'workshop')->with([
+                    'group.group_fees' => function ($u) use ($g) {
+                        $u->where('group.group_fees', '>', 0);
+                    }
 
                 ]);
-
             })->get();
         }
         $courses_list_count = $courses_list->count();
@@ -74,11 +73,10 @@ class CoursesController extends Controller
     public function course_registration(Request $request)
     {
         $user = Auth::User();
-        if(!$user){
-          $user_id= 0;
-        }
-        else{
-        $user_id= $user->id;
+        if (!$user) {
+            $user_id = 0;
+        } else {
+            $user_id = $user->id;
         }
         $courses_id = $request->course_id;
         $type = $request->type;
@@ -86,26 +84,25 @@ class CoursesController extends Controller
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         $course_registers =  Course_Register::with('group')->where('user_id', $user_id)->where('course_id',  $courses->id)->first();
 
-        if($course_registers){
+        if ($course_registers) {
             $course_register =  Course_Register::with('group')->where('user_id', $user->id)->where('course_id',  $courses->id)->first();
 
-        return view('user.course_registration.index', compact('courses', 'stripe_key', 'type','course_register'));
+            return view('user.course_registration.index', compact('courses', 'stripe_key', 'type', 'course_register'));
+        } else {
+            if ($type == 'courses') {
+                $courses_groups = Group::with('group_timings', 'teacher')->where('type', 'course')->whereHas('group_timings')
+                    ->where('courses_id', $courses->id)->get();
+            } elseif ($type == 'workshop') {
+                $courses_groups = Group::with('teacher', 'group_fees')->where('type', 'workshop')->where('courses_id', $courses->id)->get();
+            }
+            // dd(  $courses_groups);
+            return view('user.course_registration.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
         }
-        else{
-        if ($type == 'courses') {
-            $courses_groups = Group::with('group_timings', 'teacher')->where('type', 'course')->whereHas('group_timings')
-                ->where('courses_id', $courses->id)->get();
-        } elseif ($type == 'workshop') {
-            $courses_groups = Group::with('teacher', 'group_fees')->where('type', 'workshop')->where('courses_id', $courses->id)->get();
-        }
-        // dd(  $courses_groups);
-        return view('user.course_registration.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
-    }
 
 
 
 
-// dd($course_register);
+        // dd($course_register);
 
 
     }
@@ -142,7 +139,7 @@ class CoursesController extends Controller
         $reg_key = uniqid();
 
         if (!$one_user) {
-             // return redirect('/')->with('error', 'Please Login To Continue');
+            // return redirect('/')->with('error', 'Please Login To Continue');
             return redirect('/')->with('login_error', 'Please Login To Continue');
         }
         $course_id = $request->course_id;
@@ -159,17 +156,19 @@ class CoursesController extends Controller
         foreach ($request->first_name as $key => $f) {
 
             $user = new User;
-       
-      
-            $validator =  Validator::make(['email' => $request->email[$key]], [
+
+
+            $email_validator =  Validator::make(['email' => $request->email[$key]], [
                 'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
             ]);
-         
-    
-            if ($validator->fails()) {
-                return back()->with('error', $validator->errors());
-                
-    
+            if ($email_validator->fails()) {
+                return back()->with('error', $email_validator->errors());
+            }
+            $phone_validator =  Validator::make(['phone_no' => $request->contact[$key]], [
+                'phone_no' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)] //
+            ]);
+            if ($phone_validator->fails()) {
+                return back()->with('error', $phone_validator->errors());
             }
             $users = new User();
             $users->name = $f;
@@ -181,7 +180,7 @@ class CoursesController extends Controller
             $users->zip_code = $request->zip_code[$key];
             $users->state = $request->state[$key];;
             $users->role_id = 2;
-            $users->update_password_id = rand(10000,99999);
+            $users->update_password_id = rand(10000, 99999);
             $users->save();
             $all_users_id[] = $users;
             $details = [
@@ -236,33 +235,33 @@ class CoursesController extends Controller
         // special user jo logo ko group register krwata hai
 
 
-            $group = Group::with('group_fees')->find($request->group_id);
-            $course_register_one = new Course_Register();
-            $course_register_one->user_id  =  $one_user->id;
-            $course_register_one->course_id =   $course_id;
-            $course_register_one->group_id = $group_id;
-            // $course_register->user_group_id = $user_group->id;
-            $course_register_one->is_paid = 0;
-            $course_register_one->one_time_examination_payment = 0;
-            $course_register_one->examination_fees = 0;
-            $course_register_one->save();
-            foreach ($group->group_fees as $gf) {
-                $student_fee =  new Student_fees();
-                $student_fee->user_id  =  $one_user->id;
-                $student_fee->course_register_id  =  $course_register_one->id;
-                $student_fee->group_id  =  $group->id;
-                $student_fee->course_id  =  $course_id;
-                $student_fee->fees_type  =  $gf->fees_type;
-                $student_fee->amount  = $gf->amount;
-                $student_fee->due_date  =  $gf->due_date;
-                $student_fee->save();
-                $studen_array_id[] =   $student_fee;
-            }
+        $group = Group::with('group_fees')->find($request->group_id);
+        $course_register_one = new Course_Register();
+        $course_register_one->user_id  =  $one_user->id;
+        $course_register_one->course_id =   $course_id;
+        $course_register_one->group_id = $group_id;
+        // $course_register->user_group_id = $user_group->id;
+        $course_register_one->is_paid = 0;
+        $course_register_one->one_time_examination_payment = 0;
+        $course_register_one->examination_fees = 0;
+        $course_register_one->save();
+        foreach ($group->group_fees as $gf) {
+            $student_fee =  new Student_fees();
+            $student_fee->user_id  =  $one_user->id;
+            $student_fee->course_register_id  =  $course_register_one->id;
+            $student_fee->group_id  =  $group->id;
+            $student_fee->course_id  =  $course_id;
+            $student_fee->fees_type  =  $gf->fees_type;
+            $student_fee->amount  = $gf->amount;
+            $student_fee->due_date  =  $gf->due_date;
+            $student_fee->save();
+            $studen_array_id[] =   $student_fee;
+        }
 
         //
 
 
-     
+
 
         $course = Courses::with('group')->find($course_id);
         $success = 'success';
@@ -274,7 +273,7 @@ class CoursesController extends Controller
 
     public function group_payment_finalize(Request $request)
     {
-    //   dd($request->all());
+        //   dd($request->all());
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
         $res_student_array = [];
         $amount = $request->total_amount;
@@ -337,7 +336,7 @@ class CoursesController extends Controller
 
         return redirect()->back()->with('success', 'Thanks ! Your Password has Been Update');
     }
-      // return view('user.update_pass_form.index', compact('user'));
+    // return view('user.update_pass_form.index', compact('user'));
 
 
 
@@ -424,9 +423,9 @@ class CoursesController extends Controller
             //   dd($student_fees_id);
             $group_id =  $course_register->group_id;
             //multipe couurses register ki payment ayngi
-            $student_fees = Student_fees::with('user', 'course','group')->where('status', '!=', 'paid')->where('user_id', $course_register->user->id)
+            $student_fees = Student_fees::with('user', 'course', 'group')->where('status', '!=', 'paid')->where('user_id', $course_register->user->id)
                 ->where('group_id', $group_id)->orderby('due_date')->get();
-                // dd(  $student_fees );
+            // dd(  $student_fees );
             return view('user.user_show_payment.index', compact('course_register', 'stripe_key', 'student_fees'));
         }
     }
@@ -481,7 +480,7 @@ class CoursesController extends Controller
             if ($request->student_id) {
 
                 foreach ($request->student_id as $st_id) {
-                    $student_fees = Student_fees::with('user', 'course','course_register')->find($st_id);
+                    $student_fees = Student_fees::with('user', 'course', 'course_register')->find($st_id);
                     // dd( $student_fees);
                     $payment = new Payment();
                     $payment->user_id = $user->id;
