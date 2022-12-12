@@ -19,6 +19,9 @@ class Role_Middleware
     public function handle($request, Closure $next)
     {
         $user =Auth::user();
+        // dd( $user);
+        if(Auth::Check()){
+
         if($user->role_id == 1){
             $response = $next($request);
             $response->headers->set('Cache-Control','nocache, no-store, max-age=0, must-revalidate');
@@ -27,6 +30,8 @@ class Role_Middleware
             return $response;
            
         }
+    }
+        else{
         $route_name = \Request::route()->getName();
        
         if(Auth::Check()){
@@ -59,4 +64,5 @@ class Role_Middleware
             return redirect('admin/login')->with('error', 'Wrong Login Details');
         }
     }
+}
 }
