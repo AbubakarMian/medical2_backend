@@ -37,10 +37,10 @@ class Course_RegisterController extends Controller
           }])
           ->orderby('id', 'desc')
           ->select('*')->get();
- 
 
-        // 
-       
+
+        //
+
         $course_register_data['data'] = $course_register;
         echo json_encode($course_register_data);
     }
@@ -69,7 +69,7 @@ class Course_RegisterController extends Controller
         $res['status'] = true;
         $res['register_course'] = $register_course;
         echo json_encode($res);
-     
+
     }
 
 

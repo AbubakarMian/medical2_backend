@@ -61,7 +61,7 @@ use App\Model\Student_fees;
                     $current_date = strtotime($date);
                     $student_due_date = $c->due_date;
                     ?>
-                    @if ($current_date > $student_due_date) 
+                    @if ($current_date > $student_due_date)
                     <a href="{{asset('user_show_payment?student_id_not_paid='.$c->id)}}" type="button" class="btn btn-danger" style="margin-bottom: 14px;" >Due Date Have Passed</a>
                      @else
                     <a href="{{asset('user_show_payment?student_id_not_paid='.$c->id)}}" type="button" class="btn btn-danger"
@@ -69,14 +69,14 @@ use App\Model\Student_fees;
                     @endif
                     <!--  -->
                     @else
-                    <a href="" type="button" class="btn btn-success" style="margin-bottom: 14px;"> Paid</a>
-                   
+                    <a  type="button" class="btn btn-success" style="margin-bottom: 14px;"> Paid</a>
+
                     @endif
 
                   </td>
 
                   <!-- <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
-                               
+
                                 <td><button type="button" class="btn btn-primary porjoin">Join</button>
                                     <button type="button" class="btn btn-primary pordetai">Detail</button></td> -->
                 </tr>
@@ -86,7 +86,7 @@ use App\Model\Student_fees;
                                 <td>Sir Ali</td>
                                 <td>Canada</td>
                                 <td class="clockli"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
-                               
+
                                 <td><button type="button" class="btn btn-primary porjoinn">Join</button>
                                     <button type="button" class="btn btn-primary pordetai">Detail</button></td>
                               </tr>  -->

@@ -51,7 +51,7 @@
                             @foreach ($c as $p)
                                 <div class="col-sm-3">
                                     <div class="rating">
-                                        <div class="boxing" {{-- style="
+                                        <a href="{{ asset('course/registration/?course_id='.$p->id.'&type='.$types) }}"><div class="boxing" {{-- style="
                         min-width: 115px;
                         max-width: min-content;
                         min-height: 179x;
@@ -64,9 +64,9 @@
                             {{-- <a href="{{asset('courses/details')}}"> --}}
                             {{-- <a href="{{ asset('courses/details/?courses_id=' . $p->id) }}"> --}}
                             <!-- <a href="{{ asset('course/registration/?course_id='.$p->id.'&type='.$types) }}" target="_blank"> -->
-                            <a href="{{ asset('course/registration/?course_id='.$p->id.'&type='.$types) }}" >
+                            {{-- <a href="{{ asset('course/registration/?course_id='.$p->id.'&type='.$types) }}" >
                                 View
-                            </a>
+                            </a> --}}
                             <!-- <a href="{{ asset('course/registration/?course_id='.$p->id.'&type='.$types) }}" target="_blank">
 
                                 View
@@ -75,7 +75,7 @@
                             </a> -->
                       </div>
                                             </div>
-                                        </div>
+                                        </div></a>
                                         <h4 class="title">
                                             <a href="">
                                                 {!! $p->full_name !!}
