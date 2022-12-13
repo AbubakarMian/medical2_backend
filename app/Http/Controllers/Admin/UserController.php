@@ -30,7 +30,8 @@ class UserController extends Controller
     public function getUsers($id = 0){
 
 
-        $user = User::orderby('id','asc')->select('*')->get();
+        $user = User::where('role_id',3)
+            ->orderby('id','asc')->select('*')->get();
         $userData['data'] = $user;
 
         echo json_encode($userData);
