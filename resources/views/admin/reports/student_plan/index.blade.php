@@ -26,15 +26,15 @@ width="400px" style="table-layout:fixed;"
 
 
         <th> Name</th>
-      
+
         <th> Course </th>
         <th> Group </th>
         <th> Edit Plan</th>
-      
 
 
-        
-		
+
+
+
 
 
 
@@ -55,19 +55,19 @@ width="400px" style="table-layout:fixed;"
         <td > <a class="btn btn-primary" href="{{ asset('admin/student_plan/edit?user_id=' . $s_p->user_id.'&course_register_id='.$s_p->id) }}">
                                    Edit {!!$s_p->name!!} Plan
                                 </a>
-							
-							
-							
+
+
+
 							</td>
 
-		
-
-	   
 
 
 
-       
-        
+
+
+
+
+
 
 	</tr>
 	@endforeach
