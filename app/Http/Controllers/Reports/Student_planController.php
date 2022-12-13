@@ -38,13 +38,13 @@ class Student_planController extends Controller
 
     public function edit(Request $request)
     {
-        //    dd($request->all());  
+        //    dd($request->all());
         $control = 'edit';
         $user_id = $request->user_id;
         $course_register_id = $request->course_register_id;
 
         $student_plan = Student_fees::where('user_id', $user_id)->where('course_register_id', $course_register_id)->get();
-     
+
         $fees_type = Config::get('constants.fees_type');
 
         return view('admin.reports.student_plan.create', compact(

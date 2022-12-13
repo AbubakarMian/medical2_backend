@@ -1,5 +1,50 @@
 
 <script>
+
+
+function activate_delete (e){
+    var $form=$(e).closest('form');
+    var current =e;
+    // e.preventDefault();
+    var modal_heading = $(e).attr('modal_heading');
+    var modal_msg = $(e).attr('modal_msg');
+        console.log(modal_heading,modal_msg);
+        if(modal_heading != '' || modal_heading!= undefined){
+            $('#modal-heading').html(modal_heading);
+        }
+        if(modal_msg != '' || modal_msg!= undefined){
+            $('#modal_msg').html(modal_msg);
+        }
+    $('#confirm').modal({ backdrop: 'static', keyboard: false })
+        .one('click', '#delete', function() {
+        console.log('asd');
+
+        var my_url = $form.attr( 'action' );
+        var my_method = $form.attr( 'method' );
+
+
+
+        $.ajax({
+            url: my_url,
+            method: my_method,
+            dataType: 'json',
+            data: {'_token' :'{!! csrf_token() !!}'},
+            success: function(data){
+                if(data.action == 'update'){
+                    $(current).find('span').html(data.new_value);
+                }
+                else if(data.action == 'delete'){
+                    $(current).parent().parent().parent().remove();
+                }
+
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+        //	$form.trigger('submit');
+    });
+}
 $(function(){
 
     console.log('myapp.blade.js');

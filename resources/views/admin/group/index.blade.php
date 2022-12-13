@@ -65,7 +65,7 @@ List of Groups
                     var len = response['data'].length;
                     console.log('assadasd',response);
                     for (var i = 0; i < len; i++) {
-                        
+
                         console.log('aaaaaaa',response['data'][i]);
                         var id = response['data'][i].id;
                         var course_name = response['data'][i].courses.full_name  ;
@@ -75,10 +75,9 @@ List of Groups
                         // var course_text = response['data'][i].course_id;
                         var group_start_date = response['data'][i].start_date;
                         var group_end_date = response['data'][i].end_date;
-                        console.log('qqqqqqqq',response['data'][i].group);
                         // var Students = `<a class="btn btn-info" href="{!!asset('admin/group/students/` + id + `')!!}">Students</a>`;
                         var edit = `<a class="btn btn-info" href="{!!asset('admin/group/edit/` + id + `')!!}">Edit</a>`;
-                       createModal({
+                       createModal({     
                             id: 'group_' + response['data'][i].id,
                             header: '<h4>Delete</h4>',
                             body: 'Do you want to continue ?',
@@ -90,11 +89,24 @@ List of Groups
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                 `,
                         });
-                        var delete_btn = `<a class="btn btn-info" data-toggle="modal" data-target="#` + 'group_' + response['data'][i].id + `">Delete</a>`;
+
+
+
+
+                        var delete_btn = `<a class="btn btn-info" data-toggle="modal"   data-target="#` + 'group_' + response['data'][i].id + `">Delete</a>`;
+
+                        // var delete_btn =  `<form style='margin-bottom:0;' method="post" action="{!!asset('public/admin/group/delete/`+id+`')!!}">
+                        //     <a href="" data-toggle="modal"  onclick="delete_request(this)" name="activate_delete" data-target=".delete" modal_heading="Alert" modal_msg="Do you want to delete?">
+                        //     <span class="btn btn-info">{!!`+deleted_at+`?'Activate':'Delete'!!}</span></a>
+                            // </form>`
+
+
+
+
                         var group_exams = `<a class="btn btn-info" href="{!!asset('admin/group_exams/` + id + `')!!}">Group Exams</a>`;
 
                         var tr_str = "<tr id='row_"+response['data'][i].id+"'>" +
-                           
+
                             "<td>" + course_name + "</td>" +
                             "<td>" + group_text + "</td>" +
                             "<td>" + teacher_name + "</td>" +
@@ -122,9 +134,12 @@ List of Groups
     });
 
     function delete_request(id) {
+        console.log('asdasdsdasd',id)
+        var url = "{!!asset('admin/group/delete')!!}/" + id;
+        console.log('urlsss',url);
         $.ajax({
 
-            url: "{!!asset('admin/group/delete')!!}/" + id,
+            url: url,
             type: 'POST',
             dataType: 'json',
             data: {

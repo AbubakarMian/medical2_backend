@@ -43,7 +43,7 @@ $admin_common = session()->get('admin_common');
     <!-- load modernizer -->
     <script src="{{ asset('theme/vendor/modernizr.js') }}"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    
+
     <!-- css multiselect  -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -190,6 +190,8 @@ $admin_common = session()->get('admin_common');
                                     <div class="content-wrap">
                                         <!-- inner content wrapper -->
                                         <div class="wrapper">
+                                        <div id="add_custom_modals"></div>
+
                                             @yield('content')
                                         </div>
                                         <!-- /inner content wrapper -->
@@ -235,7 +237,7 @@ $admin_common = session()->get('admin_common');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
  <!-- end multiselect -->
-    
+
 <!-- mobiscroll  -->
 
 <script src="{{asset('mobi_js/mobiscroll.jquery.min.js')}}"></script>

@@ -1,4 +1,14 @@
 @extends('layouts.default_module')
+<style>
+    .resize {
+        width: fit-content !important;
+        /* background: red; */
+        height: 24px !important;
+    width: 65px !important;
+    font-size: 12px !important;
+    }
+
+</style>
 @section('module_name')
     Exam
 @stop
@@ -44,19 +54,19 @@
                 <td> {{ ucwords($q->detail) }}</td>
                 <td> {{ ucwords($q->course) }}</td>
                 <td>
-               <a href="{{ url('admin/question_list/' . $q->id) }}" type="button" class="btn btn-primary"
-                target="_blank" >question</a>
+               <a href="{{ url('admin/question_list/' . $q->id) }}" type="button" class="badge bg-info btn-primary resize"
+                target="_blank" >Question</a>
                 </td>
 
                 <td>
                     {!! link_to_action('Admin\QuizController@edit',
-                    'Edit', array($q->id), array('class' => 'badge bg-info')) !!}
+                    'Edit', array($q->id), array('class' => 'badge bg-info resize')) !!}
 
                 </td>
 
                 <td>{!! Form::open(['method' => 'POST', 'route' => ['quiz.delete', $q->id]]) !!}
                     <a href="" data-toggle="modal" name="activate_delete" data-target=".delete" modal_heading="Alert" modal_msg="Do you want to delete?">
-                        <span class="badge bg-info btn-primary ">
+                        <span class="badge bg-info btn-primary resize">
                             {!! $q->deleted_at?'Activate':'Delete' !!}</span></a>
                     {!! Form::close() !!}
                 </td>
