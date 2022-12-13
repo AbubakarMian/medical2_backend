@@ -34,7 +34,7 @@ width="400px" style="table-layout:fixed;"
 
 
 <!--  -->
-<form method="post" action="{{ url('permisiion/save') }}">
+<form method="post" action="{{ url('admin/role/permission/save') }}">
 	<div class="form-group">
 		{!! Form::label('role',' Role') !!}
 
@@ -191,7 +191,7 @@ width="400px" style="table-layout:fixed;"
 					var permission_length = permission.length;
 					console.log('permission_lengthpermission_length', permission_length);
 
-					// 
+					//
 					var tr_str = '';
 
 					for (var i = 0; i < permission_length; i++) {
@@ -210,7 +210,7 @@ width="400px" style="table-layout:fixed;"
 						var can_delete = permission[i].can_delete == "1" ? 'checked' : '';
 
 						urls_id = `<input  name="url_id[]"  value="` + url_id + `">`
-						// 
+						//
 						can_views = `<input  name="view[]" value="` + url_id + `" type="checkbox" `+can_view+` >`
 						can_creates = `<input  name="create[]" value="` + url_id + `" type="checkbox" `+can_create+` >`
 						can_saves = `<input  name="save[]" value="` + url_id + `" type="checkbox" `+can_save+` >`
@@ -239,7 +239,7 @@ width="400px" style="table-layout:fixed;"
 					$(".my_loop").html(tr_str);
 
 
-					// 
+					//
 
 				}
 			},

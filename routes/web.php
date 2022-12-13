@@ -145,266 +145,213 @@ Route::get('admin/login', 'Admin\AdminController@index');
 Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
 // Route::group(['middleware' => 'admin_auth'], function () {
 
-Route::group(['middleware' => 'role_auth'], function () {
-
-  // contact module
-Route::get('admin/contact', 'Admin\ContactUsController@index')->name('contact.index');
-Route::get('admin/users', 'Admin\UserController@index')->name('location.index');
-Route::get('admin/users/get_users/{id}', 'Admin\UserController@getUsers')->name('users.get_users');
-
-  // this is user routes
-
-  // Route::group(['middleware'=>'admin_auth'],function(){
-
-  //admin
-  Route::get('admin/dashboard', 'Admin\AdminController@dashboard')->name('dashboard');
-  Route::get('admin/logout', 'Admin\AdminController@logout')->name('logout');
-
-
-
-  // courses crud
-
-  Route::get('admin/courses', 'Admin\CoursesController@index')->name('courses.index');
-  Route::get('admin/courses/create', 'Admin\CoursesController@create')->name('courses.create'); //add
-  Route::post('admin/courses/save', 'Admin\CoursesController@save')->name('courses.save');
-  Route::get('admin/courses/edit/{id}', 'Admin\CoursesController@edit')->name('courses.edit');
-  Route::post('admin/courses/update/{id}', 'Admin\CoursesController@update')->name('courses.update');
-  Route::post('admin/courses/delete/{id}', 'Admin\CoursesController@destroy_undestroy')->name('courses.delete');
-  Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
-
-
-  // role
-  Route::get('admin/role', 'Admin\RoleController@index')->name('role.index');
-  Route::get('admin/role/create', 'Admin\RoleController@create')->name('role.create');
-  Route::post('admin/role/save', 'Admin\RoleController@save')->name('role.save');
-  Route::get('admin/role/edit/{id}', 'Admin\RoleController@edit')->name('role.edit');
-  Route::post('admin/role/update/{id}', 'Admin\RoleController@update')->name('role.update');
-  Route::post('admin/role/delete/{id}', 'Admin\RoleController@destroy_undestroy')->name('role.delete');
-
-
-
-
-  // Empolyee
-
-  Route::get('admin/employee', 'Admin\EmployeeController@index')->name('employee.index');
-  Route::get('admin/employee/create', 'Admin\EmployeeController@create')->name('employee.create');
-  Route::post('admin/employee/save', 'Admin\EmployeeController@save')->name('employee.save');
-  Route::get('admin/employee/edit/{id}', 'Admin\EmployeeController@edit')->name('employee.edit');
-  Route::post('admin/employee/update/{id}', 'Admin\EmployeeController@update')->name('employee.update');
-  Route::post('admin/employee/delete/{id}', 'Admin\EmployeeController@destroy_undestroy')->name('employee.delete');
-
-  // Permissions
-  Route::get('admin/permissions/show', 'Admin\PermissionsController@show_list_permision')->name('permissions.index');
-  Route::get('admin/permissions/create', 'Admin\PermissionsController@create')->name('rolpermissionse.create');
-  Route::post('admin/permissions/save', 'Admin\PermissionsController@save')->name('permissions.save');
-  Route::get('admin/permissions/edit/{id}', 'Admin\PermissionsController@edit')->name('permissions.edit');
-  Route::post('admin/permissions/update/{id}', 'Admin\PermissionsController@update')->name('permissions.update');
-  Route::post('admin/permissions/delete/{id}', 'Admin\PermissionsController@destroy_undestroy')->name('permissions.delete');
-  // admin/role_response
-  Route::post(' admin/role_response', 'Admin\PermissionsController@role_response')->name('role.role_response');
-
-  // permisiion/save
-  Route::post('permisiion/save', 'Admin\PermissionsController@permisiion_save')->name('role.role_response');
-
-  // Route::post('admin/courses_crop_image', 'Admin\CoursesController@crop_image')->name('admin.crop_image');
-
-
-
-
-  //  =================================  Category ==========================
-  Route::get('admin/category', 'Admin\CategoryController@index')->name('category.index');
-
-  Route::get('admin/category/create', 'Admin\CategoryController@create')->name('category.create'); //add
-  Route::post('admin/category/save', 'Admin\CategoryController@save')->name('category.save');
-
-  Route::get('admin/category/edit/{id}', 'Admin\CategoryController@edit')->name('category.edit');
-  Route::post('admin/category/update/{id}', 'Admin\CategoryController@update')->name('category.update');
-
-  Route::post('admin/category/delete/{id}', 'Admin\CategoryController@destroy_undestroy')->name('category.delete');
-
-  // crop image
-  Route::post('admin/category_crop_image', 'Admin\CategoryController@crop_image')->name('admin.crop_image');
-
-
-  // admin/aboutus
-  Route::get('admin/aboutus', 'Admin\About_UsController@index')->name('admin.aboutus');
-  Route::get('admin/aboutus/create', 'Admin\About_UsController@create')->name('aboutus.create'); //add
-  Route::post('admin/aboutus/save', 'Admin\About_UsController@save')->name('aboutus.save');
-
-  Route::get('admin/aboutus/edit/{id}', 'Admin\About_UsController@edit')->name('aboutus.edit');
-  Route::post('admin/aboutus/update/{id}', 'Admin\About_UsController@update')->name('aboutus.update');
-
-  Route::post('admin/aboutus/delete/{id}', 'Admin\About_UsController@destroy_undestroy')->name('aboutus.delete');
-  Route::get('admin/aboutus/view_frame/{id}', 'Admin\About_UsController@view_frame')->name('aboutus.view_frame');
-
-
-
-
-
-  //  =================================  Books ==========================
-  Route::get('admin/books', 'Admin\BooksController@index')->name('books.index');
-
-  Route::get('admin/books/create', 'Admin\BooksController@create')->name('books.create'); //add
-  Route::post('admin/books/save', 'Admin\BooksController@save')->name('books.save');
-
-  Route::get('admin/books/edit/{id}', 'Admin\BooksController@edit')->name('books.edit');
-  Route::post('admin/books/update/{id}', 'Admin\BooksController@update')->name('books.update');
-
-  Route::post('admin/books/delete/{id}', 'Admin\BooksController@destroy_undestroy')->name('books.delete');
-
-
-
-  //  =================================  teacher ==========================
-
-  Route::get('admin/teacher', 'Admin\TeacherController@index')->name('teacher.index');
-
-  Route::get('admin/teacher/create', 'Admin\TeacherController@create')->name('teacher.create'); //add
-  Route::post('admin/teacher/save', 'Admin\TeacherController@save')->name('teacher.save');
-
-  Route::get('admin/teacher/edit/{id}', 'Admin\TeacherController@edit')->name('teacher.edit');
-  Route::post('admin/teacher/update/{id}', 'Admin\TeacherController@update')->name('teacher.update');
-
-  Route::post('admin/teacher/delete/{id}', 'Admin\TeacherController@destroy_undestroy')->name('teacher.delete');
-
-
-  // question list open
-  Route::get('admin/question_list/{id}', 'Admin\QuizController@question_list')->name('quiz.question_list');
-  Route::post('admin/quiz_question_list/update', 'Admin\QuizController@quiz_question_list_update')->name('quiz.quiz_question_list_update');
-
-  // question CRUD
-
-  Route::get('admin/question', 'Admin\QuestionController@index')->name('admin.question');
-
-  // create and save question
-
-  Route::get('admin/question/create', 'Admin\QuestionController@create')->name('question.create');
-  Route::post('admin/question/save', 'Admin\QuestionController@save')->name('question.save');
-
-  // edit and update question
-
-  Route::get('admin/question/edit/{id}', 'Admin\QuestionController@edit')->name('question.edit');
-  Route::post('admin/question/update/{id}', 'Admin\QuestionController@update')->name('question.update');
-
-  // delete question
-  Route::post('admin/question/delete/{id}', 'Admin\QuestionController@destroy_undestroy')->name('question.delete');
-
-
-  // quiz CRUD
-  Route::get('admin/quiz', 'Admin\QuizController@index')->name('admin.quiz');
-
-  // create and save quiz
-
-  Route::get('admin/quiz/create', 'Admin\QuizController@create')->name('quiz.create');
-  Route::post('admin/quiz/save', 'Admin\QuizController@save')->name('quiz.save');
-
-  // edit and update quiz
-
-  Route::get('admin/quiz/edit/{id}', 'Admin\QuizController@edit')->name('quiz.edit');
-  Route::post('admin/quiz/update/{id}', 'Admin\QuizController@update')->name('quiz.update');
-
-  // delete quiz
-  Route::post('admin/quiz/delete/{id}', 'Admin\QuizController@destroy_undestroy')->name('quiz.delete');
-
-  // question list open
-  Route::get('admin/question_list/{id}', 'Admin\QuizController@question_list')->name('quiz.question_list');
-  Route::post('admin/quiz_question_list/update', 'Admin\QuizController@quiz_question_list_update')->name('quiz.quiz_question_list_update');
-  Route::get('admin/getquestion/{id}', 'Admin\QuestionController@getQuestion')->name('question_list');
-  Route::get('admin/course/questions/{id}', 'Admin\QuestionController@course_question_list')->name('question_list');
-
-
-  //   SETTINGS
-  Route::get('admin/settings', 'Admin\SettingsController@index')->name('settings.index');
-  Route::get('admin/settings/edit/{id}', 'Admin\SettingsController@edit')->name('settings.edit');
-  Route::post('admin/settings/update/{id}', 'Admin\SettingsController@update')->name('settings.save');
-  Route::post('admin/settings/upload_cropped_image', 'Admin\SettingsController@upload_cropped_image')->name('settings.upload_cropped_image');
-
-
-
-
-  //   Group crud
-
-
-  Route::get('admin/get_group', 'Admin\GroupController@getGroup')->name('group');
-  Route::get('admin/group', 'Admin\GroupController@index')->name('group.index');
-  Route::get('admin/group/create', 'Admin\GroupController@create')->name('group.create'); //add
-  Route::post('admin/group/save', 'Admin\GroupController@save')->name('group.save');
-  Route::get('admin/group/edit/{id}', 'Admin\GroupController@edit')->name('group.edit');
-  Route::post('admin/group/update/{id}', 'Admin\GroupController@update')->name('group.update');
-  Route::post('admin/group/delete/{id}', 'Admin\GroupController@destroy_undestroy')->name('group.delete');
-
-  // group_exams
-  Route::get('admin/group_exams/{id}', 'Admin\Group_ExamsController@index')->name('group_exams.index');
-  Route::post('admin/group_exams/create', 'Admin\Group_ExamsController@create')->name('group_exams.create');
-  Route::post('admin/group_exams/save', 'Admin\Group_ExamsController@save')->name('group_exams.save');
-
-
-  Route::post('admin/group/select_courses_id/{id}', 'Admin\GroupController@select_courses_data')->name('select_courses_id.delete');
-
-
-  // save lat long of parents
-  Route::post('admin/group/map/lat_long', 'Admin\GroupController@group_latlong_save')->name('parent.map');
-
+Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'], function () {
+
+    Route::get('contact', 'ContactUsController@index')->name('contact.index');
+    Route::get('users', 'UserController@index')->name('location.index');
+    Route::get('users/get_users/{id}', 'UserController@getUsers')->name('users.get_users');
+    Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
+    Route::get('logout', 'AdminController@logout')->name('logout');
+    Route::post('courses_crop_image', 'CoursesController@crop_image')->name('admin.crop_image');
+
+    // courses crud
+    Route::group(['prefix'=>'courses'],function(){
+      Route::get('/', 'CoursesController@index')->name('courses.index');
+      Route::get('create', 'CoursesController@create')->name('courses.create'); //add
+      Route::post('save', 'CoursesController@save')->name('courses.save');
+      Route::get('edit/{id}', 'CoursesController@edit')->name('courses.edit');
+      Route::post('update/{id}', 'CoursesController@update')->name('courses.update');
+      Route::post('delete/{id}', 'CoursesController@destroy_undestroy')->name('courses.delete');
+    });
+
+    // role
+    Route::group(['prefix'=>'role'],function(){
+      Route::get('/', 'RoleController@index')->name('role.index');
+      Route::get('create', 'RoleController@create')->name('role.create');
+      Route::post('save', 'RoleController@save')->name('role.save');
+      Route::get('edit/{id}', 'RoleController@edit')->name('role.edit');
+      Route::post('update/{id}', 'RoleController@update')->name('role.update');
+      Route::post('delete/{id}', 'RoleController@destroy_undestroy')->name('role.delete');
+    });
+
+    // Empolyee
+    Route::group(['prefix'=>'employee'],function(){
+      Route::get('/', 'EmployeeController@index')->name('employee.index');
+      Route::get('create', 'EmployeeController@create')->name('employee.create');
+      Route::post('save', 'EmployeeController@save')->name('employee.save');
+      Route::get('edit/{id}', 'EmployeeController@edit')->name('employee.edit');
+      Route::post('update/{id}', 'EmployeeController@update')->name('employee.update');
+      Route::post('delete/{id}', 'EmployeeController@destroy_undestroy')->name('employee.delete');
+  });
+
+    // Permissions
+    Route::group(['prefix'=>'permissions'],function(){
+      Route::get('show', 'PermissionsController@show_list_permision')->name('permissions.index');
+      Route::get('create', 'PermissionsController@create')->name('rolpermissionse.create');
+      Route::post('save', 'PermissionsController@save')->name('permissions.save');
+      Route::get('edit/{id}', 'PermissionsController@edit')->name('permissions.edit');
+      Route::post('update/{id}', 'PermissionsController@update')->name('permissions.update');
+      Route::post('delete/{id}', 'PermissionsController@destroy_undestroy')->name('permissions.delete');
+    });
+
+    // role_response
+    Route::post('role_response', 'PermissionsController@role_response')->name('role.role_response');
+    // permisiion/save
+    Route::post('role/permission/save', 'PermissionsController@permisiion_save')->name('role.role_response');
+    // Route::post('courses_crop_image', 'CoursesController@crop_image')->name('admin.crop_image');
+    //  =================================  Category ==========================
+    Route::group(['prefix'=>'category'],function(){
+      Route::get('/', 'CategoryController@index')->name('category.index');
+      Route::get('create', 'CategoryController@create')->name('category.create'); //add
+      Route::post('save', 'CategoryController@save')->name('category.save');
+      Route::get('edit/{id}', 'CategoryController@edit')->name('category.edit');
+      Route::post('update/{id}', 'CategoryController@update')->name('category.update');
+      Route::post('delete/{id}', 'CategoryController@destroy_undestroy')->name('category.delete');
+  });
+
+    // crop image
+    Route::post('category_crop_image', 'CategoryController@crop_image')->name('admin.crop_image');
+    // aboutus
+    Route::group(['prefix'=>'aboutus'],function(){
+      Route::get('/', 'About_UsController@index')->name('admin.aboutus');
+      Route::get('create', 'About_UsController@create')->name('aboutus.create'); //add
+      Route::post('save', 'About_UsController@save')->name('aboutus.save');
+      Route::get('edit/{id}', 'About_UsController@edit')->name('aboutus.edit');
+      Route::post('update/{id}', 'About_UsController@update')->name('aboutus.update');
+      Route::post('delete/{id}', 'About_UsController@destroy_undestroy')->name('aboutus.delete');
+      Route::get('view_frame/{id}', 'About_UsController@view_frame')->name('aboutus.view_frame');
+  });
+
+    //  =================================  Books ==========================
+    Route::group(['prefix'=>'books'],function(){
+      Route::get('/', 'BooksController@index')->name('books.index');
+      Route::get('create', 'BooksController@create')->name('books.create'); //add
+      Route::post('save', 'BooksController@save')->name('books.save');
+      Route::get('edit/{id}', 'BooksController@edit')->name('books.edit');
+      Route::post('update/{id}', 'BooksController@update')->name('books.update');
+      Route::post('delete/{id}', 'BooksController@destroy_undestroy')->name('books.delete');
+  });
+
+    //  =================================  teacher ==========================
+    Route::group(['prefix'=>'teacher'],function(){
+      Route::get('/', 'TeacherController@index')->name('teacher.index');
+      Route::get('create', 'TeacherController@create')->name('teacher.create'); //add
+      Route::post('save', 'TeacherController@save')->name('teacher.save');
+      Route::get('edit/{id}', 'TeacherController@edit')->name('teacher.edit');
+      Route::post('update/{id}', 'TeacherController@update')->name('teacher.update');
+      Route::post('delete/{id}', 'TeacherController@destroy_undestroy')->name('teacher.delete');
+  });
+
+    // question list open
+    Route::get('question_list/{id}', 'QuizController@question_list')->name('quiz.question_list');
+    Route::post('quiz_question_list/update', 'QuizController@quiz_question_list_update')->name('quiz.quiz_question_list_update');
+    // question CRUD
+    Route::get('question', 'QuestionController@index')->name('admin.question');
+    // create and save question
+    Route::group(['prefix'=>'question'],function(){
+      Route::get('create', 'QuestionController@create')->name('question.create');
+      Route::post('save', 'QuestionController@save')->name('question.save');
+      // edit and update question
+      Route::get('edit/{id}', 'QuestionController@edit')->name('question.edit');
+      Route::post('update/{id}', 'QuestionController@update')->name('question.update');
+      // delete question
+      Route::post('delete/{id}', 'QuestionController@destroy_undestroy')->name('question.delete');
+  });
+
+    // quiz CRUD
+    Route::group(['prefix'=>'quiz'],function(){
+      Route::get('/', 'QuizController@index')->name('admin.quiz');
+      // create and save quiz
+      Route::get('create', 'QuizController@create')->name('quiz.create');
+      Route::post('save', 'QuizController@save')->name('quiz.save');
+      // edit and update quiz
+      Route::get('edit/{id}', 'QuizController@edit')->name('quiz.edit');
+      Route::post('update/{id}', 'QuizController@update')->name('quiz.update');
+      // delete quiz
+      Route::post('quiz/delete/{id}', 'QuizController@destroy_undestroy')->name('quiz.delete');
+  });
+
+    // question list open
+    Route::get('question_list/{id}', 'QuizController@question_list')->name('quiz.question_list');
+    Route::post('quiz_question_list/update', 'QuizController@quiz_question_list_update')->name('quiz.quiz_question_list_update');
+    Route::get('getquestion/{id}', 'QuestionController@getQuestion')->name('question_list');
+    Route::get('course/questions/{id}', 'QuestionController@course_question_list')->name('question_list');
+    //   SETTINGS
+    Route::group(['prefix'=>'settings'],function(){
+      Route::get('/', 'SettingsController@index')->name('settings.index');
+      Route::get('edit/{id}', 'SettingsController@edit')->name('settings.edit');
+      Route::post('update/{id}', 'SettingsController@update')->name('settings.save');
+      Route::post('upload_cropped_image', 'SettingsController@upload_cropped_image')->name('settings.upload_cropped_image');
+  });
+
+    //   Group crud
+    Route::get('get_group', 'GroupController@getGroup')->name('group');
+    Route::group(['prefix'=>'group'],function(){
+       Route::get('/', 'GroupController@index')->name('group.index');
+       Route::get('create', 'GroupController@create')->name('group.create'); //add
+       Route::post('save', 'GroupController@save')->name('group.save');
+       Route::get('edit/{id}', 'GroupController@edit')->name('group.edit');
+       Route::post('update/{id}', 'GroupController@update')->name('group.update');
+       Route::post('delete/{id}', 'GroupController@destroy_undestroy')->name('group.delete');
+       Route::post('select_courses_id/{id}', 'GroupController@select_courses_data')->name('select_courses_id.delete');
+    // save lat long of parents
+       Route::post('map/lat_long', 'GroupController@group_latlong_save')->name('parent.map');
+  });
+
+    // group_exams
+    Route::group(['prefix'=>'group_exams'],function(){
+       Route::get('/{id}', 'Group_ExamsController@index')->name('group_exams.index');
+       Route::post('create', 'Group_ExamsController@create')->name('group_exams.create');
+       Route::post('save', 'Group_ExamsController@save')->name('group_exams.save');
+  });
 
 
   // ================================student list==================================
-  Route::get('admin/group/students/{id}', 'Admin\GroupController@student_list')->name('admin.group_students');
-  Route::post('admin/student_group_checked/update', 'Admin\GroupController@student_group_checked')->name('admin.student_group_checked');
+    Route::get('group/students/{id}', 'GroupController@student_list')->name('admin.group_students');
+    Route::post('student_group_checked/update', 'GroupController@student_group_checked')->name('admin.student_group_checked');
+    // ================================course_register=================================
+    // data tables myy
+    Route::get('course_register', 'Course_RegisterController@index')->name('admin.course_register');
+    Route::get('get_course_register', 'Course_RegisterController@get_course_register')->name('admin.get_course_register');
+    Route::get('courses/group/{id}', 'Course_RegisterController@get_courses_group')->name('admin.get_courses_group');
+    Route::post('update_course_group', 'Course_RegisterController@update_course_group')->name('admin.update_course_group');
+    // ================================workshop=================================
+    Route::group(['prefix'=>'workshop'],function(){
 
-  // ================================course_register=================================
-  // Route::get('admin/course_register', 'Admin\Course_RegisterController@index')->name('admin.course_register');
+       Route::get('/', 'WorkshopController@index')->name('workshop.index');
+       Route::get('create', 'WorkshopController@create')->name('workshop.create'); //add
+       Route::post('save', 'WorkshopController@save')->name('workshop.save');
+       // Route::get('workshop/edit/{id}', 'WorkshopController@edit')->name('workshop.edit');
+       Route::post('delete/{id}', 'WorkshopController@destroy_undestroy')->name('workshop.delete');
+  });
 
-  // data tables myy
-  Route::get('admin/course_register', 'Admin\Course_RegisterController@index')->name('admin.course_register');
-  Route::get('admin/get_course_register', 'Admin\Course_RegisterController@get_course_register')->name('admin.get_course_register');
-  Route::get('admin/courses/group/{id}', 'Admin\Course_RegisterController@get_courses_group')->name('admin.get_courses_group');
-  Route::post('admin/update_course_group', 'Admin\Course_RegisterController@update_course_group')->name('admin.update_course_group');
+    Route::post('workshop_value_updte', 'WorkshopController@update')->name('workshop.update');
 
-  //
+    // ================================ Reports admin student_plan=================================
+    Route::group(['prefix'=>'student_plan'],function(){
+       Route::get('/', 'Reports\Student_planController@index')->name('student_plan.index');
+       Route::get('create', 'Reports\Student_planController@create')->name('student_plan.create'); //add
+       Route::post('save', 'Reports\Student_planController@save')->name('student_plan.save');
+       Route::get('edit', 'Reports\Student_planController@edit')->name('student_plan.edit');
+       Route::post('update', 'Reports\Student_planController@update')->name('student_plan.update');
+       Route::post('delete/{id}', 'Reports\Student_planController@destroy_undestroy')->name('student_plan.delete');
+  });
 
-
-  // ================================workshop=================================
-  Route::get('admin/workshop', 'Admin\WorkshopController@index')->name('workshop.index');
-
-  Route::get('admin/workshop/create', 'Admin\WorkshopController@create')->name('workshop.create'); //add
-  Route::post('admin/workshop/save', 'Admin\WorkshopController@save')->name('workshop.save');
-
-  // Route::get('admin/workshop/edit/{id}', 'Admin\WorkshopController@edit')->name('workshop.edit');
-  Route::post('admin/workshop_value_updte', 'Admin\WorkshopController@update')->name('workshop.update');
-
-  Route::post('admin/workshop/delete/{id}', 'Admin\WorkshopController@destroy_undestroy')->name('workshop.delete');
-
-
-
-
-
-  // ================================ Reports admin student_plan=================================
-  Route::get('admin/student_plan', 'Reports\Student_planController@index')->name('student_plan.index');
-
-  Route::get('admin/student_plan/create', 'Reports\Student_planController@create')->name('student_plan.create'); //add
-  Route::post('admin/student_plan/save', 'Reports\Student_planController@save')->name('student_plan.save');
-
-  Route::get('admin/student_plan/edit', 'Reports\Student_planController@edit')->name('student_plan.edit');
-  Route::post('student_plan/update', 'Reports\Student_planController@update')->name('student_plan.update');
-
-  Route::post('admin/student_plan/delete/{id}', 'Reports\Student_planController@destroy_undestroy')->name('student_plan.delete');
+    //  =================================  Reports PAYMENT =========================
 
 
+    Route::get('orders/payments', 'Reports\PaymentController@index_excel')->name('payment.excel');
 
-  //
-
-  //  =================================  Reports PAYMENT ==========================
-
-
-  Route::get('admin/reports/payments', 'Reports\PaymentController@index')->name('order_payment.index');
-  Route::post('admin/reports/payments', 'Reports\PaymentController@index')->name('payment.index');
-  Route::get('admin/orders/payments', 'Reports\PaymentController@index_excel')->name('payment.excel');
-  Route::post('admin/reports/payment/status_update/{id}', 'Reports\PaymentController@status_update')->name('payment.status_update');
-  //
-  Route::post('admin/reports/payment/payment_refund/{id}', 'Reports\PaymentController@payment_refund')->name('payment.payment_refund');
-
-  //
-
-  // admin/permissions
-  Route::get('admin/reports/permissions', 'Reports\PermissionsController@index')->name('permissions.index');
 });
-  // });
+Route::group(['prefix'=>'admin/reports'],function(){
+  Route::get('payments', 'Reports\PaymentController@index')->name('order_payment.index');
+  Route::post('payments', 'Reports\PaymentController@index')->name('payment.index');
+  Route::post('payment/status_update/{id}', 'Reports\PaymentController@status_update')->name('payment.status_update');
+  Route::post('payment/payment_refund/{id}', 'Reports\PaymentController@payment_refund')->name('payment.payment_refund');
+Route::get('/permissions', 'Reports\PermissionsController@index')->name('permissions.index');
+
+  // permissions
+//    Route::get('permissions', 'Reports\PermissionsController@index')->name('permissions.index');
+});
+
+//   });
