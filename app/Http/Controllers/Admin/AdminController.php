@@ -186,6 +186,12 @@ class AdminController extends Controller
 
         ];
         $reports[] = [
+
+            'url' => 'admin/reports/permissions',
+            'title' => 'Reports Permission ',
+
+        ];
+        $reports[] = [
             'url' => 'admin/reports/payments',
             'title' => 'Payments',
         ];
