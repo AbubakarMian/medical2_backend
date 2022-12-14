@@ -231,7 +231,7 @@ class CoursesController extends Controller
 
 
 
-        // 
+        //
         // special user jo logo ko group register krwata hai
 
 
@@ -480,6 +480,8 @@ class CoursesController extends Controller
 
       // multiple installmemnt choose
             if ($request->student_id) {
+                // dd($request->all());
+
                     $student_fees = Student_fees::with('user', 'course', 'course_register')->find($request->student_id);
                     $payment = new Payment();
                     $payment->user_id = $user->id;

@@ -187,7 +187,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
     // Permissions
     Route::group(['prefix'=>'permissions'],function(){
       Route::get('show', 'PermissionsController@show_list_permision')->name('permissions.index');
-      Route::get('create', 'PermissionsController@create')->name('rolpermissionse.create');
+      Route::get('create', 'PermissionsController@create')->name('permissions.create');
       Route::post('save', 'PermissionsController@save')->name('permissions.save');
       Route::get('edit/{id}', 'PermissionsController@edit')->name('permissions.edit');
       Route::post('update/{id}', 'PermissionsController@update')->name('permissions.update');

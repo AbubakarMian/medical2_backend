@@ -18,6 +18,7 @@ use App\Model\Group_users;
 use App\Model\Group;
 use App\Model\Group_fees;
 use App\Model\Course_Register;
+use App\Model\Permission;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToArray;
 
@@ -28,9 +29,9 @@ class PermissionsController extends Controller
 {
     public function index(Request $request)
     {
-       
-        
+        $permissions = Permission::with('role')->orderby('created_at', 'desc')->select('*')->get();
+        return view('admin.permissions.index',compact('permissions'));
+
     }
 
-   
 }

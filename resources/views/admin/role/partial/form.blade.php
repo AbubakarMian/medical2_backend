@@ -120,8 +120,8 @@
         <div class="col-sm-12">
             <div class="chechkareadata">
                 <label for="exampleInputtext1" class="rolabel">Enter Your Role :</label>
-                <input type="text" name="role" class="form-control" id="exampleInputtext1" aria-describedby="textHelp"
-                    placeholder="Enter Role"><br>
+                <input type="text" name="role"  class="form-control" id="exampleInputtext1" aria-describedby="textHelp"
+                    placeholder="Enter Role" required><br>
                 <div class="container tablu">
                     <div class="row">
                         <div class="col-sm-12">
@@ -143,14 +143,14 @@
                                     @foreach ($urls as $my_key => $url)
                                      <tr>
                                     <th scope="row">{{$my_key+1}}</th>
-                                    <td>{{$url->module_name}}</td>   
-                                    <input hidden  name="url_id[]" value="{{$url->id}}"> 
+                                    <td>{{$url->module_name}}</td>
+                                    <input hidden  name="url_id[]" value="{{$url->id}}">
                                     <td><input class="form-check-input tuik" name="permissions[view][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" > </td>
-                                    <td><input class="form-check-input tuik" name="permissions[create][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
-                                    <td><input class="form-check-input tuik"  name="permissions[save][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
-                                    <td><input class="form-check-input tuik" name="permissions[edit][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
-                                    <td><input class="form-check-input tuik" name="permissions[update][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}"></td>                                                                     
-                                    <td><input class="form-check-input tuik"  name="permissions[delete][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}"></td>                                                                     
+                                    <td><input class="form-check-input tuik" name="permissions[create][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>
+                                    <td><input class="form-check-input tuik"  name="permissions[save][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>
+                                    <td><input class="form-check-input tuik" name="permissions[edit][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>
+                                    <td><input class="form-check-input tuik" name="permissions[update][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}"></td>
+                                    <td><input class="form-check-input tuik"  name="permissions[delete][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}"></td>
                                   </tr>
                                     @endforeach
 
