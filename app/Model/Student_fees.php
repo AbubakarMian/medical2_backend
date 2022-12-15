@@ -24,7 +24,12 @@ public function course()
 }
 public function course_register()
 {
-    return $this->hasMany('App\Model\Course_Register', 'id', 'course_register_id');
+    return $this->hasOne('App\Model\Course_Register', 'id', 'course_register_id');
+}
+
+public function payment()
+{
+    return $this->hasOne('App\Model\Payment', 'id', 'payment_id');
 }
 
 

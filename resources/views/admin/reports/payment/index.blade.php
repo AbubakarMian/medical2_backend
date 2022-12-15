@@ -40,117 +40,51 @@
             </tr>
         </thead>
         <tbody>
-          
-            @foreach ($payments as $payment)
+
+            @foreach ($student_fees as $student_fee)
 
                 <tr>
-                    <td style="white-space: nowrap">{!! explode(' ', $payment->created_at)[0] !!}</td>
-                    {{--  <td>{!! $payment->payment_id !!}</td>  --}}
-                    <td>{!! ucwords($payment->user->name) ?? '' !!}</td>
-                    <td>{!! ucwords($payment->student->course->full_name) ?? '' !!}</td>
-                    {{-- <td>{!! $payment->user->phone_no??'' !!}</td>
-		<td>{!! $payment->user->email??'' !!}</td> --}}
-                    <td>{!! $payment->amount !!} </td>
-                  
+                    <td style="white-space: nowrap">{!! explode(' ', $student_fee->created_at)[0] !!}</td>
+                    {{--  <td>{!! $student_fee->payment_id !!}</td>  --}}
+                    <td>{!! ucwords($student_fee->user->name) ?? '' !!}</td>
+                    <td>{!! ucwords($student_fee->course->full_name) ?? '' !!}</td>
+                    {{-- <td>{!! $student_fee->user->phone_no??'' !!}</td>
+		             <td>{!! $student_fee->user->email??'' !!}</td> --}}
+                    <td>{!! $student_fee->amount !!} </td>
+
 				<!--  -->
 				<td style="white-space: nowrap">
-                        <?php
-                        $pending_display = $completed_display = $final_status_display = 'display:none';
-                        if ($payment->status == 'pending') {
-                            $pending_display = 'display:block';
-                        } elseif ($payment->status == 'inprogress') {
-                            $completed_display = 'display:block';
-                        } else {
-                            $final_status_display = 'display:block';
-                        }
-                        ?>
+                    @if($student_fee->payment_id)
+                        Paid
+                    @else
+                        Pending
+                    @endif
 
-                        <div id="pending_btn_{!! $payment->id !!}" style="{!! $pending_display !!}">
-                            <a href="" data-toggle="modal" name=""
-                                data-target=".inprogress_request_{!! $payment->id !!}">
-                                <span class=" badge bg-info btn-success ">
-                                    In Progress
-                                </span>
-                            </a>
-                            @include('admin.reports.payment.partial.confirmation_modal', [
-                                'order_id' => $payment->id,
-                                'cell_id' => 'td_' . $payment->id,
-                                'req_status' => 'inprogress_request_' . $payment->id,
-                                'url' => asset('admin/reports/payment/status_update/' . $payment->id),
-                                'status' => 'completed',
-                                'msg_status' => 'complete',
-                                'btn_class' => 'btn-primary',
-                            ])
-                            <a href="" data-toggle="modal" name=""
-                                data-target=".reject_request_{!! $payment->id !!}">
-                                <span class=" badge bg-info btn-danger">
-                                    Reject
-                                </span>
-                            </a>
-                            @include('admin.reports.payment.partial.confirmation_modal', [
-                                'order_id' => $payment->id,
-                                'cell_id' => 'td_' . $payment->id,
-                                'req_status' => 'reject_request_' . $payment->id,
-                                'url' => asset('admin/reports/payment/status_update/' . $payment->id),
-                                'status' => 'rejected',
-                                'msg_status' => 'reject',
-                                'btn_class' => 'btn-danger',
-                            ])
-                        </div>
-                        <div id="inprogress_btn_{!! $payment->id !!}" style="{!! $completed_display !!}">
-                            <a href="" data-toggle="modal" name=""
-                                data-target=".completed_request_{!! $payment->id !!}">
-                                <span class=" badge bg-info btn-success">
-                                    Complete</span></a>
-                            @include('admin.reports.payment.partial.confirmation_modal', [
-                                'order_id' => $payment->id,
-                                'cell_id' => 'td_' . $payment->id,
-                                'req_status' => 'completed_request_' . $payment->id,
-                                'url' => asset('admin/reports/payment/status_update/' . $payment->id),
-                                'status' => 'completed',
-                                'msg_status' => 'complete',
-                                'btn_class' => 'btn-success',
-                            ])
-                        </div>
-                        <div id="finalstatus_btn_{!! $payment->id !!}" style="{!! $final_status_display !!}">
-                            {!! ucwords($payment->status) !!}
-                        </div>
                     </td>
 		<td style="white-space: nowrap">
-			<?php
-				$pending_display = $completed_display = $final_status_display ='display:none';
-				if($payment->status == 'pending'){
-					$pending_display = 'display:block';
-				}
-				elseif($payment->status == 'inprogress'){
-					$completed_display = 'display:block';
-				}
-				else{
-					$final_status_display = 'display:block';
-				}
-			?>
 
-			<div id="pending_refund_btn_{!!$payment->id!!}">
-				<a href="" data-toggle="modal" name="" data-target=".refund_request_{!! $payment->id !!}">
+            @if($student_fee->payment_id)
+			<div id="pending_refund_btn_{!!$student_fee->payment_id!!}">
+				<a href="" data-toggle="modal" name="" data-target=".refund_request_{!! $student_fee->payment_id !!}">
 					<span class="badge bg-info btn-success" style="width: 108px">
 						Payment Refund
 					</span>
 				</a>
 				@include('admin.reports.payment.partial.payment_refund',
 				[
-				
-				
-				'req_status'=>'refund_request_'.$payment->id,
-				'payment_id'=> $payment->id,
-				'amount'=>$payment->amount,
-				'url'=>asset('admin/reports/payment/payment_refund/'.$payment->id),
+				'req_status'=>'refund_request_'.$student_fee->payment_id,
+				'payment_id'=> $student_fee->payment_id,
+				'amount'=>$student_fee->amount,
+				'url'=>asset('admin/reports/payment/payment_refund/'.$student_fee->payment_id),
 				'msg_status'=>'Payment Refund',
 				'btn_class'=>'btn-primary'
 				])
-				
-				
+
+                @endif
+
+            </div>
 		</td>
-                   
+
 
 
 
@@ -160,7 +94,7 @@
         </tbody>
     </table>
 @section('pagination')
-    <span class="pagination pagination-md pull-right">{!! $payments->render() !!}</span>
+    <span class="pagination pagination-md pull-right">{!! $student_fees->render() !!}</span>
 
     <div class="col-md-3 pull-left">
         <div class="form-group text-center">
@@ -183,12 +117,12 @@
 @section('app_jquery')
 <script>
 	function payment_refund(url,msg_status,payment_id) {
-           
+
             console.log('status',status);
             console.log('url',url);
 			var payment_refund_amount = $('.payment_refund_amount_'+payment_id).val();
 			console.log('payment_refund_amount_',payment_refund_amount);
-			
+
             $.ajax({
                 url:url,
                 method:'POST',
@@ -197,8 +131,8 @@
                        'payment_refund_amount' : payment_refund_amount
                       },
                 success: function(data){
-				
-				
+
+
                     console.log("response",data);
                 },
 				error: function(errordata) {
@@ -243,7 +177,7 @@
         $('#status_excel').val($('#status').val());
     }
 
-  
+
     function show_note(msg) {
         $('#msg_div').html(msg);
     }

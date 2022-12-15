@@ -18,11 +18,11 @@
 
     <!-- Credit Card Payment Form - START -->
     <div class="container">
-        
-                            
-                                
 
-           
+
+
+
+
  <div class="page-header text-center">
         <h1>Credit Card Payment Gateway</h1>
 </div>
@@ -42,7 +42,7 @@
 
     <div class="row">
 <div class="col-xs-12">
-    <div class="form-group"> 
+    <div class="form-group">
         <label> Your Total Amount</label>
         <div class="input-group">
             <input type="text"  disabled value="{{ $total_amount}}" class="form-control" />
@@ -55,7 +55,7 @@
 @elseif($student_fees->id)
 <div class="row">
 <div class="col-xs-12">
-    <div class="form-group"> 
+    <div class="form-group">
         <label> Your Total Amount</label>
         <div class="input-group">
             <input type="text"  disabled value="{{ $student_fees->amount}}" class="form-control" />
@@ -77,7 +77,7 @@
                                         <button type="button" class="close" data-dismiss="alert">×</button>
                                         <strong>{{ $message }}</strong>
                                     </div>
-    
+
                                 @elseif( $message = Session::get('error'))
                                     <div class="alert alert-danger text-center">
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -101,11 +101,11 @@
                                     <div class="form-group"> <label>CARD NUMBER</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control card-number"  required name="mycard" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
-                                           
+
                                     <!-- total_amount -->
-                              
+
                                  <!--  -->
-                                 
+
                                 @if(isset($res_student_array))
                                 @foreach($res_student_array as $key => $c)
                                 <input type="hidden" name="student_id[]"  value="{{$c->id}}" class="form-control" />
@@ -119,13 +119,13 @@
                                     </div>
                                 </div>
                             </div>
-                           
+
                             <div class="row">
                                 <div class="col-xs-7 col-md-7">
                                     <div class="form-group">
                                          <label><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
                                           <input type="text" class="form-control card-expiry-month" placeholder="MM"  required />
-                                         </div>  <input type="text" class="form-control card-expiry-year" placeholder="YY" required />
+                                         </div>  <input type="text" class="form-control card-expiry-year" placeholder="YYYY" required />
                                 </div>
                                 <div class="col-xs-5 col-md-5 pull-right">
                                     <div class="form-group"> <label>CV CODE</label> <input type="text"  required class="form-control card-cvc" placeholder="CVC" /> </div>
