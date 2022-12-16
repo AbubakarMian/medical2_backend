@@ -39,100 +39,74 @@
 
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+
+            @foreach ($student_fees as $student_fee)
+
+                <tr>
+                    <td style="white-space: nowrap">{!! explode(' ', $student_fee->created_at)[0] !!}</td>
+                    {{--  <td>{!! $student_fee->payment_id !!}</td>  --}}
+                    <td>{!! ucwords($student_fee->user->name) ?? '' !!}</td>
+                    <td>{!! ucwords($student_fee->course->full_name) ?? '' !!}</td>
+                    {{-- <td>{!! $student_fee->user->phone_no??'' !!}</td>
+		             <td>{!! $student_fee->user->email??'' !!}</td> --}}
+                    <td>{!! $student_fee->amount !!} </td>
+
+				<!--  -->
+				<td style="white-space: nowrap">
+                    @if($student_fee->payment_id)
+                        Paid
+                    @else
+                        Pending
+                    @endif
+
+                    </td>
+		<td style="white-space: nowrap">
+
+            @if($student_fee->payment_id)
+			<div id="pending_refund_btn_{!!$student_fee->payment_id!!}">
+				<a href="" data-toggle="modal" name="" data-target=".refund_request_{!! $student_fee->payment_id !!}">
+					<span class="badge bg-info btn-success" style="width: 108px">
+						Payment Refund
+					</span>
+				</a>
+				@include('admin.reports.payment.partial.payment_refund',
+				[
+				'req_status'=>'refund_request_'.$student_fee->payment_id,
+				'payment_id'=> $student_fee->payment_id,
+				'amount'=>$student_fee->amount,
+				'url'=>asset('admin/reports/payment/payment_refund/'.$student_fee->payment_id),
+				'msg_status'=>'Payment Refund',
+				'btn_class'=>'btn-primary'
+				])
+
+                @endif
+
+            </div>
+		</td>
+
+
+
+
+
+                </tr>
+            @endforeach
+        </tbody>
     </table>
-@section('app_jquery')
+@section('pagination')
+    <span class="pagination pagination-md pull-right">{!! $student_fees->render() !!}</span>
 
-<script>
-
-$(document).ready(function(){
-
-    fetchRecords();
-
-    function fetchRecords(){
-
-       $.ajax({
-
-         url: '{!!asset("admin/reports/payments/0")!!}',
-         type: 'get',
-         dataType: 'json',
-         success: function(response){
-            $("#userTable").css("opacity",1);
-
-           var len = response['data'].length;
-
-
-              for(var i=0; i<len; i++){
-
-                var date =  response['data'][i].id;
-                var user_name = response['data'][i].user.name;
-                var course_name = response['data'][i].course.full_name;
-                // var amount = response['data'][i].amount;
-                // var payment_status = response['data'][i].status_arr;
-                // var payment_refund = response['data'][i].search_payment;
-
-
-                var tr_str = "<tr>" +
-                    "<td>" + date + "</td>" +
-                    "<td>" + user_name + "</td>" +
-                    "<td>" + course_name + "</td>" +
-//                     "<td>" +
-//                          if(['data']=>student_fee->payment_id){
-//                               Paid}
-//                         else{
-//                               Pending
-//                             }
-//                      + "</td>" +
-
-
-
-//                     "<td>" +  style="white-space: nowrap">
-
-//                    if($student_fee->payment_id)
-//                        <div id="pending_refund_btn_{!!$student_fee->payment_id!!}">
-//                           <a href="" data-toggle="modal" name="" data-target=".refund_request_{!! $student_fee->payment_id !!}">
-//                               <span class="badge bg-info btn-success" style="width: 108px">
-//                                        Payment Refund
-//                                </span>
-//                             </a>
-//                          @include('admin.reports.payment.partial.payment_refund',
-//                                    [
-//                                    'req_status'=>'refund_request_'.$student_fee->payment_id,
-//                                    'payment_id'=> $student_fee->payment_id,
-//                                    'amount'=>$student_fee->amount,
-//                                    'url'=>asset('admin/reports/payment/payment_refund/'.$student_fee->payment_id),
-//                                    'msg_status'=>'Payment Refund',
-//                                    'btn_class'=>'btn-primary'
-//                                    ])
-// </div>
-//                        + "</td>" +
-//                                            "<td>" + amount + "</td>" +
-                                       "</tr>";
-                                        $("#userTable tbody").append(tr_str);
-                                       }
-
-
-
-
-
-                                       $('#userTable').DataTable({
-                                           dom: 'Bfrtip',
-                                           buttons: [
-                                               'copy', 'csv', 'excel', 'pdf', 'print'
-                                           ],
-                                       });
-                               }
-                              });
-                           }
-
-});
-
-function set_msg_modal(msg){
-        $('.set_msg_modal').html(msg);
-    }
-
-</script>
-
+    <div class="col-md-3 pull-left">
+        <div class="form-group text-center">
+            <div>
+                {!! Form::open(['method' => 'get', 'route' => ['dashboard']]) !!}
+                {!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+@endsection
+@stop
 
 @include('admin.reports.payment.partial.msg_modal')
 @section('extra_css')
@@ -208,6 +182,4 @@ function set_msg_modal(msg){
         $('#msg_div').html(msg);
     }
 </script>
-@endsection
-
 @endsection
