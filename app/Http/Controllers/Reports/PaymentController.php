@@ -50,23 +50,23 @@ class PaymentController extends Controller
         // dd($student_fees);
         // $orders = ModelsRequest::paginate(5);
         return view('admin.reports.payment.index',
-        // compact(
-        //     'student_fees',
-        //     'search_text',
-        //     'status_arr',
-        //     'status',
-        //     'date',
-        //     'search_payment'
-        // )
+        compact(
+            'student_fees',
+            'search_text',
+            'status_arr',
+            'status',
+            'date',
+            'search_payment'
+        )
 
       );
-      $reportData['data'] = $student_fees;
-      $reportData['data'] = $search_text;
-      $reportData['data'] = $status_arr;
-      $reportData['data'] = $status;
-      $reportData['data'] = $date;
-      $reportData['data'] = $search_payment;
-        echo json_encode($reportData);
+    //   $reportData['data'] = $student_fees;
+    //   $reportData['data'] = $search_text;
+    //   $reportData['data'] = $status_arr;
+    //   $reportData['data'] = $status;
+    //   $reportData['data'] = $date;
+    //   $reportData['data'] = $search_payment;
+    //     echo json_encode($reportData);
     }
 
     public function get_payment_report(){

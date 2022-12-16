@@ -7,7 +7,7 @@
 @stop
 
 
-@section('form')
+{{-- @section('form')
     {!! Form::open([
         'id' => 'search_form',
         'method' => 'post',
@@ -16,7 +16,93 @@
     ]) !!}
     @include('admin.reports.payment.partial.searchfilters')
     {!! Form::close() !!}
-@stop
+@stop --}}
+@section('table')
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" style="white-space: nowrap">Date</th>
+                {{--  <th scope="col" style="white-space: nowrap">Payment Id</th>  --}}
+                <th scope="col" style="white-space: nowrap">User Name</th>
+                <th scope="col" style="white-space: nowrap">Course Name</th>
+
+                {{-- <th scope="col" style="white-space: nowrap">Phone</th>
+		<th scope="col" style="white-space: nowrap">Email</th> --}}
+		<th scope="col" style="white-space: nowrap">Amount</th>
+		{{-- <th scope="col" style="white-space: nowrap">Currency</th> --}}
+		{{-- <th scope="col" style="white-space: nowrap">Receipt</th> --}}
+		<th scope="col" style="white-space: nowrap">Payment Status</th>
+		<th scope="col" style="white-space: nowrap">Payment Refund</th>
+
+                {{-- <th scope="col" style="white-space: nowrap">Detail</th> --}}
+
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+@section('app_jquery')
+
+<script>
+
+$(document).ready(function(){
+
+    fetchRecords();
+
+    function fetchRecords(){
+
+       $.ajax({
+
+         url: '{!!asset("admin/reports/payments/0")!!}',
+         type: 'get',
+         dataType: 'json',
+         success: function(response){
+            $("#userTable").css("opacity",1);
+
+           var len = response['data'].length;
+
+
+              for(var i=0; i<len; i++){
+
+                var date =  response['data'][i].id;
+                var user_name = response['data'][i].user.name;
+                var course_name = response['data'][i].course.full_name;
+                var amount = response['data'][i].amount;
+                var payment_status = response['data'][i].color;
+                var payment_refund = response['data'][i].color;
+
+
+                var tr_str = "<tr>" +
+                    "<td>" + date + "</td>" +
+                    "<td>" + user_name + "</td>" +
+                    "<td>" + course_name + "</td>" +
+                    "<td>" + payment_status + "</td>" +
+                    "<td>" + payment_refund + "</td>" +
+                    "<td>" + amount + "</td>" +
+                    "<td>" + amount + "</td>" +
+                "</tr>";
+
+                 $("#userTable tbody").append(tr_str);
+                }
+                $('#userTable').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                });
+        }
+       });
+    }
+
+});
+
+function set_msg_modal(msg){
+        $('.set_msg_modal').html(msg);
+    }
+
+</script>
+@endsection
+
 @section('table')
     <table class="table table-bordered">
         <thead>

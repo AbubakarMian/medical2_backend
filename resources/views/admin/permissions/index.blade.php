@@ -9,10 +9,6 @@
     {!! Form::close() !!}
 @stop --}}
 
-@section('table-properties')
-    width="400px" style="table-layout:fixed;"
-@endsection
-
 
 <style>
     td {
@@ -23,62 +19,42 @@
         text-overflow: ellipsis;
     }
 </style>
-@section('table')
+@section('single_file_use')
 
 
-    <thead>
-        <tr>
+        @foreach ($permissions as $p)
 
+       <h3> <b><i><td>{!! ucwords($p->heading) !!} </td></i></b></h3>
+            <?php $details = json_decode($p->details);?>
+            <table width="400px" style="table-layout:fixed;" id="index-table" class="table table-bordered table-striped mg-t editable-datatable">
+            <thead>
+                <tr>
+                    @foreach ( $details as $d)
+                    @if(!$d->need_permission)
+                        @continue
+                    @endif
+                        <th >  {!!ucwords($d->heading) !!} <input type="checkbox" name="{!!$p->id!!}" value="{!!$d->heading!!}"></th>
+                    @endforeach
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
 
-            <th>Permissions</th>
-            <th>Can View</th>
-            <th>Can Create</th>
-            <th>Can Save</th>
-            <th>Can Edit</th>
-            <th>Can Update</th>
-            <th>Can Delete</th>
+                @foreach ( [] as $d)
+                    @if(!$d->need_permission)
+                        @continue
+                    @endif
+                    <td><input type="checkbox" name="{!!$p->id!!}" value="{!!$d->heading!!}"> </td>
+                    {{-- <td >{!!ucwords($d->heading) !!}</td> --}}
+                @endforeach
 
+                </tr>
+            </tbody>
+            </table>
 
-
-
-        </tr>
-    </thead>
-    <tbody>
-
-
-
-        @foreach ($permissions as $b)
-            <td>{!! ucwords($b->role->name) !!} </td>
-            <td >{!!ucwords($b->can_view) !!}</td>
-            <td >{!!ucwords($b->can_create) !!}</td>
-            <td >{!!ucwords($b->can_save) !!}</td>
-            <td >{!!ucwords($b->can_edit) !!}</td>
-            <td >{!!ucwords($b->can_update) !!}</td>
-            <td >{!!ucwords($b->can_delete) !!}</td>
-
-
-
-
-            {{-- <td>
-            {!! link_to_action('Admin\PermissionsController@edit',
-            'Edit', array($b->id), array('class' => 'badge bg-info')) !!}
-
-        </td> --}}
-
-
-            {{-- <td>{!! Form::open(['method' => 'POST', 'route' => ['permissions.delete', $b->id]]) !!}
-			<a href="" data-toggle="modal" name="activate_delete" data-target=".delete" modal_heading="Alert" modal_msg="Do you want to delete?">
-				<span class="badge bg-info btn-primary ">
-					{!! $b->deleted_at?'Activate':'Delete' !!}</span></a>
-			{!! Form::close() !!}
-		</td> --}}
-
-
-            </tr>
         @endforeach
 
 
-    </tbody>
 @section('pagination')
     {{-- <span class="pagination pagination-md pull-right">{!! $permissions->render() !!}</span> --}}
     <div class="col-md-3 pull-left">
@@ -92,3 +68,4 @@
     </div>
 @endsection
 @stop
+

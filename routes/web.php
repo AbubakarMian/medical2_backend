@@ -167,6 +167,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
     // role
     Route::group(['prefix'=>'role'],function(){
       Route::get('/', 'RoleController@index')->name('role.index');
+    //   Route::get('create', 'RoleController@create')->name('role.create');
       Route::get('create', 'RoleController@create')->name('role.create');
       Route::post('save', 'RoleController@save')->name('role.save');
       Route::get('edit/{id}', 'RoleController@edit')->name('role.edit');
@@ -348,7 +349,7 @@ Route::group(['prefix'=>'admin/reports'],function(){
   Route::post('payments', 'Reports\PaymentController@index')->name('payment.index');
 //   Route::post('payment/status_update/{id}', 'Reports\PaymentController@status_update')->name('payment.status_update');
   Route::post('payment/payment_refund/{id}', 'Reports\PaymentController@payment_refund')->name('payment.payment_refund');
-Route::get('/permissions', 'Reports\PermissionsController@index')->name('permissions.index');
+Route::get('permissions', 'Reports\PermissionsController@index')->name('permissions.index');
 
   // permissions
 //    Route::get('permissions', 'Reports\PermissionsController@index')->name('permissions.index');

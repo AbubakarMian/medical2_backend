@@ -15,6 +15,8 @@ class CreateAdminUrlTable extends Migration
     {
         Schema::create('admin_url', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('section')->nullable()->default(null);
+            $table->string('heading')->nullable()->default(null);
             $table->json('details')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
