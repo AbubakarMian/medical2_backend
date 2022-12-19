@@ -34,7 +34,7 @@ class PaymentController extends Controller
     public function query(Request $request)
     {
         // $report = Student_fees::with('user','course','payment');
-        $report = Payment::with('user','course');
+        $report = Payment::with('user','course','refund_payments');
         $report = $report->orderBy('created_at', 'desc');
         return $report;
     }
@@ -78,9 +78,9 @@ class PaymentController extends Controller
         // $payment->card_type = ;
         $payment->amount =   $stripe->amount;
         $payment->reason =   $stripe->payment_refund_reason;
+        $payment->action  = $stripe->object;
         $payment->save();
     //     //   payment_refund
-        $payment_object->action  = $stripe->object;
         $payment_object->refund_payment_id  = $payment->id;
         $payment_object->save();
 

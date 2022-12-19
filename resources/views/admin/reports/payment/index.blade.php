@@ -8,13 +8,14 @@
     <table id="userTable" class="table table-bordered">
         <thead>
             <tr>
+                <th >Payment Id</th>
                 <th >Date</th>
                 <th >User Name</th>
-                <th >Course Name</th>
+                <th >Course</th>
 		        <th >Amount</th>
-		        <th >Payment Status</th>
-		        <th >Payment Refund</th>
-		        <th >Payment Recipt</th>
+		        <th >Status</th>
+		        <th >Refund</th>
+		        <th >Recipt</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -57,6 +58,7 @@ $(document).ready(function(){
            var tr_str = '';
 
                 for(var i=0; i<len; i++){
+                    var payment_id =  data[i].payment_id;
                     var date =  data[i].created_at;
                     var user_name = data[i].user.name;
                     var course_name = data[i].course.full_name;
@@ -64,15 +66,15 @@ $(document).ready(function(){
                     var payment_status = data[i].action;
                     // var payment_refund = data[i].search_payment;
                     var refund_payment = data[i].receipt_url?`
-                            <button class="btn btn-primary" onclick=open_refund_modal(`+data[i]+`);>Refund</button>
+                            <button class="btn btn-primary" onclick='open_refund_modal(`+JSON.stringify(data[i])+`)';>Refund</button>
                         `:'';
                     var recipt = data[i].receipt_url?`<a target="_blank" href="`+data[i].receipt_url+
                         `" color="red" >Recipt</a>`:'';
                     
 
-
                      tr_str = tr_str+"<tr>" +
-                        "<td>" + date + "</td>" +
+                         "<td>" + payment_id + "</td>" +
+                        "<td>" + get_date(date) + "</td>" +
                         "<td>" + user_name + "</td>" +
                         "<td>" + course_name + "</td>" +
                         "<td>" + amount + "</td>" +
@@ -96,7 +98,23 @@ $(document).ready(function(){
 
 });
 
+function get_date(date_time){
+
+    var d= Date.parse(date_time);
+    console.log('asdasdsad',d);
+    var dt = new Date(date_time).toDateString();
+    console.log('asdasdsad 22',dt);
+    return dt;
+
+
+}
+
 function open_refund_modal(payment){
+    console.log('paymentpaymentpayment1',payment);
+
+    // payment = JSON.parse(payment);
+    // console.log('paymentpaymentpayment2',payment);
+
     $('.payment_id').val(payment.id);
     
     if(payment.refund_payments.length ){
@@ -106,15 +124,18 @@ function open_refund_modal(payment){
                 `<td>`+payment.refund_payments[i].payment_id+`</td>`+
                 `<td>`+payment.refund_payments[i].amount+`</td>`+
                 `<td>`+payment.refund_payments[i].status+`</td>`+
-                `<td>`+payment.refund_payments[i].created_at+`</td>`;
+                `<td>`+get_date(payment.refund_payments[i].created_at)+`</td>`;
+                // `<td>`+unixTimeZero = Date.parse(payment.refund_payments[i].created_at)+`</td>`;
+                get_date(payment.refund_payments[i].created_at);
         }
         $('.refund_details').css('display','block');
         $('.refund_details_body').html(refund_table);
-        $('.payment_refund_modal').modal('toggle');
     }
     else{
         $('.refund_details').css('display','none');
     }
+    $('.payment_refund_modal').modal('toggle');
+
     
 }
 
