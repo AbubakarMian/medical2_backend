@@ -64,10 +64,11 @@ $(document).ready(function(){
                     var payment_status = data[i].action;
                     // var payment_refund = data[i].search_payment;
                     var refund_payment = data[i].receipt_url?`
-                            <button class="btn btn-primary" onclick=open_refund_modal(`+data[i].id+`);>Refund</button>
+                            <button class="btn btn-primary" onclick=open_refund_modal(`+data[i]+`);>Refund</button>
                         `:'';
                     var recipt = data[i].receipt_url?`<a target="_blank" href="`+data[i].receipt_url+
                         `" color="red" >Recipt</a>`:'';
+                    
 
 
                      tr_str = tr_str+"<tr>" +
@@ -95,9 +96,26 @@ $(document).ready(function(){
 
 });
 
-function open_refund_modal(payment_id){
-    $('.payment_id').val(payment_id);
-    $('.payment_refund_modal').modal('toggle');
+function open_refund_modal(payment){
+    $('.payment_id').val(payment.id);
+    
+    if(payment.refund_payments.length ){
+        var refund_table ="";
+        for(var i=0; i<payment.refund_payments.length ; i++){
+            refund_table = refund_table+`<tr>`+
+                `<td>`+payment.refund_payments[i].payment_id+`</td>`+
+                `<td>`+payment.refund_payments[i].amount+`</td>`+
+                `<td>`+payment.refund_payments[i].status+`</td>`+
+                `<td>`+payment.refund_payments[i].created_at+`</td>`;
+        }
+        $('.refund_details').css('display','block');
+        $('.refund_details_body').html(refund_table);
+        $('.payment_refund_modal').modal('toggle');
+    }
+    else{
+        $('.refund_details').css('display','none');
+    }
+    
 }
 
 function set_msg_modal(msg){

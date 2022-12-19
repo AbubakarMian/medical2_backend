@@ -10,15 +10,21 @@
             <div class="modal-body">
                 {!! csrf_field() !!}
 
-                <input type="hidden" >
-                {{-- {!!echo $status ;!!} --}}
+                <div class="refund_details">
+                    Refund Details
+                    <table>
+                        <thead>
+                            <th>Payment Id</th>
+                            <th>Refund Amount</th>
+                            <th>Status</th>
+                            <th>Created at</th>
+                        </thead>
+                        <tbody class="refund_details_body"></tbody>
+                    </table>
+                </div>
                 <div>
-                    {{-- <label>
-                        Payment Refund Amount
-                    </label> --}}
                     <input type="hidden" class="payment_id" >
                     <input type="number" name="payment_text" class="payment_refund_amount" placeholder="Refund Amount" required>
-                    {{-- <input type="textarea" name="payment_refund_reason" placeholder="Reason" class="payment_refund_reason" > --}}
                 </br>
 
                     <textarea name="payment_text" class="payment_refund_reason" placeholder="Reason"></textarea>
@@ -30,7 +36,6 @@
                                     )">
                     Payment Refund
                 </button>
-                {{-- {!!dd($status);!!} --}}
 
             </div>
             {{--<div class="modal-footer">--}}

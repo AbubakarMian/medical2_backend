@@ -17,4 +17,8 @@ class Payment extends Model
     {
         return $this->hasOne('App\Model\Courses', 'id', 'course_id');
     }
+    public function refund_payments()
+    {
+        return $this->hasMany('Payment', 'id', 'refund_payment_id');
+    }
  }
