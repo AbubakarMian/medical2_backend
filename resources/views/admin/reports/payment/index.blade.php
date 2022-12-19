@@ -64,10 +64,10 @@ $(document).ready(function(){
                     var payment_status = data[i].action;
                     // var payment_refund = data[i].search_payment;
                     var refund_payment = data[i].receipt_url?`
-                            <button onclick=open_refund_modal(`+data[i].id+`);>Refund</button>
+                            <button class="btn btn-primary" onclick=open_refund_modal(`+data[i].id+`);>Refund</button>
                         `:'';
                     var recipt = data[i].receipt_url?`<a target="_blank" href="`+data[i].receipt_url+
-                        `">Recipt</a>`:'';
+                        `" color="red" >Recipt</a>`:'';
 
 
                      tr_str = tr_str+"<tr>" +
