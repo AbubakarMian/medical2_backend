@@ -167,6 +167,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
     // role
     Route::group(['prefix'=>'role'],function(){
       Route::get('/', 'RoleController@index')->name('role.index');
+    //   Route::get('create', 'RoleController@create')->name('role.create');
       Route::get('create', 'RoleController@create')->name('role.create');
       Route::post('save', 'RoleController@save')->name('role.save');
       Route::get('edit/{id}', 'RoleController@edit')->name('role.edit');
@@ -187,7 +188,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
     // Permissions
     Route::group(['prefix'=>'permissions'],function(){
       Route::get('show', 'PermissionsController@show_list_permision')->name('permissions.index');
-      Route::get('create', 'PermissionsController@create')->name('rolpermissionse.create');
+      Route::get('create', 'PermissionsController@create')->name('permissions.create');
       Route::post('save', 'PermissionsController@save')->name('permissions.save');
       Route::get('edit/{id}', 'PermissionsController@edit')->name('permissions.edit');
       Route::post('update/{id}', 'PermissionsController@update')->name('permissions.update');
@@ -346,9 +347,10 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
 Route::group(['prefix'=>'admin/reports'],function(){
   Route::get('payments', 'Reports\PaymentController@index')->name('order_payment.index');
   Route::post('payments', 'Reports\PaymentController@index')->name('payment.index');
-  Route::post('payment/status_update/{id}', 'Reports\PaymentController@status_update')->name('payment.status_update');
+  Route::get('payments/get_payment_report', 'Reports\PaymentController@get_payment_report')->name('get_payment_report.index');
+//   Route::post('payment/status_update/{id}', 'Reports\PaymentController@status_update')->name('payment.status_update');
   Route::post('payment/payment_refund/{id}', 'Reports\PaymentController@payment_refund')->name('payment.payment_refund');
-Route::get('/permissions', 'Reports\PermissionsController@index')->name('permissions.index');
+Route::get('permissions', 'Reports\PermissionsController@index')->name('permissions.index');
 
   // permissions
 //    Route::get('permissions', 'Reports\PermissionsController@index')->name('permissions.index');

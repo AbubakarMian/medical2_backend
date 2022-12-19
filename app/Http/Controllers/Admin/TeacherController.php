@@ -12,6 +12,7 @@ use App\Libraries\ExportToExcel;
 use App\Model\Teacher;
 use App\Model\Category;
 use App\Model\Group;
+use App\User;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToArray;
 // Teacher;
@@ -34,7 +35,8 @@ class TeacherController extends Controller
     public function save(Request $request)
     {
         $teacher = new Teacher();
-        $this->add_or_update($request, $teacher);
+        $user = new User();
+        $this->add_or_update($request, $teacher,$user);
 
         return redirect('admin/teacher');
     }
@@ -53,28 +55,36 @@ class TeacherController extends Controller
     public function update(Request $request, $id)
     {
         $teacher = Teacher::find($id);
-        $this->add_or_update($request, $teacher);
+        $user = $teacher->user;
+        $this->add_or_update($request, $teacher,$user);
         return Redirect('admin/teacher');
     }
 
 
-    public function add_or_update(Request $request, $teacher)
+    public function add_or_update(Request $request, $teacher,$user)
     {
-        // dd($request->all());
-        $date_timestamp =  strtotime($request->start_date);
-        $teacher->name = $request->name;
-        $teacher->gender = $request->gender;
-        $teacher->email = $request->email;
-        $teacher->address = $request->address;
-
-
         // if ($request->hasFile('image')) {
         //     $avatar = $request->image;
         //     $root = $request->root();
         //     $teacher->avatar = $this->move_img_get_path($avatar, $root, 'image');
         // }
+
+         $user->name = $request->name;
+        // $user->gender = $request->gender;
+        $user->email = $request->email;
+        $user->adderss = $request->address;
+        $user->save();
+
+        $teacher->user_id = $user->id;
+        $teacher->name = $request->name;
+        $teacher->gender = $request->gender;
+        $teacher->email = $request->email;
+        $teacher->address = $request->address;
         $teacher->save();
         return redirect()->back();
+
+
+
     }
 
     public function destroy_undestroy($id)

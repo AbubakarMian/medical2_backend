@@ -31,7 +31,8 @@
 
 
             <th> Name</th>
-          
+            <th> Edit</th>
+
 
             <!-- <th>Edit </th>
             <th>Delete </th> -->
@@ -43,21 +44,17 @@
     <tbody>
         @foreach ($role as $c)
             <td>{!! ucwords($c->name) !!} </td>
-          
-
-          
-
-          
 
 
             </td>
-            <!-- <td>
+             <td>
                 {!! link_to_action('Admin\RoleController@edit', 'Edit', [$c->id], ['class' => 'badge bg-info']) !!}
+                {{-- {!! link_to_action('Admin\RoleController@edit', 'Edit', [$c->id], ['class' => 'badge bg-info']) !!} --}}
 
             </td>
- -->
 
-          
+
+
 
 
             </tr>

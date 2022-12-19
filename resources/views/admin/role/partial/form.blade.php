@@ -120,42 +120,33 @@
         <div class="col-sm-12">
             <div class="chechkareadata">
                 <label for="exampleInputtext1" class="rolabel">Enter Your Role :</label>
-                <input type="text" name="role" class="form-control" id="exampleInputtext1" aria-describedby="textHelp"
-                    placeholder="Enter Role"><br>
+                <input type="text" name="role"  class="form-control" id="exampleInputtext1" aria-describedby="textHelp"
+                    placeholder="Enter Role" required><br>
                 <div class="container tablu">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table class="table tabludata">
+                            @foreach ($permissions as $p)
+
+                                <td>{!! ucwords($p->heading) !!} </td>
+                                <?php $details = json_decode($p->details);?>
+                                <table width="400px" style="table-layout:fixed;" id="index-table" class="table table-bordered table-striped mg-t editable-datatable">
                                 <thead>
                                     <tr>
-                                        <th scope="col"># No</th>
-                                        <th scope="col">Roll</th>
-                                        <th scope="col">View</th>
-                                        <th scope="col">Create</th>
-                                        <th scope="col">Save</th>
-                                        <th scope="col">Edit</th>
-                                        <th scope="col">Update</th>
-                                        <th scope="col">Delete</th>
+                                        @foreach ( $details as $d)
+                                        @if(!$d->need_permission)
+                                            @continue
+                                        @endif
+                                            <th >{!!ucwords($d->heading) !!}
+                                                <input type="checkbox" name="permissions[{!!$p->id!!}][]" value="[{!!$d->id!!}]"></th>
+                                        @endforeach
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($urls as $my_key => $url)
-                                     <tr>
-                                    <th scope="row">{{$my_key+1}}</th>
-                                    <td>{{$url->module_name}}</td>   
-                                    <input hidden  name="url_id[]" value="{{$url->id}}"> 
-                                    <td><input class="form-check-input tuik" name="permissions[view][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" > </td>
-                                    <td><input class="form-check-input tuik" name="permissions[create][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
-                                    <td><input class="form-check-input tuik"  name="permissions[save][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
-                                    <td><input class="form-check-input tuik" name="permissions[edit][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}" ></td>                                                                     
-                                    <td><input class="form-check-input tuik" name="permissions[update][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}"></td>                                                                     
-                                    <td><input class="form-check-input tuik"  name="permissions[delete][]" type="checkbox" id="check1" name="option1" value="{{$url->id}}"></td>                                                                     
-                                  </tr>
-                                    @endforeach
-
                                 </tbody>
-                            </table>
+                                </table>
+
+                            @endforeach
                         </div>
                     </div>
                 </div>

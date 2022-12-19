@@ -231,7 +231,7 @@ class CoursesController extends Controller
 
 
 
-        // 
+        //
         // special user jo logo ko group register krwata hai
 
 
@@ -457,12 +457,34 @@ class CoursesController extends Controller
     // single register closeeeeeeeeeeee
 
 
+    public function set_payment_obj($payment,$stripe,$student_fee_id,$amount){
 
+        $user = Auth::User();
+        $student_fees = Student_fees:://with('user', 'course', 'course_register')
+                        where('id',$student_fee_id)->first();
+
+        $payment = new Payment();
+        $payment->user_id = $user->id;
+        $payment->payment_id = $stripe->id;
+        $payment->course_id = $student_fees->course_id;
+        $payment->payment_response = json_encode($stripe);
+        $payment->payment_status = $stripe->status;
+        $payment->card_type = $stripe->payment_method_details->card->brand;
+        $payment->receipt_url = $stripe->receipt_url;
+        $payment->action  = $stripe->object;
+        //============= amount===============
+        $payment->amount =   $amount;
+        $payment->save();
+
+        return $payment;
+
+    }
 
     //   payment for all group and users
 
     public function makepayment(Request $request)
     {
+        // dd($request->all());
         //final payment
         $user = Auth::User();
 
@@ -473,94 +495,56 @@ class CoursesController extends Controller
             "source" => $request->stripeToken,
         ]);
 
+                    /// test
+                    // $stripe = new \stdClass();
+                    // $stripe->id = '123';
+                    // $stripe->status= 'succeeded';
+
+                        /// test end
+
 
         if ($stripe->status == "succeeded") {
 
-            //  dd($request->all());
-
       // multiple installmemnt choose
             if ($request->student_id) {
-                    $student_fees = Student_fees::with('user', 'course', 'course_register')->find($request->student_id);
+                // dd($request->all());
+                    $student_fee_id = $request->student_id;
                     $payment = new Payment();
-                    $payment->user_id = $user->id;
-                    $payment->payment_id = $stripe->id;
-                    $payment->course_id = $student_fees->course_register->course_id;
-                    $payment->payment_response = json_encode($stripe);
-                    $payment->payment_status = $stripe->status;
-                    $payment->card_type = $stripe->payment_method_details->card->brand;
-                    //============= amount===============
-                    $payment->amount =   $request->amount;
-                    $payment->save();
-
+                    $payment = $this->set_payment_obj($payment,$stripe,$student_fee_id,$request->amount);
                 foreach ($request->student_id as $st_id) {
-                    $student_fees = Student_fees::with('user', 'course', 'course_register')->find($st_id);
-                    //
-                    // $course_register = Course_Register::find($request->course_register_id);
-                    // $course_register->is_paid =   1;
-                    // $course_register->save();
-                    //
+                    $student_fees = Student_fees::where('id',$st_id)->first();
                     $student_fees->status = 'paid';
                     $student_fees->payment_id = $payment->id;
                     $student_fees->save();
                 }
-
                 // single installmemnt choose
             } elseif ($request->single_student_id) {
-                $student_fees = Student_fees::with('user', 'course','course_register')->find($request->single_student_id);
+                $student_fee_id = $request->single_student_id;
                 $payment = new Payment();
-                $payment->user_id = $user->id;
-                $payment->payment_id = $stripe->id;
-                $payment->course_id = $student_fees->course_register->course_id;
-                $payment->payment_response = json_encode($stripe);
-                $payment->payment_status = $stripe->status;
-                $payment->card_type = $stripe->payment_method_details->card->brand;
-                //============= amount===============
-                $payment->amount =   $student_fees->amount;
-                $payment->save();
-                //
-                // $course_register = Course_Register::find($request->course_register_id);
-                // $course_register->is_paid =   1;
-                // $course_register->save();
-                //
+                $payment = $this->set_payment_obj($payment,$stripe,$student_fee_id,$request->amount);
+                $student_fees = Student_fees::where('id',$student_fee_id)->first(); //with('user', 'course', 'course_register')
                 $student_fees->status = 'paid';
                 $student_fees->payment_id = $payment->id;
                 $student_fees->save();
             } elseif ($request->group_student_id) {
-                //   student_fees for groups
+                // its an array and we have condition to check its not empty
+                $student_fee_id = $request->group_student_id[0];
                 $payment = new Payment();
-                $payment->user_id = $user->id;
-                $payment->payment_id = $stripe->id;
-                $payment->payment_response = json_encode($stripe);
-                $payment->payment_status = $stripe->status;
-                $payment->card_type = $stripe->payment_method_details->card->brand;
-                //============= amount===============
-                $payment->amount =   $request->amount;
-                $payment->save();
-                //
-                // $course_register = Course_Register::find($request->course_register_id);
-                // $course_register->is_paid =   1;
-                // $course_register->save();
-                //
+                $payment = $this->set_payment_obj($payment,$stripe,$student_fee_id,$request->amount);
+
                 foreach ($request->group_student_id as $st_id) {
-                    $student_fees = Student_fees::with('user', 'course')->find($st_id);
-                    // dd( $student_fees);
+                    $student_fees = Student_fees::where('id',$st_id)->first();
                     $student_fees->status = 'paid';
                     $student_fees->payment_id = $payment->id;
                     $student_fees->save();
                 }
-                $payment->course_id = $student_fees->course_register->course_id;
-                $payment->save();
             }
             return redirect('payment/success');
         } elseif (!$stripe->status == "succeeded") {
+            $student_fee_id = $request->student_id;
             $payment = new Payment();
-            $payment->user_id = $user->id;
-            $payment->payment_id = $stripe->id;
-            $payment->amount = $request->amount;
-            $payment->payment_response = json_encode($stripe);
-            $payment->payment_status = $stripe->status;
-            $payment->card_type = $stripe->payment_method_details->card->brand;
-            $payment->save();
+            $payment = $this->set_payment_obj($payment,$stripe,$student_fee_id,$request->amount);
+
             return back()->with('error', 'Invalid Payment');
         }
     }

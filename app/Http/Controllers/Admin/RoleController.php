@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Role;
 use App\Model\Url;
+use App\Model\Admin_url;
 use App\Model\Permission;
+use App\Model\Admin_Url_Role;
 use App\Model\Category;
 use App\Model\Courses;
 use Illuminate\Http\Request;
@@ -17,16 +19,18 @@ class RoleController extends Controller
 
     public function index()
     {
-        $role = Role::orderBy('created_at', 'DESC')->paginate(10);        
+        $role = Role::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.role.index', compact('role'));
     }
-    
+
     public function create()
-    {       
+    {
         $control = 'create';
-        $urls = Url::get();
-        // dd($urls);
-        return view('admin.role.create',compact('control','urls'));
+        $permissions = Admin_url::orderby('section', 'asc')->get();
+        // dd($permissions);
+        // return view('admin.permissions.index',compact('permissions'));
+
+        return view('admin.role.create',compact('control','permissions'));
     }
 
     public function save(Request $request)
@@ -35,51 +39,28 @@ class RoleController extends Controller
         $role = new Role();
         $role->name = $request->role;
         $role->save();
-        
-        foreach($request->url_id as $key => $u){
-            $permission = new Permission();  
-            $permission->url_id = $u;            //courses ya category ya book  ki permission deni hai...
-            if(isset($request->permissions['view'])){
-            $permission->can_view = in_array($u, $request->permissions['view']);  
-             }
-             else{
-                $permission->can_view = 0;
-             }
-             if(isset($request->permissions['create'])){
-            $permission->can_create = in_array($u, $request->permissions['create']);    
-             }
-             else{
-                $permission->can_create = 0;
-             }
-             if(isset($request->permissions['save'])){
-            $permission->can_save = in_array($u, $request->permissions['save']); 
-             }
-             else{
-                $permission->can_save = 0;
-             }
-             if(isset($request->permissions['edit'])){ 
-            $permission->can_edit = in_array($u, $request->permissions['edit']); 
-             }
-             else{
-                $permission->can_edit = 0;
-             }
-             if(isset($request->permissions['update'])){
-            $permission->can_update = in_array($u, $request->permissions['update']);  
-             }
-             else{
-                $permission->can_update = 0;
-             }
-             if(isset($request->permissions['delete'])){
-            $permission->can_delete = in_array($u, $request->permissions['delete']); 
-             }  
-             else{
-                $permission->can_delete = 0;
-             }
-            $permission->role_id = $role->id;                      //supervisor role id
-            $permission->save();  
-    }
-  
 
+        foreach($request->permissions as $admin_url_id => $detail_ids){
+            $admin_url = Admin_url::find($admin_url_id);
+            $admin_url_role = new Admin_Url_Role();
+            $admin_url_role->heading = $admin_url->heading;
+            $admin_url_role->name = $admin_url->heading;
+            $admin_url_role->section = $admin_url->section;
+            $admin_url_role->role_id = $role->id;
+
+            $admin_url_details_json_decode = json_decode($admin_url->details);
+            $details =[];
+
+            foreach($detail_ids as $d_id){
+                $key = array_search($d_id, array_column($admin_url_details_json_decode, 'id'));
+                $details[] = $admin_url_details_json_decode[$key];
+            }
+            $admin_url_role->details = json_encode($details);
+            $admin_url_role->save();
+
+    }
+
+// dd('saved');
     return redirect('admin/role');
    }
 
@@ -91,7 +72,7 @@ class RoleController extends Controller
     //     $role = Role::find($id);
     //     return view('admin.role.create', compact(
     //         'control',
-    //         'role',            
+    //         'role',
     //     ));
     // }
 

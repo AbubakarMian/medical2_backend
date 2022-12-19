@@ -3,202 +3,134 @@
     Payment
 @stop
 @section('report_description')
-
-@stop
-
-
-@section('form')
-    {!! Form::open([
-        'id' => 'search_form',
-        'method' => 'post',
-        'route' => ['order_payment.index'],
-        'class' => 'form-horizontal',
-    ]) !!}
-    @include('admin.reports.payment.partial.searchfilters')
-    {!! Form::close() !!}
 @stop
 @section('table')
-    <table class="table table-bordered">
+    <table id="userTable" class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col" style="white-space: nowrap">Date</th>
-                {{--  <th scope="col" style="white-space: nowrap">Payment Id</th>  --}}
-                <th scope="col" style="white-space: nowrap">User Name</th>
-                <th scope="col" style="white-space: nowrap">Course Name</th>
-
-                {{-- <th scope="col" style="white-space: nowrap">Phone</th>
-		<th scope="col" style="white-space: nowrap">Email</th> --}}
-		<th scope="col" style="white-space: nowrap">Amount</th>
-		{{-- <th scope="col" style="white-space: nowrap">Currency</th> --}}
-		{{-- <th scope="col" style="white-space: nowrap">Receipt</th> --}}
-		<th scope="col" style="white-space: nowrap">Payment Status</th>
-		<th scope="col" style="white-space: nowrap">Payment Refund</th>
-
-                {{-- <th scope="col" style="white-space: nowrap">Detail</th> --}}
-
-
+                <th >Date</th>
+                <th >User Name</th>
+                <th >Course Name</th>
+		        <th >Amount</th>
+		        <th >Payment Status</th>
+		        <th >Payment Refund</th>
+		        <th >Payment Recipt</th>
             </tr>
         </thead>
-        <tbody>
-          
-            @foreach ($payments as $payment)
-
-                <tr>
-                    <td style="white-space: nowrap">{!! explode(' ', $payment->created_at)[0] !!}</td>
-                    {{--  <td>{!! $payment->payment_id !!}</td>  --}}
-                    <td>{!! ucwords($payment->user->name) ?? '' !!}</td>
-                    <td>{!! ucwords($payment->student->course->full_name) ?? '' !!}</td>
-                    {{-- <td>{!! $payment->user->phone_no??'' !!}</td>
-		<td>{!! $payment->user->email??'' !!}</td> --}}
-                    <td>{!! $payment->amount !!} </td>
-                  
-				<!--  -->
-				<td style="white-space: nowrap">
-                        <?php
-                        $pending_display = $completed_display = $final_status_display = 'display:none';
-                        if ($payment->status == 'pending') {
-                            $pending_display = 'display:block';
-                        } elseif ($payment->status == 'inprogress') {
-                            $completed_display = 'display:block';
-                        } else {
-                            $final_status_display = 'display:block';
-                        }
-                        ?>
-
-                        <div id="pending_btn_{!! $payment->id !!}" style="{!! $pending_display !!}">
-                            <a href="" data-toggle="modal" name=""
-                                data-target=".inprogress_request_{!! $payment->id !!}">
-                                <span class=" badge bg-info btn-success ">
-                                    In Progress
-                                </span>
-                            </a>
-                            @include('admin.reports.payment.partial.confirmation_modal', [
-                                'order_id' => $payment->id,
-                                'cell_id' => 'td_' . $payment->id,
-                                'req_status' => 'inprogress_request_' . $payment->id,
-                                'url' => asset('admin/reports/payment/status_update/' . $payment->id),
-                                'status' => 'completed',
-                                'msg_status' => 'complete',
-                                'btn_class' => 'btn-primary',
-                            ])
-                            <a href="" data-toggle="modal" name=""
-                                data-target=".reject_request_{!! $payment->id !!}">
-                                <span class=" badge bg-info btn-danger">
-                                    Reject
-                                </span>
-                            </a>
-                            @include('admin.reports.payment.partial.confirmation_modal', [
-                                'order_id' => $payment->id,
-                                'cell_id' => 'td_' . $payment->id,
-                                'req_status' => 'reject_request_' . $payment->id,
-                                'url' => asset('admin/reports/payment/status_update/' . $payment->id),
-                                'status' => 'rejected',
-                                'msg_status' => 'reject',
-                                'btn_class' => 'btn-danger',
-                            ])
-                        </div>
-                        <div id="inprogress_btn_{!! $payment->id !!}" style="{!! $completed_display !!}">
-                            <a href="" data-toggle="modal" name=""
-                                data-target=".completed_request_{!! $payment->id !!}">
-                                <span class=" badge bg-info btn-success">
-                                    Complete</span></a>
-                            @include('admin.reports.payment.partial.confirmation_modal', [
-                                'order_id' => $payment->id,
-                                'cell_id' => 'td_' . $payment->id,
-                                'req_status' => 'completed_request_' . $payment->id,
-                                'url' => asset('admin/reports/payment/status_update/' . $payment->id),
-                                'status' => 'completed',
-                                'msg_status' => 'complete',
-                                'btn_class' => 'btn-success',
-                            ])
-                        </div>
-                        <div id="finalstatus_btn_{!! $payment->id !!}" style="{!! $final_status_display !!}">
-                            {!! ucwords($payment->status) !!}
-                        </div>
-                    </td>
-		<td style="white-space: nowrap">
-			<?php
-				$pending_display = $completed_display = $final_status_display ='display:none';
-				if($payment->status == 'pending'){
-					$pending_display = 'display:block';
-				}
-				elseif($payment->status == 'inprogress'){
-					$completed_display = 'display:block';
-				}
-				else{
-					$final_status_display = 'display:block';
-				}
-			?>
-
-			<div id="pending_refund_btn_{!!$payment->id!!}">
-				<a href="" data-toggle="modal" name="" data-target=".refund_request_{!! $payment->id !!}">
-					<span class="badge bg-info btn-success" style="width: 108px">
-						Payment Refund
-					</span>
-				</a>
-				@include('admin.reports.payment.partial.payment_refund',
-				[
-				
-				
-				'req_status'=>'refund_request_'.$payment->id,
-				'payment_id'=> $payment->id,
-				'amount'=>$payment->amount,
-				'url'=>asset('admin/reports/payment/payment_refund/'.$payment->id),
-				'msg_status'=>'Payment Refund',
-				'btn_class'=>'btn-primary'
-				])
-				
-				
-		</td>
-                   
-
-
-
-
-                </tr>
-            @endforeach
-        </tbody>
+        <tbody></tbody>
     </table>
-@section('pagination')
-    <span class="pagination pagination-md pull-right">{!! $payments->render() !!}</span>
-
-    <div class="col-md-3 pull-left">
-        <div class="form-group text-center">
-            <div>
-                {!! Form::open(['method' => 'get', 'route' => ['dashboard']]) !!}
-                {!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
-@endsection
-@stop
-
+@include('admin.reports.payment.partial.payment_refund')
 @include('admin.reports.payment.partial.msg_modal')
-@section('extra_css')
-<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
-<link href="{!! asset('css/MonthPicker.min.css') !!}" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="{!! asset('css/examples.css') !!}" />
-@stop
+
+@endsection
+
+{{-- @section('extra_css') --}}
+{{-- <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" /> --}}
+{{-- <link href="{!! asset('css/MonthPicker.min.css') !!}" rel="stylesheet" type="text/css" /> --}}
+{{-- <link rel="stylesheet" type="text/css" href="{!! asset('css/examples.css') !!}" /> --}}
+{{-- @stop --}}
+
+
 @section('app_jquery')
 <script>
-	function payment_refund(url,msg_status,payment_id) {
-           
+$(document).ready(function(){
+    console.log('asdasdasd');
+
+    fetchRecords();
+
+    function fetchRecords(){
+        console.log('responselength');
+
+       $.ajax({
+
+
+         url: '{!!asset("admin/reports/payments/get_payment_report")!!}',
+
+         type: 'get',
+         dataType: 'json',
+         success: function(response){
+            $("#userTable").css("opacity",1);
+            console.log('asd response',response);
+
+           var len = response.data.length;
+           var data = response.data;
+           var tr_str = '';
+
+                for(var i=0; i<len; i++){
+                    var date =  data[i].created_at;
+                    var user_name = data[i].user.name;
+                    var course_name = data[i].course.full_name;
+                    var amount = data[i].amount;
+                    var payment_status = data[i].action;
+                    // var payment_refund = data[i].search_payment;
+                    var refund_payment = data[i].receipt_url?`
+                            <button class="btn btn-primary" onclick=open_refund_modal(`+data[i].id+`);>Refund</button>
+                        `:'';
+                    var recipt = data[i].receipt_url?`<a target="_blank" href="`+data[i].receipt_url+
+                        `" color="red" >Recipt</a>`:'';
+
+
+                     tr_str = tr_str+"<tr>" +
+                        "<td>" + date + "</td>" +
+                        "<td>" + user_name + "</td>" +
+                        "<td>" + course_name + "</td>" +
+                        "<td>" + amount + "</td>" +
+                        "<td>" + payment_status + "</td>" +
+                        "<td>" + refund_payment + "</td>" +
+                        "<td>" + recipt + "</td>" +
+                    "</tr>";
+                }
+
+                $("#userTable tbody").html(tr_str);
+                $('#userTable').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                });
+
+            }
+         });
+      }
+
+});
+
+function open_refund_modal(payment_id){
+    $('.payment_id').val(payment_id);
+    $('.payment_refund_modal').modal('toggle');
+}
+
+function set_msg_modal(msg){
+        $('.set_msg_modal').html(msg);
+    }
+
+	function payment_refund() {
+
             console.log('status',status);
             console.log('url',url);
-			var payment_refund_amount = $('.payment_refund_amount_'+payment_id).val();
+			var payment_refund_amount = $('.payment_refund_amount').val();
+			var payment_refund_reason = $('.payment_refund_reason').val();
+			var payment_id = $('.payment_id').val();
+
+            if(payment_refund_amount == '' ){
+                alert('Amount required');
+                return;
+            }
+            var url = '{!!asset("admin/reports/payment/payment_refund")!!}/'+payment_id;
 			console.log('payment_refund_amount_',payment_refund_amount);
-			
+			console.log('payment_id',payment_id);
+
             $.ajax({
                 url:url,
                 method:'POST',
                 data: {'_token' :'{!! csrf_token() !!}',
                        'status' : status,
-                       'payment_refund_amount' : payment_refund_amount
+                       'payment_refund_amount' : payment_refund_amount,
+                       'payment_refund_reason' : payment_refund_reason,
                       },
                 success: function(data){
-				
-				
+
+
                     console.log("response",data);
                 },
 				error: function(errordata) {
@@ -236,16 +168,7 @@
         })
     }
 
-    function payment_excel(event) {
-        $('#user_excel').val($('#user').val());
-        $('#req_num_excel').val($('#req_num').val());
-        $('#date_excel').val($('#reservationtime').val());
-        $('#status_excel').val($('#status').val());
-    }
 
-  
-    function show_note(msg) {
-        $('#msg_div').html(msg);
-    }
 </script>
 @endsection
+
