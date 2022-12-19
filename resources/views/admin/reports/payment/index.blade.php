@@ -3,158 +3,130 @@
     Payment
 @stop
 @section('report_description')
-
 @stop
-
-
-{{-- @section('form')
-    {!! Form::open([
-        'id' => 'search_form',
-        'method' => 'post',
-        'route' => ['order_payment.index'],
-        'class' => 'form-horizontal',
-    ]) !!}
-    @include('admin.reports.payment.partial.searchfilters')
-    {!! Form::close() !!}
-@stop --}}
 @section('table')
-    <table class="table table-bordered">
+    <table id="userTable" class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col" style="white-space: nowrap">Date</th>
-                {{--  <th scope="col" style="white-space: nowrap">Payment Id</th>  --}}
-                <th scope="col" style="white-space: nowrap">User Name</th>
-                <th scope="col" style="white-space: nowrap">Course Name</th>
-
-                {{-- <th scope="col" style="white-space: nowrap">Phone</th>
-		<th scope="col" style="white-space: nowrap">Email</th> --}}
-		<th scope="col" style="white-space: nowrap">Amount</th>
-		{{-- <th scope="col" style="white-space: nowrap">Currency</th> --}}
-		{{-- <th scope="col" style="white-space: nowrap">Receipt</th> --}}
-		<th scope="col" style="white-space: nowrap">Payment Status</th>
-		<th scope="col" style="white-space: nowrap">Payment Refund</th>
-
-                {{-- <th scope="col" style="white-space: nowrap">Detail</th> --}}
-
-
+                <th >Date</th>
+                <th >User Name</th>
+                <th >Course Name</th>
+		        <th >Amount</th>
+		        <th >Payment Status</th>
+		        <th >Payment Refund</th>
+		        <th >Payment Recipt</th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
+@include('admin.reports.payment.partial.payment_refund')
+@include('admin.reports.payment.partial.msg_modal')
+
+@endsection
+
+{{-- @section('extra_css') --}}
+{{-- <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" /> --}}
+{{-- <link href="{!! asset('css/MonthPicker.min.css') !!}" rel="stylesheet" type="text/css" /> --}}
+{{-- <link rel="stylesheet" type="text/css" href="{!! asset('css/examples.css') !!}" /> --}}
+{{-- @stop --}}
+
+
 @section('app_jquery')
-
 <script>
-
 $(document).ready(function(){
+    console.log('asdasdasd');
 
     fetchRecords();
 
     function fetchRecords(){
+        console.log('responselength');
 
        $.ajax({
 
-         url: '{!!asset("admin/reports/payments/0")!!}',
+
+         url: '{!!asset("admin/reports/payments/get_payment_report")!!}',
+
          type: 'get',
          dataType: 'json',
          success: function(response){
             $("#userTable").css("opacity",1);
+            console.log('asd response',response);
 
-           var len = response['data'].length;
+           var len = response.data.length;
+           var data = response.data;
+           var tr_str = '';
 
-
-              for(var i=0; i<len; i++){
-
-                var date =  response['data'][i].id;
-                var user_name = response['data'][i].user.name;
-                var course_name = response['data'][i].course.full_name;
-                // var amount = response['data'][i].amount;
-                // var payment_status = response['data'][i].status_arr;
-                // var payment_refund = response['data'][i].search_payment;
-
-
-                var tr_str = "<tr>" +
-                    "<td>" + date + "</td>" +
-                    "<td>" + user_name + "</td>" +
-                    "<td>" + course_name + "</td>" +
-//                     "<td>" +
-//                          if(['data']=>student_fee->payment_id){
-//                               Paid}
-//                         else{
-//                               Pending
-//                             }
-//                      + "</td>" +
+                for(var i=0; i<len; i++){
+                    var date =  data[i].created_at;
+                    var user_name = data[i].user.name;
+                    var course_name = data[i].course.full_name;
+                    var amount = data[i].amount;
+                    var payment_status = data[i].action;
+                    // var payment_refund = data[i].search_payment;
+                    var refund_payment = data[i].receipt_url?`
+                            <button onclick=open_refund_modal(`+data[i].id+`);>Refund</button>
+                        `:'';
+                    var recipt = data[i].receipt_url?`<a target="_blank" href="`+data[i].receipt_url+
+                        `">Recipt</a>`:'';
 
 
+                     tr_str = tr_str+"<tr>" +
+                        "<td>" + date + "</td>" +
+                        "<td>" + user_name + "</td>" +
+                        "<td>" + course_name + "</td>" +
+                        "<td>" + amount + "</td>" +
+                        "<td>" + payment_status + "</td>" +
+                        "<td>" + refund_payment + "</td>" +
+                        "<td>" + recipt + "</td>" +
+                    "</tr>";
+                }
 
-//                     "<td>" +  style="white-space: nowrap">
+                $("#userTable tbody").html(tr_str);
+                $('#userTable').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                });
 
-//                    if($student_fee->payment_id)
-//                        <div id="pending_refund_btn_{!!$student_fee->payment_id!!}">
-//                           <a href="" data-toggle="modal" name="" data-target=".refund_request_{!! $student_fee->payment_id !!}">
-//                               <span class="badge bg-info btn-success" style="width: 108px">
-//                                        Payment Refund
-//                                </span>
-//                             </a>
-//                          @include('admin.reports.payment.partial.payment_refund',
-//                                    [
-//                                    'req_status'=>'refund_request_'.$student_fee->payment_id,
-//                                    'payment_id'=> $student_fee->payment_id,
-//                                    'amount'=>$student_fee->amount,
-//                                    'url'=>asset('admin/reports/payment/payment_refund/'.$student_fee->payment_id),
-//                                    'msg_status'=>'Payment Refund',
-//                                    'btn_class'=>'btn-primary'
-//                                    ])
-// </div>
-//                        + "</td>" +
-//                                            "<td>" + amount + "</td>" +
-                                       "</tr>";
-                                        $("#userTable tbody").append(tr_str);
-                                       }
-
-
-
-
-
-                                       $('#userTable').DataTable({
-                                           dom: 'Bfrtip',
-                                           buttons: [
-                                               'copy', 'csv', 'excel', 'pdf', 'print'
-                                           ],
-                                       });
-                               }
-                              });
-                           }
+            }
+         });
+      }
 
 });
+
+function open_refund_modal(payment_id){
+    $('.payment_id').val(payment_id);
+    $('.payment_refund_modal').modal('toggle');
+}
 
 function set_msg_modal(msg){
         $('.set_msg_modal').html(msg);
     }
 
-</script>
-
-
-@include('admin.reports.payment.partial.msg_modal')
-@section('extra_css')
-<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
-<link href="{!! asset('css/MonthPicker.min.css') !!}" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="{!! asset('css/examples.css') !!}" />
-@stop
-@section('app_jquery')
-<script>
-	function payment_refund(url,msg_status,payment_id) {
+	function payment_refund() {
 
             console.log('status',status);
             console.log('url',url);
-			var payment_refund_amount = $('.payment_refund_amount_'+payment_id).val();
+			var payment_refund_amount = $('.payment_refund_amount').val();
+			var payment_refund_reason = $('.payment_refund_reason').val();
+			var payment_id = $('.payment_id').val();
+
+            if(payment_refund_amount == '' ){
+                alert('Amount required');
+                return;
+            }
+            var url = '{!!asset("admin/reports/payment/payment_refund")!!}/'+payment_id;
 			console.log('payment_refund_amount_',payment_refund_amount);
+			console.log('payment_id',payment_id);
 
             $.ajax({
                 url:url,
                 method:'POST',
                 data: {'_token' :'{!! csrf_token() !!}',
                        'status' : status,
-                       'payment_refund_amount' : payment_refund_amount
+                       'payment_refund_amount' : payment_refund_amount,
+                       'payment_refund_reason' : payment_refund_reason,
                       },
                 success: function(data){
 
@@ -196,18 +168,7 @@ function set_msg_modal(msg){
         })
     }
 
-    function payment_excel(event) {
-        $('#user_excel').val($('#user').val());
-        $('#req_num_excel').val($('#req_num').val());
-        $('#date_excel').val($('#reservationtime').val());
-        $('#status_excel').val($('#status').val());
-    }
 
-
-    function show_note(msg) {
-        $('#msg_div').html(msg);
-    }
 </script>
 @endsection
 
-@endsection
