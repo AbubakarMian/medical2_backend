@@ -49,17 +49,24 @@
 </div>
 <style>
     .amt_txt {
-        width: 50%;
+        width: 100%;
+        border-radius: 8px;
+
     }
 
     .rfnd_txt {
-        width: 50%;
+        width: 100%;
         margin-top: 2%;
+        height: 10%;
+        border-radius: 8px;
+
+
     }
 
     .txt_boxes {
         align-items: center;
         margin-top: 30px;
+
 
 
     }
