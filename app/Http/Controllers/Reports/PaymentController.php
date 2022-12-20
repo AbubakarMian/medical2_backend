@@ -90,7 +90,7 @@ class PaymentController extends Controller
             "dated"  => date('d F, Y (l)'),
         ];
 
-        Mail::to('ameer.maavia@gmail.com')->send(new RefundMail($details));
+        Mail::to('info@medical2.com')->send(new RefundMail($details));
         return $response;
     }
 
