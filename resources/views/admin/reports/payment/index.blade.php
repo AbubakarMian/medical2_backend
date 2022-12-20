@@ -62,8 +62,8 @@ $(document).ready(function(){
                     var refund_payment = data[i].receipt_url?`
                             <button class="btn rfnd-btn" onclick='open_refund_modal(`+JSON.stringify(data[i])+`)';>Refund</button>
                         `:'';
-                    var recipt = data[i].receipt_url?` <button class="btn btn-success" <a target="_blank" href="`+data[i].receipt_url+
-                        `" color="red" >Recipt</a></button>`:'';
+                    var recipt = data[i].receipt_url?` <a target="_blank" href="`+data[i].receipt_url+
+                        `"><button class="btn btn-success" >Recipt</button></a>`:'';
                      tr_str = tr_str+"<tr>" +
                          "<td>" + payment_id + "</td>" +
                         "<td>" + get_date(date) + "</td>" +
