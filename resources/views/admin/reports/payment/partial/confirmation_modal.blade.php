@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                     {!! csrf_field() !!}
-                    
+
                     <input type="hidden" value="{!! $status !!}">
                     {{-- {!!echo $status ;!!} --}}
                     <button  name="status" class="btn {!! $btn_class!!}"

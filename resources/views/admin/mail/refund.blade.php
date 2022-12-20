@@ -90,8 +90,7 @@
 </style>
 <body>
     <?php
- $password=  $details['new_password'];
- $user_id=  $details['user_id'];
+ $payment =  $details['payment'];
 
 ?>
     <div style="background-color:#bfb28e !important">
@@ -101,29 +100,29 @@
     </div>
 
 <b>
+</br>
 
-    Your new password is   {!! $details['new_password'] !!}
+<center>
+    Your payment is successfully refunded
+    <a href="{!!$payment->receipt_url!!}">
+        Recipt
+    </a>
+</center>
 </b>
 </br>
 
-<b>
-    Please Click This Link To Update Password
 </br>
-    <a href="{!!asset('user/update_password/?update_password='.$password.'&user_id='.$user_id)!!}">
-        Upadte Password
-    </a>
+<div style="padding-top: 15%">
+
 <b>
 
 <br>
 <p id="cert-from" class="smaller">
     &nbsp; from {!! $details['from'] !!}
 </p>
-
-<br>
 <p class="smaller" id='cert-issued'>
     <b>Issued on:</b> {!! $details['dated'] !!}.
 </p>
-
 <p class="smaller" id='cert-issued'>
     <b>
 Thankyou
@@ -136,5 +135,6 @@ Thankyou
 
             </b>
 </p>
+</div>
 
 </body>

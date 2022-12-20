@@ -60,10 +60,10 @@ $(document).ready(function(){
                     var payment_status = data[i].action;
                     // var payment_refund = data[i].search_payment;
                     var refund_payment = data[i].receipt_url?`
-                            <button class="btn btn-primary" onclick='open_refund_modal(`+JSON.stringify(data[i])+`)';>Refund</button>
+                            <button class="btn rfnd-btn" onclick='open_refund_modal(`+JSON.stringify(data[i])+`)';>Refund</button>
                         `:'';
-                    var recipt = data[i].receipt_url?`<a target="_blank" href="`+data[i].receipt_url+
-                        `" color="red" >Recipt</a>`:'';
+                    var recipt = data[i].receipt_url?` <button class="btn btn-success" <a target="_blank" href="`+data[i].receipt_url+
+                        `" color="red" >Recipt</a></button>`:'';
                      tr_str = tr_str+"<tr>" +
                          "<td>" + payment_id + "</td>" +
                         "<td>" + get_date(date) + "</td>" +
@@ -178,3 +178,20 @@ function open_refund_modal(payment){
 </script>
 @endsection
 
+<style>
+    .rfnd-btn{
+        color: #ffffff;
+    background-color: #1582dc;
+    background-image: none;
+    border-color: #1582dc;
+
+}
+.rfnd-btn:hover{
+    background-color: #0e5ea1;
+    background-image: none;
+    border-color: #0e5ea1;
+    color: #ffffff;
+
+}
+
+</style>
