@@ -8,6 +8,8 @@ use App\Model\Payment;
 use App\Model\Student_fees;
 use App\Models\Request as ModelsRequest;
 use Carbon\Carbon;
+use App\Mail\Refund as RefundMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -38,21 +40,6 @@ class PaymentController extends Controller
         $report = $report->orderBy('created_at', 'desc');
         return $report;
     }
-
-    // public function status_update(Request $request, $id)
-    // {
-    //     $modelRequest = Payment::find($id);
-    //     $modelRequest->status = $request->status;
-    //     $modelRequest->save();
-
-    //     $response = Response::json([
-    //         "status" => true,
-    //         'action' => Config::get('constants.ajax_action.update'),
-    //         'new_value' => ucwords($request->status)
-    //     ]);
-    //     return $response;
-    // }
-    // //
     public function payment_refund(Request $request, $id)
     {
 
@@ -90,6 +77,18 @@ class PaymentController extends Controller
             'payment_refund_amount' => $payment_refund_amount,
             // 'charge' => $charges,
         ]);
+        $payment = Payment::first();
+        $details = [
+            'to' => 'abubakrmianmamoon@gmail.com',
+            'title' =>  'Amount Refund Success',
+            'subject' =>  'Refund',
+            'email_body'=>'You amount refunded successfully',
+            'from' => 'contactus@medical2.com',
+            'payment' => $payment,
+            "dated"  => date('d F, Y (l)'),
+        ];
+
+        Mail::to($ed->email)->send(new RefundMail($details));
         return $response;
     }
 

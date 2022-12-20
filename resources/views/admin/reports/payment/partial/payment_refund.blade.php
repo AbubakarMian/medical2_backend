@@ -5,17 +5,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Are you sure. You want to refund ?</h4>
+                <div class="mdl_hed"><h3 class="modal-title">Are you sure. You want to refund ?</h3></div>
                 <div>
-                    <div>
+                    <div class="txt_boxes">
                         <input type="hidden" class="payment_id" >
-                        <input type="number" name="payment_text" class="payment_refund_amount" placeholder="Refund Amount" required>
-                    </br>
+                        <input class="amt_txt" type="number" name="payment_text" class="payment_refund_amount" placeholder="Refund Amount" required>
+                    <br>
 
-                        <textarea name="payment_text" class="payment_refund_reason" placeholder="Reason"></textarea>
+                        <textarea class="rfnd_txt" name="payment_text" class="payment_refund_reason" placeholder="Reason"></textarea>
 
                     </div>
-                    </br>
+                    <br>
                     <button name="status" class="btn btn-primary" data-dismiss="modal" onclick="payment_refund()">
                         Payment Refund
                     </button>
@@ -36,7 +36,7 @@
                         <tbody class="refund_details_body"></tbody>
                     </table>
                 </div>
-                
+
 
             </div>
             {{--<div class="modal-footer">--}}
@@ -46,3 +46,21 @@
 
     </div>
 </div>
+<style>
+.amt_txt{
+    width:50%;
+}
+.rfnd_txt{
+    width:50%;
+    margin-top: 2%;
+}
+.txt_boxes{
+    align-items: center;
+    margin-top: 30px;
+
+
+}
+.mdl_hed{
+    text-align: center;
+}
+</style>

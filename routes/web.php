@@ -2,7 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
-// use App\Model\Routes as erp;
+use App\Model\Payment;
 
 // $db_routes = erp::first();
 // $url_method =  $db_routes->url_method;
@@ -35,6 +35,19 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('user/home', 'Admin\UserController@index');
 // Route::get('user', 'Admin\UserController@index');
+Route::get('testmail', function(){
+    $payment = Payment::first();
+    $details = [
+        'to' => 'abubakrmianmamoon@gmail.com',
+        'title' =>  'Amount Refund Success',
+        'subject' =>  'Refund',
+        'email_body'=>'You amount refunded successfully',
+        'from' => 'contactus@medical2.com',
+        'payment' => $payment,
+        "dated"  => date('d F, Y (l)'),
+    ];
+    return view('admin.mail.refund',compact('details'));
+});
 Route::get('/', 'User\UserController@index')->name('user_index');
 Route::get('login_modal', 'User\UserController@login_modal')->name('user_login_modal');
 Route::get('courses_registration', 'User\UserController@courses_registration');
