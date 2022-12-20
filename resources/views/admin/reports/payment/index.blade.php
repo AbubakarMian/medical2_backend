@@ -40,19 +40,13 @@ $(document).ready(function(){
     fetchRecords();
 
     function fetchRecords(){
-        console.log('responselength');
 
        $.ajax({
-
-
          url: '{!!asset("admin/reports/payments/get_payment_report")!!}',
-
          type: 'get',
          dataType: 'json',
          success: function(response){
             $("#userTable").css("opacity",1);
-            console.log('asd response',response);
-
            var len = response.data.length;
            var data = response.data;
            var tr_str = '';
@@ -70,8 +64,6 @@ $(document).ready(function(){
                         `:'';
                     var recipt = data[i].receipt_url?`<a target="_blank" href="`+data[i].receipt_url+
                         `" color="red" >Recipt</a>`:'';
-                    
-
                      tr_str = tr_str+"<tr>" +
                          "<td>" + payment_id + "</td>" +
                         "<td>" + get_date(date) + "</td>" +
@@ -99,24 +91,15 @@ $(document).ready(function(){
 });
 
 function get_date(date_time){
-
     var d= Date.parse(date_time);
     console.log('asdasdsad',d);
     var dt = new Date(date_time).toDateString();
     console.log('asdasdsad 22',dt);
     return dt;
-
-
 }
 
 function open_refund_modal(payment){
-    console.log('paymentpaymentpayment1',payment);
-
-    // payment = JSON.parse(payment);
-    // console.log('paymentpaymentpayment2',payment);
-
     $('.payment_id').val(payment.id);
-    
     if(payment.refund_payments.length ){
         var refund_table ="";
         for(var i=0; i<payment.refund_payments.length ; i++){
@@ -125,8 +108,6 @@ function open_refund_modal(payment){
                 `<td>`+payment.refund_payments[i].amount+`</td>`+
                 `<td>`+payment.refund_payments[i].status+`</td>`+
                 `<td>`+get_date(payment.refund_payments[i].created_at)+`</td>`;
-                // `<td>`+unixTimeZero = Date.parse(payment.refund_payments[i].created_at)+`</td>`;
-                get_date(payment.refund_payments[i].created_at);
         }
         $('.refund_details').css('display','block');
         $('.refund_details_body').html(refund_table);
@@ -135,30 +116,20 @@ function open_refund_modal(payment){
         $('.refund_details').css('display','none');
     }
     $('.payment_refund_modal').modal('toggle');
-
-    
 }
 
-function set_msg_modal(msg){
+    function set_msg_modal(msg){
         $('.set_msg_modal').html(msg);
     }
-
 	function payment_refund() {
-
-            console.log('status',status);
-            console.log('url',url);
 			var payment_refund_amount = $('.payment_refund_amount').val();
 			var payment_refund_reason = $('.payment_refund_reason').val();
 			var payment_id = $('.payment_id').val();
-
             if(payment_refund_amount == '' ){
                 alert('Amount required');
                 return;
             }
             var url = '{!!asset("admin/reports/payment/payment_refund")!!}/'+payment_id;
-			console.log('payment_refund_amount_',payment_refund_amount);
-			console.log('payment_id',payment_id);
-
             $.ajax({
                 url:url,
                 method:'POST',
@@ -168,8 +139,6 @@ function set_msg_modal(msg){
                        'payment_refund_reason' : payment_refund_reason,
                       },
                 success: function(data){
-
-
                     console.log("response",data);
                 },
 				error: function(errordata) {
@@ -179,8 +148,6 @@ function set_msg_modal(msg){
     }
 
     function change_modal_warning(status_url, status, cell_id, payment_id) {
-        console.log('url', status_url);
-        console.log('status', status);
         $.ajax({
             url: status_url,
             method: 'POST',
