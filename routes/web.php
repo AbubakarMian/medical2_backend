@@ -38,7 +38,8 @@ use App\Model\Payment;
 Route::get('testmail', function(){
     $payment = Payment::first();
     $details = [
-        'to' => 'abubakrmianmamoon@gmail.com',
+        'to' => 'ameer.maavia@gmail.com',
+        // 'to' => 'abubakrmianmamoon@gmail.com',
         'title' =>  'Amount Refund Success',
         'subject' =>  'Refund',
         'email_body'=>'You amount refunded successfully',

@@ -79,10 +79,12 @@ class PaymentController extends Controller
         ]);
         $payment = Payment::first();
         $details = [
-            'to' => 'abubakrmianmamoon@gmail.com',
+            'to' => 'ameer.maavia@gmail.com',
+            // 'to' => 'abubakrmianmamoon@gmail.com',
+            // 'to' => 'info@medical2.com',
             'title' =>  'Amount Refund Success',
             'subject' =>  'Refund',
-            'email_body'=>'You amount refunded successfully',
+            'email_body'=>'Your amount refunded successfully',
             'from' => 'contactus@medical2.com',
             'payment' => $payment,
             "dated"  => date('d F, Y (l)'),
