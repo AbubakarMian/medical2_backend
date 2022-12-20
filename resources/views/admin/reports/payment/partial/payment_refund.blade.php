@@ -57,7 +57,7 @@
     .rfnd_txt {
         width: 100%;
         margin-top: 2%;
-        height: 10%;
+        height: 20%;
         border-radius: 8px;
 
 
