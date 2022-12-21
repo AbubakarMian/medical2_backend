@@ -58,6 +58,7 @@
         margin: 0 auto;
         background: #eee url("https://i.pinimg.com/originals/b3/17/db/b317db24945589699a4ef18150dc5b73.jpg") no-repeat;
         background-size: 100%;
+        margin-top: 50px;
     }
 
     h1#cert-holderup {
