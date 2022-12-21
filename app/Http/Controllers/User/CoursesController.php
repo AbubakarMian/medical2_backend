@@ -229,12 +229,6 @@ class CoursesController extends Controller
             $student_fee->save();
             $studen_array_id[] =   $student_fee;
         }
-
-        //
-
-
-
-
         $course = Courses::with('group')->find($course_id);
         $success = 'success';
         return view('user.show_group_members_payment.index', compact('studen_array_id', 'all_users_id', 'all_course_register', 'success', 'course', 'group'));
