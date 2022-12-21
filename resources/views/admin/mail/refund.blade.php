@@ -37,9 +37,9 @@
     }
 
     body {
-        width: 950px;
+        /* width: 950px;
         height: 690px;
-        position: absolute;
+        position: absolute; */
         left: 30px;
         top: 30px;
 
@@ -55,18 +55,18 @@
         display: inline-block;
         width: 1024px;
         height: 768px;
-
+        margin: 0 auto;
         background: #eee url("https://i.pinimg.com/originals/b3/17/db/b317db24945589699a4ef18150dc5b73.jpg") no-repeat;
         background-size: 100%;
     }
 
     h1#cert-holderup {
-        font-size:20px;
+        font-size: 20px;
         color: #be2d24;
     }
 
     p.smaller {
-        font-size: 17px !important;
+        font-size: 16px !important;
     }
 
     div#cert-desc {
@@ -74,9 +74,11 @@
     }
 
     p#cert-from {
-        color: #be2d24;
-        font-family: 'Saira Condensed', sans-serif;
+        color: #3bb54a;
+        font-family: initial;
     }
+
+
 
     div#cert-verify {
         opacity: 1;
@@ -87,54 +89,67 @@
         color: grey;
     }
 
+    .gssw h5 {
+        font-size: 20px;
+        font-family: initial;
+        color: #1a1a1a;
+    }
+
+    .ahc {
+        text-align: center;
+    }
+
+    .ahcdsa img {
+        height: 89px;
+        margin-top: 21px;
+    }
+
+    .gsd b {
+        font-size: 15px !important;
+        margin-left: 8px;
+    }
 </style>
+
 <body>
+
     <?php
- $payment =  $details['payment'];
+    $payment = $details['payment'];
+    ?>
 
-?>
-    <div style="background-color:#bfb28e !important">
+    <div class="gssw">
 
+        <div class="row">
+            <div class="col-sm-12 ahc">
+                <div class="ahcdsa">
+                    <a href="#"><img src="{!! asset('theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
+                </div>
+            </div>
+        </div>
 
-        <a href="#"><img src="{!!asset('theme/user_theme/images/logo-icon.png')!!}" class="img-responsive" /></a>
+        <b>
+            <center>
+                <h5> Your payment is successfully refunded
+                    <a href="{!! $payment->receipt_url !!}">
+                        Recipt
+                    </a>
+                </h5>
+            </center>
+        </b>
+
+        <div style="padding-top: 8%">
+            <b>
+                <p id="cert-from" class="smaller">
+                    &nbsp; from {!! $details['from'] !!}
+                </p>
+                <p class="smaller gsd" id='cert-issued'>
+                    <b>Issued on:</b> {!! $details['dated'] !!},
+                </p>
+                <p class="smaller gsd" id='cert-issued'>
+                    <b>
+                        Thankyou Medical2
+                    </b>
+                </p>
+        </div>
     </div>
-
-<b>
-</br>
-
-<center>
-    Your payment is successfully refunded
-    <a href="{!!$payment->receipt_url!!}">
-        Recipt
-    </a>
-</center>
-</b>
-</br>
-
-</br>
-<div style="padding-top: 15%">
-
-<b>
-
-<br>
-<p id="cert-from" class="smaller">
-    &nbsp; from {!! $details['from'] !!}
-</p>
-<p class="smaller" id='cert-issued'>
-    <b>Issued on:</b> {!! $details['dated'] !!}.
-</p>
-<p class="smaller" id='cert-issued'>
-    <b>
-Thankyou
-
-    </b>
-    <br>
-    <br>
-    <b>
-    Medical2
-
-            </b>
-</p>
-</div>
 
 </body>
