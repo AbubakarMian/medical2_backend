@@ -99,35 +99,23 @@ class CoursesController extends Controller
             // dd(  $courses_groups);
             return view('user.course_registration.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
         }
-
-
-
-
-        // dd($course_register);
-
-
     }
-
-    // group memebers opennnnnnnnnnnn
 
 
     public function group_registration(Request $request)
     {
-        // dd('sas');
         $user = Auth::User();
         if (!$user) {
-            // return redirect('/')->with('error', 'Please Login To Continue');
             return redirect('/')->with('login_error', 'Please Login To Continue');
         }
         $course_id = $request->course_id;
         $group_id   = $request->group_id;
         return view('user.add_group_members.index', compact('user', 'course_id', 'group_id'));
     }
-    // group memebers course  register
 
     public function group_registration_save(Request $request)
     {
-        // dd($request->all());
+
         $one_user = Auth::User();
         $reg_key = uniqid();
 
@@ -218,16 +206,10 @@ class CoursesController extends Controller
                 $student_fees->save();
                 $studen_array_id[] =   $student_fees;
             }
-            //   Mail::to($users->email)->send(new Update_Password($details));
+              Mail::to($users->email)->send(new Update_Password($details));
 
         }
-
-
-
-        //
         // special user jo logo ko group register krwata hai
-
-
         $group = Group::with('group_fees')->find($request->group_id);
         $course_register_one = new Course_Register();
         $course_register_one->user_id  =  $one_user->id;
@@ -250,12 +232,6 @@ class CoursesController extends Controller
             $student_fee->save();
             $studen_array_id[] =   $student_fee;
         }
-
-        //
-
-
-
-
         $course = Courses::with('group')->find($course_id);
         $success = 'success';
         return view('user.show_group_members_payment.index', compact('studen_array_id', 'all_users_id', 'all_course_register', 'success', 'course', 'group'));
