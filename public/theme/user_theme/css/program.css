@@ -34,7 +34,8 @@ html {
 h4.title {
     font-size: 17px;
     font-weight: 600;
-    margin-top: 30px !important;   
+    margin-top: 30px !important;
+    color: #000 !important;
 }
 .teacher {
     font-size: 13px;
@@ -42,7 +43,7 @@ h4.title {
     margin-bottom: 10px;
     color: black;
 }
-h4.title a {   
+h4.title a {
     color: black !important;
 }
  /* .container {
@@ -56,11 +57,11 @@ h4.title a {
     border-color: #f1582b;
     border-radius: 0px;
 }
-.text {
+/* .text {
     background-color: rgb(41 41 116) !important;
     font-size: 16px;
     padding: 10px 20px !important;
-}
+} */
 .text a{
    color: white !important;
 }
@@ -70,6 +71,7 @@ h4.title a {
 }
 span.ratingnum {
     margin-right: 10px;
+    color: #000 !important;
 }
 span.ratingcount {
     margin-left: -90px;
@@ -93,7 +95,7 @@ span.currency {
     max-width: 100%;
     min-width: 12px;
     margin: 25px;
-} 
+}
 
 .image {
     opacity: 1;
@@ -144,15 +146,21 @@ span.currency {
     opacity: 1;
 }
 
-.text {
+/* .text {
     background-color: rgba(230, 57, 70, .6);
     color: white;
     font-size: 16px;
     padding: 16px 32px;
+} */
+.gahalink {
+    cursor: pointer;
 }
 
 .second-line {
     margin-top: 25px;
+}
+.gahalink {
+
 }
 
 @media only screen and (max-width: 480px) {
