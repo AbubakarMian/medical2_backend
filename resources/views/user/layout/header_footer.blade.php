@@ -39,7 +39,7 @@
                         <a href="#"><img src="{!! asset('theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
                     </div>
                 </div>
-                <div class="col-sm-10 col-xs-6">
+                <div class="col-sm-10 col-xs-12">
                     <div class="infoarea hidden-xs">
                         <div class="infobox">
                             <div class="infoboximg">
@@ -475,7 +475,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <!-- cropper js  open -->
--
+
 <!-- build:js({.tmp,app}) scripts/app.min.js -->
 
 <!-- endbuild -->
