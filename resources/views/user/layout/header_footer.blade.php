@@ -21,6 +21,11 @@
     font-weight: 500;
     margin-top: 3px
 }
+.error{
+    color:red;
+
+
+}
 </style>
 
 <body>
