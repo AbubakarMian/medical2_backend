@@ -115,24 +115,31 @@
         <div class="col-sm-12">
             <div class="chechkareadata">
                 <label for="exampleInputtext1" class="rolabel">Enter Your Role :</label>
-                <input type="text" name="role"  class="form-control" id="exampleInputtext1" aria-describedby="textHelp"
+                <input type="text" name="role" value="{!!$role->name!!}" class="form-control" id="exampleInputtext1" aria-describedby="textHelp"
                     placeholder="Enter Role" required><br>
                 <div class="container tablu">
                     <div class="row">
                         <div class="col-sm-12">
-                            @foreach ($permissions as $p)
-
+                            @foreach ($permissions as $p_key=> $p)
                                 <td>{!! ucwords($p->heading) !!} </td>
                                 <?php $details = json_decode($p->details);?>
                                 <table width="400px" style="table-layout:fixed;" id="index-table" class="table table-bordered table-striped mg-t editable-datatable">
                                 <thead>
                                     <tr>
-                                        @foreach ( $details as $d)
-                                        @if(!$d->need_permission)
-                                            @continue
-                                        @endif
+                                        @foreach ( $details as $key=> $d)
+                                            <?php
+                                            if(!$d->need_permission){
+                                                continue;
+                                            }
+                                            $is_checked = '';
+
+                                            if(isset($d->permission_granted) ){
+                                                $is_checked = $d->permission_granted?'checked':'';
+                                            }
+
+                                            ?>
                                             <th >{!!ucwords($d->heading) !!}
-                                                <input type="checkbox" name="permissions[{!!$p->id!!}][]" value="[{!!$d->id!!}]"></th>
+                                                <input type="checkbox" {!!$is_checked!!} name="permissions[{!!$p->id!!}][]" value="{!!$d->id!!}"></th>
                                         @endforeach
                                     </tr>
                                 </thead>
