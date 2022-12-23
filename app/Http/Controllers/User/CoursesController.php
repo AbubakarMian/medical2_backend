@@ -506,7 +506,7 @@ class CoursesController extends Controller
                     }
             }
                 return redirect('payment/success');
-            } elseif (!$stripe->status == "succeeded") {
+            } else { // if (!$stripe->status == "succeeded")
                 $student_fee_id = $request->student_id;
                 $payment = new Payment();
                 $payment = $this->set_payment_obj($payment,$stripe,$student_fee_id,$request->amount);
@@ -514,37 +514,57 @@ class CoursesController extends Controller
                 return back()->with('error', 'Invalid Payment');
             }
         }
+        // catch(\Stripe\Exception\CardException $e) {
+            // error_log("A payment error occurred: {$e->getError()->message}");
+            // return back()->with('error', 'Error '.$e->getMessage());
+        // }
+        // catch (\Stripe\Exception\InvalidRequestException $e) {
+        //     error_log("An invalid request occurred.");
+        //     return back()->with('error', 'Invalid Payment');
+
+        // }
         catch(Exception $e){
 
-            dd($stripe,$e);
+            try{
+                // echo($e->getMessage());
+                $card_err= $e->getMessage();
+// dd($card_err);
+                // return back()->with('error', $card_err);
+                return redirect('/')->with('error',$card_err);
 
-            $user = Auth::User();
 
-            $payment = new Payment();
-            $payment->user_id = $user->id;
-            if($stripe->id){
-            $payment->payment_id = $stripe->id;
-            $payment->course_id = $this->get_course_id($request);
-            $payment->payment_response = json_encode($stripe);
-            $payment->payment_status = $stripe->status;
-            $payment->card_type = $stripe->payment_method_details->card->brand;
-            $payment->receipt_url = $stripe->receipt_url;
-            $payment->action  = $stripe->object;
-            //============= amount===============
-            $payment->amount =   $request->amount;
-            $payment->save();}
-            else{
-                $payment->payment_id = 'invalid card';
-            $payment->course_id = $this->get_course_id($request);
-            $payment->payment_response = json_encode($stripe);
-            $payment->payment_status = $stripe->status;
-            $payment->card_type = $stripe->payment_method_details->card->brand;
-            $payment->receipt_url = 'invalid card';
-            $payment->action  = $stripe->object;
-            //============= amount===============
-            $payment->amount =   $request->amount;
-            $payment->save();
             }
+            catch(Exception $e){
+                echo($e);
+            }
+
+            // $user = Auth::User();
+
+            // $payment = new Payment();
+            // $payment->user_id = $user->id;
+            // if($stripe->id){
+            // $payment->payment_id = $stripe->id;
+            // $payment->course_id = $this->get_course_id($request);
+            // $payment->payment_response = json_encode($stripe);
+            // $payment->payment_status = $stripe->status;
+            // $payment->card_type = $stripe->payment_method_details->card->brand;
+            // $payment->receipt_url = $stripe->receipt_url;
+            // $payment->action  = $stripe->object;
+            // //============= amount===============
+            // $payment->amount =   $request->amount;
+            // $payment->save();}
+            // else{
+            //     $payment->payment_id = 'invalid card';
+            // $payment->course_id = $this->get_course_id($request);
+            // $payment->payment_response = json_encode($stripe);
+            // $payment->payment_status = $stripe->status;
+            // $payment->card_type = $stripe->payment_method_details->card->brand;
+            // $payment->receipt_url = 'invalid card';
+            // $payment->action  = $stripe->object;
+            // //============= amount===============
+            // $payment->amount =   $request->amount;
+            // $payment->save();
+            // }
 
 
         }
