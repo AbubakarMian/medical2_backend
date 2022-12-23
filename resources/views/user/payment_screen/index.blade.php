@@ -94,6 +94,7 @@
                     id="payment-form">
                     @csrf
                     <div class="panel-body">
+                        <div class="error"></div>
 
 
                             <div class="row">
@@ -155,24 +156,7 @@
 </div>
 
 
-
-
-
-
-
    @endsection
-
-
-
-
-
-
-
-
-
-
-
-
 
 
    @section('app_jquery')
@@ -221,6 +205,9 @@
 
        function stripeResponseHandler(status, response) {
            if (response.error) {
+            console.log('response.error',response.error);
+            console.log('response.error.message',response.error.message);
+               $('.error').html(response.error.message);
                $('.error')
                    .removeClass('hide')
                    .find('.alert')
