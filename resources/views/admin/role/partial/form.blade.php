@@ -88,22 +88,19 @@
     -webkit-transition: .4s;
     transition: .4s;
     margin: 0px 1px;
-}
-.miud {
-    margin-bottom: -11px !IMPORTANT;
-}
+    }
+    .miud {
+        margin-bottom: -11px !IMPORTANT;
+    }
 
     input:checked+.slider {
         background-color: #2196F3;
     }
-
-
     input:checked+.slider:before {
         -webkit-transform: translateX(26px);
         -ms-transform: translateX(26px);
         transform: translateX(26px);
     }
-
     /* Rounded sliders */
     .slider.round {
         border-radius: 34px;
@@ -113,8 +110,6 @@
         border-radius: 50%;
     }
 </style>
-
-
 <div class="chechkarea">
     <div class="row">
         <div class="col-sm-12">

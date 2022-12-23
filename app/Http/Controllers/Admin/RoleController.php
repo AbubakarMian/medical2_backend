@@ -6,7 +6,7 @@ use App\Model\Role;
 use App\Model\Url;
 use App\Model\Admin_url;
 use App\Model\Permission;
-use App\Model\Admin_Url_Role;
+use App\Model\Admin_Url_Permission_Role;
 use App\Model\Category;
 use App\Model\Courses;
 use Illuminate\Http\Request;
@@ -42,7 +42,7 @@ class RoleController extends Controller
 
         foreach($request->permissions as $admin_url_id => $detail_ids){
             $admin_url = Admin_url::find($admin_url_id);
-            $admin_url_role = new Admin_Url_Role();
+            $admin_url_role = new Admin_Url_Permission_Role();
             $admin_url_role->heading = $admin_url->heading;
             $admin_url_role->name = $admin_url->heading;
             $admin_url_role->section = $admin_url->section;
@@ -60,21 +60,28 @@ class RoleController extends Controller
 
     }
 
-// dd('saved');
+dd('saved');
     return redirect('admin/role');
    }
 
 
 
-    // public function edit($id)
-    // {
-    //     $control = 'edit';
-    //     $role = Role::find($id);
-    //     return view('admin.role.create', compact(
-    //         'control',
-    //         'role',
-    //     ));
-    // }
+    public function edit($id)
+    {
+        $control = 'edit';
+        $role = Role::find($id);
+        $permissions = Admin_url::orderby('section', 'asc')->get();
+
+        foreach($permissions as $p){
+            
+        }
+
+        return view('admin.role.create', compact(
+            'permissions',
+            'control',
+            'role',
+        ));
+    }
 
     // public function update(Request $request, $id)
     // {
