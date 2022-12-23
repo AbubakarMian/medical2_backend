@@ -36,8 +36,8 @@ class EmployeeController extends Controller
     public function save(Request $request)
     {
         $user = new User;
-       
-      
+
+
         $validator =  Validator::make(['email' => $request->email], [
             'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
         ]);
@@ -47,28 +47,30 @@ class EmployeeController extends Controller
 
 
         }
+        $user->name =  $request->name;
+        $user->last_name =  $request->name;
         $user->email =  $request->email;
         $user->password =  Hash::make($request->password);
        $user->save();
 
-        $urls = Url::get();
-        $permission = Permission::with('url','role')->get();
-       
-        foreach ($urls as $u) {
- 
-            $user_permission = new User_Permission();
-            $user_permission->user_id = $user->id;
-            $user_permission->url_id =  $u->id;
-            $user_permission->role_id =  0;
-            $user_permission->can_view =  0;
-            $user_permission->can_create = 0;
-            $user_permission->can_save = 0;
-            $user_permission->can_edit =  0;
-            $user_permission->can_update = 0;
-            $user_permission->can_delete =  0;
-            // 
-            $user_permission->save();
-        }
+        // $urls = Url::get();
+        // $permission = Permission::with('url','role')->get();
+
+        // foreach ($urls as $u) {
+
+        //     $user_permission = new User_Permission();
+        //     $user_permission->user_id = $user->id;
+        //     $user_permission->url_id =  $u->id;
+        //     $user_permission->role_id =  0;
+        //     $user_permission->can_view =  0;
+        //     $user_permission->can_create = 0;
+        //     $user_permission->can_save = 0;
+        //     $user_permission->can_edit =  0;
+        //     $user_permission->can_update = 0;
+        //     $user_permission->can_delete =  0;
+        //     //
+        //     $user_permission->save();
+        // }
         return redirect('admin/permissions/show?user_id=' . $user->id);
     }
 
@@ -83,7 +85,7 @@ class EmployeeController extends Controller
     //     return view('admin.role.create', compact(
     //         'control',
     //         'courses',
-    //         'category',            
+    //         'category',
     //     ));
     // }
 
