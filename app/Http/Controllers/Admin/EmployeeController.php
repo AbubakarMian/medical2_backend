@@ -23,7 +23,8 @@ class EmployeeController extends Controller
 
     public function index()
     {
-        $employee = User_Permission::orderBy('created_at', 'DESC')->paginate(10);
+        $employee = User::wherenotIn('role_id',[1,2])
+                    ->orderBy('created_at', 'DESC')->paginate(10); // not super admin and student
         return view('admin.employee.index', compact('employee'));
     }
 
@@ -36,65 +37,46 @@ class EmployeeController extends Controller
     public function save(Request $request)
     {
         $user = new User;
-
-
         $validator =  Validator::make(['email' => $request->email], [
             'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
         ]);
 
         if ($validator->fails()) {
             return back()->with('error', $validator->errors());
-
-
         }
+        return redirect('admin/permissions/show?user_id=' . $user->id);
+    }
+
+    public function edit($id)
+    {
+        $control = 'edit';
+        $employee = User::find($id);
+        return view('admin.employee.create', compact(
+            'control',
+            'employee',
+        ));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validator =  Validator::make(['email' => $request->email], [
+            'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
+        ]);
+        if ($validator->fails()) {
+            return back()->with('error', $validator->errors());
+        }
+        $user = User::find($id);
+        $this->add_or_update($request, $user);
+        return Redirect('admin/role');
+    }
+
+    public function add_or_update($request, $user){
         $user->name =  $request->name;
         $user->last_name =  $request->name;
         $user->email =  $request->email;
         $user->password =  Hash::make($request->password);
-       $user->save();
-
-        // $urls = Url::get();
-        // $permission = Permission::with('url','role')->get();
-
-        // foreach ($urls as $u) {
-
-        //     $user_permission = new User_Permission();
-        //     $user_permission->user_id = $user->id;
-        //     $user_permission->url_id =  $u->id;
-        //     $user_permission->role_id =  0;
-        //     $user_permission->can_view =  0;
-        //     $user_permission->can_create = 0;
-        //     $user_permission->can_save = 0;
-        //     $user_permission->can_edit =  0;
-        //     $user_permission->can_update = 0;
-        //     $user_permission->can_delete =  0;
-        //     //
-        //     $user_permission->save();
-        // }
-        return redirect('admin/permissions/show?user_id=' . $user->id);
+        $user->save();
     }
-
-
-
-    // public function edit($id)
-    // {
-    //     $control = 'edit';
-    //     $courses = Role::find($id);
-    //     $category = Role::pluck('name','id');
-    //     // $fees_type = Role::get('constants.fees_type');
-    //     return view('admin.role.create', compact(
-    //         'control',
-    //         'courses',
-    //         'category',
-    //     ));
-    // }
-
-    // public function update(Request $request, $id)
-    // {
-    //     $courses = Role::find($id);
-    //     // $this->add_or_update($request, $courses);
-    //     return Redirect('admin/role');
-    // }
 
 
 

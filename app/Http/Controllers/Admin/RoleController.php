@@ -38,13 +38,8 @@ class RoleController extends Controller
     {
         $role = new Role();
         $this->add_update($role,$request);
-
-
-    dd('saved');
-    return redirect('admin/role');
+        return redirect('admin/role');
    }
-
-
 
     public function edit($id)
     {
@@ -52,34 +47,8 @@ class RoleController extends Controller
         $role = Role::find($id);
         $role_permissions = $role->admin_url_permissions;
         $all_permissions = Admin_url::orderby('section', 'asc')->get();
-        $all_permissions = $all_permissions->transform(function($all_p)use($role_permissions){
-            $per = $role_permissions->where('admin_url_id',$all_p->id)->first();
-            if($per){
-                $all_p->permission_granted = true;
-                $per_details = collect(json_decode($per->details));
-                $all_p_details = collect( json_decode($all_p->details));
+        $all_permissions = $this->get_permission_details($all_permissions,$role_permissions);
 
-                $all_p_details = $all_p_details->transform(function($all_p_detail)use($per){
-                    $per_details = collect(json_decode($per->details));
-                    $p_detail = $per_details->where('id',$all_p_detail->id)->first();
-                    if($p_detail){
-                        $all_p_detail->permission_granted = true;
-                    }
-                    else{
-                        $all_p_detail->permission_granted = false;
-                    }
-                    return $all_p_detail;
-                });
-                $all_p_details = json_encode($all_p_details->toArray());
-                $all_p->details = $all_p_details;
-                return $all_p;
-            }
-            else{
-                $all_p->permission_granted = false;
-            }
-            return $all_p;
-
-        });
         $permissions = $all_permissions;
 
         return view('admin.role.create', compact(
