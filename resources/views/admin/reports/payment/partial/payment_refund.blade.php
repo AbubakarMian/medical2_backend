@@ -47,9 +47,10 @@
     }
 
     .scas {
-        font-size: 18px;
-        font-weight: 700;
-        color: #444343;
+        font-size: 19px;
+    font-weight: 500;
+    color: #59595a;
+    margin-top: 7px;
     }
 
     .gfs input {
@@ -71,19 +72,30 @@
     }
 
     .refund_details h3 {
-        font-size: 16px;
-        font-weight: 500;
+        font-size: 19px;
+    font-weight: 600;
     }
 
     .refund_details td {
-        font-size: 13px;
-    }
+    font-size: 13px;
+    font-family: inherit;
+    color: gray;
+}
 
     .gfs th {
-        font-size: 12px;
-        font-weight: 900;
-        color: #767676;
-    }
+    font-size: 13px;
+    font-weight: 600;
+    color: #464444;
+    font-family: sans-serif;
+}
+    .gahs {
+    background: #1374c5;
+    border-color: #1374c5;
+    color: white;
+    padding: 9px 12px;
+    font-family: system-ui;
+    float: left;
+}
 </style>
 
 
@@ -108,7 +120,7 @@
                         <textarea name="payment_text" class="payment_refund_reason rfnd_txt" rows="5" placeholder="Reason"></textarea>
 
                     </div>
-                    <button name="status" class="btn btn-primary rfnd_btn" data-dismiss="modal"
+                    <button name="status" class="btn btn-primary rfnd_btn gahs" data-dismiss="modal"
                         onclick="payment_refund()">
                         Payment Refund
                     </button>
@@ -132,9 +144,9 @@
 
 
             </div>
-            {{-- <div class="modal-footer"> --}}
+            <!-- {{-- <div class="modal-footer"> --}}
             {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
-            {{-- </div> --}}
+            {{-- </div> --}} -->
         </div>
 
     </div>
