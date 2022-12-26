@@ -207,10 +207,11 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
       Route::get('edit/{id}', 'PermissionsController@edit')->name('permissions.edit');
       Route::post('update/{id}', 'PermissionsController@update')->name('permissions.update');
       Route::post('delete/{id}', 'PermissionsController@destroy_undestroy')->name('permissions.delete');
+      Route::get('role_response', 'PermissionsController@role_response')->name('role.role_response');
+
     });
 
     // role_response
-    Route::post('role_response', 'PermissionsController@role_response')->name('role.role_response');
     // permisiion/save
     Route::post('role/permission/save', 'PermissionsController@permisiion_save')->name('role.role_response');
     // Route::post('courses_crop_image', 'CoursesController@crop_image')->name('admin.crop_image');

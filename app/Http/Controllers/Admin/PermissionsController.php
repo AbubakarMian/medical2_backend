@@ -11,6 +11,7 @@ use App\Model\Courses;
 use App\Model\Url;
 use App\Model\Admin_url;
 use App\Model\AdminUrlUserPermission;
+use App\Model\Admin_Url_Permission_Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -90,11 +91,13 @@ class PermissionsController extends Controller
 
     public function role_response(Request $request){
 
-        $res = new \stdClass();
-        $permissions = Role::with('admin_url_permissions')->where('role_id',$request->role_id)->get();
+        // $permissions = Role::with('admin_url_permissions')->where('role_id',$request->role_id)->get();
 
-         $res->permissions =  $permissions;
-         $res->status = true;
+        $permissions = Admin_Url_Permission_Role::where('role_id',$request->role_id)->get();
+
+        $res = new \stdClass();
+        $res->permissions =  $permissions;
+        $res->status = true;
 
         return json_encode($res);
 
