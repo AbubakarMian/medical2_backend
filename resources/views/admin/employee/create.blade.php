@@ -16,12 +16,12 @@ else{
                                 <button type="button" class="close" data-dismiss="alert">×</button>
                                 <strong>{{ $message }}</strong>
                             </div>
-                           
+
                         @endif
 
     @if($control == 'edit')
-        {!! Form::model($about_us,['id'=>'my_form', 'method' => 'POST', 'route' =>
-                  ['aboutus.update', $about_us->id],'files'=>true]) !!}
+        {!! Form::model($employee,['id'=>'my_form', 'method' => 'POST', 'route' =>
+                  ['employee.update', $employee->id],'files'=>true]) !!}
     @else
         {!! Form::open(['id'=>'my_form','method' => 'POST', 'route' => ['employee.save' ], 'files'=>true]) !!}
     @endif
