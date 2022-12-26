@@ -36,15 +36,16 @@ class EmployeeController extends Controller
 
     public function save(Request $request)
     {
-        $user = new User;
         $validator =  Validator::make(['email' => $request->email], [
-            'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
+            'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')]
         ]);
 
-        if ($validator->fails()) {
-            return back()->with('error', $validator->errors());
-        }
-        return redirect('admin/permissions/show?user_id=' . $user->id);
+        // if ($validator->fails()) {
+        //     return back()->with('error', $validator->errors());
+        // }
+        $user = new User();
+        $user = $this->add_or_update($request, $user);
+        return redirect('admin/permissions/show?user_id='.$user->id);
     }
 
     public function edit($id)
@@ -62,20 +63,21 @@ class EmployeeController extends Controller
         $validator =  Validator::make(['email' => $request->email], [
             'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
         ]);
-        if ($validator->fails()) {
-            return back()->with('error', $validator->errors());
-        }
+        // if ($validator->fails()) {
+        //     return back()->with('error', $validator->errors());
+        // }
         $user = User::find($id);
         $this->add_or_update($request, $user);
-        return Redirect('admin/role');
+        return Redirect('admin/employee');
     }
 
     public function add_or_update($request, $user){
         $user->name =  $request->name;
         $user->last_name =  $request->name;
-        $user->email =  $request->email;
+        $user->email =  $request->email.uniqid();
         $user->password =  Hash::make($request->password);
         $user->save();
+        return $user;
     }
 
 
