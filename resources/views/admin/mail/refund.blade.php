@@ -51,18 +51,14 @@
         margin: 5px 0px;
     }
 
-    .gssw {
-        /* display: inline-block; */
-        width: 25%;
-        height: 80%;
+    html {
+        display: inline-block;
+        width: 1024px;
+        height: 768px;
         margin: 0 auto;
-        border: 1px solid gray;
-        border-radius: 12px;
-        /* background: #eee url(https://i.pinimg.com/originals/b3/17/db/b317db2….jpg) no-repeat; */
-        /* background-size: 100%; */
-        background: #f8f8f8;
+        background: #eee url("https://i.pinimg.com/originals/b3/17/db/b317db24945589699a4ef18150dc5b73.jpg") no-repeat;
+        background-size: 100%;
         margin-top: 50px;
-        margin-bottom: 50px;
     }
 
     h1#cert-holderup {
@@ -72,7 +68,6 @@
 
     p.smaller {
         font-size: 16px !important;
-        font-weight: 500 !important;
     }
 
     div#cert-desc {
@@ -80,11 +75,10 @@
     }
 
     p#cert-from {
-        color: #f1582b;
-        font-family: sans-serif;
-        font-weight: 600;
-        font-size: 14px !important;
+        color: #3bb54a;
+        font-family: initial;
     }
+
 
 
     div#cert-verify {
@@ -97,10 +91,9 @@
     }
 
     .gssw h5 {
-        font-size: 18px;
-        font-family: system-ui;
-        color: #595959;
-        font-weight: 500;
+        font-size: 20px;
+        font-family: initial;
+        color: #1a1a1a;
     }
 
     .ahc {
@@ -108,22 +101,13 @@
     }
 
     .ahcdsa img {
-        height: 100px;
-        margin-top: 30px;
+        height: 89px;
+        margin-top: 21px;
     }
 
     .gsd b {
         font-size: 15px !important;
         margin-left: 8px;
-    }
-
-    .fote {
-        text-align: center;
-        padding-top: 80%;
-    }
-    .crez {
-        color: #f1582b;
-    text-decoration: none;
     }
 </style>
 
@@ -134,39 +118,38 @@
     ?>
 
     <div class="gssw">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 ahc">
-                    <div class="ahcdsa">
-                        <a href="#"><img src="{!! asset('theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
-                    </div>
+
+        <div class="row">
+            <div class="col-sm-12 ahc">
+                <div class="ahcdsa">
+                    <a href="#"><img src="{!! asset('theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
                 </div>
             </div>
+        </div>
 
+        <b>
+            <center>
+                <h5> Your payment is successfully refunded
+                    <a href="{!! $payment->receipt_url !!}">
+                        Recipt
+                    </a>
+                </h5>
+            </center>
+        </b>
+
+        <div style="padding-top: 8%">
             <b>
-                <center>
-                    <h5> Your payment is successfully refunded
-                        <a class="crez" href="{!! $payment->receipt_url !!}">
-                            Recipt
-                        </a>
-                    </h5>
-                </center>
-            </b>
-
-            <div class="fote">
-                <b>
-                    <p id="cert-from" class="smaller">
-                        &nbsp; from {!! $details['from'] !!}
-                    </p>
-                    <p class="smaller gsd" id='cert-issued'>
-                        <b>Issued on:</b> {!! $details['dated'] !!},
-                    </p>
-                    <p class="smaller gsd" id='cert-issued'>
-                        <b>
-                            Thankyou Medical2
-                        </b>
-                    </p>
-            </div>
+                <p id="cert-from" class="smaller">
+                    &nbsp; from {!! $details['from'] !!}
+                </p>
+                <p class="smaller gsd" id='cert-issued'>
+                    <b>Issued on:</b> {!! $details['dated'] !!},
+                </p>
+                <p class="smaller gsd" id='cert-issued'>
+                    <b>
+                        Thankyou Medical2
+                    </b>
+                </p>
         </div>
     </div>
 
