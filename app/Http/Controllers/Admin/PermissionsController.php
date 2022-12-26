@@ -9,6 +9,8 @@ use App\Model\User_Permission;
 use App\Model\Category;
 use App\Model\Courses;
 use App\Model\Url;
+use App\Model\Admin_url;
+use App\Model\AdminUrlUserPermission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -20,107 +22,83 @@ class PermissionsController extends Controller
 
     public function show_list_permision(Request $request)
     {
-       
-        $user_id = $request->user_id;
-        $user_permissions = User_Permission::with('user')->where('user_id',$user_id)->get();
-        // 
-        $role = Role::pluck('name','id');  
-        $urls = Url::with('permission')->paginate(10); 
-        // dd( $urls);
-        // $urls_arr = array_column($urls, NULL, 'id');
-        $permissions = Permission::with('url','role')->orderBy('created_at', 'ASC')->get();   
-         // dd($urls_arr[$permissions[0]['url_id']],'permissions') ;  
-        return view('admin.permissions.index', compact('permissions','user_permissions','role','urls','user_id'));
+
+        return $this->get_user_permission_list($request->user_id);
+        // $user_permissions = User_Permission::with('user')->where('user_id',$user_id)->get();
+        // //
+        // $role = Role::pluck('name','id');
+        // $urls = Url::with('permission')->paginate(10);
+        // // dd( $urls);
+        // // $urls_arr = array_column($urls, NULL, 'id');
+        // $permissions = Permission::with('url','role')->orderBy('created_at', 'ASC')->get();
+        //  // dd($urls_arr[$permissions[0]['url_id']],'permissions') ;
+        // return view('admin.permissions.index', compact('permissions','user_permissions','role','urls','user_id'));
     }
+
+    public function get_user_permission_list($user_id){
+        $user = User::find($user_id);
+        $all_permissions = Admin_url::orderby('section', 'asc')->get();
+        $user_permissions = AdminUrlUserPermission::where('user_id',$user_id)->get();
+        $role_template = Role::pluck('name','id');
+        $permissions = $this->get_permission_details($all_permissions,$user_permissions);
+        return view('admin.permissions.index', compact('permissions','user','role_template'));
+    }
+
+    // public function edit_user_permissions(Request $request,$user_id){
+    //     return $this->get_user_permission_list($user_id);
+
+    // }
+
+    public function update(Request $request,$user_id){
+
+        AdminUrlUserPermission::where('user_id',$user_id)->delete();
+        $this->add_update($request,$user_id);
+        return Redirect('admin/employee');
+
+    }
+
+    public function add_update($request,$user_id){
+        foreach($request->permissions as $admin_url_id => $detail_ids){
+            $admin_url = Admin_url::find($admin_url_id);
+            $admin_url_user = new AdminUrlUserPermission();
+            $admin_url_user->admin_url_id = $admin_url->id;
+            $admin_url_user->heading = $admin_url->heading;
+            // $admin_url_user->name = $admin_url->heading;
+            $admin_url_user->section = $admin_url->section;
+            $admin_url_user->role_id = $request->role_id;
+            $admin_url_user->user_id = $user_id;
+
+            $admin_url_details_json_decode = json_decode($admin_url->details);
+            $details =[];
+
+            foreach($detail_ids as $d_id){
+                $key = array_search($d_id, array_column($admin_url_details_json_decode, 'id'));
+                if($key!==false){
+                    $details[] = $admin_url_details_json_decode[$key];
+                }
+            }
+            $admin_url_user->details = json_encode($details);
+            $admin_url_user->save();
+        }
+    }
+
 
     public function role_response(Request $request){
 
         $res = new \stdClass();
         $permissions = Permission::with('url','role')->orderBy('created_at', 'ASC')->where('role_id',$request->role_id)->get();
 
-         $res->permissions =  $permissions; 
-         $res->status = true; 
-         
+         $res->permissions =  $permissions;
+         $res->status = true;
+
         return json_encode($res);
 
     }
 
-    public function permisiion_save(Request $request){
-
-//  dd($request->all());
- 
-   $user_id = $request->user_id;
-   
-   $user_permissions = User_Permission::with('user')->where('user_id',$user_id)->get();
-// dd( $user_permissions);
-   foreach($user_permissions as $up){
-       $up->role_id = $request->role_id;
-        if(isset($request->view)){
-            $up->can_view = in_array($up->url_id,$request->view) ? $up->url->view_name : 0;
-        }
-        else{
-            $up->can_view = 0 ;
-        }
-        if(isset($request->create)){
-            $up->can_create = in_array($up->url_id,$request->create) ? $up->url->create_name : 0;
-           if($up->can_create){
-            $up->can_view = $up->url->view_name;
-           }
-        }
-        else{
-            $up->can_create = 0 ;
-        }
-        if(isset($request->save)){
-            $up->can_save = in_array($up->url_id,$request->save) ? $up->url->save_name : 0;
-            if($up->can_save){
-                $up->can_view = $up->url->view_name;
-               }
-        }
-        else{
-            $up->can_save = 0;
-            
-        }
-        if(isset($request->edit)){
-            $up->can_edit = in_array($up->url_id,$request->edit) ? $up->url->edit_name : 0;
-            if($up->can_edit){
-                $up->can_view = $up->url->view_name;
-               }
-        }
-        else{
-            $up->can_edit = 0 ;
-            
-        }
-        if(isset($request->update)){
-            $up->can_update = in_array($up->url_id,$request->update) ? $up->url->update_name : 0;
-            if($up->can_update){
-                $up->can_view = $up->url->view_name;
-               }
-        }
-        else{
-            $up->can_update = 0 ;
-            
-        }
-        if(isset($request->delete)){
-            $up->can_delete = in_array($up->url_id,$request->delete) ? $up->url->delete_name : 0;
-            if($up->can_delete){
-                $up->can_view = $up->url->view_name;
-               }
-        }
-        else{
-            $up->can_delete = 0 ;            
-        }
-        // dd($up->url_id,$request->view);
-        // dd($up);
-        $up->save();
-   }
-   return redirect('admin/dashboard');
-//    dd('saved');
-
- }
 
 }
-    
-   
+
+
 
 
 

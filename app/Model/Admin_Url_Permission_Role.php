@@ -13,4 +13,8 @@ class Admin_Url_Permission_Role extends Model
     public function role(){
         return $this->hasOne('App\Model\Role','id','role_id');
     }
+
+    public function admin_url(){
+        return $this->hasOne('App\Model\Admin_url','id','admin_url_id');
+    }
 }

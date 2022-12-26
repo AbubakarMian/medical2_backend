@@ -10,9 +10,5 @@ class Admin_url extends Model
     use SoftDeletes;
     protected $table='admin_url';
 
-    public function permission()
-    {
-        return $this->hasOne('App\Model\Permission', 'url_id', 'id');
-    }
-   
+
  }

@@ -8,7 +8,7 @@
         'placeholder'=>' Name','required',
         'maxlength'=>"100"]) !!}
     </div>
-</div> 
+</div>
 <div class="form-group">
     {!! Form::label('email',' Email') !!}
     <div>
@@ -18,26 +18,12 @@
         'placeholder'=>' Email','required',
         'maxlength'=>"100"]) !!}
     </div>
-</div> 
-
-
-
-
-
-<!-- <div>
-<button class="employee_save" onclick="employee_permission()">SAVE </button>
-</div> -->
-
+</div>
 
 <span id="err" class="error-product"></span>
 
-
 <div class="form-group col-md-12">
 </div>
-
-
-
-
 
 <div class="col-md-5 pull-left">
     <div class="form-group text-center">

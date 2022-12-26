@@ -78,17 +78,18 @@
     }
 
     .slider:before {
-    position: absolute;
-    content: "";
-    height: 12px;
-    width: 12px;
-    left: -2px;
-    bottom: 0px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-    margin: 0px 1px;
+        position: absolute;
+        content: "";
+        height: 12px;
+        width: 12px;
+        left: -2px;
+        bottom: 0px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        margin: 0px 1px;
     }
+
     .miud {
         margin-bottom: -11px !IMPORTANT;
     }
@@ -96,11 +97,13 @@
     input:checked+.slider {
         background-color: #2196F3;
     }
+
     input:checked+.slider:before {
         -webkit-transform: translateX(26px);
         -ms-transform: translateX(26px);
         transform: translateX(26px);
     }
+
     /* Rounded sliders */
     .slider.round {
         border-radius: 34px;
@@ -110,44 +113,52 @@
         border-radius: 50%;
     }
 </style>
+@extends('layouts.default_edit')
+
+@section('completeform')
+<form>
+
 <div class="chechkarea">
     <div class="row">
         <div class="col-sm-12">
             <div class="chechkareadata">
                 <label for="exampleInputtext1" class="rolabel">Enter Your Role :</label>
-                <input type="text" name="role" value="{!!$role->name!!}" class="form-control" id="exampleInputtext1" aria-describedby="textHelp"
-                    placeholder="Enter Role" required><br>
+                <input type="text" name="role" value="{!! $role->name !!}" class="form-control"
+                    id="exampleInputtext1" aria-describedby="textHelp" placeholder="Enter Role" required><br>
                 <div class="container tablu">
                     <div class="row">
                         <div class="col-sm-12">
-                            @foreach ($permissions as $p_key=> $p)
+                            @foreach ($permissions as $p_key => $p)
                                 <td>{!! ucwords($p->heading) !!} </td>
-                                <?php $details = json_decode($p->details);?>
-                                <table width="400px" style="table-layout:fixed;" id="index-table" class="table table-bordered table-striped mg-t editable-datatable">
-                                <thead>
-                                    <tr>
-                                        @foreach ( $details as $key=> $d)
-                                            <?php
-                                            if(!$d->need_permission){
-                                                continue;
-                                            }
-                                            $is_checked = '';
+                                <?php $details = json_decode($p->details); ?>
+                                <table width="400px" style="table-layout:fixed;" id="index-table"
+                                    class="table table-bordered table-striped mg-t editable-datatable">
+                                    <thead>
+                                        <tr>
+                                            @foreach ($details as $key => $d)
+                                                <?php
+                                                if (!$d->need_permission) {
+                                                    continue;
+                                                }
+                                                $is_checked = '';
 
-                                            if(isset($d->permission_granted) ){
-                                                $is_checked = $d->permission_granted?'checked':'';
-                                            }
+                                                if (isset($d->permission_granted)) {
+                                                    $is_checked = $d->permission_granted ? 'checked' : '';
+                                                }
 
-                                            ?>
-                                            <th >{!!ucwords($d->heading) !!}
-                                                <input type="checkbox" {!!$is_checked!!} name="permissions[{!!$p->id!!}][]" value="{!!$d->id!!}"></th>
-                                        @endforeach
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                                ?>
+                                                <th>{!! ucwords($d->heading) !!}
+                                                    <input type="checkbox" {!! $is_checked !!}
+                                                        name="permissions[{!! $p->id !!}][]"
+                                                        value="{!! $d->id !!}">
+                                                </th>
+                                            @endforeach
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                </tbody>
+                                    </tbody>
                                 </table>
-
                             @endforeach
                         </div>
                     </div>
@@ -158,8 +169,6 @@
 </div>
 
 
-</div>
-</div>
 
 <div class="col-sm-6">
     <div class="form-group">
@@ -173,3 +182,17 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+</form>
+
+<div class="col-md-5 pull-left">
+    <div class="form-group text-center">
+        <div>
+            {!! Form::open(['method' => 'get', 'route' => ['employee.index']]) !!}
+            {!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
+@endsection
