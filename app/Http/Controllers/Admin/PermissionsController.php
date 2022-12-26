@@ -36,7 +36,12 @@ class PermissionsController extends Controller
     }
 
     public function get_user_permission_list($user_id){
-        $user = User::find($user_id);
+        // if($user_id){
+            $user = User::find($user_id);
+        // }
+        // else{
+        //     $user = new User();
+        // }
         $all_permissions = Admin_url::orderby('section', 'asc')->get();
         $user_permissions = AdminUrlUserPermission::where('user_id',$user_id)->get();
         $role_template = Role::pluck('name','id');
@@ -86,7 +91,7 @@ class PermissionsController extends Controller
     public function role_response(Request $request){
 
         $res = new \stdClass();
-        $permissions = Permission::with('url','role')->orderBy('created_at', 'ASC')->where('role_id',$request->role_id)->get();
+        $permissions = Role::with('admin_url_permissions')->where('role_id',$request->role_id)->get();
 
          $res->permissions =  $permissions;
          $res->status = true;

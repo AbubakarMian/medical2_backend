@@ -112,15 +112,13 @@
 </style>
 @extends('layouts.default_edit')
 @section('heading')
+
     Permissions
 @endsection
 @section('completeform')
 
-    {{-- @if($control == 'edit') --}}
 {!! Form::open(['id'=>'my_form', 'method' => 'POST', 'route' =>['permissions.update', $user->id],'files'=>true]) !!}
-    {{-- @else
-        {!! Form::open(['id'=>'my_form','method' => 'POST', 'route' => ['role.save' ], 'files'=>true]) !!} --}}
-    {{-- @endif --}}
+
     <div class="chechkarea">
         <div class="row">
             <div class="col-sm-12">
