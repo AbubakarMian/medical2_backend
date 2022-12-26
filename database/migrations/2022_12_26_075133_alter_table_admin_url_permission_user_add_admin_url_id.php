@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableAdminUrlPermissionRoleAddAdminUrlId extends Migration
+class AlterTableAdminUrlPermissionUserAddAdminUrlId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AlterTableAdminUrlPermissionRoleAddAdminUrlId extends Migration
      */
     public function up()
     {
-        Schema::table('admin_url_permission_role', function (Blueprint $table) {
+        Schema::table('admin_url_permission_user', function (Blueprint $table) {
             $table->bigInteger('admin_url_id')->nullable()->default(0);
         });
     }

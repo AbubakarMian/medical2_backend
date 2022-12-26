@@ -11,6 +11,41 @@ use DB;
 
 trait Common
 {
+
+
+
+   public function get_permission_details($all_permissions,$role_permissions){
+    $all_permissions = $all_permissions->transform(function($all_p)use($role_permissions){
+        $per = $role_permissions->where('admin_url_id',$all_p->id)->first();
+        if($per){
+            $all_p->permission_granted = true;
+            $per_details = collect(json_decode($per->details));
+            $all_p_details = collect( json_decode($all_p->details));
+
+            $all_p_details = $all_p_details->transform(function($all_p_detail)use($per){
+                $per_details = collect(json_decode($per->details));
+                $p_detail = $per_details->where('id',$all_p_detail->id)->first();
+                if($p_detail){
+                    $all_p_detail->permission_granted = true;
+                }
+                else{
+                    $all_p_detail->permission_granted = false;
+                }
+                return $all_p_detail;
+            });
+            $all_p_details = json_encode($all_p_details->toArray());
+            $all_p->details = $all_p_details;
+            return $all_p;
+        }
+        else{
+            $all_p->permission_granted = false;
+        }
+        return $all_p;
+
+    });
+    return $all_permissions;
+}
+
     public function prepare_excel($data , $field_not_required = []){
         $users = [];
         foreach ($data as $rec_key => $value){
@@ -35,7 +70,7 @@ trait Common
         $total_sec = $total_mins * 60;
         // $total_mili_sec = $total_sec * 1000;
         return $total_sec;
-        
+
     }
 
     public function time_to_timestamp_group($time){
@@ -44,9 +79,9 @@ trait Common
         // dd( $time_arr);
         $time_hr = $time_arr[0];
         $time_min = $time_arr[1];
-         // 
+         //
          $gmt_sec = 300*60;
-         // 
+         //
 
         $total_mins = ($time_hr * 60) + $time_min;
         // dd(  $total_mins);
@@ -54,7 +89,7 @@ trait Common
         $total_sec_gmt_minus = $total_sec - $gmt_sec;
         // $total_mili_sec = $total_sec * 1000;
         return $total_sec_gmt_minus;
-        
+
     }
 
     public function move_img_get_path($image,$root,$type,$image_name='')
