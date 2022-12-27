@@ -92,11 +92,7 @@ width="400px" style="table-layout:fixed;"
 <span class="pagination pagination-md pull-right">{!! $category->render() !!}</span>
 <div class="col-md-3 pull-left">
 	<div class="form-group text-center">
-		<div>
-			{!! Form::open(['method' => 'get', 'route' => ['dashboard']]) !!}
-			{!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
-			{!! Form::close() !!}
-		</div>
+
 	</div>
 </div>
 @endsection
