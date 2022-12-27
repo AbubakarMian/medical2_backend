@@ -128,13 +128,6 @@
         width: 9% !important;
     }
 
-    .permiback {
-        width: 80px !important;
-        height: 25px !important;
-        padding: 6px 5px !important;
-        border-radius: 0px !important;
-        margin-bottom: 14px !important;
-    }
 
     .dashtab {
         background: #1582dc;
@@ -167,10 +160,8 @@
     }
 </style>
 
-@extends('layouts.default_edit')
+@extends('layouts.default_edit', ['back_btn_link' => route('employee.index')])
 @section('heading')
-    <a href="{!! route('employee.index') !!}" class="btn btn-default btn-block btn-lg btn-parsley permiback"><i
-            class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
     Permissions
 @endsection
 
@@ -182,8 +173,8 @@
         'files' => true,
     ]) !!}
     <?php
-        $permission_modules = $permissions->where('section','module');
-        $permission_reports = $permissions->where('section','report');
+    $permission_modules = $permissions->where('section', 'module');
+    $permission_reports = $permissions->where('section', 'report');
     ?>
 
 
@@ -330,35 +321,35 @@
             console.log('e', e);
             var role_id = $(e).val();
             console.log('e val', role_id);
-            var myurl = '{!!asset("admin/permissions/role_response")!!}?role_id='+role_id;
+            var myurl = '{!! asset('admin/permissions/role_response') !!}?role_id=' + role_id;
             $.ajax({
-                url:myurl,
-                method:'get',
+                url: myurl,
+                method: 'get',
                 dataType: "json",
-                success:function(res){
-                    console.log(' res ', res );
+                success: function(res) {
+                    console.log(' res ', res);
 
                     // var all_res = JSON.parse(res.permissions[0].details);
                     var all_permissions = res.permissions;
-                    console.log('role resaaa ',all_permissions);
-                    console.log('role 00 ',all_permissions.length );
+                    console.log('role resaaa ', all_permissions);
+                    console.log('role 00 ', all_permissions.length);
                     $('.all_modules_checkbox').prop('checked', false);
 
-                    for(var i =0; i<all_permissions.length  ; i++){
+                    for (var i = 0; i < all_permissions.length; i++) {
                         var admin_url_id = all_permissions[i].admin_url_id;
-                        console.log('all_permissions[i]',all_permissions[i]);
+                        console.log('all_permissions[i]', all_permissions[i]);
                         var details = JSON.parse(res.permissions[i].details);
 
                         for (let j = 0; j < details.length; j++) {
                             var detail_id = details[j].id;
-                            var find_chekbox = '.panel_'+admin_url_id+' .checkbox_panel_'+detail_id;
-                            console.log('find_chekbox',find_chekbox);
+                            var find_chekbox = '.panel_' + admin_url_id + ' .checkbox_panel_' + detail_id;
+                            console.log('find_chekbox', find_chekbox);
                             $(find_chekbox).prop('checked', true);
                         }
                     }
                 },
-                error:function(err){
-                    console.log('error',err);
+                error: function(err) {
+                    console.log('error', err);
                 }
             })
         }

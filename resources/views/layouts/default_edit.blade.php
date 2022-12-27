@@ -1,8 +1,11 @@
   <?php
-  $admin_common = session()->get('admin_common');
+    $admin_common = session()->get('admin_common');
+    if(!isset($back_btn_link)){
+        $back_btn_link = url()->previous();
+    }
   ?>
 
-  @extends('layouts.default_header')
+  @extends('layouts.default_header', ['back_btn_link' => $back_btn_link])
 
   @section('content')
   @section('Admin')
@@ -22,6 +25,8 @@
             <div class="wrapper">
               <section class="panel">
                 <header class="panel-heading no-b">
+                    <a href="{!! $back_btn_link !!}" class="btn btn-default btn-block btn-lg btn-parsley permiback"><i
+                        class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
                   <h2>@yield('heading')</h2>
                 </header>
                 <div class="panel-body">

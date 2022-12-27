@@ -15,6 +15,8 @@ $admin_common = session()->get('admin_common');
 @stop
  @section('content')
  	           <ol class="breadcrumb">
+                <a href="{!! route('dashboard') !!}" class="btn btn-default btn-block btn-lg btn-parsley permiback"><i
+                    class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
                 <li>
                   <a href="{{asset('index.php/admin/dashboard')}}"><i class="ti-home mr5"></i>Dashboard</a>
                 </li>
