@@ -109,8 +109,8 @@ class AdminController extends Controller
             'title' => 'Courses',
 
         ];
-      
-      
+
+
         $modules[]= [
 
             'url'=>'admin/group',
@@ -153,7 +153,7 @@ class AdminController extends Controller
 
 
         ];
-       
+
         $modules[]= [
 
             'url'=>'admin/settings',
@@ -173,24 +173,24 @@ class AdminController extends Controller
             'title'=>'Employee'
 
         ];
-     
-        
-      
-      
 
-       
+
+
+
+
+
         $reports[] = [
 
             'url' => 'admin/course_register',
             'title' => 'Course Register ',
 
         ];
-        $reports[] = [
+        // $reports[] = [
 
-            'url' => 'admin/reports/permissions',
-            'title' => 'Reports Permission ',
+        //     'url' => 'admin/reports/permissions',
+        //     'title' => 'Reports Permission ',
 
-        ];
+        // ];
         $reports[] = [
             'url' => 'admin/reports/payments',
             'title' => 'Payments',
