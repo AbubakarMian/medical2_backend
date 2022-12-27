@@ -23,8 +23,8 @@ class EmployeeController extends Controller
 
     public function index()
     {
-        $employee = User::wherenotIn('role_id',[1,2])
-                    ->orderBy('created_at', 'DESC')->paginate(10); // not super admin and student
+        $employee = User::where('role_id',3) // role id for all employees is 3
+                    ->orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.employee.index', compact('employee'));
     }
 
@@ -40,9 +40,9 @@ class EmployeeController extends Controller
             'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')]
         ]);
 
-        // if ($validator->fails()) {
-        //     return back()->with('error', $validator->errors());
-        // }
+        if ($validator->fails()) {
+            return back()->with('error', $validator->errors());
+        }
         $user = new User();
         $user = $this->add_or_update($request, $user);
         return redirect('admin/permissions/show?user_id='.$user->id);
@@ -63,18 +63,21 @@ class EmployeeController extends Controller
         $validator =  Validator::make(['email' => $request->email], [
             'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
         ]);
-        // if ($validator->fails()) {
-        //     return back()->with('error', $validator->errors());
-        // }
+        if ($validator->fails()) {
+            return back()->with('error', $validator->errors());
+        }
         $user = User::find($id);
         $this->add_or_update($request, $user);
-        return Redirect('admin/employee');
+        return redirect('admin/permissions/show?user_id='.$user->id);
     }
 
     public function add_or_update($request, $user){
         $user->name =  $request->name;
         $user->last_name =  $request->name;
-        $user->email =  $request->email.uniqid();
+        // permission for employee is 3 role permission id will be
+        // signed in admin_url_permission_user its easy to identify more roles like teacher
+        $user->role_id =  3;
+        $user->email =  $request->email;//.uniqid();
         $user->password =  Hash::make($request->password);
         $user->save();
         return $user;

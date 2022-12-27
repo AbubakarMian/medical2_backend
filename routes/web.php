@@ -52,6 +52,8 @@ Route::get('testmail', function(){
 Route::get('/', 'User\UserController@index')->name('user_index');
 Route::get('login_modal', 'User\UserController@login_modal')->name('user_login_modal');
 Route::get('courses_registration', 'User\UserController@courses_registration');
+Route::get('view_frame/{id}', 'About_UsController@view_frame')->name('aboutus.view_frame');
+
 
 //  Route::group(['middleware' => 'user.auth'], function () {
 
@@ -235,7 +237,6 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
       Route::get('edit/{id}', 'About_UsController@edit')->name('aboutus.edit');
       Route::post('update/{id}', 'About_UsController@update')->name('aboutus.update');
       Route::post('delete/{id}', 'About_UsController@destroy_undestroy')->name('aboutus.delete');
-      Route::get('view_frame/{id}', 'About_UsController@view_frame')->name('aboutus.view_frame');
   });
 
     //  =================================  Books ==========================

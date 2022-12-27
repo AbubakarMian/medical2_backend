@@ -304,14 +304,6 @@
         </div>
     </div>
     {!! Form::close() !!}
-
-    {{-- <div class="col-sm-6 pull-left">
-        <div class="form-group text-center">
-            <div>
-                <a href="{!! route('employee.index') !!}" class="btn btn-default btn-block btn-lg btn-parsley">Back</a>
-            </div>
-        </div>
-    </div> --}}
 @endsection
 
 
