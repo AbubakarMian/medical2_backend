@@ -7,7 +7,7 @@ Employee
 {!! Form::open(['method' => 'get', 'route' => ['employee.create'], 'files'=>true]) !!}
 <span>{!! Form::submit('Add', ['class' => 'btn btn-success pull-right']) !!}</span>
 {!! Form::close() !!}
-@stop 
+@stop
 
 @section('table-properties')
 width="400px" style="table-layout:fixed;"
@@ -28,11 +28,7 @@ width="400px" style="table-layout:fixed;"
 <span class="pagination pagination-md pull-right">{!! $employee->render() !!}</span>
 <div class="col-md-3 pull-left">
 	<div class="form-group text-center">
-		<div>
-			{!! Form::open(['method' => 'get', 'route' => ['dashboard']]) !!}
-			{!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
-			{!! Form::close() !!}
-		</div>
+
 	</div>
 </div>
 @endsection

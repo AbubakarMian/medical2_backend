@@ -9,6 +9,7 @@ width="400px" style="table-layout:fixed;"
 @endsection
 
 
+
 <style>
 	td {
 		white-space: nowrap;
@@ -27,7 +28,6 @@ width="400px" style="table-layout:fixed;"
 </style>
 @section('table')
 
-
 <table class="fhgyt" id="userTableAppend" style="opacity: 0">
 <thead>
 	<tr>
@@ -38,7 +38,7 @@ width="400px" style="table-layout:fixed;"
         <th>Phone Number</th>
         <th>Address</th>
         <th>Image</th>
-        
+
 
 
 
@@ -64,6 +64,7 @@ $(document).ready(function(){
          type: 'get',
          dataType: 'json',
          success: function(response){
+            console.log('response');
             $("#userTableAppend").css("opacity",1);
            var len = response['data'].length;
 
@@ -93,15 +94,17 @@ $(document).ready(function(){
 
                 "</tr>";
 
-
                 $("#userTableAppend tbody").append(tr_str);
                 }
+                $(document).ready(function() {
+console.log('sadasdasdad');
                 $('#userTableAppend').DataTable({
                     dom: '<"top_datatable"B>lftipr',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ],
                 });
+            });
         }
        });
     }
@@ -114,3 +117,4 @@ function set_msg_modal(msg){
 
 </script>
 @endsection
+

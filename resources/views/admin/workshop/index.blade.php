@@ -33,11 +33,11 @@ width="400px" style="table-layout:fixed;"
         <th> Name</th>
         <th>Teacher  </th>
         <th> Course</th>
-     
+
 		<th>Edit  </th>
 		<th>Delete  </th>
 
-	 
+
 
 
 	</tr>
@@ -51,15 +51,15 @@ width="400px" style="table-layout:fixed;"
 
 
 
-		<td> 
+		<td>
 		<input type="text" class="f_name_{{$c->id}}" disabled value="{{$c->name}}">
 			</td>
 
-		
+
 			<td>
 			<div class="my_op_{{$c->id}}">
 			<!-- <select class="form-control my_op_{{$c->id}}">
-		
+
 			<option value="Red">Red</option>
 			<option value="Green">Green</option>
 			<option value="White">White</option>
@@ -67,13 +67,13 @@ width="400px" style="table-layout:fixed;"
 
 			</select> -->
            </div>
-		 
+
 		<input type="text" class="teacher_name_{{$c->id}}" disabled value="{{$c->teacher->name}}">
 			</td>
-		
-		
-		
-		<td> 
+
+
+
+		<td>
 		<input type="text" class="course_name_{{$c->id}}" disabled value="{{$c->courses->full_name}}">
 			</td>
 
@@ -91,12 +91,12 @@ width="400px" style="table-layout:fixed;"
 					{!! $c->deleted_at?'Activate':'Delete' !!}</span></a>
 			{!! Form::close() !!}
 		</td>
-       
+
 
 
 	</tr>
 	@endforeach
-	
+
 
 
 </tbody>
@@ -104,11 +104,7 @@ width="400px" style="table-layout:fixed;"
 <span class="pagination pagination-md pull-right">{!! $workshop->render() !!}</span>
 <div class="col-md-3 pull-left">
 	<div class="form-group text-center">
-		<div>
-			{!! Form::open(['method' => 'get', 'route' => ['dashboard']]) !!}
-			{!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
-			{!! Form::close() !!}
-		</div>
+
 	</div>
 </div>
 @endsection
@@ -116,7 +112,7 @@ width="400px" style="table-layout:fixed;"
 
 @section('app_jquery')
 <script>
-  
+
 function edit_workshop(workshop_id){
         console.log('workshop_idworkshop_id',workshop_id);
 
@@ -132,7 +128,7 @@ function edit_workshop(workshop_id){
 
 	var teacher = ;
 
-	
+
 	var mySelect = $('.my_op_'+workshop_id).append(
 
 	$.each(teacher, function(val, text) {
@@ -168,18 +164,18 @@ function save_workshop(workshop_id){
 					console.log('responseresponse',response);
 					var edit_btn_chnage_values = $('.btn_chnage_'+workshop_id).css("display", "block");
 					var save_btn_chnage_values = $('.save_chnage_'+workshop_id).css("display", "none");
-							
+
 				// 	setTimeout(() => {
 				// 		var btn_chnage_after = btn_chnage_value.html("Edit Workshop");
-				// }, 3000); //1 SECONDS 
+				// }, 3000); //1 SECONDS
 
-      
+
                 }
             });
 
-	
 
-    
+
+
 
      }
 

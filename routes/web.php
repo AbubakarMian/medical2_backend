@@ -344,15 +344,6 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
 
     Route::post('workshop_value_updte', 'WorkshopController@update')->name('workshop.update');
 
-    // ================================ Reports admin student_plan=================================
-    Route::group(['prefix'=>'student_plan'],function(){
-       Route::get('/', 'Reports\Student_planController@index')->name('student_plan.index');
-       Route::get('create', 'Reports\Student_planController@create')->name('student_plan.create'); //add
-       Route::post('save', 'Reports\Student_planController@save')->name('student_plan.save');
-       Route::get('edit', 'Reports\Student_planController@edit')->name('student_plan.edit');
-       Route::post('update', 'Reports\Student_planController@update')->name('student_plan.update');
-       Route::post('delete/{id}', 'Reports\Student_planController@destroy_undestroy')->name('student_plan.delete');
-  });
 
     //  =================================  Reports PAYMENT =========================
 
@@ -373,3 +364,13 @@ Route::get('permissions', 'Reports\PermissionsController@index')->name('permissi
 });
 
 //   });
+
+ // ================================ Reports admin student_plan=================================
+    Route::group(['prefix'=>'admin'],function(){
+        Route::get('/student_plan', 'Reports\Student_planController@index')->name('student_plan.index');
+       Route::get('student_plan/create', 'Reports\Student_planController@create')->name('student_plan.create'); //add
+       Route::post('student_plan/save', 'Reports\Student_planController@save')->name('student_plan.save');
+       Route::get('student_plan/edit', 'Reports\Student_planController@edit')->name('student_plan.edit');
+       Route::post('student_plan/update', 'Reports\Student_planController@update')->name('student_plan.update');
+       Route::post('student_plan/delete/{id}', 'Reports\Student_planController@destroy_undestroy')->name('student_plan.delete');
+  });
