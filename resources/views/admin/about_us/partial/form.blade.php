@@ -1,4 +1,3 @@
-
 {{-- <div class="form-group">
     {!! Form::label('name',' Name') !!}
     <div>
@@ -12,12 +11,12 @@
 {!! Form::label('description', 'Description') !!}
     <div >
 
-    <div>
+    <div class="bigboxarea">
         {!! Form::textarea('description', null,
-        ['class' => ' form-control' ,
+        ['class' => ' form-control bigbox' ,
         'id'=>'ckeditor1222', 'data-parsley-required' => 'true',
         'data-parsley-trigger' => 'change', 'placeholder' => 'Enter title', 'required',
-        "rows"=>"4" "cols"=>"50"
+        "cols"=>"50" , "rows"=>"4"
         ]) !!}
     </div>
 
@@ -71,6 +70,11 @@
 
 
     })
+
+
+    setTimeout(() => {
+        $('#cke_1_contents').css('height','500px');
+    }, 500);
 
 </script>
 

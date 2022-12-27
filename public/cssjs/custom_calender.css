@@ -1,0 +1,87 @@
+
+    .camodal {
+        margin: -35px -15px;
+        background: #1582dc;
+        border-color: #1582dc;
+        color: white;
+        width: 10%;
+        height: 43px;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 14px 7px;
+    }
+    .camohead h5 {
+    text-align: center;
+    font-size: 19px;
+    font-weight: 600;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #767676;
+}
+.camo {
+    width: 90%;
+    height: 100%;
+}
+.camboclick {
+    display: flex;
+    width: 22%;
+}
+.casf {
+    width: 150px;
+    border-radius: 0px;
+    margin: 1px 1px;
+    background: transparent;
+    color: gray;
+    border-color: black;
+}
+.dateboxarea {
+    display: flex;
+}
+.topdays {
+    display: flex;
+    margin-bottom: -10px;
+}
+.topdays h5 {
+    width: 100%;
+    background: #f9f9f9;
+    border: 1px solid gray;
+    color: gray;
+    padding: 11px;
+    font-size: 12px;
+}
+.dateboxarea .datebox {
+    width: 100%;
+    border: 1px solid gray;
+    background: transparent;
+    min-height: 115px;
+    padding: 13px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.dateboxarea .datebo {
+    width: 100%;
+    border: 1px solid gray;
+    background: transparent;
+    min-height: 5px;
+    padding: 38px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+.aroowm {
+    cursor: pointer;
+}
+.tupdata i {
+    float: right;
+    font-size: 15px;
+    margin: 6px;
+}
+h2.headingcale {
+    font-size: 21px;
+    margin-bottom: -19px;
+    font-weight: 600;
+    color: gray;
+}
+.ascsa {
+    margin-bottom: 11px !important;
+}
