@@ -1,5 +1,3 @@
-
-
 <style type="text/css">
     body {
         margin: 0;
@@ -10,326 +8,251 @@
     html {
         height: 100%;
     }
+
     .demo-multiple-select {
-    width: 603%;
-   
+        width: 603%;
+
     }
-   
-/* .demo-multiple-select {
-  
-    background-color: lightgrey;
-} */
-.mbsc-form-group-title {
-    font-size: 25px;
-    color: cadetblue;
-    /* font-weight: 700; */
-    font-family: cursive;
-    margin-bottom: 24px;
-}
-.mbsc-ios.mbsc-datepicker .mbsc-calendar, .mbsc-ios.mbsc-datepicker .mbsc-calendar-cell, .mbsc-ios.mbsc-datepicker .mbsc-calendar-slide {
-    /* background: orange; */
-    background: #;
-}
 
+    .mbsc-form-group-title {
+        font-size: 25px;
+        color: cadetblue;
+        font-family: cursive;
+        margin-bottom: 24px;
+    }
 
-    </style>
-    <!--  -->
+    .mbsc-ios.mbsc-datepicker .mbsc-calendar,
+    .mbsc-ios.mbsc-datepicker .mbsc-calendar-cell,
+    .mbsc-ios.mbsc-datepicker .mbsc-calendar-slide {
+        background: #;
+    }
+
+    /* calender css */
 
 
 
-<!-- modal -->
 
 
+/* calender css */
+</style>
 
-  <!-- Trigger the modal with a button -->
-  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content" style="width: 100%;
+        <div class="modal-content" style="width: 100%;
     height: 83%;">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Group Map</h4>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Group Map</h4>
+            </div>
+            <div id="map">
+                @include('admin.workshop.map')
+            </div>
         </div>
-        <!-- <div class="modal-body" id="map">
-          <p>Some text in the modal.</p>
-        </div> -->
-        <div id="map">
-        @include('admin.workshop.map')
-
-        
-        </div>
-       
-      </div>
-      
     </div>
-  </div>
-
-  
-  
-
-
-
-
-
-
-
-
-
-<!--  -->
-
-
-<!--  -->
+</div>
+ٖ
 <div class="form-group">
-    {!! Form::label('name','name') !!}
+    {!! Form::label('name', 'name') !!}
     <div>
-        {!! Form::text('name', null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>' Name','required',
-        'maxlength'=>"100"]) !!}
+        {!! Form::text('name', null, [
+            'class' => 'form-control',
+            'data-parsley-required' => 'true',
+            'data-parsley-trigger' => 'change',
+            'placeholder' => ' Name',
+            'required',
+            'maxlength' => '100',
+        ]) !!}
     </div>
 </div>
 
 <div class="form-group">
-    {!! Form::label('course','course') !!}
+    {!! Form::label('course', 'course') !!}
     <div>
-        {!! Form::select('courses_id',  $course_id , null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Course','required',
-        'maxlength'=>"100"]) !!}
+        {!! Form::select('courses_id', $course_id, null, [
+            'class' => 'form-control',
+            'data-parsley-required' => 'true',
+            'data-parsley-trigger' => 'change',
+            'placeholder' => 'Course',
+            'required',
+            'maxlength' => '100',
+        ]) !!}
     </div>
 </div>
 
 <div class="form-group">
-    {!! Form::label('Teacher','teacher') !!}
+    {!! Form::label('Teacher', 'teacher') !!}
     <div>
-        {!! Form::select('teacher_id',  $teacher , null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Teacher Name','required',
-        'maxlength'=>"100"]) !!}
+        {!! Form::select('teacher_id', $teacher, null, [
+            'class' => 'form-control',
+            'data-parsley-required' => 'true',
+            'data-parsley-trigger' => 'change',
+            'placeholder' => 'Enter Teacher Name',
+            'required',
+            'maxlength' => '100',
+        ]) !!}
     </div>
 </div>
+
 <?php
 
-
-
 ?>
-<div class="form-group">
-    {!! Form::label('start_time','Start Time') !!}
-    <div>
-        {!! Form::time('start_time',null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'required',
 
-        'maxlength'=>"100"]) !!}
+<div class="form-group">
+    {!! Form::label('start_time', 'Start Time') !!}
+    <div>
+        {!! Form::time('start_time', null, [
+            'class' => 'form-control',
+            'data-parsley-required' => 'true',
+            'data-parsley-trigger' => 'change',
+            'required',
+
+            'maxlength' => '100',
+        ]) !!}
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('end_time','End Time') !!}
+    {!! Form::label('end_time', 'End Time') !!}
     <div>
-        {!! Form::time('end_time', null , ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'required',
-      'maxlength'=>"100"]) !!}
+        {!! Form::time('end_time', null, [
+            'class' => 'form-control',
+            'data-parsley-required' => 'true',
+            'data-parsley-trigger' => 'change',
+            'required',
+            'maxlength' => '100',
+        ]) !!}
     </div>
 </div>
 
 <!--  -->
 
 <div class="form-group">
-    {!! Form::label('is_online ','Workshop Online Class') !!}
-   
+    {!! Form::label('is_online ', 'Workshop Online Class') !!}
     <div>
-
-    <input type="checkbox" id="myCheck" onclick="myFunction()" name="is_online">
-
-<!--  -->
-
-
-<!-- <div class="form-group">
-    {!! Form::label('is_online ','Group Online Class') !!}
-   
-    <div>
-        {!! Form::checkbox('is_online',null  , ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'onclick="myFunction()"'=>'true',
-        'data-parsley-trigger'=>'change',
-        'maxlength'=>"100"]) !!}
-    </div>
-</div> -->
-
-
-
-<!--  -->
+        <input type="checkbox" id="myCheck" onclick="myFunction()" name="is_online">
+        <!--  -->
+        <!-- <div class="form-group">
+        {!! Form::label('is_online ', 'Group Online Class') !!}
+            <div>
+                {!! Form::checkbox('is_online', null, [
+                    'class' => 'form-control',
+                    'data-parsley-required' => 'true',
+                    'onclick="myFunction()"' => 'true',
+                    'data-parsley-trigger' => 'change',
+                    'maxlength' => '100',
+                ]) !!}
+            </div>
+        </div> -->
+        <!--  -->
     </div>
     </br>
     <!--  -->
     <!-- <div id="venue_map" style="display:none" > -->
-    <div id="venue_map" >
-    <!-- <label >Enter Venue:</label> 
-    <input type="text" required  name="venue" class = 'form-control'> -->
+    <div id="venue_map">
+        <!-- <label >Enter Venue:</label>
+        <input type="text" required  name="venue" class = 'form-control'> -->
         </br>
 
-    <label>Open Map For Workshop Venue</label> 
-    </br>  
-    </br> 
-    <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">
-
-    <input   hidden name="group_lat"  id="group_lats" value=""> 
-<input  hidden  name="group_long"  id="group_longs" value="">  
-  </div>
-  <!--  -->
-
-
-  <!-- <  group mappppppppppppppppppp-->    
+        <label>Open Map For Workshop Venue</label>
+        </br>
+        </br>
+        <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">
+        <input hidden name="group_lat" id="group_lats" value="">
+        <input hidden name="group_long" id="group_longs" value="">
+    </div>
+    <!--  -->
+    <!-- <  group mappppppppppppppppppp-->
 </div>
 
+<div class="result"></div>
+
+</br>
+
+<!--  -->
+
+<div class="demo-multiple-select">
+    <div style="height:10%">
+        <div class="mbsc-grid">
+            <div class="mbsc-row">
+                <div class="mbsc-col-sm-12 mbsc-col-md-4">
+                    <div class="mbsc-form-group">
+
+                    {{-- costum Calendar start --}}
+
+                        <button type="button" class="btn btn-primary camodal" data-toggle="modal"
+                            data-target="#exampleModalCenter">
+                            Launch Calendar
+                        </button>
+                        @include('admin.workshop.partial.calender')
 
 
+                    {{-- costum Calendar finish --}}
 
-
-
-{{--    --}}
-
-
-   
-    <div class="result">
-   
-    </div>
-
-
-
-
-     </br>
-     
-     <!--  -->
-
-     <div  class="demo-multiple-select">
-  <div style="height:70%;">
-      <div class="mbsc-grid">
-        <div class="mbsc-row">
-            <div class="mbsc-col-sm-12 mbsc-col-md-4">
-                <div class="mbsc-form-group">
-                    <div class="mbsc-form-group-title"> Calendar</div>
-                    <div id="demo-multi-day"></div>
+                    </div>
                 </div>
             </div>
-         
-           
         </div>
     </div>
-    <!-- <button type="button"   onclick="getAllDates()" class="btn btn-success" style="width: 202%;"> Save  dates</button> -->
-  </div>
 </div>
 
-<!-- <center><button onclick="getAllDates()" style="font-size: 20px;
-    color: white;
-    background-color: black;text-align:center;">
-    Save  dates</button> 
-    <center> -->
-
-   
-
- 
-
-
-    
-
-     <!--  -->
-
+<!--  -->
 
 <span id="err" class="error-product"></span>
 
-
-<div class="form-group col-md-12">
-</div>
-
-
-
-
+<div class="form-group col-md-12"></div>
 
 <div class="col-md-5 pull-left">
     <div class="form-group text-center">
         <div>
-            {!! Form::submit('Save', ['class' => 'btn btn-primary btn-block btn-lg btn-parsley', 'onclick' => 'return validateForm();']) !!}
+            {!! Form::submit('Save', [
+                'class' => 'btn btn-primary btn-block btn-lg btn-parsley',
+                'onclick' => 'return validateForm();',
+            ]) !!}
         </div>
     </div>
 </div>
 
-
-
-
 @section('app_jquery')
-<script>
-  function validateForm() {
-        getAllDates();
-        return true;
-    }
+    <script>
+        function validateForm() {
+            getAllDates();
+            return true;
+        }
+        $(document).ready(function() {
+            $('#myModal').modal('hide');
+        });
 
-    // 
-    $(document).ready(function(){
-       
-$('#myModal').modal('hide');
+        function myFunction() {
+            var checkBox = document.getElementById("myCheck");
+            var venue_maps = document.getElementById("venue_map");
+            if (checkBox.checked == true) {
+                venue_maps.style.display = "none";
+            } else {
+                venue_maps.style.display = "block";
+            }
+            console.log('sasa');
+        }
 
+        function open_map() {
+            console.log('mapssssssss');
+            var checkBox = document.getElementById("myCheck");
+            $('#myModal').modal('show');
+        }
 
-   });
+        {{--    --}}
 
-function myFunction(){
+        function addday() {
+            var nextdivnum = $('.add').length + 1;
+            console.log('sfdffff', nextdivnum)
+            $('.choice-file').append(radioBtnHtml(nextdivnum));
+            $('#correct-choice').append(optionHtml(nextdivnum));
+        }
 
-    var checkBox = document.getElementById("myCheck");
-    var venue_maps = document.getElementById("venue_map");
-    if (checkBox.checked == true){
-     venue_maps.style.display = "none";
-    }
-   else {
-    venue_maps.style.display = "block";
-    }
-    console.log('sasa');
-}
-
-    // 
-
-    // map
-    function open_map(){
-        console.log('mapssssssss');
-         var checkBox = document.getElementById("myCheck");
-        $('#myModal').modal('show');
-
-
-    }
-
-
-
-
-
-    // 
-
-    {{--    --}}
-    function addday() {
-        var nextdivnum = $('.add').length + 1;
-        console.log('sfdffff', nextdivnum)
-        $('.choice-file').append(radioBtnHtml(nextdivnum));
-        $('#correct-choice').append(optionHtml(nextdivnum));
-    }
-
-    function radioBtnHtml(nextdivnum) {
-        return `<div class="choice-input">
-
+        function radioBtnHtml(nextdivnum) {
+            return `<div class="choice-input">
             <div class="row">
-
                 {{-- first column   --}}
                 <div class="col-sm-4">
                     <label for="cars">Choose a Class Day</label>
-
                     <select name="day[]" id="cars" class="form-control">
                       <option value="monday">Monday</option>
                       <option value="tuesday">Tuesday</option>
@@ -342,118 +265,102 @@ function myFunction(){
             </div>
             {{--   --}}
 
-
             {{--   second column  --}}
             <div class="col-sm-4">
                 <div class="form-group">
-                    {!! Form::label('start_time','Choose a Class Start Time') !!}
+                    {!! Form::label('start_time', 'Choose a Class Start Time') !!}
                     <div>
-                        {!! Form::time('start_time[]',  null, ['class' => 'form-control',
-                        'data-parsley-required'=>'true',
-                        'data-parsley-trigger'=>'change',
-                        'placeholder'=>'Start Time',
-                        'maxlength'=>"100"]) !!}
+                        {!! Form::time('start_time[]', null, [
+                            'class' => 'form-control',
+                            'data-parsley-required' => 'true',
+                            'data-parsley-trigger' => 'change',
+                            'placeholder' => 'Start Time',
+                            'maxlength' => '100',
+                        ]) !!}
                     </div>
                 </div>
             </div>
 
             {{--    --}}
 
-{{--  third column   --}}
-            <div class="col-sm-4">
-                <div class="form-group">
-                    {!! Form::label('end_time','Choose a Class End Time') !!}
-                    <div>
-                        {!! Form::time('end_time[]',  null, ['class' => 'form-control',
-                        'data-parsley-required'=>'true',
-                        'data-parsley-trigger'=>'change',
-                        'placeholder'=>'End Time',
-                        'maxlength'=>"100"]) !!}
-                    </div>
-                </div>
+            {{--  third column   --}}
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                {!! Form::label('end_time', 'Choose a Class End Time') !!}
+                                <div>
+                                    {!! Form::time('end_time[]', null, [
+                                        'class' => 'form-control',
+                                        'data-parsley-required' => 'true',
+                                        'data-parsley-trigger' => 'change',
+                                        'placeholder' => 'End Time',
+                                        'maxlength' => '100',
+                                    ]) !!}
+                                </div>
+                            </div>
+                        </div>
+            {{--    --}}
 
 
             </div>
-{{--    --}}
-
-
- </div>
-
-</div>`
-    }
-
-    function removeday() {
-        console.log('length', $('.choice-input').length);
-
-
-        if ($('.choice-input').length < 1) {
-            return;
+            </div>`
         }
 
-        $('.choice-input:last').remove();
+        function removeday() {
+            console.log('length', $('.choice-input').length);
+            if ($('.choice-input').length < 1) {
+                return;
+            }
+            $('.choice-input:last').remove();
+        }
 
-    }
-
-    function optionHtml(no) {
-        return `
-                            <option class ="option-file"  value="` + no + `">Choice # ` + no + `</option>
-                            `
-    }
-
-    // 
+        function optionHtml(no) {
+            return `<option class ="option-file"  value="` + no + `">Choice # ` + no + `</option>`
+        }
 
 
-    mobiscroll.setOptions({
-        locale: mobiscroll.localeEn,         // Specify language like: locale: mobiscroll.localePl or omit setting to use default
-        // locale: mobiscroll.momentTimestamp,         // Specify language like: locale: mobiscroll.localePl or omit setting to use default
-        theme: 'ios',                        // Specify theme like: theme: 'ios' or omit setting to use default
-            themeVariant: 'light'            // More info about themeVariant: https://docs.mobiscroll.com/5-17-2/calendar#opt-themeVariant
-    });
+        mobiscroll.setOptions({
+            locale: mobiscroll
+                .localeEn, // Specify language like: locale: mobiscroll.localePl or omit setting to use default
+            // locale: mobiscroll.momentTimestamp,         // Specify language like: locale: mobiscroll.localePl or omit setting to use default
+            theme: 'ios', // Specify theme like: theme: 'ios' or omit setting to use default
+            themeVariant: 'light' // More info about themeVariant: https://docs.mobiscroll.com/5-17-2/calendar#opt-themeVariant
+        });
 
-    var init = null;
-    function getAllDates(){
-        console.log('get init',init);
-       var ainst = $('#demo-multi-day').mobiscroll('getInst');
-        // var a = ainit.getInst();
+        var init = null;
+
+        function getAllDates() {
+            console.log('get init', init);
+            var ainst = $('#demo-multi-day').mobiscroll('getInst');
+            // var a = ainit.getInst();
             // console.log('get dates',ainst.getVal());
-            console.log('get dates',ainst);
-
+            console.log('get dates', ainst);
             // var multi_dates = ainst.getVal();
             var multi_dates = ainst.getVal();
-            console.log('get _valueText',multi_dates);
+            console.log('get _valueText', multi_dates);
             var selected = [];
-          $.each( multi_dates, function(key, value) {
-            console.log('valuevaluevaluevalue',value.getTime());
-            console.log('getTimezoneOffset',value.getTimezoneOffset());
-          console.log('value', value);
-
-          var gmt_time = (value.getTime() + (value.getTimezoneOffset()*60*1000))/1000;
-          console.log('gmt_time', gmt_time);
-
-          $('.result').append(`<input hidden  name="selected_multi[]" value="`+gmt_time+`" >`);
-        });
-      
+            $.each(multi_dates, function(key, value) {
+                console.log('valuevaluevaluevalue', value.getTime());
+                console.log('getTimezoneOffset', value.getTimezoneOffset());
+                console.log('value', value);
+                var gmt_time = (value.getTime() + (value.getTimezoneOffset() * 60 * 1000)) / 1000;
+                console.log('gmt_time', gmt_time);
+                $('.result').append(`<input hidden  name="selected_multi[]" value="` + gmt_time + `" >`);
+            });
         }
-    
-    $(function () {
-        // Mobiscroll Calendar initialization
-        init = $('#demo-multi-day').mobiscroll();
-        init.datepicker({
-            // controls: ['calendar'],          // More info about controls: https://docs.mobiscroll.com/5-17-2/calendar#opt-controls
-            returnFormat: ['jsdate'],          // moment More info about returnFormat: https://docs.mobiscroll.com/5-17-2/calendar#opt-controls
-            display: 'inline',               // Specify display mode like: display: 'bottom' or omit setting to use default
-            selectMultiple: true
+
+        $(function() {
+            // Mobiscroll Calendar initialization
+            init = $('#demo-multi-day').mobiscroll();
+            init.datepicker({
+                // controls: ['calendar'], // More info about controls: https://docs.mobiscroll.com/5-17-2/calendar#opt-controls
+                returnFormat: [
+                    'jsdate'
+                ], // moment More info about returnFormat: https://docs.mobiscroll.com/5-17-2/calendar#opt-controls
+                display: 'inline', // Specify display mode like: display: 'bottom' or omit setting to use default
+                selectMultiple: true
+            });
         });
+    </script>
 
-    });
-
-   // 
-</script>
-
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-  <!-- Mobiscroll JS and CSS Includes -->
-
-   
-
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 @endsection
-
