@@ -10,7 +10,7 @@ else{
 @section('heading')
     {!! $heading !!}
 @endsection
-@section('leftsideform')
+@section('completeform')
 
     @if($control == 'edit')
         {!! Form::model($about_us,['id'=>'my_form', 'method' => 'POST', 'route' =>

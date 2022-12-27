@@ -13,7 +13,12 @@
     <div >
 
     <div>
-        {!! Form::textarea('description', null, ['class' => ' form-control' , 'id'=>'ckeditor1222', 'data-parsley-required' => 'true', 'data-parsley-trigger' => 'change', 'placeholder' => 'Enter title', 'required', 'maxlength' => '100']) !!}
+        {!! Form::textarea('description', null,
+        ['class' => ' form-control' ,
+        'id'=>'ckeditor1222', 'data-parsley-required' => 'true',
+        'data-parsley-trigger' => 'change', 'placeholder' => 'Enter title', 'required',
+        "rows"=>"4" "cols"=>"50"
+        ]) !!}
     </div>
 
 </div>
