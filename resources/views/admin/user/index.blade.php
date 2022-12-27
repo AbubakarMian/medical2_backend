@@ -99,7 +99,7 @@ $(document).ready(function(){
                 $(document).ready(function() {
 console.log('sadasdasdad');
                 $('#userTableAppend').DataTable({
-                    dom: '<"top_datatable"B>lftipr',
+                    dom: 'Blftipr',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ],
