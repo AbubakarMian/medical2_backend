@@ -182,7 +182,7 @@
                             data-target="#exampleModalCenter">
                             Launch Calendar
                         </button>
-                        <input type="hidden" name="dates[]" class="dates">
+                        <input type="hidden" name="dates" class="dates">
                         @include('admin.workshop.partial.calender',['date_input'=>'.dates','selection_type'=>'multiple'])
 
 
