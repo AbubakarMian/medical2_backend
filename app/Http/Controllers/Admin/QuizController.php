@@ -23,9 +23,15 @@ class QuizController extends Controller
 {
     public function index(Request $request)
     {
-        $quiz = Quiz::orderBy('created_at', 'DESC')->paginate(10);
 
-        return view('admin.quiz.index', compact('quiz'));
+        return view('admin.quiz.index');
+    }
+    public function get_quiz(Request $request)
+    {
+        $quiz = Quiz::orderBy('created_at', 'DESC')->select('*')->get();
+
+        $quizData['data'] = $quiz;
+        echo json_encode($quizData);
     }
 
     public function create()

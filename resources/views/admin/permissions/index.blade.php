@@ -130,7 +130,7 @@
 
 
     .dashtab {
-        background: #1582dc;
+        /* background: #1582dc; */
         width: 50%;
         height: 50px;
         padding: 3px 3px;
@@ -241,6 +241,7 @@
                                         </tbody>
                                     </table>
                                 @endforeach
+
                             </div>
 
                             <div id="menu3" class="tab-pane fade tabonweback">

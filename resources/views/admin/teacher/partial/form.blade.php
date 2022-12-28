@@ -1,5 +1,12 @@
 
 {{-- <input name="invisible" type="hidden" value="{{ $category->id }}"> --}}
+<style>
+select#gender {
+    width: 100%;
+    height: 10%;
+    border: 1px solid #e3e6f3;
+}
+    </style>
 
 <div class="form-group">
     {!! Form::label('name',' Name') !!}
@@ -15,12 +22,15 @@
 <div class="form-group">
     {!! Form::label('gender','Gender') !!}
     <div>
-        {!! Form::text('gender',  null, ['class' => 'form-control',
+
+        {!! Form::select('gender', array('Male'=>'Male','Female'=>'Female'), [
+            'class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
         'placeholder'=>'Enter gender','required',
         'maxlength'=>"100"]) !!}
     </div>
+
 </div>
 <div class="form-group">
     {!! Form::label('email','Email') !!}
@@ -39,6 +49,16 @@
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
         'placeholder'=>'Enter address','required',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('password','Password') !!}
+    <div>
+        {!! Form::text('password',  null, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'Enter Password','required',
         'maxlength'=>"100"]) !!}
     </div>
 </div>

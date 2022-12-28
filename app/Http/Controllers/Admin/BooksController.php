@@ -21,8 +21,14 @@ class BooksController extends Controller
 {
     public function index(Request $request)
     {
-        $books = Books::orderBy('created_at', 'DESC')->paginate(10);
-        return view('admin.books.index', compact('books'));
+        return view('admin.books.index');
+    }
+
+    public function get_books(Request $request)
+    {
+        $books = Books::orderBy('created_at', 'DESC')->select('*')->get();
+        $booksData['data'] = $books;
+        echo json_encode($booksData);
     }
 
     public function create()
@@ -72,7 +78,7 @@ class BooksController extends Controller
 
             $file =$request->upload_book;
             $filename = $file->getClientOriginalName();
-            
+
             $path = public_path().'/uploads/';
             $u  =  $file->move($path, $filename);
 
@@ -97,7 +103,7 @@ class BooksController extends Controller
         }
         //  $books_courses
 
-     
+
         return redirect()->back();
     }
 

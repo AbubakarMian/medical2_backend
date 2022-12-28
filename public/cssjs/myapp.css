@@ -1,11 +1,16 @@
 
     .permiback {
-        width: 80px !important;
-        height: 25px !important;
-        padding: 6px 5px !important;
-        border-radius: 0px !important;
-        margin-bottom: 14px !important;
-        float: right;
+
+    width: 100px !important;
+    height: 28px !important;
+    padding: 6px 5px !important;
+    border-radius: 0px !important;
+    margin-bottom: 14px !important;
+    float: right;
+    background: #da3e16 !important;
+    border-color: #da3e16 !important;
+    color: white !important;
+
     }
 
 .top_datatable {

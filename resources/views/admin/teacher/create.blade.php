@@ -26,7 +26,7 @@ else{
         <div class="form-group text-center">
             <div>
                 {!! Form::open(['method' => 'get', 'route' => ['teacher.index']]) !!}
-                {!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
+
                 {!! Form::close() !!}
             </div>
         </div>

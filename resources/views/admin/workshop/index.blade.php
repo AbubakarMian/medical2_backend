@@ -33,7 +33,6 @@ width="400px" style="table-layout:fixed;"
         <th> Name</th>
         <th>Teacher  </th>
         <th> Course</th>
-
 		<th>Edit  </th>
 		<th>Delete  </th>
 
