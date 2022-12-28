@@ -96,15 +96,13 @@ $(document).ready(function(){
 
                 $("#userTableAppend tbody").append(tr_str);
                 }
-                $(document).ready(function() {
 console.log('sadasdasdad');
                 $('#userTableAppend').DataTable({
-                    dom: 'Blftipr',
-                    buttons: [
+                    dom: '<"top_datatable"B>lftipr',                          
+                        buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ],
                 });
-            });
         }
        });
     }
