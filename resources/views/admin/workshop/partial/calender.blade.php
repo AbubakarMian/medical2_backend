@@ -6,6 +6,36 @@
     #setyeardiv{
         display: none;
     }
+    .current {
+
+    }
+
+    .dtebo p{
+        width: 45px !important;
+        padding: 10px !important;
+        margin: 0 auto !important;
+        border-radius: 200px !important;
+    }
+    .current_month_year {
+        background:#f1582b !important;
+        color:white !important;
+        cursor: pointer !important;
+    }
+    .selected_month_year{
+        background:#19649b !important;
+        color:white !important;
+        cursor: pointer !important;
+    }
+    .current_date p{
+        background:#f1582b !important;
+        color:white !important;
+        cursor: pointer !important;
+    }
+    .selected_date p{
+        background:#19649b !important;
+        color:white !important;
+        cursor: pointer !important;
+    }
 </style>
 <link rel="stylesheet" href="{{ asset('cssjs/custom_calender.css') }}">
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -50,33 +80,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         </div>
                     </div>
                     <div class="calender_date_panel">
-                        @for($i=0;$i<5;$i++)
-                            <div class="row">
-                                <div class="col-sm-12 dateboxarea">
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endfor
+
                     </div>
                 </div>
 
@@ -137,7 +141,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-footer camofoot">
             <button type="button" class="btn btn-secondary"
                 data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save</button>
+            {{-- <button type="button" class="btn btn-primary">Save</button> --}}
         </div>
     </div>
 </div>
@@ -150,6 +154,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     })
 
     var today_calender_date = 0;
+    var today_calender_month = 0;
     var calender_month = 0;
     var calender_year = 0;
     var panel_start_year = 0;
@@ -171,12 +176,25 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         panel_start_day = today.getDay();
         today_calender_date = today.getDate();
         panel_month = today.getMonth() + 1;
+        today_calender_month = panel_month;
+
         panel_total_days_in_month = total_days_in_month(calender_year,panel_month);
         create_year_list(calender_year);
         create_month_list(panel_month);
         set_date(today_calender_date);
         set_month(calender_month);
         set_year(calender_year);
+
+
+    }
+
+    function set_current_date_color(){
+
+        if(panel_month == today_calender_month && calender_year == panel_start_year){
+            $('.date_div_'+today_calender_date).addClass('current_date');
+            $('.month_div_'+panel_month).addClass('current_month_year');
+            $('.year_div_'+calender_year).addClass('current_month_year');
+        }
     }
 
     function set_initial_date(){
@@ -212,7 +230,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     date_data = '';
                 }
                 month_html = month_html+`
-                                <div class="datebo date_bg date_div_`+date_data+`" onclick="set_date(`+date_data+`)">
+                                <div class="datebo dtebo date_bg date_div_`+date_data+`" onclick="set_date(`+date_data+`)">
                                     <p>`+date_data+`</p>
                                 </div>
                 `
@@ -223,6 +241,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             date = end_date;
         }
         $('.calender_date_panel').html(month_html);
+        set_current_date_color();
     }
 
     function create_year_list(start_year){
@@ -249,6 +268,8 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             year = end_year;
         }
         $('.calender_year_panel').html(year_html);
+        set_current_date_color();
+
     }
     function new_year_panel(action){
         if(action == 'previous'){
@@ -291,19 +312,19 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     }
     function set_year(year){
         calender_year = year;
-        $('.year_bg').css('background','');
-        $('.year_div_'+year).css('background','blue');
+        $('.year_bg').removeClass('selected_month_year');
+        $('.year_div_'+year).addClass('selected_month_year');
     }
     function set_month(month){
         calender_month = month;
-        $('.month_bg').css('background','');
-        $('.month_div_'+month).css('background','blue');
+        $('.month_bg').removeClass('selected_month_year');
+        $('.month_div_'+month).addClass('selected_month_year');
         console.log('calender_month',calender_month);
     }
     function set_date(date){
         calender_date = date;
-        $('.date_bg').css('background','');
-        $('.date_div_'+date).css('background','blue');
+        $('.date_bg').removeClass('selected_date');
+        $('.date_div_'+date).addClass('selected_date');
         console.log('calender_date',calender_date);
     }
     function open_date(){

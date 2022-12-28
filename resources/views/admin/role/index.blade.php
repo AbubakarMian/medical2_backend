@@ -35,7 +35,7 @@
 
 
             <!-- <th>Edit </th>
-            <th>Delete </th> -->
+                <th>Delete </th> -->
 
 
 
@@ -47,7 +47,7 @@
 
 
             </td>
-             <td>
+            <td>
                 {!! link_to_action('Admin\RoleController@edit', 'Edit', [$c->id], ['class' => 'badge bg-info']) !!}
                 {{-- {!! link_to_action('Admin\RoleController@edit', 'Edit', [$c->id], ['class' => 'badge bg-info']) !!} --}}
 

@@ -170,7 +170,7 @@
 <!--  -->
 
 <div class="demo-multiple-select">
-    <div style="height:10%">
+    <div style="height:5%">
         <div class="mbsc-grid">
             <div class="mbsc-row">
                 <div class="mbsc-col-sm-12 mbsc-col-md-4">
