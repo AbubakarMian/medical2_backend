@@ -252,6 +252,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
     //  =================================  teacher ==========================
     Route::group(['prefix'=>'teacher'],function(){
       Route::get('/', 'TeacherController@index')->name('teacher.index');
+      Route::get('get_teacher/{id}', 'TeacherController@get_teacher')->name('teacher.get_teacher');
       Route::get('create', 'TeacherController@create')->name('teacher.create'); //add
       Route::post('save', 'TeacherController@save')->name('teacher.save');
       Route::get('edit/{id}', 'TeacherController@edit')->name('teacher.edit');

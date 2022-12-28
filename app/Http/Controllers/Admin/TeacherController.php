@@ -19,10 +19,16 @@ use Maatwebsite\Excel\Concerns\ToArray;
 
 class TeacherController extends Controller
 {
-    public function index(Request $request)
+    public function index()
+    {
+        return view('admin.teacher.index');
+    }
+    public function get_teacher(Request $request)
     {
         $teacher = Teacher::orderBy('created_at', 'DESC')->paginate(10);
-        return view('admin.teacher.index', compact('teacher'));
+        $teacherData['data'] = $teacher;
+        echo json_encode($teacherData);
+
     }
 
     public function create()
@@ -73,9 +79,10 @@ class TeacherController extends Controller
         // $user->gender = $request->gender;
         $user->email = $request->email;
         $user->adderss = $request->address;
+        $user->phone_no = 2131220;
         $user->save();
 
-        $teacher->user_id = $user->id;
+        // $teacher->user_id = $user->id;
         $teacher->name = $request->name;
         $teacher->gender = $request->gender;
         $teacher->email = $request->email;
