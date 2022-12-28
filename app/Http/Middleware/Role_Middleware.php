@@ -28,32 +28,46 @@ class Role_Middleware
             $response->headers->set('Pragma','no-cache');
             $response->headers->set('Expires','Sat, 26 Jul 1997 05:00:00 GMT');
             return $response;
-           
+
         }
     }
         else{
         $route_name = \Request::route()->getName();
-       
+
         if(Auth::Check()){
+                $admin_url = Admin_url::get();
+                $admin_url_details = json_decode($admin_url->details);
+                $permission_granted = false;
 
-                $user_permission = User_Permission::where('user_id',$user->id);
-                $user_permission = $user_permission->where(function ($u_p) use ($route_name){
-                 $u_p->where('can_view',$route_name)
-                ->orWhere('can_create',$route_name)
-                ->orWhere('can_save',$route_name)
-                ->orWhere('can_edit',$route_name)
-                ->orWhere('can_update',$route_name)
-                ->orWhere('can_delete',$route_name);
+                foreach($admin_url_details as $d){
+                    if(!$d->need_permission){
+                        $permission_granted = true;
+                    }
+                }
+                if(!$permission_granted){
+                    $user_permissions = AdminUrlUserPermission::where('user_id',$user->id)->get();
 
-                })->get();
+                    foreach($user_permissions as $user_permission){
+                        $details = json_decode($user_permission->details);
+                        foreach($details as $d){
+                            if($d->name == $route_name){
+                                $permission_granted = true;
+                                break;
+                            }
+                        }
+                        if($permission_granted){
+                            break;
+                        }
+                    }
+                }
 
-                if($user_permission->count() > 0){
-                $response = $next($request);
+                if($permission_granted){
+                    $response = $next($request);
 
-                $response->headers->set('Cache-Control','nocache, no-store, max-age=0, must-revalidate');
-                $response->headers->set('Pragma','no-cache');
-                $response->headers->set('Expires','Sat, 26 Jul 1997 05:00:00 GMT');
-                return $response;
+                    $response->headers->set('Cache-Control','nocache, no-store, max-age=0, must-revalidate');
+                    $response->headers->set('Pragma','no-cache');
+                    $response->headers->set('Expires','Sat, 26 Jul 1997 05:00:00 GMT');
+                    return $response;
                 // return redirect()->route($route_name);
                 }
                 else{
