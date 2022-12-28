@@ -33,48 +33,51 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div id="setdatediv" class="all_calender_panel_div">
                     <div class="tupdata">
                         <h2 class="headingcale">Select Date</h2>
-                        <i class="fa fa-arrow-right aroowm" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-arrow-left aroowm" aria-hidden="true"></i>
+                        <i class="fa fa-arrow-right aroowm" aria-hidden="true" onclick="new_month_panel('next')"></i>&nbsp;&nbsp;
+                        <i class="fa fa-arrow-left aroowm" aria-hidden="true" onclick="new_month_panel('previous')"></i>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="topdays">
+                                <h5>Sunday</h5>
                                 <h5>Monday</h5>
                                 <h5>Tuesday</h5>
                                 <h5>Wednesday</h5>
                                 <h5>Thurday</h5>
                                 <h5>Friday</h5>
                                 <h5>Saturday</h5>
-                                <h5>Sunday</h5>
                             </div>
                         </div>
                     </div>
-                    @for($i=0;$i<5;$i++)
-                        <div class="row">
-                            <div class="col-sm-12 dateboxarea">
-                                <div class="datebox">
-                                    <p>01</p>
-                                </div>
-                                <div class="datebox">
-                                    <p>01</p>
-                                </div>
-                                <div class="datebox">
-                                    <p>01</p>
-                                </div>
-                                <div class="datebox">
-                                    <p>01</p>
-                                </div>
-                                <div class="datebox">
-                                    <p>01</p>
-                                </div>
-                                <div class="datebox">
-                                    <p>01</p>
-                                </div>
-                                <div class="datebox">
-                                    <p>01</p>
+                    <div class="calender_date_panel">
+                        @for($i=0;$i<5;$i++)
+                            <div class="row">
+                                <div class="col-sm-12 dateboxarea">
+                                    <div class="datebox">
+                                        <p>01</p>
+                                    </div>
+                                    <div class="datebox">
+                                        <p>01</p>
+                                    </div>
+                                    <div class="datebox">
+                                        <p>01</p>
+                                    </div>
+                                    <div class="datebox">
+                                        <p>01</p>
+                                    </div>
+                                    <div class="datebox">
+                                        <p>01</p>
+                                    </div>
+                                    <div class="datebox">
+                                        <p>01</p>
+                                    </div>
+                                    <div class="datebox">
+                                        <p>01</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endfor
+                        @endfor
+                    </div>
                 </div>
 
                 <div id="setmonthdiv" class="all_calender_panel_div">
@@ -120,7 +123,8 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div id="setyeardiv" class="all_calender_panel_div">
                    <div class="tupdata">
                     <h2 class="headingcale">Select Year</h2>
-                    <i class="fa fa-arrow-right aroowm" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-arrow-left aroowm" aria-hidden="true"></i>
+                    <i class="fa fa-arrow-right aroowm" aria-hidden="true" onclick="new_year_panel('next')"></i>
+                    &nbsp;&nbsp;<i class="fa fa-arrow-left aroowm" aria-hidden="true" onclick="new_year_panel('previous')"></i>
                    </div>
                     <div class="calender_year_panel">
 
@@ -142,63 +146,166 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <script>
 
     $(function(){
-        set_initial_date();
+        initialize_calender_panels();
     })
 
-    var calender_date = 0;
+    var today_calender_date = 0;
     var calender_month = 0;
     var calender_year = 0;
+    var panel_start_year = 0;
+    var panel_month = 0;
+    var panel_start_day = 0;
+    var today = new Date();
 
-    function set_initial_date(){
-        var date = new Date();
-        calender_date = date.getDate();
-        calender_month = date.getMonth() + 1;
-        calender_year = date.getFullYear();
-        set_month(calender_month);
-        create_year_list();
+    function total_days_in_month(year,month){
+        return new Date(year, month, 0).getDate();
+    }
+    function start_day_of_month(year,month){
+        return new Date(year, (month-1), 1).getDay();
     }
 
-    function create_year_list(){
-        var year_html = '';
+    function initialize_calender_panels(){
+        set_initial_date();
+        panel_start_year = today.getFullYear();
+        calender_year = today.getFullYear();
+        panel_start_day = today.getDay();
+        today_calender_date = today.getDate();
+        panel_month = today.getMonth() + 1;
+        panel_total_days_in_month = total_days_in_month(calender_year,panel_month);
+        create_year_list(calender_year);
+        create_month_list(panel_month);
+        set_date(today_calender_date);
+        set_month(calender_month);
+        set_year(calender_year);
+    }
+
+    function set_initial_date(){
+        today_calender_date = today.getDate();
+        calender_month = today.getMonth() + 1;
+        calender_year = today.getFullYear();
+    }
+
+
+    function create_month_list(month){
+        var panel_total_days_in_month = total_days_in_month(calender_year,month);
+        var start_day = start_day_of_month(calender_year,month);
+
+        var month_html = '';
+        console.log('create_month_list : ',month);
         console.log('calender_year : ',calender_year);
-        var end_year = calender_year;
+        var date = 1 - start_day;
+        var end_date = date;
+        for(var i=0;i<5 ;i++){
+            console.log('calender_day 11 : ',start_day);
+            console.log('calender_day date : ',date);
+
+            month_html = month_html+`
+                        <div class="row">
+                            <div class="col-sm-12 dateboxarea">
+            `;
+            end_date = date+7;
+            for( date; date< end_date ; date++){
+        console.log('calender_day 222 : ',start_day);
+
+                var date_data = date;
+                if(date_data < 1 ||  date> (panel_total_days_in_month)){
+                    date_data = '';
+                }
+                month_html = month_html+`
+                                <div class="datebo date_bg date_div_`+date_data+`" onclick="set_date(`+date_data+`)">
+                                    <p>`+date_data+`</p>
+                                </div>
+                `
+            }
+            month_html =month_html + `
+                            </div>
+                        </div>`;
+            date = end_date;
+        }
+        $('.calender_date_panel').html(month_html);
+    }
+
+    function create_year_list(start_year){
+        var year_html = '';
+        console.log('calender_year : ',start_year);
+        var year = start_year
+        var end_year = start_year;
         for(var i=0;i<3 ;i++){
             year_html = year_html+`
                         <div class="row">
                             <div class="col-sm-12 dateboxarea">
             `;
-             end_year = calender_year+5;
-            for(var year = calender_year ; year< end_year ; year++){
+             end_year = year+5;
+            for( year; year< end_year ; year++){
                 year_html = year_html+`
-                                    <div class="datebo year_bg year_div_`+year+`" onclick="set_year(`+year+`)">
-                                        <p>`+year+`</p>
-                                    </div>
+                                <div class="datebo year_bg year_div_`+year+`" onclick="set_year(`+year+`)">
+                                    <p>`+year+`</p>
+                                </div>
                 `
             }
             year_html =year_html + `
                             </div>
                         </div>`;
+            year = end_year;
+        }
+        $('.calender_year_panel').html(year_html);
+    }
+    function new_year_panel(action){
+        if(action == 'previous'){
+            panel_start_year = panel_start_year - 15;
+        }
+        else{ // action == 'next'
+            panel_start_year = panel_start_year + 15;
+        }
+        create_year_list(panel_start_year);
+        set_year(calender_year);
+    }
+    function new_month_panel(action){
+        console.log('panel_month action ',action);
+
+        if(action == 'previous'){
+            console.log('panel_month pre ',panel_month);
+            if(panel_month == 1){
+                panel_month = 12;
+                calender_year--;
+            }
+            else{
+                panel_month--;
+            }
+            console.log('panel_month pre 2  ',panel_month);
+
+        }
+        else{// action == 'next'
+            if(panel_month == 12){
+                panel_month = 1;
+                calender_year++;
+            }
+            else{
+                panel_month++;
+            }
         }
 
-        $('.calender_year_panel').html(year_html);
-        set_year(year);
+        // panel_month = total_days_in_month(panel_start_year,panel_month);
+        create_month_list(panel_month);
+        set_month(panel_month);
     }
-
-
     function set_year(year){
         calender_year = year;
         $('.year_bg').css('background','');
         $('.year_div_'+year).css('background','blue');
     }
-
-
     function set_month(month){
         calender_month = month;
         $('.month_bg').css('background','');
         $('.month_div_'+month).css('background','blue');
         console.log('calender_month',calender_month);
     }
-
+    function set_date(date){
+        calender_date = date;
+        $('.date_bg').css('background','');
+        $('.date_div_'+date).css('background','blue');
+        console.log('calender_date',calender_date);
+    }
     function open_date(){
         open_panel_div('#setdatediv');
     }
@@ -208,11 +315,9 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     function open_year(){
         open_panel_div('#setyeardiv')
     }
-
     function open_panel_div(panel){
         $('.calender_bts').removeClass('active');
         $('.all_calender_panel_div').css('display','none');
         $(panel).css('display','block');
     }
-
 </script>
