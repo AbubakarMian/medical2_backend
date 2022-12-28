@@ -18,9 +18,16 @@ class categoryController extends Controller
 {
     public function index(Request $request)
     {
-        $category = Category::orderBy('created_at', 'ASC')->paginate(10);
-        return view('admin.category.index', compact('category'));
+
+        return view('admin.category.index');
     }
+    public function get_category(Request $request)
+    {
+        $category = Category::orderBy('created_at', 'ASC')->select('*')->get();
+        $categoryData['data'] = $category;
+        echo json_encode($categoryData);
+    }
+
 
     public function create()
     {

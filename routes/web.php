@@ -173,6 +173,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
     // courses crud
     Route::group(['prefix'=>'courses'],function(){
       Route::get('/', 'CoursesController@index')->name('courses.index');
+      Route::get('get_courses/{id}', 'CoursesController@get_courses')->name('teacher.get_courses');
       Route::get('create', 'CoursesController@create')->name('courses.create'); //add
       Route::post('save', 'CoursesController@save')->name('courses.save');
       Route::get('edit/{id}', 'CoursesController@edit')->name('courses.edit');
@@ -220,6 +221,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
     //  =================================  Category ==========================
     Route::group(['prefix'=>'category'],function(){
       Route::get('/', 'CategoryController@index')->name('category.index');
+      Route::get('get_category/{id}', 'CategoryController@get_category')->name('category.get_category');
       Route::get('create', 'CategoryController@create')->name('category.create'); //add
       Route::post('save', 'CategoryController@save')->name('category.save');
       Route::get('edit/{id}', 'CategoryController@edit')->name('category.edit');
@@ -242,6 +244,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
     //  =================================  Books ==========================
     Route::group(['prefix'=>'books'],function(){
       Route::get('/', 'BooksController@index')->name('books.index');
+      Route::get('get_books/{id}', 'BooksController@get_books')->name('books.get_books');
       Route::get('create', 'BooksController@create')->name('books.create'); //add
       Route::post('save', 'BooksController@save')->name('books.save');
       Route::get('edit/{id}', 'BooksController@edit')->name('books.edit');
@@ -279,6 +282,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
     // quiz CRUD
     Route::group(['prefix'=>'quiz'],function(){
       Route::get('/', 'QuizController@index')->name('admin.quiz');
+      Route::get('get_quiz/{id}', 'QuizController@get_quiz')->name('admin.get_quiz');
       // create and save quiz
       Route::get('create', 'QuizController@create')->name('quiz.create');
       Route::post('save', 'QuizController@save')->name('quiz.save');
