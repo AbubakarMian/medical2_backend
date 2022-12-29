@@ -88,7 +88,7 @@ class AdminController extends Controller
         ];
          $modules[]= [
 
-            'url'=>'admin/aboutus',
+            'url'=>'admin/aboutus/edit/1',
             'title'=>'About US'
 
         ];

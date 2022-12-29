@@ -164,6 +164,7 @@ Route::post('admin/checklogin', 'Admin\AdminController@checklogin');
 Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'], function () {
 
     Route::get('contact', 'ContactUsController@index')->name('contact.index');
+    Route::get('get_contactus/{id}', 'ContactUsController@get_contactus')->name('get_contactus.index');
     Route::get('users', 'UserController@index')->name('location.index');
     Route::get('users/get_users/{id}', 'UserController@getUsers')->name('users.get_users');
     Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
@@ -184,6 +185,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
     // role
     Route::group(['prefix'=>'role'],function(){
       Route::get('/', 'RoleController@index')->name('role.index');
+      Route::get('get_role/{id}', 'RoleController@get_role')->name('get_role.index');
     //   Route::get('create', 'RoleController@create')->name('role.create');
       Route::get('create', 'RoleController@create')->name('role.create');
       Route::post('save', 'RoleController@save')->name('role.save');
@@ -195,6 +197,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin','namespace'=>'Admin'
     // Empolyee
     Route::group(['prefix'=>'employee'],function(){
       Route::get('/', 'EmployeeController@index')->name('employee.index');
+      Route::get('get_employee/{id}', 'EmployeeController@get_employee')->name('get_employee.index');
       Route::get('create', 'EmployeeController@create')->name('employee.create');
       Route::post('save', 'EmployeeController@save')->name('employee.save');
       Route::get('edit/{id}', 'EmployeeController@edit')->name('employee.edit');
@@ -373,6 +376,7 @@ Route::get('permissions', 'Reports\PermissionsController@index')->name('permissi
  // ================================ Reports admin student_plan=================================
     Route::group(['prefix'=>'admin'],function(){
         Route::get('/student_plan', 'Reports\Student_planController@index')->name('student_plan.index');
+        Route::get('/get_student_plan/{id}', 'Reports\Student_planController@get_student_plan')->name('get_student_plan.index');
        Route::get('student_plan/create', 'Reports\Student_planController@create')->name('student_plan.create'); //add
        Route::post('student_plan/save', 'Reports\Student_planController@save')->name('student_plan.save');
        Route::get('student_plan/edit', 'Reports\Student_planController@edit')->name('student_plan.edit');

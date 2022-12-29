@@ -23,9 +23,15 @@ class EmployeeController extends Controller
 
     public function index()
     {
-        $employee = User::where('role_id',3) // role id for all employees is 3
-                    ->orderBy('created_at', 'DESC')->paginate(10);
-        return view('admin.employee.index', compact('employee'));
+
+        return view('admin.employee.index');
+    }
+    public function get_employee()
+    {
+        $employee = User::where('role_id',3) // role id for all employees is 3 and role id of teacher is 4
+                    ->orderBy('created_at', 'DESC')->select('*')->get();
+                    $employeeData['data'] = $employee;
+        echo json_encode($employeeData);
     }
 
     public function create()
@@ -76,6 +82,7 @@ class EmployeeController extends Controller
         $user->last_name =  $request->name;
         // permission for employee is 3 role permission id will be
         // signed in admin_url_permission_user its easy to identify more roles like teacher
+        //and role id of teacher is 4
         $user->role_id =  3;
         $user->email =  $request->email;//.uniqid();
         $user->password =  Hash::make($request->password);

@@ -24,6 +24,7 @@ class TeacherController extends Controller
 {
     public function index()
     {
+        ///role id of teacher is 4
         return view('admin.teacher.index');
     }
     public function get_teacher(Request $request)
@@ -110,7 +111,7 @@ class TeacherController extends Controller
         $teacher->save();
         return redirect()->back();
     }
-
+///role id of teacher is 4
     public function destroy_undestroy($id)
     {
         $teacher = Teacher::find($id);

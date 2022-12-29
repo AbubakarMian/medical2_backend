@@ -1,12 +1,14 @@
+
 @extends('layouts.default_module')
 @section('module_name')
-Student Plan
+Students plan
 @stop
 
 
 @section('table-properties')
 width="400px" style="table-layout:fixed;"
 @endsection
+
 
 
 <style>
@@ -17,73 +19,92 @@ width="400px" style="table-layout:fixed;"
 		height: 30px;
 		text-overflow: ellipsis;
 	}
+    .fhgyt th {
+    border: 1px solid #e3e6f3 !important;
+}
+.fhgyt td {
+    border: 1px solid #e3e6f3 !important;
+    background: #f9f9f9
+}
 </style>
 @section('table')
 
-
+<table class="fhgyt" id="userTableAppend" style="opacity: 0">
 <thead>
 	<tr>
-
-
         <th> Name</th>
-
         <th> Course </th>
         <th> Group </th>
         <th> Edit Plan</th>
 
 
-
-
-
-
-
-
 	</tr>
 </thead>
 <tbody>
-
-
-
-    @foreach($course_register as $s_p)
-
-
-
-
-		<td >{!! ucwords($s_p->user->name ) !!} </td>
-		<td >{!!ucwords($s_p->course->full_name) !!}</td>
-		<td >{!!ucwords($s_p->group->name) !!}</td>
-        <td > <a class="btn btn-primary" href="{{ asset('admin/student_plan/edit?user_id=' . $s_p->user_id.'&course_register_id='.$s_p->id) }}">
-                                   Edit {!!$s_p->name!!} Plan
-                                </a>
-
-
-
-							</td>
-
-
-
-
-
-
-
-
-
-
-	</tr>
-	@endforeach
-
-
 </tbody>
-@section('pagination')
-<span class="pagination pagination-md pull-right">{!! $course_register->render() !!}</span>
-<div class="col-md-3 pull-left">
-	<div class="form-group text-center">
-		<div>
-			{!! Form::open(['method' => 'get', 'route' => ['dashboard']]) !!}
-			{!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
-			{!! Form::close() !!}
-		</div>
-	</div>
-</div>
-@endsection
+</table>
+
 @stop
+@section('app_jquery')
+
+<script>
+
+$(document).ready(function(){
+
+    fetchRecords();
+
+    function fetchRecords(){
+
+       $.ajax({
+         url: '{!!asset("admin/get_student_plan/{id}")!!}',
+         type: 'get',
+         dataType: 'json',
+         success: function(response){
+            console.log('response');
+            $("#userTableAppend").css("opacity",1);
+           var len = response['data'].length;
+		   console.log('response2');
+
+           console.log(response);
+
+              for(var i=0; i<len; i++){
+                  var id =  response['data'][i].id;
+                  var name =  response['data'][i].user.name;
+                  var course =  response['data'][i].course.full_name;
+                  var group =  response['data'][i].group.name;
+				  var edit = `<a class="btn btn-info" href="{!!asset('admin/student_plan/edit')!!}?user_id=` + id + `&course_register_id=`+id+`">Edit Plan</a>`;
+
+                var tr_str = "<tr>" +
+                    "<td>" +name+ "</td>" +
+                    "<td>" +course+ "</td>" +
+                    "<td>" +group+ "</td>" +
+                    "<td>" +edit+ "</td>" +
+
+
+                "</tr>";
+
+                $("#userTableAppend tbody").append(tr_str);
+                }
+                $(document).ready(function() {
+console.log('sadasdasdad');
+                $('#userTableAppend').DataTable({
+					dom: '<"top_datatable"B>lftipr',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                });
+            });
+        }
+       });
+    }
+
+});
+
+function set_msg_modal(msg){
+        $('.set_msg_modal').html(msg);
+    }
+
+</script>
+@endsection
+
+
