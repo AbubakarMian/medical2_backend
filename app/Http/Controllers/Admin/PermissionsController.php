@@ -77,6 +77,12 @@ class PermissionsController extends Controller
             $admin_url_details_json_decode = json_decode($admin_url->details);
             $details =[];
 
+            // foreach($admin_url_details_json_decode as $admin_url_details_obj){
+            //     if(!$admin_url_details_obj->need_permission){
+            //         $details[] = $admin_url_details_obj;
+            //     }
+            // }
+
             foreach($detail_ids as $d_id){
                 $key = array_search($d_id, array_column($admin_url_details_json_decode, 'id'));
                 if($key!==false){

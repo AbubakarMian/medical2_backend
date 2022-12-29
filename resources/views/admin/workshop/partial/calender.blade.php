@@ -6,6 +6,36 @@
     #setyeardiv{
         display: none;
     }
+    .current {
+
+    }
+
+    .dtebo p{
+        width: 45px !important;
+        padding: 10px !important;
+        margin: 0 auto !important;
+        border-radius: 200px !important;
+    }
+    .current_month_year {
+        background:#f1582b !important;
+        color:white !important;
+        cursor: pointer !important;
+    }
+    .selected_month_year{
+        background:#19649b !important;
+        color:white !important;
+        cursor: pointer !important;
+    }
+    .current_date p{
+        background:#f1582b !important;
+        color:white !important;
+        cursor: pointer !important;
+    }
+    .selected_date p{
+        background:#19649b !important;
+        color:white !important;
+        cursor: pointer !important;
+    }
 </style>
 <link rel="stylesheet" href="{{ asset('cssjs/custom_calender.css') }}">
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -13,7 +43,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered camo" role="document">
     <div class="modal-content">
         <div class="modal-header camohead">
-            <h5>Set Your Date</h5>
+            <h5 class="selected_month_year_heading">Set Your Date</h5>
         </div>
         <div class="modal-body">
             <div class="camodbody">
@@ -50,33 +80,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         </div>
                     </div>
                     <div class="calender_date_panel">
-                        @for($i=0;$i<5;$i++)
-                            <div class="row">
-                                <div class="col-sm-12 dateboxarea">
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                    <div class="datebox">
-                                        <p>01</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endfor
+
                     </div>
                 </div>
 
@@ -137,7 +141,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-footer camofoot">
             <button type="button" class="btn btn-secondary"
                 data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save</button>
+            {{-- <button type="button" class="btn btn-primary">Save</button> --}}
         </div>
     </div>
 </div>
@@ -150,12 +154,19 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     })
 
     var today_calender_date = 0;
+    var today_calender_month = 0;
+    var selected_calender_dates = [];
     var calender_month = 0;
     var calender_year = 0;
     var panel_start_year = 0;
     var panel_month = 0;
     var panel_start_day = 0;
+    var date_input = '{!!$date_input!!}';
+    var selection_type = '{!!$selection_type!!}';
     var today = new Date();
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"
+                    ];
 
     function total_days_in_month(year,month){
         return new Date(year, month, 0).getDate();
@@ -163,7 +174,6 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     function start_day_of_month(year,month){
         return new Date(year, (month-1), 1).getDay();
     }
-
     function initialize_calender_panels(){
         set_initial_date();
         panel_start_year = today.getFullYear();
@@ -171,12 +181,21 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         panel_start_day = today.getDay();
         today_calender_date = today.getDate();
         panel_month = today.getMonth() + 1;
+        today_calender_month = panel_month;
+
         panel_total_days_in_month = total_days_in_month(calender_year,panel_month);
         create_year_list(calender_year);
         create_month_list(panel_month);
-        set_date(today_calender_date);
-        set_month(calender_month);
+        // set_date(today_calender_date);
         set_year(calender_year);
+        set_month(calender_month);
+    }
+    function set_current_date_color(){
+        if(panel_month == today_calender_month && calender_year == panel_start_year){
+            $('.date_div_'+today_calender_date).addClass('current_date');
+            $('.month_div_'+panel_month).addClass('current_month_year');
+            $('.year_div_'+calender_year).addClass('current_month_year');
+        }
     }
 
     function set_initial_date(){
@@ -184,35 +203,25 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         calender_month = today.getMonth() + 1;
         calender_year = today.getFullYear();
     }
-
-
     function create_month_list(month){
         var panel_total_days_in_month = total_days_in_month(calender_year,month);
         var start_day = start_day_of_month(calender_year,month);
-
         var month_html = '';
-        console.log('create_month_list : ',month);
-        console.log('calender_year : ',calender_year);
         var date = 1 - start_day;
         var end_date = date;
         for(var i=0;i<5 ;i++){
-            console.log('calender_day 11 : ',start_day);
-            console.log('calender_day date : ',date);
-
             month_html = month_html+`
                         <div class="row">
                             <div class="col-sm-12 dateboxarea">
             `;
             end_date = date+7;
             for( date; date< end_date ; date++){
-        console.log('calender_day 222 : ',start_day);
-
                 var date_data = date;
                 if(date_data < 1 ||  date> (panel_total_days_in_month)){
                     date_data = '';
                 }
                 month_html = month_html+`
-                                <div class="datebo date_bg date_div_`+date_data+`" onclick="set_date(`+date_data+`)">
+                                <div class="datebo dtebo date_bg date_div_`+date_data+`" onclick="set_date(`+date_data+`)">
                                     <p>`+date_data+`</p>
                                 </div>
                 `
@@ -223,11 +232,13 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             date = end_date;
         }
         $('.calender_date_panel').html(month_html);
-    }
+        $('.selected_month_year_heading').html(monthNames[(calender_month-1)]+'-'+calender_year);
+        set_current_date_color();
+        highlight_selected_dates();
 
+    }
     function create_year_list(start_year){
         var year_html = '';
-        console.log('calender_year : ',start_year);
         var year = start_year
         var end_year = start_year;
         for(var i=0;i<3 ;i++){
@@ -249,6 +260,8 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             year = end_year;
         }
         $('.calender_year_panel').html(year_html);
+        set_current_date_color();
+
     }
     function new_year_panel(action){
         if(action == 'previous'){
@@ -261,10 +274,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         set_year(calender_year);
     }
     function new_month_panel(action){
-        console.log('panel_month action ',action);
-
         if(action == 'previous'){
-            console.log('panel_month pre ',panel_month);
             if(panel_month == 1){
                 panel_month = 12;
                 calender_year--;
@@ -272,8 +282,6 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             else{
                 panel_month--;
             }
-            console.log('panel_month pre 2  ',panel_month);
-
         }
         else{// action == 'next'
             if(panel_month == 12){
@@ -284,29 +292,65 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 panel_month++;
             }
         }
-
-        // panel_month = total_days_in_month(panel_start_year,panel_month);
         create_month_list(panel_month);
         set_month(panel_month);
     }
     function set_year(year){
         calender_year = year;
-        $('.year_bg').css('background','');
-        $('.year_div_'+year).css('background','blue');
+        $('.year_bg').removeClass('selected_month_year');
+        $('.year_div_'+year).addClass('selected_month_year');
+        open_panel_div('#setmonthdiv');
     }
     function set_month(month){
         calender_month = month;
-        $('.month_bg').css('background','');
-        $('.month_div_'+month).css('background','blue');
-        console.log('calender_month',calender_month);
+        $('.month_bg').removeClass('selected_month_year');
+        $('.month_div_'+month).addClass('selected_month_year');
+        create_month_list(calender_month);
+        open_panel_div('#setdatediv');
+    }
+    function date_exist(date){
+
+        var index = selected_calender_dates.findIndex(x => x.date==date.date && x.month == date.month && x.year == date.year);
+        return index;
     }
     function set_date(date){
-        calender_date = date;
-        $('.date_bg').css('background','');
-        $('.date_div_'+date).css('background','blue');
-        console.log('calender_date',calender_date);
+        // calender_date = date;
+        if(selection_type == 'single'){
+            selected_calender_dates = [];
+        }
+        var date_obj = {
+            date:date,
+            month:calender_month,
+            year:calender_year
+        };
+        var index = date_exist(date_obj);
+        console.log('index',index);
+
+        if(index === -1 ){
+            selected_calender_dates.push(
+                date_obj
+            );
+        }
+        else{
+            console.log('index 2',index);
+            selected_calender_dates.pop(index);
+        }
+        console.log('date_obj',date_obj);
+        console.log('alldates',selected_calender_dates);
+        highlight_selected_dates();
+        $(date_input).val(JSON.stringify(selected_calender_dates));
+
+    }
+    function highlight_selected_dates(){
+        $('.date_bg').removeClass('selected_date');
+        for(var i =0; i<selected_calender_dates.length;i++){
+            if(calender_month == selected_calender_dates[i].month && calender_year == selected_calender_dates[i].year){
+                $('.date_div_'+selected_calender_dates[i].date).addClass('selected_date');
+            }
+        }
     }
     function open_date(){
+        create_month_list(panel_month);
         open_panel_div('#setdatediv');
     }
     function open_month(){

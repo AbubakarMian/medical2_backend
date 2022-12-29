@@ -14,7 +14,7 @@ use App\Model\Courses;
 use App\Model\Teacher;
 use App\Model\Group;
 use Carbon\Carbon;
-use Date; 
+use Date;
 use Maatwebsite\Excel\Concerns\ToArray;
 // Group;
 
@@ -44,15 +44,13 @@ class WorkshopController extends Controller
         $end_timestamp = $this->time_to_timestamp($request->end_time);
 
         foreach($request->selected_multi as $sm){
-            // dd($sm);
-            
             $workshop = new Group();
             $workshop->name = $request->name;
             $workshop->courses_id = $request->courses_id;
-            // 
+            //
             $workshop->start_date = $sm+$start_timestamp;
             $workshop->end_date = $sm+$end_timestamp;
-            // 
+            //
             $workshop->teacher_id = $request->teacher_id;
             $workshop->type = 'workshop';
             if($request->is_online == "on"){
@@ -77,8 +75,8 @@ class WorkshopController extends Controller
         $workshop = Group::find($id);
         $course_id = Courses::pluck('full_name', 'id');
         $teacher = Teacher::pluck('name', 'id');
-      
-      
+
+
         return view('admin.workshop.create', compact(
             'control',
             'workshop',
@@ -86,7 +84,7 @@ class WorkshopController extends Controller
             'teacher',
         ));
     }
-//   edit and update   in index page 
+//   edit and update   in index page
     public function update(Request $request)
     {
         $workshop = Group::find($request->workshop_id);
@@ -106,7 +104,7 @@ class WorkshopController extends Controller
     {
     //    dd($request->all());
 
-       
+
     }
 
     public function destroy_undestroy($id)

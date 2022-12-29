@@ -10,7 +10,7 @@ else{
 @section('heading')
     {!! $heading !!}
 @endsection
-@section('leftsideform')
+@section('completeform')
 
     @if($control == 'edit')
         {!! Form::model($role,['id'=>'my_form', 'method' => 'POST', 'route' =>
@@ -20,7 +20,7 @@ else{
     @endif
     @include('admin.role.partial.form')
     {!!Form::close()!!}
-
+{{-- 
 
     <div class="col-md-5 pull-left">
         <div class="form-group text-center">
@@ -29,7 +29,7 @@ else{
                 {!! Form::close() !!}
             </div>
         </div>
-    </div>
+    </div> --}}
 
 @endsection
 {!!Form::close()!!}
