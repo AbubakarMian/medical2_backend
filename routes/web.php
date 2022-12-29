@@ -356,6 +356,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
             //    Route::get('permissions', 'Reports\PermissionsController@index')->name('permissions.index');
             Route::group(['prefix'=>'student_plan'],function(){
                Route::get('/', 'Reports\Student_planController@index')->name('student_plan.index');
+               Route::get('get_student_plan', 'Reports\Student_planController@get_student_plan')->name('get_student_plan.index');
                Route::get('create', 'Reports\Student_planController@create')->name('student_plan.create'); //add
                Route::post('save', 'Reports\Student_planController@save')->name('student_plan.save');
                Route::get('edit', 'Reports\Student_planController@edit')->name('student_plan.edit');
