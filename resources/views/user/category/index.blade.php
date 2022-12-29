@@ -15,12 +15,18 @@
 
                             <div class="form-group">
                                 <label for="category_id">Select Category</label>
-                                {!! Form::text(
-    'category_name',
-    $name ?? '',
 
-    ['class' => 'form-control ', 'data-parsley-trigger' => 'change', 'placeholder' => 'Select Category', 'maxlength' => '100'],
-) !!}
+                                {!! Form::text(
+                                    'category_name',
+                                    $name ?? '',
+                                
+                                    [
+                                        'class' => 'form-control ',
+                                        'data-parsley-trigger' => 'change',
+                                        'placeholder' => 'Select Category',
+                                        'maxlength' => '100',
+                                    ],
+                                ) !!}
 
                             </div>
                             <button type="submit" class="btn btn-primary resubg">Submit</button>
@@ -38,23 +44,24 @@
                             @foreach ($c as $p)
                                 <div class="col-sm-3">
                                     <div class="rating">
-                                        <div class="boxing" {{-- style="
+                                        <div class="boxing" style="
                         min-width: 115px;
                         max-width: min-content;
                         min-height: 179x;
                         max-height: 140px;
                         min-height: max-content;
-                        padding-top: 19px;" --}}>
-                                            <a href="{{ asset('category_courses/?category_id='.$p->id.'&type=courses') }}">
+                        padding-top: 19px;">
+                                            <a
+                                                href="">
 
 
                                                 <img src="{!! $p->avatar !!}" alt="Avatar" class="image">
                                                 <div class="middle">
-                                                    {{-- <div class="text" >
-                                        <a href="{{asset('courses/details')}}">View
+                                                    <div class="text" >
+                                        <a href="{{asset('category_courses/?category_id=' . $p->id . '&type=courses')}}">View
 
-                                        </a>
-                                    </div> --}}
+                                </a>
+                            </div>
                                                 </div>
                                             </a>
                                         </div>
