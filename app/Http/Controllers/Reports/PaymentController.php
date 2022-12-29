@@ -78,20 +78,25 @@ class PaymentController extends Controller
             // 'charge' => $charges,
         ]);
         $payment = Payment::first();
-        $details = [
-            'to' => 'ameer.maavia@gmail.com',
-            // 'to' => 'abubakrmianmamoon@gmail.com',
-            // 'to' => 'info@medical2.com',
-            'title' =>  'Amount Refund Success',
-            'subject' =>  'Refund',
-            'email_body'=>'Your amount refunded successfully',
-            'from' => 'contactus@medical2.com',
-            'payment' => $payment,
-            "dated"  => date('d F, Y (l)'),
+        $emails = [
+            'ameer.maavia@gmail.com',
+            'abubakrmianmamoon@gmail.com',
+            'info@medical2.com'
         ];
-
-        Mail::to('info@medical2.com')->send(new RefundMail($details));
+        if(strpos(url()->current(),'localhost')!== false){
+            foreach($emails as $email){
+                $details = [
+                    'to' => $email,
+                    'title' =>  'Amount Refund Success',
+                    'subject' =>  'Refund',
+                    'email_body'=>'Your amount refunded successfully',
+                    'from' => 'contactus@medical2.com',
+                    'payment' => $payment,
+                    "dated"  => date('d F, Y (l)'),
+                ];
+                Mail::to($email)->send(new RefundMail($details));
+            }
+        }
         return $response;
     }
-
 }

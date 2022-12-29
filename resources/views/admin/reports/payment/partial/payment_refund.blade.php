@@ -109,6 +109,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="mdl_hed">
+                        <div style="color: red">Sorry ! Access Denied</div>
                         <h3 class="modal-title scas">Are you sure. You want to refund ?</h3>
                     </div>
                     <div>

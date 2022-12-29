@@ -66,13 +66,13 @@ class EmployeeController extends Controller
 
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
         $validator =  Validator::make(['email' => $request->email], [
             'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
         ]);
         if ($validator->fails()) {
             return back()->with('error', $validator->errors());
         }
-        $user = User::find($id);
         $this->add_or_update($request, $user);
         return redirect('admin/permissions/show?user_id='.$user->id);
     }
@@ -92,6 +92,22 @@ class EmployeeController extends Controller
         return $user;
     }
 
-
+    public function destroy_undestroy($id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            User::destroy($id);
+            $new_value = 'Activate';
+        } else {
+            User::withTrashed()->find($id)->restore();
+            $new_value = 'Delete';
+        }
+        $response = Response::json([
+            "status" => true,
+            'action' => Config::get('constants.ajax_action.delete'),
+            'new_value' => $new_value
+        ]);
+        return $response;
+    }
 
 }

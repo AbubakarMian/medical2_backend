@@ -95,7 +95,7 @@ $(document).ready(function(){
                         });
                         var delete_btn = `<a class="btn btn-info" data-toggle="modal" data-target="#` + 'courses_' + response['data'][i].id + `">Delete</a>`;
 
-                var tr_str = "<tr>" +
+                        var tr_str = "<tr id='row_"+response['data'][i].id+"'>" +
                     "<td>" +name+ "</td>" +
                     "<td>" +email+ "</td>" +
                     "<td>" +gender+ "</td>" +
@@ -126,6 +126,25 @@ console.log('sadasdasdad');
 function set_msg_modal(msg){
         $('.set_msg_modal').html(msg);
     }
+
+    function delete_request(id) {
+            $.ajax({
+
+                url: "{!! asset('admin/courses/delete') !!}/" + id,
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    _token: '{!! @csrf_token() !!}'
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.status) {
+                        var myTable = $('#userTableAppend').DataTable();
+                        myTable.row('#row_' + id).remove().draw();
+                    }
+                }
+            });
+        }
 
 </script>
 @endsection
