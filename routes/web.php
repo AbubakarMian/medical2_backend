@@ -165,6 +165,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
     Route::group(['namespace'=>'Admin'], function () {
 
         Route::get('contact', 'ContactUsController@index')->name('contact.index');
+        Route::get('get_contactus', 'ContactUsController@get_contactus')->name('get_contactus.index');
         Route::get('users', 'UserController@index')->name('location.index');
         Route::get('users/get_users', 'UserController@getUsers')->name('users.get_users');
         Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
@@ -185,7 +186,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         // role
         Route::group(['prefix'=>'role'],function(){
             Route::get('/', 'RoleController@index')->name('role.index');
-            //   Route::get('create', 'RoleController@create')->name('role.create');
+            Route::get('get_role', 'RoleController@get_role')->name('get_role.index');
             Route::get('create', 'RoleController@create')->name('role.create');
             Route::post('save', 'RoleController@save')->name('role.save');
             Route::get('edit/{id}', 'RoleController@edit')->name('role.edit');
@@ -284,7 +285,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
             Route::post('save', 'QuizController@save')->name('quiz.save');
             Route::get('edit/{id}', 'QuizController@edit')->name('quiz.edit');
             Route::post('update/{id}', 'QuizController@update')->name('quiz.update');
-            Route::post('quiz/delete/{id}', 'QuizController@destroy_undestroy')->name('quiz.delete');
+            Route::post('delete/{id}', 'QuizController@destroy_undestroy')->name('quiz.delete');
         });
 
         // question list open

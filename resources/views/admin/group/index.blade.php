@@ -152,7 +152,7 @@ List of Groups
             success: function(response) {
                 console.log(response);
                 if(response.status){
-                    var myTable = $('#group').DataTable();
+                    var myTable = $('#groupTableAppend').DataTable();
                     myTable.row('#row_'+id).remove().draw();
                 }
             }
