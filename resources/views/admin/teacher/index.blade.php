@@ -58,7 +58,7 @@ $(document).ready(function(){
     function fetchRecords(){
 
        $.ajax({
-         url: '{!!asset("admin/teacher/get_teacher/{id}")!!}',
+         url: '{!!asset("admin/teacher/get_teacher")!!}',
          type: 'get',
          dataType: 'json',
          success: function(response){
@@ -88,14 +88,14 @@ $(document).ready(function(){
                                 `,
                         });
                         var delete_btn = `<a class="btn btn-info" data-toggle="modal" data-target="#` + 'teacher_' + response['data'][i].id + `">Delete</a>`;
-               
+
                 var tr_str = "<tr>" +
                     "<td>" +name+ "</td>" +
                     "<td>" +email+ "</td>" +
                     "<td>" +gender+ "</td>" +
                     "<td>" +edit+ "</td>" +
                     "<td>" +delete_btn+ "</td>" +
-                   
+
 
                 "</tr>";
 
@@ -104,7 +104,7 @@ $(document).ready(function(){
                 $(document).ready(function() {
 console.log('sadasdasdad');
                 $('#userTableAppend').DataTable({
-					dom: '<"top_datatable"B>lftipr',                          
+					dom: '<"top_datatable"B>lftipr',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ],
@@ -118,6 +118,24 @@ console.log('sadasdasdad');
 
 function set_msg_modal(msg){
         $('.set_msg_modal').html(msg);
+    }
+    function delete_request(id) {
+        $.ajax({
+
+            url: "{!!asset('admin/teacher/delete')!!}/" + id,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                _token: '{!!@csrf_token()!!}'
+            },
+            success: function(response) {
+                console.log(response);
+                if(response.status){
+                    var myTable = $('#questionTableAppend').DataTable();
+                    myTable.row('#row_'+id).remove().draw();
+                }
+            }
+        });
     }
 
 </script>

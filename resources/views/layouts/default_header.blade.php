@@ -235,7 +235,10 @@ $admin_common = session()->get('admin_common');
     <script src="{{ asset('cssjs/jquery.timeentry.js')}}"></script>
 
     {{-- Data Table Jquery & Ajax --}}
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+    <script>
+        window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.5.1.js"><\/script>');
+    </script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -254,7 +257,7 @@ $admin_common = session()->get('admin_common');
 
 <!-- mobiscroll  -->
 
-<script src="{{asset('mobi_js/mobiscroll.jquery.min.js')}}"></script>
+{{-- <script src="{{asset('mobi_js/mobiscroll.jquery.min.js')}}"></script> --}}
 
 
 

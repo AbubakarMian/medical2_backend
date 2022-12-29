@@ -215,7 +215,7 @@
 @section('app_jquery')
     <script>
         function validateForm() {
-            getAllDates();
+            // getAllDates();
             return true;
         }
         $(document).ready(function() {
@@ -319,13 +319,12 @@
         }
 
 
-        mobiscroll.setOptions({
-            locale: mobiscroll
-                .localeEn, // Specify language like: locale: mobiscroll.localePl or omit setting to use default
-            // locale: mobiscroll.momentTimestamp,         // Specify language like: locale: mobiscroll.localePl or omit setting to use default
-            theme: 'ios', // Specify theme like: theme: 'ios' or omit setting to use default
-            themeVariant: 'light' // More info about themeVariant: https://docs.mobiscroll.com/5-17-2/calendar#opt-themeVariant
-        });
+        // mobiscroll.setOptions({
+        //     locale: mobiscroll
+        //         .localeEn, // Specify language like: locale: mobiscroll.localePl or omit setting to use default
+        //     theme: 'ios', // Specify theme like: theme: 'ios' or omit setting to use default
+        //     themeVariant: 'light' // More info about themeVariant: https://docs.mobiscroll.com/5-17-2/calendar#opt-themeVariant
+        // });
 
         var init = null;
 

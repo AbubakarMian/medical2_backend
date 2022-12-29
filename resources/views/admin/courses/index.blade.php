@@ -62,7 +62,7 @@ $(document).ready(function(){
     function fetchRecords(){
 
        $.ajax({
-         url: '{!!asset("admin/courses/get_courses/{id}")!!}',
+         url: '{!!asset("admin/courses/get_courses")!!}',
          type: 'get',
          dataType: 'json',
          success: function(response){

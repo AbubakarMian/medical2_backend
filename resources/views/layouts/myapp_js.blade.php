@@ -52,8 +52,8 @@ $('select.searchlist').select2();
 
 @yield('document_ready_jq');
 
-$('#open_time').timeEntry();
-$('#close_time').timeEntry();
+// $('#open_time').timeEntry();
+// $('#close_time').timeEntry();
 $("#defaultOpen").click();
 $('#toggle-language').bootstrapToggle();
 $('#toggle-access-in').bootstrapToggle();
