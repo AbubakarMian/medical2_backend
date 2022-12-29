@@ -60,7 +60,7 @@ $(document).ready(function(){
     function fetchRecords(){
 
        $.ajax({
-         url: '{!!asset("admin/employee/get_employee/{id}")!!}',
+         url: '{!!asset("admin/employee/get_employee")!!}',
          type: 'get',
          dataType: 'json',
          success: function(response){

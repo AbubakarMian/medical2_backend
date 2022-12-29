@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="{{ asset('theme/vendor/bootstrap-daterangepicker/daterangepicker-bs3.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
-<link rel="stylesheet" href="{{ asset('public/theme/vendor/chosen_v1.4.0/chosen.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/theme/vendor/datatables/media/css/jquery.dataTables.css') }}">
+    <link rel="stylesheet" href="{{ asset('theme/vendor/datatables/media/css/jquery.dataTables.css') }}">
 
-<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.5.1.js"><\/script>');
+    </script>
+{{-- <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -100,7 +102,7 @@
     <!-- /page level scripts -->
 
     <!-- page script -->
-    <script src="{{ asset('theme/scripts/pickers.js') }}"></script>
+    {{-- <script src="{{ asset('theme/scripts/pickers.js') }}"></script> --}}
 
     <!-- page script -->
     <script src="{{ asset('theme/scripts/bootstrap-datatables.js') }}"></script>

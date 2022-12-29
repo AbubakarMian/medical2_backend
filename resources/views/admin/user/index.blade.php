@@ -60,7 +60,7 @@ $(document).ready(function(){
     function fetchRecords(){
 
        $.ajax({
-         url: '{!!asset("admin/users/get_users/{id}")!!}',
+         url: '{!!asset("admin/users/get_users")!!}',
          type: 'get',
          dataType: 'json',
          success: function(response){
@@ -98,7 +98,7 @@ $(document).ready(function(){
                 }
 console.log('sadasdasdad');
                 $('#userTableAppend').DataTable({
-                    dom: '<"top_datatable"B>lftipr',                          
+                    dom: '<"top_datatable"B>lftipr',
                         buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ],
