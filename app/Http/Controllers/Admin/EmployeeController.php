@@ -92,6 +92,22 @@ class EmployeeController extends Controller
         return $user;
     }
 
-
+    public function destroy_undestroy($id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            User::destroy($id);
+            $new_value = 'Activate';
+        } else {
+            User::withTrashed()->find($id)->restore();
+            $new_value = 'Delete';
+        }
+        $response = Response::json([
+            "status" => true,
+            'action' => Config::get('constants.ajax_action.delete'),
+            'new_value' => $new_value
+        ]);
+        return $response;
+    }
 
 }
