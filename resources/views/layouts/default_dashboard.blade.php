@@ -35,7 +35,7 @@ $reports = $admin_common->reports;
         </div>
     @endif
         </div>
-        
+
 
         @foreach($modules as $key => $module)
 
@@ -48,7 +48,7 @@ $reports = $admin_common->reports;
                         </div>
                         <div class="mb20"></div>
                         <div class="tile-footer">
-                        
+
                         </div>
                     </section>
                 </div>
@@ -61,7 +61,7 @@ $reports = $admin_common->reports;
 
     <!-- reports start -->
     <div class="row">
-      
+
 
         <div class="col-md-12 col-sm-12 col-xs-12">
             <!-- <section class="dash-tile vvv">

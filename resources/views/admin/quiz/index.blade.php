@@ -62,7 +62,7 @@ $(document).ready(function(){
     function fetchRecords(){
 
        $.ajax({
-         url: '{!!asset("admin/quiz/get_quiz/{id}")!!}',
+         url: '{!!asset("admin/quiz/get_quiz")!!}',
          type: 'get',
          dataType: 'json',
          success: function(response){

@@ -166,7 +166,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
 
         Route::get('contact', 'ContactUsController@index')->name('contact.index');
         Route::get('users', 'UserController@index')->name('location.index');
-        Route::get('users/get_users/{id}', 'UserController@getUsers')->name('users.get_users');
+        Route::get('users/get_users', 'UserController@getUsers')->name('users.get_users');
         Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
         Route::get('logout', 'AdminController@logout')->name('logout');
         Route::post('courses_crop_image', 'CoursesController@crop_image')->name('admin.crop_image');
@@ -174,7 +174,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         // courses crud
         Route::group(['prefix'=>'courses'],function(){
             Route::get('/', 'CoursesController@index')->name('courses.index');
-            Route::get('get_courses/{id}', 'CoursesController@get_courses')->name('teacher.get_courses');
+            Route::get('get_courses', 'CoursesController@get_courses')->name('get_courses.index');
             Route::get('create', 'CoursesController@create')->name('courses.create'); //add
             Route::post('save', 'CoursesController@save')->name('courses.save');
             Route::get('edit/{id}', 'CoursesController@edit')->name('courses.edit');
@@ -196,7 +196,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         // Empolyee
         Route::group(['prefix'=>'employee'],function(){
             Route::get('/', 'EmployeeController@index')->name('employee.index');
-            Route::get('get_employee/{id}', 'EmployeeController@get_employee')->name('get_employee.index');
+            Route::get('get_employee', 'EmployeeController@get_employee')->name('get_employee.index');
             Route::get('create', 'EmployeeController@create')->name('employee.create');
             Route::post('save', 'EmployeeController@save')->name('employee.save');
             Route::get('edit/{id}', 'EmployeeController@edit')->name('employee.edit');
@@ -222,7 +222,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         //  =================================  Category ==========================
         Route::group(['prefix'=>'category'],function(){
             Route::get('/', 'CategoryController@index')->name('category.index');
-            Route::get('get_category/{id}', 'CategoryController@get_category')->name('category.get_category');
+            Route::get('get_category', 'CategoryController@get_category')->name('get_category.index');
             Route::get('create', 'CategoryController@create')->name('category.create'); //add
             Route::post('save', 'CategoryController@save')->name('category.save');
             Route::get('edit/{id}', 'CategoryController@edit')->name('category.edit');
@@ -245,7 +245,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         //  =================================  Books ==========================
         Route::group(['prefix'=>'books'],function(){
             Route::get('/', 'BooksController@index')->name('books.index');
-            Route::get('get_books/{id}', 'BooksController@get_books')->name('books.get_books');
+            Route::get('get_books', 'BooksController@get_books')->name('get_books.index');
             Route::get('create', 'BooksController@create')->name('books.create'); //add
             Route::post('save', 'BooksController@save')->name('books.save');
             Route::get('edit/{id}', 'BooksController@edit')->name('books.edit');
@@ -256,7 +256,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         //  =================================  teacher ==========================
         Route::group(['prefix'=>'teacher'],function(){
             Route::get('/', 'TeacherController@index')->name('teacher.index');
-            Route::get('get_teacher/{id}', 'TeacherController@get_teacher')->name('teacher.get_teacher');
+            Route::get('get_teacher', 'TeacherController@get_teacher')->name('teacher.get_teacher');
             Route::get('create', 'TeacherController@create')->name('teacher.create'); //add
             Route::post('save', 'TeacherController@save')->name('teacher.save');
             Route::get('edit/{id}', 'TeacherController@edit')->name('teacher.edit');
@@ -279,7 +279,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         // quiz CRUD
         Route::group(['prefix'=>'quiz'],function(){
             Route::get('/', 'QuizController@index')->name('admin.quiz');
-            Route::get('get_quiz/{id}', 'QuizController@get_quiz')->name('admin.get_quiz');
+            Route::get('get_quiz', 'QuizController@get_quiz')->name('admin.get_quiz');
             Route::get('create', 'QuizController@create')->name('quiz.create');
             Route::post('save', 'QuizController@save')->name('quiz.save');
             Route::get('edit/{id}', 'QuizController@edit')->name('quiz.edit');
