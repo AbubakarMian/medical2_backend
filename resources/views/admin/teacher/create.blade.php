@@ -22,15 +22,6 @@ else{
     {!!Form::close()!!}
 
 
-    <div class="col-md-5 pull-left">
-        <div class="form-group text-center">
-            <div>
-                {!! Form::open(['method' => 'get', 'route' => ['teacher.index']]) !!}
-
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
 
 @endsection
 {!!Form::close()!!}

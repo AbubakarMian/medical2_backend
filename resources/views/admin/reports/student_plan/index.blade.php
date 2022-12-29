@@ -56,7 +56,7 @@ $(document).ready(function(){
     function fetchRecords(){
 
        $.ajax({
-         url: '{!!asset("admin/get_student_plan/{id}")!!}',
+         url: '{!!asset("admin/student_plan/get_student_plan")!!}',
          type: 'get',
          dataType: 'json',
          success: function(response){
@@ -72,7 +72,7 @@ $(document).ready(function(){
                   var name =  response['data'][i].user.name;
                   var course =  response['data'][i].course.full_name;
                   var group =  response['data'][i].group.name;
-				  var edit = `<a class="btn btn-info" href="{!!asset('admin/student_plan/edit')!!}?user_id=` + id + `&course_register_id=`+id+`">Edit Plan</a>`;
+				  var edit = `<a class="btn btn-info" href="{!!asset('admin/student_plan/edit')!!}?user_id=`+id+`&course_register_id=`+id+`">Edit Plan</a>`;
 
                 var tr_str = "<tr>" +
                     "<td>" +name+ "</td>" +

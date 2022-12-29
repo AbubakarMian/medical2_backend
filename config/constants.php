@@ -31,11 +31,7 @@ return [
     'fees_type' =>[
         'complete'=>'Complete',
         'installment'=>'Installment',
-       
     ],
-
-    
-
     'payment_status'=>[
         'paid'=>'paid',
         'refunded'=>'refunded',

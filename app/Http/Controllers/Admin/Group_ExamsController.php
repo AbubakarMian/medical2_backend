@@ -11,6 +11,7 @@ use App\Model\Day;
 use App\Model\Exams;
 use Carbon\Carbon;
 use App\Model\Group;
+use App\Model\Group_Exams;
 use App\Model\Group_Timings;
 use App\Model\Teacher;
 use App\User;
@@ -22,11 +23,10 @@ class Group_ExamsController extends Controller
 {
     public function index($id)
     {
-        $group = Group::find($id);
-        // $exams = Exams::with('group')->orderby('created_at', 'DESC')->paginate(10);
-        $exams = Exams::with('group')->where('group_id',$group->id)->get();
-        // dd( $exams);
-        return view('admin.group_exams.index',compact('group','exams'));
+        $group = Group::with('group_exams.group','group_exams.exams')->find($id);//->where('id',$id)->first();
+        $group_exams = $group->group_exams;
+        // dd( $group);
+        return view('admin.group_exams.index',compact('group','group_exams'));
     }
     public function create(Request $request)
     {
@@ -42,14 +42,18 @@ class Group_ExamsController extends Controller
         $exams = new Exams();
         $exams->name =$request->name;
         $exams->detail =$request->detail;
-        $exams->group_id =$request->group_id;
+        // $exams->group_id =$request->group_id;
         $exams->save();
 
-        
+        $group_exams = new Group_Exams();
+        $group_exams->group_id = $request->group_id;
+        $group_exams->exam_id = $exams->id;
+        $group_exams->save();
 
-        return redirect('admin/group_exams/'.$request->group_id);
+
+        return redirect('admin/group_exams/list/'.$request->group_id);
     }
-   
-   
+
+
 
 }

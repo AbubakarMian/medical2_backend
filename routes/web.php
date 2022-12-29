@@ -196,6 +196,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         // Empolyee
         Route::group(['prefix'=>'employee'],function(){
             Route::get('/', 'EmployeeController@index')->name('employee.index');
+            Route::get('get_employee/{id}', 'EmployeeController@get_employee')->name('get_employee.index');
             Route::get('create', 'EmployeeController@create')->name('employee.create');
             Route::post('save', 'EmployeeController@save')->name('employee.save');
             Route::get('edit/{id}', 'EmployeeController@edit')->name('employee.edit');
@@ -314,7 +315,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
 
         // group_exams
         Route::group(['prefix'=>'group_exams'],function(){
-            Route::get('/{id}', 'Group_ExamsController@index')->name('group_exams.index');
+            Route::get('list/{id}', 'Group_ExamsController@index')->name('group_exams.index')->where('id','[0-9]+');
             Route::post('create', 'Group_ExamsController@create')->name('group_exams.create');
             Route::post('save', 'Group_ExamsController@save')->name('group_exams.save');
         });
@@ -355,6 +356,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
             //    Route::get('permissions', 'Reports\PermissionsController@index')->name('permissions.index');
             Route::group(['prefix'=>'student_plan'],function(){
                Route::get('/', 'Reports\Student_planController@index')->name('student_plan.index');
+               Route::get('get_student_plan', 'Reports\Student_planController@get_student_plan')->name('get_student_plan.index');
                Route::get('create', 'Reports\Student_planController@create')->name('student_plan.create'); //add
                Route::post('save', 'Reports\Student_planController@save')->name('student_plan.save');
                Route::get('edit', 'Reports\Student_planController@edit')->name('student_plan.edit');

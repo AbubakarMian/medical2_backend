@@ -5,7 +5,7 @@ List of {{ucwords($group->name)}} Group Exam
 @section('add_btn')
 
 {!! Form::open(['method' => 'post', 'url' => ['admin/group_exams/create'], 'files'=>true]) !!}
-<input type="hidden" name="group_id" value="{!!$group->id!!}"> 
+<input type="hidden" name="group_id" value="{!!$group->id!!}">
 <span>{!! Form::submit('Add', ['class' => 'btn btn-success pull-right']) !!}</span>
 {!! Form::close() !!}
 @stop
@@ -29,50 +29,19 @@ width="400px" style="table-layout:fixed;"
 
 <thead>
 	<tr>
-
-
-       
         <th>Exam Name</th>
         <th>Detail</th>
-        
-
-
-	   
-
-
-
 	</tr>
 
-	@foreach($exams as $e)
+	@foreach($group_exams as $e)
    <tr>
-
-
-  
-   <td>{{$e->name}}</td>
-   <td>{{$e->detail}}</td>
+        <td>{{$e->exams->name}}</td>
+        <td>{{$e->exams->detail}}</td>
    </tr>
 
 	@endforeach
-
-
-
 </thead>
 <tbody>
-
-
-
-   
-
-
-
-
-	<tr></tr>
-
-
-	
-
-
-
 </tbody>
 @section('pagination')
 

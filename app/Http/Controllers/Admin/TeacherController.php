@@ -73,7 +73,9 @@ class TeacherController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        $teacher = Teacher::find($id);
+        $user = $teacher->user;
+        // dd($user);
         $validator =  Validator::make(['email' => $request->email], [
             'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
         ]);
@@ -101,7 +103,9 @@ class TeacherController extends Controller
         // $user->gender = $request->gender;
         $user->email = $request->email;
         $user->adderss = $request->address;
-        $user->password =  Hash::make($request->password);
+        if($request->password){
+            $user->password =  Hash::make($request->password);
+        }
         $user->save();
 
         $teacher->users_id = $user->id;

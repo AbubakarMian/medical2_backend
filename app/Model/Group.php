@@ -28,9 +28,9 @@ class Group extends Model
    {
        return $this->hasOne('App\User', 'id', 'user_id');
    }
-   public function exams()
+   public function group_exams()
    {
-       return $this->hasMany('App\Model\Exams', 'group_id', 'id');
+       return $this->hasMany('App\Model\Group_Exams', 'group_id', 'id');
    }
 
 

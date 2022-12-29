@@ -77,7 +77,7 @@ List of Groups
                         var group_end_date = response['data'][i].end_date;
                         // var Students = `<a class="btn btn-info" href="{!!asset('admin/group/students/` + id + `')!!}">Students</a>`;
                         var edit = `<a class="btn btn-info" href="{!!asset('admin/group/edit/` + id + `')!!}">Edit</a>`;
-                       createModal({     
+                       createModal({
                             id: 'group_' + response['data'][i].id,
                             header: '<h4>Delete</h4>',
                             body: 'Do you want to continue ?',
@@ -102,8 +102,12 @@ List of Groups
 
 
 
+                            // var group_exams = '';
+                            // if(response['data'][i]hasproperty('group_exams')){
+                            // }
 
-                        var group_exams = `<a class="btn btn-info" href="{!!asset('admin/group_exams/` + id + `')!!}">Group Exams</a>`;
+
+                            var group_exams = `<a class="btn btn-info" href="{!!asset('admin/group_exams/list/` + id + `')!!}">Group Exams</a>`;
 
                         var tr_str = "<tr id='row_"+response['data'][i].id+"'>" +
 
