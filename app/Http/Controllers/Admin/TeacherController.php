@@ -97,6 +97,7 @@ class TeacherController extends Controller
         // }
 
         $user->name = $request->name;
+        $user->role_id = 3;
         // $user->gender = $request->gender;
         $user->email = $request->email;
         $user->adderss = $request->address;
