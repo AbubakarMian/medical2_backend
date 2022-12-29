@@ -217,7 +217,7 @@
                                             <tr class="panel_{!! $p->id !!}">
                                                 @foreach ($details as $key => $d)
                                                     <?php
-                                                    if (!$d->need_permission) {
+                                                    if ($d->need_permission !== true) {
                                                         continue;
                                                     }
                                                     $is_checked = '';
@@ -257,7 +257,7 @@
                                             <tr class="panel_{!! $p->id !!}">
                                                 @foreach ($details as $key => $d)
                                                     <?php
-                                                    if (!$d->need_permission) {
+                                                    if (!$d->need_permission === true) {
                                                         continue;
                                                     }
                                                     $is_checked = '';
@@ -269,7 +269,7 @@
                                                     ?>
                                                     <th>{!! ucwords($d->heading) !!}
                                                         <input type="checkbox" {!! $is_checked !!}
-                                                            class="all_modules_checkbox checkbox_panel_{!! $p->id !!}"
+                                                            class="all_modules_checkbox checkbox_panel_{!! $d->id !!}"
                                                             name="permissions[{!! $p->id !!}][]"
                                                             value="{!! $d->id !!}">
                                                     </th>

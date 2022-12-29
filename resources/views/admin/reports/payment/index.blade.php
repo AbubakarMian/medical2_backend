@@ -132,13 +132,19 @@
             }
             var url = '{!! asset('admin/reports/payment/payment_refund') !!}/' + payment_id;
             $.ajax({
-                url: url,
-                method: 'POST',
-                data: {
-                    '_token': '{!! csrf_token() !!}',
-                    'status': status,
-                    'payment_refund_amount': payment_refund_amount,
-                    'payment_refund_reason': payment_refund_reason,
+                url:url,
+                method:'POST',
+                data: {'_token' :'{!! csrf_token() !!}',
+                       'status' : status,
+                       'payment_refund_amount' : payment_refund_amount,
+                       'payment_refund_reason' : payment_refund_reason,
+                      },
+                success: function(data){
+                    console.log("response",data);
+                    if(!data.status){
+                        
+
+                    }
                 },
                 success: function(data) {
                     console.log("response", data);

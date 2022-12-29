@@ -36,6 +36,7 @@ class Admin_url_Seeder extends Seeder
                         'id'=>3,
                         'need_permission'=>true,
                         'name'=>'payment.payment_refund',
+                        'type'=>'json',
                         'heading'=>'Refund',
                         'url'=>'payment/payment_refund/{id}',
                     ]
@@ -178,7 +179,7 @@ class Admin_url_Seeder extends Seeder
                     'details'    => json_encode([
                         [
                             'id'=>1,
-                            'need_permission'=>true,
+                            'need_permission'=>false,
                             'name'=>'aboutus.index',
                             'heading'=>'Index',
                             'url'=>'admin/aboutus',
@@ -192,21 +193,21 @@ class Admin_url_Seeder extends Seeder
                         ],
                         [
                             'id'=>3,
-                            'need_permission'=>true,
+                            'need_permission'=>false,
                             'name'=>'aboutus.save',
                             'heading'=>'Save',
                             'url'=>'admin/aboutus/save',
                         ],
                         [
                             'id'=>4,
-                            'need_permission'=>false,
+                            'need_permission'=>true,
                             'name'=>'aboutus.edit',
                             'heading'=>'Edit',
                             'url'=>'admin/aboutus/edit/{id}',
                         ],
                         [
                             'id'=>5,
-                            'need_permission'=>true,
+                            'need_permission'=>'aboutus.edit',
                             'name'=>'aboutus.update',
                             'heading'=>'Update',
                             'url'=>'admin/aboutus/update/{id}',
@@ -629,9 +630,8 @@ class Admin_url_Seeder extends Seeder
                     ],
     ];
 
-
+    Admin_url::where('id','!=',0)->delete();
         foreach($admin_url_data as $aud){
-            Admin_url::where('id','!=',0)->delete();
             Admin_url::firstOrCreate(
                 $aud
             );
