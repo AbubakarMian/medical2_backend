@@ -62,7 +62,7 @@ $(document).ready(function(){
     function fetchRecords(){
 
        $.ajax({
-         url: '{!!asset("admin/category/get_category/{id}")!!}',
+         url: '{!!asset("admin/category/get_category")!!}',
          type: 'get',
          dataType: 'json',
          success: function(response){
