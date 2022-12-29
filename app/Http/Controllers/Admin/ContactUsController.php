@@ -14,9 +14,14 @@ class ContactUsController extends Controller
 
     public function index(){
 
-        $contact_us = Contact_us::orderby('created_at','desc')->paginate(10);
 
-        return view('admin.contact.index',compact('contact_us'));
+        return view('admin.contact.index');
+    }
+    public function get_contactus(){
+
+        $contact_us = Contact_us::orderby('created_at','desc')->select('*')->get();
+        $contact_usData['data'] = $contact_us;
+        echo json_encode($contact_usData);
     }
 
     // public function full_desc($id){

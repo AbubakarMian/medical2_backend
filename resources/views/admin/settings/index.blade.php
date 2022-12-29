@@ -1,6 +1,6 @@
 @extends('layouts.default_module')
 @section('module_name')
-    Settings and Sliders
+Sliders
 @stop
 
 @section('table-properties')

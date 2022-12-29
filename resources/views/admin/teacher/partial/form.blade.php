@@ -3,8 +3,8 @@
 <style>
 select#gender {
     width: 100%;
-    height: 10%;
-    border: 1px solid #e3e6f3;
+    height: 40px;
+        border: 1px solid #e3e6f3;
 }
     </style>
 

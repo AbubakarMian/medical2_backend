@@ -37,7 +37,7 @@
 
 
 
-<div class="col-md-5 pull-left">
+<div class="col-md-2 pull-left">
     <div class="form-group text-center">
         <div>
             {!! Form::submit('Save', ['class' => 'btn btn-primary btn-block btn-lg btn-parsley', 'onblur' => 'return validateForm();']) !!}

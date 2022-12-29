@@ -19,8 +19,13 @@ class RoleController extends Controller
 
     public function index()
     {
-        $role = Role::orderBy('created_at', 'DESC')->paginate(10);
-        return view('admin.role.index', compact('role'));
+        return view('admin.role.index');
+    }
+    public function get_role()
+    {
+        $role = Role::orderBy('created_at', 'DESC')->select('*')->get();
+        $roleData['data'] = $role;
+        echo json_encode($roleData);
     }
 
     public function create()
