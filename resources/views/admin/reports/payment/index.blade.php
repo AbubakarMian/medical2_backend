@@ -140,6 +140,10 @@ function open_refund_modal(payment){
                       },
                 success: function(data){
                     console.log("response",data);
+                    if(!data.status){
+                        
+
+                    }
                 },
 				error: function(errordata) {
                 console.log(errordata)

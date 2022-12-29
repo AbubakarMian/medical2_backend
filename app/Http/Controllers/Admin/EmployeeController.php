@@ -66,13 +66,13 @@ class EmployeeController extends Controller
 
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
         $validator =  Validator::make(['email' => $request->email], [
             'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
         ]);
         if ($validator->fails()) {
             return back()->with('error', $validator->errors());
         }
-        $user = User::find($id);
         $this->add_or_update($request, $user);
         return redirect('admin/permissions/show?user_id='.$user->id);
     }

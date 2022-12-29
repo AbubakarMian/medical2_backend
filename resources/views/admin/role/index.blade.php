@@ -58,7 +58,7 @@ $(document).ready(function(){
     function fetchRecords(){
 
        $.ajax({
-         url: '{!!asset("admin/role/get_role/{id}")!!}',
+         url: '{!!asset("admin/role/get_role")!!}',
          type: 'get',
          dataType: 'json',
          success: function(response){

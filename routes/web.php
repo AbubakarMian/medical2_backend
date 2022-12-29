@@ -185,6 +185,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         // role
         Route::group(['prefix'=>'role'],function(){
             Route::get('/', 'RoleController@index')->name('role.index');
+            Route::get('get_role', 'RoleController@get_role')->name('role.get_role');
             //   Route::get('create', 'RoleController@create')->name('role.create');
             Route::get('create', 'RoleController@create')->name('role.create');
             Route::post('save', 'RoleController@save')->name('role.save');
