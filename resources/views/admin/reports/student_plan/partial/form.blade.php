@@ -190,6 +190,7 @@ $type = '';
 </div>
 @section('app_jquery')
 <script>
+    var student_plan = '{!!$student_plan!!}';
     function open_fees_type_div() {
         var select_fees_type = $('.fees_type').val();
         console.log('select_fees_type__select_fees_type', select_fees_type);
@@ -210,45 +211,33 @@ $type = '';
 
     function installment_html(v) {
         return (`
-<div class="row installmet_div_row">
-
-    <!-- columnnn-->
-<div class="col-sm-6">
-<div class="form-group">
-    {!! Form::label('amount','Amount') !!}
-    <div>
-        {!! Form::text('amounts[]', null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Amount',
-        'maxlength'=>"100"]) !!}
-    </div>
-</div>
-
-            </div>
-            <!-- end columnnn -->
-
-<!-- columnnn -->
+        <div class="row installmet_div_row">
+            <!-- columnnn-->
             <div class="col-sm-6">
-            <div class="form-group">
-    {!! Form::label('due_date','Due Date') !!}
-    <div>
-        {!! Form::date('due_date[]', null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Due Date',
-        ]) !!}
-    </div>
-</div>
+                <div class="form-group">
+                    <lable>Amount</lable>
+                    <div>
+                        <input type='number' name='amounts[]' class='form-control'
+                            data-parsley-required='true' , data-parsley-trigger='change'
+                            placeholder='Enter Amount'>
+                    </div>
+                </div>
+
             </div>
-
-         <!-- end  columnnn-->
-
-         <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 10px;
-    margin-left: 16px;
-    margin-bottom: 18px;">Remove</div>
-
-    </div>`
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <lable>Due Date</lable>
+            <div>
+                <input type='number' name='due_date[]' class='form-control'
+                            data-parsley-required='true' , data-parsley-trigger='change'
+                            placeholder='Enter Due Date'>
+            </div>
+        </div>
+            </div>
+        <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 10px;
+            margin-left: 16px;
+            margin-bottom: 18px;">Remove</div>
+        </div>`
 
 
         );
