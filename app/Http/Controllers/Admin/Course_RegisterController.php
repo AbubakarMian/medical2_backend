@@ -31,10 +31,12 @@ class Course_RegisterController extends Controller
         //
         $user = Auth::user();
         $now = time();
-          $course_register = Course_Register::with(['group', 'user','course','student_feess'=>function($q)use($now){
-            $q->where('status','pending')
-            ->where('due_date','>',$now);
-          }])
+        //   $course_register = Course_Register::with(['group', 'user','course','student_feess'=>function($q)use($now){
+        //     $q->where('status','pending')
+        //     ->where('due_date','>',$now);
+        //   }])
+
+        $course_register = Course_Register::with(['group', 'user','course','student_feess'])
           ->orderby('id', 'desc')
           ->select('*')->get();
 

@@ -28,7 +28,7 @@ class EmployeeController extends Controller
     }
     public function get_employee()
     {
-        $employee = User::where('role_id',3) // role id for all employees is 3 and role id of teacher is 4
+        $employee = User::where('role_id',4) // role id for all employees is 4 and role id of teacher is 3
                     ->orderBy('created_at', 'DESC')->select('*')->get();
                     $employeeData['data'] = $employee;
         echo json_encode($employeeData);
@@ -85,7 +85,9 @@ class EmployeeController extends Controller
         //and role id of teacher is 3
         $user->role_id =  4;
         $user->email =  $request->email;//.uniqid();
-        $user->password =  Hash::make($request->password);
+        if($request->password){
+            $user->password =  Hash::make($request->password);
+        }
         $user->save();
         return $user;
     }

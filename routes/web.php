@@ -196,6 +196,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         // Empolyee
         Route::group(['prefix'=>'employee'],function(){
             Route::get('/', 'EmployeeController@index')->name('employee.index');
+            Route::get('get_employee/{id}', 'EmployeeController@get_employee')->name('get_employee.index');
             Route::get('create', 'EmployeeController@create')->name('employee.create');
             Route::post('save', 'EmployeeController@save')->name('employee.save');
             Route::get('edit/{id}', 'EmployeeController@edit')->name('employee.edit');
@@ -314,7 +315,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
 
         // group_exams
         Route::group(['prefix'=>'group_exams'],function(){
-            Route::get('/{id}', 'Group_ExamsController@index')->name('group_exams.index');
+            Route::get('list/{id}', 'Group_ExamsController@index')->name('group_exams.index')->where('id','[0-9]+');
             Route::post('create', 'Group_ExamsController@create')->name('group_exams.create');
             Route::post('save', 'Group_ExamsController@save')->name('group_exams.save');
         });

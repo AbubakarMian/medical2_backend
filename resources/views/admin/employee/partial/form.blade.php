@@ -8,7 +8,7 @@
         'placeholder'=>' Name','required',
         'maxlength'=>"100"]) !!}
     </div>
-</div> 
+</div>
 <div class="form-group">
     {!! Form::label('email',' Email') !!}
     <div>
@@ -18,17 +18,17 @@
         'placeholder'=>' Email','required',
         'maxlength'=>"100"]) !!}
     </div>
-</div> 
+</div>
 <div class="form-group">
     {!! Form::label('password',' Password') !!}
     <div>
-        {!! Form::text('password', null, ['class' => 'form-control',
+        {!! Form::password('password',  ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>' Password','required',
+        'placeholder'=>' Password',
         'maxlength'=>"100"]) !!}
     </div>
-</div> 
+</div>
 
 
 

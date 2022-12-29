@@ -1,5 +1,4 @@
 
-{{-- <input name="invisible" type="hidden" value="{{ $category->id }}"> --}}
 <style>
 select#gender {
     width: 100%;
@@ -7,6 +6,17 @@ select#gender {
         border: 1px solid #e3e6f3;
 }
     </style>
+
+@if ($message = Session::get('error'))
+
+<div class="alert alert-danger">
+    <ul>
+        @foreach($message->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 <div class="form-group">
     {!! Form::label('name',' Name') !!}
@@ -55,10 +65,10 @@ select#gender {
 <div class="form-group">
     {!! Form::label('password','Password') !!}
     <div>
-        {!! Form::text('password',  null, ['class' => 'form-control',
+        {!! Form::password('password',   ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Password','required',
+        'placeholder'=>'Enter Password',
         'maxlength'=>"100"]) !!}
     </div>
 </div>

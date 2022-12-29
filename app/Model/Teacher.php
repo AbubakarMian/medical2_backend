@@ -9,4 +9,9 @@ class Teacher extends Model
 {
     use SoftDeletes;
     protected $table='teacher';
+
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'users_id');
+    }
  }
