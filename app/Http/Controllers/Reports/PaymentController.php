@@ -9,6 +9,7 @@ use App\Model\Student_fees;
 use App\Models\Request as ModelsRequest;
 use Carbon\Carbon;
 use App\Mail\Refund as RefundMail;
+use App\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
@@ -82,15 +83,14 @@ class PaymentController extends Controller
             'payment_refund_amount' => $payment_refund_amount,
             // 'charge' => $charges,
         ]);
+        $user = User::find($payment_object->user_id);
         $payment = Payment::first();
-        $emails = [
-            'ameer.maavia@gmail.com',
-            'abubakrmianmamoon@gmail.com',
-            'info@medical2.com'
-        ];
-        if(strpos(url()->current(),'localhost')!== false){
+        $emails = Config::get('constants.admin_emails');
+        $emails[] = $user->email;
+        if(!strpos(url()->current(),'localhost')){//=== true)
             foreach($emails as $email){
                 $details = [
+                    // 'to' => $email,
                     'to' => $email,
                     'title' =>  'Amount Refund Success',
                     'subject' =>  'Refund',
@@ -99,9 +99,27 @@ class PaymentController extends Controller
                     'payment' => $payment,
                     "dated"  => date('d F, Y (l)'),
                 ];
+                // Mail::to($email)->send(new RefundMail($details));
                 Mail::to($email)->send(new RefundMail($details));
             }
         }
+
+        // if(!strpos(url()->current(),'localhost')){//=== true) bohat achi bat
+        //         $details = [
+        //             // 'to' => $email,
+        //             'to' => implode(',',$emails),
+        //             'title' =>  'Amount Refund Success',
+        //             'subject' =>  'Refund',
+        //             'email_body'=>'Your amount refunded successfully',
+        //             'from' => 'contactus@medical2.com',
+        //             'payment' => $payment,
+        //             "dated"  => date('d F, Y (l)'),
+        //         ];
+        //         // Mail::to($email)->send(new RefundMail($details));
+        //         Mail::to($emails)->send(new RefundMail($details));
+        //     }
+
+
         return $response;
     }
 
