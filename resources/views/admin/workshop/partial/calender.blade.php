@@ -285,7 +285,7 @@
             panel_start_year = panel_start_year + 15;
         }
         create_year_list(panel_start_year);
-        set_year(calender_year);
+        // set_year(calender_year);
     }
 
     function new_month_panel(action) {
