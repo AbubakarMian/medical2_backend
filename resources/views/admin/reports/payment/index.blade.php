@@ -5,6 +5,7 @@
 @section('report_description')
 @stop
 @section('table')
+<h3 id="refund_success"></h3>
     <table id="userTable" class="table table-bordered">
         <thead>
             <tr>
@@ -141,8 +142,10 @@
                       },
                 success: function(data){
                     console.log("response",data);
+
+                    $('#refund_success').html('Amount successfully refunded');
                     if(!data.status){
-                        
+
 
                     }
                 },

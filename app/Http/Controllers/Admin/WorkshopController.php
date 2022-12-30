@@ -15,6 +15,7 @@ use App\Model\Teacher;
 use App\Model\Group;
 use Carbon\Carbon;
 use Date;
+use DateTime;
 use Maatwebsite\Excel\Concerns\ToArray;
 // Group;
 
@@ -38,18 +39,32 @@ class WorkshopController extends Controller
 
     public function save(Request $request)
     {
+        // dd($request->all());
          $workshop = new Group();
 
-        $start_timestamp = $this->time_to_timestamp($request->start_time);
-        $end_timestamp = $this->time_to_timestamp($request->end_time);
+        // $start_timestamp = $this->time_to_timestamp($request->start_time);
+        // $end_timestamp = $this->time_to_timestamp($request->end_time);
+        $all_dates = json_decode($request->dates);
 
-        foreach($request->selected_multi as $sm){
+        foreach($all_dates as $sm){
+            $selected_date = $sm->year.'-'.$sm->month.'-'.$sm->date; // yy-mm-d
+            // $date_time = strtotime($selected_date); // yy-mm-d H:i:s
+            // $start_timestamp = $start_timestamp +$date_time;
+            // $end_timestamp = $start_timestamp +$end_timestamp; // yy-mm-d
+
+            $start_time = new DateTime($selected_date.' '.$request->start_time); // yy-mm-d H:i
+            $end_time = new DateTime($selected_date.' '.$request->end_time); // yy-mm-d H:i
+
+            $start_timestamp = $start_time->format('U');
+            $end_timestamp = $end_time->format('U');
+            // dd($start_timestamp);
+
             $workshop = new Group();
             $workshop->name = $request->name;
             $workshop->courses_id = $request->courses_id;
             //
-            $workshop->start_date = $sm+$start_timestamp;
-            $workshop->end_date = $sm+$end_timestamp;
+            $workshop->start_date = $start_timestamp;
+            $workshop->end_date = $end_timestamp;
             //
             $workshop->teacher_id = $request->teacher_id;
             $workshop->type = 'workshop';
@@ -67,6 +82,7 @@ class WorkshopController extends Controller
             }
             $workshop->save();
  }
+ dd('save');
           return redirect('admin/workshop');
     }
     public function edit($id)
