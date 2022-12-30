@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Maatwebsite\Excel\Facades\Excel;
+use stdClass;
 use Stripe;
 
 class PaymentController extends Controller
@@ -37,7 +38,7 @@ class PaymentController extends Controller
     public function query(Request $request)
     {
         // $report = Student_fees::with('user','course','payment');
-        $report = Payment::with('user','course','refund_payments');
+        $report = Payment::with('user','course');
         $report = $report->orderBy('created_at', 'desc');
         return $report;
     }
@@ -56,6 +57,7 @@ class PaymentController extends Controller
 
         $payment_refund_amount = $request->payment_refund_amount;
 
+        $payment_refund_ids = $payment_object->refund_payment_id;
         //   payment_refund
         $payment = new Payment();
         $payment->user_id =  $payment_object->user_id;
@@ -65,19 +67,15 @@ class PaymentController extends Controller
         $payment->payment_status = $stripe->status;
         // $payment->card_type = ;
         $payment->amount =   $stripe->amount;
-        $payment->reason =   $stripe->payment_refund_reason;
+        $payment->reason =   $request->payment_refund_reason;
         $payment->action  = $stripe->object;
         $payment->save();
     //     //   payment_refund
-        $payment_object->refund_payment_id  = $payment->id;
+
+        $payment_refund_ids[] = $payment->id;
+        $payment_object->refund_payment_id  = $payment_refund_ids;
         $payment_object->save();
 
-        $response = Response::json([
-            'action' => Config::get('constants.ajax_action.update'),
-            'new_value' => ucwords($request->status),
-            'payment_refund_amount' => $payment_refund_amount,
-            // 'charge' => $charges,
-        ]);
         $user = User::find($payment_object->user_id);
         $payment = Payment::first();
         $emails = Config::get('constants.admin_emails');
@@ -102,7 +100,7 @@ class PaymentController extends Controller
         // if(!strpos(url()->current(),'localhost')){//=== true) bohat achi bat
         //         $details = [
         //             // 'to' => $email,
-        //             'to' => implode(',',$emails),
+        //             'to' => $emails,
         //             'title' =>  'Amount Refund Success',
         //             'subject' =>  'Refund',
         //             'email_body'=>'Your amount refunded successfully',
@@ -110,11 +108,16 @@ class PaymentController extends Controller
         //             'payment' => $payment,
         //             "dated"  => date('d F, Y (l)'),
         //         ];
-        //         // Mail::to($email)->send(new RefundMail($details));
         //         Mail::to($emails)->send(new RefundMail($details));
         //     }
 
 
-        return $response;
+        return $this->sendResponse(200,$payment);
+    }
+
+    public function payment_refund_details($payment_id){
+        $payment = Payment::find($payment_id);
+        $refund_payments = Payment::whereIn('id', $payment->refund_payment_id)->get();
+        return $this->sendResponse(200, $refund_payments);
     }
 }

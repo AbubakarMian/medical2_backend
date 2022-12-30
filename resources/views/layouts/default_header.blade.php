@@ -10,6 +10,7 @@ $admin_common = session()->get('admin_common');
     <meta charset="utf-8">
     <meta name="description" content="Flat, Clean, Responsive, application admin template built with bootstrap 3">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- /meta -->
 
     <title>Admin Panel</title>
@@ -292,6 +293,13 @@ $admin_common = session()->get('admin_common');
     @include('layouts.myapp_js')
 
     <!-- /template scripts -->
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 
 </body>
 <!-- /body -->

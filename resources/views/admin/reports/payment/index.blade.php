@@ -5,7 +5,7 @@
 @section('report_description')
 @stop
 @section('table')
-<h3 id="refund_success"></h3>
+    <h3 id="refund_success"></h3>
     <table id="userTable" class="table table-bordered">
         <thead>
             <tr>
@@ -102,21 +102,38 @@
 
         function open_refund_modal(payment) {
             $('.payment_id').val(payment.id);
-            if (payment.refund_payments.length) {
-                var refund_table = "";
-                for (var i = 0; i < payment.refund_payments.length; i++) {
-                    refund_table = refund_table + `<tr>` +
-                        `<td>` + payment.refund_payments[i].payment_id + `</td>` +
-                        `<td>` + payment.refund_payments[i].amount + `</td>` +
-                        `<td>` + payment.refund_payments[i].status + `</td>` +
-                        `<td>` + get_date(payment.refund_payments[i].created_at) + `</td>`;
+
+            $.ajax({
+                url: '{!! asset('admin/reports/payment/refund/details') !!}/' + payment.id,
+                method: 'post',
+                dataType: 'json',
+                success: function(response) {
+                    var refund_payments = response.response;
+                    console.log('response', response.response);
+
+                    if (refund_payments.length) {
+                        var refund_table = "";
+                        for (var i = 0; i < refund_payments.length; i++) {
+                            refund_table = refund_table + `<tr>` +
+                                `<td>` + refund_payments[i].payment_id + `</td>` +
+                                `<td>` + refund_payments[i].amount + `</td>` +
+                                `<td>` + refund_payments[i].payment_status + `</td>` +
+                                `<td>` + refund_payments[i].reason + `</td>` +
+                                `<td>` + get_date(refund_payments[i].created_at) + `</td>`;
+                        }
+                        $('.refund_details').css('display', 'block');
+                        $('.refund_details_body').html(refund_table);
+                    } else {
+                        $('.refund_details').css('display', 'none');
+                    }
+                    $('.payment_refund_modal').modal('toggle');
+
+                },
+                error: function(err) {
+                    console.log('payment refund error details', err);
                 }
-                $('.refund_details').css('display', 'block');
-                $('.refund_details_body').html(refund_table);
-            } else {
-                $('.refund_details').css('display', 'none');
-            }
-            $('.payment_refund_modal').modal('toggle');
+            })
+
         }
 
         function set_msg_modal(msg) {
@@ -133,24 +150,28 @@
             }
             var url = '{!! asset('admin/reports/payment/payment_refund') !!}/' + payment_id;
             $.ajax({
-                url:url,
-                method:'POST',
-                data: {'_token' :'{!! csrf_token() !!}',
-                       'status' : status,
-                       'payment_refund_amount' : payment_refund_amount,
-                       'payment_refund_reason' : payment_refund_reason,
-                      },
-                success: function(data){
-                    console.log("response",data);
-
-                    $('#refund_success').html('Amount successfully refunded');
-                    if(!data.status){
-
-
-                    }
+                url: url,
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    '_token': '{!! csrf_token() !!}',
+                    'status': status,
+                    'payment_refund_amount': payment_refund_amount,
+                    'payment_refund_reason': payment_refund_reason,
                 },
                 success: function(data) {
                     console.log("response", data);
+                    console.log('Amount successfully refunded');
+
+                    if (data.status) {
+                        console.log(' 11Amount successfully refunded');
+
+                        $('#refund_success').html('Amount successfully refunded');
+
+                    } else {
+                        $('#refund_success').html('Eroor refunded');
+
+                    }
                 },
                 error: function(errordata) {
                     console.log(errordata)

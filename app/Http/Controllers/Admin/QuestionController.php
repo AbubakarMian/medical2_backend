@@ -52,9 +52,9 @@ class QuestionController extends Controller
     {
         $control = 'create';
         $question = new Question();
-        $courses_list = Courses::orderby('id', 'desc')->get();
+        $courses_list = Courses::orderby('id', 'desc')->get()->toArray();
         $question_course = [];
-
+        $courses_list = array_chunk($courses_list, 4);
         return view('admin.question.create', compact('control', 'question','courses_list','question_course'));
     }
 

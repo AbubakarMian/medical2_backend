@@ -352,6 +352,8 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
                 Route::get('payments/get_payment_report', 'Reports\PaymentController@get_payment_report')->name('get_payment_report.index');
                 //   Route::post('payment/status_update/{id}', 'Reports\PaymentController@status_update')->name('payment.status_update');
                 Route::post('payment/payment_refund/{id}', 'Reports\PaymentController@payment_refund')->name('payment.payment_refund');
+                // Route::get('payment/refund/details/{id}', 'Reports\PaymentController@payment_refund_details')->name('payment.refund.details');
+                Route::post('payment/refund/details/{id}', 'Reports\PaymentController@payment_refund_details')->name('payment.refund.details');
                 Route::get('permissions', 'Reports\PermissionsController@index')->name('permissions.index');
             });
             // permissions

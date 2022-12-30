@@ -17,8 +17,18 @@ class Payment extends Model
     {
         return $this->hasOne('App\Model\Courses', 'id', 'course_id');
     }
-    public function refund_payments()
+
+    public function getRefundPaymentIdAttribute($value)
     {
-        return $this->hasMany('App\Model\Payment', 'id', 'refund_payment_id');
+        return json_decode($value);
     }
+    public function setRefundPaymentIdAttribute($value)
+    {
+        $this->attributes['refund_payment_id'] = json_encode($value);
+    }
+
+    // public function refund_payments($value)
+    // {
+    //     return $this->hasMany('App\Model\Payment', 'id', 'refund_payment_id');
+    // }
  }

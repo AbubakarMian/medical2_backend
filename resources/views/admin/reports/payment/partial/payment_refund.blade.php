@@ -80,13 +80,15 @@
     font-size: 13px;
     font-family: inherit;
     color: gray;
+    height: 50px;
 }
 
-    .gfs th {
-    font-size: 13px;
-    font-weight: 600;
+.gfs th {
+    font-size: 14px;
+    font-weight: 700;
     color: #464444;
-    font-family: sans-serif;
+    font-family: inherit;
+    padding: 12px;
 }
     .gahs {
     background: #1374c5;
@@ -96,12 +98,20 @@
     font-family: system-ui;
     float: left;
 }
+.cacsac {
+    width: 40%;
+}
+.csvsscroll {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 330px;
+}
 </style>
 
 
 
 <div id="myModal" class="modal payment_refund_modal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog cacsac">
 
         <!-- Modal content-->
         <div class="modal-content gfs">
@@ -118,7 +128,7 @@
                             placeholder="Refund Amount" required>
                         <br>
 
-                        <textarea name="payment_text" class="payment_refund_reason rfnd_txt" rows="5" placeholder="Reason"></textarea>
+                        <textarea name="payment_refund_reason" class="payment_refund_reason rfnd_txt" rows="5" placeholder="Reason"></textarea>
 
                     </div>
                     <button name="status" class="btn btn-primary rfnd_btn gahs" data-dismiss="modal"
@@ -127,7 +137,7 @@
                     </button>
                 </div>
             </section>
-            <div class="modal-body">
+            <div class="modal-body csvsscroll">
                 {!! csrf_field() !!}
 
                 <div class="refund_details">
@@ -137,6 +147,7 @@
                             <th>Payment Id</th>
                             <th>Refund Amount</th>
                             <th>Status</th>
+                            <th>Reason</th>
                             <th>Created at</th>
                         </thead>
                         <tbody class="refund_details_body"></tbody>
