@@ -83,9 +83,15 @@
         cursor: pointer;
     }
 
+    .select_course {
+        background: #191970;
+        color: white;
+        border-radius:6px;
+    }
+
     .addmudbox:hover {
         /* transform: scale(1.10); */
-        background: #191970;
+        background: #191970e3;
         color: #ffffff;
     }
 
@@ -150,7 +156,25 @@
                             <button type="submit" class="btn btn-primary addmudsearch"><i class="fa fa-search"
                                     aria-hidden="true"></i></button>
                         </div>
-                        @for ($s = 0; $s < 5; $s++)
+                        @foreach ($courses_list as $course_list_chunck)
+                            <div class="addmudbody">
+                                <div class="row">
+                                    @foreach ($course_list_chunck as $course)
+                                        <div class="col-sm-3">
+                                            <div class=" course_box_{!! $course['id'] !!}"
+                                                my_id='{!! $course['id'] !!}'>
+                                                <div class="addmudbox"
+                                                    onclick="course_onclick(this,'{!! $course['id'] !!}')">
+                                                    <p>{!! $course['short_name'] !!}</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                        {{-- @for ($s = 0; $s < 5; $s++)
                             <div class="addmudbody">
                                 <div class="row">
                                     @for ($i = 0; $i < 4; $i++)
@@ -162,7 +186,7 @@
                                     @endfor
                                 </div>
                             </div>
-                        @endfor
+                        @endfor --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -228,111 +252,39 @@
 
 @section('app_jquery')
     <script>
-        $(function() {
-            createModal({
-                id: 'list_courses',
-                class: 'cascassssssssssss',
-                header: '<h4 class="corheading">Courses</h4>',
-                body: getCoursesListTable(),
-                footer: `
+        var selected_courses = [];
 
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            `,
-            });
+        function course_onclick(e, course_id) {
 
+            console.log('new course_id', course_id);
+            console.log('selected_courses', selected_courses);
+            var course_index = course_exist(course_id);
+            if (course_index === -1) {
+                console.log('Not avalible  exist');
 
-        })
-
-        function getCoursesListTable() {
-            var table = `
-            <table>
-                <thead>
-                <thead>
-                <tbody>
-        `;
-
-            @foreach ($courses_list as $cl)
-                table = table + '<tr>';
-
-                table = table + '</td>';
-
-                <?php
-                $checked = '';
-                if (in_array($cl->id, $question_course)) {
-                    $checked = 'checked';
-                }
-                ?>
-
-                table = table +
-                    '<td><div class="checkbox"><label><input class="selected_courses_checkbox" type="checkbox" {!! $checked !!} value="{!! $cl->id !!}"></label></div>';
-                table = table + '<td>{!! $cl->full_name !!}';
-                table = table + '</td>';
-                table = table + '</tr>';
+                selected_courses.push(course_id);
+                $('.course_box_' + course_id).addClass('select_course');
 
 
-                // new checkboxes start
-                table = `<div class='row'>
-                    <div class='col-sm-12'>
-                        <div class='switchbox'>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                        </div>
-                        <div class='switchbox'>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                            <div class='switchboxdata'>
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Default</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-                // new checkboxes finish
-            @endforeach ()
+            } else {
+                console.log('Already exist');
 
-            table = table + `</tbody></table>`;
+                selected_courses.pop(course_index);
+                $('.course_box_' + course_id).removeClass('select_course');
 
-            return table;
+            }
+
+
+
+
+        }
+
+
+        function course_exist(course_id) {
+            var index = selected_courses.findIndex(x => x == course_id);
+            // var found = index != -1;
+            // console.log('index',found);
+            return index;
         }
 
 
@@ -399,7 +351,7 @@
     </script>
     <!-- JS & CSS library of MultiSelect plugin -->
     <!-- <script src="multiselect/jquery.multiselect.js"></script>
-                                <link rel="stylesheet" href="multiselect/jquery.multiselect.css">
+                                    <link rel="stylesheet" href="multiselect/jquery.multiselect.css">
 
-                                <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> -->
+                                    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> -->
 @endsection
