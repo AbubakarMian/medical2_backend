@@ -56,6 +56,8 @@ class PaymentController extends Controller
 
         $payment_refund_amount = $request->payment_refund_amount;
 
+        $payment_refund_ids = $payment_object->refund_payment_id;
+
         //   payment_refund
         $payment = new Payment();
         $payment->user_id =  $payment_object->user_id;
@@ -65,11 +67,13 @@ class PaymentController extends Controller
         $payment->payment_status = $stripe->status;
         // $payment->card_type = ;
         $payment->amount =   $stripe->amount;
-        $payment->reason =   $stripe->payment_refund_reason;
+        $payment->reason =   $request->refund_reason;
         $payment->action  = $stripe->object;
         $payment->save();
     //     //   payment_refund
-        $payment_object->refund_payment_id  = $payment->id;
+
+        $payment_refund_ids[] = $payment->id;
+        $payment_object->refund_payment_id  = $payment_refund_ids;
         $payment_object->save();
 
         $response = Response::json([

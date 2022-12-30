@@ -22,6 +22,10 @@ class Payment extends Model
     {
         return json_decode($value);
     }
+    public function setRefundPaymentIdAttribute($value)
+    {
+        return json_encode($value);
+    }
 
     // public function refund_payments($value)
     // {

@@ -118,7 +118,7 @@
                             placeholder="Refund Amount" required>
                         <br>
 
-                        <textarea name="payment_text" class="payment_refund_reason rfnd_txt" rows="5" placeholder="Reason"></textarea>
+                        <textarea name="refund_reason" class="payment_refund_reason rfnd_txt" rows="5" placeholder="Reason"></textarea>
 
                     </div>
                     <button name="status" class="btn btn-primary rfnd_btn gahs" data-dismiss="modal"
@@ -137,6 +137,7 @@
                             <th>Payment Id</th>
                             <th>Refund Amount</th>
                             <th>Status</th>
+                            <th>Reason</th>
                             <th>Created at</th>
                         </thead>
                         <tbody class="refund_details_body"></tbody>

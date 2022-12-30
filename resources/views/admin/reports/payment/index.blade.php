@@ -117,7 +117,8 @@
                             refund_table = refund_table + `<tr>` +
                                 `<td>` + refund_payments[i].payment_id + `</td>` +
                                 `<td>` + refund_payments[i].amount + `</td>` +
-                                `<td>` + refund_payments[i].status + `</td>` +
+                                `<td>` + refund_payments[i].payment_status + `</td>` +
+                                `<td>` + refund_payments[i].reason + `</td>` +
                                 `<td>` + get_date(refund_payments[i].created_at) + `</td>`;
                         }
                         $('.refund_details').css('display', 'block');
