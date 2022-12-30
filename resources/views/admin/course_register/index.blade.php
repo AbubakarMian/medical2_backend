@@ -34,6 +34,36 @@
         border: 1px solid #e3e6f3;
         padding: 6px 10px;
     }
+
+    .remoheading {
+        text-align: center;
+        font-size: 19px;
+        color: black;
+        font-weight: 500;
+    }
+
+    td.coursetd {
+        border: 1px solid #e5e5e5 !important;
+        text-align: center !important;
+        height: 43px !important;
+        font-size: 13px !important;
+        color: gray !important;
+        font-weight: 500 !important;
+    }
+
+    tr.coursetr th {
+        border: 1px solid #e5e5e5 !important;
+        font-size: 13px !important;
+        font-weight: bold !important;
+        text-align: left !important;
+    }
+
+    .couregmodal {
+        width: 35% !important;
+    }
+    #acaf {
+    margin-top: -55px !important;
+}
 </style>
 @section('table')
 
@@ -59,23 +89,21 @@
         </tbody>
     </table>
 
-    {{--  modal  --}}
-     <button style="display: none" type="button" class="btn btn-info btn-lg open_modal_click" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <button style="display: none" type="button" class="btn btn-info btn-lg open_modal_click" data-toggle="modal"
+        data-target="#myModal">Open Modal</button>
 
-    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog couregmodal">
 
-            <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" id="my_group_name"></h4>
+                    <h4 class="modal-title remoheading" id="my_group_name"></h4>
                 </div>
                 <div class="modal-body">
                     <table id="coursesTableAppend" style="opacity: 0">
                         <thead>
-                            <tr>
+                            <tr class="coursetr">
                                 <th>Group Name</th>
                                 <th>Starting Date</th>
                                 <th>Ending Date</th>
@@ -94,8 +122,6 @@
         </div>
     </div>
 
-
-    {{--  modal close  --}}
 @stop
 @section('app_jquery')
 
@@ -105,7 +131,6 @@
             fetchRecords();
             $('#coursesTableAppend').DataTable({
                 dom: '<"top_datatable"B>Lftipr',
-
             });
 
             function fetchRecords() {
@@ -161,7 +186,7 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    console.log('ressss response',response)
+                    console.log('ressss response', response)
                     // $('#myModal').modal('show');
                     $('.open_modal_click').click();
                     $("#coursesTableAppend").css("opacity", 1);
@@ -176,14 +201,16 @@
                         var is_checked = response['groups'][i].id == response['register_course'].group_id ?
                             'checked' : '';
                         var update_course_group = `<input type="radio"  name="radioName"  ` + is_checked +
-                            `  class="my_group_radio_` + response['register_course'].group_id +
+                            `  class="my_group_radio_ coursebulit` + response['register_course'].group_id +
                             ` " onclick="update_course_group_fun(` + response['groups'][i].id + `,` + response[
                                 'register_course'].id + `)" /> `;
-                        tr_str = tr_str + "<tr id='row_" + response['groups'][i].id + "'>" +
-                            "<td>" + name + "</td>" +
-                            "<td>" + new Date(start_date * 1000).toLocaleDateString("en-US") + "</td>" +
-                            "<td>" + new Date(end_date * 1000).toLocaleDateString("en-US") + "</td>" +
-                            "<td>" + update_course_group + "</td>" +
+                        tr_str = tr_str + "<tr class='coursetr' id='row_" + response['groups'][i].id + "'>" +
+                            "<td class='coursetd'>" + name + "</td>" +
+                            "<td class='coursetd'>" + new Date(start_date * 1000).toLocaleDateString("en-US") +
+                            "</td>" +
+                            "<td class='coursetd'>" + new Date(end_date * 1000).toLocaleDateString("en-US") +
+                            "</td>" +
+                            "<td class='coursetd'>" + update_course_group + "</td>" +
                             "</tr>";
                         $("#my_group_name").html(response['groups'][i].courses.full_name + ' Course');
                     }
@@ -191,6 +218,7 @@
                 }
             });
         }
+
         function update_course_group_fun(group_id, register_course_id) {
             $.ajax({
 

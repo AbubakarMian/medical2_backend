@@ -31,7 +31,7 @@
     td {
         border: 1px solid black;
         padding: 3px;
-        width: 100%
+        /* width: 100% */
     }
 
     .rfnd_btn {
