@@ -83,7 +83,8 @@ class PaymentController extends Controller
             'abubakrmianmamoon@gmail.com',
             'info@medical2.com'
         ];
-        if(strpos(url()->current(),'localhost')!== false){
+        if(!strpos(url()->current(),'localhost')){//=== true)
+            dd(url()->current(),strpos(url()->current(),'localhost'));
             foreach($emails as $email){
                 $details = [
                     'to' => $email,

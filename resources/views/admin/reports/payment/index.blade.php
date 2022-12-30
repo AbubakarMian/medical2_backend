@@ -5,6 +5,7 @@
 @section('report_description')
 @stop
 @section('table')
+<h3 id="refund_success"></h3>
     <table id="userTable" class="table table-bordered">
         <thead>
             <tr>
@@ -102,6 +103,7 @@ function open_refund_modal(payment){
     $('.payment_id').val(payment.id);
     if(payment.refund_payments.length ){
         var refund_table ="";
+        console.log()
         for(var i=0; i<payment.refund_payments.length ; i++){
             refund_table = refund_table+`<tr>`+
                 `<td>`+payment.refund_payments[i].payment_id+`</td>`+
@@ -140,8 +142,10 @@ function open_refund_modal(payment){
                       },
                 success: function(data){
                     console.log("response",data);
+
+                    $('#refund_success').html('Amount successfully refunded');
                     if(!data.status){
-                        
+
 
                     }
                 },
