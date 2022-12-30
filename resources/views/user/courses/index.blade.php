@@ -64,17 +64,14 @@
                         <div class="row">
                             @foreach ($c as $p)
                                 <div class="col-sm-3 gahalink">
-                                    <a href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}">
+                                    {{-- <a href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}"> --}}
                                         <div class="rating">
 
                                             <div class="boxing">
                                                 <img src="{!! $p->avatar !!}" alt="Avatar" class="image">
                                                 <div class="middle">
                                                     <div class="text">
-
-                                                        <!-- <a href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}" target="_blank"> -->
-                                                        <!-- <a href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}" target="_blank"> -->
-
+                                                        <a href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}">View</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -109,7 +106,7 @@
                                             </div>
 
                                         </div>
-                                    </a>
+                                    {{-- </a> --}}
                                 </div>
                             @endforeach
 

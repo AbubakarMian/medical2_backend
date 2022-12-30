@@ -54,6 +54,58 @@
     #checkboxes label:hover {
         background-color: #1e90ff;
     }
+
+    .addmudsize {
+        width: 75%;
+    }
+
+    .addmudsize h5 {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: gray;
+    }
+
+    .addmudbox p {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        /* width:200px;  */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .addmudbox {
+        border: 1px solid #e5e5e5;
+        padding: 30px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .addmudbox:hover {
+        /* transform: scale(1.10); */
+        background: #191970;
+        color: #ffffff;
+    }
+
+    .addmudbody {
+        margin: 17px;
+    }
+
+    .mubocrl {
+        overflow: scroll;
+        overflow-x: hidden;
+        height: 350px;
+    }
+
+    .addmudinput {
+        display: flex;
+    }
+
+    .addmudinput input {
+        width: 12%;
+    }
 </style>
 {{-- <div id="add_custom_modals"></div> --}}
 
@@ -74,8 +126,52 @@
 <div class="form-group">
     {!! Form::label('add courses', 'Add Courses') !!}</br>
     <div>
-        <button class="btn btn-primary" data-toggle="modal" background color="red  " data-target="#list_courses"
-            onclick="return false">+Add Courses</button>
+        {{-- <button class="btn btn-primary" data-toggle="modal" background color="red  " data-target="#list_courses"
+            onclick="return false">+Add Courses</button> --}}
+
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+            + Add Courses
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            aria-hidden="true">
+            <div class="modal-dialog addmudsize" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Select Your Courses</h5>
+                    </div>
+                    <div class="modal-body mubocrl">
+                        <div class="addmudinput">
+                            <input type="text" class="form-control" id="serchhere" aria-describedby="emailHelp"
+                                placeholder="serch here">
+                            <button type="submit" class="btn btn-primary addmudsearch"><i class="fa fa-search"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                        @for ($s = 0; $s < 5; $s++)
+                            <div class="addmudbody">
+                                <div class="row">
+                                    @for ($i = 0; $i < 4; $i++)
+                                        <div class="col-sm-3">
+                                            <div class="addmudbox">
+                                                <p>English</p>
+                                            </div>
+                                        </div>
+                                    @endfor
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
 <div class="form-group">
@@ -135,6 +231,7 @@
         $(function() {
             createModal({
                 id: 'list_courses',
+                class: 'cascassssssssssss',
                 header: '<h4 class="corheading">Courses</h4>',
                 body: getCoursesListTable(),
                 footer: `
@@ -302,7 +399,7 @@
     </script>
     <!-- JS & CSS library of MultiSelect plugin -->
     <!-- <script src="multiselect/jquery.multiselect.js"></script>
-                <link rel="stylesheet" href="multiselect/jquery.multiselect.css">
+                                <link rel="stylesheet" href="multiselect/jquery.multiselect.css">
 
-                <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> -->
+                                <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> -->
 @endsection

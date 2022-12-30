@@ -33,7 +33,7 @@
 
 
 
-/* calender css */
+    /* calender css */
 </style>
 
 <div class="modal fade" id="myModal" role="dialog">
@@ -105,7 +105,7 @@
             'data-parsley-required' => 'true',
             'data-parsley-trigger' => 'change',
             'required',
-
+        
             'maxlength' => '100',
         ]) !!}
     </div>
@@ -176,17 +176,20 @@
                 <div class="mbsc-col-sm-12 mbsc-col-md-4">
                     <div class="mbsc-form-group">
 
-                    {{-- costum Calendar start --}}
+                        {{-- costum Calendar start --}}
 
                         <button type="button" class="btn btn-primary camodal" data-toggle="modal"
                             data-target="#exampleModalCenter">
                             Launch Calendar
                         </button>
                         <input type="hidden" name="dates" class="dates">
-                        @include('admin.workshop.partial.calender',['date_input'=>'.dates','selection_type'=>'multiple'])
+                        @include('admin.workshop.partial.calender', [
+                            'date_input' => '.dates',
+                            'selection_type' => 'multiple',
+                        ])
 
 
-                    {{-- costum Calendar finish --}}
+                        {{-- costum Calendar finish --}}
 
                     </div>
                 </div>
