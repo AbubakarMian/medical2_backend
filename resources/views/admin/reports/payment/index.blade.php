@@ -102,21 +102,39 @@
 
         function open_refund_modal(payment) {
             $('.payment_id').val(payment.id);
-            if (payment.refund_payments.length) {
-                var refund_table = "";
-                for (var i = 0; i < payment.refund_payments.length; i++) {
-                    refund_table = refund_table + `<tr>` +
-                        `<td>` + payment.refund_payments[i].payment_id + `</td>` +
-                        `<td>` + payment.refund_payments[i].amount + `</td>` +
-                        `<td>` + payment.refund_payments[i].status + `</td>` +
-                        `<td>` + get_date(payment.refund_payments[i].created_at) + `</td>`;
+
+            $.ajax({
+                url:'{!!asset("admin/reports/payment/refund/details")!!}/'+payment.id,
+                method:'post',
+                dataType:'json',
+                success:function(response){
+                    var refund_payments = response.response;
+                    console.log('response',response.response);
+
+                    if (refund_payments.length) {
+                        var refund_table = "";
+                        for (var i = 0; i < refund_payments.length; i++) {
+                            refund_table = refund_table + `<tr>` +
+                                `<td>` + refund_payments[i].payment_id + `</td>` +
+                                `<td>` + refund_payments[i].amount + `</td>` +
+                                `<td>` + refund_payments[i].status + `</td>` +
+                                `<td>` + get_date(refund_payments[i].created_at) + `</td>`;
+                        }
+                        $('.refund_details').css('display', 'block');
+                        $('.refund_details_body').html(refund_table);
+                    } else {
+                        $('.refund_details').css('display', 'none');
+                    }
+                    $('.payment_refund_modal').modal('toggle');
+
+                },
+                error:function(err){
+                    console.log('payment refund error details',err);
                 }
-                $('.refund_details').css('display', 'block');
-                $('.refund_details_body').html(refund_table);
-            } else {
-                $('.refund_details').css('display', 'none');
-            }
-            $('.payment_refund_modal').modal('toggle');
+            })
+
+
+
         }
 
         function set_msg_modal(msg) {

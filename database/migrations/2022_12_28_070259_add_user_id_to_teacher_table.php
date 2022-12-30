@@ -13,9 +13,11 @@ class AddUserIdToTeacherTable extends Migration
      */
     public function up()
     {
-        Schema::table('teacher', function (Blueprint $table) {
-            $table->bigInteger('users_id')->nullable()->default(0);
-
+        Schema::table('payment', function (Blueprint $table) {
+            $table->dropColumn('refund_payment_id');
+        });
+        Schema::table('payment', function (Blueprint $table) {
+            $table->string('refund_payment_id',1000)->nullable()->default('[]');
         });
     }
 

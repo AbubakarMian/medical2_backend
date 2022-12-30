@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Maatwebsite\Excel\Facades\Excel;
+use stdClass;
 use Stripe;
 
 class PaymentController extends Controller
@@ -36,7 +37,7 @@ class PaymentController extends Controller
     public function query(Request $request)
     {
         // $report = Student_fees::with('user','course','payment');
-        $report = Payment::with('user','course','refund_payments');
+        $report = Payment::with('user','course');
         $report = $report->orderBy('created_at', 'desc');
         return $report;
     }
@@ -98,5 +99,11 @@ class PaymentController extends Controller
             }
         }
         return $response;
+    }
+
+    public function payment_refund_details($payment_id){
+        $payment = Payment::find($payment_id);
+        $refund_payments = Payment::whereIn('id', $payment->refund_payment_id)->get();
+        return $this->sendResponse(200, $refund_payments);
     }
 }
