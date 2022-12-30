@@ -24,7 +24,7 @@ class Payment extends Model
     }
     public function setRefundPaymentIdAttribute($value)
     {
-        return json_encode($value);
+        $this->attributes['refund_payment_id'] = json_encode($value);
     }
 
     // public function refund_payments($value)

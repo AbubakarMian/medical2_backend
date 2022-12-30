@@ -58,7 +58,6 @@ class PaymentController extends Controller
         $payment_refund_amount = $request->payment_refund_amount;
 
         $payment_refund_ids = $payment_object->refund_payment_id;
-
         //   payment_refund
         $payment = new Payment();
         $payment->user_id =  $payment_object->user_id;
@@ -68,7 +67,7 @@ class PaymentController extends Controller
         $payment->payment_status = $stripe->status;
         // $payment->card_type = ;
         $payment->amount =   $stripe->amount;
-        $payment->reason =   $request->refund_reason;
+        $payment->reason =   $request->payment_refund_reason;
         $payment->action  = $stripe->object;
         $payment->save();
     //     //   payment_refund
@@ -77,12 +76,6 @@ class PaymentController extends Controller
         $payment_object->refund_payment_id  = $payment_refund_ids;
         $payment_object->save();
 
-        $response = Response::json([
-            'action' => Config::get('constants.ajax_action.update'),
-            'new_value' => ucwords($request->status),
-            'payment_refund_amount' => $payment_refund_amount,
-            // 'charge' => $charges,
-        ]);
         $user = User::find($payment_object->user_id);
         $payment = Payment::first();
         $emails = Config::get('constants.admin_emails');
@@ -120,7 +113,7 @@ class PaymentController extends Controller
         //     }
 
 
-        return $response;
+        return $this->sendResponse(200,$payment);
     }
 
     public function payment_refund_details($payment_id){

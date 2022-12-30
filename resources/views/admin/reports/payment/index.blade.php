@@ -5,7 +5,7 @@
 @section('report_description')
 @stop
 @section('table')
-<h3 id="refund_success"></h3>
+    <h3 id="refund_success"></h3>
     <table id="userTable" class="table table-bordered">
         <thead>
             <tr>
@@ -104,12 +104,12 @@
             $('.payment_id').val(payment.id);
 
             $.ajax({
-                url:'{!!asset("admin/reports/payment/refund/details")!!}/'+payment.id,
-                method:'post',
-                dataType:'json',
-                success:function(response){
+                url: '{!! asset('admin/reports/payment/refund/details') !!}/' + payment.id,
+                method: 'post',
+                dataType: 'json',
+                success: function(response) {
                     var refund_payments = response.response;
-                    console.log('response',response.response);
+                    console.log('response', response.response);
 
                     if (refund_payments.length) {
                         var refund_table = "";
@@ -129,12 +129,10 @@
                     $('.payment_refund_modal').modal('toggle');
 
                 },
-                error:function(err){
-                    console.log('payment refund error details',err);
+                error: function(err) {
+                    console.log('payment refund error details', err);
                 }
             })
-
-
 
         }
 
@@ -152,24 +150,28 @@
             }
             var url = '{!! asset('admin/reports/payment/payment_refund') !!}/' + payment_id;
             $.ajax({
-                url:url,
-                method:'POST',
-                data: {'_token' :'{!! csrf_token() !!}',
-                       'status' : status,
-                       'payment_refund_amount' : payment_refund_amount,
-                       'payment_refund_reason' : payment_refund_reason,
-                      },
-                success: function(data){
-                    console.log("response",data);
-
-                    $('#refund_success').html('Amount successfully refunded');
-                    if(!data.status){
-
-
-                    }
+                url: url,
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    '_token': '{!! csrf_token() !!}',
+                    'status': status,
+                    'payment_refund_amount': payment_refund_amount,
+                    'payment_refund_reason': payment_refund_reason,
                 },
                 success: function(data) {
                     console.log("response", data);
+                    console.log('Amount successfully refunded');
+
+                    if (data.status) {
+                        console.log(' 11Amount successfully refunded');
+
+                        $('#refund_success').html('Amount successfully refunded');
+
+                    } else {
+                        $('#refund_success').html('Eroor refunded');
+
+                    }
                 },
                 error: function(errordata) {
                     console.log(errordata)
