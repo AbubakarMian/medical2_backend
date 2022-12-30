@@ -100,7 +100,7 @@ class PaymentController extends Controller
         // if(!strpos(url()->current(),'localhost')){//=== true) bohat achi bat
         //         $details = [
         //             // 'to' => $email,
-        //             'to' => implode(',',$emails),
+        //             'to' => $emails,
         //             'title' =>  'Amount Refund Success',
         //             'subject' =>  'Refund',
         //             'email_body'=>'Your amount refunded successfully',
@@ -108,7 +108,6 @@ class PaymentController extends Controller
         //             'payment' => $payment,
         //             "dated"  => date('d F, Y (l)'),
         //         ];
-        //         // Mail::to($email)->send(new RefundMail($details));
         //         Mail::to($emails)->send(new RefundMail($details));
         //     }
 

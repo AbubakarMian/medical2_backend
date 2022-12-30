@@ -8,6 +8,7 @@ return [
     'admin_emails'=>[
         'ameer.maavia@gmail.com',
         'abubakrmianmamoon@gmail.com',
+        'arhamumar63@gmail.com'
         // 'info@medical2.com'
     ],
 	'app-type' => [
