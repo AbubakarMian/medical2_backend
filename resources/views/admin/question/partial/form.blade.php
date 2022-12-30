@@ -161,9 +161,8 @@
                                 <div class="row">
                                     @foreach ($course_list_chunck as $course)
                                         <div class="col-sm-3">
-                                            <div class=" course_box_{!! $course['id'] !!}"
-                                                my_id='{!! $course['id'] !!}'>
-                                                <div class="addmudbox"
+                                            <div class="">
+                                                <div class="addmudbox course_box_{!! $course['id'] !!}" my_id='{!! $course['id'] !!}'
                                                     onclick="course_onclick(this,'{!! $course['id'] !!}')">
                                                     <p>{!! $course['short_name'] !!}</p>
                                                 </div>
