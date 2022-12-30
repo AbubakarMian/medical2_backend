@@ -82,7 +82,7 @@ class WorkshopController extends Controller
             }
             $workshop->save();
  }
- dd('save');
+//  dd('save');
           return redirect('admin/workshop');
     }
     public function edit($id)

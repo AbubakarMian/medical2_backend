@@ -13,7 +13,7 @@ class AlterTableAdminUrlPermissionUserAddAdminUrlId extends Migration
      */
     public function up()
     {
-        Schema::table('admin_url_permission', function (Blueprint $table) {
+        Schema::table('admin_url_permission_user', function (Blueprint $table) {
             $table->bigInteger('admin_url_id')->nullable()->default(0);
         });
     }
