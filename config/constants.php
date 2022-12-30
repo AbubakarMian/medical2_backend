@@ -5,7 +5,11 @@ return [
 	'status' => [
 		'OK' => 200
 	],
-
+    'admin_emails'=>[
+        'ameer.maavia@gmail.com',
+        'abubakrmianmamoon@gmail.com',
+        // 'info@medical2.com'
+    ],
 	'app-type' => [
 		'android' => "khatmenabowat-app-mobile",
 	],

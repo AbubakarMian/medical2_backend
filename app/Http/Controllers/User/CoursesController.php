@@ -164,15 +164,7 @@ class CoursesController extends Controller
             $users->update_password_id = rand(10000, 99999);
             $users->save();
             $all_users_id[] = $users;
-            $details = [
-                'to' => $users->email,
-                'user_id' => $users->id,
-                'from' => 'contactus@medical2.com',
-                'title' => 'Medical2',
-                'subject' => 'Reference Link From Medical2 Academy ',
-                "dated"  => date('d F, Y (l)'),
-                'new_password' =>  $users->update_password_id,
-            ];
+
             $user_group = new Group_users();
             $user_group->group_id = $group_id;
             $user_group->user_id = $users->id;
@@ -206,11 +198,22 @@ class CoursesController extends Controller
                 $student_fees->save();
                 $studen_array_id[] =   $student_fees;
             }
-              Mail::to($users->email)->send(new Update_Password($details));
+            if(!strpos(url()->current(),'localhost')){//=== true)
+                $details = [
+                    'to' => $users->email,
+                    'user_id' => $users->id,
+                    'from' => 'contactus@medical2.com',
+                    'title' => 'Medical2',
+                    'subject' => 'Reference Link From Medical2 Academy ',
+                    "dated"  => date('d F, Y (l)'),
+                    'new_password' =>  $users->update_password_id,
+                ];
+                Mail::to($users->email)->send(new Update_Password($details));
+            }
 
         }
         // special user jo logo ko group register krwata hai
-        $group = Group::with('group_fees')->find($request->group_id);
+        // $group = Group::with('group_fees')->find($request->group_id);
         $course_register_one = new Course_Register();
         $course_register_one->user_id  =  $one_user->id;
         $course_register_one->course_id =   $course_id;
