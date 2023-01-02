@@ -32,7 +32,6 @@ class GroupController extends Controller
 
     public function create()
     {
-        // dd('sas');
         $control = 'create';
         $course_id = Courses::pluck('full_name', 'id');
         $all_courses = Courses::with('group')->get();
@@ -62,10 +61,14 @@ class GroupController extends Controller
     {
         $control = 'edit';
         $group = Group::find($id);
+
+        $group->start_date = date('Y-m-d',$group->start_date);
+        $group->end_date = date('Y-m-d',$group->end_date);
         $fees_type = Config::get('constants.fees_type');
         $course_id = Courses::pluck('full_name', 'id');
 
         $group_timings =  Group_Timings::where('group_id',  $group->id)->get();
+        // dd($group_timings);
         $full_days = Day::pluck('day', 'id');
         $teacher = Teacher::pluck('name', 'id');
         return view('admin.group.create', compact(

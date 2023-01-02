@@ -73,7 +73,6 @@ class QuestionController extends Controller
         $question_course = Question_Course::where('question_id',$id)->pluck('courses_id')->toArray();
         $courses_list = Courses::orderby('id', 'desc')->get()->toArray();
         $courses_list = array_chunk($courses_list, 4);
-dd($question_course);
 
         return view('admin.question.create', compact(
             'control',
@@ -96,7 +95,6 @@ dd($question_course);
 
     public function add_or_update(Request $request, $questions)
     {
-        // dd($request->all());
         $courses = explode(',',$request->selected_courses);
         $questions->question = $request->question;
         $questions->save();

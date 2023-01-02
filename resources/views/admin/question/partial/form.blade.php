@@ -160,9 +160,16 @@
                             <div class="addmudbody">
                                 <div class="row">
                                     @foreach ($course_list_chunck as $course)
+                                    <?php
+                                        $is_selected = '';
+                                        if(in_array($course['id'],$question_course)){
+                                            $is_selected = 'select_course';
+                                        }
+                                    ?>
                                         <div class="col-sm-3">
                                             <div class="">
-                                                <div class="addmudbox courses_list_class course_box_{!! $course['id'] !!}" my_id='{!! $course['id'] !!}'
+                                                <div class="addmudbox courses_list_class course_box_{!! $course['id'] !!} {!!$is_selected!!}"
+                                                    my_id='{!! $course['id'] !!}'
                                                     onclick="course_onclick(this,'{!! $course['id'] !!}')">
                                                     <p>{!! $course['short_name'] !!}</p>
                                                 </div>
@@ -260,7 +267,7 @@
             // var course_index = course_exist(course_id);
             if ($('.course_box_' + course_id).hasClass('select_course')) {
             // if (course_index === -1) {
-              
+
                 console.log('Already exist');
 
                 // selected_courses.pop(course_index);
