@@ -78,8 +78,14 @@ $(document).ready(function(){
                   var name =  response['data'][i].full_name;
                   var email =  response['data'][i].short_name;
                   var gender =  response['data'][i].examination_fees;
-                //   var image =  response['data'][i].avatar;
-                var image = `<img src="` +response['data'][i].avatar+ `" width="24%">`;
+                  var image =  response['data'][i].avatar;
+                // var image = `<img src="` +response['data'][i].avatar+ `" width="24%">`;
+
+                if(!image){
+                    image = "{!!asset('images/logo.png')!!}"
+                }
+
+		        var image_col = `<img width="100px" src="`+image+`" class="show-product-img imgshow">`
 
 				  var edit = `<a class="btn btn-info" href="{!!asset('admin/courses/edit/` + id + `')!!}">Edit</a>`;
                        createModal({
@@ -100,7 +106,7 @@ $(document).ready(function(){
                     "<td>" +name+ "</td>" +
                     "<td>" +email+ "</td>" +
                     "<td>" +gender+ "</td>" +
-                    "<td>" + image+ "</td>" +
+                    "<td>" +image_col + "</td>" +
                     "<td>" +edit+ "</td>" +
                     "<td>" +delete_btn+ "</td>" +
 
