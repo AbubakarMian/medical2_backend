@@ -62,8 +62,6 @@ class QuestionController extends Controller
     {
 
         $questions = new Question();
-dd($request->all());
-
         $this->add_or_update($request, $questions);
         return redirect('admin/question');
     }
