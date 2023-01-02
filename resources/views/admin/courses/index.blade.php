@@ -78,8 +78,9 @@ $(document).ready(function(){
                   var name =  response['data'][i].full_name;
                   var email =  response['data'][i].short_name;
                   var gender =  response['data'][i].examination_fees;
-                  var image =  response['data'][i].avatar;
-				  var imgaa = `<img src="(` + image + `)">`;
+                //   var image =  response['data'][i].avatar;
+                var image = `<img src="` +response['data'][i].avatar+ `" width="24%">`;
+
 				  var edit = `<a class="btn btn-info" href="{!!asset('admin/courses/edit/` + id + `')!!}">Edit</a>`;
                        createModal({
                             id: 'courses_' + response['data'][i].id,
@@ -99,7 +100,7 @@ $(document).ready(function(){
                     "<td>" +name+ "</td>" +
                     "<td>" +email+ "</td>" +
                     "<td>" +gender+ "</td>" +
-                    "<td>" + imgaa+ "</td>" +
+                    "<td>" + image+ "</td>" +
                     "<td>" +edit+ "</td>" +
                     "<td>" +delete_btn+ "</td>" +
 
