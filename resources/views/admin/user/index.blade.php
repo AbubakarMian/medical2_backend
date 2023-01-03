@@ -81,6 +81,7 @@ $(document).ready(function(){
 
                 if(!image){
                     image = "{!!asset('images/logo.png')!!}"
+                    console.log('no image');
                 }
 
 		        var image_col = `<img width="100px" src="`+image+`" class="show-product-img imgshow">`

@@ -297,13 +297,6 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
 <!-- <div class="form-group">
     {!! Form::label('country', 'Country') !!}
     <div>
@@ -332,8 +325,6 @@
             'data-parsley-required' => 'true',
             'data-parsley-trigger' => 'change',
             'required',
-
-            'maxlength' => '100',
         ]) !!}
     </div>
 </div>
@@ -345,8 +336,6 @@
             'data-parsley-required' => 'true',
             'data-parsley-trigger' => 'change',
             'required',
-
-            'maxlength' => '100',
         ]) !!}
     </div>
 </div>
@@ -412,7 +401,7 @@
                         <div class="form-group">
                             {!! Form::label('start_time', 'Start Time') !!}
                             <div>
-                                {!! Form::time('start_time[]', date('h:i:s', $ch->start_time), [
+                                {!! Form::time('start_time[]', date('H:i:s', $ch->start_time), [
                                     'class' => 'form-control',
                                     'data-parsley-required' => 'true',
                                     'data-parsley-trigger' => 'change',
@@ -430,7 +419,7 @@
                         <div class="form-group">
                             {!! Form::label('end_time', 'End Time') !!}
                             <div>
-                                {!! Form::time('end_time[]', date('h:i:s', $ch->end_time), [
+                                {!! Form::time('end_time[]', date('H:i:s', $ch->end_time), [
                                     'class' => 'form-control',
                                     'data-parsley-required' => 'true',
                                     'data-parsley-trigger' => 'change',

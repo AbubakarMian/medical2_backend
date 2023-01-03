@@ -50,6 +50,7 @@
 
     <form method="post" action="{{ url('/admin/checklogin') }}">
         {{ csrf_field() }}
+        <input type="hidden" name="my_timezone" id="my_timezone">
         <div class="form-group">
             <label style="color: black;
             font-size: 17px;
@@ -68,4 +69,11 @@
     </form>
 </div>
 </body>
+<script>
+    $(function(){
+        var gmt_offset = new Date().getTimezoneOffset();
+        console.log(gmt_offset);
+        $('#my_timezone').val(gmt_offset);
+    })
+</script>
 </html>

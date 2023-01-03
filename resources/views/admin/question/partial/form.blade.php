@@ -160,9 +160,16 @@
                             <div class="addmudbody">
                                 <div class="row">
                                     @foreach ($course_list_chunck as $course)
+                                    <?php
+                                        $is_selected = '';
+                                        if(in_array($course['id'],$question_course)){
+                                            $is_selected = 'select_course';
+                                        }
+                                    ?>
                                         <div class="col-sm-3">
                                             <div class="">
-                                                <div class="addmudbox course_box_{!! $course['id'] !!}" my_id='{!! $course['id'] !!}'
+                                                <div class="addmudbox courses_list_class course_box_{!! $course['id'] !!} {!!$is_selected!!}"
+                                                    my_id='{!! $course['id'] !!}'
                                                     onclick="course_onclick(this,'{!! $course['id'] !!}')">
                                                     <p>{!! $course['short_name'] !!}</p>
                                                 </div>
@@ -251,25 +258,28 @@
 
 @section('app_jquery')
     <script>
-        var selected_courses = [];
+        // var selected_courses = [];
 
         function course_onclick(e, course_id) {
 
             console.log('new course_id', course_id);
             console.log('selected_courses', selected_courses);
-            var course_index = course_exist(course_id);
-            if (course_index === -1) {
-                console.log('Not avalible  exist');
+            // var course_index = course_exist(course_id);
+            if ($('.course_box_' + course_id).hasClass('select_course')) {
+            // if (course_index === -1) {
 
-                selected_courses.push(course_id);
-                $('.course_box_' + course_id).addClass('select_course');
-
-
-            } else {
                 console.log('Already exist');
 
-                selected_courses.pop(course_index);
+                // selected_courses.pop(course_index);
                 $('.course_box_' + course_id).removeClass('select_course');
+            } else {
+
+
+                console.log('Not avalible  exist');
+
+                // selected_courses.push(course_id);
+                $('.course_box_' + course_id).addClass('select_course');
+
 
             }
 
@@ -281,29 +291,29 @@
 
         function course_exist(course_id) {
             var index = selected_courses.findIndex(x => x == course_id);
-            // var found = index != -1;
-            // console.log('index',found);
             return index;
         }
 
 
         function validateForm() {
-            // return false;
-            var selected_courses_checkbox = $('.selected_courses_checkbox');
-            var values_selected_courses = [];
+
+            var courses_div = $('.select_course');
+
+            var selected_course = [];
+
+            for(var i =0; i<courses_div.length;i++){
+                var course_id = $(courses_div[i]).attr('my_id');
+                console.log('course_idcourse_id',course_id);
+                selected_course.push(course_id);
+            }
+            console.log('course_idcourse_id',course_id);
 
 
-
-            $("input:checkbox[class=selected_courses_checkbox]:checked").each(function() {
-                values_selected_courses.push($(this).val());
-            });
-
-            console.log('values_selected_courses', values_selected_courses);
-            var selected_courses_csv = values_selected_courses.join(',');
+            var selected_courses_csv = selected_course.join(',');
             console.log('selected_courses', selected_courses_csv);
             $('#selected_courses').val(selected_courses_csv);
 
-            // return false;
+            return true;
         }
 
         function addChoice() {

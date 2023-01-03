@@ -63,7 +63,6 @@ class QuestionController extends Controller
 
         $questions = new Question();
         $this->add_or_update($request, $questions);
-
         return redirect('admin/question');
     }
 
@@ -72,7 +71,8 @@ class QuestionController extends Controller
         $control = 'edit';
         $question = Question::with('choice')->find($id);
         $question_course = Question_Course::where('question_id',$id)->pluck('courses_id')->toArray();
-        $courses_list = Courses::orderby('id', 'desc')->get();
+        $courses_list = Courses::orderby('id', 'desc')->get()->toArray();
+        $courses_list = array_chunk($courses_list, 4);
 
         return view('admin.question.create', compact(
             'control',
@@ -95,7 +95,6 @@ class QuestionController extends Controller
 
     public function add_or_update(Request $request, $questions)
     {
-        // dd($request->all());
         $courses = explode(',',$request->selected_courses);
         $questions->question = $request->question;
         $questions->save();

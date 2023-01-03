@@ -35,6 +35,7 @@ class AdminController extends Controller
 
         if(Auth::attempt($user_data))
         {
+            session(['my_timezone' => $request->my_timezone]);
             return redirect('admin/dashboard');
         }
         // elseif()
@@ -78,8 +79,6 @@ class AdminController extends Controller
     }
     public function admin_dashboard()
     {
-
-
         $modules[] = [
 
             'url' => 'admin/users',
@@ -109,8 +108,6 @@ class AdminController extends Controller
             'title' => 'Courses',
 
         ];
-
-
         $modules[]= [
 
             'url'=>'admin/group',
@@ -174,11 +171,6 @@ class AdminController extends Controller
 
         ];
 
-
-
-
-
-
         $reports[] = [
 
             'url' => 'admin/course_register',
@@ -200,31 +192,6 @@ class AdminController extends Controller
             'title'=>'Student Plan',
         ];
 
-        // $modules[] = [
-
-        //     'url' => 'admin/product/promotion',
-        //     'title' => 'Promotion ',
-
-        // ];
-
-
-
-
-
-
-
-
-
-
-
-
-        // $reports[] = [
-        //     'url' => 'admin/reports/orders',
-        //     'title' => 'Orders',
-        // ];
-
-
-
         $myvar = [];
         $myvar['modules'] = $modules;
         $myvar['reports'] = $reports ;
@@ -232,77 +199,6 @@ class AdminController extends Controller
 
         return $myvar;
     }
-
-
-    /////////////////////
-
-    // public function home()
-    // {
-    //     # code...
-    //     return View('users.home.home');
-    // }
-
-    // public function faq()
-    // {
-    //     # code...
-    //     return View('users.faq.faq');
-    // }
-
-//     public Function contact()
-//     {
-//         return View('users.contact.contact');
-// }
-
-// public Function cart()
-//     {
-//         return View('users.cart.cart');
-//     }
-
-    // public Function customization()
-    // {
-    //     return View('users.customization.customization');
-    // }
-
-
-    // public Function about()
-    // {
-    //     return View('users.about.about');
-    // }
-
-
-    // public Function payment()
-    // {
-    //     return View('users.paymentinfo.payment');
-    // }
-
-    // public Function product()
-    // {
-    //     return View('users.productdetails.product');
-    //         //  dd('ddddc');
-    // }
-
-
-
-    // public Function shop()
-    // {
-    //     return View('users.shop.shop');
-    // }
-
-
-
-
-
-
-// public function map(){
-
-//     return view('layouts.map');
-
-// }
-
-
-
-
-
 
 
     }

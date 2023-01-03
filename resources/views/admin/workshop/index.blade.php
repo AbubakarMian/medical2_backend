@@ -123,7 +123,7 @@
         var input_enabled_teacher_name = $('.teacher_name_' + workshop_id).css("display", "none");
         var input_enabled_course_name = $('.course_name_' + workshop_id).css("display", "none");
 
-        var teacher = ;
+        var teacher = input_enabled_teacher_name;
 
 
         var mySelect = $('.my_op_' + workshop_id).append(

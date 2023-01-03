@@ -77,7 +77,8 @@ $(document).ready(function(){
                   var id =  response['data'][i].id;
                   var name =  response['data'][i].name;
                   var description =  response['data'][i].description;
-                  var image =  response['data'][i].avatar;
+                //   var image =  response['data'][i].avatar;
+                  var image = `<img src="` +response['data'][i].avatar+ `" width="24%">`;
 				  var edit = `<a class="btn btn-info" href="{!!asset('admin/category/edit/` + id + `')!!}">Edit</a>`;
                        createModal({
                             id: 'category_' + response['data'][i].id,
