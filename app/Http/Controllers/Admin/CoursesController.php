@@ -14,6 +14,7 @@ use App\Model\Category;
 use App\Model\Courses_Fees;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToArray;
+
 // Courses;
 
 class CoursesController extends Controller
@@ -32,9 +33,9 @@ class CoursesController extends Controller
     public function create()
     {
         $control = 'create';
-        $category = Category::pluck('name','id');
+        $category = Category::pluck('name', 'id');
         $fees_type = Config::get('constants.fees_type');
-        return view('admin.courses.create', compact('control','category','fees_type'));
+        return view('admin.courses.create', compact('control', 'category', 'fees_type'));
     }
 
     public function save(Request $request)
@@ -48,15 +49,16 @@ class CoursesController extends Controller
     public function edit($id)
     {
         $control = 'edit';
-        $courses = Courses::find($id);
-        $category = Category::pluck('name','id');
+        $courses = Courses::with('course_fees')->find($id);
+        $category = Category::pluck('name', 'id');
         $fees_type = Config::get('constants.fees_type');
         return view('admin.courses.create', compact(
             'control',
             'courses',
             'category',
             'fees_type'
-        ));
+        )
+        );
     }
 
     public function update(Request $request, $id)
@@ -70,7 +72,8 @@ class CoursesController extends Controller
     public function add_or_update(Request $request, $courses)
     {
 
-        $date_timestamp =  strtotime($request->start_date);
+        // dd(strtotime($request->due_date[0]),$request->all());
+        $date_timestamp = strtotime($request->start_date);
         $courses->full_name = $request->full_name;
         $courses->short_name = $request->short_name;
         $courses->category_id = $request->category_id;
@@ -79,40 +82,38 @@ class CoursesController extends Controller
         $courses->start_date = $date_timestamp;
         $courses->fees_type = $request->fees_type;
 
-        if($request->one_time_payment == 'on'){
-            $courses->one_time_examination_payment =1;
-         }
-         else{
-            $courses->one_time_examination_payment =0;
-         }
+        if ($request->one_time_payment == 'on') {
+            $courses->one_time_examination_payment = 1;
+        } else {
+            $courses->one_time_examination_payment = 0;
+        }
 
 
-         if ($request->cropped_image) {
+        if ($request->cropped_image) {
             $courses->avatar = $request->cropped_image;
         }
         // dd($courses);
         $courses->save();
-
+        Courses_Fees::where(['course_id'=> $courses->id])->delete();
         // new Courses_Fees table
         // if ($request->amount & $request->due_date ) {
-        if($request->fees_type == 'installment'){
+        if ($request->fees_type == 'installment') {
 
-         foreach($request->amount as $amnt_key =>$am){
-          $course_fees = new Courses_Fees();
-          $course_fees->course_id = $courses->id;
-          $course_fees->fees_type = $courses->fees_type;
-          $course_fees->amount = $am;
-          $course_fees->due_date = strtotime($request->due_date[$amnt_key]);
-          $course_fees->save();
+            foreach ($request->amount as $amnt_key => $am) {
+                $course_fees = new Courses_Fees();
+                $course_fees->course_id = $courses->id;
+                $course_fees->fees_type = $courses->fees_type;
+                $course_fees->amount = $am;
+                $course_fees->due_date = strtotime($request->due_date[$amnt_key]);
+                $course_fees->save();
 
-         }
-        }
-        else{//if($request->fees_type == 'complete'){
+            }
+        } else { //if($request->fees_type == 'complete'){
             $course_fees = new Courses_Fees();
             $course_fees->course_id = $courses->id;
             $course_fees->fees_type = $courses->fees_type;
             $course_fees->amount = $request->amount;
-            $course_fees->due_date =  strtotime($request->due_date);
+            $course_fees->due_date = strtotime($request->due_date);
             $course_fees->save();
 
         }
@@ -138,7 +139,7 @@ class CoursesController extends Controller
         ]);
         return $response;
     }
-     public function crop_image(Request $request)
+    public function crop_image(Request $request)
     {
         $folderPath = public_path('images/');
         $image_parts = explode(";base64,", $request->image);
@@ -146,9 +147,9 @@ class CoursesController extends Controller
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
         $imageName = uniqid() . '.png';
-        $imageFullPath = $folderPath.$imageName;
+        $imageFullPath = $folderPath . $imageName;
         $su = file_put_contents($imageFullPath, $image_base64);
-        $image_path = asset('/images/' .$imageName);
-        return response()->json(['success'=>'Crop Image Uploaded Successfully','image'=>$image_path]);
+        $image_path = asset('/images/' . $imageName);
+        return response()->json(['success' => 'Crop Image Uploaded Successfully', 'image' => $image_path]);
     }
 }

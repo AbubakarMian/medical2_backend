@@ -17,16 +17,17 @@ use Carbon\Carbon;
 use Date;
 use DateTime;
 use Maatwebsite\Excel\Concerns\ToArray;
+
 // Group;
 
 class WorkshopController extends Controller
 {
     public function index(Request $request)
     {
-        $workshop = Group::with('courses','teacher')->where('type','workshop')->orderBy('created_at', 'DESC')->paginate(10);
-        $teacher = Teacher::pluck('id','name');
+        $workshop = Group::with('courses', 'teacher')->where('type', 'workshop')->orderBy('created_at', 'DESC')->paginate(10);
+        $teacher = Teacher::pluck('id', 'name');
         // dd( $teacher);
-        return view('admin.workshop.index', compact('workshop','teacher'));
+        return view('admin.workshop.index', compact('workshop', 'teacher'));
     }
 
     public function create()
@@ -34,26 +35,26 @@ class WorkshopController extends Controller
         $control = 'create';
         $course_id = Courses::pluck('full_name', 'id');
         $teacher = Teacher::pluck('name', 'id');
-        return view('admin.workshop.create', compact('control', 'course_id','teacher'));
+        return view('admin.workshop.create', compact('control', 'course_id', 'teacher'));
     }
 
     public function save(Request $request)
     {
         // dd($request->all());
-         $workshop = new Group();
+        $workshop = new Group();
 
         // $start_timestamp = $this->time_to_timestamp($request->start_time);
         // $end_timestamp = $this->time_to_timestamp($request->end_time);
         $all_dates = json_decode($request->dates);
 
-        foreach($all_dates as $sm){
-            $selected_date = $sm->year.'-'.$sm->month.'-'.$sm->date; // yy-mm-d
+        foreach ($all_dates as $sm) {
+            $selected_date = $sm->year . '-' . $sm->month . '-' . $sm->date; // yy-mm-d
             // $date_time = strtotime($selected_date); // yy-mm-d H:i:s
             // $start_timestamp = $start_timestamp +$date_time;
             // $end_timestamp = $start_timestamp +$end_timestamp; // yy-mm-d
 
-            $start_time = new DateTime($selected_date.' '.$request->start_time); // yy-mm-d H:i
-            $end_time = new DateTime($selected_date.' '.$request->end_time); // yy-mm-d H:i
+            $start_time = new DateTime($selected_date . ' ' . $request->start_time); // yy-mm-d H:i
+            $end_time = new DateTime($selected_date . ' ' . $request->end_time); // yy-mm-d H:i
 
             $start_timestamp = $start_time->format('U');
             $end_timestamp = $end_time->format('U');
@@ -68,22 +69,21 @@ class WorkshopController extends Controller
             //
             $workshop->teacher_id = $request->teacher_id;
             $workshop->type = 'workshop';
-            if($request->is_online == "on"){
+            if ($request->is_online == "on") {
                 //  dd('ABCC');
                 $workshop->is_online = 1;
                 $workshop->lat = 0;
                 $workshop->long = 0;
-             }
-            else{
+            } else {
                 // dd('ABCC');
-            $workshop->lat = $request->group_lat;
-            $workshop->long = $request->group_long;
-            $workshop->is_online = 0;
+                $workshop->lat = $request->group_lat;
+                $workshop->long = $request->group_long;
+                $workshop->is_online = 0;
             }
             $workshop->save();
- }
-//  dd('save');
-          return redirect('admin/workshop');
+        }
+        //  dd('save');
+        return redirect('admin/workshop');
     }
     public function edit($id)
     {
@@ -97,10 +97,11 @@ class WorkshopController extends Controller
             'control',
             'workshop',
             'course_id',
-            'teacher',
-        ));
+            'teacher'
+        )
+        );
     }
-//   edit and update   in index page
+    //   edit and update   in index page
     public function update(Request $request)
     {
         $workshop = Group::find($request->workshop_id);
@@ -113,12 +114,12 @@ class WorkshopController extends Controller
             'workshop' => $workshop
         ]);
         return $response;
- }
+    }
 
 
     public function add_or_update(Request $request, $workshop)
     {
-    //    dd($request->all());
+        //    dd($request->all());
 
 
     }
