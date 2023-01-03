@@ -54,11 +54,24 @@
     }
 </style>
 @if ($message = Session::get('error'))
-<div class="alert alert-danger alert-block">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>{{ $message }}</strong>
-</div>
+    <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+    </div>
 @endif
+
+<?php
+    $complete_fees_area_display = 'display:none;';//$('.complete_fees_area').hide();
+    $installment_fees_area_display = 'display:none;';//$('.installment_fees_area').hide();
+    if(isset($courses)){
+        if($courses->fees_type == 'installment'){
+            $installment_fees_area_display = 'display:block;';
+        }
+        else{// complete
+            $complete_fees_area_display = 'display:block;';
+        }
+    }
+?>
 
 <div class="form-group">
     {!! Form::label('name', 'Full Name') !!}
@@ -112,10 +125,8 @@
         ]) !!}
     </div>
 </div>
-
 <div class="form-group">
     <label for="category_id">Select Category</label>
-
     {!! Form::select('category_id', $category, null, [
         'class' => 'form-control',
         'data-parsley-required' => 'true',
@@ -124,16 +135,12 @@
         'required',
         'maxlength' => '100',
     ]) !!}
-
 </div>
-
-<!--newwwwwwww  WORKSSSS-->
-
 <div class="form-group">
     {!! Form::label('fees_type', 'Fees Type') !!}
     {!! Form::select('fees_type', $fees_type, null, [
         'placeholder' => "Select
-                    Type",
+                                    Type",
         'onchange' => 'open_fees_type_div()',
         'class' => 'form-control fees_type',
         'required',
@@ -141,18 +148,8 @@
     </select>
 </div>
 
-
-
-<!--  complete_fees_area-->
-
-
-<div class="complete_fees_area" style="background-color: #d3d3d32e;">
-    <!-- <h3>
-    Enter Complete Fess  Amount And Due Date
-            </h3> -->
-
+<div class="complete_fees_area" style="background-color: #d3d3d32e; {!!$complete_fees_area_display!!}">
     <div class="row">
-        <!-- columnnn-->
         <div class="col-sm-6">
             <div class="form-group">
                 {!! Form::label('amount', 'Amount') !!}
@@ -166,11 +163,7 @@
                     ]) !!}
                 </div>
             </div>
-
         </div>
-        <!-- end columnnn -->
-
-        <!-- columnnn -->
         <div class="col-sm-6">
             <div class="form-group">
                 {!! Form::label('due_date', 'Due Date') !!}
@@ -185,79 +178,50 @@
                 </div>
             </div>
         </div>
-
-        <!-- end  columnnn-->
-
     </div>
-
 </div>
 
-<!-- END_complete_fees_area -->
-
-
-
-
-<!--  INSATLLMENT_fees_area-->
-<div class="installment_fees_area">
-
-    <!--
-<h3>
-    Enter Installment
-        </h3> -->
-
+<div class="installment_fees_area" style="{!!$installment_fees_area_display!!}">
     <div class="row">
-
-        <div class="col-sm-10">
-        </div>
-
+        <div class="col-sm-10"></div>
         <div class="col-sm-2">
-
             <button type="button" onclick="add_installment_divs()" class="btn btn-danger installment_divs">Add
                 Installment</button>
-
         </div>
-
-
     </div>
 
-
-    <!--  multiple times open-->
     <div class="multiple_times_open_div" style="background-color: #d3d3d32e;">
-
-
-
-
+        @if(isset($courses))
+            @foreach($courses->course_fees as $course_fees)
+                <div class="row installmet_div_row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <div>
+                                <input type="number" name="amount[]" value="{!!$course_fees->amount!!}" class="form-control amount_validation"
+                                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Amount">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Due Date</label>
+                            <div>
+                                <input type="date" name="due_date[]" value="{!!date('Y-m-d',$course_fees->due_date)!!}" class="form-control due_date_validation"
+                                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Due Date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)"
+                        style="margin-top: 10px;margin-left: 16px;margin-bottom: 18px;">Remove
+                    </div>
+                </div>
+            @endforeach
+        @endif
     </div>
 </div>
 
-
-
-
-
-
-<!--  -->
-
-
-
-
-
-<!-- END_installment_fees_area -->
-
-
-
-
-
-
-<!-- END NEW_WORKSSS -->
-
 <input type="hidden" name="cropped_image" id="cropped_image">
-
-
-
-{{--  --}}
-
-
-
 
 <div>
     <br />
@@ -351,12 +315,8 @@
     </div>
 </div>
 
-
-{{--  --}}
-
 {!! Form::label('description', 'Description') !!}
 <div>
-
     <div>
         {!! Form::textarea('description', null, [
             'class' => 'ckeditor form-control',
@@ -368,15 +328,11 @@
             'maxlength' => '100',
         ]) !!}
     </div>
-
 </div>
-
 
 <span id="err" class="error-product"></span>
 
-
-<div class="form-group col-md-12">
-</div>
+<div class="form-group col-md-12"></div>
 
 <div class="col-md-5 pull-left">
     <div class="form-group text-center">
@@ -390,27 +346,21 @@
     </div>
 </div>
 
-
-
 @section('app_jquery')
     <script>
-        // newwww
-
         function open_fees_type_div() {
             console.log('open_fesss_type_divvvvvvvv');
             var select_fees_type = $('.fees_type').val();
             console.log('select_fees_type__select_fees_type', select_fees_type);
 
             if (select_fees_type == 'complete') {
-
-                var $complete_fees_area = $('.complete_fees_area').show()
-                var $installment_fees_area = $('.installment_fees_area').hide()
+                var complete_fees_area = $('.complete_fees_area').show()
+                var installment_fees_area = $('.installment_fees_area').hide()
 
             };
             if (select_fees_type == 'installment') {
-
-                var $installment_fees_area = $('.installment_fees_area').show();
-                var $complete_fees_area = $('.complete_fees_area').hide()
+                var installment_fees_area = $('.installment_fees_area').show();
+                var complete_fees_area = $('.complete_fees_area').hide()
             };
         }
 
@@ -421,93 +371,64 @@
         function installment_html(v) {
             return (`
             <div class="row installmet_div_row">
-
-            <!-- columnnn-->
-            <div class="col-sm-6">
-            <div class="form-group">
-            {!! Form::label('amount', 'Amount') !!}
-            <div>
-            {!! Form::text('amount[]', null, [
-                'class' => 'form-control amount_validation',
-                'data-parsley-required' => 'true',
-                'data-parsley-trigger' => 'change',
-                'placeholder' => 'Enter Amount',
-                'maxlength' => '100',
-            ]) !!}
-            </div>
-            </div>
-
-                </div>
-                <!-- end columnnn -->
-
-            <!-- columnnn -->
                 <div class="col-sm-6">
-                <div class="form-group">
-            {!! Form::label('due_date', 'Due Date') !!}
-            <div>
-            {!! Form::date('due_date[]', null, [
-                'class' => 'form-control due_date_validation',
-                'data-parsley-required' => 'true',
-                'data-parsley-trigger' => 'change',
-                'placeholder' => 'Enter Due Date',
-            ]) !!}
-            </div>
-            </div>
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <div>
+                            <input type="number" name="amount[]" class="form-control amount_validation" data-parsley-required="true"
+                                data-parsley-trigger="change" placeholder="Enter Amount">
+                        </div>
+                    </div>
                 </div>
-
-            <!-- end  columnnn-->
-
-            <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 10px;
-                margin-left: 16px;
-                margin-bottom: 18px;">Remove</div>
-
-                </div>`
-
-            );
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <div>
+                            <input type="date" name="due_date[]" class="form-control due_date_validation"
+                                data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Due Date">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)"
+                    style="margin-top: 10px;margin-left: 16px;margin-bottom: 18px;">Remove
+                </div>
+            </div>
+           `);
         }
 
         function add_installment_divs() {
-
             console.log('add_installment_divs_add_installment_divs');
             var installmet_div_row = $('.installmet_div_row').length;
             var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(installmet_div_row));
         }
 
-        // end new
 
         $(document).ready(function() {
 
-            var $complete_fees_area = $('.complete_fees_area').hide();
-            var $installment_fees_area = $('.installment_fees_area').hide();
-
-
-            var $modal = $('#modal');
-
+            // var complete_fees_area = $('.complete_fees_area').hide();
+            // var installment_fees_area = $('.installment_fees_area').hide();
+            var modal = $('#modal');
             var image_width = $('#image_width').val();
+
             console.log('image_widthimage_widthimage_width', image_width)
 
             var image_height = $('#image_height').val();
             console.log('image_heightimage_height', image_height)
-            //
+
             var aspect_ratio_width = $('#aspect_ratio_width').val();
             console.log('aspect_ratiowidthaspect_ratio_width', aspect_ratio_width)
 
-            //
             var aspect_ratio_height = $('#aspect_ratio_height').val();
             console.log('aspect_ratio_heightaspect_ratio_height', aspect_ratio_height)
 
             var image = document.getElementById('sample_image');
-
             var cropper;
             var image_num = '';
 
-            // $('#upload_image').change(function(event) {
             $('.upload_image').change(function(event) {
                 var files = event.target.files;
-
                 var done = function(url) {
                     image.src = url;
-                    // console.log('   image.src',url)
                     $modal.modal('show');
                 };
 
@@ -521,7 +442,6 @@
                 image_num = event.target.id;
                 console.log('image num ', image_num);
             });
-
 
             $modal.on('shown.bs.modal', function() {
                 cropper = new Cropper(image, {
@@ -546,14 +466,12 @@
 
                 canvas.toBlob(function(blob) {
                     url = URL.createObjectURL(blob);
-                    console.log('urlurlurlurlurl', url);
+                    console.log('image url', url);
                     var reader = new FileReader();
                     reader.readAsDataURL(blob);
                     reader.onloadend = function() {
                         var base64data = reader.result;
-                        console.log('base64database64database64database64data', base64data);
                         $.ajax({
-                            // url: '{!! asset('admin/settings/update') !!}/' + pages_images_id,
                             url: '{!! asset('admin/courses_crop_image') !!}',
                             method: 'POST',
                             data: {
@@ -561,64 +479,55 @@
                                 _token: '{!! csrf_token() !!}',
                             },
                             success: function(data) {
-                                console.log('successsuccesssuccesserssss', data)
-                                console.log('imagessserrrr', data.image)
                                 $modal.modal('hide');
                                 image_1 = data.image;
                                 if (image_num == 'upload_image') {
                                     $('#uploaded_image').attr('src', data.image);
                                     $('#cropped_image').val(data.image);
                                 }
-
-
                             }
                         });
                     };
                 });
             });
-
         });
-
 
         function validateForm() {
             var due_dates = $('.due_date_validation');
             var due_dates_valid = true;
-            $.each(due_dates,function(index,input){
-                if($(input).val() == ''){
+            $.each(due_dates, function(index, input) {
+                if ($(input).val() == '') {
                     due_dates_valid = false;
                     return;
                 }
             })
 
-            if(!due_dates_valid){
+            if (!due_dates_valid) {
                 alert('invalid due date');
                 return false;
-            }
-            else{
+            } else {
                 return true;
             }
         }
+
         function validateForm_amount() {
             var amount = $('.amount_validation');
             var amount_valid = true;
-            $.each(amount,function(index,input){
-                if($(input).val() == ''){
+            $.each(amount, function(index, input) {
+                if ($(input).val() == '') {
                     amount_valid = false;
                     return;
                 }
             })
 
-            if(!amount_valid){
+            if (!amount_valid) {
                 alert('invalid amount');
                 return false;
-            }
-            else{
+            } else {
                 return true;
             }
         }
     </script>
-
-
 
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 @endsection

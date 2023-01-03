@@ -105,7 +105,7 @@
             'data-parsley-required' => 'true',
             'data-parsley-trigger' => 'change',
             'required',
-        
+
             'maxlength' => '100',
         ]) !!}
     </div>
@@ -128,7 +128,7 @@
 <div class="form-group">
     {!! Form::label('is_online ', 'Workshop Online Class') !!}
     <div>
-        <input type="checkbox" id="myCheck" onclick="myFunction()" name="is_online">
+        <input type="checkbox" id="online_checkbox" onclick="set_is_online()" name="is_online">
         <!--  -->
         <!-- <div class="form-group">
         {!! Form::label('is_online ', 'Group Online Class') !!}
@@ -136,7 +136,7 @@
                 {!! Form::checkbox('is_online', null, [
                     'class' => 'form-control',
                     'data-parsley-required' => 'true',
-                    'onclick="myFunction()"' => 'true',
+                    'onclick="set_is_online()"' => 'true',
                     'data-parsley-trigger' => 'change',
                     'maxlength' => '100',
                 ]) !!}
@@ -225,8 +225,8 @@
             $('#myModal').modal('hide');
         });
 
-        function myFunction() {
-            var checkBox = document.getElementById("myCheck");
+        function set_is_online() {
+            var checkBox = document.getElementById("online_checkbox");
             var venue_maps = document.getElementById("venue_map");
             if (checkBox.checked == true) {
                 venue_maps.style.display = "none";
@@ -238,7 +238,7 @@
 
         function open_map() {
             console.log('mapssssssss');
-            var checkBox = document.getElementById("myCheck");
+            var checkBox = document.getElementById("online_checkbox");
             $('#myModal').modal('show');
         }
 
@@ -322,47 +322,7 @@
         }
 
 
-        // mobiscroll.setOptions({
-        //     locale: mobiscroll
-        //         .localeEn, // Specify language like: locale: mobiscroll.localePl or omit setting to use default
-        //     theme: 'ios', // Specify theme like: theme: 'ios' or omit setting to use default
-        //     themeVariant: 'light' // More info about themeVariant: https://docs.mobiscroll.com/5-17-2/calendar#opt-themeVariant
-        // });
 
-        var init = null;
-
-        function getAllDates() {
-            console.log('get init', init);
-            var ainst = $('#demo-multi-day').mobiscroll('getInst');
-            // var a = ainit.getInst();
-            // console.log('get dates',ainst.getVal());
-            console.log('get dates', ainst);
-            // var multi_dates = ainst.getVal();
-            var multi_dates = ainst.getVal();
-            console.log('get _valueText', multi_dates);
-            var selected = [];
-            $.each(multi_dates, function(key, value) {
-                console.log('valuevaluevaluevalue', value.getTime());
-                console.log('getTimezoneOffset', value.getTimezoneOffset());
-                console.log('value', value);
-                var gmt_time = (value.getTime() + (value.getTimezoneOffset() * 60 * 1000)) / 1000;
-                console.log('gmt_time', gmt_time);
-                $('.result').append(`<input hidden  name="selected_multi[]" value="` + gmt_time + `" >`);
-            });
-        }
-
-        $(function() {
-            // Mobiscroll Calendar initialization
-            init = $('#demo-multi-day').mobiscroll();
-            init.datepicker({
-                // controls: ['calendar'], // More info about controls: https://docs.mobiscroll.com/5-17-2/calendar#opt-controls
-                returnFormat: [
-                    'jsdate'
-                ], // moment More info about returnFormat: https://docs.mobiscroll.com/5-17-2/calendar#opt-controls
-                display: 'inline', // Specify display mode like: display: 'bottom' or omit setting to use default
-                selectMultiple: true
-            });
-        });
     </script>
 
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>

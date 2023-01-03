@@ -247,39 +247,22 @@
 
 <!--  INSATLLMENT_fees_area-->
 <div class="installment_fees_area">
-
-
     <h3>
         Enter Installment
     </h3>
-
     <div class="row">
-
         <div class="col-sm-10">
         </div>
-
         <div class="col-sm-2">
-
             <button type="button" onclick="add_installment_divs()" class="btn btn-danger installment_divs">Add
                 Installment</button>
-
         </div>
-
-
     </div>
-
-
     <!--  multiple times open-->
     <div class="multiple_times_open_div" style="background-color: #d3d3d32e;">
-
     </div>
 </div>
-
-
-<!--  -->
-
 <!-- END_installment_fees_area -->
-
 
 <!-- END NEW_WORKSSS -->
 
@@ -742,10 +725,7 @@
  <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)" style="margin-top: 10px;
     margin-left: 16px;
     margin-bottom: 18px;">Remove</div>
-
     </div>`
-
-
             );
         }
 
@@ -755,16 +735,7 @@
             // var installment_div = $('.installment_divs').length+1;
             var installmet_div_row = $('.installmet_div_row').length;
             var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(installmet_div_row));
-
-
         }
-
-
-
-
-
-
-
         // end new
         function validateForm() {
             return true;
@@ -853,17 +824,7 @@
         function open_map() {
             console.log('mapssssssss');
             $('#myModal').modal('show');
-
-
         }
-
-
-
-
-
-        //
-
-
         function addday() {
             var nextdivnum = $('.add').length + 1;
             console.log('sfdffff', nextdivnum)
