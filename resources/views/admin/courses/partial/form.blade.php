@@ -61,16 +61,23 @@
 @endif
 
 <?php
+
+    $complete_fee_due_date = '';
+    $complete_fee_amount = '';
     $complete_fees_area_display = 'display:none;';//$('.complete_fees_area').hide();
     $installment_fees_area_display = 'display:none;';//$('.installment_fees_area').hide();
     if(isset($courses)){
         if($courses->fees_type == 'installment'){
             $installment_fees_area_display = 'display:block;';
         }
+
         else{// complete
             $complete_fees_area_display = 'display:block;';
+            $complete_fee_due_date = count($courses->course_fees)?date('Y-m-d',$courses->course_fees[0]->due_date):'';
+            $complete_fee_amount = count($courses->course_fees)?$courses->course_fees[0]->amount:'';
         }
     }
+    // dd($courses);
 ?>
 
 <div class="form-group">
@@ -149,36 +156,26 @@
 </div>
 
 <div class="complete_fees_area" style="background-color: #d3d3d32e; {!!$complete_fees_area_display!!}">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-                {!! Form::label('amount', 'Amount') !!}
-                <div>
-                    {!! Form::text('amount', null, [
-                        'class' => 'form-control due_date_validation ',
-                        'data-parsley-required' => 'true',
-                        'data-parsley-trigger' => 'change',
-                        'placeholder' => 'Enter Amount',
-                        'maxlength' => '100',
-                    ]) !!}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {!! Form::label('amount', 'Amount') !!}
+                        <div>
+                            <input type="number" name="amount_complete" value="{!!$complete_fee_amount!!}" class="form-control amount_validation"
+                                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Amount">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {!! Form::label('due_date', 'Due Date') !!}
+                        <div>
+                            <input type="date" name="due_date_complete" value="{!!$complete_fee_due_date!!}" class="form-control due_date_validation"
+                            data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Due Date">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                {!! Form::label('due_date', 'Due Date') !!}
-                <div>
-                    {!! Form::date('due_date', null, [
-                        'class' => 'form-control complete_due_date',
-                        'data-parsley-required' => 'true',
-                        'data-parsley-trigger' => 'change',
-                        'placeholder' => 'Enter Due Date',
-                        'maxlength' => '100',
-                    ]) !!}
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <div class="installment_fees_area" style="{!!$installment_fees_area_display!!}">
@@ -197,6 +194,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Amount</label>
+
                             <div>
                                 <input type="number" name="amount[]" value="{!!$course_fees->amount!!}" class="form-control amount_validation"
                                     data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Amount">
@@ -220,6 +218,7 @@
         @endif
     </div>
 </div>
+{{-- {!!dd($courses->amount);!!} --}}
 
 <input type="hidden" name="cropped_image" id="cropped_image">
 
@@ -234,7 +233,6 @@
         <input hidden value='16' id="aspect_ratio_width">
         <input hidden value='9' id="aspect_ratio_height">
 
-
         <div class="col-md-4">
             <div class="image_area">
 
@@ -247,13 +245,23 @@
                                 $avatar = $courses->avatar;
                             }
                         }
+                        $required = '';
+
+                        if (isset($courses->avatar)) {
+                        }
+                        else {
+                            $required = 'required';
+
+                        }
+
                         ?>
-                        <img src="{!! $avatar !!}" id="uploaded_image" class="img-responsive img-circle"
+                        <img src="{!!$avatar!!}" id="uploaded_image" class="img-responsive img-circle"
                             name="uploadeds_image" />
                         <div class="overlay1">
                             <div class="text">Upload</div>
                         </div>
-                        <input type="file" required name="image" class="image upload_image" id="upload_image"
+
+                        <input type="file" {!!$required!!} name="image" class="image upload_image" id="upload_image"
                             style="display:block" />
                     </label>
                 </div>
@@ -356,6 +364,7 @@
             if (select_fees_type == 'complete') {
                 var complete_fees_area = $('.complete_fees_area').show()
                 var installment_fees_area = $('.installment_fees_area').hide()
+                $('.installmet_div_row').remove();
 
             };
             if (select_fees_type == 'installment') {
@@ -407,7 +416,7 @@
 
             // var complete_fees_area = $('.complete_fees_area').hide();
             // var installment_fees_area = $('.installment_fees_area').hide();
-             $modal = $('#modal');
+             var modal = $('#modal');
             var image_width = $('#image_width').val();
 
             console.log('image_widthimage_widthimage_width', image_width)
@@ -429,7 +438,7 @@
                 var files = event.target.files;
                 var done = function(url) {
                     image.src = url;
-                    $modal.modal('show');
+                    modal.modal('show');
                 };
 
                 if (files && files.length > 0) {
@@ -443,7 +452,7 @@
                 console.log('image num ', image_num);
             });
 
-            $modal.on('shown.bs.modal', function() {
+            modal.on('shown.bs.modal', function() {
                 cropper = new Cropper(image, {
                     aspectRatio: aspect_ratio_width / aspect_ratio_height,
                     viewMode: 3,
@@ -479,7 +488,7 @@
                                 _token: '{!! csrf_token() !!}',
                             },
                             success: function(data) {
-                                $modal.modal('hide');
+                                modal.modal('hide');
                                 image_1 = data.image;
                                 if (image_num == 'upload_image') {
                                     $('#uploaded_image').attr('src', data.image);
@@ -510,24 +519,25 @@
             }
         }
 
-        function validateForm_amount() {
-            var amount = $('.amount_validation');
-            var amount_valid = true;
-            $.each(amount, function(index, input) {
-                if ($(input).val() == '') {
-                    amount_valid = false;
-                    return;
-                }
-            })
+        // function validateForm_amount() {
+        //     var amount = $('.amount_validation');
+        //     var amount_valid = true;
+        //     $.each(amount, function(index, input) {
+        //         if ($(input).val() == '') {
+        //             amount_valid = false;
+        //             return;
+        //         }
+        //     })
 
-            if (!amount_valid) {
-                alert('invalid amount');
-                return false;
-            } else {
-                return true;
-            }
-        }
+        //     if (!amount_valid) {
+        //         alert('invalid amount');
+        //         return false;
+        //     } else {
+        //         return true;
+        //     }
+        // }
     </script>
 
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+
 @endsection
