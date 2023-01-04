@@ -80,6 +80,7 @@
     // dd($courses);
 ?>
 
+<span class="error error_span" id="error_span"></span>
 <div class="form-group">
     {!! Form::label('name', 'Full Name') !!}
     <div>
@@ -161,7 +162,7 @@
                     <div class="form-group">
                         {!! Form::label('amount', 'Amount') !!}
                         <div>
-                            <input type="number" name="amount_complete" value="{!!$complete_fee_amount!!}" class="form-control amount_validation"
+                            <input type="number" name="amount_complete" value="{!!$complete_fee_amount!!}" class="form-control complete_amount_validation"
                                     data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Amount">
                         </div>
                     </div>
@@ -170,7 +171,7 @@
                     <div class="form-group">
                         {!! Form::label('due_date', 'Due Date') !!}
                         <div>
-                            <input type="date" name="due_date_complete" value="{!!$complete_fee_due_date!!}" class="form-control due_date_validation"
+                            <input type="date" name="due_date_complete" value="{!!$complete_fee_due_date!!}" class="form-control complete_due_date_validation"
                             data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Due Date">
                         </div>
                     </div>
@@ -350,7 +351,6 @@
             {!! Form::submit('Save', [
                 'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
                 'onclick' => 'return validateForm();',
-                'onclick' => 'return validateForm_amount();',
             ]) !!}
         </div>
     </div>
@@ -503,41 +503,101 @@
             });
         });
 
-        function validateForm() {
-            var due_dates = $('.due_date_validation');
-            var due_dates_valid = true;
-            $.each(due_dates, function(index, input) {
-                if ($(input).val() == '') {
-                    due_dates_valid = false;
-                    return;
-                }
-            })
-
-            if (!due_dates_valid) {
-                alert('invalid due date');
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        // function validateForm_amount() {
-        //     var amount = $('.amount_validation');
-        //     var amount_valid = true;
-        //     $.each(amount, function(index, input) {
+        // function validateForm() {
+        //     var due_dates = $('.due_date_validation');
+        //     var due_dates_valid = true;
+        //     $.each(due_dates, function(index, input) {
         //         if ($(input).val() == '') {
-        //             amount_valid = false;
+        //             due_dates_valid = false;
         //             return;
         //         }
         //     })
 
-        //     if (!amount_valid) {
-        //         alert('invalid amount');
+        //     if (!due_dates_valid) {
+        //         alert('invalid due date');
         //         return false;
         //     } else {
         //         return true;
         //     }
         // }
+
+        function validateForm() {
+
+            var amount = $('.amount_validation');//complete_
+            var amount_valid = true;
+            var due_date_valid = true;
+            var due_date_valid_error_msg = '';
+            var valid_date_chk = '';
+            var fee_type_valid = true;
+
+            var select_fees_type = $('.fees_type').val();
+            if(select_fees_type == ''){
+                fee_type_valid = false;
+            }
+
+            if (select_fees_type == 'complete') {
+                // var date_valid = check_valid_date($('.complete_due_date_validation').val());
+                valid_date_chk = check_valid_date($('.complete_due_date_validation').val());
+                if(valid_date_chk === true){
+                    due_date_valid = true;
+                }
+                else{
+                        due_date_valid = false;
+                        due_date_valid_error_msg = valid_date_chk;
+                }
+                if($('.complete_amount_validation').val() == ''){
+                        amount_valid = false;
+                }
+            };
+            if (select_fees_type == 'installment') {
+                $.each($('.amount_validation'), function(index, input) {
+                    if ($(input).val() == '') {
+                        amount_valid = false;
+                        return;
+                    }
+                })
+                $.each($('.due_date_validation'), function(index, input) {
+                    valid_date_chk = check_valid_date($(input).val());
+                    if(valid_date_chk === true){
+                        due_date_valid = true;
+                    }
+                    else{
+                            due_date_valid = false;
+                            due_date_valid_error_msg = valid_date_chk;
+                            return;
+                    }
+                })
+            };
+            if(!fee_type_valid){
+                $('.error_span').html('FeeType Required');
+            }
+            else if(!amount_valid){
+                $('.error_span').html('Invalid Amount');
+            }
+            else if(!due_date_valid ){
+                $('.error_span').html(valid_date_chk);
+            }
+            if(!fee_type_valid || !amount_valid || !due_date_valid){
+                $( ".error_span" ).scroll();
+                var error_span = document.getElementById("error_span");
+                error_span.scrollIntoView();
+            }
+
+            return fee_type_valid && amount_valid && due_date_valid;
+        }
+
+        function check_valid_date(date){
+            if(date == ''){
+                return 'Due Date Required';
+            }
+            else if(new Date() >= new Date(date)){//compare end <=, not >=
+                    console.log('smaller current date is smaller');
+                    return 'Invalid due date';
+            }
+            else{
+                return true;
+            }
+        }
     </script>
 
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
