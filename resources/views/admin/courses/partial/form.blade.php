@@ -110,7 +110,7 @@
 <div class="form-group">
     {!! Form::label('fees', 'Exam Fees') !!}
     <div>
-        {!! Form::text('examination_fees', null, [
+        {!! Form::number('examination_fees', null, [
             'class' => 'form-control',
             'data-parsley-required' => 'true',
             'data-parsley-trigger' => 'change',
