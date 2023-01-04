@@ -144,103 +144,20 @@ if (isset($courses)) {
                 'required',
                 'maxlength' => '100',
             ]) !!}
-        </div>        
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            {!! Form::label('fees_type', 'Fees Type') !!}
-            {!! Form::select('fees_type', $fees_type, null, [
-                'placeholder' => "Select
-                                                    Type",
-                'onchange' => 'open_fees_type_div()',
-                'class' => 'form-control fees_type',
-                'required',
-            ]) !!}
-            </select>
         </div>
-        <div class="complete_fees_area" style="background-color: #d3d3d32e; {!! $complete_fees_area_display !!}">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        {!! Form::label('amount', 'Amount') !!}
-                        <div>
-                            <input type="number" name="amount_complete" value="{!! $complete_fee_amount !!}"
-                                class="form-control complete_amount_validation" data-parsley-required="true"
-                                data-parsley-trigger="change" placeholder="Enter Amount">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        {!! Form::label('due_date', 'Due Date') !!}
-                        <div>
-                            <input type="date" name="due_date_complete" value="{!! $complete_fee_due_date !!}"
-                                class="form-control complete_due_date_validation" data-parsley-required="true"
-                                data-parsley-trigger="change" placeholder="Enter Due Date">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="installment_fees_area" style="{!! $installment_fees_area_display !!}">
-            <div class="row">
-                <div class="col-sm-10"></div>
-                <div class="col-sm-2">
-                    <button type="button" onclick="add_installment_divs()" class="btn btn-danger installment_divs">Add
-                        Installment</button>
-                </div>
-            </div>
-        
-            <div class="multiple_times_open_div" style="background-color: #d3d3d32e;">
-                @if (isset($courses))
-                    @foreach ($courses->course_fees as $course_fees)
-                        <div class="row installmet_div_row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Amount</label>
-        
-                                    <div>
-                                        <input type="number" name="amount[]" value="{!! $course_fees->amount !!}"
-                                            class="form-control amount_validation" data-parsley-required="true"
-                                            data-parsley-trigger="change" placeholder="Enter Amount">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Due Date</label>
-                                    <div>
-                                        <input type="date" name="due_date[]" value="{!! date('Y-m-d', $course_fees->due_date) !!}"
-                                            class="form-control due_date_validation" data-parsley-required="true"
-                                            data-parsley-trigger="change" placeholder="Enter Due Date">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)"
-                                style="margin-top: 10px;margin-left: 16px;margin-bottom: 18px;">Remove
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
-        </div>
-        <input type="hidden" name="cropped_image" id="cropped_image">
+        <br>
 
         <div>
-            <br />
-        
-            <br />
             <div class="row">
                 <div class="col-md-4">&nbsp;</div>
                 <input hidden value='378' id="image_width">
                 <input hidden value='226' id="image_height">
                 <input hidden value='16' id="aspect_ratio_width">
                 <input hidden value='9' id="aspect_ratio_height">
-        
+
                 <div class="col-md-4">
                     <div class="image_area">
-        
+
                         <div class="image_area">
                             <label for="upload_image">
                                 <?php
@@ -263,17 +180,17 @@ if (isset($courses)) {
                                 <div class="overlay1">
                                     <div class="text">Upload</div>
                                 </div>
-        
+
                                 <input type="file" {!! $required !!} name="image" class="image upload_image"
                                     id="upload_image" style="display:block" />
                             </label>
                         </div>
                         <hr>
-        
+
                     </div>
                     {{-- <button  onclick="save_image()" >Save</button> --}}
                 </div>
-        
+
                 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
@@ -300,13 +217,13 @@ if (isset($courses)) {
                                 <button type="button" id="crop" class="btn btn-primary">Crop</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             </div>
-        
+
                         </div>
                     </div>
                 </div>
                 <div id="myModalsuccess" class="modal fade" role="dialog">
                     <div class="modal-dialog">
-        
+
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
@@ -320,12 +237,14 @@ if (isset($courses)) {
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
-        
+
                     </div>
                 </div>
             </div>
         </div>
-        
+
+    </div>
+    <div class="col-sm-6">
         {!! Form::label('description', 'Description') !!}
         <div>
             <div>
@@ -340,26 +259,109 @@ if (isset($courses)) {
                 ]) !!}
             </div>
         </div>
+        <br>
+        <div class="form-group">
+            {!! Form::label('fees_type', 'Fees Type') !!}
+            {!! Form::select('fees_type', $fees_type, null, [
+                'placeholder' => "Select
+                                                                Type",
+                'onchange' => 'open_fees_type_div()',
+                'class' => 'form-control fees_type',
+                'required',
+            ]) !!}
+            </select>
+        </div>
+
+        <div class="complete_fees_area" style="background-color: #d3d3d32e; {!! $complete_fees_area_display !!}">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {!! Form::label('amount', 'Amount') !!}
+                        <div>
+                            <input type="number" name="amount_complete" value="{!! $complete_fee_amount !!}"
+                                class="form-control complete_amount_validation" data-parsley-required="true"
+                                data-parsley-trigger="change" placeholder="Enter Amount">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {!! Form::label('due_date', 'Due Date') !!}
+                        <div>
+                            <input type="date" name="due_date_complete" value="{!! $complete_fee_due_date !!}"
+                                class="form-control complete_due_date_validation" data-parsley-required="true"
+                                data-parsley-trigger="change" placeholder="Enter Due Date">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="installment_fees_area" style="{!! $installment_fees_area_display !!}">
+            <div class="row">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2">
+                    <button type="button" onclick="add_installment_divs()"
+                        class="btn btn-danger installment_divs">Add
+                        Installment</button>
+                </div>
+            </div>
+
+            <div class="multiple_times_open_div" style="background-color: #d3d3d32e;">
+                @if (isset($courses))
+                    @foreach ($courses->course_fees as $course_fees)
+                        <div class="row installmet_div_row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Amount</label>
+
+                                    <div>
+                                        <input type="number" name="amount[]" value="{!! $course_fees->amount !!}"
+                                            class="form-control amount_validation" data-parsley-required="true"
+                                            data-parsley-trigger="change" placeholder="Enter Amount">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Due Date</label>
+                                    <div>
+                                        <input type="date" name="due_date[]" value="{!! date('Y-m-d', $course_fees->due_date) !!}"
+                                            class="form-control due_date_validation" data-parsley-required="true"
+                                            data-parsley-trigger="change" placeholder="Enter Due Date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)"
+                                style="margin-top: 10px;margin-left: 16px;margin-bottom: 18px;">Remove
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
+        <input type="hidden" name="cropped_image" id="cropped_image">
     </div>
 </div>
+
 
 <div class="row">
-<div class="col-sm-12">
-    <span id="err" class="error-product"></span>
+    <div class="col-sm-12">
+        <span id="err" class="error-product"></span>
 
-<div class="form-group col-md-12"></div>
+        <div class="form-group col-md-12"></div>
 
-<div class="col-md-5 pull-left">
-    <div class="form-group text-center">
-        <div>
-            {!! Form::submit('Save', [
-                'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
-                'onclick' => 'return validateForm();',
-            ]) !!}
+        <div class="col-md-5 pull-left">
+            <div class="form-group text-center">
+                <div>
+                    {!! Form::submit('Save', [
+                        'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
+                        'onclick' => 'return validateForm();',
+                    ]) !!}
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 
 
