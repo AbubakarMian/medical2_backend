@@ -407,7 +407,7 @@
 
             // var complete_fees_area = $('.complete_fees_area').hide();
             // var installment_fees_area = $('.installment_fees_area').hide();
-            var modal = $('#modal');
+             $modal = $('#modal');
             var image_width = $('#image_width').val();
 
             console.log('image_widthimage_widthimage_width', image_width)
