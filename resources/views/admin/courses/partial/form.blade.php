@@ -148,7 +148,7 @@
     {!! Form::label('fees_type', 'Fees Type') !!}
     {!! Form::select('fees_type', $fees_type, null, [
         'placeholder' => "Select
-                                    Type",
+                                        Type",
         'onchange' => 'open_fees_type_div()',
         'class' => 'form-control fees_type',
         'required',
@@ -179,7 +179,7 @@
             </div>
 </div>
 
-<div class="installment_fees_area" style="{!!$installment_fees_area_display!!}">
+<div class="installment_fees_area" style="{!! $installment_fees_area_display !!}">
     <div class="row">
         <div class="col-sm-10"></div>
         <div class="col-sm-2">
@@ -189,16 +189,17 @@
     </div>
 
     <div class="multiple_times_open_div" style="background-color: #d3d3d32e;">
-        @if(isset($courses))
-            @foreach($courses->course_fees as $course_fees)
+        @if (isset($courses))
+            @foreach ($courses->course_fees as $course_fees)
                 <div class="row installmet_div_row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Amount</label>
 
                             <div>
-                                <input type="number" name="amount[]" value="{!!$course_fees->amount!!}" class="form-control amount_validation"
-                                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Amount">
+                                <input type="number" name="amount[]" value="{!! $course_fees->amount !!}"
+                                    class="form-control amount_validation" data-parsley-required="true"
+                                    data-parsley-trigger="change" placeholder="Enter Amount">
                             </div>
                         </div>
                     </div>
@@ -206,8 +207,9 @@
                         <div class="form-group">
                             <label>Due Date</label>
                             <div>
-                                <input type="date" name="due_date[]" value="{!!date('Y-m-d',$course_fees->due_date)!!}" class="form-control due_date_validation"
-                                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Due Date">
+                                <input type="date" name="due_date[]" value="{!! date('Y-m-d', $course_fees->due_date) !!}"
+                                    class="form-control due_date_validation" data-parsley-required="true"
+                                    data-parsley-trigger="change" placeholder="Enter Due Date">
                             </div>
                         </div>
                     </div>
@@ -346,8 +348,8 @@
 <div class="col-md-5 pull-left">
     <div class="form-group text-center">
         <div>
-            {!! Form::button('Save', [
-                'class' => 'btn btn-primary btn-block btn-lg btn-parsley',
+            {!! Form::submit('Save', [
+                'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
                 'onclick' => 'return validateForm();',
             ]) !!}
         </div>

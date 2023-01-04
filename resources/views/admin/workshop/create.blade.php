@@ -10,7 +10,7 @@ else{
 @section('heading')
     {!! $heading !!}
 @endsection
-@section('leftsideform')
+@section('completeform')
 
     @if($control == 'edit')
         {!! Form::model($workshop,['id'=>'my_form', 'method' => 'POST', 'route' =>

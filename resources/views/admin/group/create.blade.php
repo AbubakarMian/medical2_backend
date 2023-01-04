@@ -10,7 +10,7 @@ else{
 @section('heading')
     {!! $heading  !!} Group
 @endsection
-@section('leftsideform')
+@section('completeform')
     @if($control == 'edit')
         {!! Form::model($group,['id'=>'my_form', 'method' => 'POST', 'route' =>
                   ['group.update', $group->id],'files'=>true]) !!}
@@ -21,17 +21,7 @@ else{
     {!!Form::close()!!}
 
 
-    <div class="col-md-5 pull-left">
-        <div class="form-group text-center">
-            <div>
-                {!! Form::open(['method' => 'get', 'url' => ['admin/group']]) !!}
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
-
 @endsection
-{!!Form::close()!!}
 
 
 

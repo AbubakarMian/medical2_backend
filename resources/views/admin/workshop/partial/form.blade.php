@@ -26,6 +26,17 @@
     .mbsc-ios.mbsc-datepicker .mbsc-calendar-slide {
         background: #;
     }
+    .medsaveclick {
+          width: 60% !important;
+          font-size: 17px !important;
+          font-weight: 500 !important;
+          height: 42px !important;
+          padding-bottom: 30px !important;
+          border-radius: 4px !important;
+          background: #da3e16 !important;
+          border-color: #da3e16 !important;
+          margin-top: 20px !important
+      }
 
     /* calender css */
 
@@ -50,153 +61,173 @@
         </div>
     </div>
 </div>
-ٖ
-<div class="form-group">
-    {!! Form::label('name', 'name') !!}
-    <div>
-        {!! Form::text('name', null, [
-            'class' => 'form-control',
-            'data-parsley-required' => 'true',
-            'data-parsley-trigger' => 'change',
-            'placeholder' => ' Name',
-            'required',
-            'maxlength' => '100',
-        ]) !!}
-    </div>
-</div>
 
-<div class="form-group">
-    {!! Form::label('course', 'course') !!}
-    <div>
-        {!! Form::select('courses_id', $course_id, null, [
-            'class' => 'form-control',
-            'data-parsley-required' => 'true',
-            'data-parsley-trigger' => 'change',
-            'placeholder' => 'Course',
-            'required',
-            'maxlength' => '100',
-        ]) !!}
-    </div>
-</div>
-
-<div class="form-group">
-    {!! Form::label('Teacher', 'teacher') !!}
-    <div>
-        {!! Form::select('teacher_id', $teacher, null, [
-            'class' => 'form-control',
-            'data-parsley-required' => 'true',
-            'data-parsley-trigger' => 'change',
-            'placeholder' => 'Enter Teacher Name',
-            'required',
-            'maxlength' => '100',
-        ]) !!}
-    </div>
-</div>
-
-<?php
-
-?>
-
-<div class="form-group">
-    {!! Form::label('start_time', 'Start Time') !!}
-    <div>
-        {!! Form::time('start_time', null, [
-            'class' => 'form-control',
-            'data-parsley-required' => 'true',
-            'data-parsley-trigger' => 'change',
-            'required',
-
-            'maxlength' => '100',
-        ]) !!}
-    </div>
-</div>
-<div class="form-group">
-    {!! Form::label('end_time', 'End Time') !!}
-    <div>
-        {!! Form::time('end_time', null, [
-            'class' => 'form-control',
-            'data-parsley-required' => 'true',
-            'data-parsley-trigger' => 'change',
-            'required',
-            'maxlength' => '100',
-        ]) !!}
-    </div>
-</div>
-
-<!--  -->
-
-<div class="form-group">
-    {!! Form::label('is_online ', 'Workshop Online Class') !!}
-    <div>
-        <input type="checkbox" id="online_checkbox" onclick="set_is_online()" name="is_online">
-        <!--  -->
-        <!-- <div class="form-group">
-        {!! Form::label('is_online ', 'Group Online Class') !!}
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {!! Form::label('name', 'name') !!}
             <div>
-                {!! Form::checkbox('is_online', null, [
+                {!! Form::text('name', null, [
                     'class' => 'form-control',
                     'data-parsley-required' => 'true',
-                    'onclick="set_is_online()"' => 'true',
                     'data-parsley-trigger' => 'change',
+                    'placeholder' => ' Name',
+                    'required',
                     'maxlength' => '100',
                 ]) !!}
             </div>
-        </div> -->
-        <!--  -->
+        </div>
+        
+        <div class="form-group">
+            {!! Form::label('course', 'course') !!}
+            <div>
+                {!! Form::select('courses_id', $course_id, null, [
+                    'class' => 'form-control',
+                    'data-parsley-required' => 'true',
+                    'data-parsley-trigger' => 'change',
+                    'placeholder' => 'Course',
+                    'required',
+                    'maxlength' => '100',
+                ]) !!}
+            </div>
+        </div>
+        
+        <div class="form-group">
+            {!! Form::label('Teacher', 'teacher') !!}
+            <div>
+                {!! Form::select('teacher_id', $teacher, null, [
+                    'class' => 'form-control',
+                    'data-parsley-required' => 'true',
+                    'data-parsley-trigger' => 'change',
+                    'placeholder' => 'Enter Teacher Name',
+                    'required',
+                    'maxlength' => '100',
+                ]) !!}
+            </div>
+        </div>
+        
+        <?php
+        
+        ?>
+        
+        <div class="form-group">
+            {!! Form::label('start_time', 'Start Time') !!}
+            <div>
+                {!! Form::time('start_time', null, [
+                    'class' => 'form-control',
+                    'data-parsley-required' => 'true',
+                    'data-parsley-trigger' => 'change',
+                    'required',
+                
+                    'maxlength' => '100',
+                ]) !!}
+            </div>
+        </div>
+        <div class="form-group">
+            {!! Form::label('end_time', 'End Time') !!}
+            <div>
+                {!! Form::time('end_time', null, [
+                    'class' => 'form-control',
+                    'data-parsley-required' => 'true',
+                    'data-parsley-trigger' => 'change',
+                    'required',
+                    'maxlength' => '100',
+                ]) !!}
+            </div>
+        </div>
     </div>
-    </br>
-    <!--  -->
-    <!-- <div id="venue_map" style="display:none" > -->
-    <div id="venue_map">
-        <!-- <label >Enter Venue:</label>
-        <input type="text" required  name="venue" class = 'form-control'> -->
-        </br>
-
-        <label>Open Map For Workshop Venue</label>
-        </br>
-        </br>
-        <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">
-        <input hidden name="group_lat" id="group_lats" value="">
-        <input hidden name="group_long" id="group_longs" value="">
-    </div>
-    <!--  -->
-    <!-- <  group mappppppppppppppppppp-->
-</div>
-
-<div class="result"></div>
-
-</br>
-
-<!--  -->
-
-<div class="demo-multiple-select">
-    <div style="height:5%">
-        <div class="mbsc-grid">
-            <div class="mbsc-row">
-                <div class="mbsc-col-sm-12 mbsc-col-md-4">
-                    <div class="mbsc-form-group">
-
-                        {{-- costum Calendar start --}}
-
-                        <button type="button" class="btn btn-primary camodal" data-toggle="modal"
-                            data-target="#exampleModalCenter">
-                            Launch Calendar
-                        </button>
-                        <input type="hidden" name="dates" class="dates">
-                        @include('admin.workshop.partial.calender', [
-                            'date_input' => '.dates',
-                            'selection_type' => 'multiple',
-                        ])
-
-
-                        {{-- costum Calendar finish --}}
-
+    <div class="col-md-6">
+        <div class="form-group">
+            {!! Form::label('is_online ', 'Workshop Online Class') !!}
+            <div>
+                <input type="checkbox" id="online_checkbox" onclick="set_is_online()" name="is_online">
+                <!--  -->
+                <!-- <div class="form-group">
+                {!! Form::label('is_online ', 'Group Online Class') !!}
+                    <div>
+                        {!! Form::checkbox('is_online', null, [
+                            'class' => 'form-control',
+                            'data-parsley-required' => 'true',
+                            'onclick="set_is_online()"' => 'true',
+                            'data-parsley-trigger' => 'change',
+                            'maxlength' => '100',
+                        ]) !!}
                     </div>
+                </div> -->
+                <!--  -->
+            </div>
+            </br>
+            <!--  -->
+            <!-- <div id="venue_map" style="display:none" > -->
+            <div id="venue_map">
+                <!-- <label >Enter Venue:</label>
+                <input type="text" required  name="venue" class = 'form-control'> -->
+                
+        
+                <label>Open Map For Workshop Venue</label>
+                </br>
+                </br>
+                <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">
+                <input hidden name="group_lat" id="group_lats" value="">
+                <input hidden name="group_long" id="group_longs" value="">
+            </div>
+            <!--  -->
+            <!-- <  group mappppppppppppppppppp-->
+        </div>
+        
+        <div class="result"></div>
+        
+        </br>
+        
+        <!--  -->
+        
+        <div class="demo-multiple-select">
+            <div style="height:5%">
+                <div class="mbsc-grid">
+                    <div class="mbsc-row">
+                        <div class="mbsc-col-sm-12 mbsc-col-md-4">
+                            <div class="mbsc-form-group">
+        
+                                {{-- costum Calendar start --}}
+        
+                                <button type="button" class="btn btn-primary camodal" data-toggle="modal"
+                                    data-target="#exampleModalCenter">
+                                    Launch Calendar
+                                </button>
+                                <input type="hidden" name="dates" class="dates">
+                                @include('admin.workshop.partial.calender', [
+                                    'date_input' => '.dates',
+                                    'selection_type' => 'multiple',
+                                ])
+        
+        
+                                {{-- costum Calendar finish --}}
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-5 pull-left">
+            <div class="form-group text-center">
+                <div>
+                    {!! Form::submit('Save', [
+                        'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
+                        'onclick' => 'return validateForm();',
+                    ]) !!}
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<!--  -->
+
 
 <!--  -->
 
@@ -204,16 +235,7 @@
 
 <div class="form-group col-md-12"></div>
 
-<div class="col-md-5 pull-left">
-    <div class="form-group text-center">
-        <div>
-            {!! Form::submit('Save', [
-                'class' => 'btn btn-primary btn-block btn-lg btn-parsley',
-                'onclick' => 'return validateForm();',
-            ]) !!}
-        </div>
-    </div>
-</div>
+
 
 @section('app_jquery')
     <script>
@@ -320,9 +342,6 @@
         function optionHtml(no) {
             return `<option class ="option-file"  value="` + no + `">Choice # ` + no + `</option>`
         }
-
-
-
     </script>
 
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>

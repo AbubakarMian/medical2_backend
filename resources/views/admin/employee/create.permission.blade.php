@@ -176,7 +176,7 @@
             <div class="form-group text-center">
                 <div>
                     {!! Form::submit('Save', [
-                        'class' => 'btn btn-primary btn-block btn-lg btn-parsley',
+                        'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
                         'onblur' => 'return validateForm();',
                     ]) !!}
                 </div>
