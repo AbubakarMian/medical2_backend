@@ -72,7 +72,7 @@ class CoursesController extends Controller
     public function add_or_update(Request $request, $courses)
     {
 
-        // dd(strtotime($request->due_date[0]),$request->all());
+        // dd($request->all());
         $date_timestamp = strtotime($request->start_date);
         $courses->full_name = $request->full_name;
         $courses->short_name = $request->short_name;
@@ -112,8 +112,8 @@ class CoursesController extends Controller
             $course_fees = new Courses_Fees();
             $course_fees->course_id = $courses->id;
             $course_fees->fees_type = $courses->fees_type;
-            $course_fees->amount = $request->amount;
-            $course_fees->due_date = strtotime($request->due_date);
+            $course_fees->amount = $request->amount_complete;
+            $course_fees->due_date = strtotime($request->due_date_complete);
             $course_fees->save();
 
         }
