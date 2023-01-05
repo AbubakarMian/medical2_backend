@@ -168,12 +168,12 @@ if (isset($courses)) {
                                     }
                                 }
                                 $required = '';
-
+                                
                                 if (isset($courses->avatar)) {
                                 } else {
                                     $required = 'required';
                                 }
-
+                                
                                 ?>
                                 <img src="{!! $avatar !!}" id="uploaded_image" class="img-responsive img-circle"
                                     name="uploadeds_image" />

@@ -97,11 +97,9 @@
                     <label for="upload_image">
                         <?php
                             $avatar = asset('images/logo.png');
-                            $required_img = 'required';
                             if(isset($category)){
                                 if($category->avatar){
                                     $avatar = $category->avatar;
-                                    $required_img = '';
                                 }
                             }
                         ?>
@@ -109,7 +107,7 @@
                         <div class="overlay1">
                             <div class="text">Upload</div>
                         </div>
-                        <input type="file" {!!$required_img!!} name="image" class="image upload_image" id="upload_image" style="display:block" />
+                        <input type="file" required name="image" class="image upload_image" id="upload_image" style="display:block" />
                     </label>
                     </div>
                     <hr>

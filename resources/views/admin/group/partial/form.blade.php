@@ -67,8 +67,6 @@
 <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
 <div class="row">
     <div class="col-md-6">
-        <span class="error error_span" id="error_span"></span>
-
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog modal-mg ">
@@ -176,7 +174,7 @@
                 {!! Form::label('fees_type', 'Fees Type') !!}
                 {!! Form::select('fees_type', $fees_type, null, [
                     'placeholder' => "Select
-                                                                Type",
+                                                Type",
                     'onchange' => 'open_fees_type_div()',
                     'class' => 'form-control fees_type',
                 ]) !!}
@@ -316,42 +314,34 @@
 
         <!--  -->
         <?php
-
+        
         ?>
-
-    </div>
-
-    <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('start_date', 'Start Date') !!}
             <div>
-                <input type="date" name="start_date" class="form-control start_date_validation"
-                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter start date">
-
-                    {{-- {!! Form::date('start_date', null, [
+                {!! Form::date('start_date', null, [
                     'class' => 'form-control',
                     'data-parsley-required' => 'true',
                     'data-parsley-trigger' => 'change',
                     'required',
-                ]) !!} --}}
+                ]) !!}
             </div>
         </div>
         <div class="form-group">
             {!! Form::label('end_date', 'End Date') !!}
             <div>
-                <input type="date" name="end_date" class="form-control end_date_validation"
-                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter End date">
-
-
-                    {{--
                 {!! Form::date('end_date', null, [
                     'class' => 'form-control',
                     'data-parsley-required' => 'true',
                     'data-parsley-trigger' => 'change',
                     'required',
-                ]) !!} --}}
+                ]) !!}
             </div>
         </div>
+    </div>
+
+    <div class="col-md-6">
+
         <div class="form-group">
 
             <div class="form-group">
@@ -456,12 +446,11 @@
         <!--  -->
 
 
-
+        
 
         <div>
             {!! Form::label('is_online ', 'Group Online Class') !!}
-            <input class="casva" type="checkbox" id="is_online_checkbox" onclick="is_online_class()"
-                name="is_online">
+            <input class="casva" type="checkbox" id="is_online_checkbox" onclick="is_online_class()" name="is_online">
         </div>
 
 
@@ -469,14 +458,14 @@
 
 
 
-            {!! Form::label('zoom', 'Enter Url For Online Class') !!}
-            {{-- {!! Form::file('zoom', ['class' => 'choose-zoom', 'id' => 'zoomss']) !!}
+            {!! Form::label('zoom', 'Choose Url For Online Class') !!}
+            {!! Form::file('zoom', ['class' => 'choose-zoom', 'id' => 'zoomss']) !!}
             <p class="help-block" id="error">Limit 2MB</p>
 
-            <span>OR</span> --}}
+            <span>OR</span>
 
             <div id="zoom_textarea">
-                {!! Form::text('zoom_visible', null, [
+                {!! Form::textarea('zoom_visible', null, [
                     'class' => 'form-control',
                     'rows' => '5',
                     'placeholder' => 'Enter video URL',
@@ -500,7 +489,7 @@
     <input type="text" required  name="venue" class = 'form-control'> -->
             </br>
 
-            <label>Open Map For Group Venue</label>
+            <label>Open Map For Group Venue</label>            
             </br>
             <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">
 
@@ -531,13 +520,13 @@
 
     </div>
     <div class="col-md-12">
-
+        
         <div class="col-md-3 pull-left">
             <div class="form-group text-center">
                 <div>
-                    {!! Form::button('Save', [
+                    {!! Form::submit('Save', [
                         'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
-                        'onclick' => 'return validateForm();',
+                        'onblur' => 'return validateForm();',
                     ]) !!}
                 </div>
             </div>
@@ -750,9 +739,9 @@
             var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(installmet_div_row));
         }
         // end new
-        // function validateForm() {
-        //     return true;
-        // }
+        function validateForm() {
+            return true;
+        }
 
         //
         $(document).ready(function() {
@@ -796,9 +785,9 @@
 
 
         // end new
-        // function validateForm() {
-        //     return true;
-        // }
+        function validateForm() {
+            return true;
+        }
 
         //
         $(document).ready(function() {
@@ -871,7 +860,7 @@
             {{--   second column  --}}
             <div class="col-sm-4">
                 <div class="form-group">
-                    {!! Form::label('start_time', 'Class Start Time') !!}
+                    {!! Form::label('start_time', 'Choose a Class Start Time') !!}
                     <div>
                         {!! Form::time('start_time[]', null, [
                             'class' => 'form-control',
@@ -888,7 +877,7 @@
 {{--  third column   --}}
             <div class="col-sm-4">
                 <div class="form-group">
-                    {!! Form::label('end_time', 'Class End Time') !!}
+                    {!! Form::label('end_time', 'Choose a Class End Time') !!}
                     <div>
                         {!! Form::time('end_time[]', null, [
                             'class' => 'form-control',
@@ -931,101 +920,3 @@
 
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 @endsection
-
-
-<script>
-    function validateForm() {
-
-        // var amount = $('.amount_validation'); //complete_
-        // var amount_valid = true;
-        // var due_date_valid = true;
-        var date_valid_error_msg = '';
-        // var valid_date_chk = '';
-        // var fee_type_valid = true;
-        var start_date_valid = true;
-        var end_date_valid = true;
-
-        var start_date_valid = $('.start_date_validation').val();
-        if (start_date_valid == '') {
-            start_date_valid = false;
-            console.log('enter valid start date');
-            // alert('enter valid start date');
-            $('.error_span').html('Enter valid Start date');
-
-            return'invalid start';
-        }
-
-        var end_date_valid = $('.end_date_validation').val();
-        if (end_date_valid == '') {
-            end_date_valid = false;
-            console.log('enter valid end date');
-            // alert('enter valid end date');
-            $('.error_span').html('Enter valid End date');
-
-            return'invalid end';
-        }
-
-    //   if (end_date_valid >=start_date_valid) { //compare end <=, not >=
-    //         console.log('smaller current date is smaller');
-    //         return 'start or end date is Invalid';
-    //     } else {
-    //         return true;
-
-        // if (select_fees_type == 'complete') {
-        //     // var date_valid = check_valid_date($('.complete_due_date_validation').val());
-        //     valid_date_chk = check_valid_date($('.complete_due_date_validation').val());
-        //     if (valid_date_chk === true) {
-        //         due_date_valid = true;
-        //     } else {
-        //         due_date_valid = false;
-        //         due_date_valid_error_msg = valid_date_chk;
-        //     }
-        //     if ($('.complete_amount_validation').val() == '') {
-        //         amount_valid = false;
-        //     }
-        // };
-        // if (select_fees_type == 'installment') {
-        //     $.each($('.amount_validation'), function(index, input) {
-        //         if ($(input).val() == '') {
-        //             amount_valid = false;
-        //             return;
-        //         }
-        //     })
-        //     $.each($('.due_date_validation'), function(index, input) {
-        //         valid_date_chk = check_valid_date($(input).val());
-        //         if (valid_date_chk === true) {
-        //             due_date_valid = true;
-        //         } else {
-        //             due_date_valid = false;
-        //             due_date_valid_error_msg = valid_date_chk;
-        //             return;
-        //         }
-        //     })
-        // };
-        // if (!fee_type_valid) {
-        //     $('.error_span').html('FeeType Required');
-        // } else if (!amount_valid) {
-        //     $('.error_span').html('Invalid Amount');
-        // } else if (!due_date_valid) {
-        //     $('.error_span').html(valid_date_chk);
-        // }
-        // if (!fee_type_valid || !amount_valid || !due_date_valid) {
-        //     $(".error_span").scroll();
-        //     var error_span = document.getElementById("error_span");
-        //     error_span.scrollIntoView();
-        // }
-
-        // return fee_type_valid && amount_valid && due_date_valid;
-        // }
-
-        // function check_valid_date(date) {
-        // if (date == '') {
-        //     return 'Due Date Required';
-        // } else if (new Date() >= new Date(date)) { //compare end <=, not >=
-        //     console.log('smaller current date is smaller');
-        //     return 'Invalid due date';
-        // } else {
-        //     return true;
-        // }
-    }
-</script>
