@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DaySeeder::class);
         $this->call(UrlSeeder::class);
         $this->call(Admin_url_Seeder::class);
+        $this->call(About_us_Seeder::class);
 
     }
 }
