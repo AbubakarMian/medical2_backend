@@ -1,3 +1,4 @@
+{{-- {!!dd($teacher->user->password)!!} --}}
 
 <style>
 select#gender {
@@ -17,7 +18,6 @@ select#gender {
     </ul>
 </div>
 @endif
-
 <div class="form-group">
     {!! Form::label('name',' Name') !!}
     <div>
@@ -63,9 +63,19 @@ select#gender {
     </div>
 </div>
 <div class="form-group">
+    {!! Form::label('phone_no','Phone Number') !!}
+    <div>
+        {!! Form::text('phone_no',  $teacher->user->phone_no, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'Enter Phone Number','required',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
+<div class="form-group">
     {!! Form::label('password','Password') !!}
     <div>
-        {!! Form::password('password',   ['class' => 'form-control',
+        {!! Form::password('password',  ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
         'placeholder'=>'Enter Password',

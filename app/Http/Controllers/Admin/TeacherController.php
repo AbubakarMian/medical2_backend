@@ -63,11 +63,13 @@ class TeacherController extends Controller
     {
         $control = 'edit';
         $teacher = Teacher::find($id);
+        $users = User::find($id);
         $groups = Group::pluck('name','id');
         return view('admin.teacher.create', compact(
             'control',
             'teacher',
-             'groups'
+             'groups',
+             'users'
         ));
     }
 
@@ -103,6 +105,7 @@ class TeacherController extends Controller
         // $user->gender = $request->gender;
         $user->email = $request->email;
         $user->adderss = $request->address;
+        $user->phone_no = $request->phone_no;
         if($request->password){
             $user->password =  Hash::make($request->password);
         }
