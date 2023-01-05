@@ -69,6 +69,11 @@
     <div class="col-md-6">
         <span class="error error_span" id="error_span"></span>
 
+         {{-- <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong><p><span class="error_span" id="error_span"></span></p></strong>
+        </div> --}}
+
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog modal-mg ">
