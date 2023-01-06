@@ -51,10 +51,10 @@ h4 {
   margin-top: 35px;
 } */
 .courbanddata p {
-  text-align: center;
-  font-size: 15px;
-  line-height: 23px;
-  color: black;
+  /* text-align: center !important; */
+  font-size: 16px !important;
+  line-height: 33px !important;
+  color: #313030 !important;
 }
 .container.reviewsback {
   padding: 10px 10px;
@@ -63,11 +63,24 @@ h4 {
   /* margin: 13px 0px; */
   background: white;
 }
-.courbanddata ul li {
-  font-size: 16px;
-  line-height: 26px;
-  color: black;
+.courbanddata ul {
+  list-style: none;
+  padding: 0px;
 }
+.courbanddata ul li {
+  color: #313030;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 33px;
+}
+.courbanddata ul li:before {
+  content: "\f138";
+  color: #292974;
+  font-family: "FontAwesome";
+  padding-right: 10px;
+  left: 0;
+}
+
 .logoArea img {
   /* height: 70px;
   padding: 0px 30px;

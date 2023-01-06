@@ -4,6 +4,7 @@
     <link href="{!! asset('theme/user_theme/css/groupform.css') !!}" rel="stylesheet">
     <link href="{!! asset('theme/user_theme/css/newmake.css') !!}" rel="stylesheet">
     <link href="{!! asset('theme/user_theme/css/proceedpayment.css') !!}" rel="stylesheet">
+    <link href="{!! asset('theme/user_theme/css/custommine.css') !!}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v3.8.1/css/all.css">
 
     <link href="{!! asset('theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
@@ -388,8 +389,8 @@
     @endif
     <!-- @if ($cg->is_online != 0)
     <div class="regtabless">
-                            <iframe src="{{ $cg->url }}" title="description"></iframe>
-                            </div>
+                                    <iframe src="{{ $cg->url }}" title="description"></iframe>
+                                    </div>
     @endif -->
     @if ($current_date <= $group_start_date || $current_date <= $group_end_date)
         <div class="regtabless">
