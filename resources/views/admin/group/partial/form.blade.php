@@ -540,7 +540,7 @@
         <div class="col-md-3 pull-left">
             <div class="form-group text-center">
                 <div>
-                    {!! Form::button('Save', [
+                    {!! Form::submit('Save', [
                         'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
                         'onclick' => 'return validateForm();',
                     ]) !!}

@@ -1,4 +1,4 @@
-{{-- {!!dd($teacher->user->password)!!} --}}
+{{-- {!!dd($teacher)!!} --}}
 
 <style>
 select#gender {
@@ -62,10 +62,16 @@ select#gender {
         'maxlength'=>"100"]) !!}
     </div>
 </div>
+<?php
+    $number = '';
+    if(isset($teacher)){
+        $number = $teacher->user->phone_no;
+    }
+?>
 <div class="form-group">
     {!! Form::label('phone_no','Phone Number') !!}
     <div>
-        {!! Form::text('phone_no',  $teacher->user->phone_no, ['class' => 'form-control',
+        {!! Form::text('phone_no',  $number, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
         'placeholder'=>'Enter Phone Number','required',
