@@ -1,3 +1,6 @@
+{{-- {!!dd($group->start_date);!!} --}}
+
+
 <style>
     div#zoom {
         background-color: #f1f4f9;
@@ -125,7 +128,12 @@
             </div>
         </div>
 
-
+        <?php
+        // $course = '';
+        // if(isset($group)){
+        //     $address = $group->address;
+        // }
+    ?>
         <div class="form-group">
             {!! Form::label('course', 'course') !!}
             <div>
@@ -272,12 +280,17 @@
 
         <!-- END NEW_WORKSSS -->
 
-
+        <?php
+        $address = '';
+        if(isset($group)){
+            $address = $group->address;
+        }
+    ?>
         <!--  -->
         <div class="form-group">
             {!! Form::label('address', 'Address') !!}
             <div>
-                {!! Form::text('address', null, [
+                {!! Form::text('address', $address, [
                     'class' => 'form-control address',
                     'data-parsley-required' => 'true',
                     'data-parsley-trigger' => 'change',
@@ -325,12 +338,18 @@
         ?>
 
     </div>
+    <?php
+    $start_date = '';
+    if(isset($group)){
+        $start_date = $group->start_date;
+    }
+?>
 
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('start_date', 'Start Date') !!}
             <div>
-                <input type="date" name="start_date" class="form-control start_date_validation"
+                <input type="date" name="start_date" class="form-control start_date_validation" value={!!$start_date!!}
                     data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter start date">
 
                     {{-- {!! Form::date('start_date', null, [
@@ -341,10 +360,16 @@
                 ]) !!} --}}
             </div>
         </div>
+        <?php
+        $end_date = '';
+        if(isset($group)){
+            $end_date = $group->end_date;
+        }
+    ?>
         <div class="form-group">
             {!! Form::label('end_date', 'End Date') !!}
             <div>
-                <input type="date" name="end_date" class="form-control end_date_validation"
+                <input type="date" name="end_date" class="form-control end_date_validation" value={!!$end_date!!}
                     data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter End date">
 
 
