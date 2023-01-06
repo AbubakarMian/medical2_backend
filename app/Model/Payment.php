@@ -15,7 +15,7 @@ class Payment extends Model
     }
     public function course()
     {
-        return $this->hasOne('App\Model\Courses', 'id', 'course_id');
+        return $this->hasOne('App\Model\Courses', 'id', 'course_id')->withTrashed();
     }
 
     public function getRefundPaymentIdAttribute($value)

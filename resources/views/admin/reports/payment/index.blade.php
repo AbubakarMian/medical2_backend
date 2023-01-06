@@ -47,12 +47,15 @@
                     type: 'get',
                     dataType: 'json',
                     success: function(response) {
+                        
                         $("#userTable").css("opacity", 1);
                         var len = response.data.length;
                         var data = response.data;
                         var tr_str = '';
 
                         for (var i = 0; i < len; i++) {
+                            console.log('course',data[i].course)
+                            console.log('course',data[i].course.full_name)
                             var payment_id = data[i].payment_id;
                             var date = data[i].created_at;
                             var user_name = data[i].user.name;

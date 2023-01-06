@@ -116,8 +116,10 @@ class PaymentController extends Controller
     }
 
     public function payment_refund_details($payment_id){
-        $payment = Payment::find($payment_id);
-        $refund_payments = Payment::whereIn('id', $payment->refund_payment_id)->get();
+        $payment = Payment::find($payment_id);        
+        dd($payment->refund_payment_id);
+        // $refund_payments = Payment::whereIn('id', [0])->get();
+        $refund_payments = Payment::whereIn('id', json_decode($payment->refund_payment_id))->get();
         return $this->sendResponse(200, $refund_payments);
     }
 }
