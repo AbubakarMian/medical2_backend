@@ -127,25 +127,26 @@
     .crez {
         background: #f1582b !important;
         color: white !important;
-        border-color: #f1582b !important;
     }
 
     .ahcdsa img {
         margin: 0 auto;
     }
+
     .container.asdcka {
-      width: 40%;
-  }
+        width: 40%;
+    }
 
     @media only screen and (max-width : 480px) {
-      .gssw {
-      width: 80%;
+        .gssw {
+            width: 80%;
+        }
+
+        .container.asdcka {
+            width: fit-content;
+        }
     }
-    .container.asdcka {
-      width: fit-content;
-  }
-    }
-  </style>
+</style>
 
 <body>
 
@@ -158,7 +159,7 @@
             <div class="row">
                 <div class="col-sm-12 ahc">
                     <div class="ahcdsa">
-                         <a href="#"><img src="{!! asset('theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
+                      <a href="#"><img src="{!! asset('theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
                     </div>
                 </div>
             </div>
