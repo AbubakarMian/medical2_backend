@@ -1,4 +1,12 @@
 <style>
+    .vdvjib img {
+        /* max-height: 80px; */
+        max-width: 100px;
+        margin-bottom: 7px;
+        border: 1px solid;
+        border-radius: 11px;
+    }
+
     .image_area {
         position: relative;
     }
@@ -52,6 +60,14 @@
         transform: translate(-50%, -50%);
         text-align: center;
     }
+    .vsdas {
+    margin: 0px -10px;
+}
+.installmet_div_row {
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+    margin-bottom: 5px;
+}
 </style>
 @if ($message = Session::get('error'))
     <div class="alert alert-danger alert-block">
@@ -149,7 +165,7 @@ if (isset($courses)) {
 
         <div>
             <div class="row">
-                <div class="col-md-4">&nbsp;</div>
+                {{-- <div class="col-md-4">&nbsp;</div> --}}
                 <input hidden value='378' id="image_width">
                 <input hidden value='226' id="image_height">
                 <input hidden value='16' id="aspect_ratio_width">
@@ -168,21 +184,25 @@ if (isset($courses)) {
                                     }
                                 }
                                 $required = '';
-
+                                
                                 if (isset($courses->avatar)) {
                                 } else {
                                     $required = 'required';
                                 }
-
+                                
                                 ?>
-                                <img src="{!! $avatar !!}" id="uploaded_image" class="img-responsive img-circle"
-                                    name="uploadeds_image" />
+                                <div class="vdvjib">
+                                    <img src="{!! $avatar !!}" id="uploaded_image" class="img-responsive"
+                                        name="uploadeds_image" />
+                                </div>
+
                                 <div class="overlay1">
-                                    <div class="text">Upload</div>
+                                    {{-- <div class="text">Upload</div> --}}
                                 </div>
 
                                 <input type="file" {!! $required !!} name="image" class="image upload_image"
                                     id="upload_image" style="display:block" />
+
                             </label>
                         </div>
                         <hr>
@@ -196,10 +216,11 @@ if (isset($courses)) {
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Crop Image Before Upload</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <h5 style="text-align: center; font-size: 14px; font-weight: 600;" class="modal-title">
+                                    Crop Image Before Upload</h5>
+                                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
-                                </button>
+                                </button> --}}
                             </div>
                             <div class="modal-body">
                                 <div class="img-container">
@@ -244,27 +265,12 @@ if (isset($courses)) {
         </div>
 
     </div>
-    <div class="col-sm-6">
-        {!! Form::label('description', 'Description') !!}
-        <div>
-            <div>
-                {!! Form::textarea('description', null, [
-                    'class' => 'ckeditor form-control',
-                    'id' => 'summary-ckeditor',
-                    'data-parsley-required' => 'true',
-                    'data-parsley-trigger' => 'change',
-                    'placeholder' => 'Enter title',
-                    'required',
-                    'maxlength' => '100',
-                ]) !!}
-            </div>
-        </div>
-        <br>
+    <div class="col-sm-6">               
         <div class="form-group">
             {!! Form::label('fees_type', 'Fees Type') !!}
             {!! Form::select('fees_type', $fees_type, null, [
                 'placeholder' => "Select
-                                                                Type",
+                                                                            Type",
                 'onchange' => 'open_fees_type_div()',
                 'class' => 'form-control fees_type',
                 'required',
@@ -302,12 +308,12 @@ if (isset($courses)) {
                 <div class="col-sm-10"></div>
                 <div class="col-sm-2">
                     <button type="button" onclick="add_installment_divs()"
-                        class="btn btn-danger installment_divs">Add
+                        class="btn btn-danger installment_divs vsdas">Add
                         Installment</button>
                 </div>
             </div>
 
-            <div class="multiple_times_open_div" style="background-color: #d3d3d32e;">
+            <div class="multiple_times_open_div" style="">
                 @if (isset($courses))
                     @foreach ($courses->course_fees as $course_fees)
                         <div class="row installmet_div_row">
@@ -338,6 +344,20 @@ if (isset($courses)) {
                         </div>
                     @endforeach
                 @endif
+            </div>
+        </div>
+        {!! Form::label('description', 'Description') !!}
+        <div>
+            <div>
+                {!! Form::textarea('description', null, [
+                    'class' => 'ckeditor form-control',
+                    'id' => 'summary-ckeditor',
+                    'data-parsley-required' => 'true',
+                    'data-parsley-trigger' => 'change',
+                    'placeholder' => 'Enter title',
+                    'required',
+                    'maxlength' => '100',
+                ]) !!}
             </div>
         </div>
         <input type="hidden" name="cropped_image" id="cropped_image">
