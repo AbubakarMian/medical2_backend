@@ -3,7 +3,7 @@ if($control == 'edit'){
     $heading = 'Edit';
 }
 else{
-    $heading = 'Add';
+    $heading = 'Add Teacher';
 }
 ?>
 @extends('layouts.default_edit')

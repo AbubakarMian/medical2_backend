@@ -1,8 +1,15 @@
-
 <style>
     .image_area {
         position: relative;
     }
+
+    .vdvjib img {
+    /* max-height: 80px; */
+    max-width: 100px;
+    margin-bottom: 7px;
+    border: 1px solid;
+    border-radius: 11px;
+}
 
     img {
         display: block;
@@ -16,6 +23,10 @@
         margin: 10px;
         border: 1px solid red;
     }
+
+    .medsaveclick {
+    padding: 1px !important;
+}
 
     .modal-lg {
         max-width: 1000px !important;
@@ -49,27 +60,32 @@
         transform: translate(-50%, -50%);
         text-align: center;
     }
-
 </style>
 <div class="form-group">
-    {!! Form::label('name',' Name') !!}
+    {!! Form::label('name', ' Name') !!}
     <div>
-        {!! Form::text('name', null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>' Name','required',
-        'maxlength'=>"100"]) !!}
+        {!! Form::text('name', null, [
+            'class' => 'form-control',
+            'data-parsley-required' => 'true',
+            'data-parsley-trigger' => 'change',
+            'placeholder' => ' Name',
+            'required',
+            'maxlength' => '100',
+        ]) !!}
     </div>
 </div>
 
 <div class="form-group">
-    {!! Form::label('description','Description') !!}
+    {!! Form::label('description', 'Description') !!}
     <div>
-        {!! Form::text('description',  null, ['class' => 'form-control',
-        'data-parsley-required'=>'true',
-        'data-parsley-trigger'=>'change',
-        'placeholder'=>'Enter Description','required',
-        'maxlength'=>"100"]) !!}
+        {!! Form::text('description', null, [
+            'class' => 'form-control',
+            'data-parsley-required' => 'true',
+            'data-parsley-trigger' => 'change',
+            'placeholder' => 'Enter Description',
+            'required',
+            'maxlength' => '100',
+        ]) !!}
     </div>
 </div>
 
@@ -83,36 +99,41 @@
 
     <br />
     <div class="row">
-        <div class="col-md-4">&nbsp;</div>
-        <input hidden value='378'        id="image_width">
-        <input hidden value='226'         id="image_height">
-        <input hidden value='16'        id="aspect_ratio_width">
-        <input hidden value='9'           id="aspect_ratio_height">
+        {{-- <div class="col-md-4">&nbsp;</div> --}}
+        <input hidden value='378' id="image_width">
+        <input hidden value='226' id="image_height">
+        <input hidden value='16' id="aspect_ratio_width">
+        <input hidden value='9' id="aspect_ratio_height">
 
 
         <div class="col-md-4">
             <div class="image_area">
 
-                    <div class="image_area">
+                <div class="image_area">
                     <label for="upload_image">
                         <?php
-                            $avatar = asset('images/logo.png');
-                            $required_img = 'required';
-                            if(isset($category)){
-                                if($category->avatar){
-                                    $avatar = $category->avatar;
-                                    $required_img = '';
-                                }
+                        $avatar = asset('images/logo.png');
+                        $required_img = 'required';
+                        if (isset($category)) {
+                            if ($category->avatar) {
+                                $avatar = $category->avatar;
+                                $required_img = '';
                             }
+                        }
                         ?>
-                        <img src="{!!$avatar !!}" id="uploaded_image" class="img-responsive img-circle"  name="uploadeds_image" />
-                        <div class="overlay1">
-                            <div class="text">Upload</div>
+<div class="vdvjib">
+                        <img src="{!! $avatar !!}" id="uploaded_image" class="img-responsive"
+                            name="uploadeds_image" />
                         </div>
-                        <input type="file" {!!$required_img!!} name="image" class="image upload_image" id="upload_image" style="display:block" />
+
+                        <div class="overlay1">
+                            {{-- <div class="text">Upload</div> --}}
+                        </div>
+                        <input type="file" {!! $required_img !!} name="image" class="image upload_image"
+                            id="upload_image" style="display:block" />
                     </label>
-                    </div>
-                    <hr>
+                </div>
+                <hr>
 
             </div>
             {{-- <button  onclick="save_image()" >Save</button> --}}
@@ -123,10 +144,10 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Crop Image Before Upload</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 style="text-align: center; font-size: 14px; font-weight: 600;" class="modal-title">Crop Image Before Upload</h5>
+                        {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
-                        </button>
+                        </button> --}}
                     </div>
                     <div class="modal-body">
                         <div class="img-container">
@@ -151,22 +172,22 @@
         <div id="myModalsuccess" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Save Sucessfully</h4>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Save Sucessfully</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Thankyou</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  <p>Thankyou</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
 
             </div>
-          </div>
+        </div>
     </div>
 </div>
 
@@ -190,7 +211,10 @@
 <div class="col-md-5 pull-left">
     <div class="form-group text-center">
         <div>
-            {!! Form::submit('Save', ['class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick', 'onblur' => 'return validateForm();']) !!}
+            {!! Form::submit('Save', [
+                'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
+                'onblur' => 'return validateForm();',
+            ]) !!}
         </div>
     </div>
 </div>
@@ -198,129 +222,121 @@
 
 
 @section('app_jquery')
-<script>
+    <script>
+        $(document).ready(function() {
+
+            var $modal = $('#modal');
+
+            var image_width = $('#image_width').val();
+            console.log('image_widthimage_widthimage_width', image_width)
+            //
+
+            // var pages_images_id = $('#pages_images_id').val();
+            // console.log('pages_images_idpages_images_idpages_images_id', pages_images_id)
+            //
+
+            //
+            var image_height = $('#image_height').val();
+            console.log('image_heightimage_height', image_height)
+            //
+            var aspect_ratio_width = $('#aspect_ratio_width').val();
+            console.log('aspect_ratiowidthaspect_ratio_width', aspect_ratio_width)
+
+            //
+            var aspect_ratio_height = $('#aspect_ratio_height').val();
+            console.log('aspect_ratio_heightaspect_ratio_height', aspect_ratio_height)
+
+            var image = document.getElementById('sample_image');
+
+            var cropper;
+            var image_num = '';
+
+            // $('#upload_image').change(function(event) {
+            $('.upload_image').change(function(event) {
+                var files = event.target.files;
+
+                var done = function(url) {
+                    image.src = url;
+                    // console.log('   image.src',url)
+                    $modal.modal('show');
+                };
+
+                if (files && files.length > 0) {
+                    reader = new FileReader();
+                    reader.onload = function(event) {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+                image_num = event.target.id;
+                console.log('image num ', image_num);
+            });
 
 
-$(document).ready(function() {
-
-var $modal = $('#modal');
-
-var image_width = $('#image_width').val();
-console.log('image_widthimage_widthimage_width', image_width)
-//
-
-// var pages_images_id = $('#pages_images_id').val();
-// console.log('pages_images_idpages_images_idpages_images_id', pages_images_id)
-//
-
-//
-var image_height = $('#image_height').val();
-console.log('image_heightimage_height', image_height)
-//
-var aspect_ratio_width = $('#aspect_ratio_width').val();
-console.log('aspect_ratiowidthaspect_ratio_width', aspect_ratio_width)
-
-//
-var aspect_ratio_height = $('#aspect_ratio_height').val();
-console.log('aspect_ratio_heightaspect_ratio_height', aspect_ratio_height)
-
-var image = document.getElementById('sample_image');
-
-    var cropper;
-    var image_num = '';
-
-    // $('#upload_image').change(function(event) {
-    $('.upload_image').change(function(event) {
-        var files = event.target.files;
-
-        var done = function(url) {
-            image.src = url;
-            // console.log('   image.src',url)
-            $modal.modal('show');
-        };
-
-        if (files && files.length > 0) {
-            reader = new FileReader();
-            reader.onload = function(event) {
-                done(reader.result);
-            };
-            reader.readAsDataURL(files[0]);
-        }
-        image_num = event.target.id;
-        console.log('image num ',image_num);
-    });
-
-
-    $modal.on('shown.bs.modal', function() {
-        cropper = new Cropper(image, {
-            // aspectRatio: 2 / 1,
-            aspectRatio: aspect_ratio_width / aspect_ratio_height,
-            viewMode: 3,
-            preview: '.preview'
-        });
-    }).on('hidden.bs.modal', function() {
-        cropper.destroy();
-        cropper = null;
-    });
-
-    var image_1 = '';
-    var image_2 = '';
-    var image_3 = '';
-
-    $('#crop').click(function() {
-        canvas = cropper.getCroppedCanvas({
-            width: image_width,
-            height: image_height
-        });
-
-        canvas.toBlob(function(blob) {
-            url = URL.createObjectURL(blob);
-            console.log('urlurlurlurlurl', url);
-            var reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = function() {
-                var base64data = reader.result;
-                console.log('base64database64database64database64data', base64data);
-                $.ajax({
-                    // url: '{!! asset('admin/settings/update') !!}/' + pages_images_id,
-                    url: '{!! asset('admin/category_crop_image') !!}',
-                    method: 'POST',
-                    data: {
-                        image: base64data,
-                        _token: '{!! csrf_token() !!}',
-                    },
-                    success: function(data) {
-                        console.log('successsuccesssuccesserssss', data)
-                        console.log('imagessserrrr', data.image)
-                        $modal.modal('hide');
-                        image_1 = data.image;
-                        if(image_num == 'upload_image'){
-                            $('#uploaded_image').attr('src', data.image);
-                            $('#cropped_image').val( data.image);
-                        }
-
-
-                    }
+            $modal.on('shown.bs.modal', function() {
+                cropper = new Cropper(image, {
+                    // aspectRatio: 2 / 1,
+                    aspectRatio: aspect_ratio_width / aspect_ratio_height,
+                    viewMode: 3,
+                    preview: '.preview'
                 });
-            };
+            }).on('hidden.bs.modal', function() {
+                cropper.destroy();
+                cropper = null;
+            });
+
+            var image_1 = '';
+            var image_2 = '';
+            var image_3 = '';
+
+            $('#crop').click(function() {
+                canvas = cropper.getCroppedCanvas({
+                    width: image_width,
+                    height: image_height
+                });
+
+                canvas.toBlob(function(blob) {
+                    url = URL.createObjectURL(blob);
+                    console.log('urlurlurlurlurl', url);
+                    var reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function() {
+                        var base64data = reader.result;
+                        console.log('base64database64database64database64data', base64data);
+                        $.ajax({
+                            // url: '{!! asset('admin/settings/update') !!}/' + pages_images_id,
+                            url: '{!! asset('admin/category_crop_image') !!}',
+                            method: 'POST',
+                            data: {
+                                image: base64data,
+                                _token: '{!! csrf_token() !!}',
+                            },
+                            success: function(data) {
+                                console.log('successsuccesssuccesserssss', data)
+                                console.log('imagessserrrr', data.image)
+                                $modal.modal('hide');
+                                image_1 = data.image;
+                                if (image_num == 'upload_image') {
+                                    $('#uploaded_image').attr('src', data.image);
+                                    $('#cropped_image').val(data.image);
+                                }
+
+
+                            }
+                        });
+                    };
+                });
+            });
+
         });
-    });
-
-    });
-</script>
-<script>
-
-    function validateForm() {
-        return true;
-    }
-
-</script>
+    </script>
+    <script>
+        function validateForm() {
+            return true;
+        }
+    </script>
 
 
 
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-
-
-
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 @endsection
-
