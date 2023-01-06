@@ -1,8 +1,9 @@
   <style>
       .medinputs input {
-          /* height: 42px; */
+          height: 40px;
           border-radius: 0px;
           border: 1px solid #e6e6e6;
+          padding: 7px;
       }
       .medinputs .selection span {
           height: 42px;
@@ -11,8 +12,9 @@
       }
 
       .medinputs select {
-          height: 42px;
+          height: 40px;
           border-radius: 0px;
+          padding: 7px;
           border: 1px solid #e6e6e6;
       }
 

@@ -1,4 +1,7 @@
 <style>
+    .medsaveclick {
+    padding: 1px !important;
+}
     div#zoom {
         background-color: #f1f4f9;
         color: #59595a;
