@@ -94,14 +94,14 @@ h4 {
 }
 .dates {
     font-size: 16px;
-    color: #f1582b;
+    color: #589d00 !important;
     background-color: gold;
     margin-left: 14px;
     padding-top: 7px;
 }
 .date {
     font-size: 16px;
-    color: #f1582b;
+    color: #589d00 !important;
     background-color: gold;
     margin-left: 64px;
     border-radius: -8px;

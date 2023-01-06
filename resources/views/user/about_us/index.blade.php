@@ -7,22 +7,22 @@
     <style>
         .aboutfram iframe {
             width: 100%;
-            margin-bottom: 25px;
-            margin-top: 25px;
+            margin-bottom: 50px;
+            /* margin-top: 25px; */
             height: 800px;
         }
     </style>
 
     <section>
         <div class="body-content">
-            <div class="container">
+            {{-- <div class="container"> --}}
 
                 <div class="aboutfram">
-                    <iframe src="{!! asset('aboutus/view_frame') . '/' . $about_us_id !!}"></iframe>
+                    <iframe class="dvbsdcv" src="{!! asset('aboutus/view_frame') . '/' . $about_us_id !!}"></iframe>
                 </div>
                  <!-- {!! html_entity_decode($about_us->description ?? '') !!} --}} -->
 
-            </div>
+            {{-- </div> --}}
         </div>
     @endsection
     @section('app_jquery')
