@@ -18,7 +18,7 @@
             <div class="container">
 
                 <div class="aboutfram">
-                    <iframe src="{!! asset('admin/aboutus/view_frame') . '/' . $about_us_id !!}"></iframe>
+                    <iframe src="{!! asset('aboutus/view_frame') . '/' . $about_us_id !!}"></iframe>
                 </div>
                  <!-- {!! html_entity_decode($about_us->description ?? '') !!} --}} -->
 
