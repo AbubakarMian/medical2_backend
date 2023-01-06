@@ -10,12 +10,12 @@
     <link href="{!! asset('theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
     {{-- <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" /> --}}
     <?php
-
+    
     use App\Model\Course_Register;
     use Carbon\Carbon;
     use App\Model\Student_fees;
     use Illuminate\Support\Facades\Auth;
-
+    
     ?>
     <style>
         h5.regtabless_heading {
@@ -33,22 +33,29 @@
         }
 
         .regii {
-            border-radius: 21px;
+            border-radius: 0px;
+            margin-top: 20px;
+    font-size: 14px;
         }
 
         .regtable {
-            border-radius: 36px;
+            /* border-radius: 36px; */
 
         }
 
         .ggg {
-            border: 1px solid;
-            color: white;
-            height: 115%;
-            padding-top: 11px;
-            padding-bottom: 15px;
-            border-radius: 19px;
-            background-color: black;
+            /* border: 1px solid; */
+    color: white;
+    /* height: 115%; */
+    /* padding-top: 11px; */
+    /* padding-bottom: 15px; */
+    /* border-radius: 19px; */
+    background-color: black;
+    padding: 12px;
+    font-family: sans-serif;
+    font-weight: 300 !important;
+    margin-top: 45px;
+    width: 101%;
         }
 
         td,
@@ -83,9 +90,9 @@
                 <div class="col-sm-12">
                     <div class="courbanddata">
 
-                        <?php 
+                        <?php
                         $teacher = new \stdClass();
-                        $teacher->name = '';    
+                        $teacher->name = '';
                         ?>
 
                         @if (isset($courses_groups))
@@ -172,7 +179,7 @@
 
                 <div class="col-sm-7 teacherR">
                     <?php
-                    if(isset($cg->teacher)){
+                    if (isset($cg->teacher)) {
                         $teacher = $cg->teacher;
                     }
                     ?>
@@ -201,6 +208,7 @@
         @if ($cg->type == 'course')
             <!-- for course -->
 
+        <div class="gvbwj">
             <table>
                 <tbody>
                     <tr>
@@ -228,6 +236,7 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
             <!--for workshop not course  -->
         @elseif($cg->type == 'workshop')
             <table>
@@ -335,6 +344,7 @@
     @if ($cg->type == 'course')
         <!-- for course -->
 
+        <div class="gvbwj">
         <table>
             <tbody>
                 <tr>
@@ -362,6 +372,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
         <!--for workshop not course  -->
     @elseif($cg->type == 'workshop')
         <table>
@@ -398,8 +409,8 @@
     @endif
     <!-- @if ($cg->is_online != 0)
     <div class="regtabless">
-                                    <iframe src="{{ $cg->url }}" title="description"></iframe>
-                                    </div>
+                                        <iframe src="{{ $cg->url }}" title="description"></iframe>
+                                        </div>
     @endif -->
     @if ($current_date <= $group_start_date || $current_date <= $group_end_date)
         <div class="regtabless">
@@ -409,15 +420,20 @@
                 <button type="button" class="btn btn-primary regii">Single Registration</button>
 
             </a>
-        </div>
-        <div class="regtabless">
-            <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
             <a href="{!! asset('group_registration/?course_id=' . $cg->courses_id . '&group_id=' . $cg->id) !!}">
 
                 <button type="button" class="btn btn-primary regii">Group Registration</button>
 
             </a>
         </div>
+        {{-- <div class="regtabless">
+            <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
+            <a href="{!! asset('group_registration/?course_id=' . $cg->courses_id . '&group_id=' . $cg->id) !!}">
+
+                <button type="button" class="btn btn-primary regii">Group Registration</button>
+
+            </a>
+        </div> --}}
     @else
         <div class="regtabless">
             <h5 class="regtabless_heading">
