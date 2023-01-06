@@ -83,7 +83,10 @@
                 <div class="col-sm-12">
                     <div class="courbanddata">
 
-                        <!--  -->
+                        <?php 
+                        $teacher = new \stdClass();
+                        $teacher->name = '';    
+                        ?>
 
                         @if (isset($courses_groups))
 
@@ -171,10 +174,6 @@
                     <?php
                     if(isset($cg->teacher)){
                         $teacher = $cg->teacher;
-                    }
-                    else{
-                        $teacher = new \stdClass();
-                        $teacher->name = '';
                     }
                     ?>
                     {{ ucwords($teacher->name) }} Teacher / {{ ucwords($cg->name) }}
