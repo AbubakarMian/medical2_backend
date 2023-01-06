@@ -38,8 +38,8 @@
 
     body {
         /* width: 950px;
-        height: 690px;
-        position: absolute; */
+      height: 690px;
+      position: absolute; */
         left: 30px;
         top: 30px;
 
@@ -54,7 +54,7 @@
     .gssw {
         /* display: inline-block; */
         width: 50%;
-        height: 80%;
+        /* height: 80%; */
         margin: 0 auto;
         border: 1px solid gray;
         border-radius: 12px;
@@ -121,12 +121,14 @@
 
     .fote {
         text-align: center;
-        padding-top: 50%;
+        padding-top: 25%;
     }
 
     .crez {
         background: #f1582b !important;
         color: white !important;
+        width: 64px;
+    height: 30px;
     }
 
     .ahcdsa img {
@@ -134,7 +136,8 @@
     }
 
     .container.asdcka {
-        width: 40%;
+        /* width: 40%; */
+        margin: 0 auto !important;
     }
 
     @media only screen and (max-width : 480px) {
@@ -145,21 +148,37 @@
         .container.asdcka {
             width: fit-content;
         }
+        .gssw {
+    /* display: inline-block; */
+    width: fit-content;
+    /* height: 80%; */
+    /* margin: 0 auto; */
+    border: 1px solid gray;
+    border-radius: 12px;
+    /* background: #eee url(https://i.pinimg.com/originals/b3/17/db/b317db2….jpg) no-repeat; */
+    /* background-size: 100%; */
+    background: #e9e3e31f;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    padding: 25px;
+}
     }
 </style>
 
 <body>
 
     <?php
-    $payment = $details['payment'];
-    ?>
+  $payment = $details['payment'];
+  ?>
 
     <div class="gssw">
         <div class="container asdcka">
             <div class="row">
                 <div class="col-sm-12 ahc">
                     <div class="ahcdsa">
-                      <a href="#"><img src="{!! asset('theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
+                        {{-- <img src="images/logo-icon.png" class="img-responsive"> --}}
+                        <a href="#"><img src="{!! asset('theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
                     </div>
                 </div>
             </div>
@@ -167,9 +186,9 @@
             <b>
                 <center>
                     <h5> Your payment is successfully refunded</h5>
-                    <a href="{!! $payment->receipt_url !!}">
+                    {{-- <a href="{!! $payment->receipt_url !!}"> --}}
                         <button type="button" class="btn btn-success crez">Recipt</button>
-                    </a>
+                    {{-- </a> --}}
                 </center>
             </b>
 
@@ -190,4 +209,4 @@
         </div>
     </div>
 
-  </body>
+</body>
