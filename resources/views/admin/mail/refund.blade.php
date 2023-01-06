@@ -125,8 +125,8 @@
     }
   
     .crez {
-        color: #f1582b;
-        text-decoration: none;
+        background: #f1582b !important;
+        color: white !important;
     }
     .ahcdsa img {
       margin: 0 auto;
@@ -151,11 +151,10 @@
 
             <b>
                 <center>
-                    <h5> Your payment is successfully refunded
-                        <a class="crez" href="{!! $payment->receipt_url !!}">
-                            Recipt
-                        </a>
-                    </h5>
+                    <h5> Your payment is successfully refunded</h5>
+                    <a href="{!! $payment->receipt_url !!}">
+                        <button type="button" class="btn btn-success crez">Recipt</button>
+                    </a>
                 </center>
             </b>
 
