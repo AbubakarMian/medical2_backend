@@ -26,6 +26,7 @@
             border-radius: 300px;
             padding: 12px 13px;
             margin: 13px;
+            width: 42px;
         }
 
         .contactareadata h3 {
@@ -86,7 +87,7 @@
         }
 
         .contactareadata h2 {
-            color: black;
+            color: #292974;
             font-size: 40px;
             font-weight: 600;
             margin-bottom: 40px;

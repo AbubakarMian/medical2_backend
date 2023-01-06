@@ -10,17 +10,17 @@
                 <div class="theme-courses-topbar" id="">
                     <form method="post" action="{{ asset('user/courses_search') }}" style="width:100%">
                         {!! csrf_field() !!}
-                        <div class="" style="width:100%;">
+                        <div class="topctbar" style="">
                             {!! Form::hidden('type', $types ?? '') !!}
 
                             <div class="form-group">
-                                <label for="category_id">Select Courses</label>
+                                <label class="aafa" for="category_id">Select Courses :</label>
                                 {!! Form::text(
                                     'courses_name',
                                     $name ?? '',
-
+                                
                                     [
-                                        'class' => 'form-control ',
+                                        'class' => 'form-control bfgs',
                                         'data-parsley-trigger' => 'change',
                                         'placeholder' => 'Select Courses',
                                         'maxlength' => '100',
@@ -28,29 +28,29 @@
                                 ) !!}
 
                             </div>
-                            <button type="submit" class="btn btn-primary resubg">Submit</button>
+                            <button type="submit" class="btn btn-primary resubg">SUBMIT</button>
 
                         </div>
                     </form>
                     <!-- <form id="allProductsSearchForm" class="theme-course-search" action="" method="GET"
-                                    style="width:100%;">
-                                    <div class="" style="width:100%;">
+                                        style="width:100%;">
+                                        <div class="" style="width:100%;">
 
-                                        <div class="form-group">
-                                            <label for="category_id">Select Category</label>
-                                            {!! Form::select('category_id', $category_arr, null, [
-                                                'class' => 'form-control searchlist',
-                                                'multiple' => 'multiple',
-                                                'data-parsley-trigger' => 'change',
-                                                'placeholder' => 'Select Category',
-                                                'required',
-                                                'maxlength' => '100',
-                                            ]) !!}
+                                            <div class="form-group">
+                                                <label for="category_id">Select Category</label>
+                                                {!! Form::select('category_id', $category_arr, null, [
+                                                    'class' => 'form-control searchlist',
+                                                    'multiple' => 'multiple',
+                                                    'data-parsley-trigger' => 'change',
+                                                    'placeholder' => 'Select Category',
+                                                    'required',
+                                                    'maxlength' => '100',
+                                                ]) !!}
 
-                                        </div><button type="submit">
-                                            <i class="fa fa-search"></i></button>
-                                    </div>
-                                </form> -->
+                                            </div><button type="submit">
+                                                <i class="fa fa-search"></i></button>
+                                        </div>
+                                    </form> -->
                     <div class="row" id="searchLoader"
                         style="margin-top:10px; margin-left:35%;text-align:center; display: none;">
                         <img src="/img/ajax.gif" alt="loader">
@@ -65,47 +65,48 @@
                             @foreach ($c as $p)
                                 <div class="col-sm-3 gahalink">
                                     {{-- <a href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}"> --}}
-                                        <div class="rating">
+                                    <div class="rating">
 
-                                            <div class="boxing">
-                                                <img src="{!! $p->avatar !!}" alt="Avatar" class="image">
-                                                <div class="middle">
-                                                    <div class="text">
-                                                        <a href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}">View</a>
-                                                    </div>
+                                        <div class="boxing">
+                                            <img src="{!! $p->avatar !!}" alt="Avatar" class="image">
+                                            <div class="middle">
+                                                <div class="text">
+                                                    <a
+                                                        href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}">View</a>
                                                 </div>
                                             </div>
-
-                                            <h4 class="title">
-
-                                                    {!! $p->full_name !!}
-
-                                            </h4>
-
-                                            <div class="course-content">
-                                                <div class="course-rating">
-                                                    <span class="ratingnum">4.01</span>
-                                                    <div class="mb2reviews-stars sm">
-
-                                                        <div class="stars-full" style="width:80%;">
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                            <i class="glyphicon glyphicon-star"></i>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div class="course-footer">
-                                                    <div class="price-container">
-                                                        <span class="currency">Price: </span>
-                                                        <span class="price">${!! $p->examination_fees !!}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                         </div>
+
+                                        <h4 class="title">
+
+                                            {!! $p->full_name !!}
+
+                                        </h4>
+
+                                        <div class="course-content">
+                                            <div class="course-rating">
+                                                <span class="ratingnum">4.01</span>
+                                                <div class="mb2reviews-stars sm">
+
+                                                    <div class="stars-full" style="width:80%;">
+                                                        <i class="glyphicon glyphicon-star"></i>
+                                                        <i class="glyphicon glyphicon-star"></i>
+                                                        <i class="glyphicon glyphicon-star"></i>
+                                                        <i class="glyphicon glyphicon-star"></i>
+                                                        <i class="glyphicon glyphicon-star"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="course-footer">
+                                                <div class="price-container">
+                                                    <span class="currency">Price: </span>
+                                                    <span class="price">${!! $p->examination_fees !!}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                     {{-- </a> --}}
                                 </div>
                             @endforeach

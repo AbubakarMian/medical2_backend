@@ -12,8 +12,12 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <div class="corsdetailareadata" style="border-radius: 34px;">
-            <h1 style="border-radius: 27px;">Exams Details</h1>
+          <div class="corsdetailareadata" 
+          {{-- style="border-radius: 34px;" --}}
+          >
+          <div style="text-align: center;" class="rehedic">
+            <h1 style="border-radius: 0px; width: max-content;">Exams Details :</h1>
+        </div>
             <?php
 // dd( $users[1]->group->exams)
               ?>

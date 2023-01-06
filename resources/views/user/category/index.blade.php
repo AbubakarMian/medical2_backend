@@ -1,3 +1,7 @@
+<style>
+   
+</style>
+
 @extends('user.layout.header_footer')
 @section('content')
     <link href="{!! asset('theme/user_theme/css/program.css') !!}" rel="stylesheet">
@@ -11,17 +15,17 @@
 
                     <form method="post" action="{{ asset('user/category_search') }}" style="width:100%">
                         {!! csrf_field() !!}
-                        <div class="" style="width:100%;">
+                        <div class="topctbar" style="">
 
                             <div class="form-group">
-                                <label for="category_id">Select Category</label>
+                                <label class="aafa" for="category_id">Select Category :</label>
 
                                 {!! Form::text(
                                     'category_name',
                                     $name ?? '',
                                 
                                     [
-                                        'class' => 'form-control ',
+                                        'class' => 'form-control bfgs',
                                         'data-parsley-trigger' => 'change',
                                         'placeholder' => 'Select Category',
                                         'maxlength' => '100',
@@ -29,7 +33,7 @@
                                 ) !!}
 
                             </div>
-                            <button type="submit" class="btn btn-primary resubg">Submit</button>
+                            <button type="submit" class="btn btn-primary resubg">SUBMIT</button>
 
                         </div>
                     </form>

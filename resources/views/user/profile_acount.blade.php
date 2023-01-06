@@ -24,7 +24,10 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @endif
-                                <h1>Accounts Setting</h1>
+                                
+                                <div style="text-align: center; margin: 0px -13px;" class="rehedic">
+                                    <h1 style="border-radius: 0px; width: max-content;">Accounts Setting :</h1>
+                                </div>
 
                                 <form role="form" method="post"
                                     action="{{ action('User\Profile_Courses_Controller@my_profile_save') }}">
@@ -37,7 +40,7 @@
 
 
 
-                            
+
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
@@ -46,9 +49,9 @@
                                         placeholder="Full name">
                                 </div>
                                 <!-- <div class="col-sm-6">
-                                            <label for="exampleInputEmail1">Enter E-mail:</label>
-                                            <input type="email" disabled  name="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                        </div>   -->
+                                                <label for="exampleInputEmail1">Enter E-mail:</label>
+                                                <input type="email" disabled  name="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                            </div>   -->
 
                             </div>
                             <div class="row">
@@ -193,7 +196,7 @@
                         var base64data = reader.result;
                         console.log('base64database64database64database64data', base64data);
                         $.ajax({
-                        
+
                             url: `{!! asset('admin/courses_crop_image') !!}`,
                             method: 'POST',
                             data: {
