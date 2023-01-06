@@ -138,38 +138,33 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::label('is_online ', 'Workshop Online Class') !!}
-            <div>
-                <input type="checkbox" id="online_checkbox" onclick="set_is_online()" name="is_online">
+            <label for="is_online ">Workshop Online Class</label>
+            <input style="height: 12px;
+            margin-top: 33px;" type="checkbox" id="online_checkbox" onclick="set_is_online()" name="is_online"><div>
+                
                 <!--  -->
                 <!-- <div class="form-group">
-                {!! Form::label('is_online ', 'Group Online Class') !!}
+                <label for="is_online ">Group Online Class</label>
                     <div>
-                        {!! Form::checkbox('is_online', null, [
-                            'class' => 'form-control',
-                            'data-parsley-required' => 'true',
-                            'onclick="set_is_online()"' => 'true',
-                            'data-parsley-trigger' => 'change',
-                            'maxlength' => '100',
-                        ]) !!}
+                        <input checked="checked" name="is_online" type="checkbox">
                     </div>
                 </div> -->
                 <!--  -->
             </div>
-            </br>
+            <br>
             <!--  -->
             <!-- <div id="venue_map" style="display:none" > -->
-            <div id="venue_map">
+            <div id="venue_map" style="display: block;    margin-top: 25px;">
                 <!-- <label >Enter Venue:</label>
                 <input type="text" required  name="venue" class = 'form-control'> -->
                 
         
-                <label>Open Map For Workshop Venue</label>
-                </br>
-                </br>
-                <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">
-                <input hidden name="group_lat" id="group_lats" value="">
-                <input hidden name="group_long" id="group_longs" value="">
+                <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">&nbsp;<label>Open Map For Workshop Venue</label>
+                <br>
+                <br>
+                
+                <input hidden="" name="group_lat" id="group_lats" value="">
+                <input hidden="" name="group_long" id="group_longs" value="">
             </div>
             <!--  -->
             <!-- <  group mappppppppppppppppppp-->
