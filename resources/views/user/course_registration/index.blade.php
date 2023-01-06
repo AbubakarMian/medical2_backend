@@ -9,12 +9,12 @@
     <link href="{!! asset('theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
     {{-- <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" /> --}}
     <?php
-    
+
     use App\Model\Course_Register;
     use Carbon\Carbon;
     use App\Model\Student_fees;
     use Illuminate\Support\Facades\Auth;
-    
+
     ?>
     <style>
         h5.regtabless_heading {
@@ -167,7 +167,16 @@
                 </div>
 
                 <div class="col-sm-7 teacherR">
-                    {{ ucwords($cg->teacher->name) }} Teacher / {{ ucwords($cg->name) }}
+                    <?php
+                    if(isset($cg->teacher)){
+                        $teacher = $cg->teacher;
+                    }
+                    else{
+                        $teacher = new \stdClass();
+                        $teacher->name = '';
+                    }
+                    ?>
+                    {{ ucwords($teacher->name) }} Teacher / {{ ucwords($cg->name) }}
                     @if ($cg->type == 'course')
                         Group
                     @elseif($cg->type == 'workshop')
@@ -264,13 +273,13 @@
     <!--  -->
 @else
     <?php
-    if (isset($courses_groups)) {
-        $courses_group = $courses_groups;
-    }
+    // if (isset($courses_groups)) {
+    //     $courses_group = $courses_groups;
+    // }
     ?>
 
 
-    @foreach ($courses_group as $cg)
+    @foreach ($courses_groups as $cg)
         <div class="regtable">
 
             <div class="regtablesh">
@@ -300,7 +309,8 @@
     </div>
 
     <div class="col-sm-7 teacherR">
-        {{ ucwords($cg->teacher->name) }} Teacher / {{ ucwords($cg->name) }}
+
+        {{ ucwords($teacher->name) }} Teacher / {{ ucwords($cg->name) }}
         @if ($cg->type == 'course')
             Group
         @elseif($cg->type == 'workshop')

@@ -62,7 +62,7 @@ class TeacherController extends Controller
     public function edit($id)
     {
         $control = 'edit';
-        $teacher = Teacher::find($id);
+        $teacher = Teacher::with('user')->find($id);
         $users = User::find($id);
         $groups = Group::pluck('name','id');
         return view('admin.teacher.create', compact(

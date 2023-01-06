@@ -14,7 +14,7 @@ class About_us_Seeder extends Seeder
     {
         About_us::firstOrCreate(
             [
-
+                'id'    => '1',
                 'name'    => 'Aboutus',
                 'description'    => '
 
