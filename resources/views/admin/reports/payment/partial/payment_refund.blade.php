@@ -104,7 +104,6 @@
 .csvsscroll {
     overflow: scroll;
     overflow-x: hidden;
-    height: 330px;
 }
 </style>
 
