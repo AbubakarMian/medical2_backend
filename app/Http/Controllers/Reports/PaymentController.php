@@ -57,7 +57,7 @@ class PaymentController extends Controller
 
         $payment_refund_amount = $request->payment_refund_amount;
 
-        $payment_refund_ids = $payment_object->refund_payment_id;
+        $payment_refund_ids = json_decode($payment_object->refund_payment_id);
         //   payment_refund
         $payment = new Payment();
         $payment->user_id =  $payment_object->user_id;
@@ -73,7 +73,7 @@ class PaymentController extends Controller
     //     //   payment_refund
 
         $payment_refund_ids[] = $payment->id;
-        $payment_object->refund_payment_id  = $payment_refund_ids;
+        $payment_object->refund_payment_id  = json_encode($payment_refund_ids);
         $payment_object->save();
 
         $user = User::find($payment_object->user_id);
@@ -116,8 +116,10 @@ class PaymentController extends Controller
     }
 
     public function payment_refund_details($payment_id){
-        $payment = Payment::find($payment_id);
-        $refund_payments = Payment::whereIn('id', $payment->refund_payment_id)->get();
+        $payment = Payment::find($payment_id);        
+        // dd(json_decode($payment->refund_payment_id));
+        // $refund_payments = Payment::whereIn('id', [0])->get();
+        $refund_payments = Payment::whereIn('id', json_decode($payment->refund_payment_id))->get();
         return $this->sendResponse(200, $refund_payments);
     }
 }

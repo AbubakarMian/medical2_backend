@@ -426,6 +426,7 @@ class CoursesController extends Controller
         $payment->card_type = $stripe->payment_method_details->card->brand;
         $payment->receipt_url = $stripe->receipt_url;
         $payment->action  = $stripe->object;
+        $payment->refund_payment_id  = '[]';
         //============= amount===============
         $payment->amount =   $amount;
         $payment->save();
