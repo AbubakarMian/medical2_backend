@@ -88,6 +88,9 @@
         background: white;
         border: 1px solid #e3e6f3;
     }
+    .medsaveclick {
+    padding-top: 10px !important;
+}
 
     .tabludata tbody tr th {
         font-size: 15px;

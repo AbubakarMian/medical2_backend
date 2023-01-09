@@ -80,6 +80,7 @@ class EmployeeController extends Controller
     public function add_or_update($request, $user){
         $user->name =  $request->name;
         $user->last_name =  $request->name;
+        $user->phone_no =  $request->phone_no;
         // permission for employee is 4 role permission id will be
         // signed in admin_url_permission_user its easy to identify more roles like teacher
         //and role id of teacher is 3

@@ -6,6 +6,9 @@ select#gender {
     height: 40px;
         border: 1px solid #e3e6f3;
 }
+.medsaveclick {
+    padding-top: 10px !important;
+}
     </style>
 
 @if ($message = Session::get('error'))
