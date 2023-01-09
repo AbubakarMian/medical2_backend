@@ -21,10 +21,6 @@ class QuestionController extends Controller
 {
     public function index()
     {
-
-        // $question = Question::orderBy('created_at', 'DESC')->paginate(10);
-        // $question = Question::get();
-        // // dd(  $question );
         return view('admin.question.index');
     }
 
