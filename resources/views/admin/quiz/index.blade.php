@@ -77,7 +77,7 @@ $(document).ready(function(){
                   var id =  response['data'][i].id;
                   var name =  response['data'][i].name;
                   var detail =  response['data'][i].detail;
-                  var course =  response['data'][i].course;
+                  var course =  response['data'][i].course.full_name;
 				  var question = `<a class="btn btn-info resize" href="{!!asset('admin/question_list/` + id + `')!!}">Question</a>`;
 				  var edit = `<a class="btn btn-info" target="_blank" href="{!!asset('admin/quiz/edit/` + id + `')!!}">Edit</a>`;
                        createModal({

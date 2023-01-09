@@ -28,7 +28,7 @@ class QuizController extends Controller
     }
     public function get_quiz(Request $request)
     {
-        $quiz = Quiz::orderBy('created_at', 'DESC')->select('*')->get();
+        $quiz = Quiz::with('course')->orderBy('created_at', 'DESC')->select('*')->get();
 
         $quizData['data'] = $quiz;
         echo json_encode($quizData);
