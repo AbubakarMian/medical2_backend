@@ -51,8 +51,13 @@ class Student_planController extends Controller
         $control = 'edit';
         $user_id = $request->user_id;
         $course_register_id = $request->course_register_id;
+// dd($request->user_id);
+// dd($course_register_id);
+        // dd($user_id);
 
-        $student_plan = Student_fees::where('user_id', $user_id)->where('course_register_id', $course_register_id)->get();
+        $student_plan = Student_fees::
+        // where('user_id', $user_id)->
+        where('course_register_id', $course_register_id)->get();
         // dd($student_plan);
         $fees_type = Config::get('constants.fees_type');
 

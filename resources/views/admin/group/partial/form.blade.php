@@ -319,23 +319,23 @@
             </div>
         </div>
 
-        <!-- <div class="form-group">
-    {!! Form::label('country', 'Country') !!}
-    <div>
-        {!! Form::text('country', null, [
-            'class' => 'form-control country',
-            'data-parsley-required' => 'true',
-            'data-parsley-trigger' => 'change',
-            'id' => 'country',
-            'placeholder' => ' country',
-            'required',
-            'maxlength' => '100',
-        ]) !!}
-    </div>
-</div> -->
+                            <!-- <div class="form-group">
+                        {!! Form::label('country', 'Country') !!}
+                        <div>
+                            {!! Form::text('country', null, [
+                                'class' => 'form-control country',
+                                'data-parsley-required' => 'true',
+                                'data-parsley-trigger' => 'change',
+                                'id' => 'country',
+                                'placeholder' => ' country',
+                                'required',
+                                'maxlength' => '100',
+                            ]) !!}
+                        </div>
+                            </div> -->
 
 
-        <!--  -->
+                            <!--  -->
         <?php
 
         ?>
@@ -383,6 +383,48 @@
                     'data-parsley-trigger' => 'change',
                     'required',
                 ]) !!} --}}
+            </div>
+        </div>
+
+
+                                {{-- register start and end date --}}
+
+            <?php
+            $start_date = '';
+            if(isset($group)){
+                $start_date = $group->start_date;
+            }
+        ?>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {!! Form::label('start_date', 'Registeration Start Date') !!}
+            <div>
+                <input type="date" name="registration_start_time" class="form-control start_date_validation" value={!!!!}
+                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Registeration starting date">
+
+                    {{-- {!! Form::date('start_date', null, [
+                    'class' => 'form-control',
+                    'data-parsley-required' => 'true',
+                    'data-parsley-trigger' => 'change',
+                    'required',
+                ]) !!} --}}
+            </div>
+        </div>
+                    <?php
+                    $end_date = '';
+                    if(isset($group)){
+                        $end_date = $group->end_date;
+                    }
+                ?>
+        <div class="form-group">
+            {!! Form::label('end_date', 'Registeration End Date') !!}
+            <div>
+                <input type="date" name="registration_end_time" class="form-control end_date_validation"
+                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Registeration Ending date">
+
+
+
             </div>
         </div>
         <div class="form-group">

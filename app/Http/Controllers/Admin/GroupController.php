@@ -96,10 +96,15 @@ class GroupController extends Controller
         // dd($request->all());
         $start_date_timestamp = strtotime($request->start_date);
         $end_date_timestamp = strtotime($request->end_date);
+        $reg_start_date_timestamp = strtotime($request->registration_start_time);
+        $reg_end_date_timestamp = strtotime($request->registration_end_time);
         $group->name = $request->name;
         $group->courses_id = $request->courses_id;
         $group->start_date = $start_date_timestamp;
         $group->end_date = $end_date_timestamp;
+        $group->registration_start_time =  $reg_start_date_timestamp;
+        $group->registration_end_time =  $reg_end_date_timestamp;
+        // $group->fees_type = $end_date_timestamp;
 
         if ($start_date_timestamp > $end_date_timestamp) {
             return back()->with('error', 'Enter Valid Date');

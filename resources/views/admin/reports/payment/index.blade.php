@@ -5,7 +5,7 @@
 @section('report_description')
 @stop
 @section('table')
-    <h3 id="refund_success"></h3>
+   <h3 id="refund_success"></h3>
     <table id="userTable" class="table table-bordered">
         <thead>
             <tr>
@@ -47,7 +47,7 @@
                     type: 'get',
                     dataType: 'json',
                     success: function(response) {
-                        
+
                         $("#userTable").css("opacity", 1);
                         var len = response.data.length;
                         var data = response.data;
@@ -172,7 +172,7 @@
                         $('#refund_success').html('Amount successfully refunded');
 
                     } else {
-                        $('#refund_success').html('Eroor refunded');
+                        $('#refund_success').html('Error refund denide');
 
                     }
                 },
@@ -227,4 +227,12 @@
         color: #ffffff;
 
     }
+    .rfnd-sccs {
+    background: #e5ffe7;
+    width: 20%;
+    padding: 1px;
+    margin-bottom: 13px;
+    margin-top: -30px;
+    text-align: center;
+}
 </style>

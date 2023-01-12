@@ -81,18 +81,28 @@ class CoursesController extends Controller
         }
         $courses_id = $request->course_id;
         $type = $request->type;
+        // dd(  $type);
+
         $courses = Courses::with('group')->find($courses_id);
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
-        $course_registers =  Course_Register::with('group.teacher')->where('user_id', $user_id)->where('course_id',  $courses->id)->first();
-
+        $course_registers =  Course_Register::with('group.teacher')
+        ->where('user_id', $user_id)
+        ->where('course_id',  $courses->id)->first();
+        // ->first();
+        // dd( $courses->id);
+        // dd(  $course_registers);
         if ($course_registers) {
+            // dd(  $course_registers);
+
             $course_register =  Course_Register::with('group.teacher')->where('user_id', $user->id)->where('course_id',  $courses->id)->first();
 
             return view('user.course_registration.index', compact('courses', 'stripe_key', 'type', 'course_register'));
         } else {
             if ($type == 'courses') {
+// dd('else');
                 $courses_groups = Group::with('group_timings', 'teacher')->where('type', 'course')->whereHas('group_timings')
                     ->where('courses_id', $courses->id)->get();
+
             } elseif ($type == 'workshop') {
                 $courses_groups = Group::with('teacher', 'group_fees')->where('type', 'workshop')->where('courses_id', $courses->id)->get();
             }
