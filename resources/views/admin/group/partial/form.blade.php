@@ -319,23 +319,23 @@
             </div>
         </div>
 
-                            <!-- <div class="form-group">
-                        {!! Form::label('country', 'Country') !!}
-                        <div>
-                            {!! Form::text('country', null, [
-                                'class' => 'form-control country',
-                                'data-parsley-required' => 'true',
-                                'data-parsley-trigger' => 'change',
-                                'id' => 'country',
-                                'placeholder' => ' country',
-                                'required',
-                                'maxlength' => '100',
-                            ]) !!}
-                        </div>
-                            </div> -->
+                <!-- <div class="form-group">
+            {!! Form::label('country', 'Country') !!}
+            <div>
+                {!! Form::text('country', null, [
+                    'class' => 'form-control country',
+                    'data-parsley-required' => 'true',
+                    'data-parsley-trigger' => 'change',
+                    'id' => 'country',
+                    'placeholder' => ' country',
+                    'required',
+                    'maxlength' => '100',
+                ]) !!}
+            </div>
+                </div> -->
 
 
-                            <!--  -->
+                <!--  -->
         <?php
 
         ?>
@@ -355,12 +355,7 @@
                 <input type="date" name="start_date" class="form-control start_date_validation" value={!!$start_date!!}
                     data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter start date">
 
-                    {{-- {!! Form::date('start_date', null, [
-                    'class' => 'form-control',
-                    'data-parsley-required' => 'true',
-                    'data-parsley-trigger' => 'change',
-                    'required',
-                ]) !!} --}}
+
             </div>
         </div>
         <?php
@@ -376,13 +371,7 @@
                     data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter End date">
 
 
-                    {{--
-                {!! Form::date('end_date', null, [
-                    'class' => 'form-control',
-                    'data-parsley-required' => 'true',
-                    'data-parsley-trigger' => 'change',
-                    'required',
-                ]) !!} --}}
+
             </div>
         </div>
 
@@ -390,37 +379,32 @@
                                 {{-- register start and end date --}}
 
             <?php
-            $start_date = '';
+            $registration_start_time = '';
             if(isset($group)){
-                $start_date = $group->start_date;
+                $registration_start_time = $group->registration_start_time;
             }
         ?>
 
-    <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('start_date', 'Registeration Start Date') !!}
             <div>
-                <input type="date" name="registration_start_time" class="form-control start_date_validation" value={!!!!}
+                <input type="date" name="registration_start_time" class="form-control start_date_validation" value={!!$registration_start_time!!}
                     data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Registeration starting date">
 
-                    {{-- {!! Form::date('start_date', null, [
-                    'class' => 'form-control',
-                    'data-parsley-required' => 'true',
-                    'data-parsley-trigger' => 'change',
-                    'required',
-                ]) !!} --}}
+
+
             </div>
         </div>
                     <?php
-                    $end_date = '';
+                    $registration_end_time = '';
                     if(isset($group)){
-                        $end_date = $group->end_date;
+                        $registration_end_time = $group->registration_end_time;
                     }
                 ?>
         <div class="form-group">
             {!! Form::label('end_date', 'Registeration End Date') !!}
             <div>
-                <input type="date" name="registration_end_time" class="form-control end_date_validation"
+                <input type="date" name="registration_end_time" class="form-control end_date_validation" value={!!$registration_end_time!!}
                     data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Registeration Ending date">
 
 
@@ -1040,67 +1024,6 @@
             return'invalid end';
         }
 
-    //   if (end_date_valid >=start_date_valid) { //compare end <=, not >=
-    //         console.log('smaller current date is smaller');
-    //         return 'start or end date is Invalid';
-    //     } else {
-    //         return true;
 
-        // if (select_fees_type == 'complete') {
-        //     // var date_valid = check_valid_date($('.complete_due_date_validation').val());
-        //     valid_date_chk = check_valid_date($('.complete_due_date_validation').val());
-        //     if (valid_date_chk === true) {
-        //         due_date_valid = true;
-        //     } else {
-        //         due_date_valid = false;
-        //         due_date_valid_error_msg = valid_date_chk;
-        //     }
-        //     if ($('.complete_amount_validation').val() == '') {
-        //         amount_valid = false;
-        //     }
-        // };
-        // if (select_fees_type == 'installment') {
-        //     $.each($('.amount_validation'), function(index, input) {
-        //         if ($(input).val() == '') {
-        //             amount_valid = false;
-        //             return;
-        //         }
-        //     })
-        //     $.each($('.due_date_validation'), function(index, input) {
-        //         valid_date_chk = check_valid_date($(input).val());
-        //         if (valid_date_chk === true) {
-        //             due_date_valid = true;
-        //         } else {
-        //             due_date_valid = false;
-        //             due_date_valid_error_msg = valid_date_chk;
-        //             return;
-        //         }
-        //     })
-        // };
-        // if (!fee_type_valid) {
-        //     $('.error_span').html('FeeType Required');
-        // } else if (!amount_valid) {
-        //     $('.error_span').html('Invalid Amount');
-        // } else if (!due_date_valid) {
-        //     $('.error_span').html(valid_date_chk);
-        // }
-        // if (!fee_type_valid || !amount_valid || !due_date_valid) {
-        //     $(".error_span").scroll();
-        //     var error_span = document.getElementById("error_span");
-        //     error_span.scrollIntoView();
-        // }
-
-        // return fee_type_valid && amount_valid && due_date_valid;
-        // }
-
-        // function check_valid_date(date) {
-        // if (date == '') {
-        //     return 'Due Date Required';
-        // } else if (new Date() >= new Date(date)) { //compare end <=, not >=
-        //     console.log('smaller current date is smaller');
-        //     return 'Invalid due date';
-        // } else {
-        //     return true;
-        // }
     }
 </script>
