@@ -1,3 +1,5 @@
+{{-- {!!dd($student_plan);!!} --}}
+
 <style>
     .image_area {
         position: relative;

@@ -19,6 +19,7 @@ class CreateTeacherTable extends Migration
             $table->string('gender')->nullable()->default(null);
             $table->string('email')->nullable()->default(null);
             $table->string('address')->nullable()->default(null);
+            $table->bigInteger('users_id')->nullable()->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -10,12 +10,12 @@
     <link href="{!! asset('theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
     {{-- <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" /> --}}
     <?php
-    
+
     use App\Model\Course_Register;
     use Carbon\Carbon;
     use App\Model\Student_fees;
     use Illuminate\Support\Facades\Auth;
-    
+
     ?>
     <style>
         h5.regtabless_heading {

@@ -50,7 +50,7 @@ class TeacherController extends Controller
         ]);
 
         if ($validator->fails()) {
-            dd( $validator);
+            // dd( $validator);
             return back()->with('error', $validator->errors());
         }
         $teacher = new Teacher();
