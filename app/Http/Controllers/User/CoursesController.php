@@ -14,6 +14,7 @@ use App\Model\Group_users;
 use Illuminate\Support\Facades\Mail;
 use App\Model\Student_fees;
 use App\Model\Payment;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -82,6 +83,8 @@ class CoursesController extends Controller
         $courses_id = $request->course_id;
         $type = $request->type;
         // dd(  $type);
+        $date = Carbon::now();
+        $today = strtotime($date);
 
         $courses = Courses::with('group')->find($courses_id);
         $stripe_key = Config::get('services.stripe.STRIPE_KEY');
@@ -90,7 +93,13 @@ class CoursesController extends Controller
         ->where('course_id',  $courses->id)->first();
         // ->first();
         // dd( $courses->id);
+        // dd( $today);
         // dd(  $course_registers);
+        if ($course_registers) {
+            $course_register =  Group::where('registration_end_time','>=', $today)->get();
+            dd($course_register);
+
+        }
         if ($course_registers) {
             // dd(  $course_registers);
 
