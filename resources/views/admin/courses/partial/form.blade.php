@@ -62,6 +62,7 @@
     }
     .vsdas {
     margin: 0px -10px;
+    margin-bottom: 3%;
 }
 .installmet_div_row {
     padding: 10px;
@@ -184,12 +185,12 @@ if (isset($courses)) {
                                     }
                                 }
                                 $required = '';
-                                
+
                                 if (isset($courses->avatar)) {
                                 } else {
                                     $required = 'required';
                                 }
-                                
+
                                 ?>
                                 <div class="vdvjib">
                                     <img src="{!! $avatar !!}" id="uploaded_image" class="img-responsive"
@@ -265,16 +266,17 @@ if (isset($courses)) {
         </div>
 
     </div>
-    <div class="col-sm-6">               
+    <div class="col-sm-6">
         <div class="form-group">
-            {!! Form::label('fees_type', 'Fees Type') !!}
-            {!! Form::select('fees_type', $fees_type, null, [
+            {{-- {!! Form::label('fees_type', 'Fees Type') !!} --}}
+            {{-- {!! Form::text('fees_type', 'installment', null, [
                 'placeholder' => "Select
                                                                             Type",
                 'onchange' => 'open_fees_type_div()',
                 'class' => 'form-control fees_type',
                 'required',
-            ]) !!}
+            ]) !!} --}}
+            <input type="hidden" name="fees_type" value="installment">
             </select>
         </div>
 
@@ -303,7 +305,7 @@ if (isset($courses)) {
             </div>
         </div>
 
-        <div class="installment_fees_area" style="{!! $installment_fees_area_display !!}">
+        <div class="installment_fees_area" >
             <div class="row">
                 <div class="col-sm-10"></div>
                 <div class="col-sm-2">
@@ -312,7 +314,34 @@ if (isset($courses)) {
                         Installment</button>
                 </div>
             </div>
+            @if (!isset($courses))
 
+
+
+            <div class="row installmet_div_row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <div>
+                            <input type="number" name="amount[]" class="form-control amount_validation" data-parsley-required="true"
+                                data-parsley-trigger="change" placeholder="Enter Amount">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <div>
+                            <input type="date" name="due_date[]" class="form-control due_date_validation"
+                                data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Due Date">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)"
+                    style="margin-top: 10px;margin-left: 16px;margin-bottom: 18px;">Remove
+                </div>
+            </div>
+            @endif
             <div class="multiple_times_open_div" style="">
                 @if (isset($courses))
                     @foreach ($courses->course_fees as $course_fees)
@@ -399,12 +428,12 @@ if (isset($courses)) {
             var select_fees_type = $('.fees_type').val();
             console.log('select_fees_type__select_fees_type', select_fees_type);
 
-            if (select_fees_type == 'complete') {
-                var complete_fees_area = $('.complete_fees_area').show()
-                var installment_fees_area = $('.installment_fees_area').hide()
-                $('.installmet_div_row').remove();
+            // if (select_fees_type == 'complete') {
+            //     var complete_fees_area = $('.complete_fees_area').show()
+            //     var installment_fees_area = $('.installment_fees_area').hide()
+            //     $('.installmet_div_row').remove();
 
-            };
+            // };
             if (select_fees_type == 'installment') {
                 var installment_fees_area = $('.installment_fees_area').show();
                 var complete_fees_area = $('.complete_fees_area').hide()
@@ -412,8 +441,12 @@ if (isset($courses)) {
         }
 
         function remove_installment(e) {
+            var installment_length = $('.installmet_div_row').length;
+        if(installment_length > 1){
             $(e).parent().remove();
         }
+        }
+
 
         function installment_html(v) {
             return (`
