@@ -15,12 +15,12 @@
         padding: 15px;
     }
 
-    .form-group.open_fees_type_div_area {
+    /* .form-group.open_fees_type_div_area {
         background-color: #d3d3d32e;
         width: 100%;
         height: 27%;
         border-radius: 8px;
-    }
+    } */
 
     #zoom_textarea {
         background-color: #d8dcee;
@@ -166,7 +166,7 @@
 
             <div class="col-sm-2">
 
-                <button type="button" onclick="edit_plan()" class="btn btn-danger edit_plans_area">New Plan</button>
+                {{-- <button type="button" onclick="edit_plan()" class="btn btn-danger edit_plans_area">New Plan</button> --}}
 
             </div>
 
@@ -182,11 +182,11 @@
 
         <div class="form-group open_fees_type_div_area">
             <div id="palne" style="
-    font-size: 20px;
-    color: black;
-    font-weight: bold;
-    ">
-                Please Select A new Plan
+             font-size: 20px;
+             color: black;
+                font-weight: bold;
+                             ">
+                {{-- Please Select A new Plan
             </div>
             <div class="my_feese_type" style="margin-top: 22px;color: black;">
 
@@ -196,7 +196,9 @@
                                                                                 Type",
                     'onchange' => 'open_fees_type_div()',
                     'class' => 'form-control fees_type',
-                ]) !!}
+                ]) !!} --}}
+
+                <input type="hidden" name="fees_type" value="installment">
                 <!-- </select> -->
 
             </div>
@@ -208,7 +210,7 @@
         <!--  complete_fees_area-->
 
 
-        <div class="complete_fees_area" style="background-color: #d3d3d32e;">
+        {{-- <div class="complete_fees_area" style="background-color: #d3d3d32e;">
             <div class="complete_feessss_araes">
                 <h3>
                     Enter Complete Fess Amount And Due Date
@@ -256,7 +258,7 @@
 
             </div>
 
-        </div>
+        </div> --}}
 
         <!-- END_complete_fees_area -->
 
@@ -264,10 +266,11 @@
 
 
         <!--  INSATLLMENT_fees_area-->
-        <div class="installment_fees_area">
-            <h3>
+        {{-- <div class="installment_fees_area"> --}}
+        <div >
+            {{-- <h3>
                 Enter Installment
-            </h3>
+            </h3> --}}
             <div class="row">
                 <div class="col-sm-10">
                 </div>
@@ -753,25 +756,28 @@
             var select_fees_type = $('.fees_type').val();
             console.log('select_fees_type__select_fees_type', select_fees_type);
 
-            if (select_fees_type == 'complete') {
+            // if (select_fees_type == 'complete') {
 
-                var $complete_fees_area = $('.complete_fees_area').show()
-                var $installment_fees_area = $('.installment_fees_area').hide()
+            //     var $complete_fees_area = $('.complete_fees_area').show()
+            //     var $installment_fees_area = $('.installment_fees_area').hide()
 
-            };
-            if (select_fees_type == 'installment') {
+            // };
+            // if (select_fees_type == 'installment') {
 
                 var $installment_fees_area = $('.installment_fees_area').show();
                 var $complete_fees_area = $('.complete_fees_area').hide()
 
-            };
+            // };
 
 
 
         }
 
         function remove_installment(e) {
+            var installment_length = $('.installmet_div_row').length;
+        if(installment_length > 1){
             $(e).parent().remove();
+        }
         }
 
         function installment_html(v) {
