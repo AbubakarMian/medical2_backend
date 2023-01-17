@@ -55,16 +55,45 @@
     font-size: 13px;
     font-family: inherit;
     color: gray;
-    height: 50px;
+    padding: 10px;
+}
+    .plan_details th {
+    font-family: inherit;
+    padding: 10px;
 }
 .plan_details h3 {
         font-size: 19px;
     font-weight: 600;
     }
-.plan_details  {
-    border='"1px"'
-    width="100%"
+.plan_details, th, td  {
+    border:1px solid;
+    text-align: center;
+
     }
+.plan_details{
+    width:100%;
+    margin-left:2%;
+
+    }
+    button.\`rmv-btn\` {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 7px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 7px;
+}
+button.\`rmv-btn\`:hover {
+    color: #c4c1c1;
+}
+.edit_plans_area{
+    margin-top: 10%;
+}
 </style>
 
 <?php
@@ -84,7 +113,7 @@ $type = '';
                 $amount = $p->amount;
                 $status = 'Unpaid';
                 $payment_id = '';
-                $remove = "<button onclick=\"remove_fee(".$p->id.")\">Remove</button>";
+                $remove = "<button class=`rmv-btn` onclick=\"remove_fee(".$p->id.")\">Remove</button>";
                 // dd($remove);
                 if($p->status == 'paid'){
                     $status = 'Paid';
