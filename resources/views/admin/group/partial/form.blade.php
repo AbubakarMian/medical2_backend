@@ -191,7 +191,7 @@
             <div class="my_feese_type" style="margin-top: 22px;color: black;">
 
                 {!! Form::label('fees_type', 'Fees Type') !!}
-                {!! Form::select('fees_type', $fees_typea, null, [
+                {!! Form::select('fees_type', $fees_type, null, [
                     'placeholder' => "Select
                                                                                 Type",
                     'onchange' => 'open_fees_type_div()',
