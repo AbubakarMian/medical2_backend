@@ -64,6 +64,8 @@ class GroupController extends Controller
 
         $group->start_date = date('Y-m-d',$group->start_date);
         $group->end_date = date('Y-m-d',$group->end_date);
+        $group->registration_start_time = date('Y-m-d',$group->registration_start_time);
+        $group->registration_end_time = date('Y-m-d',$group->registration_end_time);
         $fees_type = Config::get('constants.fees_type');
         $course_id = Courses::pluck('full_name', 'id');
 

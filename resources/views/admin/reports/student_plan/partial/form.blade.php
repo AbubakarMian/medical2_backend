@@ -50,60 +50,66 @@
         transform: translate(-50%, -50%);
         text-align: center;
     }
+
+    .plan_details td {
+    font-size: 13px;
+    font-family: inherit;
+    color: gray;
+    height: 50px;
+}
+.plan_details h3 {
+        font-size: 19px;
+    font-weight: 600;
+    }
+.plan_details  {
+    border='"1px"'
+    width="100%"
+    }
 </style>
 
 <?php
 $type = '';
 ?>
-@foreach($student_plan as $p)
-@if($p->status == 'paid')
-<div class="form-group">
-        {!! Form::label('old_amount','Amount Paid') !!}
-        <div>
-            <input value="{{$p->amount}}" name="lname" disabled class="form-control old_amount">
-        </div>
-        </select>
-    </div>
- @else(!$p->status == 'paid')
+<table class="plan_details" >
+    <thead>
+        <th>Due Date</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Payment Id</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        @foreach($student_plan as $p)
+            <?php
+                $amount = $p->amount;
+                $status = 'Unpaid';
+                $payment_id = '';
+                $remove = "<button onclick=\"remove_fee(".$p->id.")\">Remove</button>";
+                // dd($remove);
+                if($p->status == 'paid'){
+                    $status = 'Paid';
+                    $payment_id = $p->payment_id;
+                    $remove = "";
+                }
+            ?>
+            <tr class="fee_plan_tr_{!!$p->id!!}">
+                <td>{!!date('d,m,Y',$p->due_date)!!}</td>
+                <td>{!!$amount!!}</td>
+                <td>{!!$status!!}</td>
+                <td>{!!$payment_id!!}</td>
+                <td>{!!$remove!!}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
-<div class="old_paln_show">
-
-    @if($p->fees_type == $type)
-    @else
-    <div class="form-group">
-        {!! Form::label('old_fees_type','Fees Type') !!}
-        <div>
-            <input value="{{$p->fees_type}}" name="lname" disabled class="form-control">
-        </div>
-        </select>
-    </div>
-    @endif
-    <?php
-    $type = $p->fees_type;
-    ?>
-
-    <div class="form-group">
-        {!! Form::label('old_amount','Amount Not Paid ') !!}
-        <div>
-            <input value="{{$p->amount}}" name="lname" disabled class="form-control old_amount">
-        </div>
-        </select>
-    </div>
-
-    <div class="form-group">
-        {!! Form::label('old_due_date','Due Date') !!}
-        <div>
-            <input value="{!! date('d-m-Y', $p->due_date) !!}" name="l_name" disabled class="form-control">
-
-        </div>
-        </select>
-    </div>
-</div>
-<input hidden name="student_id[]" value="{{$p->id}}">
 <input hidden name="user_id" value="{{$p->user_id}}">
 <input hidden name="group_id" value="{{$p->group_id}}">
 <input hidden name="course_register_id" value="{{$p->course_register_id}}">
 <input hidden name="course_id" value="{{$p->course_id}}">
+@foreach($student_plan as $p)
+@if($p->status != 'paid')
+<input hidden name="student_fee_id[]" class="student_pre_fee_id_{!!$p->id!!}" value="{{$p->id}}">
 @endif
 @endforeach
 <div class="row">
@@ -113,15 +119,20 @@ $type = '';
 
     <div class="col-sm-2">
 
-        <button type="button" onclick="edit_plan('{{$p->fees_type}}')" class="btn btn-danger edit_plans_area"> New Plan</button>
+        {{-- <button type="button" onclick="edit_plan('{{$p->fees_type}}')" class="btn btn-danger edit_plans_area"> New Plan</button> --}}
+        <button type="button" onclick="edit_plan('installment')" class="btn btn-danger edit_plans_area"> New Plan</button>
 
     </div>
 
 </div>
-<div class="fees_type_areaaa">
+{{-- @if () --}}
+{{-- @endif --}}
+{{-- {!!dd($fees_type)!!} --}}
+
+<div class="fees_type_areaaa" style="display: none">
     <div class="form-group">
         {!! Form::label('fees_type','Fees Type',) !!}
-        {!! Form::select('fees_type',$fees_type,null,[
+        {!! Form::select('fees_type', $fees_type,'installment',[
         "onchange"=>"open_fees_type_div()",
         "class"=>"form-control fees_type remove_option",]) !!}
         </select>
@@ -132,7 +143,7 @@ $type = '';
         Enter Complete Fess Amount And Due Date
     </h3>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
                 {!! Form::label('amount','Amount') !!}
@@ -158,7 +169,7 @@ $type = '';
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 </div>
 
@@ -208,7 +219,10 @@ $type = '';
     }
 
     function remove_installment(e) {
-        $(e).parent().remove();
+        var installment_length = $('.installmet_div_row').length;
+        if(installment_length > 1){
+            $(e).parent().remove();
+        }
     }
 
     function installment_html(v) {
@@ -230,7 +244,7 @@ $type = '';
                 <div class="form-group">
                     <lable>Due Date</lable>
             <div>
-                <input type='number' name='due_date[]' class='form-control'
+                <input type='date' name='due_date[]' class='form-control'
                             data-parsley-required='true' , data-parsley-trigger='change'
                             placeholder='Enter Due Date'>
             </div>
@@ -252,17 +266,23 @@ $type = '';
 
     function edit_plan(fees_type) {
         var old_paln_show = $('.old_paln_show').hide();
+        add_installment_divs();
+        // var fees_type_areaaa = $('.fees_type_areaaa').show();
         if(fees_type == 'installment'){
-          var fees_type_areaaa = $('.fees_type_areaaa').show();
+
           var complete_remove = $(".remove_option option[value='complete']").remove();
           var $installment_fees_area_show = $('.installment_fees_area').show();
          }
         else{
-            var fees_type_areaaa = $('.fees_type_areaaa').show();
             var installment_remove = $(".remove_option option[value='installment']").remove();
             var $complete_fees_area_show = $('.complete_fees_area').show()
       }
         var edit_plans_area = $('.edit_plans_area').hide();
+    }
+    function remove_fee(fee_id){
+        $('.fee_plan_tr_'+fee_id).remove();
+        $('.student_pre_fee_id_'+fee_id).remove();
+        // false;
     }
 
     $(document).ready(function() {
@@ -271,8 +291,6 @@ $type = '';
         var $fees_type_areaaa = $('.fees_type_areaaa').hide();
         var $remove_divs = $('.remove_divs').hide();
     });
-</script>
-<script>
     function validateForm() {
         return true;
     }
