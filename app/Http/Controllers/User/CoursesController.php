@@ -91,31 +91,24 @@ class CoursesController extends Controller
         $course_registers =  Course_Register::with('group.teacher')
         ->where('user_id', $user_id)
         ->where('course_id',  $courses->id)->first();
-        // ->first();
-        // dd( $courses->id);
-        // dd( $today);
-        // dd(  $course_registers);
         if ($course_registers) {
-            $course_register =  Group::where('registration_end_time','>=', $today)->get();
-            dd($course_register);
-
-        }
-        if ($course_registers) {
-            // dd(  $course_registers);
-
             $course_register =  Course_Register::with('group.teacher')->where('user_id', $user->id)->where('course_id',  $courses->id)->first();
 
             return view('user.course_registration.index', compact('courses', 'stripe_key', 'type', 'course_register'));
         } else {
             if ($type == 'courses') {
-// dd('else');
-                $courses_groups = Group::with('group_timings', 'teacher')->where('type', 'course')->whereHas('group_timings')
-                    ->where('courses_id', $courses->id)->get();
+                $courses_groups = Group::with('group_timings', 'teacher')->where('type', 'course')
+                    ->where('registration_end_time','>=', $today)
+                    ->whereHas('group_timings')
+                    ->where('courses_id', $courses->id)
+                    ->get();
 
             } elseif ($type == 'workshop') {
-                $courses_groups = Group::with('teacher', 'group_fees')->where('type', 'workshop')->where('courses_id', $courses->id)->get();
+                $courses_groups = Group::with('teacher', 'group_fees')->where('type', 'workshop')
+                    ->where('registration_end_time','>=', $today)
+                    ->where('courses_id', $courses->id)
+                    ->get();
             }
-            // dd(  $courses_groups);
             return view('user.course_registration.index', compact('courses', 'stripe_key', 'courses_groups', 'type'));
         }
     }
@@ -139,7 +132,6 @@ class CoursesController extends Controller
         $reg_key = uniqid();
 
         if (!$one_user) {
-            // return redirect('/')->with('error', 'Please Login To Continue');
             return redirect('/')->with('login_error', 'Please Login To Continue');
         }
         $course_id = $request->course_id;
@@ -150,8 +142,6 @@ class CoursesController extends Controller
         $all_course_register   = [];
         $res = new \stdClass();
         $studen_array_id = [];
-
-
         // for groupppppp
         foreach ($request->first_name as $key => $f) {
 
@@ -499,7 +489,6 @@ class CoursesController extends Controller
 
         // multiple installmemnt choose
                 if ($request->student_id) {
-                    // dd($request->all());
                         $student_fee_id = $request->student_id;
                         $payment = $this->set_payment_obj($stripe,$student_fee_id,$request->amount);
                     foreach ($request->student_id as $st_id) {
@@ -549,50 +538,13 @@ class CoursesController extends Controller
         catch(Exception $e){
 
             try{
-                // echo($e->getMessage());
                 $card_err= $e->getMessage();
-// dd($card_err);
-                // return back()->with('error', $card_err);
                 return redirect('/')->with('error',$card_err);
-
-
             }
             catch(Exception $e){
                 echo($e);
             }
-
-            // $user = Auth::User();
-
-            // $payment = new Payment();
-            // $payment->user_id = $user->id;
-            // if($stripe->id){
-            // $payment->payment_id = $stripe->id;
-            // $payment->course_id = $this->get_course_id($request);
-            // $payment->payment_response = json_encode($stripe);
-            // $payment->payment_status = $stripe->status;
-            // $payment->card_type = $stripe->payment_method_details->card->brand;
-            // $payment->receipt_url = $stripe->receipt_url;
-            // $payment->action  = $stripe->object;
-            // //============= amount===============
-            // $payment->amount =   $request->amount;
-            // $payment->save();}
-            // else{
-            //     $payment->payment_id = 'invalid card';
-            // $payment->course_id = $this->get_course_id($request);
-            // $payment->payment_response = json_encode($stripe);
-            // $payment->payment_status = $stripe->status;
-            // $payment->card_type = $stripe->payment_method_details->card->brand;
-            // $payment->receipt_url = 'invalid card';
-            // $payment->action  = $stripe->object;
-            // //============= amount===============
-            // $payment->amount =   $request->amount;
-            // $payment->save();
-            // }
-
-
         }
-
-
     }
     public function payment_success()
     {

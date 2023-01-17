@@ -1,10 +1,11 @@
-{{-- {!!dd($group->start_date);!!} --}}
+{{-- {!!dd($group->registration_start_time);!!} --}}
 
 
 <style>
     .medsaveclick {
-    padding: 1px !important;
-}
+        padding: 1px !important;
+    }
+
     div#zoom {
         background-color: #f1f4f9;
         color: #59595a;
@@ -75,7 +76,7 @@
     <div class="col-md-6">
         <span class="error error_span" id="error_span"></span>
 
-         {{-- <div class="alert alert-danger alert-block">
+        {{-- <div class="alert alert-danger alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <strong><p><span class="error_span" id="error_span"></span></p></strong>
         </div> --}}
@@ -136,7 +137,7 @@
         // if(isset($group)){
         //     $address = $group->address;
         // }
-    ?>
+        ?>
         <div class="form-group">
             {!! Form::label('course', 'course') !!}
             <div>
@@ -190,9 +191,9 @@
             <div class="my_feese_type" style="margin-top: 22px;color: black;">
 
                 {!! Form::label('fees_type', 'Fees Type') !!}
-                {!! Form::select('fees_type', $fees_type, null, [
+                {!! Form::select('fees_type', $fees_typea, null, [
                     'placeholder' => "Select
-                                                                Type",
+                                                                                Type",
                     'onchange' => 'open_fees_type_div()',
                     'class' => 'form-control fees_type',
                 ]) !!}
@@ -285,10 +286,10 @@
 
         <?php
         $address = '';
-        if(isset($group)){
+        if (isset($group)) {
             $address = $group->address;
         }
-    ?>
+        ?>
         <!--  -->
         <div class="form-group">
             {!! Form::label('address', 'Address') !!}
@@ -319,7 +320,7 @@
             </div>
         </div>
 
-                <!-- <div class="form-group">
+        <!-- <div class="form-group">
             {!! Form::label('country', 'Country') !!}
             <div>
                 {!! Form::text('country', null, [
@@ -335,7 +336,7 @@
                 </div> -->
 
 
-                <!--  -->
+        <!--  -->
         <?php
 
         ?>
@@ -343,72 +344,86 @@
     </div>
     <?php
     $start_date = '';
-    if(isset($group)){
+    if (isset($group)) {
         $start_date = $group->start_date;
     }
-?>
+    ?>
 
     <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::label('start_date', 'Start Date') !!}
-            <div>
-                <input type="date" name="start_date" class="form-control start_date_validation" value={!!$start_date!!}
-                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter start date">
+        <div class="col-md-6">
+            <div class="form-group">
+                {!! Form::label('start_date', 'Start Date') !!}
+                <div>
+                    <input type="date" name="start_date" class="form-control start_date_validation"
+                        value={!! $start_date !!} data-parsley-required="true" data-parsley-trigger="change"
+                        placeholder="Enter start date">
 
 
+                </div>
             </div>
         </div>
         <?php
         $end_date = '';
-        if(isset($group)){
+        if (isset($group)) {
             $end_date = $group->end_date;
         }
-    ?>
-        <div class="form-group">
-            {!! Form::label('end_date', 'End Date') !!}
-            <div>
-                <input type="date" name="end_date" class="form-control end_date_validation" value={!!$end_date!!}
-                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter End date">
-
-
-
-            </div>
-        </div>
-
-
-                                {{-- register start and end date --}}
-
-            <?php
-            $registration_start_time = '';
-            if(isset($group)){
-                $registration_start_time = $group->registration_start_time;
-            }
         ?>
+        <div class="col-md-6">
 
-        <div class="form-group">
-            {!! Form::label('start_date', 'Registeration Start Date') !!}
-            <div>
-                <input type="date" name="registration_start_time" class="form-control start_date_validation" value={!!$registration_start_time!!}
-                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Registeration starting date">
+            <div class="form-group">
+                {!! Form::label('end_date', 'End Date') !!}
+                <div>
+                    <input type="date" name="end_date" class="form-control end_date_validation"
+                        value={!! $end_date !!} data-parsley-required="true" data-parsley-trigger="change"
+                        placeholder="Enter End date">
 
 
 
+                </div>
             </div>
         </div>
-                    <?php
-                    $registration_end_time = '';
-                    if(isset($group)){
-                        $registration_end_time = $group->registration_end_time;
-                    }
-                ?>
-        <div class="form-group">
-            {!! Form::label('end_date', 'Registeration End Date') !!}
-            <div>
-                <input type="date" name="registration_end_time" class="form-control end_date_validation" value={!!$registration_end_time!!}
-                    data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Registeration Ending date">
+
+
+        {{-- register start and end date --}}
+
+        <?php
+        $registration_start_time = '';
+        if (isset($group)) {
+            $registration_start_time = $group->registration_start_time;
+        }
+        ?>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                {!! Form::label('start_date', 'Registeration Start Date') !!}
+                <div>
+                    <input type="date" name="registration_start_time" class="form-control start_date_validation"
+                        value={!! $registration_start_time !!} data-parsley-required="true" data-parsley-trigger="change"
+                        placeholder="Enter Registeration starting date">
 
 
 
+                </div>
+            </div>
+        </div>
+        <?php
+        $registration_end_time = '';
+        if (isset($group)) {
+            $registration_end_time = $group->registration_end_time;
+        }
+        ?>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                {!! Form::label('end_date', 'Registeration End Date') !!}
+                <div>
+                    <input type="date" name="registration_end_time" class="form-control end_date_validation"
+                        value={!! $registration_end_time !!} data-parsley-required="true" data-parsley-trigger="change"
+                        placeholder="Enter Registeration Ending date">
+
+
+
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -438,8 +453,9 @@
 
 
         <div class="choice-file">
-            <div class="choice-input">
-                @if (isset($group_timings))
+            @if (isset($group_timings))
+                <div class="choice-input">
+
                     @foreach ($group_timings as $key => $ch)
                         <div class="row">
 
@@ -447,7 +463,8 @@
                             <div class="col-sm-4">
                                 <label for="cars">Choose a Class Day</label>
 
-                                <select name="day[]" id="cars" class="form-control">
+                                <select name="day[]" id="cars" class="form-control" required>
+                                    <option value="">Select</option>
                                     <option value="monday" {{ $ch->day == 'monday' ? 'selected' : '' }}>Monday</option>
                                     <option value="tuesday" {{ $ch->day == 'tuesday' ? 'selected' : '' }}>Tuesday
                                     </option>
@@ -477,6 +494,7 @@
                                             'data-parsley-trigger' => 'change',
                                             'placeholder' => 'Start Time',
                                             'maxlength' => '100',
+                                            'required',
                                         ]) !!}
                                     </div>
                                 </div>
@@ -495,6 +513,7 @@
                                             'data-parsley-trigger' => 'change',
                                             'placeholder' => 'End Time',
                                             'maxlength' => '100',
+                                            'required',
                                         ]) !!}
                                     </div>
                                 </div>
@@ -505,8 +524,9 @@
 
                         </div>
                     @endforeach
-                @endif
-            </div>
+                </div>
+            @endif
+
         </div>
         <!--  group mappppppppppppppppppp-->
 
@@ -556,7 +576,7 @@
 
         <div>
             <!-- <label >Enter Venue:</label>
-    <input type="text" required  name="venue" class = 'form-control'> -->
+     <input type="text" required  name="venue" class = 'form-control'> -->
             </br>
 
             <label>Open Map For Group Venue</label>
@@ -751,7 +771,6 @@
         }
 
         function remove_installment(e) {
-
             $(e).parent().remove();
         }
 
@@ -909,12 +928,11 @@
             return `<div class="choice-input">
 
             <div class="row">
-
-                {{-- first column   --}}
                 <div class="col-sm-4">
                     <label for="cars">Choose a Class Day</label>
 
-                    <select name="day[]" id="cars" class="form-control">
+                    <select name="day[]" required id="cars" class="form-control">
+                      <option value="">Select</option>
                       <option value="monday">Monday</option>
                       <option value="tuesday">Tuesday</option>
                       <option value="wednesday">Wednesday</option>
@@ -924,10 +942,7 @@
                       <option value="sunday">Sunday</option>
                     </select>
             </div>
-            {{--   --}}
 
-
-            {{--   second column  --}}
             <div class="col-sm-4">
                 <div class="form-group">
                     {!! Form::label('start_time', 'Class Start Time') !!}
@@ -937,14 +952,12 @@
                             'data-parsley-trigger' => 'change',
                             'placeholder' => 'Start Time',
                             'maxlength' => '100',
+                            'required',
                         ]) !!}
                     </div>
                 </div>
             </div>
 
-            {{--    --}}
-
-{{--  third column   --}}
             <div class="col-sm-4">
                 <div class="form-group">
                     {!! Form::label('end_time', 'Class End Time') !!}
@@ -954,15 +967,11 @@
                             'data-parsley-trigger' => 'change',
                             'placeholder' => 'End Time',
                             'maxlength' => '100',
+                            'required',
                         ]) !!}
                     </div>
                 </div>
-
-
             </div>
-{{--    --}}
-
-
  </div>
 
 </div>`
@@ -972,11 +981,11 @@
             console.log('length', $('.choice-input').length);
 
 
-            if ($('.choice-input').length < 1) {
+            if ($('.choice-input').length < 2) {
                 return;
+            } else {
+                $('.choice-input:last').remove();
             }
-
-            $('.choice-input:last').remove();
 
         }
 
@@ -1011,7 +1020,7 @@
             // alert('enter valid start date');
             $('.error_span').html('Enter valid Start date');
 
-            return'invalid start';
+            return 'invalid start';
         }
 
         var end_date_valid = $('.end_date_validation').val();
@@ -1021,7 +1030,7 @@
             // alert('enter valid end date');
             $('.error_span').html('Enter valid End date');
 
-            return'invalid end';
+            return 'invalid end';
         }
 
 
