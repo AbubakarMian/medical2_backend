@@ -206,65 +206,6 @@
         </div>
 
 
-
-        <!--  complete_fees_area-->
-
-
-        {{-- <div class="complete_fees_area" style="background-color: #d3d3d32e;">
-            <div class="complete_feessss_araes">
-                <h3>
-                    Enter Complete Fess Amount And Due Date
-                </h3>
-            </div>
-
-            <div class="row">
-
-                <!-- columnnn-->
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        {!! Form::label('amount', 'Amount') !!}
-                        <div>
-                            {!! Form::text('amount', null, [
-                                'class' => 'form-control complete_amount',
-                                'data-parsley-required' => 'true',
-                                'data-parsley-trigger' => 'change',
-                                'placeholder' => 'Enter Amount',
-                                'maxlength' => '100',
-                            ]) !!}
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- end columnnn -->
-
-                <!-- columnnn -->
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        {!! Form::label('due_date', 'Due Date') !!}
-                        <div>
-                            {!! Form::date('due_date', null, [
-                                'class' => 'form-control complete_due_date',
-                                'data-parsley-required' => 'true',
-                                'data-parsley-trigger' => 'change',
-                                'placeholder' => 'Enter Due Date',
-                                'maxlength' => '100',
-                            ]) !!}
-                        </div>
-                    </div>
-                </div>
-
-                <!-- end  columnnn-->
-
-            </div>
-
-        </div> --}}
-
-        <!-- END_complete_fees_area -->
-
-
-
-
         <!--  INSATLLMENT_fees_area-->
         {{-- <div class="installment_fees_area"> --}}
         <div >
@@ -281,6 +222,11 @@
             </div>
             <!--  multiple times open-->
             <div class="multiple_times_open_div" style="background-color: #d3d3d32e;">
+                @if(isset($group->group_fees))
+                    @foreach ( $group->group_fees as $group_fees )
+
+                    @endforeach
+                @endif
             </div>
         </div>
         <!-- END_installment_fees_area -->
@@ -827,32 +773,10 @@
         }
 
         function add_installment_divs() {
-
             console.log('add_installment_divs_add_installment_divs');
-            // var installment_div = $('.installment_divs').length+1;
             var installmet_div_row = $('.installmet_div_row').length;
             var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(installmet_div_row));
         }
-        // end new
-        // function validateForm() {
-        //     return true;
-        // }
-
-        //
-        $(document).ready(function() {
-            // var checkBox = document.getElementById("is_online_checkbox");
-            var venue_maps = $("#venue_map").hide();
-            var zoom = $("#zoom").hide();
-            //
-            var $open_fees_type_div_area = $('.open_fees_type_div_area').hide();
-            var $complete_fees_area = $('.complete_fees_area').hide();
-            var $installment_fees_area = $('.installment_fees_area').hide();
-            var edit_plans_area = $('.edit_plans_area').hide();
-
-            $('#myModal').modal('hide');
-
-
-        });
 
         function is_online_class() {
 
@@ -871,33 +795,19 @@
             }
             console.log('sasa');
         }
-        // map
         function open_map() {
             console.log('mapssssssss');
             $('#myModal').modal('show');
         }
-        //
 
-
-        // end new
-        // function validateForm() {
-        //     return true;
-        // }
-
-        //
         $(document).ready(function() {
-            // var checkBox = document.getElementById("myCheck");
             var venue_maps = $("#venue_map").hide();
             var zoom = $("#zoom").hide();
-            //
             var $open_fees_type_div_area = $('.open_fees_type_div_area').hide();
             var $complete_fees_area = $('.complete_fees_area').hide();
             var $installment_fees_area = $('.installment_fees_area').hide();
             var edit_plans_area = $('.edit_plans_area').hide();
-
             $('#myModal').modal('hide');
-
-
         });
 
         function myFunction() {
@@ -931,114 +841,87 @@
         }
 
         function radioBtnHtml(nextdivnum) {
-            return `<div class="choice-input">
+            return
+            `<div class="choice-input">
 
-            <div class="row">
-                <div class="col-sm-4">
-                    <label for="cars">Choose a Class Day</label>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="cars">Choose a Class Day</label>
 
-                    <select name="day[]" required id="cars" class="form-control">
-                      <option value="">Select</option>
-                      <option value="monday">Monday</option>
-                      <option value="tuesday">Tuesday</option>
-                      <option value="wednesday">Wednesday</option>
-                      <option value="thursday">Thursday</option>
-                      <option value="friday">Friday</option>
-                      <option value="saturday">Saturday</option>
-                      <option value="sunday">Sunday</option>
-                    </select>
-            </div>
+                        <select name="day[]" required id="cars" class="form-control">
+                        <option value="">Select</option>
+                        <option value="monday">Monday</option>
+                        <option value="tuesday">Tuesday</option>
+                        <option value="wednesday">Wednesday</option>
+                        <option value="thursday">Thursday</option>
+                        <option value="friday">Friday</option>
+                        <option value="saturday">Saturday</option>
+                        <option value="sunday">Sunday</option>
+                        </select>
+                    </div>
 
-            <div class="col-sm-4">
-                <div class="form-group">
-                    {!! Form::label('start_time', 'Class Start Time') !!}
-                    <div>
-                        {!! Form::time('start_time[]', null, [
-                            'class' => 'form-control',
-                            'data-parsley-trigger' => 'change',
-                            'placeholder' => 'Start Time',
-                            'maxlength' => '100',
-                            'required',
-                        ]) !!}
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            {!! Form::label('start_time', 'Class Start Time') !!}
+                            <div>
+                                {!! Form::time('start_time[]', null, [
+                                    'class' => 'form-control',
+                                    'data-parsley-trigger' => 'change',
+                                    'placeholder' => 'Start Time',
+                                    'maxlength' => '100',
+                                    'required',
+                                ]) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            {!! Form::label('end_time', 'Class End Time') !!}
+                            <div>
+                                {!! Form::time('end_time[]', null, [
+                                    'class' => 'form-control',
+                                    'data-parsley-trigger' => 'change',
+                                    'placeholder' => 'End Time',
+                                    'maxlength' => '100',
+                                    'required',
+                                ]) !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="form-group">
-                    {!! Form::label('end_time', 'Class End Time') !!}
-                    <div>
-                        {!! Form::time('end_time[]', null, [
-                            'class' => 'form-control',
-                            'data-parsley-trigger' => 'change',
-                            'placeholder' => 'End Time',
-                            'maxlength' => '100',
-                            'required',
-                        ]) !!}
-                    </div>
-                </div>
-            </div>
- </div>
-
-</div>`
+            </div>`
         }
 
         function removeday() {
-            console.log('length', $('.choice-input').length);
-
-
             if ($('.choice-input').length < 2) {
                 return;
             } else {
                 $('.choice-input:last').remove();
             }
-
         }
 
         function optionHtml(no) {
-            return `
-                            <option class ="option-file"  value="` + no + `">Choice # ` + no + `</option>
-                            `
+            return `<option class ="option-file"  value="` + no + `">Choice # ` + no + `</option>`
         }
-    </script>
-
-
-    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-@endsection
-
+        function validateForm() {
+            var date_valid_error_msg = '';
+            var start_date_valid = true;
+            var end_date_valid = true;
+            var start_date_valid = $('.start_date_validation').val();
+            if (start_date_valid == '') {
+                start_date_valid = false;
+                $('.error_span').html('Enter valid Start date');
+                return 'invalid start';
+            }
+            var end_date_valid = $('.end_date_validation').val();
+            if (end_date_valid == '') {
+                end_date_valid = false;
+                console.log('enter valid end date');
+                $('.error_span').html('Enter valid End date');
+                return 'invalid end';
+            }
+        }
 
 <script>
-    function validateForm() {
-
-        // var amount = $('.amount_validation'); //complete_
-        // var amount_valid = true;
-        // var due_date_valid = true;
-        var date_valid_error_msg = '';
-        // var valid_date_chk = '';
-        // var fee_type_valid = true;
-        var start_date_valid = true;
-        var end_date_valid = true;
-
-        var start_date_valid = $('.start_date_validation').val();
-        if (start_date_valid == '') {
-            start_date_valid = false;
-            console.log('enter valid start date');
-            // alert('enter valid start date');
-            $('.error_span').html('Enter valid Start date');
-
-            return 'invalid start';
-        }
-
-        var end_date_valid = $('.end_date_validation').val();
-        if (end_date_valid == '') {
-            end_date_valid = false;
-            console.log('enter valid end date');
-            // alert('enter valid end date');
-            $('.error_span').html('Enter valid End date');
-
-            return 'invalid end';
-        }
-
-
-    }
-</script>
+@endsection

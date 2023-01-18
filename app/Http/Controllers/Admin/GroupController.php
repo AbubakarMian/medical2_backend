@@ -60,8 +60,7 @@ class GroupController extends Controller
     public function edit($id)
     {
         $control = 'edit';
-        $group = Group::find($id);
-
+        $group = Group::with('group_fees')->find($id);
         $group->start_date = date('Y-m-d',$group->start_date);
         $group->end_date = date('Y-m-d',$group->end_date);
         $group->registration_start_time = date('Y-m-d',$group->registration_start_time);
