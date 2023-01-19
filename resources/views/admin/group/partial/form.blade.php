@@ -209,15 +209,31 @@
 
         <!--  INSATLLMENT_fees_area-->
         {{-- <div class="installment_fees_area"> --}}
+
+            <?php
+            $install = '';
+            if (isset($group)) {
+                $install = 'block;';
+            }
+            else {
+                $install = 'none;';
+              }
+
+            ?>
         <div>
             {{-- <h3>
                 Enter Installment
             </h3> --}}
+
+
+
+
+
             <div class="row">
                 <div class="col-sm-10">
                 </div>
-                <div class="col-sm-2">
-                    <button type="button" onclick="add_installment_divs()" class="btn btn-danger installment_divs">Add
+                <div class="col-sm-2" id="installment_button" style ="display:{!! $install !!}">
+                    <button type="button" onclick="add_installment_divs()" class="btn btn-danger installment_divs" >Add
                         Installment</button>
                 </div>
             </div>
@@ -580,6 +596,8 @@
             var count = 0;
             $(course_id).click(function() {
                 count += 1;
+                    $('#installment_button').css("display" , "block");
+
 
                 if (count == 2) {
                     // $(".old_paln_show").hide();

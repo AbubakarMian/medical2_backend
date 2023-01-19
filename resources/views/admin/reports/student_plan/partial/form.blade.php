@@ -52,48 +52,59 @@
     }
 
     .plan_details td {
-    font-size: 13px;
-    font-family: inherit;
-    color: gray;
-    padding: 10px;
-}
-    .plan_details th {
-    font-family: inherit;
-    padding: 10px;
-}
-.plan_details h3 {
-        font-size: 19px;
-    font-weight: 600;
+        font-size: 13px;
+        font-family: inherit;
+        color: gray;
+        padding: 10px;
     }
-.plan_details, th, td  {
-    border:1px solid;
-    text-align: center;
+    .plan_details th {
+        font-family: inherit;
+        padding: 10px;
+    }
+    .plan_details h3 {
+        font-size: 19px;
+        font-weight: 600;
+    }
+        .plan_details, th, td  {
+        border:1px solid;
+        text-align: center;
 
     }
-.plan_details{
-    width:100%;
-    margin-left:2%;
+    .plan_details{
+        width:100%;
+        margin-left:2px;
+        table-layout: fixed;
 
     }
     button.\`rmv-btn\` {
     background-color: #4CAF50;
     border: none;
     color: white;
-    padding: 7px 12px;
+    /* padding: 7px 12px; */
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-right: 10%;
+    padding-left: 10%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 2px 2px;
     cursor: pointer;
-    border-radius: 7px;
-}
-button.\`rmv-btn\`:hover {
-    color: #c4c1c1;
-}
-.edit_plans_area{
-    margin-top: 10%;
-}
+    border-radius: 3px;
+    }
+    button.\`rmv-btn\`:hover {
+        color: #c4c1c1;
+    }
+    .edit_plans_area{
+        margin-top: 10%;
+    }
+    .status_cross{
+        color: red;
+    }
+    .status_chk{
+        color: green;
+    }
 </style>
 
 <?php
@@ -103,7 +114,7 @@ $type = '';
     <thead>
         <th>Due Date</th>
         <th>Amount</th>
-        <th>Status</th>
+        <th>Paid</th>
         <th>Payment Id</th>
         <th>Action</th>
     </thead>
@@ -111,12 +122,12 @@ $type = '';
         @foreach($student_plan as $p)
             <?php
                 $amount = $p->amount;
-                $status = 'Unpaid';
+                $status = '<i class="fa fa-times status_cross" aria-hidden="true"></i>';
                 $payment_id = '';
                 $remove = "<button class=`rmv-btn` onclick=\"remove_fee(".$p->id.")\">Remove</button>";
                 // dd($remove);
                 if($p->status == 'paid'){
-                    $status = 'Paid';
+                    $status = '<i class="fa fa-check status_chk" aria-hidden="true"></i>';
                     $payment_id = $p->payment_id;
                     $remove = "";
                 }
@@ -167,10 +178,10 @@ $type = '';
         </select>
     </div>
 </div>
-<div class="complete_fees_area">
+{{-- <div class="complete_fees_area">
     <h3>
         Enter Complete Fess Amount And Due Date
-    </h3>
+    </h3> --}}
 
     {{-- <div class="row">
         <div class="col-sm-6">
@@ -200,7 +211,7 @@ $type = '';
         </div>
     </div> --}}
 
-</div>
+{{-- </div> --}}
 
 <div class="installment_fees_area">
     <h3>

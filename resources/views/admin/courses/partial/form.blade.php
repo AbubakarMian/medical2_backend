@@ -61,14 +61,14 @@
         text-align: center;
     }
     .vsdas {
-    margin: 0px -10px;
-    margin-bottom: 3%;
-}
-.installmet_div_row {
-    padding: 10px;
-    border: 1px solid #e6e6e6;
-    margin-bottom: 5px;
-}
+        margin: -29px -10px;
+        margin-bottom: 3%;
+    }
+    .installmet_div_row {
+        padding: 5px 10px;
+        border: 1px solid #e6e6e6;
+        margin-bottom: 5px;
+    }
 </style>
 @if ($message = Session::get('error'))
     <div class="alert alert-danger alert-block">
@@ -343,6 +343,8 @@ if (isset($courses)) {
             </div>
             @endif
             <div class="multiple_times_open_div" style="">
+                {{-- {!!$courses=''!!}
+                @if (!isset($courses)) --}}
                 @if (isset($courses))
                     @foreach ($courses->course_fees as $course_fees)
                         <div class="row installmet_div_row">
@@ -454,6 +456,7 @@ if (isset($courses)) {
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>Amount</label>
+
                         <div>
                             <input type="number" name="amount[]" class="form-control amount_validation" data-parsley-required="true"
                                 data-parsley-trigger="change" placeholder="Enter Amount">
