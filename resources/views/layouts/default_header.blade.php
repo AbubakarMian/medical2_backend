@@ -63,6 +63,9 @@ $admin_common = session()->get('admin_common');
         background: #15db81;
         border-color: #15db81;
     }
+    .medsaveclick {
+    padding-top: 15px !important;
+}
 </style>
 
 <body>
