@@ -617,20 +617,13 @@
                 success: function(response) {
                     console.log('aaaaaaaaaaaaaaa', response);
                     var len = response['data'].length;
-                    console.log('aaaaaaacccccctttttttttt', response['data'].length);
                     if (response.status) {
-                        console.log('aaaaaaacccccc', response['data'][0].courses.full_name);
                         var course_name = response['data'][0].courses.full_name;
 
                         var tr_str = '';
 
                         for (var i = 0; i < len; i++) {
-                            console.log('qqqqqqqqqqqqq', response['data'][i]);
-
-
-                            console.log('amountamount', response['data'][i].amount);
-
-
+                            console.log('incomming ', response['data'][i]);
                             var amount = response['data'][i].amount;
 
                             // var due_date = new Date(response['data'][i].due_date * 1000).toDateString("en-US", {
@@ -639,49 +632,19 @@
                             //     month: 'long',
                             //     day: 'numeric'
                             // });
-                            var due_date = (new Date(response['data'][i].due_date * 1000).toLocaleString('sv-SE') + '').replace(' ','T');
-
+                            // var due_date = (new Date(response['data'][i].due_date * 1000).toLocaleString('sv-SE') + '').replace(' ','T');
+                            var due_date_obj = (new Date(response['data'][i].due_date * 1000));
+                            var date_month = (due_date_obj.getMonth()+1) < 10 ? '0'+(due_date_obj.getMonth()+1): (due_date_obj.getMonth()+1);
+                            var date_date = (due_date_obj.getDate()) < 10 ? '0'+(due_date_obj.getDate()): (due_date_obj.getDate());
+                            var due_date = due_date_obj.getFullYear() + "-" +date_month+'-'+date_date;
                             var fees_type = response['data'][i].fees_type;
                             var course_name = response['data'][i].courses.full_name;
                             var instalment_value  = {
                                 amount:amount,
                                 due_date:due_date
+
                             };
-                            var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(instalment_value));
-
-                            // tr_str = tr_str +
-                            //     `
-
-                            //         <div class="row">
-
-                            //         <!-- columnnn-->
-                            //         <div class="col-sm-6">
-                            //         <div class="form-group">
-                            //         {!! Form::label('amount', 'Amount') !!}
-                            //         <div>
-                            //         <input value="` + amount + `" class="form-control" disabled>
-                            //         </div>
-                            //         </div>
-
-                            //             </div>
-                            //             <!-- end columnnn -->
-
-                            //             <!-- columnnn-->
-                            //         <div class="col-sm-6">
-                            //         <div class="form-group">
-                            //         {!! Form::label('due_date', 'Due Date') !!}
-                            //         <div>
-                            //         <input value="` + due_date + `" class="form-control" disabled>
-                            //         </div>
-                            //         </div>
-
-                            //             </div>
-                            //             <!-- end columnnn -->
-
-                            //             </div>
-                            //             </div> `;
-
-
+                           $('.multiple_times_open_div').html(installment_html(instalment_value));
                         }
                         $(".old_paln_show").html(tr_str);
                         var edit_plans_area = $('.edit_plans_area').show();
@@ -814,6 +777,9 @@
                         due_date:"{!! date('Y-m-d',$group_fee->due_date)!!}"
                     })
                 @endforeach
+            @endif
+            @if ($control == 'create')
+                addday();
             @endif
         });
 
