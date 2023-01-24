@@ -633,46 +633,53 @@
 
                             var amount = response['data'][i].amount;
 
-                            var due_date = new Date(response['data'][i].due_date * 1000).toDateString("en-US", {
-                                weekday: 'long',
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric'
-                            });
+                            // var due_date = new Date(response['data'][i].due_date * 1000).toDateString("en-US", {
+                            //     weekday: 'long',
+                            //     year: 'numeric',
+                            //     month: 'long',
+                            //     day: 'numeric'
+                            // });
+                            var due_date = (new Date(response['data'][i].due_date * 1000).toLocaleString('sv-SE') + '').replace(' ','T');
 
                             var fees_type = response['data'][i].fees_type;
                             var course_name = response['data'][i].courses.full_name;
-                            tr_str = tr_str +
-                                `
+                            var instalment_value  = {
+                                amount:amount,
+                                due_date:due_date
+                            };
+                            var multiple_times_open_div = $('.multiple_times_open_div').append(installment_html(instalment_value));
 
-                                    <div class="row">
+                            // tr_str = tr_str +
+                            //     `
 
-                                    <!-- columnnn-->
-                                    <div class="col-sm-6">
-                                    <div class="form-group">
-                                    {!! Form::label('amount', 'Amount') !!}
-                                    <div>
-                                    <input value="` + amount + `" class="form-control" disabled>
-                                    </div>
-                                    </div>
+                            //         <div class="row">
 
-                                        </div>
-                                        <!-- end columnnn -->
+                            //         <!-- columnnn-->
+                            //         <div class="col-sm-6">
+                            //         <div class="form-group">
+                            //         {!! Form::label('amount', 'Amount') !!}
+                            //         <div>
+                            //         <input value="` + amount + `" class="form-control" disabled>
+                            //         </div>
+                            //         </div>
 
-                                        <!-- columnnn-->
-                                    <div class="col-sm-6">
-                                    <div class="form-group">
-                                    {!! Form::label('due_date', 'Due Date') !!}
-                                    <div>
-                                    <input value="` + due_date + `" class="form-control" disabled>
-                                    </div>
-                                    </div>
+                            //             </div>
+                            //             <!-- end columnnn -->
 
-                                        </div>
-                                        <!-- end columnnn -->
+                            //             <!-- columnnn-->
+                            //         <div class="col-sm-6">
+                            //         <div class="form-group">
+                            //         {!! Form::label('due_date', 'Due Date') !!}
+                            //         <div>
+                            //         <input value="` + due_date + `" class="form-control" disabled>
+                            //         </div>
+                            //         </div>
 
-                                        </div>
-                                        </div> `;
+                            //             </div>
+                            //             <!-- end columnnn -->
+
+                            //             </div>
+                            //             </div> `;
 
 
                         }
