@@ -621,6 +621,7 @@
                         var course_name = response['data'][0].courses.full_name;
 
                         var tr_str = '';
+                        var installments_html = '';
 
                         for (var i = 0; i < len; i++) {
                             console.log('incomming ', response['data'][i]);
@@ -644,8 +645,10 @@
                                 due_date:due_date
 
                             };
-                           $('.multiple_times_open_div').html(installment_html(instalment_value));
+                            installments_html = installments_html + installment_html(instalment_value);
+
                         }
+                        $('.multiple_times_open_div').html(installments_html);
                         $(".old_paln_show").html(tr_str);
                         var edit_plans_area = $('.edit_plans_area').show();
                         console.log('bbbbbbbbbbbbbbbbbbbbb', response.status);
@@ -706,7 +709,7 @@
                                     {!! Form::label('amount', 'Amount') !!}
                                 <div>
                                     <input type="number" name="amount[]" value="`+instalment_value.amount+`"
-                                    class="form-control" data-parsley-trigger="change" placeholder="Enter Amount" min="0">
+                                    class="form-control" data-parsley-trigger="change" placeholder="Enter Amount" min="0" required>
                                 </div>
                             </div>
 
@@ -716,7 +719,7 @@
                             {!! Form::label('due_date', 'Due Date') !!}
                             <div>
                                 <input type="date" name="due_date[]" value="`+instalment_value.due_date+`"
-                                    class="form-control" data-parsley-trigger="change" placeholder="Enter Due Date">
+                                    class="form-control" data-parsley-trigger="change" placeholder="Enter Due Date" required>
                             </div>
                             </div>
                                 </div>
