@@ -235,16 +235,16 @@
     }
     .rfnd-sccs {
     background: #e5ffe7;
-    width: 20%;
+    width: 30%;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 2px;
-    padding-right: 2px;
+    padding-right: 4px;
     margin-bottom: 13px;
     margin-top: -30px;
     text-align: center;
     border-radius: 2%;
-    margin-left: 36%;
+    margin-left: 33%;
 }
 .rfnd-unsccs {
     background: #ffe6e6;

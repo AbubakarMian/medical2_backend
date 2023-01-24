@@ -200,14 +200,14 @@ class Admin_url_Seeder extends Seeder
                         ],
                         [
                             'id'=>4,
-                            'need_permission'=>true,
+                            'need_permission'=>false,
                             'name'=>'aboutus.edit',
                             'heading'=>'Edit',
                             'url'=>'admin/aboutus/edit/{id}',
                         ],
                         [
                             'id'=>5,
-                            'need_permission'=>'aboutus.edit',
+                            'need_permission'=>true,
                             'name'=>'aboutus.update',
                             'heading'=>'Update',
                             'url'=>'admin/aboutus/update/{id}',
@@ -592,6 +592,13 @@ class Admin_url_Seeder extends Seeder
                         ],
                         [
                             'id'=>2,
+                            'need_permission'=>'workshop.index',
+                            'name'=>'get_student_plan.index',
+                            'heading'=>'Index',
+                            'url'=>'admin/workshop/get_workshop',
+                        ],
+                        [
+                            'id'=>2,
                             'need_permission'=>false,
                             'name'=>'workshop.create',
                             'heading'=>'Create',
@@ -624,6 +631,56 @@ class Admin_url_Seeder extends Seeder
                             'name'=>'workshop.delete',
                             'heading'=>'Delete',
                             'url'=>'admin/workshop/delete/{id}',
+                        ],
+                    ])
+
+                    ],
+                [
+                    'id'=>13,
+                    'section'=>'module',
+                    'heading'=>'role',
+                    'details'    => json_encode([
+                        [
+                            'id'=>1,
+                            'need_permission'=>true,
+                            'name'=>'role.index',
+                            'heading'=>'Index',
+                            'url'=>'admin/role',
+                        ],
+                        [
+                            'id'=>2,
+                            'need_permission'=>false,
+                            'name'=>'role.create',
+                            'heading'=>'Create',
+                            'url'=>'admin/role/create',
+                        ],
+                        [
+                            'id'=>3,
+                            'need_permission'=>true,
+                            'name'=>'role.save',
+                            'heading'=>'Save',
+                            'url'=>'admin/role/save',
+                        ],
+                        [
+                            'id'=>4,
+                            'need_permission'=>false,
+                            'name'=>'role.edit',
+                            'heading'=>'Edit',
+                            'url'=>'admin/role/edit/{id}',
+                        ],
+                        [
+                            'id'=>5,
+                            'need_permission'=>true,
+                            'name'=>'role.update',
+                            'heading'=>'Update',
+                            'url'=>'admin/role/update/{id}',
+                        ],
+                        [
+                            'id'=>6,
+                            'need_permission'=>true,
+                            'name'=>'role.delete',
+                            'heading'=>'Delete',
+                            'url'=>'admin/role/delete/{id}',
                         ],
                     ])
 

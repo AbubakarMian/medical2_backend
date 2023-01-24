@@ -90,7 +90,7 @@
     }
     .medsaveclick {
     padding-top: 10px !important;
-}
+    }
 
     .tabludata tbody tr th {
         font-size: 15px;
@@ -236,7 +236,7 @@ $permission_reports = $permissions->where('section', 'report');
                                         <tr>
                                             @foreach ($details as $key => $d)
                                                 <?php
-                                                if (!$d->need_permission) {
+                                                if ($d->need_permission!== true) {
                                                     continue;
                                                 }
                                                 $is_checked = '';
