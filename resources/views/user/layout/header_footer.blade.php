@@ -49,7 +49,7 @@
                     <div class="infoarea hidden-xs">
                         <div class="infobox">
                             <div class="infoboximg">
-                                {{-- <img src="{!!asset('theme/user_theme/images/fax.png')!!}" class="img-responsive" /> --}}
+                                {{-- <img src="{!!asset('public/theme/user_theme/images/fax.png')!!}" class="img-responsive" /> --}}
                                 <i class="fa fa-fax" aria-hidden="true"></i>
                             </div>
                             <div class="infoboxdata">
@@ -58,7 +58,7 @@
                         </div>
                         <div class="infobox">
                             <div class="infoboximg">
-                                {{-- <img src="{!!asset('theme/user_theme/images/mail.png')!!}" class="img-responsive" /> --}}
+                                {{-- <img src="{!!asset('public/theme/user_theme/images/mail.png')!!}" class="img-responsive" /> --}}
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                             </div>
                             <div class="infoboxdata">
