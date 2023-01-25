@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="{!! asset('theme/user_theme/css/medical2.css') !!}" rel="stylesheet">
+    <link href="{!! asset('public/theme/user_theme/css/medical2.css') !!}" rel="stylesheet">
     <!-- cropeer css open-->
     <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
     <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />
@@ -42,7 +42,7 @@
                 <div class="col-sm-2 col-xs-6">
                     <div class="logoArea">
 
-                        <a href="#"><img src="{!! asset('theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
+                        <a href="#"><img src="{!! asset('public/theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
                     </div>
                 </div>
                 <div class="col-sm-10 col-xs-12">
@@ -420,7 +420,7 @@
                     </div>
                     <div class="col-sm-5">
                         <div class="aboutareaimg">
-                            <img src="{!! asset('theme/user_theme/images/about.png') !!}" class="img-responsive" />
+                            <img src="{!! asset('public/theme/user_theme/images/about.png') !!}" class="img-responsive" />
                         </div>
                     </div>
                 </div>
@@ -474,12 +474,12 @@
                             <p><strong>Phone:</strong> 877-741-1996</p>
                             <p><strong>Fax:</strong> 1-407-233-1192</p>
                             <p><strong>Email:</strong> help@medical2.com</p>
-                            <img src="{!! asset('theme/user_theme/images/bbb.png') !!}" class="img-responsive signbar" />
+                            <img src="{!! asset('public/theme/user_theme/images/bbb.png') !!}" class="img-responsive signbar" />
                         </div>
                     </div>
                     <div class="col-sm-3 hidden-xs">
                         <div class="footerdataa">
-                            <img src="{!! asset('theme/user_theme/images/footerlogo.png') !!}" class="img-responsive" />
+                            <img src="{!! asset('public/theme/user_theme/images/footerlogo.png') !!}" class="img-responsive" />
                         </div>
                     </div>
                 </div>

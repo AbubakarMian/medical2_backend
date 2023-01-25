@@ -1,11 +1,11 @@
-<link href="{!! asset('theme/user_theme/css/course_register.css') !!}" rel="stylesheet">
-<link href="{!! asset('theme/user_theme/css/groupform.css') !!}" rel="stylesheet">
-<link href="{!! asset('theme/user_theme/css/newmake.css') !!}" rel="stylesheet">
-<link href="{!! asset('theme/user_theme/css/proceedpayment.css') !!}" rel="stylesheet">
+<link href="{!! asset('public/theme/user_theme/css/course_register.css') !!}" rel="stylesheet">
+<link href="{!! asset('public/theme/user_theme/css/groupform.css') !!}" rel="stylesheet">
+<link href="{!! asset('public/theme/user_theme/css/newmake.css') !!}" rel="stylesheet">
+<link href="{!! asset('public/theme/user_theme/css/proceedpayment.css') !!}" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v3.8.1/css/all.css">
 
-<link href="{!! asset('theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
-{{-- <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" /> --}}
+<link href="{!! asset('public/theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
+{{-- <link rel="stylesheet" type="text/css" href="{!! asset('public/theme/code_busters/theme.css') !!}" /> --}}
 <style>
     table {
         font-family: arial, sans-serif;
