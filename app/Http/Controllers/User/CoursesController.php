@@ -10,7 +10,7 @@ use App\Model\Group;
 use App\Model\Course_Register;
 use App\Mail\Update_Password;
 use App\Model\Group_Timings;
-use App\Model\Group_users;
+// use App\Model\Group_users;
 use Illuminate\Support\Facades\Mail;
 use App\Model\Student_fees;
 use App\Model\Payment;
@@ -174,16 +174,16 @@ class CoursesController extends Controller
             $users->save();
             $all_users_id[] = $users;
 
-            $user_group = new Group_users();
-            $user_group->group_id = $group_id;
-            $user_group->user_id = $users->id;
-            $user_group->save();
+            // $user_group = new Group_users();
+            // $user_group->group_id = $group_id;
+            // $user_group->user_id = $users->id;
+            // $user_group->save();
 
             $course_register = new Course_Register();
             $course_register->user_id  =  $users->id;
             $course_register->course_id =   $course_id;
             $course_register->group_id = $group_id;
-            $course_register->user_group_id = $user_group->id;
+            $course_register->user_group_id = 0;//$user_group->id;
             $course_register->is_paid = 0;
             $course_register->one_time_examination_payment = 0;
             $course_register->examination_fees = 0;
@@ -223,27 +223,35 @@ class CoursesController extends Controller
         }
         // special user jo logo ko group register krwata hai
         // $group = Group::with('group_fees')->find($request->group_id);
-        $course_register_one = new Course_Register();
-        $course_register_one->user_id  =  $one_user->id;
-        $course_register_one->course_id =   $course_id;
-        $course_register_one->group_id = $group_id;
-        // $course_register->user_group_id = $user_group->id;
-        $course_register_one->is_paid = 0;
-        $course_register_one->one_time_examination_payment = 0;
-        $course_register_one->examination_fees = 0;
-        $course_register_one->save();
-        foreach ($group->group_fees as $gf) {
-            $student_fee =  new Student_fees();
-            $student_fee->user_id  =  $one_user->id;
-            $student_fee->course_register_id  =  $course_register_one->id;
-            $student_fee->group_id  =  $group->id;
-            $student_fee->course_id  =  $course_id;
-            $student_fee->fees_type  =  $gf->fees_type;
-            $student_fee->amount  = $gf->amount;
-            $student_fee->due_date  =  $gf->due_date;
-            $student_fee->save();
-            $studen_array_id[] =   $student_fee;
+        $one_user_registration = Course_Register::where([
+            'user_id'=>$one_user->id,
+            'course_id'=>$course_id
+        ])->where( 'status','!=','cancelled')->first();
+
+        if(!$one_user_registration){
+            $course_register_one = new Course_Register();
+            $course_register_one->user_id  =  $one_user->id;
+            $course_register_one->course_id =   $course_id;
+            $course_register_one->group_id = $group_id;
+            // $course_register->user_group_id = $user_group->id;
+            $course_register_one->is_paid = 0;
+            $course_register_one->one_time_examination_payment = 0;
+            $course_register_one->examination_fees = 0;
+            $course_register_one->save();
+            foreach ($group->group_fees as $gf) {
+                $student_fee =  new Student_fees();
+                $student_fee->user_id  =  $one_user->id;
+                $student_fee->course_register_id  =  $course_register_one->id;
+                $student_fee->group_id  =  $group->id;
+                $student_fee->course_id  =  $course_id;
+                $student_fee->fees_type  =  $gf->fees_type;
+                $student_fee->amount  = $gf->amount;
+                $student_fee->due_date  =  $gf->due_date;
+                $student_fee->save();
+                $studen_array_id[] =   $student_fee;
+            }
         }
+
         $course = Courses::with('group')->find($course_id);
         $success = 'success';
         return view('user.show_group_members_payment.index', compact('studen_array_id', 'all_users_id', 'all_course_register', 'success', 'course', 'group'));
@@ -321,7 +329,8 @@ class CoursesController extends Controller
         $courses_id = $request->course_id;
         $group_id = $request->group_id;
         $course = Courses::find($courses_id);
-        $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->first();
+        $course_register =  Course_Register::where('user_id', $user->id)->where('course_id', $course->id)->where( 'status','!=','cancelled')->first();
+
 
         // dd( $course_register);
         if ($course_register) {
@@ -331,17 +340,17 @@ class CoursesController extends Controller
             // return redirect()->back()->with('success', 'Sorry ! You are  already Registered in this Course ');
         } elseif (!$course_register) {
 
-            $user_group = new Group_users();
-            $user_group->group_id = $group_id;
-            $user_group->user_id = $user->id;
-            $user_group->save();
+            // $user_group = new Group_users();
+            // $user_group->group_id = $group_id;
+            // $user_group->user_id = $user->id;
+            // $user_group->save();
 
             $group = Group::with('group_fees')->find($request->group_id);
             $course_register = new Course_Register();
             $course_register->user_id  =  $user->id;
             $course_register->course_id =   $course->id;
             $course_register->group_id = $group_id;
-            $course_register->user_group_id = $user_group->id;
+            $course_register->user_group_id = 0;//$user_group->id;
             $course_register->is_paid = 0;
             $course_register->one_time_examination_payment = 0;
             $course_register->examination_fees = 0;

@@ -14,7 +14,6 @@ use App\Model\Student_fees;
 use App\Model\Books_courses;
 use App\Model\Category;
 use App\Model\Courses;
-use App\Model\Group_users;
 use App\Model\Group;
 use App\Model\Group_fees;
 use App\Model\Course_Register;
