@@ -26,9 +26,10 @@ class Profile_Courses_Controller extends Controller
         //     $user->role_id = 0;
         // }
         $now = time();
-          $course_register = Course_Register::with(['group', 'user','course','student_feess'=>function($q)use($now){
+          $course_register = Course_Register::with(['group', 'user','course',
+          'student_feess'=>function($q)use($now){
             $q
-            ->where('due_date','>',$now)
+            ->where('due_date','<',$now)
             ->where('status','pending');
           }])
           ->where('user_id', $user->id)
@@ -38,36 +39,12 @@ class Profile_Courses_Controller extends Controller
         //   dd($course_register);
             // dd($course_register);
             // $date = Carbon::now();
-            // $current_date = strtotime($date);
-            // if ($student_due_date <= $date_string) {
-           
-            // $student_fees = Student_fees::where('user_id', $user->id)->
-            // with('group','course_register', 'user','course',)->
-            // // where('status','pending')->where('due_date','<',$current_date)
-            // orderby('id', 'desc')->
-            // select('*')->get();
-            // dd($student_fees);
-        //     ->where('status','pending')->
-        // //    where('due_date','>',$current_date)->
-        // //    orderby('id', 'desc')->
-        // //    select('*')->get();
-        // //    dd($student_fees);   
-            
-            // 
-            // $date = Carbon::now();
-            // $date_string = strtotime($date);
-            // dd(  $date_string);
-            // $student_fees =  Student_fees::with('user')
-            //     ->where(
-            //         'due_date <',$date_string);
-
-           
 
 
         return view('user.profile_courses', compact('course_register'));
     }
 
-    // 
+    //
     public function courses_frame(Request $request)
     {
         // dd('saa');
@@ -76,7 +53,7 @@ class Profile_Courses_Controller extends Controller
 
         return view('user.courses_frame.index', compact('group'));
     }
-    // 
+    //
 
 
 

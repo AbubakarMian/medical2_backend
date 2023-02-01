@@ -96,10 +96,11 @@ class GroupController extends Controller
     public function add_or_update(Request $request, $group)
     {
         // dd($request->all());
+        $one_day_time_stamp = (60 * 60 *24) - 1;
         $start_date_timestamp = strtotime($request->start_date);
-        $end_date_timestamp = strtotime($request->end_date);
+        $end_date_timestamp = strtotime($request->end_date) + $one_day_time_stamp; // add one day so we count last day as cousese last day
         $reg_start_date_timestamp = strtotime($request->registration_start_time);
-        $reg_end_date_timestamp = strtotime($request->registration_end_time);
+        $reg_end_date_timestamp = strtotime($request->registration_end_time) + $one_day_time_stamp; // add one day so we count last day avalible for registration
         $group->name = $request->name;
         $group->courses_id = $request->courses_id;
         $group->start_date = $start_date_timestamp;
