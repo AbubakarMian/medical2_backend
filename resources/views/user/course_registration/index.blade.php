@@ -525,7 +525,7 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                            <img src="{!! asset('images/profile2.png') !!}"
                                 alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
@@ -556,14 +556,14 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                            <img src="{!! asset('images/profile1.png') !!}"
                                 alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
-                                    samirabenmahria <img src="images/verified.svg" alt="">
+                                    Jacob <img src="images/verified.svg" alt="">
                                 </h5>
                                 <p class="font-12 mb-0">
-                                    <span>United Arab Emirates</span> <span>June 10, 2021</span>
+                                    <span>USA</span> <span>June 10, 2021</span>
                                 </p>
                             </div>
                         </div>
@@ -588,14 +588,14 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                            <img src="{!! asset('images/profile3.png') !!}"
                                 alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
-                                    samirabenmahria <img src="images/verified.svg" alt="">
+                                    jhon <img src="images/verified.svg" alt="">
                                 </h5>
                                 <p class="font-12 mb-0">
-                                    <span>United Arab Emirates</span> <span>June 10, 2021</span>
+                                    <span>Australia</span> <span>June 10, 2021</span>
                                 </p>
                             </div>
                         </div>
