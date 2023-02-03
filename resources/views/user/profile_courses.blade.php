@@ -1,10 +1,10 @@
 @extends('user.layout.header_footer')
 @section('content')
     <?php
-    
+
     use Carbon\Carbon;
     use App\Model\Student_fees;
-    
+
     ?>
 
     <link href="{!! asset('theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
@@ -39,7 +39,7 @@
                                 <tbody>
                                     <?php
                                     $join_class = '';
-                                    
+
                                     ?>
                                     @foreach ($course_register as $key => $c)
                                         <?php
@@ -47,13 +47,13 @@
                                         $current_date = strtotime($date);
                                         ?>
                                         <tr>
-                                            <td scope="row">{{ $key + 1 }}</td>
-                                            <td>{{ $c->user->name ?? '' }}</td>
-                                            <td>{{ $c->group->courses->full_name ?? '' }}</td>
-                                            <td>{{ ucwords($c->group->name ?? '') }}</td>
-                                            <td>{{ $c->group->teacher->name ?? '' }}</td>
+                                            <td class="asdas" scope="row">{{ $key + 1 }}</td>
+                                            <td class="asdas">{{ $c->user->name ?? '' }}</td>
+                                            <td class="asdas">{{ $c->group->courses->full_name ?? '' }}</td>
+                                            <td class="asdas">{{ ucwords($c->group->name ?? '') }}</td>
+                                            <td class="asdas">{{ $c->group->teacher->name ?? '' }}</td>
 
-                                            <td>
+                                            <td class="asdas">
                                                 @if ($c->student_feess->count() > 0)
                                                     <!-- <a href="{{ asset('user_show_payment?student_id_not_paid=' . $c->id) }}" type="button" class="btn btn-danger" style="margin-bottom: 14px;"> -->
                                                     <a href="{{ asset('user_show_payment?course_register=' . $c->id) }}"
@@ -74,7 +74,7 @@
                                             </td>
 
                                         </tr>
-                                        
+
                                     @endforeach
                                 </tbody>
                             </table>

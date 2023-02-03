@@ -12,7 +12,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <div class="corsdetailareadata" 
+          <div class="corsdetailareadata"
           {{-- style="border-radius: 34px;" --}}
           >
           <div style="text-align: center;" class="rehedic">
@@ -22,47 +22,47 @@
 // dd( $users[1]->group->exams)
               ?>
             @foreach($users as $key =>$user)
-            <h5 style="text-align: center;
-    font-size: 15px;
+            <h3 class=" " style="text-align: center;
+    /* font-size: 15px; */
     font-family: fangsong;
-    text-decoration: underline;">
-     
-    
-           
-              {{ucwords($user->group->name)}} 
-            </h5>
+    font-weight: bold;">
+
+
+
+              {{ucwords($user->group->name)}}
+            </h3>
             <table class="table prtable">
               <thead>
                 <tr>
-                 
-                
-                
+
+
+
                   <th scope="col">Exam Name</th>
                   <th scope="col">Detail</th>
-                  
-                 
+
+
                 </tr>
               </thead>
               <tbody>
-              
+
               @foreach($user->group_exams  as $g_e)
                 <tr>
                   <td scope="row">
               {{ucwords($g_e->exam->name)}}
-                  </td> 
-                  <td scope="row">  
-              
+                  </td>
+                  <td scope="row">
+
                   {{ucwords($g_e->exam->detail)}}
-                  </td> 
+                  </td>
 
 </tr>
 
-               
+
   @endforeach
 
 </tbody>
    </table>
-                 
+
 
             @endforeach
 

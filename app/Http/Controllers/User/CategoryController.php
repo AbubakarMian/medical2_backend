@@ -13,18 +13,27 @@ class CategoryController extends Controller
     {
         $name = $request->category_name ?? '';
 
-        $category_list = Category::where('name', 'like', '%' . $name . '%')->get();
-        $category_count = $category_list->count();
-        if ($category_count == 1) {
-            $category_split = $category_list->split($category_count / 1);
-        } elseif ($category_count == 2) {
-            $category_split = $category_list->split($category_count / 2);
-        } elseif ($category_count == 3) {
-            $category_split = $category_list->split($category_count / 3);
-        } else {
-            $category_split = $category_list->split($category_count / 4);
+        $category_split = Category::where('name', 'like', '%' . $name . '%')->get()->toArray();
+        $category_count = count($category_split);
+        if ($category_count > 3) {
+            $category_split = array_chunk($category_split , 4);
         }
-        $category_arr = Category::pluck('name', 'id');
+        else{
+            // dd('asdasd');
+            $arr[] = $category_split;
+            // dd($arr);
+            $category_split = $arr ;
+        }
+        // dd($category_split);
+        // elseif ($category_count == 2) {
+        //     $category_split = $category_list->split($category_count / 2);
+        // } elseif ($category_count == 3) {
+        //     $category_split = $category_list->split($category_count / 3);
+        // } else {
+        //     $category_split = $category_list->split($category_count / 4);
+        // }
+        // $category_arr = Category::pluck('name', 'id');
+        // $category_split = $category_split->toArray();
         return view('user.category.index', compact('category_split', 'name', ));
     }
 

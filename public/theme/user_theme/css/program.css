@@ -42,7 +42,25 @@ h4.title {
     line-height: 19px;
     margin-bottom: 10px;
     color: black;
+    height: 55px;
+    overflow: scroll;
 }
+.teacher::-webkit-scrollbar-thumb:hover  {
+    background: rgb(99, 99, 99);
+}
+.teacher::-webkit-scrollbar-thumb {
+    background: rgb(168, 168, 168);
+}
+.teacher::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.teacher::-webkit-scrollbar {
+    scrollbar-width: thin;
+    width: 6px;
+}
+
+
 h4.title a {
     color: black !important;
 }
