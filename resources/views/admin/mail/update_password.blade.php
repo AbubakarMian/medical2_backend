@@ -97,7 +97,7 @@
     <div style="background-color:#bfb28e !important">
 
 
-        <a href="#"><img src="{!!asset('theme/user_theme/images/logo-icon.png')!!}" class="img-responsive" /></a>
+        <a href="#"><img src="{!!asset('public/theme/user_theme/images/logo-icon.png')!!}" class="img-responsive" /></a>
     </div>
 
 <b>

@@ -178,7 +178,7 @@
                 <div class="col-sm-12 ahc">
                     <div class="ahcdsa">
                         {{-- <img src="images/logo-icon.png" class="img-responsive"> --}}
-                        <a href="#"><img src="{!! asset('theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
+                        <a href="#"><img src="{!! asset('public/theme/user_theme/images/logo-icon.png') !!}" class="img-responsive" /></a>
                     </div>
                 </div>
             </div>

@@ -94,7 +94,7 @@ $(document).ready(function(){
                 //   var deleted_at   = response['data'][i].deleted_at;
 
                 if(!image){
-                    image = "{!!asset('images/logo.png')!!}"
+                    image = "{!!asset('public/images/logo.png')!!}"
                     console.log('no image');
                 }
 

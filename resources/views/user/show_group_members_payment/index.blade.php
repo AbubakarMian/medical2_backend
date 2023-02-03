@@ -2,7 +2,7 @@
 @section('content')
 
 
-    <link href="{!! asset('theme/user_theme/css/courses_payment.css') !!}" rel="stylesheet">
+    <link href="{!! asset('public/theme/user_theme/css/courses_payment.css') !!}" rel="stylesheet">
 
     <div class="bgareaa">
         <div class="page-header text-center dubhead">
