@@ -1,8 +1,8 @@
 @extends('user.layout.header_footer')
 @section('content')
-    <link href="{!! asset('public/theme/user_theme/css/profile_acount.css') !!}" rel="stylesheet">
+    <link href="{!! asset('theme/user_theme/css/profile_acount.css') !!}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="{!! asset('public/theme/user_theme/css/medical2.css') !!}" rel="stylesheet">
+    <link href="{!! asset('theme/user_theme/css/medical2.css') !!}" rel="stylesheet">
 
 
 

@@ -103,25 +103,25 @@
                         @endif
                     <div class="col-sm-3">
                         <div class="colorbox bgreen">
-                            <img src="{!!asset('public/theme/user_theme/images/workshop.png')!!}" class="img-responsive" />
+                            <img src="{!!asset('theme/user_theme/images/workshop.png')!!}" class="img-responsive" />
                             <h3>Workshop & Schedule</h3>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="colorbox bred">
-                            <img src="{!!asset('public/theme/user_theme/images/private.png')!!}" class="img-responsive" />
+                            <img src="{!!asset('theme/user_theme/images/private.png')!!}" class="img-responsive" />
                             <h3>Private & Groups</h3>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="colorbox bblue">
-                            <img src="{!!asset('public/theme/user_theme/images/ceu.png')!!}" class="img-responsive" />
+                            <img src="{!!asset('theme/user_theme/images/ceu.png')!!}" class="img-responsive" />
                             <h3>CEUs & Online Courses</h3>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="colorbox byellow">
-                            <img src="{!!asset('public/theme/user_theme/images/certification.png')!!}" class="img-responsive" />
+                            <img src="{!!asset('theme/user_theme/images/certification.png')!!}" class="img-responsive" />
                             <h3>Certificatoin Exams</h3>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                     <div class="col-sm-3">
                         <div class="coursebox">
                             <div class="courseboximg">
-                                <img src="{!!asset('public/theme/user_theme/images/healthcarecareercourses.png')!!}" class="img-responsive" />
+                                <img src="{!!asset('theme/user_theme/images/healthcarecareercourses.png')!!}" class="img-responsive" />
                             </div>
                             <div class="courseboxdata">
                                 <h4>Healthcare Career Courses</h4>
@@ -161,7 +161,7 @@
                         </div>
                         <div class="coursebox">
                             <div class="courseboximg">
-                                <img src="{!!asset('public/theme/user_theme/images/collegelocations.png')!!}" class="img-responsive" />
+                                <img src="{!!asset('theme/user_theme/images/collegelocations.png')!!}" class="img-responsive" />
                             </div>
                             <div class="courseboxdata">
                                 <h4>College Locations</h4>
@@ -173,7 +173,7 @@
                     <div class="col-sm-3">
                         <div class="coursebox">
                             <div class="courseboximg">
-                                <img src="{!!asset('public/theme/user_theme/images/collegeapplication.png')!!}" class="img-responsive" />
+                                <img src="{!!asset('theme/user_theme/images/collegeapplication.png')!!}" class="img-responsive" />
                             </div>
                             <div class="courseboxdata">
                                 <h4>College Application</h4>
@@ -183,7 +183,7 @@
                         </div>
                         <div class="coursebox">
                             <div class="courseboximg">
-                                <img src="{!!asset('public/theme/user_theme/images/collegecatalog.png')!!}" class="img-responsive" />
+                                <img src="{!!asset('theme/user_theme/images/collegecatalog.png')!!}" class="img-responsive" />
                             </div>
                             <div class="courseboxdata">
                                 <h4>College Catalog</h4>

@@ -9,8 +9,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="{!!asset('public/theme/user_theme/css/medical2.css')!!}" rel="stylesheet">
-  <link href="{!!asset('public/theme/user_theme/css/registrationform.css')!!}" rel="stylesheet">
+  <link href="{!!asset('theme/user_theme/css/medical2.css')!!}" rel="stylesheet">
+  <link href="{!!asset('theme/user_theme/css/registrationform.css')!!}" rel="stylesheet">
 
 </head>
 
@@ -21,14 +21,14 @@
       <div class="row headrow">
         <div class="col-sm-2 col-xs-6">
           <div class="logoArea">
-            <a href="#"><img src="{!!asset('public/theme/user_theme/images/logo-icon.png')!!}" class="img-responsive" /></a>
+            <a href="#"><img src="{!!asset('theme/user_theme/images/logo-icon.png')!!}" class="img-responsive" /></a>
           </div>
         </div>
         <div class="col-sm-10 col-xs-6">
           <div class="infoarea hidden-xs">
             <div class="infobox">
               <div class="infoboximg">
-                {{-- <img src="{!!asset('public/theme/user_theme/images/fax.png')!!}" class="img-responsive" /> --}}
+                {{-- <img src="{!!asset('theme/user_theme/images/fax.png')!!}" class="img-responsive" /> --}}
                 <i class="fa fa-fax" aria-hidden="true"></i>
               </div>
               <div class="infoboxdata">
@@ -38,7 +38,7 @@
             </div>
             <div class="infobox">
               <div class="infoboximg">
-                {{-- <img src="{!!asset('public/theme/user_theme/images/mail.png')!!}" class="img-responsive" /> --}}
+                {{-- <img src="{!!asset('theme/user_theme/images/mail.png')!!}" class="img-responsive" /> --}}
                 <i class="fa fa-envelope" aria-hidden="true"></i>
               </div>
               <div class="infoboxdata">
@@ -204,7 +204,7 @@
         <div class="row">
           <div class="col-sm-4 regeformimg">
             <div class="regeformimgg">
-              {{-- <img src="{!!asset('public/theme/user_theme/images/footerlogo.png')!!}" class="img-responsive" /> --}}
+              {{-- <img src="{!!asset('theme/user_theme/images/footerlogo.png')!!}" class="img-responsive" /> --}}
               <h3>Terms & Condition:</h3>
               <p>
                 Medical 2 Career College and the State of Mississippi requires that students
