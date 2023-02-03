@@ -110,7 +110,7 @@
     Please Click This Link To Update Password
 </br>
     <a href="{!!asset('user/update_password/?update_password='.$password.'&user_id='.$user_id)!!}">
-        Upadte Password
+        Update Password
     </a>
 <b>
 
