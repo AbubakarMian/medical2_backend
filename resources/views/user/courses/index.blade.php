@@ -18,7 +18,7 @@
                                 {!! Form::text(
                                     'courses_name',
                                     $name ?? '',
-                                
+
                                     [
                                         'class' => 'form-control bfgs',
                                         'data-parsley-trigger' => 'change',
@@ -33,24 +33,24 @@
                         </div>
                     </form>
                     <!-- <form id="allProductsSearchForm" class="theme-course-search" action="" method="GET"
-                                        style="width:100%;">
-                                        <div class="" style="width:100%;">
+                                                style="width:100%;">
+                                                <div class="" style="width:100%;">
 
-                                            <div class="form-group">
-                                                <label for="category_id">Select Category</label>
-                                                {!! Form::select('category_id', $category_arr, null, [
-                                                    'class' => 'form-control searchlist',
-                                                    'multiple' => 'multiple',
-                                                    'data-parsley-trigger' => 'change',
-                                                    'placeholder' => 'Select Category',
-                                                    'required',
-                                                    'maxlength' => '100',
-                                                ]) !!}
+                                                    <div class="form-group">
+                                                        <label for="category_id">Select Category</label>
+                                                        {!! Form::select('category_id', $category_arr, null, [
+                                                            'class' => 'form-control searchlist',
+                                                            'multiple' => 'multiple',
+                                                            'data-parsley-trigger' => 'change',
+                                                            'placeholder' => 'Select Category',
+                                                            'required',
+                                                            'maxlength' => '100',
+                                                        ]) !!}
 
-                                            </div><button type="submit">
-                                                <i class="fa fa-search"></i></button>
-                                        </div>
-                                    </form> -->
+                                                    </div><button type="submit">
+                                                        <i class="fa fa-search"></i></button>
+                                                </div>
+                                            </form> -->
                     <div class="row" id="searchLoader"
                         style="margin-top:10px; margin-left:35%;text-align:center; display: none;">
                         <img src="/img/ajax.gif" alt="loader">
@@ -66,16 +66,18 @@
                                 <div class="col-sm-3 gahalink">
                                     {{-- <a href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}"> --}}
                                     <div class="rating">
-
-                                        <div class="boxing">
-                                            <img src="{!! $p->avatar !!}" alt="Avatar" class="image">
-                                            <div class="middle">
-                                                <div class="text">
-                                                    <a
-                                                        href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}">View</a>
+                                           <a
+                                            href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}">
+                                            <div class="boxing">
+                                                <img src="{!! $p->avatar !!}" alt="Avatar" class="image">
+                                                <div class="middle">
+                                                    <div class="text">
+                                                        <a
+                                                            href="{{ asset('course/registration/?course_id=' . $p->id . '&type=' . $types) }}">View</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
 
                                         <h4 class="title">
 
