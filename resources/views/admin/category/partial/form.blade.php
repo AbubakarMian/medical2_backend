@@ -26,6 +26,7 @@
 
     .medsaveclick {
     padding: 1px !important;
+    color: white;
 }
 
     .modal-lg {
@@ -212,7 +213,7 @@
     <div class="form-group text-center">
         <div>
             {!! Form::submit('Save', [
-                'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
+                'class' => ' btn-block btn-lg btn-parsley medsaveclick',
                 'onblur' => 'return validateForm();',
             ]) !!}
         </div>

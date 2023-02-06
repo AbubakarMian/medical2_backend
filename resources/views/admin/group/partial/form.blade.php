@@ -2,10 +2,10 @@
 
 
 <style>
-    .medsaveclick {
+    .medsaveclick{
+        color: white;
         padding: 1px !important;
     }
-
     div#zoom {
         background-color: #f1f4f9;
         color: #59595a;
@@ -577,7 +577,7 @@
             <div class="form-group text-center">
                 <div>
                     {!! Form::submit('Save', [
-                        'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
+                        'class' => ' btn-block btn-lg btn-parsley medsaveclick',
                         'onclick' => 'return validateForm();',
                     ]) !!}
                 </div>

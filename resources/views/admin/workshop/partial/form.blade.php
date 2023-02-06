@@ -26,17 +26,10 @@
     .mbsc-ios.mbsc-datepicker .mbsc-calendar-slide {
         background: #;
     }
-    .medsaveclick {
-          width: 60% !important;
-          font-size: 17px !important;
-          font-weight: 500 !important;
-          height: 42px !important;
-          padding-bottom: 30px !important;
-          border-radius: 4px !important;
-          background: #da3e16 !important;
-          border-color: #da3e16 !important;
-          margin-top: 20px !important
-      }
+    .medsaveclick{
+        color: white;
+        padding: 1px !important;
+    }
 
     /* calender css */
 
@@ -77,7 +70,7 @@
                 ]) !!}
             </div>
         </div>
-        
+
         <div class="form-group">
             {!! Form::label('course', 'course') !!}
             <div>
@@ -91,7 +84,7 @@
                 ]) !!}
             </div>
         </div>
-        
+
         <div class="form-group">
             {!! Form::label('Teacher', 'teacher') !!}
             <div>
@@ -105,11 +98,11 @@
                 ]) !!}
             </div>
         </div>
-        
+
         <?php
-        
+
         ?>
-        
+
         <div class="form-group">
             {!! Form::label('start_time', 'Start Time') !!}
             <div>
@@ -118,7 +111,7 @@
                     'data-parsley-required' => 'true',
                     'data-parsley-trigger' => 'change',
                     'required',
-                
+
                     'maxlength' => '100',
                 ]) !!}
             </div>
@@ -141,7 +134,7 @@
             <label for="is_online ">Workshop Online Class</label>
             <input style="height: 12px;
             margin-top: 33px;" type="checkbox" id="online_checkbox" onclick="set_is_online()" name="is_online"><div>
-                
+
                 <!--  -->
                 <!-- <div class="form-group">
                 <label for="is_online ">Group Online Class</label>
@@ -157,34 +150,34 @@
             <div id="venue_map" style="display: block;    margin-top: 25px;">
                 <!-- <label >Enter Venue:</label>
                 <input type="text" required  name="venue" class = 'form-control'> -->
-                
-        
+
+
                 <input type="button" value="Open Map" class="btn btn-danger" onclick="open_map();">&nbsp;<label>Open Map For Workshop Venue</label>
                 <br>
                 <br>
-                
+
                 <input hidden="" name="group_lat" id="group_lats" value="">
                 <input hidden="" name="group_long" id="group_longs" value="">
             </div>
             <!--  -->
             <!-- <  group mappppppppppppppppppp-->
         </div>
-        
+
         <div class="result"></div>
-        
+
         </br>
-        
+
         <!--  -->
-        
+
         <div class="demo-multiple-select">
             <div style="height:5%">
                 <div class="mbsc-grid">
                     <div class="mbsc-row">
                         <div class="mbsc-col-sm-12 mbsc-col-md-4">
                             <div class="mbsc-form-group">
-        
+
                                 {{-- costum Calendar start --}}
-        
+
                                 <button type="button" class="btn btn-primary camodal" data-toggle="modal"
                                     data-target="#exampleModalCenter">
                                     Launch Calendar
@@ -194,24 +187,24 @@
                                     'date_input' => '.dates',
                                     'selection_type' => 'multiple',
                                 ])
-        
-        
+
+
                                 {{-- costum Calendar finish --}}
-        
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
     </div>
     <div class="col-md-12">
         <div class="col-md-5 pull-left">
             <div class="form-group text-center">
                 <div>
                     {!! Form::submit('Save', [
-                        'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
+                        'class' => 'btn-block btn-lg btn-parsley medsaveclick',
                         'onclick' => 'return validateForm();',
                     ]) !!}
                 </div>

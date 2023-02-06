@@ -310,9 +310,16 @@ $permission_reports = $permissions->where('section', 'report');
             <div class="form-group text-center">
                 <div>
                     {!! Form::submit('Save', [
-                        'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
+                        'class' => 'btn-block btn-lg btn-parsley medsaveclick',
                         'onblur' => 'return validateForm();',
                     ]) !!}
                 </div>
             </div>
         </div>
+
+        <style>
+            .medsaveclick{
+        color: white;
+        padding: 1px !important;
+    }
+        </style>
