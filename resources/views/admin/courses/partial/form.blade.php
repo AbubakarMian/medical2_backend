@@ -39,6 +39,10 @@
         transition: .5s ease;
         width: 100%;
     }
+    .medsaveclick{
+        color: white;
+        padding: 1px !important;
+    }
 
     .image_area:hover .overlay {
         height: 50%;
@@ -406,7 +410,7 @@ if (isset($courses)) {
             <div class="form-group text-center">
                 <div>
                     {!! Form::submit('Save', [
-                        'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
+                        'class' => ' btn-block btn-lg btn-parsley medsaveclick',
                         'onclick' => 'return validateForm();',
                     ]) !!}
                 </div>

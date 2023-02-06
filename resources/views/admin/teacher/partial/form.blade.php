@@ -8,6 +8,7 @@ select#gender {
 }
 .medsaveclick {
     padding-top: 10px !important;
+    color: white;
 }
     </style>
 
@@ -124,7 +125,7 @@ select#gender {
 <div class="col-md-5 pull-left">
     <div class="form-group text-center">
         <div>
-            {!! Form::submit('Save', ['class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick', 'onblur' => 'return validateForm();']) !!}
+            {!! Form::submit('Save', ['class' => ' btn-block btn-lg btn-parsley medsaveclick', 'onblur' => 'return validateForm();']) !!}
         </div>
     </div>
 </div>

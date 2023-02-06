@@ -62,7 +62,7 @@
 <div class="col-md-5 pull-left">
     <div class="form-group text-center">
         <div>
-            {!! Form::submit('Save', ['class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick', 'onblur' => 'return validateForm();']) !!}
+            {!! Form::submit('Save', ['class' => 'btn-block btn-lg btn-parsley medsaveclick', 'onblur' => 'return validateForm();']) !!}
         </div>
     </div>
 </div>
@@ -91,3 +91,9 @@
 
 @endsection
 
+<style>
+    .medsaveclick{
+        color: white;
+        padding: 1px !important;
+    }
+</style>
