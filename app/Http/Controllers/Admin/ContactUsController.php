@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Response;
-use App\Model\Contact_us;
+use App\Models\Contact_us;
 
 class ContactUsController extends Controller
 {

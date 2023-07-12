@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Config;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 use App\Libraries\ExportToExcel;
-use App\Model\Category;
+use App\Models\Category;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToArray;
 // Category;

@@ -4,20 +4,19 @@ namespace App\Http\Controllers\Reports;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Config;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 use App\Libraries\ExportToExcel;
-use App\Model\Student_fees;
-use App\Model\Books_courses;
-use App\Model\Category;
-use App\Model\Courses;
-use App\Model\Group_users;
-use App\Model\Group;
-use App\Model\Group_fees;
-use App\Model\Course_Register;
+use App\Models\Student_fees;
+use App\Models\Books_courses;
+use App\Models\Category;
+use App\Models\Courses;
+use App\Models\Group;
+use App\Models\Group_fees;
+use App\Models\Course_Register;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToArray;
 

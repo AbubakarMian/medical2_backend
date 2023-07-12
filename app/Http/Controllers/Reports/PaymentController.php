@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Reports;
 
 use App\Http\Controllers\Controller;
 use App\libraries\ExportToExcel;
-use App\Model\Payment;
-use App\Model\Student_fees;
+use App\Models\Payment;
+use App\Models\Student_fees;
 use App\Models\Request as ModelsRequest;
 use Carbon\Carbon;
 use App\Mail\Refund as RefundMail;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;

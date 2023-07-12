@@ -1,7 +1,5 @@
 <?php
 
-
-// dd('asdsad');
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::post('user/login', 'Services\UserController@create');
-// Route::post('user/drivers', 'Services\DriversController@create');
-// Route::get('/start_trip', 'Services\TripController@start_trip');
-// Route::get('/driver_student_list', 'Services\DriversController@get_students_list');
-
-
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});

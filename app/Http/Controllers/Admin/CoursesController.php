@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Config;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 use App\Libraries\ExportToExcel;
-use App\Model\Courses;
-use App\Model\Category;
-use App\Model\Courses_Fees;
+use App\Models\Courses;
+use App\Models\Category;
+use App\Models\Courses_Fees;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToArray;
 
