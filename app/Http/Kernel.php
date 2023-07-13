@@ -21,6 +21,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        // My custom middleware for general information logging a
+        \App\Http\Middleware\CustomLog::class,
     ];
 
     /**
@@ -63,5 +65,15 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        // 'admin.auth' => \App\Http\Middleware\AdminAuthCheck::class,
+
+        'auth.client_token' => \App\Http\Middleware\ClientOrAutherizationToken::class,
+
+        // admin middleware
+        'admin_auth' => \App\Http\Middleware\AdminAuth::class,
+         // User middleware
+         'user.auth' => \App\Http\Middleware\UserAuthCheck::class,
+         //Role_Middleware
+         'role_auth' => \App\Http\Middleware\Role_Middleware::class,
     ];
 }
