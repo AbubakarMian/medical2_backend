@@ -9,6 +9,7 @@ use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\CoursesController;
 use App\Http\Controllers\User\About_UsController as User_About_usContoller;
 use App\Http\Controllers\Admin\About_UsController as Admin_About_usContoller;
+use App\Http\Controllers\Admin\CoursesController as AdminCoursesController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\EmployeeController;
@@ -204,7 +205,7 @@ Route::get('group_members/payment',[CoursesController::class, 'group_members_pay
 // Route::post('payment/stripe', 'User\CoursesController@makepayment');
 Route::post('payment/stripe',[CoursesController::class, 'makepayment']);
 // Route::get('payment/success', 'User\CoursesController@payment_success');
-Route::post('payment/success',[CoursesController::class, 'payment_success']);
+Route::get('payment/success',[CoursesController::class, 'payment_success']);
 // other pages
 // Route::get('about_us', 'User\About_UsController@index');
 Route::get('about_us',[About_UsController::class, 'index']);
@@ -255,19 +256,19 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         // courses crud
         Route::group(['prefix'=>'courses'],function(){
             // Route::get('/', 'CoursesController@index')->name('courses.index');
-            Route::get('/',[CoursesController::class, 'index'])->name('courses.index');
+            Route::get('/',[AdminCoursesController::class, 'index'])->name('courses.index');
             // Route::get('get_courses', 'CoursesController@get_courses')->name('get_courses.index');
-            Route::get('get_courses',[CoursesController::class, 'get_courses'])->name('get_courses.index');
+            Route::get('get_courses',[AdminCoursesController::class, 'get_courses'])->name('get_courses.index');
             // Route::get('create', 'CoursesController@create')->name('courses.create'); //add
-            Route::get('create',[CoursesController::class, 'create'])->name('courses.create'); //add
+            Route::get('create',[AdminCoursesController::class, 'create'])->name('courses.create'); //add
             // Route::post('save', 'CoursesController@save')->name('courses.save');
-            Route::post('save',[CoursesController::class, 'save'])->name('courses.save');
+            Route::post('save',[AdminCoursesController::class, 'save'])->name('courses.save');
             // Route::get('edit/{id}', 'CoursesController@edit')->name('courses.edit');
-            Route::get('edit/{id}',[CoursesController::class, 'edit'])->name('courses.edit');
+            Route::get('edit/{id}',[AdminCoursesController::class, 'edit'])->name('courses.edit');
             // Route::post('update/{id}', 'CoursesController@update')->name('courses.update');
-            Route::post('update/{id}',[CoursesController::class, 'update'])->name('courses.update');
+            Route::post('update/{id}',[AdminCoursesController::class, 'update'])->name('courses.update');
             // Route::post('delete/{id}', 'CoursesController@destroy_undestroy')->name('courses.delete');
-            Route::post('delete/{id}',[CoursesController::class, 'destroy_undestroy'])->name('courses.delete');
+            Route::post('delete/{id}',[AdminCoursesController::class, 'destroy_undestroy'])->name('courses.delete');
 
 
         });

@@ -11,34 +11,34 @@ class Group extends Model
 
    public function courses()
    {
-       return $this->hasOne('use App\Models\Courses', 'id', 'courses_id');
+       return $this->hasOne('App\Models\Courses', 'id', 'courses_id');
    }
    public function group_timings()
    {
-       return $this->hasMany('use App\Models\Group_Timings', 'group_id', 'id');
+       return $this->hasMany('App\Models\Group_Timings', 'group_id', 'id');
    }
    public function teacher()
    {
-       return $this->hasOne('use App\Models\Teacher', 'id', 'teacher_id');
+       return $this->hasOne('App\Models\Teacher', 'id', 'teacher_id');
    }
    public function course_register(){
-    return $this->hasOne('use App\Models\Course_Register','group_id','id');
+    return $this->hasOne('App\Models\Course_Register','group_id','id');
 }
    public function user()
    {
-       return $this->hasOne('App\User', 'id', 'user_id');
+       return $this->hasOne('App\Models\User', 'id', 'user_id');
    }
    public function group_exams()
    {
-       return $this->hasMany('use App\Models\Group_Exams', 'group_id', 'id');
+       return $this->hasMany('App\Models\Group_Exams', 'group_id', 'id');
    }
    public function group_fees()
    {
-       return $this->hasMany('use App\Models\Group_fees', 'group_id', 'id');
+       return $this->hasMany('App\Models\Group_fees', 'group_id', 'id');
    }
    public function student_fees()
    {
-       return $this->hasMany('use App\Models\Student_fees', 'group_id', 'id');
+       return $this->hasMany('App\Models\Student_fees', 'group_id', 'id');
    }
 
 

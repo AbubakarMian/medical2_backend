@@ -13,10 +13,10 @@ class Question extends Model
 
     public function choice()
     {
-        return $this->hasMany('use App\Models\Choice', 'question_id', 'id');
+        return $this->hasMany('App\Models\Choice', 'question_id', 'id');
     }
     public function courses()
     {
-        return $this->hasMany('use App\Models\Question_Course', 'question_id', 'id');
+        return $this->hasMany('App\Models\Question_Course', 'question_id', 'id');
     }
 }

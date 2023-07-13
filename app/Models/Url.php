@@ -12,7 +12,7 @@ class Url extends Model
 
     public function permission()
     {
-        return $this->hasOne('use App\Models\Permission', 'url_id', 'id');
+        return $this->hasOne('App\Models\Permission', 'url_id', 'id');
     }
    
  }

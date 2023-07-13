@@ -12,14 +12,14 @@ class Courses extends Model
 
     public function question()
     {
-        return $this->hasOne('use App\Models\Question', 'question_id', 'id');
+        return $this->hasOne('App\Models\Question', 'question_id', 'id');
     }
     public function group()
     {
-        return $this->hasOne('use App\Models\Group', 'courses_id', 'id');
+        return $this->hasOne('App\Models\Group', 'courses_id', 'id');
     }
     public function course_fees()
     {
-        return $this->hasMany('use App\Models\Courses_Fees', 'course_id', 'id');
+        return $this->hasMany('App\Models\Courses_Fees', 'course_id', 'id');
     }
 }

@@ -12,11 +12,11 @@ class Question_Course extends Model
 
     public function question()
     {
-        return $this->hasOne('use App\Models\Question', 'id', 'question_id');
+        return $this->hasOne('App\Models\Question', 'id', 'question_id');
     }
     public function course()
     {
-        return $this->hasOne('use App\Models\Courses', 'id', 'course_id');
+        return $this->hasOne('App\Models\Courses', 'id', 'course_id');
     }
 
 }

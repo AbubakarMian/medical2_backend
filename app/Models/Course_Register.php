@@ -12,22 +12,22 @@ class Course_Register extends Model
 
     public function course()
     {
-        return $this->hasOne('use App\Models\Courses', 'id', 'course_id');
+        return $this->hasOne('App\Models\Courses', 'id', 'course_id');
     }
     public function user(){
-        return $this->hasOne('App\User','id','user_id');
+        return $this->hasOne('App\Models\User','id','user_id');
     }
     public function group(){
-        return $this->hasOne('use App\Models\Group','id','group_id');
+        return $this->hasOne('App\Models\Group','id','group_id');
     }
     public function student_fees(){
-        return $this->hasOne('use App\Models\Student_fees','course_register_id','id');
+        return $this->hasOne('App\Models\Student_fees','course_register_id','id');
     }
     public function student_feess(){
-        return $this->hasMany('use App\Models\Student_fees','course_register_id','id');
+        return $this->hasMany('App\Models\Student_fees','course_register_id','id');
     }
     public function group_exams()
     {
-        return $this->hasMany('use App\Models\Group_Exams', 'group_id', 'group_id');
+        return $this->hasMany('App\Models\Group_Exams', 'group_id', 'group_id');
     }
  }

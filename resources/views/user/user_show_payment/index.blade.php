@@ -122,9 +122,6 @@
 @elseif($student_fees)
 
 <!-- multiple payment show -->
-
-
-<!-- <form role="form" method="post" action="{{action('User\CoursesController@payment_screen')}}"> -->
 <form role="form" method="post" action="{{url('user_payment')}}">
     @csrf
     @foreach($student_fees as $key => $c)

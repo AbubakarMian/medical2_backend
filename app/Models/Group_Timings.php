@@ -18,10 +18,10 @@ class Group_Timings extends Model
 
    public function courses()
    {
-       return $this->hasOne('use App\Models\Courses', 'id', 'courses_id');
+       return $this->hasOne('App\Models\Courses', 'id', 'courses_id');
    }
    public function group(){
-        return $this->hasOne('use App\Models\Group','id','group_id');
+        return $this->hasOne('App\Models\Group','id','group_id');
     }
    public function getStartTimeAttribute($value){
         return $value - $this->timezone;
