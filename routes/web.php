@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\UserController as Admin_UserController;
 use App\Http\Controllers\User\Profile_Courses_Controller;
 use App\Http\Controllers\User\CategoryController;
 
@@ -243,9 +244,9 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         // Route::get('get_contactus', 'ContactUsController@get_contactus')->name('get_contactus.index');
         Route::get('get_contactus',[ContactUsController::class, 'get_contactus'])->name('get_contactus.index');
         // Route::get('users', 'UserController@index')->name('location.index');
-        Route::get('users',[UserController::class, 'index'])->name('location.index');
+        Route::get('users',[Admin_UserController::class, 'index'])->name('location.index');
         // Route::get('users/get_users', 'UserController@getUsers')->name('users.get_users');
-        Route::get('users/get_users',[UserController::class, 'getUsers'])->name('users.get_users');
+        Route::get('users/get_users',[Admin_UserController::class, 'getUsers'])->name('users.get_users');
         // Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
         Route::get('dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
         // Route::get('logout', 'AdminController@logout')->name('logout');
