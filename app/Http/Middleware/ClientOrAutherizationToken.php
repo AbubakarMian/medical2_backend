@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Exceptions\UnAuthorizedRequestException;
 use App\Libraries\APIResponse;
-use App\User;
+use App\Models\User;
 use Closure;
 use Exception;
 use Illuminate\Support\Facades\Config;

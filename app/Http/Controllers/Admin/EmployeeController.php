@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Model\Role;
-use App\User;
-use App\Model\Permission;
-use App\Model\Url;
-use App\Model\User_Permission;
-use App\Model\Category;
-use App\Model\Courses;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Permission;
+use App\Models\Url;
+use App\Models\User_Permission;
+use App\Models\Category;
+use App\Models\Courses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
