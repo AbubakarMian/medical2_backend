@@ -1,7 +1,7 @@
 <?php
 namespace Database\Seeders;
 
-use App\Model\Role;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class role_seeder extends Seeder

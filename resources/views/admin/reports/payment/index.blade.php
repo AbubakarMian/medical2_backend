@@ -5,7 +5,8 @@
 @section('report_description')
 @stop
 @section('table')
-    <h3 id="refund_success"></h3>
+   <h3 class="rfnd-sccs"  id="refund_success" style ="display:none;"></h3>
+   <h3 class="rfnd-unsccs"  id="refund_unsuccess" style ="display:none;"></h3>
     <table id="userTable" class="table table-bordered">
         <thead>
             <tr>
@@ -47,12 +48,15 @@
                     type: 'get',
                     dataType: 'json',
                     success: function(response) {
+
                         $("#userTable").css("opacity", 1);
                         var len = response.data.length;
                         var data = response.data;
                         var tr_str = '';
 
                         for (var i = 0; i < len; i++) {
+                            console.log('course',data[i].course)
+                            console.log('course',data[i].course.full_name)
                             var payment_id = data[i].payment_id;
                             var date = data[i].created_at;
                             var user_name = data[i].user.name;
@@ -160,16 +164,21 @@
                     'payment_refund_reason': payment_refund_reason,
                 },
                 success: function(data) {
+
                     console.log("response", data);
                     console.log('Amount successfully refunded');
 
                     if (data.status) {
                         console.log(' 11Amount successfully refunded');
 
+                        $('#refund_success').css("display" , "block");
+
                         $('#refund_success').html('Amount successfully refunded');
 
                     } else {
-                        $('#refund_success').html('Eroor refunded');
+                        $('#refund_unsuccess').css("display" , "block");
+
+                        $('#refund_unsuccess').html('Error: Your Refund Request Has Been Rejected');
 
                     }
                 },
@@ -224,4 +233,30 @@
         color: #ffffff;
 
     }
+    .rfnd-sccs {
+    background: #e5ffe7;
+    width: 30%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 2px;
+    padding-right: 4px;
+    margin-bottom: 13px;
+    margin-top: -30px;
+    text-align: center;
+    border-radius: 2%;
+    margin-left: 33%;
+}
+.rfnd-unsccs {
+    background: #ffe6e6;
+    width: 31%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 10px;
+    margin-top: -30px;
+    text-align: center;
+    border-radius: 2%;
+    margin-left: 33%;
+}
 </style>

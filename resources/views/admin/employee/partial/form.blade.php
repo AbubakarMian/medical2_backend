@@ -12,10 +12,20 @@
 <div class="form-group">
     {!! Form::label('email',' Email') !!}
     <div>
-        {!! Form::text('email', null, ['class' => 'form-control',
+        {!! Form::email('email', null, ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
         'placeholder'=>' Email','required',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('phone_no',' Phone No') !!}
+    <div>
+        {!! Form::text('phone_no', null, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>' Phone no','required',
         'maxlength'=>"100"]) !!}
     </div>
 </div>
@@ -52,7 +62,7 @@
 <div class="col-md-5 pull-left">
     <div class="form-group text-center">
         <div>
-            {!! Form::submit('Save', ['class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick', 'onblur' => 'return validateForm();']) !!}
+            {!! Form::submit('Save', ['class' => 'btn-block btn-lg btn-parsley medsaveclick', 'onblur' => 'return validateForm();']) !!}
         </div>
     </div>
 </div>
@@ -81,3 +91,9 @@
 
 @endsection
 
+<style>
+    .medsaveclick{
+        color: white;
+        padding: 1px !important;
+    }
+</style>

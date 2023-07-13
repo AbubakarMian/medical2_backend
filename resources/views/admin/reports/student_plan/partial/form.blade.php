@@ -1,3 +1,5 @@
+{{-- {!!dd($student_plan);!!} --}}
+
 <style>
     .image_area {
         position: relative;
@@ -48,60 +50,106 @@
         transform: translate(-50%, -50%);
         text-align: center;
     }
+
+    .plan_details td {
+        font-size: 13px;
+        font-family: inherit;
+        color: gray;
+        padding: 10px;
+    }
+    .plan_details th {
+        font-family: inherit;
+        padding: 10px;
+    }
+    .plan_details h3 {
+        font-size: 19px;
+        font-weight: 600;
+    }
+        .plan_details, th, td  {
+        border:1px solid;
+        text-align: center;
+
+    }
+    .plan_details{
+        width:100%;
+        margin-left:2px;
+        table-layout: fixed;
+
+    }
+    button.\`rmv-btn\` {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    /* padding: 7px 12px; */
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-right: 10%;
+    padding-left: 10%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 3px;
+    }
+    button.\`rmv-btn\`:hover {
+        color: #c4c1c1;
+    }
+    .edit_plans_area{
+        margin-top: 10%;
+    }
+    .status_cross{
+        color: red;
+    }
+    .status_chk{
+        color: green;
+    }
 </style>
 
 <?php
 $type = '';
 ?>
-@foreach($student_plan as $p)
-@if($p->status == 'paid')
-<div class="form-group">
-        {!! Form::label('old_amount','Amount Paid') !!}
-        <div>
-            <input value="{{$p->amount}}" name="lname" disabled class="form-control old_amount">
-        </div>
-        </select>
-    </div>
- @else(!$p->status == 'paid')
+<table class="plan_details" >
+    <thead>
+        <th>Due Date</th>
+        <th>Amount</th>
+        <th>Paid</th>
+        <th>Payment Id</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        @foreach($student_plan as $p)
+            <?php
+                $amount = $p->amount;
+                $status = '<i class="fa fa-times status_cross" aria-hidden="true"></i>';
+                $payment_id = '';
+                $remove = "<button class=`rmv-btn` onclick=\"remove_fee(".$p->id.")\">Remove</button>";
+                // dd($remove);
+                if($p->status == 'paid'){
+                    $status = '<i class="fa fa-check status_chk" aria-hidden="true"></i>';
+                    $payment_id = $p->payment_id;
+                    $remove = "";
+                }
+            ?>
+            <tr class="fee_plan_tr_{!!$p->id!!}">
+                <td>{!!date('d,m,Y',$p->due_date)!!}</td>
+                <td>{!!$amount!!}</td>
+                <td>{!!$status!!}</td>
+                <td>{!!$payment_id!!}</td>
+                <td>{!!$remove!!}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
-<div class="old_paln_show">
-
-    @if($p->fees_type == $type)
-    @else
-    <div class="form-group">
-        {!! Form::label('old_fees_type','Fees Type') !!}
-        <div>
-            <input value="{{$p->fees_type}}" name="lname" disabled class="form-control">
-        </div>
-        </select>
-    </div>
-    @endif
-    <?php
-    $type = $p->fees_type;
-    ?>
-
-    <div class="form-group">
-        {!! Form::label('old_amount','Amount Not Paid ') !!}
-        <div>
-            <input value="{{$p->amount}}" name="lname" disabled class="form-control old_amount">
-        </div>
-        </select>
-    </div>
-
-    <div class="form-group">
-        {!! Form::label('old_due_date','Due Date') !!}
-        <div>
-            <input value="{!! date('d-m-Y', $p->due_date) !!}" name="l_name" disabled class="form-control">
-
-        </div>
-        </select>
-    </div>
-</div>
-<input hidden name="student_id[]" value="{{$p->id}}">
 <input hidden name="user_id" value="{{$p->user_id}}">
 <input hidden name="group_id" value="{{$p->group_id}}">
 <input hidden name="course_register_id" value="{{$p->course_register_id}}">
 <input hidden name="course_id" value="{{$p->course_id}}">
+@foreach($student_plan as $p)
+@if($p->status != 'paid')
+<input hidden name="student_fee_id[]" class="student_pre_fee_id_{!!$p->id!!}" value="{{$p->id}}">
 @endif
 @endforeach
 <div class="row">
@@ -111,26 +159,31 @@ $type = '';
 
     <div class="col-sm-2">
 
-        <button type="button" onclick="edit_plan('{{$p->fees_type}}')" class="btn btn-danger edit_plans_area"> New Plan</button>
+        {{-- <button type="button" onclick="edit_plan('{{$p->fees_type}}')" class="btn btn-danger edit_plans_area"> New Plan</button> --}}
+        <button type="button" onclick="edit_plan('installment')" class="btn btn-danger edit_plans_area"> New Plan</button>
 
     </div>
 
 </div>
-<div class="fees_type_areaaa">
+{{-- @if () --}}
+{{-- @endif --}}
+{{-- {!!dd($fees_type)!!} --}}
+
+<div class="fees_type_areaaa" style="display: none">
     <div class="form-group">
         {!! Form::label('fees_type','Fees Type',) !!}
-        {!! Form::select('fees_type',$fees_type,null,[
+        {!! Form::select('fees_type', $fees_type,'installment',[
         "onchange"=>"open_fees_type_div()",
         "class"=>"form-control fees_type remove_option",]) !!}
         </select>
     </div>
 </div>
-<div class="complete_fees_area">
+{{-- <div class="complete_fees_area">
     <h3>
         Enter Complete Fess Amount And Due Date
-    </h3>
+    </h3> --}}
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
                 {!! Form::label('amount','Amount') !!}
@@ -156,9 +209,9 @@ $type = '';
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-</div>
+{{-- </div> --}}
 
 <div class="installment_fees_area">
     <h3>
@@ -206,7 +259,10 @@ $type = '';
     }
 
     function remove_installment(e) {
-        $(e).parent().remove();
+        var installment_length = $('.installmet_div_row').length;
+        if(installment_length > 1){
+            $(e).parent().remove();
+        }
     }
 
     function installment_html(v) {
@@ -228,7 +284,7 @@ $type = '';
                 <div class="form-group">
                     <lable>Due Date</lable>
             <div>
-                <input type='number' name='due_date[]' class='form-control'
+                <input type='date' name='due_date[]' class='form-control'
                             data-parsley-required='true' , data-parsley-trigger='change'
                             placeholder='Enter Due Date'>
             </div>
@@ -250,17 +306,23 @@ $type = '';
 
     function edit_plan(fees_type) {
         var old_paln_show = $('.old_paln_show').hide();
+        add_installment_divs();
+        // var fees_type_areaaa = $('.fees_type_areaaa').show();
         if(fees_type == 'installment'){
-          var fees_type_areaaa = $('.fees_type_areaaa').show();
+
           var complete_remove = $(".remove_option option[value='complete']").remove();
           var $installment_fees_area_show = $('.installment_fees_area').show();
          }
         else{
-            var fees_type_areaaa = $('.fees_type_areaaa').show();
             var installment_remove = $(".remove_option option[value='installment']").remove();
             var $complete_fees_area_show = $('.complete_fees_area').show()
       }
         var edit_plans_area = $('.edit_plans_area').hide();
+    }
+    function remove_fee(fee_id){
+        $('.fee_plan_tr_'+fee_id).remove();
+        $('.student_pre_fee_id_'+fee_id).remove();
+        // false;
     }
 
     $(document).ready(function() {
@@ -269,8 +331,6 @@ $type = '';
         var $fees_type_areaaa = $('.fees_type_areaaa').hide();
         var $remove_divs = $('.remove_divs').hide();
     });
-</script>
-<script>
     function validateForm() {
         return true;
     }

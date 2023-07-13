@@ -41,7 +41,10 @@
         top: 0;
         bottom: 0;
     }
-
+    .medsaveclick{
+        color: white;
+        padding: 1px !important;
+    }
     #checkboxes {
         display: none;
         border: 1px #dadada solid;
@@ -249,7 +252,7 @@
     <div class="form-group text-center">
         <div>
             {!! Form::submit('Save', [
-                'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
+                'class' => 'btn-block btn-lg btn-parsley medsaveclick',
                 'onclick' => 'return validateForm();',
             ]) !!}
         </div>

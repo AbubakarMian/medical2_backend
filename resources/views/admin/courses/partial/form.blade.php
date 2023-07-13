@@ -1,4 +1,12 @@
 <style>
+    .vdvjib img {
+        /* max-height: 80px; */
+        max-width: 100px;
+        margin-bottom: 7px;
+        border: 1px solid;
+        border-radius: 11px;
+    }
+
     .image_area {
         position: relative;
     }
@@ -31,6 +39,10 @@
         transition: .5s ease;
         width: 100%;
     }
+    .medsaveclick{
+        color: white;
+        padding: 1px !important;
+    }
 
     .image_area:hover .overlay {
         height: 50%;
@@ -51,6 +63,15 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         text-align: center;
+    }
+    .vsdas {
+        margin: -29px -10px;
+        margin-bottom: 3%;
+    }
+    .installmet_div_row {
+        padding: 5px 10px;
+        border: 1px solid #e6e6e6;
+        margin-bottom: 5px;
     }
 </style>
 @if ($message = Session::get('error'))
@@ -149,7 +170,7 @@ if (isset($courses)) {
 
         <div>
             <div class="row">
-                <div class="col-md-4">&nbsp;</div>
+                {{-- <div class="col-md-4">&nbsp;</div> --}}
                 <input hidden value='378' id="image_width">
                 <input hidden value='226' id="image_height">
                 <input hidden value='16' id="aspect_ratio_width">
@@ -175,14 +196,18 @@ if (isset($courses)) {
                                 }
 
                                 ?>
-                                <img src="{!! $avatar !!}" id="uploaded_image" class="img-responsive img-circle"
-                                    name="uploadeds_image" />
+                                <div class="vdvjib">
+                                    <img src="{!! $avatar !!}" id="uploaded_image" class="img-responsive"
+                                        name="uploadeds_image" />
+                                </div>
+
                                 <div class="overlay1">
-                                    <div class="text">Upload</div>
+                                    {{-- <div class="text">Upload</div> --}}
                                 </div>
 
                                 <input type="file" {!! $required !!} name="image" class="image upload_image"
                                     id="upload_image" style="display:block" />
+
                             </label>
                         </div>
                         <hr>
@@ -196,10 +221,11 @@ if (isset($courses)) {
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Crop Image Before Upload</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <h5 style="text-align: center; font-size: 14px; font-weight: 600;" class="modal-title">
+                                    Crop Image Before Upload</h5>
+                                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
-                                </button>
+                                </button> --}}
                             </div>
                             <div class="modal-body">
                                 <div class="img-container">
@@ -245,30 +271,16 @@ if (isset($courses)) {
 
     </div>
     <div class="col-sm-6">
-        {!! Form::label('description', 'Description') !!}
-        <div>
-            <div>
-                {!! Form::textarea('description', null, [
-                    'class' => 'ckeditor form-control',
-                    'id' => 'summary-ckeditor',
-                    'data-parsley-required' => 'true',
-                    'data-parsley-trigger' => 'change',
-                    'placeholder' => 'Enter title',
-                    'required',
-                    'maxlength' => '100',
-                ]) !!}
-            </div>
-        </div>
-        <br>
         <div class="form-group">
-            {!! Form::label('fees_type', 'Fees Type') !!}
-            {!! Form::select('fees_type', $fees_type, null, [
+            {{-- {!! Form::label('fees_type', 'Fees Type') !!} --}}
+            {{-- {!! Form::text('fees_type', 'installment', null, [
                 'placeholder' => "Select
-                                                                Type",
+                                                                            Type",
                 'onchange' => 'open_fees_type_div()',
                 'class' => 'form-control fees_type',
                 'required',
-            ]) !!}
+            ]) !!} --}}
+            <input type="hidden" name="fees_type" value="installment">
             </select>
         </div>
 
@@ -297,17 +309,46 @@ if (isset($courses)) {
             </div>
         </div>
 
-        <div class="installment_fees_area" style="{!! $installment_fees_area_display !!}">
+        <div class="installment_fees_area" >
             <div class="row">
                 <div class="col-sm-10"></div>
                 <div class="col-sm-2">
                     <button type="button" onclick="add_installment_divs()"
-                        class="btn btn-danger installment_divs">Add
+                        class="btn btn-danger installment_divs vsdas">Add
                         Installment</button>
                 </div>
             </div>
+            @if (!isset($courses))
 
-            <div class="multiple_times_open_div" style="background-color: #d3d3d32e;">
+
+
+            <div class="row installmet_div_row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <div>
+                            <input type="number" name="amount[]" class="form-control amount_validation" data-parsley-required="true"
+                                data-parsley-trigger="change" placeholder="Enter Amount">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <div>
+                            <input type="date" name="due_date[]" class="form-control due_date_validation"
+                                data-parsley-required="true" data-parsley-trigger="change" placeholder="Enter Due Date">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 btn btn-danger form-group" onclick="remove_installment(this)"
+                    style="margin-top: 10px;margin-left: 16px;margin-bottom: 18px;">Remove
+                </div>
+            </div>
+            @endif
+            <div class="multiple_times_open_div" style="">
+                {{-- {!!$courses=''!!}
+                @if (!isset($courses)) --}}
                 @if (isset($courses))
                     @foreach ($courses->course_fees as $course_fees)
                         <div class="row installmet_div_row">
@@ -340,6 +381,20 @@ if (isset($courses)) {
                 @endif
             </div>
         </div>
+        {!! Form::label('description', 'Description') !!}
+        <div>
+            <div>
+                {!! Form::textarea('description', null, [
+                    'class' => 'ckeditor form-control',
+                    'id' => 'summary-ckeditor',
+                    'data-parsley-required' => 'true',
+                    'data-parsley-trigger' => 'change',
+                    'placeholder' => 'Enter title',
+                    'required',
+                    'maxlength' => '100',
+                ]) !!}
+            </div>
+        </div>
         <input type="hidden" name="cropped_image" id="cropped_image">
     </div>
 </div>
@@ -355,7 +410,7 @@ if (isset($courses)) {
             <div class="form-group text-center">
                 <div>
                     {!! Form::submit('Save', [
-                        'class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick',
+                        'class' => ' btn-block btn-lg btn-parsley medsaveclick',
                         'onclick' => 'return validateForm();',
                     ]) !!}
                 </div>
@@ -379,12 +434,12 @@ if (isset($courses)) {
             var select_fees_type = $('.fees_type').val();
             console.log('select_fees_type__select_fees_type', select_fees_type);
 
-            if (select_fees_type == 'complete') {
-                var complete_fees_area = $('.complete_fees_area').show()
-                var installment_fees_area = $('.installment_fees_area').hide()
-                $('.installmet_div_row').remove();
+            // if (select_fees_type == 'complete') {
+            //     var complete_fees_area = $('.complete_fees_area').show()
+            //     var installment_fees_area = $('.installment_fees_area').hide()
+            //     $('.installmet_div_row').remove();
 
-            };
+            // };
             if (select_fees_type == 'installment') {
                 var installment_fees_area = $('.installment_fees_area').show();
                 var complete_fees_area = $('.complete_fees_area').hide()
@@ -392,8 +447,12 @@ if (isset($courses)) {
         }
 
         function remove_installment(e) {
+            var installment_length = $('.installmet_div_row').length;
+        if(installment_length > 1){
             $(e).parent().remove();
         }
+        }
+
 
         function installment_html(v) {
             return (`
@@ -401,6 +460,7 @@ if (isset($courses)) {
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>Amount</label>
+
                         <div>
                             <input type="number" name="amount[]" class="form-control amount_validation" data-parsley-required="true"
                                 data-parsley-trigger="change" placeholder="Enter Amount">

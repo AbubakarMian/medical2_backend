@@ -94,14 +94,14 @@ h4 {
 }
 .dates {
     font-size: 16px;
-    color: #f1582b;
+    color: #589d00 !important;
     background-color: gold;
     margin-left: 14px;
     padding-top: 7px;
 }
 .date {
     font-size: 16px;
-    color: #f1582b;
+    color: #589d00 !important;
     background-color: gold;
     margin-left: 64px;
     border-radius: -8px;
@@ -115,16 +115,17 @@ h4 {
     margin-top: 50px;
 } */
 .courbanddata h2 {
-    font-weight: 500;
-    text-align: center;
+    font-weight: 600;
+    /* text-align: center; */
     color: currentColor;
     margin-top: 50px;
     font-family: revert;
-    color: aliceblue;
-    background-color: black;
+    color: #292974;
+    /* background-color: black; */
     width: 98%;
-    border-radius: 34px;
-    font-size: 29px;
+    border-radius: 10px;
+    font-size: 35px;
+    /* padding: 10px; */
 }
 .dubhead h1 {
     font-weight: 600;

@@ -60,10 +60,11 @@ class GroupController extends Controller
     public function edit($id)
     {
         $control = 'edit';
-        $group = Group::find($id);
-
+        $group = Group::with('group_fees')->find($id);
         $group->start_date = date('Y-m-d',$group->start_date);
         $group->end_date = date('Y-m-d',$group->end_date);
+        $group->registration_start_time = date('Y-m-d',$group->registration_start_time);
+        $group->registration_end_time = date('Y-m-d',$group->registration_end_time);
         $fees_type = Config::get('constants.fees_type');
         $course_id = Courses::pluck('full_name', 'id');
 
@@ -88,18 +89,25 @@ class GroupController extends Controller
         // dd('aa');
         $group = Group::find($id);
         $group_timings =  Group_Timings::where('group_id',  $group->id)->delete();
+        $group_timings =  Group_fees::where('group_id',  $group->id)->delete();
         return $this->add_or_update($request, $group);
         return Redirect('admin/group');
     }
     public function add_or_update(Request $request, $group)
     {
         // dd($request->all());
+        $one_day_time_stamp = (60 * 60 *24) - 1;
         $start_date_timestamp = strtotime($request->start_date);
-        $end_date_timestamp = strtotime($request->end_date);
+        $end_date_timestamp = strtotime($request->end_date) + $one_day_time_stamp; // add one day so we count last day as cousese last day
+        $reg_start_date_timestamp = strtotime($request->registration_start_time);
+        $reg_end_date_timestamp = strtotime($request->registration_end_time) + $one_day_time_stamp; // add one day so we count last day avalible for registration
         $group->name = $request->name;
         $group->courses_id = $request->courses_id;
         $group->start_date = $start_date_timestamp;
         $group->end_date = $end_date_timestamp;
+        $group->registration_start_time =  $reg_start_date_timestamp;
+        $group->registration_end_time =  $reg_end_date_timestamp;
+        // $group->fees_type = $end_date_timestamp;
 
         if ($start_date_timestamp > $end_date_timestamp) {
             return back()->with('error', 'Enter Valid Date');
@@ -166,54 +174,54 @@ class GroupController extends Controller
                 $group_timings->save();
             }
         }
-        if ($request->fees_type  ==  null) {
 
-            $course_fees = Courses_Fees::where('course_id', $request->courses_id)->get();
-            //   dd(    $course_fees);
-            // if($course_fees->count() > 1){
-
-            foreach ($course_fees as $c) {
-                $group_fees = new Group_fees();
-                $group_fees->group_id     = $group->id;
-                $group_fees->course_id =  $group->courses_id;
-                $group_fees->fees_type = $c->fees_type;
-                $group_fees->amount =  $c->amount;
-                $group_fees->due_date = $c->due_date;
-                $group_fees->save();
-            }
-            // }
-
-            // elseif ($course_fees->count() == 1) {
-            //     $group_fees = new Group_fees();
-            //     $group_fees->group_id     = $group->id;
-            //     $group_fees->course_id =  $group->courses_id;
-            //     $group_fees->fees_type = $course_fees->fees_type;
-            //     $group_fees->amount =  $course_fees->amount;
-            //     $group_fees->due_date = $course_fees->due_date;
-            //     $group_fees->save();
-            // }
-        } else {
-
-            if ($request->fees_type == 'installment') {
-                foreach ($request->amount as $amnt_key => $am) {
-                    $group_fees = new Group_fees();
-                    $group_fees->group_id     = $group->id;
-                    $group_fees->course_id =  $group->courses_id;
-                    $group_fees->fees_type = $group->fees_type;
-                    $group_fees->amount = $am;
-                    $group_fees->due_date = strtotime($request->due_date[$amnt_key]);
-                    $group_fees->save();
-                }
-            } elseif ($request->fees_type == 'complete') {
-                $group_fees = new Group_fees();
-                $group_fees->group_id     = $group->id;
-                $group_fees->course_id =  $group->courses_id;
-                $group_fees->fees_type = $group->fees_type;
-                $group_fees->amount = $request->amount;
-                $group_fees->due_date = strtotime($request->due_date);
-                $group_fees->save();
-            }
+        foreach ($request->amount as $amnt_key => $am) {
+            $group_fees = new Group_fees();
+            $group_fees->group_id     = $group->id;
+            $group_fees->course_id =  $group->courses_id;
+            $group_fees->fees_type = 'installment';
+            $group_fees->amount = $am;
+            $group_fees->due_date = strtotime($request->due_date[$amnt_key]);
+            $group_fees->save();
         }
+
+
+        // if ($request->fees_type  ==  null) {
+
+        //     $course_fees = Courses_Fees::where('course_id', $request->courses_id)->get();
+
+        //     foreach ($course_fees as $c) {
+        //         $group_fees = new Group_fees();
+        //         $group_fees->group_id     = $group->id;
+        //         $group_fees->course_id =  $group->courses_id;
+        //         $group_fees->fees_type = $c->fees_type;
+        //         $group_fees->amount =  $c->amount;
+        //         $group_fees->due_date = $c->due_date;
+        //         $group_fees->save();
+        //     }
+
+        // } else {
+
+        //     if ($request->fees_type == 'installment') {
+        //         foreach ($request->amount as $amnt_key => $am) {
+        //             $group_fees = new Group_fees();
+        //             $group_fees->group_id     = $group->id;
+        //             $group_fees->course_id =  $group->courses_id;
+        //             $group_fees->fees_type = $group->fees_type;
+        //             $group_fees->amount = $am;
+        //             $group_fees->due_date = strtotime($request->due_date[$amnt_key]);
+        //             $group_fees->save();
+        //         }
+        //     } elseif ($request->fees_type == 'complete') {
+        //         $group_fees = new Group_fees();
+        //         $group_fees->group_id     = $group->id;
+        //         $group_fees->course_id =  $group->courses_id;
+        //         $group_fees->fees_type = $group->fees_type;
+        //         $group_fees->amount = $request->amount;
+        //         $group_fees->due_date = strtotime($request->due_date);
+        //         $group_fees->save();
+        //     }
+        // }
         return redirect('admin/group');
 
     }

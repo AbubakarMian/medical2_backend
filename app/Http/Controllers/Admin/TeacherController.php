@@ -50,7 +50,7 @@ class TeacherController extends Controller
         ]);
 
         if ($validator->fails()) {
-            dd( $validator);
+            // dd( $validator);
             return back()->with('error', $validator->errors());
         }
         $teacher = new Teacher();
@@ -62,12 +62,14 @@ class TeacherController extends Controller
     public function edit($id)
     {
         $control = 'edit';
-        $teacher = Teacher::find($id);
+        $teacher = Teacher::with('user')->find($id);
+        $users = User::find($id);
         $groups = Group::pluck('name','id');
         return view('admin.teacher.create', compact(
             'control',
             'teacher',
-             'groups'
+             'groups',
+             'users'
         ));
     }
 
@@ -103,6 +105,7 @@ class TeacherController extends Controller
         // $user->gender = $request->gender;
         $user->email = $request->email;
         $user->adderss = $request->address;
+        $user->phone_no = $request->phone_no;
         if($request->password){
             $user->password =  Hash::make($request->password);
         }

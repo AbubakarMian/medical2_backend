@@ -18,7 +18,7 @@
         }
 
 
-        .infoboximg i {
+        .infoboximgg i {
             padding: 18px 13px;
             font-size: 15px;
             color: #292974;
@@ -26,6 +26,7 @@
             border-radius: 300px;
             padding: 12px 13px;
             margin: 13px;
+            width: 42px;
         }
 
         .contactareadata h3 {
@@ -77,7 +78,7 @@
             margin-top: -30px;
         }
 
-        .infoboximg {
+        .infoboximgg {
             margin-bottom: -10px;
         }
 
@@ -86,7 +87,7 @@
         }
 
         .contactareadata h2 {
-            color: black;
+            color: #292974;
             font-size: 40px;
             font-weight: 600;
             margin-bottom: 40px;
@@ -114,7 +115,7 @@
                         </div>
                         <div class="secondlogopoints">
                             <div class="infobox">
-                                <div class="infoboximg">
+                                <div class="infoboximgg">
                                     {{-- <img src="{{ asset('imagesh/location.png') }}" class="img-responsive"
                                         style="background-color: cornflowerblue;"> --}}
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -126,7 +127,7 @@
                                 </div>
                             </div>
                             <div class="infobox">
-                                <div class="infoboximg">
+                                <div class="infoboximgg">
                                     {{-- <img src="{{ asset('imagesh/call.png') }}" class="img-responsive"
                                         style="background-color: cornflowerblue;"> --}}
                                     <i class="fa fa-phone" aria-hidden="true"></i>
@@ -137,7 +138,7 @@
                                 </div>
                             </div>
                             <div class="infobox">
-                                <div class="infoboximg">
+                                <div class="infoboximgg">
                                     {{-- <img src="{{ asset('imagesh/call.png') }}" class="img-responsive"
                                         style="background-color: cornflowerblue;"> --}}
                                     <i class="fa fa-fax" aria-hidden="true"></i>
@@ -148,7 +149,7 @@
                                 </div>
                             </div>
                             <div class="infobox">
-                                <div class="infoboximg">
+                                <div class="infoboximgg">
                                     {{-- <img src="{{ asset('imagesh/email.png') }}" class="img-responsive"
                                         style="background-color: cornflowerblue;"> --}}
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -159,7 +160,7 @@
                                 </div>
                             </div>
                             <div class="infobox">
-                                <div class="infoboximg">
+                                <div class="infoboximgg">
                                     {{-- <img src="{{ asset('imagesh/email.png') }}" class="img-responsive"
                                         style="background-color: cornflowerblue;"> --}}
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -170,7 +171,7 @@
                                 </div>
                             </div>
                             <div class="infobox">
-                                <div class="infoboximg">
+                                <div class="infoboximgg">
                                     {{-- <img src="{{ asset('imagesh/email.png') }}" class="img-responsive"
                                         style="background-color: cornflowerblue;"> --}}
                                     <i class="fa fa-envelope" aria-hidden="true"></i>

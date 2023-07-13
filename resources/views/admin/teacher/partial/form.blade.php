@@ -1,9 +1,14 @@
+{{-- {!!dd($teacher)!!} --}}
 
 <style>
 select#gender {
     width: 100%;
     height: 40px;
         border: 1px solid #e3e6f3;
+}
+.medsaveclick {
+    padding-top: 10px !important;
+    color: white;
 }
     </style>
 
@@ -17,7 +22,6 @@ select#gender {
     </ul>
 </div>
 @endif
-
 <div class="form-group">
     {!! Form::label('name',' Name') !!}
     <div>
@@ -62,10 +66,26 @@ select#gender {
         'maxlength'=>"100"]) !!}
     </div>
 </div>
+<?php
+    $number = '';
+    if(isset($teacher)){
+        $number = $teacher->user->phone_no;
+    }
+?>
+<div class="form-group">
+    {!! Form::label('phone_no','Phone Number') !!}
+    <div>
+        {!! Form::text('phone_no',  $number, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'Enter Phone Number','required',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
 <div class="form-group">
     {!! Form::label('password','Password') !!}
     <div>
-        {!! Form::password('password',   ['class' => 'form-control',
+        {!! Form::password('password',  ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
         'placeholder'=>'Enter Password',
@@ -105,7 +125,7 @@ select#gender {
 <div class="col-md-5 pull-left">
     <div class="form-group text-center">
         <div>
-            {!! Form::submit('Save', ['class' => 'btn btn-primary btn-block btn-lg btn-parsley medsaveclick', 'onblur' => 'return validateForm();']) !!}
+            {!! Form::submit('Save', ['class' => ' btn-block btn-lg btn-parsley medsaveclick', 'onblur' => 'return validateForm();']) !!}
         </div>
     </div>
 </div>

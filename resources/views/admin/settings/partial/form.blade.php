@@ -1,4 +1,11 @@
 <style>
+    .vdvjib img {
+    /* max-height: 80px; */
+    max-width: 100px;
+    margin-bottom: 7px;
+    border: 1px solid;
+    border-radius: 11px;
+}
     .image_area {
         position: relative;
     }
@@ -56,7 +63,7 @@
     <h3 align="center">Crop Image Before Upload using CropperJS with PHP</h3>
     <br />
     <div class="row">
-        <div class="col-md-4">&nbsp;</div>
+        {{-- <div class="col-md-4">&nbsp;</div> --}}
         <input hidden value={!! $pages_images->width !!} id="image_width">
 
 
@@ -115,10 +122,10 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Crop Image Before Upload</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 style="text-align: center; font-size: 14px; font-weight: 600;" class="modal-title">Crop Image Before Upload</h5>
+                        {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
-                        </button>
+                        </button> --}}
                     </div>
                     <div class="modal-body">
                         <div class="img-container">

@@ -28,7 +28,7 @@ $admin_common = session()->get('admin_common');
     <link rel="stylesheet" href="{{ asset('cssjs/myapp.css') }}">
     <link rel="stylesheet" href="{{ asset('cssjs/jquery.timeentry.css') }}">
     <!-- mobiscroll -->
-    <link rel="stylesheet" href="{{asset('css/mobi/mobiscroll.jquery.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/mobi/mobiscroll.jquery.min.css') }}">
     <!--  -->
     {{-- Data Tables CSS --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
@@ -58,6 +58,16 @@ $admin_common = session()->get('admin_common');
 
 <!-- body -->
 
+<style>
+    .fbsda {
+        background: #15db81;
+        border-color: #15db81;
+    }
+    .medsaveclick {
+    padding-top: 15px !important;
+}
+</style>
+
 <body>
 
     <div class="app">
@@ -70,7 +80,7 @@ $admin_common = session()->get('admin_common');
                 <!-- /toggle offscreen menu -->
 
                 <!-- logo -->
-                <a href="{{asset('index.php/admin/dashboard')}}" class="navbar-brand">
+                <a href="{{ asset('index.php/admin/dashboard') }}" class="navbar-brand">
                     <img src="{{ asset('images/logo.png') }}" alt="">
                     <span class="heading-font"></span>
                 </a>
@@ -93,17 +103,17 @@ $admin_common = session()->get('admin_common');
 
                 <li class="off-right hidden-xs">
                     <a href="javascript:;" data-toggle="dropdown" class="no-hover">
-                        <img src="{{ asset('theme/images/avatar.jpg') }} " class="header-avatar img-circle" alt="user"
-                            title="user">
-                        {{--                    <span class="hidden-xs ml10">Welcome {!! $admin_common->name !!}</span>--}}
-                        {{--                    <span class="hidden-xs ml10">Welcome {!! $admin_common->name !!}</span>--}}
+                        <img src="{{ asset('theme/images/avatar.jpg') }} " class="header-avatar img-circle"
+                            alt="user" title="user">
+                        {{--                    <span class="hidden-xs ml10">Welcome {!! $admin_common->name !!}</span> --}}
+                        {{--                    <span class="hidden-xs ml10">Welcome {!! $admin_common->name !!}</span> --}}
                         <!-- <i class="ti-angle-down ti-caret hidden-xs"></i> -->
                     </a>
                 </li>
 
                 <li class="off-right">
-                    <form action="{{asset('admin/logout')}}">
-                        <input type="submit" class="btn btn-danger btn-rounded margin-top" value="LogOut">
+                    <form action="{{ asset('admin/logout') }}">
+                        <input type="submit" class="btn btn-danger btn-rounded margin-top fbsda" value="LogOut">
                     </form>
                     <!--           <button type="button" class="btn btn-danger btn-rounded margin-top">LogOut</button> -->
                 </li>
@@ -122,7 +132,7 @@ $admin_common = session()->get('admin_common');
                     <ul class="nav">
                         <!-- dashboard -->
                         <li>
-                            <a href="{{asset('admin/dashboard')}}">
+                            <a href="{{ asset('admin/dashboard') }}">
                                 <i class="ti-home"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -140,12 +150,12 @@ $admin_common = session()->get('admin_common');
                             </a>
                             <ul class="sub-menu">
 
-                                @foreach($admin_common->modules as $key => $module)
-                                <li>
-                                    <a href="{!! asset('index.php/'.$module['url']) !!}">
-                                        <span>{!! $module['title'] !!}</span>
-                                    </a>
-                                </li>
+                                @foreach ($admin_common->modules as $key => $module)
+                                    <li>
+                                        <a href="{!! asset('index.php/' . $module['url']) !!}">
+                                            <span>{!! $module['title'] !!}</span>
+                                        </a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
@@ -162,13 +172,14 @@ $admin_common = session()->get('admin_common');
                             </a>
                             <ul class="sub-menu">
 
-                                @foreach($admin_common->reports as $key => $report) <li>
-                                <li>
-                                    <a href="{{asset('index.php/'.$report['url'])}}">
-                                        <span>{!! $report['title'] !!}</span>
-                                    </a>
+                                @foreach ($admin_common->reports as $key => $report)
+                                    <li>
+                                    <li>
+                                        <a href="{{ asset('index.php/' . $report['url']) }}">
+                                            <span>{!! $report['title'] !!}</span>
+                                        </a>
 
-                                </li>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
@@ -195,7 +206,7 @@ $admin_common = session()->get('admin_common');
                                     <div class="content-wrap">
                                         <!-- inner content wrapper -->
                                         <div class="wrapper">
-                                        <div id="add_custom_modals"></div>
+                                            <div id="add_custom_modals"></div>
 
                                             @yield('content')
                                         </div>
@@ -225,7 +236,7 @@ $admin_common = session()->get('admin_common');
     <!--   this file will be loaded individually for all files to avoide conficts  -->
     <!--   <script src="{{ asset('theme/vendor/jquery/dist/jquery.js') }}"></script> -->
     {{-- <script src="{{ asset('cssjs/jQuery-2.1.4.min.js')  }}"></script> --}}
-    <script src="{{ asset('cssjs/jquery.plugin.js')}}"></script>
+    <script src="{{ asset('cssjs/jquery.plugin.js') }}"></script>
     {{-- <script src="{{ asset('cssjs/jquery.timeentry.js')}}"></script> --}}
     <script src="{{ asset('theme/vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
     <script src="{{ asset('theme/vendor/slimScroll/jquery.slimscroll.js') }}"></script>
@@ -233,7 +244,7 @@ $admin_common = session()->get('admin_common');
     <script src="{{ asset('theme/vendor/jquery_appear/jquery.appear.js') }}"></script>
     <script src="{{ asset('theme/vendor/jquery.placeholder.js') }}"></script>
     <script src="{{ asset('theme/vendor/fastclick/lib/fastclick.js') }}"></script>
-    <script src="{{ asset('cssjs/jquery.timeentry.js')}}"></script>
+    <script src="{{ asset('cssjs/jquery.timeentry.js') }}"></script>
 
     {{-- Data Table Jquery & Ajax --}}
     {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
@@ -249,20 +260,20 @@ $admin_common = session()->get('admin_common');
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
     {{-- Data Table Jquery & Ajax end --}}
 
- <!--multiselect js  -->
+    <!--multiselect js  -->
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
- <!-- end multiselect -->
+    <!-- end multiselect -->
 
-<!-- mobiscroll  -->
+    <!-- mobiscroll  -->
 
-{{-- <script src="{{asset('mobi_js/mobiscroll.jquery.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('mobi_js/mobiscroll.jquery.min.js')}}"></script> --}}
 
 
 
-<!-- end mobiscroll -->
+    <!-- end mobiscroll -->
 
 
 

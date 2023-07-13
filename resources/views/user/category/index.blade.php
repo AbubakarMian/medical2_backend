@@ -1,3 +1,7 @@
+<style>
+
+</style>
+
 @extends('user.layout.header_footer')
 @section('content')
     <link href="{!! asset('theme/user_theme/css/program.css') !!}" rel="stylesheet">
@@ -11,17 +15,17 @@
 
                     <form method="post" action="{{ asset('user/category_search') }}" style="width:100%">
                         {!! csrf_field() !!}
-                        <div class="" style="width:100%;">
+                        <div class="topctbar" style="">
 
                             <div class="form-group">
-                                <label for="category_id">Select Category</label>
+                                <label class="aafa" for="category_id">Select Category :</label>
 
                                 {!! Form::text(
                                     'category_name',
                                     $name ?? '',
-                                
+
                                     [
-                                        'class' => 'form-control ',
+                                        'class' => 'form-control bfgs',
                                         'data-parsley-trigger' => 'change',
                                         'placeholder' => 'Select Category',
                                         'maxlength' => '100',
@@ -29,7 +33,7 @@
                                 ) !!}
 
                             </div>
-                            <button type="submit" class="btn btn-primary resubg">Submit</button>
+                            <button type="submit" class="btn btn-primary resubg">SUBMIT</button>
 
                         </div>
                     </form>
@@ -52,12 +56,12 @@
                                                 max-height: 140px;
                                                 min-height: max-content;
                                                 padding-top: 19px;">
-                                            <a href="">
-                                                <img src="{!! $p->avatar !!}" alt="Avatar" class="image">
+                                            <a href="{{ asset('category_courses/?category_id=' . $p['id'] . '&type=courses') }}">
+                                                <img src="{!! $p['avatar'] !!}" alt="Avatar" class="image">
                                                 <div class="middle">
                                                     <div class="text">
                                                         <a
-                                                            href="{{ asset('category_courses/?category_id=' . $p->id . '&type=courses') }}">View
+                                                            href="{{ asset('category_courses/?category_id=' . $p['id'] . '&type=courses') }}">View
 
                                                         </a>
                                                     </div>
@@ -66,32 +70,32 @@
                                         </div>
                                         <h4 class="title">
                                             <a href="">
-                                                {!! $p->name !!}
+                                                {!! $p['name'] !!}
                                             </a>
 
                                         </h4>
                                         <div class="course-content">
-                                            <div class="teacher"> {!! $p->description !!}</div>
+                                            <div class="teacher"> {!! $p['description'] !!}</div>
                                             <div class="course-rating">
-                                                <span class="ratingnum">4.01</span>
+                                                {{-- <span class="ratingnum">4.01</span> --}}
 
                                                 <div class="mb2reviews-stars sm">
 
                                                     <div class="stars-full" style="width:80%;">
+                                                        {{-- <i class="glyphicon glyphicon-star"></i>
                                                         <i class="glyphicon glyphicon-star"></i>
                                                         <i class="glyphicon glyphicon-star"></i>
                                                         <i class="glyphicon glyphicon-star"></i>
-                                                        <i class="glyphicon glyphicon-star"></i>
-                                                        <i class="glyphicon glyphicon-star"></i>
+                                                        <i class="glyphicon glyphicon-star"></i> --}}
                                                     </div>
 
                                                 </div>
-                                                <span class="ratingcount">(1306)</span>
+                                                {{-- <span class="ratingcount">(1306)</span> --}}
                                             </div>
                                             <div class="course-footer">
                                                 <div class="price-container">
-                                                    <span class="currency">Price: </span>
-                                                    <span class="price">$ 377</span>
+                                                    {{-- <span class="currency">Price: </span>
+                                                    <span class="price">$ 377</span> --}}
                                                 </div>
                                             </div>
                                         </div>

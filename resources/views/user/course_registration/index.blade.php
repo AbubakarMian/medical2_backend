@@ -4,17 +4,18 @@
     <link href="{!! asset('theme/user_theme/css/groupform.css') !!}" rel="stylesheet">
     <link href="{!! asset('theme/user_theme/css/newmake.css') !!}" rel="stylesheet">
     <link href="{!! asset('theme/user_theme/css/proceedpayment.css') !!}" rel="stylesheet">
+    <link href="{!! asset('theme/user_theme/css/custommine.css') !!}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v3.8.1/css/all.css">
 
     <link href="{!! asset('theme/user_theme/css/profile_courses.css') !!}" rel="stylesheet">
     {{-- <link rel="stylesheet" type="text/css" href="{!! asset('theme/code_busters/theme.css') !!}" /> --}}
     <?php
-    
+
     use App\Model\Course_Register;
     use Carbon\Carbon;
     use App\Model\Student_fees;
     use Illuminate\Support\Facades\Auth;
-    
+
     ?>
     <style>
         h5.regtabless_heading {
@@ -32,22 +33,29 @@
         }
 
         .regii {
-            border-radius: 21px;
+            border-radius: 0px;
+            margin-top: 20px;
+    font-size: 14px;
         }
 
         .regtable {
-            border-radius: 36px;
+            /* border-radius: 36px; */
 
         }
 
         .ggg {
-            border: 1px solid;
-            color: white;
-            height: 115%;
-            padding-top: 11px;
-            padding-bottom: 15px;
-            border-radius: 19px;
-            background-color: black;
+            /* border: 1px solid; */
+    color: white;
+    /* height: 115%; */
+    /* padding-top: 11px; */
+    /* padding-bottom: 15px; */
+    /* border-radius: 19px; */
+    background-color: black;
+    padding: 12px;
+    font-family: sans-serif;
+    font-weight: 300 !important;
+    margin-top: 45px;
+    width: 101%;
         }
 
         td,
@@ -82,7 +90,10 @@
                 <div class="col-sm-12">
                     <div class="courbanddata">
 
-                        <!--  -->
+                        <?php
+                        $teacher = new \stdClass();
+                        $teacher->name = '';
+                        ?>
 
                         @if (isset($courses_groups))
 
@@ -167,7 +178,12 @@
                 </div>
 
                 <div class="col-sm-7 teacherR">
-                    {{ ucwords($cg->teacher->name) }} Teacher / {{ ucwords($cg->name) }}
+                    <?php
+                    if (isset($cg->teacher)) {
+                        $teacher = $cg->teacher;
+                    }
+                    ?>
+                    {{ ucwords($teacher->name) }} Teacher / {{ ucwords($cg->name) }}
                     @if ($cg->type == 'course')
                         Group
                     @elseif($cg->type == 'workshop')
@@ -192,6 +208,7 @@
         @if ($cg->type == 'course')
             <!-- for course -->
 
+        <div class="gvbwj">
             <table>
                 <tbody>
                     <tr>
@@ -219,6 +236,7 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
             <!--for workshop not course  -->
         @elseif($cg->type == 'workshop')
             <table>
@@ -264,13 +282,13 @@
     <!--  -->
 @else
     <?php
-    if (isset($courses_groups)) {
-        $courses_group = $courses_groups;
-    }
+    // if (isset($courses_groups)) {
+    //     $courses_group = $courses_groups;
+    // }
     ?>
 
 
-    @foreach ($courses_group as $cg)
+    @foreach ($courses_groups as $cg)
         <div class="regtable">
 
             <div class="regtablesh">
@@ -300,7 +318,8 @@
     </div>
 
     <div class="col-sm-7 teacherR">
-        {{ ucwords($cg->teacher->name) }} Teacher / {{ ucwords($cg->name) }}
+
+        {{ ucwords($teacher->name) }} Teacher / {{ ucwords($cg->name) }}
         @if ($cg->type == 'course')
             Group
         @elseif($cg->type == 'workshop')
@@ -325,6 +344,7 @@
     @if ($cg->type == 'course')
         <!-- for course -->
 
+        <div class="gvbwj">
         <table>
             <tbody>
                 <tr>
@@ -352,6 +372,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
         <!--for workshop not course  -->
     @elseif($cg->type == 'workshop')
         <table>
@@ -388,8 +409,8 @@
     @endif
     <!-- @if ($cg->is_online != 0)
     <div class="regtabless">
-                            <iframe src="{{ $cg->url }}" title="description"></iframe>
-                            </div>
+                                        <iframe src="{{ $cg->url }}" title="description"></iframe>
+                                        </div>
     @endif -->
     @if ($current_date <= $group_start_date || $current_date <= $group_end_date)
         <div class="regtabless">
@@ -399,15 +420,20 @@
                 <button type="button" class="btn btn-primary regii">Single Registration</button>
 
             </a>
-        </div>
-        <div class="regtabless">
-            <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
             <a href="{!! asset('group_registration/?course_id=' . $cg->courses_id . '&group_id=' . $cg->id) !!}">
 
                 <button type="button" class="btn btn-primary regii">Group Registration</button>
 
             </a>
         </div>
+        {{-- <div class="regtabless">
+            <!-- <a href="http://localhost/medical2_backend/public/save_course_register/?course_id=1" style="line-height: 35px;"> -->
+            <a href="{!! asset('group_registration/?course_id=' . $cg->courses_id . '&group_id=' . $cg->id) !!}">
+
+                <button type="button" class="btn btn-primary regii">Group Registration</button>
+
+            </a>
+        </div> --}}
     @else
         <div class="regtabless">
             <h5 class="regtabless_heading">
@@ -499,7 +525,7 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                            <img src="{!! asset('images/profile2.png') !!}"
                                 alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
@@ -530,14 +556,14 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                            <img src="{!! asset('images/profile1.png') !!}"
                                 alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
-                                    samirabenmahria <img src="images/verified.svg" alt="">
+                                    Jacob <img src="images/verified.svg" alt="">
                                 </h5>
                                 <p class="font-12 mb-0">
-                                    <span>United Arab Emirates</span> <span>June 10, 2021</span>
+                                    <span>USA</span> <span>June 10, 2021</span>
                                 </p>
                             </div>
                         </div>
@@ -562,14 +588,14 @@
                     <!-- reviews -->
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex mb-3 align-items-center picturearea">
-                            <img src="https://mb2themes.com/themes/new-learning5/theme/image.php/mb2nl/core/1634974112/u/f1"
+                            <img src="{!! asset('images/profile3.png') !!}"
                                 alt="" class="rounded-circle avatar-lg">
                             <div class="ml-2">
                                 <h5 class="mb-1">
-                                    samirabenmahria <img src="images/verified.svg" alt="">
+                                    jhon <img src="images/verified.svg" alt="">
                                 </h5>
                                 <p class="font-12 mb-0">
-                                    <span>United Arab Emirates</span> <span>June 10, 2021</span>
+                                    <span>Australia</span> <span>June 10, 2021</span>
                                 </p>
                             </div>
                         </div>

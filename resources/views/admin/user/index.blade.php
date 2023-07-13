@@ -3,7 +3,6 @@
 User
 @stop
 
-
 @section('table-properties')
 width="400px" style="table-layout:fixed;"
 @endsection
@@ -37,6 +36,7 @@ width="400px" style="table-layout:fixed;"
         <th>Email</th>
         <th>Phone Number</th>
         <th>Address</th>
+        <th>User Type</th>
         <th>Image</th>
 
 
@@ -70,12 +70,26 @@ $(document).ready(function(){
 
            console.log(response);
 
+
               for(var i=0; i<len; i++){
                   var id =  response['data'][i].id;
                   var name =  response['data'][i].name;
                   var email =  response['data'][i].email;
                   var phone_no =  response['data'][i].phone_no;
                   var address =  response['data'][i].adderss;
+                  var user_type =  response['data'][i].role_id;
+                  if(response['data'][i].role_id == 1){
+                    user_type ='Super admin'
+                        }
+                        else if (response['data'][i].role_id == 2){
+                    user_type ='User'
+                        }
+                        else if (response['data'][i].role_id == 3){
+                    user_type ='Teacher'
+                        }
+                        else if (response['data'][i].role_id == 4){
+                    user_type ='Emploee'
+                        }
                   var image  = response['data'][i].image;
                 //   var deleted_at   = response['data'][i].deleted_at;
 
@@ -84,6 +98,15 @@ $(document).ready(function(){
                     console.log('no image');
                 }
 
+                // users    role ids
+                // 'admin'    => '1',
+                // 'user'   => '2',
+                // 'teacher'   => '3',
+                // 'employee'   => '4',
+
+
+
+
 		        var image_col = `<img width="100px" src="`+image+`" class="show-product-img imgshow">`
 
                 var tr_str = "<tr>" +
@@ -91,6 +114,7 @@ $(document).ready(function(){
                     "<td>" +email+ "</td>" +
                     "<td>" +phone_no+ "</td>" +
                     "<td>" +address+ "</td>" +
+                    "<td>" +user_type+ "</td>" +
                     "<td>" + image_col + "</td>" +
 
                 "</tr>";
