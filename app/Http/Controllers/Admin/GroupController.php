@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Model\Courses;
-use App\Model\Course_Register;
-use App\Model\Courses_Fees;
-use App\Model\Group_fees;
-use App\Model\Day;
+use App\Models\Courses;
+use App\Models\Course_Register;
+use App\Models\Courses_Fees;
+use App\Models\Group_fees;
+use App\Models\Day;
 use Carbon\Carbon;
-use App\Model\Group;
-use App\Model\Group_Timings;
-use App\Model\Teacher;
-use App\User;
+use App\Models\Group;
+use App\Models\Group_Timings;
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Response;

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Model\Course_Register;
-use App\Model\Group;
-use App\Model\Exams;
-use App\Model\Student_fees;
+use App\Models\Course_Register;
+use App\Models\Group;
+use App\Models\Exams;
+use App\Models\Student_fees;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;

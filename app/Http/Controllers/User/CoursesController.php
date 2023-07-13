@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Model\Category;
-use App\Model\Courses;
-use App\User;
-use App\Model\Group;
-use App\Model\Course_Register;
+use App\Models\Category;
+use App\Models\Courses;
+use App\Models\User;
+use App\Models\Group;
+use App\Models\Course_Register;
 use App\Mail\Update_Password;
-use App\Model\Group_Timings;
-// use App\Model\Group_users;
+use App\Models\Group_Timings;
+// use App\Models\Group_users;
 use Illuminate\Support\Facades\Mail;
-use App\Model\Student_fees;
-use App\Model\Payment;
+use App\Models\Student_fees;
+use App\Models\Payment;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;

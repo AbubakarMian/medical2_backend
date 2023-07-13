@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Model\About_us;
-use App\Model\Category;
-use App\Model\Courses;
-use App\Model\Contact_us;
+use App\Models\About_us;
+use App\Models\Category;
+use App\Models\Courses;
+use App\Models\Contact_us;
 use Illuminate\Http\Request;
 
 class About_UsController extends Controller
