@@ -11,13 +11,13 @@ class AdminUrlUserPermission extends Model
     protected $table='admin_url_permission_user';
 
     public function user(){
-        return $this->hasOne('App\User','id','user_id');
+        return $this->hasOne('App\Models\User','id','user_id');
     }
     public function role(){
-        return $this->hasOne('use App\Models\Role','id','role_id');
+        return $this->hasOne('App\Models\Role','id','role_id');
     }
     public function admin_url()
     {
-        return $this->hasOne('use App\Models\Admin_url', 'id', 'admin_url_id');
+        return $this->hasOne('App\Models\Admin_url', 'id', 'admin_url_id');
     }
 }

@@ -11,7 +11,7 @@ class Role extends Model
     protected $table='role';
 
     public function admin_url_permissions(){
-        return $this->hasMany('use App\Models\Admin_Url_Permission_Role','role_id','id');
+        return $this->hasMany('App\Models\Admin_Url_Permission_Role','role_id','id');
     }
 
  }

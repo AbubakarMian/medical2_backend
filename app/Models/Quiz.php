@@ -12,11 +12,11 @@ class Quiz extends Model
 
     public function quiz_question()
     {
-        return $this->hasMany('use App\Models\Quiz_Question', 'quiz_id', 'id');
+        return $this->hasMany('App\Models\Quiz_Question', 'quiz_id', 'id');
     }
     public function course()
     {
-        return $this->hasOne('use App\Models\Courses', 'id', 'course_id');
+        return $this->hasOne('App\Models\Courses', 'id', 'course_id');
     }
 
 }

@@ -11,12 +11,12 @@ class   User_Permission extends Model
     protected $table='user_permission';
     
     public function user(){
-        return $this->hasOne('App\User','id','user_id');
+        return $this->hasOne('App\Models\User','id','user_id');
     }
     public function url(){
-        return $this->hasOne('use App\Models\Url','id','url_id');
+        return $this->hasOne('App\Models\Url','id','url_id');
     }
     public function role(){
-        return $this->hasOne('use App\Models\Role','id','role_id');
+        return $this->hasOne('App\Models\Role','id','role_id');
     }
  }

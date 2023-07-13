@@ -12,6 +12,6 @@ class Books extends Model
 
 //    public function question()
 //    {
-//        return $this->hasOne('use App\Models\Question', 'question_id', 'id');
+//        return $this->hasOne('App\Models\Question', 'question_id', 'id');
 //    }
 }

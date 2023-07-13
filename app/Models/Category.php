@@ -12,6 +12,6 @@ class Category extends Model
 
    public function courses()
    {
-       return $this->hasOne('use App\Models\Courses', 'category_id', 'id');
+       return $this->hasOne('App\Models\Courses', 'category_id', 'id');
    }
 }

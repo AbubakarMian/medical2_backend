@@ -11,10 +11,10 @@ class Admin_Url_Permission_Role extends Model
     protected $table='admin_url_permission_role';
 
     public function role(){
-        return $this->hasOne('use App\Models\Role','id','role_id');
+        return $this->hasOne('App\Models\Role','id','role_id');
     }
 
     public function admin_url(){
-        return $this->hasOne('use App\Models\Admin_url','id','admin_url_id');
+        return $this->hasOne('App\Models\Admin_url','id','admin_url_id');
     }
 }

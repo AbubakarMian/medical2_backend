@@ -12,11 +12,11 @@ class Exams extends Model
 
     public function quiz_question()
     {
-        return $this->hasMany('use App\Models\Quiz_Question', 'quiz_id', 'id');
+        return $this->hasMany('App\Models\Quiz_Question', 'quiz_id', 'id');
     }
     public function group()
     {
-        return $this->hasOne('use App\Models\Group', 'id', 'group_id');
+        return $this->hasOne('App\Models\Group', 'id', 'group_id');
     }
 
 }

@@ -12,7 +12,7 @@ class Courses_Fees extends Model
 
    public function courses()
    {
-       return $this->hasOne('use App\Models\Courses', 'id', 'course_id');
+       return $this->hasOne('App\Models\Courses', 'id', 'course_id');
    }
 
   

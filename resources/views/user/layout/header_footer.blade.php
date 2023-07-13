@@ -202,7 +202,7 @@
                                                     </div>
                                                 @endif
                                                 <form role="form" method="post"
-                                                    action="{{ action('User\UserController@user_login') }}">
+                                                    action="{{ action('App\Http\Controllers\User\UserController@user_login') }}">
                                                     {!! csrf_field() !!}
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Email address</label>

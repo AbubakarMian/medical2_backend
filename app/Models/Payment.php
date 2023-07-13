@@ -11,11 +11,11 @@ class Payment extends Model
     protected $table='payment';
 
     public function user(){
-        return $this->hasOne('App\User','id','user_id');
+        return $this->hasOne('App\Models\User','id','user_id');
     }
     public function course()
     {
-        return $this->hasOne('use App\Models\Courses', 'id', 'course_id')->withTrashed();
+        return $this->hasOne('App\Models\Courses', 'id', 'course_id')->withTrashed();
     }
 
     public function getRefundPaymentIdAttribute($value)
@@ -29,6 +29,6 @@ class Payment extends Model
 
     // public function refund_payments($value)
     // {
-    //     return $this->hasMany('use App\Models\Payment', 'id', 'refund_payment_id');
+    //     return $this->hasMany('App\Models\Payment', 'id', 'refund_payment_id');
     // }
  }
