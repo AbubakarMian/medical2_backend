@@ -252,7 +252,7 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
         // Route::get('logout', 'AdminController@logout')->name('logout');
         Route::get('logout',[AdminController::class, 'logout'])->name('logout');
         // Route::post('courses_crop_image', 'CoursesController@crop_image')->name('admin.crop_image');
-        Route::post('courses_crop_image',[CoursesController::class, 'crop_image'])->name('admin.crop_image');
+        Route::post('courses_crop_image',[AdminCoursesController::class, 'crop_image'])->name('admin.crop_image');
 
         // courses crud
         Route::group(['prefix'=>'courses'],function(){
