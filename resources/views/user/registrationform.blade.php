@@ -255,7 +255,7 @@
     @endif
 
 
-              <form role="form" method="post" action="{{action('User\UserController@save')}}">
+              <form role="form" method="post" action="{{action('App\Http\Controllers\User\UserController@save')}}">
               {!! csrf_field() !!}
                 <div class="row">
                   <div class="col-sm-6">
