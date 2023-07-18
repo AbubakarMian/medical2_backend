@@ -66,6 +66,8 @@ class WorkshopController extends Controller
             //
             $workshop->start_date = $start_timestamp;
             $workshop->end_date = $end_timestamp;
+            $workshop->registration_end_time = $end_timestamp;
+
             //
             $workshop->teacher_id = $request->teacher_id;
             $workshop->type = 'workshop';
