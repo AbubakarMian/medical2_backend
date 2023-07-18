@@ -105,6 +105,7 @@ class CoursesController extends Controller
 
             } elseif ($type == 'workshop') {
                 $courses_groups = Group::with('teacher', 'group_fees')->where('type', 'workshop')
+                    // ->where('start_date','>=', $today)
                     ->where('registration_end_time','>=', $today)
                     ->where('courses_id', $courses->id)
                     ->get();
