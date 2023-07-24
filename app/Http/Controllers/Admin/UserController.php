@@ -21,21 +21,21 @@ class UserController extends Controller
     {
         // $name = $request->name ?? '';
 
-        //$user = User::where('role_id','!=',1)->orderBy('created_at', 'DESC')->paginate(10);
+        $user = User::where('role_id','!=',1)->orderBy('created_at', 'DESC')->paginate(10);
         // dd($user);
-        return view('admin.user.index');
+        return view('admin.user.index', compact('user'));
     }
 
 
-    public function getUsers($id = 0){
+    // public function getUsers($id = 0){
 
 
-        $user = User::orderby('id','asc')->select('*')->get();
-        $userData['data'] = $user;
+    //     $user = User::orderby('id','asc')->select('*')->get();
+    //     $userData['data'] = $user;
 
-        echo json_encode($userData);
+    //     echo json_encode($userData);
 
-    }
+    // }
 
 
 }

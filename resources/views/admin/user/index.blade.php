@@ -2,11 +2,16 @@
 @section('module_name')
 User
 @stop
+@section('add_btn')
+{{--
+{!! Form::open(['method' => 'get', 'route' => ['user.create'], 'files'=>true]) !!}
+<span>{!! Form::submit('Add', ['class' => 'btn btn-success pull-right']) !!}</span>
+{!! Form::close() !!} --}}
+@stop
 
 @section('table-properties')
 width="400px" style="table-layout:fixed;"
 @endsection
-
 
 
 <style>
@@ -17,127 +22,81 @@ width="400px" style="table-layout:fixed;"
 		height: 30px;
 		text-overflow: ellipsis;
 	}
-    .fhgyt th {
-    border: 1px solid #e3e6f3 !important;
-}
-.fhgyt td {
-    border: 1px solid #e3e6f3 !important;
-    background: #f9f9f9
-}
 </style>
 @section('table')
+{{-- {!! Form::open(['method' => 'post', 'route' => ['doctor.search'], 'files'=>true]) !!}
+@include('admin.doctor.partial.searchfilters')
+{!!Form::close() !!} --}}
+{{-- @stop --}}
 
-<table class="fhgyt" id="userTableAppend" style="opacity: 0">
 <thead>
 	<tr>
 
 
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone Number</th>
-        <th>Address</th>
-        <th>User Type</th>
-        <th>Image</th>
-
+	   <th>Name</th>
+	   <th>Email</th>
+	   <th>Phone No</th>
+	   <th>Address</th>
+	   <th>User Type</th>
+	   <th>Image</th>
 
 
 
 	</tr>
 </thead>
 <tbody>
+
+    @foreach($user as $ct)
+
+
+    <?php
+                    // $user_type ="";
+                if($ct->role_id == 1){
+                    $user_type ='Super admin';
+                        }
+                        else if ($ct->role_id  == 2){
+                    $user_type ='User';
+                        }
+                        else if ($ct->role_id  == 3){
+                    $user_type ='Teacher';
+                        }
+                        else if ($ct->role_id  == 4){
+                    $user_type ='Emploee';
+                        }
+                        ?>
+
+
+
+		<td >{!! ucwords($ct->name) !!}</td>
+		<td >{!! ucwords($ct->email) !!}</td>
+		<td >{!! ucwords($ct->phone_no) !!}</td>
+		<td >{!! ucwords($ct->adderss) !!}</td>
+		<td >{!! ucwords($user_type) !!}</td>
+
+		<?php if (!$ct->image) {
+			$ct->image = asset('images/image/map.jpg');
+			}
+	    ?>
+			<td><img width="100px" src="{!! $ct->image !!}" class="show-product-img imgshow"></td>
+       
+
+
+
+	</tr>
+	@endforeach
+
+
 </tbody>
-</table>
-
-@stop
-@section('app_jquery')
-
-<script>
-
-$(document).ready(function(){
-
-    fetchRecords();
-
-    function fetchRecords(){
-
-       $.ajax({
-         url: '{!!asset("admin/users/get_users")!!}',
-         type: 'get',
-         dataType: 'json',
-         success: function(response){
-            console.log('response');
-            $("#userTableAppend").css("opacity",1);
-           var len = response['data'].length;
-
-           console.log(response);
-
-
-              for(var i=0; i<len; i++){
-                  var id =  response['data'][i].id;
-                  var name =  response['data'][i].name;
-                  var email =  response['data'][i].email;
-                  var phone_no =  response['data'][i].phone_no;
-                  var address =  response['data'][i].adderss;
-                  var user_type =  response['data'][i].role_id;
-                  if(response['data'][i].role_id == 1){
-                    user_type ='Super admin'
-                        }
-                        else if (response['data'][i].role_id == 2){
-                    user_type ='User'
-                        }
-                        else if (response['data'][i].role_id == 3){
-                    user_type ='Teacher'
-                        }
-                        else if (response['data'][i].role_id == 4){
-                    user_type ='Emploee'
-                        }
-                  var image  = response['data'][i].image;
-                //   var deleted_at   = response['data'][i].deleted_at;
-
-                if(!image){
-                    image = "{!!asset('images/logo.png')!!}"
-                    console.log('no image');
-                }
-
-                // users    role ids
-                // 'admin'    => '1',
-                // 'user'   => '2',
-                // 'teacher'   => '3',
-                // 'employee'   => '4',
-
-
-
-
-		        var image_col = `<img width="100px" src="`+image+`" class="show-product-img imgshow">`
-
-                var tr_str = "<tr>" +
-                    "<td>" +name+ "</td>" +
-                    "<td>" +email+ "</td>" +
-                    "<td>" +phone_no+ "</td>" +
-                    "<td>" +address+ "</td>" +
-                    "<td>" +user_type+ "</td>" +
-                    "<td>" + image_col + "</td>" +
-
-                "</tr>";
-
-                $("#userTableAppend tbody").append(tr_str);
-                }
-console.log('sadasdasdad');
-                $('#userTableAppend').DataTable({
-                    dom: '<"top_datatable"B>lftipr',
-                        buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ],
-                });
-        }
-       });
-    }
-
-});
-
-function set_msg_modal(msg){
-        $('.set_msg_modal').html(msg);
-    }
-
-</script>
+@section('pagination')
+<span class="pagination pagination-md pull-right">{!! $user->render() !!}</span>
+<div class="col-md-3 pull-left">
+	<div class="form-group text-center">
+		<div>
+			{!! Form::open(['method' => 'get', 'route' => ['dashboard']]) !!}
+			{!! Form::submit('Cancel', ['class' => 'btn btn-default btn-block btn-lg btn-parsley']) !!}
+			{!! Form::close() !!}
+		</div>
+	</div>
+</div>
 @endsection
-
+@stop
