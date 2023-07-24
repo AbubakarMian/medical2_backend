@@ -52,7 +52,7 @@ class UserController extends Controller
         $users->last_name = $request->last_name;
         $users->email = $request->email;
         $users->phone_no = $request->contact;
-        $users->adderss = $request->address;
+        $users->address = $request->address;
         $users->city = $request->city;
         $users->zip_code = $request->zip_code;
         //

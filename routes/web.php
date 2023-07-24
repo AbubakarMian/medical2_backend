@@ -30,29 +30,13 @@ use App\Http\Controllers\Reports\PermissionsController as Reports_PermissionsCon
 use App\Http\Controllers\Reports\Student_planController;
 
      
-// use App\Http\Controllers\;
-// use App\Http\Controllers\;
-// use App\Http\Controllers\;
-     
-// use App\Http\Controllers\;
-// use App\Http\Controllers\;
+use App\Http\Controllers\DataImportController;
 // use App\Http\Controllers\;
      
-// use App\Http\Controllers\;
-// use App\Http\Controllers\;
-// use App\Http\Controllers\;
-     
+Route::get('migrate/data',[DataImportController::class, 'index']);
+Route::get('migrate/table/view',[DataImportController::class, 'view_table']);
+Route::get('migrate/user/import',[DataImportController::class, 'user_import']);
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');

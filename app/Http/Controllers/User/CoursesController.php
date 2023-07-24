@@ -166,7 +166,7 @@ class CoursesController extends Controller
             $users->last_name = $request->last_name[$key];
             $users->email = $request->email[$key];
             $users->phone_no = $request->contact[$key];
-            $users->adderss = $request->address[$key];
+            $users->address = $request->address[$key];
             $users->city = $request->city[$key];
             $users->zip_code = $request->zip_code[$key];
             $users->state = $request->state[$key];;

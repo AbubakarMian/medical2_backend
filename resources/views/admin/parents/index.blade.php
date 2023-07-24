@@ -51,7 +51,7 @@ width="400px" style="table-layout:fixed;"
         <td >{!! ucwords($p->user->name) !!}</td>
         <td >{!! ucwords($p->user->email) !!}</td>
         <td >{!! ucwords($p->user->phone_no) !!}</td>
-        <td >{!! ucwords($p->user->adderss) !!}</td>
+        <td >{!! ucwords($p->user->address) !!}</td>
 
         <td>
 

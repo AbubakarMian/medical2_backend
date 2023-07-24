@@ -76,7 +76,7 @@ $(document).ready(function(){
                   var name =  response['data'][i].name;
                   var email =  response['data'][i].email;
                   var phone_no =  response['data'][i].phone_no;
-                  var address =  response['data'][i].adderss;
+                  var address =  response['data'][i].address;
                   var user_type =  response['data'][i].role_id;
                   if(response['data'][i].role_id == 1){
                     user_type ='Super admin'
