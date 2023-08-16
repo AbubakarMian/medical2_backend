@@ -14,8 +14,8 @@ class RemoveFileldsFromCoursessRegisterTable extends Migration
     public function up()
     {
         Schema::table('course_register', function (Blueprint $table) {
-            $table->dropColumn('fees');
-            $table->dropColumn('one_time_payment');
+            // $table->dropColumn('fees'); // new db
+            // $table->dropColumn('one_time_payment');// new db
         });
     }
 

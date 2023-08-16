@@ -15,9 +15,9 @@ class AddFileldsToCourseRegisterTable extends Migration
     {
         Schema::table('course_register', function (Blueprint $table) {
 
-            $table->string('fees_type')->nullable()->default(null);
-            $table->float('examination_fees')->nullable()->default(0);
-            $table->tinyInteger('one_time_examination_payment')->nullable()->default(0);
+            // $table->string('fees_type')->nullable()->default(null); //new db
+            // $table->float('examination_fees')->nullable()->default(0); //new db
+            // $table->tinyInteger('one_time_examination_payment')->nullable()->default(0); //new db
         });
     }
 

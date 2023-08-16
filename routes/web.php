@@ -36,6 +36,9 @@ use App\Http\Controllers\DataImportController;
 Route::get('migrate/data',[DataImportController::class, 'index']);
 Route::get('migrate/table/view',[DataImportController::class, 'view_table']);
 Route::get('migrate/user/import',[DataImportController::class, 'user_import']);
+Route::get('migrate/course/import',[DataImportController::class, 'course_import']);
+Route::get('migrate/course_category_import/import',[DataImportController::class, 'course_category_import']);
+Route::get('migrate/enroll_group_import/import',[DataImportController::class, 'enroll_group_import']);
 
 
 Route::get('/', function () {

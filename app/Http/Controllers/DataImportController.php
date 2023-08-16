@@ -12,8 +12,11 @@ class DataImportController extends Controller
     }
 
     public function view_table(Request $request){
+        $page_no = $request->page_no ?? 1;
         $table_name = $request->table;
+        // $table_data = DB::table($table_name)->orderby('id','desc')->paginate(100);
         $table_data = DB::table($table_name)->orderby('id','desc')->get();
+        // dd($table_data);
         $columns = \Schema::getColumnListing($table_name);// ->select('name', 'surname')   ->selectRaw("(CASE WHEN (gender = 1) THEN 'M' ELSE 'F' END) as gender_text")
         return view('import.view_table',compact('table_name','columns','table_data'));
     }
@@ -88,10 +91,122 @@ class DataImportController extends Controller
 
 
 
-        $this->import_data('mdl_user','users',$table_map);
-        // $this->import_data($import_table,$insert_table,$table_map);
- 
+        $this->import_data('mdl_user','users',$table_map); 
         return redirect('migrate/table/view?table=users');
+
+    }
+
+    public function course_import(){
+        $table_map = [
+            'mdl_course.id'=>'courses.id',
+            'mdl_course.uid'=>'courses.uid',
+            'mdl_course.installment'=>'courses.installment',
+            'mdl_course.num_payments'=>'courses.num_payments',
+            'mdl_course.category'=>'courses.category_id',
+            'mdl_course.sortorder'=>'courses.sortorder',
+            'mdl_course.fullname'=>'courses.full_name',
+            'mdl_course.shortname'=>'courses.short_name',
+            'mdl_course.idnumber'=>'courses.id_number',
+            'mdl_course.summary'=>'courses.description',
+            'mdl_course.format'=>'courses.format',
+            'mdl_course.showgrades'=>'courses.showgrades',
+            'mdl_course.newsitems'=>'courses.newsitems',
+            'mdl_course.startdate'=>'courses.start_date',
+            'mdl_course.marker'=>'courses.marker',
+            'mdl_course.maxbytes'=>'courses.maxbytes',
+            'mdl_course.legacyfiles'=>'courses.legacyfiles',
+            'mdl_course.showreports'=>'courses.showreports',
+            'mdl_course.visible'=>'courses.visible',
+            'mdl_course.visibleold'=>'courses.visibleold',
+            'mdl_course.groupmode'=>'courses.groupmode',
+            'mdl_course.groupmodeforce'=>'courses.groupmodeforce',
+            'mdl_course.defaultgroupingid'=>'courses.defaultgroupingid',
+            'mdl_course.lang'=>'courses.lang',
+            'mdl_course.calendartype'=>'courses.calendartype',
+            'mdl_course.theme'=>'courses.theme',
+            'mdl_course.timecreated'=>'courses.timecreated',
+            'mdl_course.timemodified'=>'courses.timemodified',
+            'mdl_course.requested'=>'courses.requested',
+            'mdl_course.enablecompletion'=>'courses.enablecompletion',
+            'mdl_course.completionnotify'=>'courses.completionnotify',
+            'mdl_course.cacherev'=>'courses.cacherev',
+            'mdl_course.discount_status'=>'courses.discount_status',
+            'mdl_course.discount_size'=>'courses.discount_size',
+            'mdl_course.cost'=>'courses.cost',
+            'mdl_course.taxes'=>'courses.taxes',
+            'mdl_course.expired'=>'courses.expired',
+            'mdl_course.autopass'=>'courses.autopass',
+        ];
+
+        $this->import_data('mdl_course','courses',$table_map); 
+        return redirect('migrate/table/view?table=courses');
+
+    }
+    public function course_category_import(){
+        $table_map = [
+            'mdl_course_categories.id'=>'category.id',
+            'mdl_course_categories.name'=>'category.name',
+            'mdl_course_categories.idnumber'=>'category.idnumber', 
+            'mdl_course_categories.descriptionformat'=>'category.descriptionformat',
+            'mdl_course_categories.parent'=>'category.parent',
+            'mdl_course_categories.sortorder'=>'category.sortorder',
+            'mdl_course_categories.coursecount'=>'category.coursecount',
+            'mdl_course_categories.visible'=>'category.visible',
+            'mdl_course_categories.visibleold'=>'category.visibleold',
+            'mdl_course_categories.timemodified'=>'category.timemodified',
+            'mdl_course_categories.depth'=>'category.depth',
+            'mdl_course_categories.path'=>'category.path',
+            'mdl_course_categories.theme'=>'category.theme',
+        ];
+
+        $this->import_data('mdl_course_categories','category',$table_map); 
+        return redirect('migrate/table/view?table=category');
+
+    }
+    public function enroll_group_import(){
+        $table_map = [
+            'mdl_enrol.id'=>'group.id',
+            'mdl_enrol.enrol'=>'group.enrol',
+            'mdl_enrol.status'=>'group.status',
+            'mdl_enrol.courseid'=>'group.courses_id',
+            'mdl_enrol.sortorder'=>'group.sortorder', 
+            'mdl_enrol.name'=>'group.name',
+            'mdl_enrol.enrolstartdate'=>'group.start_date',
+            'mdl_enrol.enrolenddate'=>'group.end_date',
+            'mdl_enrol.expirynotify'=>'group.expirynotify',
+            'mdl_enrol.expirythreshold'=>'group.expirythreshold',
+            'mdl_enrol.roleid'=>'group.roleid',
+            'mdl_enrol.customint1'=>'group.customint1',
+            'mdl_enrol.customint2'=>'group.customint2',
+            'mdl_enrol.customint3'=>'group.customint3',
+            'mdl_enrol.customint4'=>'group.customint4',
+            'mdl_enrol.customint5'=>'group.customint5',
+            'mdl_enrol.customint6'=>'group.customint6',
+            'mdl_enrol.timecreated'=>'group.timecreated',
+            'mdl_enrol.timemodified'=>'group.timemodified',
+        ];
+
+        $this->import_data('mdl_enrol','group',$table_map); 
+        return redirect('migrate/table/view?table=group');
+
+    }
+
+    public function enroll_group_users_import(){
+        $table_map = [
+            'mdl_user_enrolments.id'=>'course_register.id',
+            'mdl_user_enrolments.status'=>'course_register.status', 
+            'mdl_user_enrolments.enrolid'=>'course_register.group_id', 
+            'mdl_user_enrolments.userid'=>'course_register.user_id', 
+            // 'mdl_user_enrolments.'=>'course_register.courses_id', 
+            'mdl_user_enrolments.timestart'=>'course_register.start_date',
+            'mdl_user_enrolments.timeend'=>'course_register.end_date',
+            'mdl_user_enrolments.modifierid'=>'course_register.modifierid',
+            'mdl_user_enrolments.timecreated'=>'course_register.timecreated',
+            'mdl_user_enrolments.timemodified'=>'course_register.timemodified',
+        ];
+
+        $this->import_data('mdl_user_enrolments','course_register',$table_map); 
+        return redirect('migrate/table/view?table=course_register');
 
     }
 
