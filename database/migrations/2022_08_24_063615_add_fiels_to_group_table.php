@@ -14,8 +14,8 @@ class AddFielsToGroupTable extends Migration
     public function up()
     {
         Schema::table('group', function (Blueprint $table) {
-            $table->string('address',500)->nullable()->default(null);
-            $table->string('city',250)->nullable()->default(null);
+            // $table->string('address',500)->nullable()->default(null);
+            // $table->string('city',250)->nullable()->default(null);
         });
     }
 

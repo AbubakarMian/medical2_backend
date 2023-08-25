@@ -80,7 +80,7 @@
 <div class="form-group">
     {!! Form::label('address','Address') !!}
     <div>
-        {!! Form::text('adderss',  $parents->user->adderss  ?? '', ['class' => 'form-control',
+        {!! Form::text('address',  $parents->user->address  ?? '', ['class' => 'form-control',
         'data-parsley-required'=>'true',
         'data-parsley-trigger'=>'change',
         'placeholder'=>'Address','required',

@@ -14,7 +14,7 @@ class AddFielsToGroupsTable extends Migration
     public function up()
     {
         Schema::table('group', function (Blueprint $table) {
-            $table->string('group_request_no',)->nullable()->default(null);
+            // $table->string('group_request_no',)->nullable()->default(null);
         });
     }
 

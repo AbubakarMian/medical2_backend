@@ -14,7 +14,7 @@ class AddFileldsToTeacherTable extends Migration
     public function up()
     {
         Schema::table('group', function (Blueprint $table) {
-            $table->bigInteger('teacher_id')->nullable()->default(0);
+            // $table->bigInteger('teacher_id')->nullable()->default(0);
         });
     }
 

@@ -14,7 +14,7 @@ class AddColumnStatusCourseRegister extends Migration
     public function up()
     {
         Schema::table('course_register', function (Blueprint $table) {
-            $table->string('status')->nullable()->default(0);
+            // $table->string('status')->nullable()->default(0);
         });
     }
 

@@ -24,6 +24,7 @@ width="400px" style="table-layout:fixed;"
 	}
 </style>
 @section('table')
+<h4>Total {!!$user->total()!!}</h4>
 {{-- {!! Form::open(['method' => 'post', 'route' => ['doctor.search'], 'files'=>true]) !!}
 @include('admin.doctor.partial.searchfilters')
 {!!Form::close() !!} --}}
@@ -36,9 +37,9 @@ width="400px" style="table-layout:fixed;"
 	   <th>Name</th>
 	   <th>Email</th>
 	   <th>Phone No</th>
-	   <th>Address</th>
-	   <th>User Type</th>
-	   <th>Image</th>
+	   <!-- <th>Address</th> -->
+	   <!-- <th>User Type</th>
+	   <th>Image</th> -->
 
 
 
@@ -70,15 +71,7 @@ width="400px" style="table-layout:fixed;"
 		<td >{!! ucwords($ct->name) !!}</td>
 		<td >{!! ucwords($ct->email) !!}</td>
 		<td >{!! ucwords($ct->phone_no) !!}</td>
-		<td >{!! ucwords($ct->adderss) !!}</td>
-		<td >{!! ucwords($user_type) !!}</td>
-
-		<?php if (!$ct->image) {
-			$ct->image = asset('images/image/map.jpg');
-			}
-	    ?>
-			<td><img width="100px" src="{!! $ct->image !!}" class="show-product-img imgshow"></td>
-       
+		<!-- <td >{!! ucwords($ct->adderss) !!}</td> -->
 
 
 
