@@ -14,8 +14,8 @@ class AddRegisterTimeToGroupTable extends Migration
     public function up()
     {
         Schema::table('group', function (Blueprint $table) {
-            $table->bigInteger('registration_start_time')->nullable()->default(0);
-            $table->bigInteger('registration_end_time')->nullable()->default(0);
+            // $table->bigInteger('registration_start_time')->nullable()->default(0);
+            // $table->bigInteger('registration_end_time')->nullable()->default(0);
            });
     }
 

@@ -170,6 +170,18 @@ class AdminController extends Controller
             'title'=>'Employee'
 
         ];
+        $modules[]= [
+
+            'url'=>'admin/import_data/expired_certificate',
+            'title'=>'Expired Certificate'
+
+        ];
+        $modules[]= [
+
+            'url'=>'admin/import_data/all_certificates',
+            'title'=>'All Certificate'
+
+        ];
 
         $reports[] = [
 

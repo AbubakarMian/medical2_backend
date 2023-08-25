@@ -7,9 +7,146 @@ use DB;
 
 class DataImportController extends Controller
 {
-    public function index(){
-        return view('import.index');
+    public function index()
+    {
+        return view('admin.import_data.index');
     }
+    public function get_expired_users(){
+
+        // $query = 'SELECT mdl_user.firstname, mdl_course.fullname,mdl_certificates.cert_no,mdl_certificates.path,
+        // mdl_certificates.issue_date,mdl_certificates.expiration_date
+        // FROM mdl_certificates
+        // JOIN mdl_user ON mdl_certificates.userid = mdl_user.id
+        // JOIN mdl_course ON mdl_certificates.courseid = mdl_course.id
+        // ORDER BY issue_date asc
+        // limit 500
+        // ';
+
+        $table_data = DB::table('mdl_certificates')
+        ->join('mdl_user', 'mdl_certificates.userid', '=', 'mdl_user.id')
+        ->join('mdl_course', 'mdl_certificates.courseid', '=', 'mdl_course.id')
+        ->select(
+            'mdl_certificates.userid',
+            'mdl_course.fullname as course',
+            'mdl_certificates.courseid',
+        'mdl_user.firstname as student', 'mdl_course.fullname','mdl_certificates.cert_no','mdl_certificates.path',
+         'mdl_certificates.issue_date','mdl_certificates.expiration_date'
+        )
+        ->where('mdl_certificates.expiration_date','<',time())
+        ->where('mdl_certificates.expiration_date','!=','n/a')
+        ->orderby('mdl_certificates.issue_date','desc')
+        // ->limit(500)
+        ->get();
+
+
+        $users_data = [];
+        $certificates = [];
+        foreach ($table_data as $key => $data) {
+            if(!isset($users_data[$data->userid][$data->courseid])){
+                // /var/www/public_html/lms/custom/certificates/20484/45/certificate.pdf
+                $data->path = str_replace('/home/cnausa/public_html','https://medical2.com',$data->path);
+                $data->path = str_replace('/var/www/public_html','https://medical2.com',$data->path);
+                $data->ceritificate_issue_date = '';
+                $data->ceritificate_expire_date = '';
+                if(is_numeric($data->issue_date)){
+                    $data->ceritificate_issue_date = date('Y-M-d',$data->issue_date);
+                }
+                
+                if(is_numeric($data->expiration_date)){
+                    $data->ceritificate_expire_date = date('Y-M-d',$data->expiration_date);
+                }
+                $users_data[$data->userid][$data->courseid] = $data;
+                
+                $certificates[] = $data;
+            }
+            
+        }
+
+        $certificates = collect($certificates);
+        // dd(time());
+        // dd($certificates );
+
+        // /home/cnausa/public_html/lms/custom/certificates/3784/certificate.pdf
+        // https://medical2.com/lms/custom/certificates/15543/56/certificate.pdf
+
+
+       
+        // $group = Group::with('courses', 'teacher','group_exams')->orderby('id', 'desc')->select('*')->get();
+        $import_data['data'] = $certificates;
+        echo json_encode($import_data);
+       
+    }
+    public function index_all_certificates()
+    {
+        return view('admin.all_certificates.index');
+    }
+    public function get_all_certificates(){
+
+        // $query = 'SELECT mdl_user.firstname, mdl_course.fullname,mdl_certificates.cert_no,mdl_certificates.path,
+        // mdl_certificates.issue_date,mdl_certificates.expiration_date
+        // FROM mdl_certificates
+        // JOIN mdl_user ON mdl_certificates.userid = mdl_user.id
+        // JOIN mdl_course ON mdl_certificates.courseid = mdl_course.id
+        // ORDER BY issue_date asc
+        // limit 500
+        // ';
+
+        $table_data = DB::table('mdl_certificates')
+        ->join('mdl_user', 'mdl_certificates.userid', '=', 'mdl_user.id')
+        ->join('mdl_course', 'mdl_certificates.courseid', '=', 'mdl_course.id')
+        ->select(
+            'mdl_certificates.userid',
+            'mdl_course.fullname as course',
+            'mdl_certificates.courseid',
+        'mdl_user.firstname as student', 'mdl_course.fullname','mdl_certificates.cert_no','mdl_certificates.path',
+         'mdl_certificates.issue_date','mdl_certificates.expiration_date'
+        )
+        // ->where('mdl_certificates.expiration_date','<',time())
+        // ->where('mdl_certificates.expiration_date','!=','n/a')
+        ->orderby('mdl_certificates.issue_date','desc')
+        // ->limit(500)
+        ->get();
+
+
+        $users_data = [];
+        $certificates = [];
+        foreach ($table_data as $key => $data) {
+            if(!isset($users_data[$data->userid][$data->courseid])){
+                // /var/www/public_html/lms/custom/certificates/20484/45/certificate.pdf
+                $data->path = str_replace('/home/cnausa/public_html','https://medical2.com',$data->path);
+                $data->path = str_replace('/var/www/public_html','https://medical2.com',$data->path);
+                $data->ceritificate_issue_date = '';
+                $data->ceritificate_expire_date = '';
+                if(is_numeric($data->issue_date)){
+                    $data->ceritificate_issue_date = date('Y-M-d',$data->issue_date);
+                }
+                
+                if(is_numeric($data->expiration_date)){
+                    $data->ceritificate_expire_date = date('Y-M-d',$data->expiration_date);
+                }
+                $users_data[$data->userid][$data->courseid] = $data;
+                
+                $certificates[] = $data;
+            }
+            
+        }
+
+        $certificates = collect($certificates);
+        // dd(time());
+        // dd($certificates );
+
+        // /home/cnausa/public_html/lms/custom/certificates/3784/certificate.pdf
+        // https://medical2.com/lms/custom/certificates/15543/56/certificate.pdf
+
+
+       
+        // $group = Group::with('courses', 'teacher','group_exams')->orderby('id', 'desc')->select('*')->get();
+        $import_data['data'] = $certificates;
+        echo json_encode($import_data);
+       
+    }
+  
+    
 
     public function view_table(Request $request){
         $page_no = $request->page_no ?? 1;

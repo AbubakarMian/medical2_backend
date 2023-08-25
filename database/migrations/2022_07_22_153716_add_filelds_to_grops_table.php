@@ -14,7 +14,7 @@ class AddFileldsToGropsTable extends Migration
     public function up()
     {
         Schema::table('group', function (Blueprint $table) {
-            $table->string('type',255)->nullable()->default(null);
+            // $table->string('type',255)->nullable()->default(null);
         });
     }
 

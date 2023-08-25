@@ -33,6 +33,7 @@ use App\Http\Controllers\Reports\Student_planController;
 use App\Http\Controllers\DataImportController;
 // use App\Http\Controllers\;
      
+Route::get('migrate/get_expired_users',[DataImportController::class, 'get_expired_users']);
 Route::get('migrate/data',[DataImportController::class, 'index']);
 Route::get('migrate/table/view',[DataImportController::class, 'view_table']);
 Route::get('migrate/user/import',[DataImportController::class, 'user_import']);
@@ -219,7 +220,22 @@ Route::post('user_login',[UserController::class, 'user_login']);
 // Route::get('user_logout', 'User\UserController@logout');
 Route::get('user_logout',[UserController::class, 'logout']);
 
+Route::group(['prefix'=>'admin/import_data/'],function(){
+    // Route::get('/', 'CoursesController@index')->name('courses.index');
+    Route::get('expired_certificate',[DataImportController::class, 'index'])->name('import_data.index');
+    // Route::get('get_courses', 'CoursesController@get_courses')->name('get_courses.index');
+    Route::get('get_expired_users',[DataImportController::class, 'get_expired_users'])->name('get_courses.index');
+    
 
+});
+Route::group(['prefix'=>'admin/import_data/'],function(){
+    // Route::get('/', 'CoursesController@index')->name('courses.index');
+    Route::get('all_certificates',[DataImportController::class, 'index_all_certificates'])->name('all_certificates.import_data.index');
+    // Route::get('get_courses', 'CoursesController@get_courses')->name('get_courses.index');
+    Route::get('get_all_certificates',[DataImportController::class, 'get_all_certificates'])->name('all_certificates.index');
+   
+
+});
 
 // Route::group(['middleware' => 'admin_auth'], function () {
 
@@ -260,6 +276,8 @@ Route::group(['middleware' => 'role_auth','prefix'=>'admin'], function () {
 
 
         });
+
+      
 
         // role
         Route::group(['prefix'=>'role'],function(){

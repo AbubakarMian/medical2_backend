@@ -14,11 +14,11 @@ class AddFileldsToGroupssTable extends Migration
     public function up()
     {
         Schema::table('group', function (Blueprint $table) {
-            $table->tinyInteger('is_online')->nullable()->default(0);
-            $table->string('venue',255)->nullable()->default(0);
-            $table->float('lat',15,10)->nullable()->default(0);
-            // $table->float('lat',20,16)->nullable()->default(0);krengeee
-            $table->float('long',15,10)->nullable()->default(0);
+            // $table->tinyInteger('is_online')->nullable()->default(0);
+            // $table->string('venue',255)->nullable()->default(0);
+            // $table->float('lat',15,10)->nullable()->default(0);
+            // // $table->float('lat',20,16)->nullable()->default(0);krengeee
+            // $table->float('long',15,10)->nullable()->default(0);
         });
     }
 
@@ -29,7 +29,7 @@ class AddFileldsToGroupssTable extends Migration
      */
     public function down()
     {
-        Schema::table('groupss', function (Blueprint $table) {
+        Schema::table('group', function (Blueprint $table) {
             //
         });
     }

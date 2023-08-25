@@ -14,7 +14,7 @@ class AddFileldsToGrouppssTable extends Migration
     public function up()
     {
         Schema::table('group', function (Blueprint $table) {
-            $table->string('url',250)->nullable()->default(null);  
+            // $table->string('url',250)->nullable()->default(null);  
         });
     }
 
